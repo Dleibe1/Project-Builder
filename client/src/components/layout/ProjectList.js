@@ -12,7 +12,6 @@ const ProjectList = (props) => {
         throw newError
       }
       const responseBody = await response.json()
-      console.log(responseBody.projects)
       setProjects(responseBody.projects)
     } catch (err) {
       console.log(err)
@@ -29,7 +28,14 @@ const ProjectList = (props) => {
 
   return (
     <div>
-    {projectsArray}
+      <div className="new-build-container">
+        <button type="button" className="new-build-button">
+          + New Build
+        </button>
+      </div>
+      <div className="grid-container">
+        <div className="grid-x grid-margin-x project-list">{projectsArray}</div>
+      </div>
     </div>
   )
 }

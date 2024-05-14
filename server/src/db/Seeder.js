@@ -35,6 +35,15 @@ class Seeder {
       code: "import arduino.h\nPinMode(5, OUTPUT)\nPinMode(6, OUTPUT)",
     })
 
+    await Project.query().insert({
+      userId: 2,
+      title: "Drone",
+      parts: "Carbon fiber frame, 4 large brushless motors, ESP32 microcontroller, 1800 MAH lipo battery ",
+      description: "Self leveling drone!",
+      appsAndPlatforms: "Arduino IDE or PlatformIO",
+      code: "import arduino.h\nPinMode(5, OUTPUT)\nPinMode(6, OUTPUT)",
+    })
+
     console.log("Done!")
     await connection.destroy()
   }

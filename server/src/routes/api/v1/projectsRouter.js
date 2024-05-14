@@ -1,6 +1,8 @@
 import express from "express"
 import { Project } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
+import objection from "objection"
+const { ValidationError } = objection
 
 const projectsRouter = new express.Router()
 
@@ -12,11 +14,35 @@ projectsRouter.get("/", async (req, res) => {
         return ProjectSerializer.getProjectDetails(project)
       }),
     )
-    console.log(serializedProjects)
     res.status(200).json({ projects: serializedProjects })
   } catch (err) {
     console.log(err)
     res.status(500).json({ errors: err })
+  }
+})
+
+projectsRouter.get("/:id", async (req, res) => {
+  const id = req.params.id
+  try {
+    const project = await Project.query().findById(id)
+    return res.status(200).json({ project: project })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ errors: error })
+  }
+})
+
+projectsRouter.post("/", async (req, res) => {
+  try {
+    const formInput = req.body
+    const newProjectEntry = await Project.query().insertAndFetch(formInput)
+    res.status(201).json({ project: newProjectEntry })
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error.data })
+    } else {
+      return res.status(500).json({ errors: error })
+    }
   }
 })
 

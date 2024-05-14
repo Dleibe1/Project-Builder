@@ -10,6 +10,7 @@ import RegistrationForm from "./registration/RegistrationForm"
 import SignInForm from "./authentication/SignInForm"
 import TopBar from "./layout/TopBar"
 import ProjectList from "./layout/ProjectList"
+import ProjectShow from "./layout/ProjectShow"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -32,6 +33,9 @@ const App = (props) => {
       <Switch>
         <Route exact path="/">
           <ProjectList user={currentUser} />
+        </Route>
+        <Route exact path="/projects/:id">
+          <ProjectShow user={currentUser} />
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
