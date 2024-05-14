@@ -18,9 +18,10 @@
 }
 
 .logo {
-  margin: 0;
+  margin: 1rem;
   padding: 0;
   display: block;
+  height: 110px;
 }
 
 .authentication-button {
@@ -39,10 +40,6 @@
   padding-left: 0;
   padding-right: 0;
   width: 100%;
-}
-
-.logo {
-  height: 80px;
 }
 
 .project-list {
@@ -95,17 +92,22 @@
 
 .menu,
 .top-bar {
-  list-style: none;
   display: flex;
-  justify-content: space-between;
+  list-style: none;
+  align-items: flex-start;
+  justify-content: space-around;
   margin: 0;
   padding: 0;
 }
 
 .sign-up,
 .sign-out {
-  margin-right: 1rem;
-  justify-content: flex-end;
+  margin-top: 1rem;
+  align-items: flex-end;
+}
+
+.sign-in {
+  margin-top: 1rem;
 }
 
 .project-show {
@@ -149,22 +151,17 @@
   font-family: "Roboto", sans-serif;
 }
 
-.new-build-container {
-  display: flex;
-  justify-content: flex-end;
-  padding: 1rem;
-}
-
 .new-build-button {
   background-color: #e67e23;
   color: white;
-  margin: 0;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
   display: block;
+  margin-top: 1rem;
+  margin-right: 2rem;
   padding: 0.7rem 1rem;
   padding-top: 0.7rem;
   padding-right: 1rem;
@@ -174,9 +171,72 @@
 
 .new-build-button:hover {
   background-color: #d5721c;
-
 }
 
+.new-build-form {
+  width: 75%;
+  margin: 20px auto;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", sans-serif;
+}
+
+.new-build-form h4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.new-build-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-build-form label {
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.new-build-form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.new-build-form input:focus {
+  outline: none;
+  border-color: #00979c;
+  box-shadow: 0 0 5px rgba(0, 151, 156, 0.5);
+}
+
+.new-build-form button {
+  background-color: #00979c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.new-build-form button:hover {
+  background-color: #028184;
+}
 // .main-content {
 //   background-color: #ffe8cc; /* Light orange color */
 //   padding: 2rem;

@@ -11,6 +11,7 @@ import SignInForm from "./authentication/SignInForm"
 import TopBar from "./layout/TopBar"
 import ProjectList from "./layout/ProjectList"
 import ProjectShow from "./layout/ProjectShow"
+import NewProjectForm from "./layout/NewProjectForm"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -36,6 +37,9 @@ const App = (props) => {
         </Route>
         <Route exact path="/projects/:id">
           <ProjectShow user={currentUser} />
+        </Route>
+        <Route exact path="/create-new-build">
+          <NewProjectForm user={currentUser} />
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

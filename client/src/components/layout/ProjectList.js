@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import ProjectTile from "./ProjectTile"
 
 const ProjectList = (props) => {
@@ -29,9 +30,6 @@ const ProjectList = (props) => {
   return (
     <div>
       <div className="new-build-container">
-        <button type="button" className="new-build-button">
-          + New Build
-        </button>
       </div>
       <div className="grid-container">
         <div className="grid-x grid-margin-x project-list">{projectsArray}</div>

@@ -77,7 +77,7 @@ const SignInForm = () => {
   }
 
   return (
-    <div className="grid-container" onSubmit={onSubmit}>
+    <div className="grid-container sign-in" onSubmit={onSubmit}>
       <h1>Sign In</h1>
 
       {credentialsErrors ? <p className="callout alert">{credentialsErrors}</p> : null}
@@ -103,7 +103,7 @@ const SignInForm = () => {
           </label>
         </div>
         <div>
-          <input type="submit" className="button" value="Sign In" />
+          <input type="submit" className="button authentication-button" value="Sign In" />
         </div>
       </form>
     </div>

@@ -6,7 +6,9 @@ import SignOutButton from "../authentication/SignOutButton"
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
     <li key="sign-in">
-      <Link to="/user-sessions/new">Sign In</Link>
+      <Link className="sign-in" to="/user-sessions/new">
+        Sign In
+      </Link>
     </li>,
     <li key="sign-up" className="sign-up">
       <Link to="/users/new" className="button authentication-button">
@@ -16,7 +18,7 @@ const TopBar = ({ user }) => {
   ]
 
   const authenticatedListItems = [
-    <li key="sign-out" >
+    <li key="sign-out">
       <SignOutButton />
     </li>,
   ]
@@ -24,16 +26,18 @@ const TopBar = ({ user }) => {
   return (
     <div className="top-bar">
       <div className="top-bar-left">
-        <ul className="menu">
-          <li>
-            <Link to="/" >
-            <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
-            </Link>
-          </li>
-        </ul>
+        <Link to="/">
+          <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
+        </Link>
+        <ul className="menu"></ul>
       </div>
       <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
+        <Link to="/create-new-build">
+          <button type="button" className="new-build-button">
+            + New Build
+          </button>
+        </Link>
       </div>
     </div>
   )
