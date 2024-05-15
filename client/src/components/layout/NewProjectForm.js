@@ -1,11 +1,13 @@
 import React, { useState } from "react"
+import { compileString } from "sass"
 
 const NewProjectForm = (props) => {
+  const [part, setPart] = useState("")
   const [newProject, setNewProject] = useState({
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    parts: "",
+    parts: [],
     description: "",
     code: "",
     userId: "",
@@ -25,7 +27,6 @@ const NewProjectForm = (props) => {
         throw newError
       }
       const responseData = response.json()
-      console.log(responseData.project)
     } catch (error) {
       console.log(error)
     }
@@ -38,6 +39,16 @@ const NewProjectForm = (props) => {
 
   const handleInputChange = (event) => {
     setNewProject({ ...newProject, [event.currentTarget.name]: event.currentTarget.value })
+  }
+
+  const handlePartInput = (event) => {
+   setPart(event.currentTarget.value)
+  }
+
+  const handlePartSubmit = () => {
+    if(part.length){
+      setNewProject({...newProject, parts: [...newProject.parts, part] })
+    }
   }
 
   return (
@@ -61,9 +72,10 @@ const NewProjectForm = (props) => {
             name="appsAndPlatforms"
           />
         </label>
-        <label htmlFor="parts">
-          Parts Needed:
-          <input onChange={handleInputChange} type="text" id="parts" name="parts" />
+        <label htmlFor="part">
+          Parts:
+          <input onChange={handlePartInput} type="text" id="parts" name="part" />
+          <h3 onClick={handlePartSubmit} id="add-part">Add Part</h3>
         </label>
         <label htmlFor="description">
           description:
