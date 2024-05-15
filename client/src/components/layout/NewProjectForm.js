@@ -42,17 +42,26 @@ const NewProjectForm = (props) => {
   }
 
   const handlePartInput = (event) => {
-   setPart(event.currentTarget.value)
+    setPart(event.currentTarget.value)
   }
 
   const handlePartSubmit = () => {
-    if(part.length){
-      setNewProject({...newProject, parts: [...newProject.parts, part] })
+    if (part.length) {
+      setNewProject({ ...newProject, parts: [...newProject.parts, part] })
     }
   }
 
+  const partsList = newProject.parts.map((part) => {
+    return (
+      <div id="parts-list" className="cell small-3 medium-6 large-4r">
+        <h5 id="part">{part}</h5>
+        <p id="delete-part" className="part-button ">Delete Part</p>
+      </div>
+    )
+  })
+
   return (
-    <div className="new-build-form">
+    <div className="new-build-form ">
       <h4>Add a New Project</h4>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">
@@ -72,10 +81,13 @@ const NewProjectForm = (props) => {
             name="appsAndPlatforms"
           />
         </label>
+        {partsList}
         <label htmlFor="part">
           Parts:
           <input onChange={handlePartInput} type="text" id="parts" name="part" />
-          <h3 onClick={handlePartSubmit} id="add-part">Add Part</h3>
+          <h3 onClick={handlePartSubmit} className="part-button">
+            Add Part
+          </h3>
         </label>
         <label htmlFor="description">
           description:
