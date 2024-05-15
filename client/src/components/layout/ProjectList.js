@@ -29,8 +29,6 @@ const ProjectList = (props) => {
 
   return (
     <div>
-      <div className="new-build-container">
-      </div>
       <div className="grid-container">
         <div className="grid-x grid-margin-x project-list">{projectsArray}</div>
       </div>

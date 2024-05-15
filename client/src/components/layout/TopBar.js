@@ -23,6 +23,18 @@ const TopBar = ({ user }) => {
     </li>,
   ]
 
+  let newBuildButton = [
+    <Link className="new-build-container" to="/create-new-build">
+      <button type="button" className="new-build-button">
+        + New Build
+      </button>
+    </Link>,
+  ]
+
+  if(!user){
+    newBuildButton = []
+  }
+
   return (
     <div className="top-bar">
       <div className="top-bar-left">
@@ -33,11 +45,7 @@ const TopBar = ({ user }) => {
       </div>
       <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
-        <Link to="/create-new-build">
-          <button type="button" className="new-build-button">
-            + New Build
-          </button>
-        </Link>
+        {newBuildButton}
       </div>
     </div>
   )

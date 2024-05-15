@@ -2,6 +2,7 @@ import express from "express"
 import { Project } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 import objection from "objection"
+import cleanUserInput from "../../../services/cleanUserInput.js"
 const { ValidationError } = objection
 
 const projectsRouter = new express.Router()
@@ -33,11 +34,13 @@ projectsRouter.get("/:id", async (req, res) => {
 })
 
 projectsRouter.post("/", async (req, res) => {
+  const { body } = req
   try {
-    const formInput = req.body
+    const formInput = cleanUserInput(body)
     const newProjectEntry = await Project.query().insertAndFetch(formInput)
     res.status(201).json({ project: newProjectEntry })
   } catch (error) {
+    console.log(error)
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })
     } else {

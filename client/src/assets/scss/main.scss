@@ -100,14 +100,22 @@
   padding: 0;
 }
 
-.sign-up,
+.sign-up{
+  margin-top: 1rem;
+  margin-right: 2rem;
+  align-items: flex-end;
+}
+
 .sign-out {
   margin-top: 1rem;
-  align-items: flex-end;
 }
 
 .sign-in {
   margin-top: 1rem;
+}
+
+.top-bar-right{
+  display: flexbox;
 }
 
 .project-show {
@@ -153,6 +161,8 @@
 
 .new-build-button {
   background-color: #e67e23;
+  margin-right: 0rem;
+  align-items: flex-start;
   color: white;
   border-radius: 5px;
   border: none;
@@ -161,12 +171,19 @@
   line-height: 1;
   display: block;
   margin-top: 1rem;
-  margin-right: 2rem;
+  // margin-right: 2rem;
   padding: 0.7rem 1rem;
   padding-top: 0.7rem;
   padding-right: 1rem;
   padding-bottom: 0.7rem;
   padding-left: 1rem;
+}
+
+.new-build-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2rem;
+  margin-top: 2rem;
 }
 
 .new-build-button:hover {
