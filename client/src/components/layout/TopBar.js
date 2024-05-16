@@ -39,9 +39,7 @@ const TopBar = ({ user }) => {
     newBuildButton = []
     myBuildsButton = []
   }
-
-  console.log(newBuildButton)
-
+  
   return (
     <div className="top-bar">
       <div className="top-bar-left">

@@ -4,7 +4,6 @@ import ProjectTile from "./ProjectTile"
 
 const ProjectList = (props) => {
   const [projects, setProjects] = useState([])
-
   const getProjectsData = async () => {
     try {
       const response = await fetch("/api/v1/projects")

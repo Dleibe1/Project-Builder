@@ -6,30 +6,25 @@
  * @param {Knex} knex
  */
 exports.up = async (knex) => {
-  return knex.schema.createTable("projects", (table) => {
+  return knex.schema.createTable("parts", (table) => {
     table.bigIncrements("id")
 
-    table.bigInteger("userId")
+    table.bigInteger("projectId")
     .unsigned()
     .notNullable()
     .index()
-    .references("users.id")
+    .references("projects.id")
 
-    table.string("title").notNullable()
-    table.string("appsAndPlatforms")
-    table.string("tags")
-    table.text("description").notNullable()
-    table.text("documentation")
-    table.text("code").notNullable()
+    table.string("partName").notNullable()
 
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
     table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())
   })
-}
+};
 
 /**
  * @param {Knex} knex
  */
 exports.down = async (knex) => {
-  return knex.schema.dropTableIfExists("projects")
-}
+  return knex.schema.dropTableIfExists("parts")
+};

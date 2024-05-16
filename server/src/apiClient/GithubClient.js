@@ -5,7 +5,6 @@ class GithubClient {
     const match = url.match(regex)
     if (match) {
       const [, owner, repo, path] = match
-      console.log(match)
       try {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`
         const apiKey = "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"
@@ -21,7 +20,7 @@ class GithubClient {
         return { error: error.message }
       }
     } else {
-      console.log("no match")
+      console.log("Github URL input does not match regex")
     }
   }
 }
