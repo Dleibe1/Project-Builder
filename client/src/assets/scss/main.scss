@@ -18,10 +18,8 @@
 }
 
 .logo {
-  margin: 1rem;
   padding: 0;
   display: block;
-  height: 110px;
 }
 
 .authentication-button {
@@ -95,7 +93,7 @@
   display: flex;
   list-style: none;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: flex-end;
   margin: 0;
   padding: 0;
 }
@@ -115,7 +113,9 @@
 }
 
 .top-bar-right {
-  display: flexbox;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
 }
 
 .project-show {
@@ -159,35 +159,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-.new-build-button {
-  background-color: #e67e23;
-  margin-right: 0rem;
-  align-items: flex-start;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  font-family: "Montserrat", sans-serif;
-  line-height: 1;
-  display: block;
-  margin-top: 1rem;
-  padding: 0.7rem 1rem;
-  padding-top: 0.7rem;
-  padding-right: 1rem;
-  padding-bottom: 0.7rem;
-  padding-left: 1rem;
-}
-
-.new-build-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 2rem;
-  margin-top: 2rem;
-}
-
-.new-build-button:hover {
-  background-color: #d5721c;
-}
 
 .new-build-form {
   width: 75%;
@@ -265,8 +236,43 @@
   transition: background-color 0.2s ease;
 }
 
+#my-builds {
+  display: flex;
+  background-color: #e67e23;
+  width: 150px;
+  justify-content: center;
+}
+
 .part-button:hover {
   background-color: #028184;
+}
+
+#new-build-button, #my-builds {
+  background-color: #e67e23;
+  margin-right: 0rem;
+  align-items: flex-start;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1;
+  display: block;
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  padding-top: 0.7rem;
+  padding-right: 1rem;
+  padding-bottom: 0.7rem;
+  padding-left: 1rem;
+}
+
+#new-build-button:hover, #my-builds:hover {
+  background-color: #d5721c;
+}
+
+#my-builds {
+  display: flex;
+
 }
 
 #delete-part{
@@ -290,4 +296,10 @@
 
 #part {
   text-align: left;
+}
+#logo-container{
+  display: flex;
+  height: 110px;
+  width: 110px;
+  margin: 10px;
 }

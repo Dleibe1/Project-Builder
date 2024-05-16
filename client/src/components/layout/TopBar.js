@@ -24,28 +24,29 @@ const TopBar = ({ user }) => {
   ]
 
   let newBuildButton = [
-    <Link className="new-build-container" to="/create-new-build">
-      <button type="button" className="new-build-button">
+    <Link id="new-build-button" className="part-button" to="/create-new-build">
         + New Build
-      </button>
     </Link>,
   ]
 
-  if(!user){
+  if (!user) {
     newBuildButton = []
   }
 
   return (
     <div className="top-bar">
       <div className="top-bar-left">
-        <Link to="/">
-          <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
-        </Link>
+        <div >
+          <Link id="logo-container" to="/">
+            <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
+          </Link>
+        </div>
         <ul className="menu"></ul>
       </div>
       <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
         {newBuildButton}
+      <h3 id="my-builds" className="part-button ">My Builds</h3>
       </div>
     </div>
   )
