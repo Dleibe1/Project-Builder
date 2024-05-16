@@ -1,5 +1,4 @@
 import got from "got"
-
 class GithubClient {
   static async getCode(url) {
     const regex = /^https:\/\/github.com\/([^\/]+)\/([^\/]+)\/blob\/main\/(.+)$/

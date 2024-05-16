@@ -25,18 +25,27 @@ const TopBar = ({ user }) => {
 
   let newBuildButton = [
     <Link id="new-build-button" className="part-button" to="/create-new-build">
-        + New Build
+      + New Build
     </Link>,
+  ]
+
+  let myBuildsButton = [
+    <h3 id="my-builds" className="part-button ">
+      My Builds
+    </h3>,
   ]
 
   if (!user) {
     newBuildButton = []
+    myBuildsButton = []
   }
+
+  console.log(newBuildButton)
 
   return (
     <div className="top-bar">
       <div className="top-bar-left">
-        <div >
+        <div>
           <Link id="logo-container" to="/">
             <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
           </Link>
@@ -46,7 +55,7 @@ const TopBar = ({ user }) => {
       <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
         {newBuildButton}
-      <h3 id="my-builds" className="part-button ">My Builds</h3>
+        {myBuildsButton}
       </div>
     </div>
   )
