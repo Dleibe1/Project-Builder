@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { compileString } from "sass"
 
 const NewProjectForm = (props) => {
   const [part, setPart] = useState("")
@@ -26,12 +25,11 @@ const NewProjectForm = (props) => {
         const newError = new Error("Error in the fetch!")
         throw newError
       }
-      const responseData = response.json()
     } catch (error) {
       console.log(error)
     }
   }
-  //SHOULD I MAKE ANOTHER SERIALIZER THAT ADDS THE userId?
+
   const handleSubmit = (event) => {
     event.preventDefault()
     postProject({ ...newProject, userId: props.user.id })
@@ -49,13 +47,21 @@ const NewProjectForm = (props) => {
     if (part.length) {
       setNewProject({ ...newProject, parts: [...newProject.parts, part] })
     }
+    setPart("")
   }
 
-  const partsList = newProject.parts.map((part) => {
+  const handleDelete = (index) => {
+    const partsList = newProject.parts.filter((part, i) => i !== index)
+    setNewProject({ ...newProject, parts: partsList })
+  }
+
+  const partsList = newProject.parts.map((part, index) => {
     return (
       <div id="parts-list" className="cell small-3 medium-6 large-4r">
         <h5 id="part">{part}</h5>
-        <p id="delete-part" className="part-button ">Delete Part</p>
+        <p id="delete-part" onClick={() => handleDelete(index)} className="part-button ">
+          Delete Part
+        </p>
       </div>
     )
   })
@@ -81,10 +87,10 @@ const NewProjectForm = (props) => {
             name="appsAndPlatforms"
           />
         </label>
+        <h5>Parts:</h5>
         {partsList}
         <label htmlFor="part">
-          Parts:
-          <input onChange={handlePartInput} type="text" id="parts" name="part" />
+          <input value={part} onChange={handlePartInput} type="text" id="parts" name="part" />
           <h3 onClick={handlePartSubmit} className="part-button">
             Add Part
           </h3>

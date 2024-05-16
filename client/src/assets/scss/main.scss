@@ -159,7 +159,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-
 .new-build-form {
   width: 75%;
   margin: 20px auto;
@@ -247,7 +246,8 @@
   background-color: #028184;
 }
 
-#new-build-button, #my-builds {
+#new-build-button,
+#my-builds {
   background-color: #e67e23;
   margin-right: 0rem;
   align-items: flex-start;
@@ -266,17 +266,17 @@
   padding-left: 1rem;
 }
 
-#new-build-button:hover, #my-builds:hover {
+#new-build-button:hover,
+#my-builds:hover {
   background-color: #d5721c;
 }
 
 #my-builds {
   display: flex;
-
 }
 
-#delete-part{
-  margin-left:10px;
+#delete-part {
+  margin-left: 10px;
   width: 8rem;
 }
 
@@ -285,9 +285,9 @@
   margin: 1rem;
   flex-direction: column;
   align-items: flex-start;
-  border-bottom: 2px solid  #028184; 
+  border-bottom: 2px solid #028184;
   border-radius: 10px;
-  padding: 10px; 
+  padding: 10px;
 }
 
 #parts-list h5 {
@@ -297,7 +297,7 @@
 #part {
   text-align: left;
 }
-#logo-container{
+#logo-container {
   display: flex;
   height: 110px;
   width: 110px;
