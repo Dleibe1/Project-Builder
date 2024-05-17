@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 
-const ProjectShow = (props) => {
+const ProjectShow = ({ user }) => {
   const [project, setProject] = useState({ parts: [] })
   const params = useParams()
   const projectId = params.id
@@ -23,9 +23,12 @@ const ProjectShow = (props) => {
     }
   }
 
-  const partsList = project.parts.map(part => {
-    return <p>{part.partName}</p> 
+  const partsList = project.parts.map((part) => {
+    return <p>{part.partName}</p>
   })
+
+  const locationData = useLocation()
+  const myBuilds = locationData.pathname === "/my-builds" ? true : false
 
   return (
     <div className="project-show">

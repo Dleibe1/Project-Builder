@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import SignOutButton from "../authentication/SignOutButton"
 
@@ -30,16 +30,13 @@ const TopBar = ({ user }) => {
   ]
 
   let myBuildsButton = [
-    <h3 id="my-builds" className="part-button ">
+    <Link id="my-builds" className="part-button " to="/my-builds">
       My Builds
-    </h3>,
+    </Link>,
   ]
 
-  if (!user) {
-    newBuildButton = []
-    myBuildsButton = []
-  }
-  
+  const location = useLocation()
+
   return (
     <div className="top-bar">
       <div className="top-bar-left">
@@ -52,8 +49,8 @@ const TopBar = ({ user }) => {
       </div>
       <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
-        {newBuildButton}
-        {myBuildsButton}
+        {user && location.pathname !== "/create-new-build" ? newBuildButton : []}
+        {user && location.pathname !== "/my-builds" ? myBuildsButton : []}
       </div>
     </div>
   )

@@ -32,7 +32,7 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/">
+        <Route exact path={["/", "/my-builds"]}>
           <ProjectList user={currentUser} />
         </Route>
         <Route exact path="/projects/:id">
