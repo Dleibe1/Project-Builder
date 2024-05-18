@@ -27,7 +27,6 @@ projectsRouter.get("/:id", async (req, res) => {
   try {
     const project = await Project.query().findById(id)
     const serializedProject = await ProjectSerializer.getProjectDetails(project)
-    console.log(serializedProject)
     return res.status(200).json({ project: serializedProject })
   } catch (error) {
     console.log(error)
@@ -39,8 +38,8 @@ projectsRouter.post("/", async (req, res) => {
   const { body } = req
   try {
     const formInput = cleanUserInput(body)
-
-    res.status(201).json({ project: newProjectEntry })
+     console.log(await ProjectSerializer.handleNewProject(formInput))
+    // res.status(201).json({ project: newProjectEntry })
   } catch (error) {
     console.log(error)
     if (error instanceof ValidationError) {

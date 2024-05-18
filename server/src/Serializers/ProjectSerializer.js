@@ -1,4 +1,4 @@
-import { User } from "../models/index.js"
+import { User, Project, Part } from "../models/index.js"
 import PartsSerializer from "./PartsSerializer.js"
 
 class ProjectSerializer {
@@ -28,9 +28,29 @@ class ProjectSerializer {
     return serializedProject
   }
 
-  static async handleNewProject(formData){
-    console.log(formData)
-
+  static async handleNewProject({
+    title,
+    tags,
+    appsAndPlatforms,
+    description,
+    code,
+    userId,
+    parts,
+  }) {
+    const newProject = await Project.query().insert({
+      title,
+      tags,
+      appsAndPlatforms,
+      parts,
+      description,
+      code,
+      userId,
+    })
+    const newProjectId = parseInt(newProject.id)
+    const newProjectRelatedParts = parts.map(async (part) => {
+      await Part.query().insert({ projectId: newProjectId, partName: part })
+    })
+    return ProjectSerializer.getProjectDetails(newProject)
   }
 }
 
