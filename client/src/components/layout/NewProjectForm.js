@@ -69,7 +69,7 @@ const NewProjectForm = (props) => {
   return (
     <div className="new-build-form ">
       <h4>Add a New Project</h4>
-      <form onSubmit={handleSubmit}>
+      <form key={"new-build-form"} onSubmit={handleSubmit}>
         <label htmlFor="title">
           Name of project:
           <input onChange={handleInputChange} type="text" id="title" name="title" />

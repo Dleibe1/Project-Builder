@@ -24,13 +24,13 @@ const TopBar = ({ user }) => {
   ]
 
   let newBuildButton = [
-    <Link id="new-build-button" className="part-button" to="/create-new-build">
+    <Link key={"new-build-button"} id="new-build-button" className="part-button" to="/create-new-build">
       + New Build
     </Link>,
   ]
 
   let myBuildsButton = [
-    <Link id="my-builds" className="part-button " to="/my-builds">
+    <Link key={"my-builds"} id="my-builds" className="part-button " to="/my-builds">
       My Builds
     </Link>,
   ]

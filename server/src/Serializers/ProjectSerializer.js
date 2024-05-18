@@ -27,6 +27,11 @@ class ProjectSerializer {
     serializedProject.parts = relatedParts
     return serializedProject
   }
+
+  static async handleNewProject(formData){
+    console.log(formData)
+
+  }
 }
 
 export default ProjectSerializer

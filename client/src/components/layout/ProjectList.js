@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
+import { useLocation } from "react-router-dom"
 import ProjectTile from "./ProjectTile"
+import MyBuildsTile from "./MyBuildsTile"
 
 const ProjectList = (props) => {
   const [projects, setProjects] = useState([])
@@ -17,12 +19,19 @@ const ProjectList = (props) => {
     }
   }
 
+  const currentPathData = useLocation()
+  const currentPath = currentPathData.pathname
+  const myBuilds = currentPath === "/my-builds" ? true : false
+
   useEffect(() => {
     getProjectsData()
   }, [])
-
   const projectsArray = projects.map((project) => {
-    return <ProjectTile id={project.id} title={project.title} createdBy={project.user} />
+    if (myBuilds) {
+      return <MyBuildsTile key={project.id} id={project.id} title={project.title} />
+    } else {
+      return <ProjectTile key={project.id} id={project.id} title={project.title} createdBy={project.user} />
+    }
   })
 
   return (

@@ -27,6 +27,8 @@ const ProjectShow = ({ user }) => {
     return <p>{part.partName}</p>
   })
 
+  console.log(project)
+
   const locationData = useLocation()
   const myBuilds = locationData.pathname === "/my-builds" ? true : false
 
