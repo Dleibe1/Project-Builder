@@ -6,7 +6,7 @@ const Model = require("./Model")
 const saltRounds = 10
 
 const uniqueFunc = unique({
-  fields: ["email"],
+  fields: ["email", "userName"],
   identifiers: ["id"],
 })
 
@@ -26,7 +26,7 @@ class User extends uniqueFunc(Model) {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["email"],
+      required: ["email", "userName"],
 
       properties: {
         email: { type: "string", pattern: "^\\S+@\\S+\\.\\S+$" },
@@ -51,11 +51,11 @@ class User extends uniqueFunc(Model) {
   }
 
   $beforeInsert() {
-    return this.$checkUniqueness("email")
+    return Promise.all([this.$checkUniqueness("email"), this.$checkUniqueness("userName")])
   }
 
   $beforeUpdate() {
-    return this.$checkUniqueness("email")
+    return Promise.all([this.$checkUniqueness("email"), this.$checkUniqueness("userName")])
   }
 
   $formatJson(json) {
