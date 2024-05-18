@@ -1,5 +1,6 @@
 import { User, Project, Part } from "../models/index.js"
 import PartsSerializer from "./PartsSerializer.js"
+import GithubClient from "../apiClient/GithubClient.js"
 
 class ProjectSerializer {
   static async getProjectDetails(project) {
@@ -33,23 +34,26 @@ class ProjectSerializer {
     tags,
     appsAndPlatforms,
     description,
-    code,
+    userManuallyEnteredCode,
+    githubMainFileUrl,
     userId,
     parts,
   }) {
+    const codeFromGithub = await GithubClient.getCode(githubMainFileUrl)
+    const projectCode = codeFromGithub ? codeFromGithub : userManuallyEnteredCode
     const newProject = await Project.query().insert({
       title,
       tags,
       appsAndPlatforms,
       parts,
       description,
-      code,
+      code: projectCode,
       userId,
     })
     const newProjectId = parseInt(newProject.id)
-    const insertRelatedParts = parts.map(async (part) => {
+    for (const part of parts) {
       await Part.query().insert({ projectId: newProjectId, partName: part })
-    })
+    }
     return ProjectSerializer.getProjectDetails(newProject)
   }
 }

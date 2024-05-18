@@ -8,7 +8,8 @@ const NewProjectForm = (props) => {
     appsAndPlatforms: "",
     parts: [],
     description: "",
-    code: "",
+    userManuallyEnteredCode: "",
+    githubMainFileUrl: "",
     userId: "",
   })
 
@@ -29,6 +30,8 @@ const NewProjectForm = (props) => {
       console.log(error)
     }
   }
+
+  console.log(newProject)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -101,7 +104,23 @@ const NewProjectForm = (props) => {
         </label>
         <label htmlFor="code">
           Code:
-          <input onChange={handleInputChange} type="text" id="code" name="code" />
+          <textarea
+            rows="20"
+            cols="1"
+            onChange={handleInputChange}
+            type="text"
+            id="code"
+            name="code"
+          />
+        </label>
+        <label htmlFor="code">
+          <h5>
+            Alternatively, pasting the URL of your main sketch file on Github will automatically
+            keep the code you share up to date.
+          </h5>
+          <h5>Example: https://github.com/antronyx/ServoTester/blob/main/main.ino</h5>
+          Github main sketch file URL:
+          <input onChange={handleInputChange} type="text" id="github-url" name="githubMainFileUrl" />
         </label>
         <input type="submit" value="Submit Project" />
       </form>
