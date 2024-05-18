@@ -47,7 +47,7 @@ class ProjectSerializer {
       userId,
     })
     const newProjectId = parseInt(newProject.id)
-    const newProjectRelatedParts = parts.map(async (part) => {
+    const insertRelatedParts = parts.map(async (part) => {
       await Part.query().insert({ projectId: newProjectId, partName: part })
     })
     return ProjectSerializer.getProjectDetails(newProject)

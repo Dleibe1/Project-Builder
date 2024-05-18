@@ -39,7 +39,6 @@ projectsRouter.post("/", async (req, res) => {
   try {
     const formInput = cleanUserInput(body)
      console.log(await ProjectSerializer.handleNewProject(formInput))
-    // res.status(201).json({ project: newProjectEntry })
   } catch (error) {
     console.log(error)
     if (error instanceof ValidationError) {
