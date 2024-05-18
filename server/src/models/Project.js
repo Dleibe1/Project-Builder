@@ -17,6 +17,7 @@ class Project extends Model {
         description: { type: "string", minLength: 1 },
         documentation: { type: "string" },
         code: { type: "string", minLength: 1 },
+        githubFileURL: { type: "string" },
       },
     }
   }
@@ -29,17 +30,17 @@ class Project extends Model {
         modelClass: User,
         join: {
           from: "projects.userId",
-          to: "users.id"
-        }
+          to: "users.id",
+        },
       },
       parts: {
         relation: Model.HasManyRelation,
         modelClass: Part,
         join: {
           from: "projects.id",
-          to: "parts.projectId"
-        }
-      }
+          to: "parts.projectId",
+        },
+      },
     }
   }
 }

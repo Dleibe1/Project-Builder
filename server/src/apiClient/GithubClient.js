@@ -2,7 +2,7 @@ import got from "got"
 class GithubClient {
   static async getCode(url) {
     const regex = /^https:\/\/github.com\/([^\/]+)\/([^\/]+)\/blob\/[^\/]+\/(.+)$/
-    if (url.length) {
+    if (url) {
       const match = url.match(regex)
       if (match) {
         const [, owner, repo, path] = match

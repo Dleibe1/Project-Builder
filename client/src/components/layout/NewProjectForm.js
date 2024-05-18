@@ -9,7 +9,7 @@ const NewProjectForm = (props) => {
     parts: [],
     description: "",
     userManuallyEnteredCode: "",
-    githubMainFileUrl: "",
+    githubFileURL: "",
     userId: "",
   })
 
@@ -120,7 +120,7 @@ const NewProjectForm = (props) => {
           </h5>
           <h5>Example: https://github.com/antronyx/ServoTester/blob/main/main.ino</h5>
           Github main sketch file URL:
-          <input onChange={handleInputChange} type="text" id="github-url" name="githubMainFileUrl" />
+          <input onChange={handleInputChange} type="text" id="github-url" name="githubFileURL" />
         </label>
         <input type="submit" value="Submit Project" />
       </form>

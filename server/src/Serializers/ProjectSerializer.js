@@ -13,6 +13,7 @@ class ProjectSerializer {
       "description",
       "documentation",
       "code",
+      "githubFileURL",
     ]
     let serializedProject = {}
     for (const attribute of allowedAttributes) {
@@ -35,12 +36,11 @@ class ProjectSerializer {
     appsAndPlatforms,
     description,
     userManuallyEnteredCode,
-    githubMainFileUrl,
+    githubFileURL,
     userId,
     parts,
   }) {
-    const codeFromGithub = await GithubClient.getCode(githubMainFileUrl)
-    const projectCode = codeFromGithub ? codeFromGithub : userManuallyEnteredCode
+    const projectCode = githubFileURL ? await ProjectSerializer.getGithubProjectCode(githubFileURL) : userManuallyEnteredCode
     const newProject = await Project.query().insert({
       title,
       tags,
@@ -54,7 +54,14 @@ class ProjectSerializer {
     for (const part of parts) {
       await Part.query().insert({ projectId: newProjectId, partName: part })
     }
-    return ProjectSerializer.getProjectDetails(newProject)
+    return await ProjectSerializer.getProjectDetails(newProject)
+  }
+  static async getGithubProjectCode(githubFileURL) {
+    const regex = /^https:\/\/github.com\/([^\/]+)\/([^\/]+)\/blob\/[^\/]+\/(.+)$/
+    if (githubFileURL.match(regex)) {
+      return await GithubClient.getCode(githubFileURL)
+    }
+    return `Could not fetch github code from the URL '${githubFileURL}'`
   }
 }
 

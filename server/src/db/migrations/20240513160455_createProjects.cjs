@@ -21,6 +21,7 @@ exports.up = async (knex) => {
     table.text("description").notNullable()
     table.text("documentation")
     table.text("code").notNullable()
+    table.string("githubFileURL")
 
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
     table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())
