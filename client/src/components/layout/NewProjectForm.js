@@ -31,8 +31,6 @@ const NewProjectForm = (props) => {
     }
   }
 
-  console.log(newProject)
-
   const handleSubmit = (event) => {
     event.preventDefault()
     postProject({ ...newProject, userId: props.user.id })
@@ -57,7 +55,7 @@ const NewProjectForm = (props) => {
     const partsList = newProject.parts.filter((part, i) => i !== index)
     setNewProject({ ...newProject, parts: partsList })
   }
-
+  
   const partsList = newProject.parts.map((part, index) => {
     return (
       <div id="parts-list" className="cell small-3 medium-6 large-4r">
@@ -110,10 +108,10 @@ const NewProjectForm = (props) => {
             onChange={handleInputChange}
             type="text"
             id="code"
-            name="code"
+            name="userManuallyEnteredCode"
           />
         </label>
-        <label htmlFor="code">
+        <label htmlFor="github-url">
           <h5>
             Alternatively, pasting the URL of your main sketch file on Github will automatically
             keep the code you share up to date.

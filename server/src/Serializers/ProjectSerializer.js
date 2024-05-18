@@ -3,7 +3,7 @@ import PartsSerializer from "./PartsSerializer.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
 class ProjectSerializer {
-  static async getProjectDetails(project) {
+  static async getProjectDetails(project, showPage) {
     const allowedAttributes = [
       "id",
       "userId",
@@ -27,6 +27,7 @@ class ProjectSerializer {
       return PartsSerializer.getPartDetails(part)
     })
     serializedProject.parts = relatedParts
+    serializedProject.code = project.githubFileURL && showPage ? ProjectSerializer.getGithubProjectCode(project.githubFileURL) : project.code
     return serializedProject
   }
 
@@ -54,7 +55,6 @@ class ProjectSerializer {
     for (const part of parts) {
       await Part.query().insert({ projectId: newProjectId, partName: part })
     }
-    return await ProjectSerializer.getProjectDetails(newProject)
   }
   static async getGithubProjectCode(githubFileURL) {
     const regex = /^https:\/\/github.com\/([^\/]+)\/([^\/]+)\/blob\/[^\/]+\/(.+)$/

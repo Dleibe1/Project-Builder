@@ -12,7 +12,7 @@ projectsRouter.get("/", async (req, res) => {
     const projects = await Project.query()
     const serializedProjects = await Promise.all(
       projects.map((project) => {
-        return ProjectSerializer.getProjectDetails(project)
+        return ProjectSerializer.getProjectDetails(project, false)
       }),
     )
     res.status(200).json({ projects: serializedProjects })
@@ -26,7 +26,7 @@ projectsRouter.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
     const project = await Project.query().findById(id)
-    const serializedProject = await ProjectSerializer.getProjectDetails(project)
+    const serializedProject = await ProjectSerializer.getProjectDetails(project, true)
     return res.status(200).json({ project: serializedProject })
   } catch (error) {
     console.log(error)
