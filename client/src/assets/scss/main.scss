@@ -117,6 +117,12 @@
   flex-direction: column;
   margin-right: 10px;
 }
+.top-bar-left {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
 
 .project-show {
   padding: 2rem;
@@ -237,6 +243,7 @@
 
 #my-builds {
   display: flex;
+  margin-bottom: 20px;
   background-color: #e67e23;
   width: 150px;
   justify-content: center;

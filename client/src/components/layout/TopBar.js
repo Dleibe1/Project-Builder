@@ -24,7 +24,12 @@ const TopBar = ({ user }) => {
   ]
 
   let newBuildButton = [
-    <Link key={"new-build-button"} id="new-build-button" className="part-button" to="/create-new-build">
+    <Link
+      key={"new-build-button"}
+      id="new-build-button"
+      className="part-button"
+      to="/create-new-build"
+    >
       + New Build
     </Link>,
   ]
@@ -39,11 +44,12 @@ const TopBar = ({ user }) => {
 
   return (
     <div className="top-bar">
-      <div className="top-bar-left">
-        <div>
+      <div >
+        <div className="top-bar-left">
           <Link id="logo-container" to="/">
             <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
           </Link>
+        {user ?  <h5 >{user.userName}</h5> : []}
         </div>
         <ul className="menu"></ul>
       </div>
