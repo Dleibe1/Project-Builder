@@ -9,7 +9,7 @@ const ProjectShow = ({ user }) => {
     getProject()
   }, [])
   const getProject = async () => {
-    try {
+  try {
       const response = await fetch(`/api/v1/projects/${projectId}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
