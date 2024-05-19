@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const MyBuildsTile = ({ id, title }) => {
+const MyBuildTile = ({ id, title }) => {
   const titleNoWhiteSpace = title.replace(/\s/g, "");
 
   return (
-    <Link to={`/my-builds/${titleNoWhiteSpace}`}>
+    <Link to={`/my-builds/${id}/${titleNoWhiteSpace}`}>
       <div className="cell small-3 medium-6 large-4 project-tile">
         <h3>{title}</h3>
       </div>
@@ -13,4 +13,4 @@ const MyBuildsTile = ({ id, title }) => {
   )
 }
 
-export default MyBuildsTile
+export default MyBuildTile

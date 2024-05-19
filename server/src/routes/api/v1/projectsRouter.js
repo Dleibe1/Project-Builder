@@ -13,7 +13,7 @@ projectsRouter.get("/", async (req, res) => {
     const serializedProjects = await Promise.all(
       projects.map((project) => {
         return ProjectSerializer.getProjectDetails(project, false)
-      }),
+      })
     )
     res.status(200).json({ projects: serializedProjects })
   } catch (err) {
@@ -39,6 +39,7 @@ projectsRouter.post("/", async (req, res) => {
   try {
     const formInput = cleanUserInput(body)
     await ProjectSerializer.handleNewProject(formInput)
+    res.status(201).json({ planet: newPlanetEntry })
   } catch (error) {
     console.log(error)
     if (error instanceof ValidationError) {

@@ -1,46 +1,49 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 
-const ProjectShow = (props) => {
-  const [project, setProject] = useState({ parts: [] })
+const MyBuildShow = (props) => {
+  const [myBuild, setMyBuild] = useState({ parts: [] })
   const params = useParams()
   const { id } = params
+  console.log(id)
   useEffect(() => {
-    getProject()
+    getMyBuild()
   }, [])
-  const getProject = async () => {
+  const getMyBuild = async () => {
   try {
-      const response = await fetch(`/api/v1/projects/${id}`)
+      const response = await fetch(`/api/v1/my-builds/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
         throw error
       }
       const responseBody = await response.json()
-      setProject(responseBody.project)
+      setMyBuild(responseBody.userBuild)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const partsList = project.parts.map((part) => {
+  console.log(myBuild)
+
+  const partsList = myBuild.parts.map((part) => {
     return <p>{part.partName}</p>
   })
 
   return (
     <div className="project-show">
-      <h1>{project.title}</h1>
-      <p>{project.description}</p>
+      <h1>{myBuild.title}</h1>
+      <p>{myBuild.description}</p>
       <h4>Parts:</h4>
       {partsList}
       <h4>Apps and Platforms:</h4>
-      <p>{project.appsAndPlatforms}</p>
+      <p>{myBuild.appsAndPlatforms}</p>
       <h4>Tags:</h4>
-      <p>{project.tags}</p>
+      <p>{myBuild.tags}</p>
       <h4>Code:</h4>
-      <code>{project.code}</code>
+      <code>{myBuild.code}</code>
     </div>
   )
 }
 
-export default ProjectShow
+export default MyBuildShow

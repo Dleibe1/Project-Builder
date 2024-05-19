@@ -27,7 +27,7 @@ class ProjectSerializer {
       return PartsSerializer.getPartDetails(part)
     })
     serializedProject.parts = relatedParts
-    serializedProject.code = project.githubFileURL && showPage ? ProjectSerializer.getGithubProjectCode(project.githubFileURL) : project.code
+    serializedProject.code = project.githubFileURL && showPage ? await ProjectSerializer.getGithubProjectCode(project.githubFileURL) : project.code
     return serializedProject
   }
 

@@ -1,10 +1,11 @@
 import React, { useState } from "react"
+import { Redirect } from "react-router-dom"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 
 const NewProjectForm = (props) => {
   const [errors, setErrors] = useState([])
-
+  const [shouldRedirect, setShouldRedirect] = useState(false)
   const [part, setPart] = useState("")
   const [newProject, setNewProject] = useState({
     title: "",
@@ -33,6 +34,7 @@ const NewProjectForm = (props) => {
           return setErrors(newErrors)
         }
       }
+      setShouldRedirect(true)
     } catch (error) {
       console.log(error)
     }
@@ -58,7 +60,7 @@ const NewProjectForm = (props) => {
     setPart("")
   }
 
-  const handleDelete = (index) => {
+  const handlePartDelete = (index) => {
     const partsList = newProject.parts.filter((part, i) => i !== index)
     setNewProject({ ...newProject, parts: partsList })
   }
@@ -67,12 +69,16 @@ const NewProjectForm = (props) => {
     return (
       <div id="parts-list" className="cell small-3 medium-6 large-4r">
         <h5 id="part">{part}</h5>
-        <p id="delete-part" onClick={() => handleDelete(index)} className="part-button ">
+        <p id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
           Delete Part
         </p>
       </div>
     )
   })
+  
+  if (shouldRedirect) {
+    return <Redirect push to={"/my-builds"} />
+  }
 
   return (
     <div className="new-build-form ">

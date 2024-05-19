@@ -10,31 +10,35 @@ class Seeder {
 
     await Project.query().insert({
       userId: 1,
-      title: "Spider Robot",
-      description: "This walking robot uses the 3d printed parts and servo motors to walk in any direction",
+      title: "Servo Controlled By Remote",
+      description: "Control Servo Motor using IR Remote",
       appsAndPlatforms: "Arduino IDE or PlatformIO",
-      code: "import arduino.h\nServo servo",
+      code: "Should be showing github code",
+      githubFileURL: "https://github.com/dmdhrumilmistry/ArduinoPrograms/blob/main/ArduinoUno/Projects/ControlServoMotorUsingIRremote/ControlServoMotorUsingIRremote.cpp"
     })
     await Project.query().insert({
       userId: 1,
-      title: "Automatic Plant Waterer",
-      description: "This project is for automatic watering of indoor plants and hydroponic gardens",
+      title: "Dice Roller",
+      description: "Dice Rolling Simulator",
       appsAndPlatforms: "Arduino IDE or PlatformIO",
-      code: "import arduino.h\nPinMode(5, INPUT)\nPinMode(6, OUTPUT)",
+      code: "Should be showing github code",
+      githubFileURL: "https://github.com/AashiDutt/Arduino_Projects/blob/master/Dice%20Roller/sketch_jul19a/sketch_jul19a.ino"
+
     })
     await Project.query().insert({
       userId: 2,
-      title: "Macanum Wheel Car",
-      description: "This car can move in any direction without turning its wheels!",
+      title: "Combat Robot",
+      description: "Fighting Robot",
       appsAndPlatforms: "Arduino IDE or PlatformIO",
-      code: "import arduino.h\nPinMode(5, OUTPUT)\nPinMode(6, OUTPUT)",
+      code: "Should be showing github code",
+      githubFileURL: "https://github.com/MexsonFernandes/ArduinoProjects/blob/master/combatRobot2.ino"
     })
     await Project.query().insert({
       userId: 2,
       title: "Drone",
       description: "Self leveling drone!",
       appsAndPlatforms: "Arduino IDE or PlatformIO",
-      code: "import arduino.h\nPinMode(5, OUTPUT)\nPinMode(6, OUTPUT)",
+      code: "Manually Entered Code: import arduino.h\nPinMode(5, OUTPUT)\nPinMode(6, OUTPUT)",
     })
 
     await Part.query().insert({partName: "Arduino", projectId: 1})

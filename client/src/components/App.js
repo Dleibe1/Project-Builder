@@ -10,8 +10,10 @@ import RegistrationForm from "./registration/RegistrationForm"
 import SignInForm from "./authentication/SignInForm"
 import TopBar from "./layout/TopBar"
 import ProjectList from "./layout/ProjectList"
+import MyBuildList from "./layout/MyBuildList"
 import ProjectShow from "./layout/ProjectShow"
 import NewProjectForm from "./layout/NewProjectForm"
+import MyBuildShow from "./layout/MyBuildShow"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -32,8 +34,14 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path={["/", "/my-builds"]}>
+        <Route exact path={["/"]}>
           <ProjectList user={currentUser} />
+        </Route>
+        <Route exact path={["/my-builds/:id/:projectTitle"]}>
+          <MyBuildShow user={currentUser} />
+        </Route>
+        <Route exact path={["/my-builds"]}>
+          <MyBuildList user={currentUser} />
         </Route>
         <Route exact path="/projects/:id">
           <ProjectShow user={currentUser} />

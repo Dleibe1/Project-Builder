@@ -7,7 +7,6 @@ const usersRouter = new express.Router();
 
 usersRouter.post("/", async (req, res) => {
   const { email, password, userName } = req.body;
-  console.log(userName)
   try {
     const persistedUser = await User.query().insertAndFetch({ email, password, userName });
     return req.login(persistedUser, () => {
