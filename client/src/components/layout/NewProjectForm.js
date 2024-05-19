@@ -16,6 +16,7 @@ const NewProjectForm = (props) => {
     userManuallyEnteredCode: "",
     githubFileURL: "",
     userId: "",
+    thumbnailImageURL: ""
   })
 
   const postProject = async (newProjectData) => {
@@ -79,7 +80,7 @@ const NewProjectForm = (props) => {
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds"} />
   }
-
+console.log(newProject)
   return (
     <div className="new-build-form ">
       <h4>Add a New Project</h4>
@@ -88,6 +89,10 @@ const NewProjectForm = (props) => {
         <label htmlFor="title">
           Name of project:
           <input onChange={handleInputChange} type="text" id="title" name="title" />
+        </label>
+        <label htmlFor="thumbnail-image-url">
+          Thumbnail Image URL:
+          <input onChange={handleInputChange} type="text" id="title" name="thumbnailImageURL" />
         </label>
         <label htmlFor="tags">
           Tags:

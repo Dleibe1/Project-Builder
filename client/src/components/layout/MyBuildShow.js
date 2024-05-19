@@ -5,7 +5,6 @@ const MyBuildShow = (props) => {
   const [myBuild, setMyBuild] = useState({ parts: [] })
   const params = useParams()
   const { id } = params
-  console.log(id)
   useEffect(() => {
     getMyBuild()
   }, [])
@@ -24,14 +23,15 @@ const MyBuildShow = (props) => {
     }
   }
 
-  console.log(myBuild)
-
   const partsList = myBuild.parts.map((part) => {
     return <p>{part.partName}</p>
   })
 
   return (
     <div className="project-show">
+      <div id="show-page-thumbnail">
+        <img src={myBuild.thumbnailImageURL} />
+      </div>
       <h1>{myBuild.title}</h1>
       <p>{myBuild.description}</p>
       <h4>Parts:</h4>
