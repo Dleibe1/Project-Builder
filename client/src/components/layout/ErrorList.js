@@ -7,9 +7,9 @@ const ErrorList = (props) => {
     const listItems = errantFields.map((field) => {
       index++;
       return (
-        <li key={index}>
+        <p key={index}>
           {field} {props.errors[field]}
-        </li>
+        </p>
       );
     });
     return (

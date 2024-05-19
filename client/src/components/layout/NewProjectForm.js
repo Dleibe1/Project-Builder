@@ -1,6 +1,10 @@
 import React, { useState } from "react"
+import translateServerErrors from "../../services/translateServerErrors.js"
+import ErrorList from "./ErrorList.js"
 
 const NewProjectForm = (props) => {
+  const [errors, setErrors] = useState([])
+
   const [part, setPart] = useState("")
   const [newProject, setNewProject] = useState({
     title: "",
@@ -23,8 +27,11 @@ const NewProjectForm = (props) => {
         body: JSON.stringify(newProjectData),
       })
       if (!response.ok) {
-        const newError = new Error("Error in the fetch!")
-        throw newError
+        if (response.status === 422) {
+          const body = await response.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
+        }
       }
     } catch (error) {
       console.log(error)
@@ -55,7 +62,7 @@ const NewProjectForm = (props) => {
     const partsList = newProject.parts.filter((part, i) => i !== index)
     setNewProject({ ...newProject, parts: partsList })
   }
-  
+
   const partsList = newProject.parts.map((part, index) => {
     return (
       <div id="parts-list" className="cell small-3 medium-6 large-4r">
@@ -70,6 +77,7 @@ const NewProjectForm = (props) => {
   return (
     <div className="new-build-form ">
       <h4>Add a New Project</h4>
+      <ErrorList errors={errors} />
       <form key={"new-build-form"} onSubmit={handleSubmit}>
         <label htmlFor="title">
           Name of project:

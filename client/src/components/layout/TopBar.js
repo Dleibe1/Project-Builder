@@ -44,12 +44,12 @@ const TopBar = ({ user }) => {
 
   return (
     <div className="top-bar">
-      <div >
+      <div>
         <div className="top-bar-left">
           <Link id="logo-container" to="/">
             <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
           </Link>
-        {user ?  <h5 >{user.userName}</h5> : []}
+          {user ? <h5 className="user-logged-in">{user.userName}</h5> : []}
         </div>
         <ul className="menu"></ul>
       </div>
