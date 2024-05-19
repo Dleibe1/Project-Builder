@@ -14,6 +14,7 @@ class ProjectSerializer {
       "documentation",
       "code",
       "githubFileURL",
+      "thumbnailImageURL"
     ]
     let serializedProject = {}
     for (const attribute of allowedAttributes) {

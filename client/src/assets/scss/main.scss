@@ -118,10 +118,15 @@
   margin-right: 10px;
 }
 .top-bar-left {
-  display: flex;
+  display: inline-block;
   align-items: center;
   width: 300px;
   margin-right: 10px;
+}
+
+.top-bar-left-container{
+  display: flex;
+  align-items: center;
 }
 
 
@@ -313,7 +318,8 @@
 }
 
 .user-logged-in {
-
+  height: 3rem;
+  text-align: center;
   background-color: #eaeaea;
   text-align: center;
   font-size: 1.5rem;

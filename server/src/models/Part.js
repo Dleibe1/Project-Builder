@@ -7,13 +7,14 @@ class Part extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["partName"],
+      required: ["partName", "projectId"],
       properties: {
         projectId: { type: "integer" },
         partName: { type: "string" },
       },
     }
   }
+  
   static get relationMappings() {
     const { Project } = require("./index.js")
     return {

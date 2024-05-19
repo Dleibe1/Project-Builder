@@ -40,23 +40,25 @@ const TopBar = ({ user }) => {
     </Link>,
   ]
 
-  const location = useLocation()
+  const { pathname } = useLocation()
 
   return (
     <div className="top-bar">
       <div>
-        <div className="top-bar-left">
-          <Link id="logo-container" to="/">
-            <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
-          </Link>
-          {user ? <h5 className="user-logged-in">{user.userName}</h5> : []}
+        <div>
+          <div className="top-bar-left-container">
+            <Link id="logo-container" to="/">
+              <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
+            </Link>
+            {user ? <h5 className="user-logged-in">{user.userName}</h5> : []}
+          </div>
         </div>
         <ul className="menu"></ul>
       </div>
       <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
-        {user && location.pathname !== "/create-new-build" ? newBuildButton : []}
-        {user && location.pathname !== "/my-builds" ? myBuildsButton : []}
+        {user && pathname !== "/create-new-build" ? newBuildButton : []}
+        {user && pathname !== "/my-builds" ? myBuildsButton : []}
       </div>
     </div>
   )

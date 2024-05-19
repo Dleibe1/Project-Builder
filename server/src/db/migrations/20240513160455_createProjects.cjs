@@ -15,13 +15,14 @@ exports.up = async (knex) => {
     .index()
     .references("users.id")
 
+    table.string("githubFileURL")
+    table.string("thumbnailImageURL")
     table.string("title").notNullable()
     table.string("appsAndPlatforms")
     table.string("tags")
     table.text("description").notNullable()
     table.text("documentation")
     table.text("code").notNullable()
-    table.string("githubFileURL")
 
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
     table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())
