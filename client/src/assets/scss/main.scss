@@ -140,6 +140,10 @@
   font-family: "Roboto", sans-serif;
 }
 
+.project-show img {
+  height: 300px;
+}
+
 .project-show h1 {
   text-align: center;
   font-size: 2.5rem;
@@ -337,4 +341,12 @@
 
 .user-logged-in:hover{
   cursor:default;
+}
+
+#thumbnail-image {
+  height: 180px;
+}
+
+#show-page-thumbnail {
+  text-align: center;
 }

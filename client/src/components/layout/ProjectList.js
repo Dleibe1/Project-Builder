@@ -21,7 +21,7 @@ const ProjectList = (props) => {
     getProjectsData()
   }, [])
   const projectsArray = projects.map((project) => {
-      return <ProjectTile key={project.id} id={project.id} title={project.title} createdBy={project.user} />
+      return <ProjectTile key={project.id} id={project.id} title={project.title} createdBy={project.user} thumbnailImage={project.thumbnailImageURL} />
   })
 
   return (

@@ -9,7 +9,7 @@ const ProjectShow = (props) => {
     getProject()
   }, [])
   const getProject = async () => {
-  try {
+    try {
       const response = await fetch(`/api/v1/projects/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
@@ -29,6 +29,9 @@ const ProjectShow = (props) => {
 
   return (
     <div className="project-show">
+      <div id="show-page-thumbnail">
+        <img src={project.thumbnailImageURL} />
+      </div>
       <h1>{project.title}</h1>
       <p>{project.description}</p>
       <h4>Parts:</h4>

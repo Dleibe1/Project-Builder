@@ -33,14 +33,12 @@ const TopBar = ({ user }) => {
       + New Build
     </Link>,
   ]
-
+  const { pathname } = useLocation()
   let myBuildsButton = [
     <Link key={"my-builds"} id="my-builds" className="part-button " to="/my-builds">
       My Builds
     </Link>,
   ]
-
-  const { pathname } = useLocation()
 
   return (
     <div className="top-bar">
@@ -57,6 +55,8 @@ const TopBar = ({ user }) => {
       </div>
       <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
+      </div>
+      <div>
         {user && pathname !== "/create-new-build" ? newBuildButton : []}
         {user && pathname !== "/my-builds" ? myBuildsButton : []}
       </div>
