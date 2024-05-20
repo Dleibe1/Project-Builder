@@ -13,7 +13,7 @@ projectsRouter.get("/", async (req, res) => {
     const serializedProjects = await Promise.all(
       projects.map((project) => {
         return ProjectSerializer.getProjectDetails(project, false)
-      })
+      }),
     )
     res.status(200).json({ projects: serializedProjects })
   } catch (err) {
@@ -31,6 +31,37 @@ projectsRouter.get("/:id", async (req, res) => {
   } catch (error) {
     console.log(error)
     return res.status(500).json({ errors: error })
+  }
+})
+
+projectsRouter.patch("/:id", async (req, res) => {
+  const formInput = cleanUserInput(req.body)
+  const id = req.params.id
+  const githubFileURL = req.body.githubFileURL ? req.body.githubFileURL : ""
+  const { title, tags, appsAndPlatforms, parts, description, code, thumbnailImageURL, userId } =
+    formInput
+  try {
+    const project = await Project.query()
+      .update({
+        title,
+        tags,
+        appsAndPlatforms,
+        parts,
+        description,
+        code,
+        githubFileURL,
+        thumbnailImageURL,
+        userId,
+      })
+      .where("id", id)
+    return res.status(200).json({ project })
+  } catch (error) {
+    console.log(error)
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error.data })
+    } else {
+      return res.status(500).json({ errors: error })
+    }
   }
 })
 

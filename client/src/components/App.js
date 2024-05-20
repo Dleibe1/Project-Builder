@@ -14,8 +14,10 @@ import MyBuildList from "./layout/MyBuildList"
 import ProjectShow from "./layout/ProjectShow"
 import NewProjectForm from "./layout/NewProjectForm"
 import MyBuildShow from "./layout/MyBuildShow"
+import EditBuildForm from "./layout/EditBuildForm"
 
 const App = (props) => {
+  const [myBuilds, setMyBuilds] = useState([])
   const [currentUser, setCurrentUser] = useState(undefined)
   const fetchCurrentUser = async () => {
     try {
@@ -39,6 +41,9 @@ const App = (props) => {
         </Route>
         <Route exact path={"/my-builds/:id/:projectTitle"}>
           <MyBuildShow user={currentUser} />
+        </Route>
+        <Route exact path="/my-builds/:id/:projectTitle/edit">
+          <EditBuildForm user={currentUser} />
         </Route>
         <Route exact path={"/my-builds"}>
           <MyBuildList user={currentUser} />

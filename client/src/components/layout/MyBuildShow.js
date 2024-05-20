@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
 const MyBuildShow = (props) => {
   const [myBuild, setMyBuild] = useState({ parts: [] })
   const params = useParams()
-  const { id } = params
+  const { id, projectTitle } = params
   const codeRef = useRef(null)
+  const history = useHistory()
 
   useEffect(() => {
     getMyBuild()
@@ -21,7 +22,7 @@ const MyBuildShow = (props) => {
       hljs.highlightElement(codeRef.current)
     }
   }, [myBuild])
-  
+
   const getMyBuild = async () => {
     try {
       const response = await fetch(`/api/v1/my-builds/${id}`)
@@ -37,12 +38,18 @@ const MyBuildShow = (props) => {
     }
   }
 
+  const handleEditBuild = () => {
+    history.push(`/my-builds/${id}/${projectTitle}/edit`, { myBuild: myBuild })
+  }
+
   const partsList = myBuild.parts.map((part) => {
     return <p>{part.partName}</p>
   })
 
   return (
     <div className="project-show">
+      <button onClick={handleEditBuild}>Edit Build</button>
+
       <div id="show-page-thumbnail">
         <img src={myBuild.thumbnailImageURL} />
       </div>
@@ -57,7 +64,7 @@ const MyBuildShow = (props) => {
       <h4>Code:</h4>
       <pre>
         <code ref={codeRef} className="language-c">
-          {project.code}
+          {myBuild.code}
         </code>
       </pre>
     </div>
