@@ -80,7 +80,7 @@ const NewProjectForm = (props) => {
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds"} />
   }
-console.log(newProject)
+
   return (
     <div className="new-build-form ">
       <h4>Add a New Project</h4>

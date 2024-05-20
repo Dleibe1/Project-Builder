@@ -251,7 +251,7 @@
   transition: background-color 0.2s ease;
 }
 
-#my-builds {
+#my-builds, #edit-build {
   display: flex;
   margin-bottom: 20px;
   background-color: #e67e23;
@@ -264,9 +264,9 @@
 }
 
 #new-build-button,
-#my-builds {
+#my-builds, #edit-build {
   background-color: #e67e23;
-  margin-right: 0rem;
+  margin-right: 10px;
   align-items: flex-start;
   color: white;
   border-radius: 5px;
@@ -349,4 +349,7 @@
 
 #show-page-thumbnail {
   text-align: center;
+}
+#show-page-thumbnail img{
+  height: 100%;
 }

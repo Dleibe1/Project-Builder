@@ -1,13 +1,27 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
+import hljs from "highlight.js"
+import "highlight.js/styles/github.css"
 
 const ProjectShow = (props) => {
   const [project, setProject] = useState({ parts: [] })
   const params = useParams()
   const { id } = params
+  const codeRef = useRef(null)
+
   useEffect(() => {
     getProject()
   }, [])
+
+   useEffect(() => {
+    if (codeRef.current) {
+      if (codeRef.current.dataset.highlighted) {
+        delete codeRef.current.dataset.highlighted;
+      }
+      hljs.highlightElement(codeRef.current);
+    }
+  }, [project]);
+
   const getProject = async () => {
     try {
       const response = await fetch(`/api/v1/projects/${id}`)
@@ -41,7 +55,9 @@ const ProjectShow = (props) => {
       <h4>Tags:</h4>
       <p>{project.tags}</p>
       <h4>Code:</h4>
-      <code>{project.code}</code>
+      <pre>
+        <code ref={codeRef} className="language-c" >{project.code}</code>
+      </pre>
     </div>
   )
 }

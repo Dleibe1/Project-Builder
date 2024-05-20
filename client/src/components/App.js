@@ -34,13 +34,13 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path={["/"]}>
+        <Route exact path={"/"}>
           <ProjectList user={currentUser} />
         </Route>
-        <Route exact path={["/my-builds/:id/:projectTitle"]}>
+        <Route exact path={"/my-builds/:id/:projectTitle"}>
           <MyBuildShow user={currentUser} />
         </Route>
-        <Route exact path={["/my-builds"]}>
+        <Route exact path={"/my-builds"}>
           <MyBuildList user={currentUser} />
         </Route>
         <Route exact path="/projects/:id">

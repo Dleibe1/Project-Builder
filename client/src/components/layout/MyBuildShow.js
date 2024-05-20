@@ -1,15 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
+import hljs from "highlight.js"
+import "highlight.js/styles/github.css"
 
 const MyBuildShow = (props) => {
   const [myBuild, setMyBuild] = useState({ parts: [] })
   const params = useParams()
   const { id } = params
+  const codeRef = useRef(null)
+
   useEffect(() => {
     getMyBuild()
   }, [])
+
+  useEffect(() => {
+    if (codeRef.current) {
+      if (codeRef.current.dataset.highlighted) {
+        delete codeRef.current.dataset.highlighted
+      }
+      hljs.highlightElement(codeRef.current)
+    }
+  }, [myBuild])
+  
   const getMyBuild = async () => {
-  try {
+    try {
       const response = await fetch(`/api/v1/my-builds/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
@@ -41,7 +55,11 @@ const MyBuildShow = (props) => {
       <h4>Tags:</h4>
       <p>{myBuild.tags}</p>
       <h4>Code:</h4>
-      <code>{myBuild.code}</code>
+      <pre>
+        <code ref={codeRef} className="language-c">
+          {project.code}
+        </code>
+      </pre>
     </div>
   )
 }

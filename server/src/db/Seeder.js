@@ -30,7 +30,7 @@ class Seeder {
         githubFileURL:
           "https://github.com/AashiDutt/Arduino_Projects/blob/master/Dice%20Roller/sketch_jul19a/sketch_jul19a.ino",
         thumbnailImageURL:
-          "https://projects.arduinocontent.cc/cover-images/70dad73c-8d46-4172-8ad9-def5688e6b19.jpg",
+          "https://projects.arduinocontent.cc/cover-images/1f887c02-812e-411d-ad69-7be71e3715f5.jpg",
       },
       {
         userId: 2,
