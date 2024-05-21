@@ -37,13 +37,13 @@ class ProjectSerializer {
     tags,
     appsAndPlatforms,
     description,
-    code,
+    userManuallyEnteredCode,
     githubFileURL,
     userId,
     parts,
     thumbnailImageURL
   }) {
-    const projectCode = githubFileURL ? await ProjectSerializer.getGithubProjectCode(githubFileURL) : code
+    const projectCode = githubFileURL ? await ProjectSerializer.getGithubProjectCode(githubFileURL) : userManuallyEnteredCode
     const newProject = await Project.query().insert({
       title,
       tags,
@@ -52,8 +52,7 @@ class ProjectSerializer {
       description,
       code: projectCode,
       userId,
-      thumbnailImageURL,
-      githubFileURL
+      thumbnailImageURL
     })
     const newProjectId = parseInt(newProject.id)
     for (const part of parts) {

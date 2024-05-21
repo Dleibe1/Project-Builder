@@ -264,7 +264,8 @@
 }
 
 #new-build-button,
-#my-builds, #edit-build {
+#my-builds, #edit-build-button {
+  display: inline-block;
   background-color: #e67e23;
   margin-right: 10px;
   align-items: flex-start;
@@ -274,7 +275,6 @@
   cursor: pointer;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
-  display: block;
   margin-top: 1rem;
   padding: 0.7rem 1rem;
   padding-top: 0.7rem;
@@ -322,6 +322,8 @@
 }
 
 .user-logged-in {
+  display: inline-block;
+  white-space: nowrap; 
   height: 3rem;
   text-align: center;
   background-color: #eaeaea;

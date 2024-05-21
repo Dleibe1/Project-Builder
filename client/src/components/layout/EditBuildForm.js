@@ -21,10 +21,11 @@ const EditBuildForm = (props) => {
     code: myBuild?.code || "",
     userId: props.user?.id || "",
     thumbnailImageURL: myBuild?.thumbnailImageURL || "",
-    githubFileURL: myBuild?.githubFileURL || ""
+    githubFileURL: myBuild?.githubFileURL || "",
+    id: myBuild?.id || null
   })
 
-
+console.log(editedProject)
   const updateProject = async (editedProjectData) => {
     try {
       const response = await fetch(`/api/v1/projects/${myBuild.id}`, {
@@ -73,8 +74,6 @@ const EditBuildForm = (props) => {
     const partsList = editedProject.parts.filter((part, i) => i !== index)
     setEditedProject({ ...editedProject, parts: partsList })
   }
-
-  console.log(editedProject)
 
   const partsList = editedProject.parts.map((part, index) => {
     return (

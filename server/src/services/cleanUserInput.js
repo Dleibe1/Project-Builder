@@ -4,6 +4,7 @@ const cleanUserInput = (formInput) => {
       delete formInput[field]
     }
       formInput.userId = parseInt(formInput.userId)
+      formInput.id = parseInt(formInput.id)
   })
   return formInput
 }

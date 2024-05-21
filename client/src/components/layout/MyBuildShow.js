@@ -48,8 +48,7 @@ const MyBuildShow = (props) => {
 
   return (
     <div className="project-show">
-      <button onClick={handleEditBuild}>Edit Build</button>
-
+      <h5 id="edit-build-button" onClick={handleEditBuild}>Edit Build</h5>
       <div id="show-page-thumbnail">
         <img src={myBuild.thumbnailImageURL} />
       </div>

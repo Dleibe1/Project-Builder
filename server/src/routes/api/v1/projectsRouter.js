@@ -36,9 +36,7 @@ projectsRouter.get("/:id", async (req, res) => {
 
 projectsRouter.patch("/:id", async (req, res) => {
   const formInput = cleanUserInput(req.body)
-  const id = req.params.id
-  const githubFileURL = req.body.githubFileURL ? req.body.githubFileURL : ""
-  const { title, tags, appsAndPlatforms, parts, description, code, thumbnailImageURL, userId } =
+  const { title, tags, appsAndPlatforms, parts, description, code, thumbnailImageURL, userId, githubFileURL, id } =
     formInput
   try {
     const project = await Project.query()
@@ -54,6 +52,8 @@ projectsRouter.patch("/:id", async (req, res) => {
         userId,
       })
       .where("id", id)
+      console.log(project)
+      console.log(formInput)
     return res.status(200).json({ project })
   } catch (error) {
     console.log(error)
@@ -70,7 +70,7 @@ projectsRouter.post("/", async (req, res) => {
   try {
     const formInput = cleanUserInput(body)
     await ProjectSerializer.handleNewProject(formInput)
-    res.status(201).json({ planet: newPlanetEntry })
+    res.status(201).json({ project: newProjectEntry })
   } catch (error) {
     console.log(error)
     if (error instanceof ValidationError) {
