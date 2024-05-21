@@ -1,5 +1,5 @@
 import express from "express"
-import { Project } from "../../../models/index.js"
+import { Project, Part, Image } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 import objection from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
@@ -36,8 +36,18 @@ projectsRouter.get("/:id", async (req, res) => {
 
 projectsRouter.patch("/:id", async (req, res) => {
   const formInput = cleanUserInput(req.body)
-  const { title, tags, appsAndPlatforms, parts, description, code, thumbnailImageURL, userId, githubFileURL, id } =
-    formInput
+  const {
+    title,
+    tags,
+    appsAndPlatforms,
+    parts,
+    description,
+    code,
+    thumbnailImageURL,
+    userId,
+    githubFileURL,
+    id,
+  } = formInput
   try {
     const project = await Project.query()
       .update({
@@ -52,8 +62,8 @@ projectsRouter.patch("/:id", async (req, res) => {
         userId,
       })
       .where("id", id)
-      console.log(project)
-      console.log(formInput)
+    console.log(project)
+    console.log(formInput)
     return res.status(200).json({ project })
   } catch (error) {
     console.log(error)
@@ -62,6 +72,19 @@ projectsRouter.patch("/:id", async (req, res) => {
     } else {
       return res.status(500).json({ errors: error })
     }
+  }
+})
+
+projectsRouter.delete("/:id", async (req, res) => {
+  const projectId = req.params.id
+  try {
+    await Part.query().delete().where("projectId", projectId)
+    await Image.query().delete().where("projectId", projectId)
+    await Project.query().deleteById(projectId)
+    return res.status(200).json({})
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ errors: error })
   }
 })
 
