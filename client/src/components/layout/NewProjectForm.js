@@ -7,16 +7,18 @@ const NewProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [part, setPart] = useState("")
+  const [image, setImage] = useState("")
   const [newProject, setNewProject] = useState({
     title: "",
     tags: "",
     appsAndPlatforms: "",
+    images: [],
     parts: [],
     description: "",
     code: "",
     githubFileURL: "",
     userId: "",
-    thumbnailImageURL: ""
+    thumbnailImageURL: "",
   })
 
   const postProject = async (newProjectData) => {
@@ -54,6 +56,10 @@ const NewProjectForm = (props) => {
     setPart(event.currentTarget.value)
   }
 
+  const handleImageURLInput = (event) => {
+    setImage(event.currentTarget.value)
+  }
+
   const handlePartSubmit = () => {
     if (part.length) {
       setNewProject({ ...newProject, parts: [...newProject.parts, part] })
@@ -61,22 +67,46 @@ const NewProjectForm = (props) => {
     setPart("")
   }
 
+  const handleImageURLSubmit = () => {
+    if (image.length) {
+      setNewProject({ ...newProject, images: [...newProject.images, image] })
+    }
+  }
+
   const handlePartDelete = (index) => {
     const partsList = newProject.parts.filter((part, i) => i !== index)
     setNewProject({ ...newProject, parts: partsList })
   }
 
+  const handleImageURLDelete = (index) => {
+    const imageList = newProject.images.filter((image, i ) => i !== index)
+    setNewProject({...newProject, images: imageList})
+  }
+
   const partsList = newProject.parts.map((part, index) => {
     return (
-      <div id="parts-list" className="cell small-3 medium-6 large-4r">
+      <div id="parts-list" className="cell small-3 medium-6 large-4">
         <h5 id="part">{part}</h5>
-        <p id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
+        <button id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
           Delete Part
-        </p>
+        </button>
       </div>
     )
   })
-  
+
+  const imageList = newProject.images.map((imageURL, index) => {
+    return (
+      <div id="image-list">
+        <img id="image-list-project-form" src={imageURL} />
+        <button id="delete-image" onClick={() => handleImageURLDelete(index)}>
+          Delete image
+        </button>
+      </div>
+    )
+  })
+
+  console.log(image)
+
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds"} />
   }
@@ -138,6 +168,14 @@ const NewProjectForm = (props) => {
           <h5>Example: https://github.com/antronyx/ServoTester/blob/main/main.ino</h5>
           Github main sketch file URL:
           <input onChange={handleInputChange} type="text" id="github-url" name="githubFileURL" />
+        </label>
+        {imageList}
+        <label htmlFor="image">
+          Add Image URL:
+          <input onChange={handleImageURLInput} type="text" id="image-url" name="image" />
+          <h3 onClick={handleImageURLSubmit} className="part-button">
+            Add Image URL
+          </h3>
         </label>
         <input type="submit" value="Submit Project" />
       </form>

@@ -5,7 +5,7 @@ import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
 const MyBuildShow = (props) => {
-  const [myBuild, setMyBuild] = useState({ parts: [] })
+  const [myBuild, setMyBuild] = useState({ parts: [], images: [] })
   const params = useParams()
   const { id, projectTitle } = params
   const codeRef = useRef(null)
@@ -46,8 +46,9 @@ const MyBuildShow = (props) => {
   const partsList = myBuild.parts.map((part) => {
     return <p>{part.partName}</p>
   })
-  const imageList = project.images.map((image) => {
-    return <img src={`${image.imageURL}`} />
+
+  const imageList = myBuild.images.map((image) => {
+    return <img className="project-image" src={`${image.imageURL}`} />
   })
 
   return (

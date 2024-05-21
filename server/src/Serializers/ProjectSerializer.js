@@ -1,4 +1,4 @@
-import { User, Project, Part } from "../models/index.js"
+import { User, Project, Part, Image } from "../models/index.js"
 import PartsSerializer from "./PartsSerializer.js"
 import ImageSerializer from "./ImagesSerializer.js"
 import GithubClient from "../apiClient/GithubClient.js"
@@ -47,6 +47,7 @@ class ProjectSerializer {
     githubFileURL,
     userId,
     parts,
+    images,
     thumbnailImageURL
   }) {
     const projectCode = githubFileURL ? await ProjectSerializer.getGithubProjectCode(githubFileURL) : userManuallyEnteredCode
@@ -54,7 +55,6 @@ class ProjectSerializer {
       title,
       tags,
       appsAndPlatforms,
-      parts,
       description,
       code: projectCode,
       userId,
@@ -63,6 +63,9 @@ class ProjectSerializer {
     const newProjectId = parseInt(newProject.id)
     for (const part of parts) {
       await Part.query().insert({ projectId: newProjectId, partName: part })
+    }
+    for (const image of images){
+      await Image.query().insert({projectId: newProjectId, imageURL: image })
     }
   }
   static async getGithubProjectCode(githubFileURL) {

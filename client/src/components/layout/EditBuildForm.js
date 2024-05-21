@@ -77,7 +77,7 @@ console.log(editedProject)
 
   const partsList = editedProject.parts.map((part, index) => {
     return (
-      <div id="parts-list" className="cell small-3 medium-6 large-4r">
+      <div id="parts-list" className="cell small-3 medium-6 large-4">
         <h5 id="part">{part}</h5>
         <p id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
           Delete Part
