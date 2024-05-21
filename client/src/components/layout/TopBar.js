@@ -56,7 +56,7 @@ const TopBar = ({ user }) => {
       <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
       </div>
-      <div>
+      <div className={"build-buttons"}>
         {user && pathname !== "/create-new-build" ? newBuildButton : []}
         {user && pathname !== "/my-builds" ? myBuildsButton : []}
       </div>

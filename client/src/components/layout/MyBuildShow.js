@@ -4,7 +4,6 @@ import DeleteBuildButton from "./DeleteBuildButton"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
-
 const MyBuildShow = (props) => {
  const [myBuild, setMyBuild] = useState({ parts: [] })
  const params = useParams()
@@ -12,11 +11,9 @@ const MyBuildShow = (props) => {
  const codeRef = useRef(null)
  const history = useHistory()
 
-
  useEffect(() => {
    getMyBuild()
  }, [])
-
 
  useEffect(() => {
    if (codeRef.current) {
@@ -26,7 +23,6 @@ const MyBuildShow = (props) => {
      hljs.highlightElement(codeRef.current)
    }
  }, [myBuild])
-
 
  const getMyBuild = async () => {
    try {
@@ -43,16 +39,13 @@ const MyBuildShow = (props) => {
    }
  }
 
-
  const handleEditBuild = () => {
    history.push(`/my-builds/${id}/${projectTitle}/edit`, { myBuild: myBuild })
  }
 
-
  const partsList = myBuild.parts.map((part) => {
    return <p>{part.partName}</p>
  })
-
 
  return (
    <div className="project-show">
@@ -84,6 +77,5 @@ const MyBuildShow = (props) => {
    </div>
  )
 }
-
 
 export default MyBuildShow
