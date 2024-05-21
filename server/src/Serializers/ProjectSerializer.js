@@ -1,5 +1,6 @@
 import { User, Project, Part } from "../models/index.js"
 import PartsSerializer from "./PartsSerializer.js"
+import ImageSerializer from "./ImagesSerializer.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
 class ProjectSerializer {
@@ -22,12 +23,17 @@ class ProjectSerializer {
     }
     const relatedUserData = await User.query().findOne({ id: project.userId })
     const relatedPartsData = await project.$relatedQuery("parts")
+    const relatedImagesData = await project.$relatedQuery("images")
     const userName = relatedUserData.userName
     serializedProject.user = userName
     const relatedParts = relatedPartsData.map((part) => {
       return PartsSerializer.getPartDetails(part)
     })
     serializedProject.parts = relatedParts
+    const relatedImages = relatedImagesData.map(image => {
+      return ImageSerializer.getImageDetails(image)
+    })
+    serializedProject.images = relatedImages
     serializedProject.code = project.githubFileURL && showPage ? await ProjectSerializer.getGithubProjectCode(project.githubFileURL) : project.code
     return serializedProject
   }

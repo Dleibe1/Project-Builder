@@ -27,6 +27,7 @@ projectsRouter.get("/:id", async (req, res) => {
   try {
     const project = await Project.query().findById(id)
     const serializedProject = await ProjectSerializer.getProjectDetails(project, true)
+    console.log(serializedProject)
     return res.status(200).json({ project: serializedProject })
   } catch (error) {
     console.log(error)

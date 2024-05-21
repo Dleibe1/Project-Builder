@@ -4,7 +4,7 @@ import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
 const ProjectShow = (props) => {
-  const [project, setProject] = useState({ parts: [] })
+  const [project, setProject] = useState({ parts: [], images: [] })
   const params = useParams()
   const { id } = params
   const codeRef = useRef(null)
@@ -13,14 +13,14 @@ const ProjectShow = (props) => {
     getProject()
   }, [])
 
-   useEffect(() => {
+  useEffect(() => {
     if (codeRef.current) {
       if (codeRef.current.dataset.highlighted) {
-        delete codeRef.current.dataset.highlighted;
+        delete codeRef.current.dataset.highlighted
       }
-      hljs.highlightElement(codeRef.current);
+      hljs.highlightElement(codeRef.current)
     }
-  }, [project]);
+  }, [project])
 
   const getProject = async () => {
     try {
@@ -40,6 +40,9 @@ const ProjectShow = (props) => {
   const partsList = project.parts.map((part) => {
     return <p>{part.partName}</p>
   })
+  const imageList = project.images.map((image) => {
+    return <img className="project-image" src={`${image.imageURL}`} />
+  })
 
   return (
     <div className="project-show">
@@ -54,9 +57,12 @@ const ProjectShow = (props) => {
       <p>{project.appsAndPlatforms}</p>
       <h4>Tags:</h4>
       <p>{project.tags}</p>
+      <div className="images-container">{imageList}</div>
       <h4>Code:</h4>
       <pre>
-        <code ref={codeRef} className="language-c" >{project.code}</code>
+        <code ref={codeRef} className="language-c">
+          {project.code}
+        </code>
       </pre>
     </div>
   )
