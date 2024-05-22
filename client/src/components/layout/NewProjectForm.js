@@ -71,6 +71,7 @@ const NewProjectForm = (props) => {
     if (image.length) {
       setNewProject({ ...newProject, images: [...newProject.images, image] })
     }
+    setImage("")
   }
 
   const handlePartDelete = (index) => {
@@ -170,7 +171,7 @@ const NewProjectForm = (props) => {
         {imageList}
         <label htmlFor="image">
           Add Image URL:
-          <input onChange={handleImageURLInput} type="text" id="image-url" name="image" />
+          <input value={image} onChange={handleImageURLInput} type="text" id="image-url" name="image" />
           <h3 onClick={handleImageURLSubmit} className="part-button">
             Add Image URL
           </h3>
