@@ -108,9 +108,11 @@ class ProjectSerializer {
     await Part.query().delete().where("projectId", projId)
     await Image.query().delete().where("projectId", projId)
     for (const part of parts) {
+      console.log(part)
       await Part.query().insert({ projectId: projId, partName: part })
     }
     for (const image of images) {
+      console.log(image)
       await Image.query().insert({ projectId: projId, imageURL: image })
     }
   }

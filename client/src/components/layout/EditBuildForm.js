@@ -43,7 +43,6 @@ const EditBuildForm = (props) => {
           build[key] = ""
         }
       }
-      console.log(build)
       setEditedProject(build)
     } catch (error) {
       console.log(error)

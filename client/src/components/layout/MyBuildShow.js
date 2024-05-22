@@ -42,11 +42,11 @@ const MyBuildShow = (props) => {
   }
 
   const partsList = myBuild.parts.map((part) => {
-    return <p>{part.partName}</p>
+    return <p>{part}</p>
   })
 
   const imageList = myBuild.images.map((image) => {
-    return <img className="project-image" src={`${image.imageURL}`} />
+    return <img className="project-image" src={`${image}`} />
   })
 
   return (

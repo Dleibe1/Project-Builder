@@ -34,6 +34,7 @@ myBuildsRouter.get("/:id", async (req, res) => {
     const imageUrls = serializedUserBuild.images.map(imageData => {
       return imageData.imageURL
     })
+    console.log(imageUrls)
     serializedUserBuild.parts = partNames
     serializedUserBuild.images = imageUrls
     return res.status(200).json({ userBuild: serializedUserBuild })
