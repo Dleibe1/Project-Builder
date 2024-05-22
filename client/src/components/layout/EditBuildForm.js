@@ -231,7 +231,7 @@ const EditBuildForm = (props) => {
         {imageList}
         <label htmlFor="image">
           Add Image URL:
-          <input onChange={handleImageURLInput} type="text" id="image-url" name="image" />
+          <input value={image} onChange={handleImageURLInput} type="text" id="image-url" name="image" />
           <h3 onClick={handleImageURLSubmit} className="part-button">
             Add Image URL
           </h3>
