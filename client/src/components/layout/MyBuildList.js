@@ -27,6 +27,7 @@ const MyBuildList = (props) => {
         key={myBuild.id}
         id={myBuild.id}
         title={myBuild.title}
+        thumbnailImage={myBuild.thumbnailImageURL}
       />
     )
   })

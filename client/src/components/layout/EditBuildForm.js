@@ -73,8 +73,7 @@ const EditBuildForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // console.log(editedProject)  Sending correct data
-    updateProject(editedProject)
+    updateProject({...editedProject, githubFileURL: editedProject.githubFileURL.trim()})
   }
 
   const handleInputChange = (event) => {
@@ -98,7 +97,7 @@ const EditBuildForm = (props) => {
 
   const handleImageURLSubmit = () => {
     if (image.length) {
-      setEditedProject({ ...editedProject, images: [...editedProject.images, image] })
+      setEditedProject({ ...editedProject, images: [...editedProject.images, image.trim()] })
     }
     setImage("")
   }
@@ -192,7 +191,7 @@ const EditBuildForm = (props) => {
           </h3>
         </label>
         <label htmlFor="description">
-          description:
+          Description:
           <input
             value={editedProject.description}
             onChange={handleInputChange}

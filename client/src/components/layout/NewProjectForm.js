@@ -45,7 +45,7 @@ const NewProjectForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    postProject({ ...newProject, userId: props.user.id })
+    postProject({ ...newProject, userId: props.user.id, githubFileURL: newProject.githubFileURL.trim() })
   }
 
   const handleInputChange = (event) => {
@@ -69,7 +69,7 @@ const NewProjectForm = (props) => {
 
   const handleImageURLSubmit = () => {
     if (image.length) {
-      setNewProject({ ...newProject, images: [...newProject.images, image] })
+      setNewProject({ ...newProject, images: [...newProject.images, image.trim()] })
     }
     setImage("")
   }
@@ -145,7 +145,7 @@ const NewProjectForm = (props) => {
           </h3>
         </label>
         <label htmlFor="description">
-          description:
+          Description:
           <input onChange={handleInputChange} type="text" id="description" name="description" />
         </label>
         <label htmlFor="code">

@@ -39,10 +39,10 @@ const App = (props) => {
         <Route exact path={"/"}>
           <ProjectList user={currentUser} />
         </Route>
-        <Route exact path={"/my-builds/:id/:projectTitle"}>
+        <Route exact path={"/my-builds/:id"}>
           <MyBuildShow user={currentUser} />
         </Route>
-        <Route exact path="/my-builds/:id/:projectTitle/edit">
+        <Route exact path="/my-builds/:id/edit">
           <EditBuildForm user={currentUser} />
         </Route>
         <Route exact path={"/my-builds"}>

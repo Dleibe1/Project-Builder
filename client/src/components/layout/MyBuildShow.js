@@ -20,7 +20,7 @@ const MyBuildShow = (props) => {
     thumbnailImageURL: "",
   })
   const params = useParams()
-  const { id, projectTitle } = params
+  const { id } = params
   const codeRef = useRef(null)
   useEffect(() => {
     getMyBuild()
@@ -69,7 +69,7 @@ const MyBuildShow = (props) => {
     <div className="project-show">
       <div className="button-container">
         <div className="button-container">
-          <EditBuildButton id={id} projectTitle={projectTitle} />
+          <EditBuildButton id={id} />
           <DeleteBuildButton id={id} />
         </div>
       </div>
