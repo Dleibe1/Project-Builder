@@ -3,6 +3,7 @@ import { Project, Part, Image } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 import objection from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
+import forkProject from "../../../services/projectService.js"
 const { ValidationError } = objection
 
 const projectsRouter = new express.Router()
@@ -83,10 +84,10 @@ projectsRouter.post("/new-project", async (req, res) => {
 })
 
 projectsRouter.post("/fork-project", async (req, res) => {
-  const { body } = req
+  const { body, user } = req
   try {
     const formInput = cleanUserInput(body)
-    await ProjectSerializer.handleNewProject(formInput)
+    await forkProject()
     res.status(201).json({ project: formInput })
   } catch (error) {
     console.log(error)
