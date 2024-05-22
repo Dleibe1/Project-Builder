@@ -50,8 +50,8 @@ const MyBuildShow = (props) => {
     }
   }
 
-  const githubFileURL = myBuild.githubFileURL
-  const codeMessage = githubFileURL.length ? `Code from gitHub-- ${githubFileURL}` : "Code:"
+  console.log(myBuild.githubFileURL)
+
   const partsList = myBuild.parts.map((part) => {
     return <p>{part}</p>
   })
@@ -64,7 +64,7 @@ const MyBuildShow = (props) => {
     <div className="project-show">
       <div className="button-container">
         <div className="button-container">
-         <EditBuildButton id={id} projectTitle={projectTitle} />
+          <EditBuildButton id={id} projectTitle={projectTitle} />
           <DeleteBuildButton id={id} />
         </div>
       </div>
@@ -80,7 +80,7 @@ const MyBuildShow = (props) => {
       <h4>Tags:</h4>
       <p>{myBuild.tags}</p>
       <div className="images-container">{imageList}</div>
-      <p>{codeMessage}</p>
+      {/* <p>{codeMessage}</p> */}
       <pre>
         <code ref={codeRef} className="language-c">
           {myBuild.code}

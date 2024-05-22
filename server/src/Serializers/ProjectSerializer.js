@@ -38,6 +38,8 @@ class ProjectSerializer {
       project.githubFileURL && checkGithub
         ? await ProjectSerializer.getGithubProjectCode(project.githubFileURL)
         : project.code
+    const githubFileURLString = project.githubFileURL ? project.githubFileURL : ""
+    serializedProject.githubFileURL = githubFileURLString
     return serializedProject
   }
 

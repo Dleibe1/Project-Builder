@@ -160,7 +160,7 @@ const NewProjectForm = (props) => {
         </label>
         <label htmlFor="github-url">
           <h5>
-            Alternatively, pasting the URL of your main sketch file on Github will automatically
+          Is this a work in progress?  Pasting the URL of your main sketch file on Github will automatically
             keep the code you share up to date.
           </h5>
           <h5>Example: https://github.com/antronyx/ServoTester/blob/main/main.ino</h5>
