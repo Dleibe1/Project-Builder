@@ -22,6 +22,25 @@ projectsRouter.get("/", async (req, res) => {
   }
 })
 
+projectsRouter.get("/fork-data/:id", async (req, res) => {
+  const id = req.params.id
+  try {
+    const userBuild = await Project.query().findById(id)
+    let serializedUserBuild = await ProjectSerializer.getProjectDetails(userBuild, true)
+    const partNamesArray = serializedUserBuild.parts.map(part => {
+      return part.partName
+    })
+    const imageUrlsArray = serializedUserBuild.images.map(imageData => {
+      return imageData.imageURL
+    })
+    serializedUserBuild.parts = partNamesArray
+    serializedUserBuild.images = imageUrlsArray
+    return res.status(200).json({ userBuild: serializedUserBuild })
+  } catch (error) {
+    return res.status(500).json({ errors: error })
+  }
+})
+
 projectsRouter.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
@@ -47,7 +66,23 @@ projectsRouter.delete("/:id", async (req, res) => {
   }
 })
 
-projectsRouter.post("/", async (req, res) => {
+projectsRouter.post("/new-project", async (req, res) => {
+  const { body } = req
+  try {
+    const formInput = cleanUserInput(body)
+    await ProjectSerializer.handleNewProject(formInput)
+    res.status(201).json({ project: formInput })
+  } catch (error) {
+    console.log(error)
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error.data })
+    } else {
+      return res.status(500).json({ errors: error })
+    }
+  }
+})
+
+projectsRouter.post("/fork-project", async (req, res) => {
   const { body } = req
   try {
     const formInput = cleanUserInput(body)

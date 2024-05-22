@@ -15,6 +15,7 @@ import ProjectShow from "./layout/ProjectShow"
 import NewProjectForm from "./layout/NewProjectForm"
 import MyBuildShow from "./layout/MyBuildShow"
 import EditBuildForm from "./layout/EditBuildForm"
+import ForkProjectForm from "./layout/ForkProjectForm"
 
 const App = (props) => {
   const [myBuilds, setMyBuilds] = useState([])
@@ -50,6 +51,9 @@ const App = (props) => {
         </Route>
         <Route exact path="/projects/:id">
           <ProjectShow user={currentUser} />
+        </Route>
+        <Route exact path="/projects/:id/fork">
+          <ForkProjectForm user={currentUser} />
         </Route>
         <Route exact path="/create-new-build">
           <NewProjectForm user={currentUser} />

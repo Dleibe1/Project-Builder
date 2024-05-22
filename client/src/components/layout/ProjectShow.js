@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
+import ForkBuildButton from "./ForkBuildButton"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -53,7 +54,7 @@ const ProjectShow = (props) => {
       console.log(error)
     }
   }
-
+  const editBuildButton = [<ForkBuildButton id={id} />]
   const codeMessage = project.githubFileURL.length ? `Code fetched just now from GitHub: (${project.githubFileURL}) ` : "Code:" 
   const partsList = project.parts.map((part) => {
     return <p>{part.partName}</p>
@@ -64,6 +65,7 @@ const ProjectShow = (props) => {
 
   return (
     <div className="project-show">
+      {props.user ? editBuildButton : []}
       <h1>{project.title}</h1>
       <div id="show-page-thumbnail">
         <img src={project.thumbnailImageURL} />

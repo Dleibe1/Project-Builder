@@ -1,14 +1,21 @@
-import React, { useState } from "react"
-import { Redirect } from "react-router-dom"
+import React, { useState, useEffect } from "react"
+import { Redirect, useParams } from "react-router-dom"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 
-const NewProjectForm = (props) => {
+const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [part, setPart] = useState("")
   const [image, setImage] = useState("")
-  const [newProject, setNewProject] = useState({
+  const params = useParams()
+  const { id } = params
+
+  useEffect(() => {
+    getProject()
+  }, [])
+
+  const [forkedProject, setForkedProject] = useState({
     title: "",
     tags: "",
     appsAndPlatforms: "",
@@ -21,14 +28,35 @@ const NewProjectForm = (props) => {
     thumbnailImageURL: "",
   })
 
-  const postProject = async (newProjectData) => {
+  const getProject = async () => {
     try {
-      const response = await fetch(`/api/v1/projects/new-project`, {
+      const response = await fetch(`/api/v1/projects/fork-data/${id}`)
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw error
+      }
+      const responseBody = await response.json()
+      let build = responseBody.userBuild
+      for (let [key, value] of Object.entries(build)) {
+        if (value === null) {
+          build[key] = ""
+        }
+      }
+      setForkedProject(build)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const postForkedProject = async (forkedProjectData) => {
+    try {
+      const response = await fetch(`/api/v1/projects/fork-project`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
-        body: JSON.stringify(newProjectData),
+        body: JSON.stringify(forkedProjectData),
       })
       if (!response.ok) {
         if (response.status === 422) {
@@ -45,11 +73,11 @@ const NewProjectForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    postProject({ ...newProject, userId: props.user.id, githubFileURL: newProject.githubFileURL.trim() })
+    postForkedProject({ ...forkedProject, githubFileURL: forkedProject.githubFileURL.trim() })
   }
 
   const handleInputChange = (event) => {
-    setNewProject({ ...newProject, [event.currentTarget.name]: event.currentTarget.value })
+    setForkedProject({ ...forkedProject, [event.currentTarget.name]: event.currentTarget.value })
   }
 
   const handlePartInput = (event) => {
@@ -62,43 +90,43 @@ const NewProjectForm = (props) => {
 
   const handlePartSubmit = () => {
     if (part.length) {
-      setNewProject({ ...newProject, parts: [...newProject.parts, part] })
+      setForkedProject({ ...forkedProject, parts: [...forkedProject.parts, part] })
     }
     setPart("")
   }
 
   const handleImageURLSubmit = () => {
     if (image.length) {
-      setNewProject({ ...newProject, images: [...newProject.images, image.trim()] })
+      setForkedProject({ ...forkedProject, images: [...forkedProject.images, image.trim()] })
     }
     setImage("")
   }
 
   const handlePartDelete = (index) => {
-    const partsList = newProject.parts.filter((part, i) => i !== index)
-    setNewProject({ ...newProject, parts: partsList })
+    const partsList = forkedProject.parts.filter((part, i) => i !== index)
+    setForkedProject({ ...forkedProject, parts: partsList })
   }
 
   const handleImageURLDelete = (index) => {
-    const imageList = newProject.images.filter((image, i ) => i !== index)
-    setNewProject({...newProject, images: imageList})
+    const imageList = forkedProject.images.filter((image, i) => i !== index)
+    setForkedProject({ ...forkedProject, images: imageList })
   }
 
-  const partsList = newProject.parts.map((part, index) => {
+  const partsList = forkedProject.parts.map((part, index) => {
     return (
       <div id="parts-list" className="cell small-3 medium-6 large-4">
         <h5 id="part">{part}</h5>
-        <button id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
+        <p id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
           Delete Part
-        </button>
+        </p>
       </div>
     )
   })
 
-  const imageList = newProject.images.map((imageURL, index) => {
+  const imageList = forkedProject.images.map((image, index) => {
     return (
       <div id="image-list">
-        <img id="image-list-project-form" src={imageURL} />
+        <img id="image-list-project-form" src={image} />
         <button id="delete-image" onClick={() => handleImageURLDelete(index)}>
           Delete image
         </button>
@@ -112,20 +140,37 @@ const NewProjectForm = (props) => {
 
   return (
     <div className="new-build-form ">
-      <h4>Add a New Project</h4>
+      <h4>Fork This Build</h4>
       <ErrorList errors={errors} />
-      <form key={"new-build-form"} onSubmit={handleSubmit}>
+      <form key={"edit-build-form"} onSubmit={handleSubmit}>
         <label htmlFor="title">
-          Name of project:
-          <input onChange={handleInputChange} type="text" id="title" name="title" />
+          Name of project fork:
+          <input
+            onChange={handleInputChange}
+            type="text"
+            id="title"
+            name="title"
+          />
         </label>
         <label htmlFor="thumbnail-image-url">
           Thumbnail Image URL:
-          <input onChange={handleInputChange} type="text" id="title" name="thumbnailImageURL" />
+          <input
+            value={forkedProject.thumbnailImageURL}
+            onChange={handleInputChange}
+            type="text"
+            id="title"
+            name="thumbnailImageURL"
+          />
         </label>
         <label htmlFor="tags">
           Tags:
-          <input onChange={handleInputChange} type="text" id="tags" name="tags" />
+          <input
+            value={forkedProject.tags}
+            onChange={handleInputChange}
+            type="text"
+            id="tags"
+            name="tags"
+          />
         </label>
         <label htmlFor="apps-and-platforms">
           Apps and Platforms:
@@ -146,11 +191,18 @@ const NewProjectForm = (props) => {
         </label>
         <label htmlFor="description">
           Description:
-          <input onChange={handleInputChange} type="text" id="description" name="description" />
+          <input
+            value={forkedProject.description}
+            onChange={handleInputChange}
+            type="text"
+            id="description"
+            name="description"
+          />
         </label>
         <label htmlFor="code">
           Code:
           <textarea
+            value={forkedProject.code}
             rows="20"
             cols="1"
             onChange={handleInputChange}
@@ -161,17 +213,29 @@ const NewProjectForm = (props) => {
         </label>
         <label htmlFor="github-url">
           <h5>
-          Is this a work in progress?  Pasting the URL of your main sketch file on Github will automatically
-            keep the code you share up to date.
+            Is this a work in progress? Pasting the URL of your main sketch file on Github will
+            automatically keep the code you share up to date.
           </h5>
           <h5>Example: https://github.com/antronyx/ServoTester/blob/main/main.ino</h5>
           Github main sketch file URL:
-          <input onChange={handleInputChange} type="text" id="github-url" name="githubFileURL" />
+          <input
+            value={forkedProject.githubFileURL}
+            onChange={handleInputChange}
+            type="text"
+            id="github-url"
+            name="githubFileURL"
+          />
         </label>
         {imageList}
         <label htmlFor="image">
           Add Image URL:
-          <input value={image} onChange={handleImageURLInput} type="text" id="image-url" name="image" />
+          <input
+            value={image}
+            onChange={handleImageURLInput}
+            type="text"
+            id="image-url"
+            name="image"
+          />
           <h3 onClick={handleImageURLSubmit} className="part-button">
             Add Image URL
           </h3>
@@ -182,4 +246,4 @@ const NewProjectForm = (props) => {
   )
 }
 
-export default NewProjectForm
+export default ForkProjectForm

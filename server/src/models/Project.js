@@ -34,6 +34,14 @@ class Project extends Model {
           to: "users.id",
         },
       },
+      parentProject: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Project,
+        join: {
+          from: "projects.parentProjectId",
+          to: "projects.id"
+        }
+      },
       parts: {
         relation: Model.HasManyRelation,
         modelClass: Part,
