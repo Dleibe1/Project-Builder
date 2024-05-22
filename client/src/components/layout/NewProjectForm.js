@@ -105,8 +105,6 @@ const NewProjectForm = (props) => {
     )
   })
 
-  console.log(image)
-
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds"} />
   }

@@ -5,6 +5,7 @@ const cleanUserInput = (formInput) => {
     }
       formInput.userId = parseInt(formInput.userId)
       formInput.id = parseInt(formInput.id)
+      formInput.code = formInput.code ? formInput.code : "No code provided"
   })
   return formInput
 }

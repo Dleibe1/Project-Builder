@@ -15,7 +15,7 @@ class ProjectSerializer {
       "documentation",
       "code",
       "githubFileURL",
-      "thumbnailImageURL"
+      "thumbnailImageURL",
     ]
     let serializedProject = {}
     for (const attribute of allowedAttributes) {
@@ -30,11 +30,14 @@ class ProjectSerializer {
       return PartsSerializer.getPartDetails(part)
     })
     serializedProject.parts = relatedParts
-    const relatedImages = relatedImagesData.map(image => {
+    const relatedImages = relatedImagesData.map((image) => {
       return ImageSerializer.getImageDetails(image)
     })
     serializedProject.images = relatedImages
-    serializedProject.code = project.githubFileURL && showPage ? await ProjectSerializer.getGithubProjectCode(project.githubFileURL) : project.code
+    serializedProject.code =
+      project.githubFileURL && showPage
+        ? await ProjectSerializer.getGithubProjectCode(project.githubFileURL)
+        : project.code
     return serializedProject
   }
 
@@ -43,14 +46,16 @@ class ProjectSerializer {
     tags,
     appsAndPlatforms,
     description,
-    userManuallyEnteredCode,
+    code,
     githubFileURL,
     userId,
     parts,
     images,
-    thumbnailImageURL
+    thumbnailImageURL,
   }) {
-    const projectCode = githubFileURL ? await ProjectSerializer.getGithubProjectCode(githubFileURL) : userManuallyEnteredCode
+    const projectCode = githubFileURL
+      ? await ProjectSerializer.getGithubProjectCode(githubFileURL)
+      : code
     const newProject = await Project.query().insert({
       title,
       tags,
@@ -58,16 +63,58 @@ class ProjectSerializer {
       description,
       code: projectCode,
       userId,
-      thumbnailImageURL
+      thumbnailImageURL,
     })
     const newProjectId = parseInt(newProject.id)
     for (const part of parts) {
       await Part.query().insert({ projectId: newProjectId, partName: part })
     }
-    for (const image of images){
-      await Image.query().insert({projectId: newProjectId, imageURL: image })
+    for (const image of images) {
+      await Image.query().insert({ projectId: newProjectId, imageURL: image })
     }
   }
+
+  static async handleUpdateProject(
+    {
+      title,
+      tags,
+      appsAndPlatforms,
+      description,
+      code,
+      githubFileURL,
+      userId,
+      parts,
+      images,
+      thumbnailImageURL,
+    },
+    projectId
+  ) {
+    const projectCode = githubFileURL
+      ? await ProjectSerializer.getGithubProjectCode(githubFileURL)
+      : code
+    const projId = parseInt(projectId)
+    await Project.query()
+      .update({
+        title,
+        tags,
+        appsAndPlatforms,
+        description,
+        code,
+        githubFileURL,
+        thumbnailImageURL,
+        userId,
+      })
+      .where("id", projId)
+    await Part.query().delete().where("projectId", projId)
+    await Image.query().delete().where("projectId", projId)
+    for (const part of parts) {
+      await Part.query().insert({ projectId: projId, partName: part })
+    }
+    for (const image of images) {
+      await Image.query().insert({ projectId: projId, imageURL: image })
+    }
+  }
+
   static async getGithubProjectCode(githubFileURL) {
     const regex = /^https:\/\/github.com\/([^\/]+)\/([^\/]+)\/blob\/[^\/]+\/(.+)$/
     if (githubFileURL.match(regex)) {

@@ -43,9 +43,7 @@ const ProjectShow = (props) => {
   const imageList = project.images.map((image) => {
     return <img className="project-image" src={`${image.imageURL}`} />
   })
-
-  console.log(imageList)
-
+  
   return (
     <div className="project-show">
       <div id="show-page-thumbnail">

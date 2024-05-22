@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react"
 import { useParams, useHistory } from "react-router-dom"
 import DeleteBuildButton from "./DeleteBuildButton"
+import EditBuildButton from "./EditBuildButton"
+
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -39,10 +41,6 @@ const MyBuildShow = (props) => {
     }
   }
 
-  const handleEditBuild = () => {
-    history.push(`/my-builds/${id}/${projectTitle}/edit`, { myBuild: myBuild })
-  }
-
   const partsList = myBuild.parts.map((part) => {
     return <p>{part.partName}</p>
   })
@@ -55,9 +53,7 @@ const MyBuildShow = (props) => {
     <div className="project-show">
       <div className="button-container">
         <div className="button-container">
-          <button id="edit-build-button" onClick={handleEditBuild}>
-            Edit Build
-          </button>
+         <EditBuildButton id={id} projectTitle={projectTitle} />
           <DeleteBuildButton id={id} />
         </div>
       </div>

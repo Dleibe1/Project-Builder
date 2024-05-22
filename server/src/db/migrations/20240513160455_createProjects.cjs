@@ -22,7 +22,7 @@ exports.up = async (knex) => {
     table.string("tags")
     table.text("description").notNullable()
     table.text("documentation")
-    table.text("code").notNullable()
+    table.text("code")
 
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
     table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())

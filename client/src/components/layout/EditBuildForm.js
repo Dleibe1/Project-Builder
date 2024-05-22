@@ -1,5 +1,5 @@
-import React, { useState,  } from "react"
-import { Redirect, useLocation } from "react-router-dom"
+import React, { useState, useEffect } from "react"
+import { Redirect, useParams } from "react-router-dom"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 
@@ -7,28 +7,52 @@ const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [part, setPart] = useState("")
-  const location = useLocation()
-  const { myBuild } = location.state || {}
-  const partNames = myBuild.parts.map((part) => {
-    return part.partName
-  })
+  const [image, setImage] = useState("")
+  const params = useParams()
+  const { id } = params
+
+  useEffect(() => {
+    getProject()
+  }, [])
+
   const [editedProject, setEditedProject] = useState({
-    title: myBuild?.title || "",
-    tags: myBuild?.tags || "",
-    appsAndPlatforms: myBuild?.appsAndPlatforms || "",
-    parts: partNames || [],
-    description: myBuild?.description || "",
-    code: myBuild?.code || "",
-    userId: props.user?.id || "",
-    thumbnailImageURL: myBuild?.thumbnailImageURL || "",
-    githubFileURL: myBuild?.githubFileURL || "",
-    id: myBuild?.id || null
+    title: "",
+    tags: "",
+    appsAndPlatforms: "",
+    images: [],
+    parts: [],
+    description: "",
+    code: "",
+    githubFileURL: "",
+    userId: "",
+    thumbnailImageURL: "",
   })
 
-console.log(editedProject)
+  const getProject = async () => {
+    try {
+      const response = await fetch(`/api/v1/my-builds/${id}`)
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw error
+      }
+      const responseBody = await response.json()
+      let build = responseBody.userBuild
+      for (let [key, value] of Object.entries(build)) {
+        if (value === null) {
+          build[key] = ""
+        }
+      }
+      console.log(build)
+      setEditedProject(build)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const updateProject = async (editedProjectData) => {
     try {
-      const response = await fetch(`/api/v1/projects/${myBuild.id}`, {
+      const response = await fetch(`/api/v1/my-builds/${id}`, {
         method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -48,8 +72,6 @@ console.log(editedProject)
     }
   }
 
-  console.log(editedProject)
-
   const handleSubmit = (event) => {
     event.preventDefault()
     updateProject(editedProject)
@@ -63,6 +85,10 @@ console.log(editedProject)
     setPart(event.currentTarget.value)
   }
 
+  const handleImageURLInput = (event) => {
+    setImage(event.currentTarget.value)
+  }
+
   const handlePartSubmit = () => {
     if (part.length) {
       setEditedProject({ ...editedProject, parts: [...editedProject.parts, part] })
@@ -70,9 +96,21 @@ console.log(editedProject)
     setPart("")
   }
 
+  const handleImageURLSubmit = () => {
+    if (image.length) {
+      setEditedProject({ ...editedProject, images: [...editedProject.images, image] })
+    }
+    setImage("")
+  }
+
   const handlePartDelete = (index) => {
     const partsList = editedProject.parts.filter((part, i) => i !== index)
     setEditedProject({ ...editedProject, parts: partsList })
+  }
+
+  const handleImageURLDelete = (index) => {
+    const imageList = editedProject.images.filter((image, i) => i !== index)
+    setEditedProject({ ...editedProject, images: imageList })
   }
 
   const partsList = editedProject.parts.map((part, index) => {
@@ -82,6 +120,17 @@ console.log(editedProject)
         <p id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
           Delete Part
         </p>
+      </div>
+    )
+  })
+
+  const imageList = editedProject.images.map((image, index) => {
+    return (
+      <div id="image-list">
+        <img id="image-list-project-form" src={image} />
+        <button id="delete-image" onClick={() => handleImageURLDelete(index)}>
+          Delete image
+        </button>
       </div>
     )
   })
@@ -178,6 +227,14 @@ console.log(editedProject)
             id="github-url"
             name="githubFileURL"
           />
+        </label>
+        {imageList}
+        <label htmlFor="image">
+          Add Image URL:
+          <input onChange={handleImageURLInput} type="text" id="image-url" name="image" />
+          <h3 onClick={handleImageURLSubmit} className="part-button">
+            Add Image URL
+          </h3>
         </label>
         <input type="submit" value="Submit Project" />
       </form>
