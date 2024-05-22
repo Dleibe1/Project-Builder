@@ -27,16 +27,15 @@ myBuildsRouter.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
     const userBuild = await Project.query().findById(id)
-    let serializedUserBuild = await ProjectSerializer.getProjectDetails(userBuild, false)
-    const partNames = serializedUserBuild.parts.map(part => {
+    let serializedUserBuild = await ProjectSerializer.getProjectDetails(userBuild, true)
+    const partNamesArray = serializedUserBuild.parts.map(part => {
       return part.partName
     })
-    const imageUrls = serializedUserBuild.images.map(imageData => {
+    const imageUrlsArray = serializedUserBuild.images.map(imageData => {
       return imageData.imageURL
     })
-    console.log(imageUrls)
-    serializedUserBuild.parts = partNames
-    serializedUserBuild.images = imageUrls
+    serializedUserBuild.parts = partNamesArray
+    serializedUserBuild.images = imageUrlsArray
     return res.status(200).json({ userBuild: serializedUserBuild })
   } catch (error) {
     return res.status(500).json({ errors: error })

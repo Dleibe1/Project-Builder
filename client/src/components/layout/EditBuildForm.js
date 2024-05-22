@@ -37,12 +37,7 @@ const EditBuildForm = (props) => {
         throw error
       }
       const responseBody = await response.json()
-      let build = responseBody.userBuild
-      for (let [key, value] of Object.entries(build)) {
-        if (value === null) {
-          build[key] = ""
-        }
-      }
+      const build = responseBody.userBuild
       setEditedProject(build)
     } catch (error) {
       console.log(error)
@@ -73,6 +68,7 @@ const EditBuildForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    // console.log(editedProject)  Sending correct data
     updateProject(editedProject)
   }
 

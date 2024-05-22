@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import { useParams, useHistory } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import DeleteBuildButton from "./DeleteBuildButton"
 import EditBuildButton from "./EditBuildButton"
 
@@ -7,12 +7,21 @@ import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
 const MyBuildShow = (props) => {
-  const [myBuild, setMyBuild] = useState({ parts: [], images: [] })
+  const [myBuild, setMyBuild] = useState({
+    title: "",
+    tags: "",
+    appsAndPlatforms: "",
+    images: [],
+    parts: [],
+    description: "",
+    code: "",
+    githubFileURL: "",
+    userId: "",
+    thumbnailImageURL: "",
+  })
   const params = useParams()
   const { id, projectTitle } = params
   const codeRef = useRef(null)
-  const history = useHistory()
-
   useEffect(() => {
     getMyBuild()
   }, [])
@@ -41,6 +50,8 @@ const MyBuildShow = (props) => {
     }
   }
 
+  const githubFileURL = myBuild.githubFileURL
+  const codeMessage = githubFileURL.length ? `Code from gitHub-- ${githubFileURL}` : "Code:"
   const partsList = myBuild.parts.map((part) => {
     return <p>{part}</p>
   })
@@ -69,7 +80,7 @@ const MyBuildShow = (props) => {
       <h4>Tags:</h4>
       <p>{myBuild.tags}</p>
       <div className="images-container">{imageList}</div>
-      <h4>Code:</h4>
+      <p>{codeMessage}</p>
       <pre>
         <code ref={codeRef} className="language-c">
           {myBuild.code}

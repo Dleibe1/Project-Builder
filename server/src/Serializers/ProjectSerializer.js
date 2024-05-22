@@ -4,7 +4,7 @@ import ImageSerializer from "./ImagesSerializer.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
 class ProjectSerializer {
-  static async getProjectDetails(project, showPage) {
+  static async getProjectDetails(project, checkGithub) {
     const allowedAttributes = [
       "id",
       "userId",
@@ -35,7 +35,7 @@ class ProjectSerializer {
     })
     serializedProject.images = relatedImages
     serializedProject.code =
-      project.githubFileURL && showPage
+      project.githubFileURL && checkGithub
         ? await ProjectSerializer.getGithubProjectCode(project.githubFileURL)
         : project.code
     return serializedProject
@@ -87,12 +87,18 @@ class ProjectSerializer {
       images,
       thumbnailImageURL,
     },
-    projectId
+    projectId,
   ) {
-    const projectCode = githubFileURL
-      ? await ProjectSerializer.getGithubProjectCode(githubFileURL)
-      : code
     const projId = parseInt(projectId)
+    const githubFileURLString = githubFileURL ? githubFileURL : ""
+    await Part.query().delete().where("projectId", projId)
+    await Image.query().delete().where("projectId", projId)
+    for (const part of parts) {
+      await Part.query().insert({ projectId: projId, partName: part })
+    }
+    for (const image of images) {
+      await Image.query().insert({ projectId: projId, imageURL: image })
+    }
     await Project.query()
       .update({
         title,
@@ -100,21 +106,11 @@ class ProjectSerializer {
         appsAndPlatforms,
         description,
         code,
-        githubFileURL,
+        githubFileURL : githubFileURLString,
         thumbnailImageURL,
         userId,
       })
       .where("id", projId)
-    await Part.query().delete().where("projectId", projId)
-    await Image.query().delete().where("projectId", projId)
-    for (const part of parts) {
-      console.log(part)
-      await Part.query().insert({ projectId: projId, partName: part })
-    }
-    for (const image of images) {
-      console.log(image)
-      await Image.query().insert({ projectId: projId, imageURL: image })
-    }
   }
 
   static async getGithubProjectCode(githubFileURL) {
@@ -122,7 +118,7 @@ class ProjectSerializer {
     if (githubFileURL.match(regex)) {
       return await GithubClient.getCode(githubFileURL)
     }
-    return `Could not fetch github code from the URL '${githubFileURL}'`
+    return `Could not fetch github code from the URL '${githubFileURL}' Check the main project URL and try again.`
   }
 }
 

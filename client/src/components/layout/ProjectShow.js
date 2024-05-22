@@ -4,7 +4,18 @@ import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
 const ProjectShow = (props) => {
-  const [project, setProject] = useState({ parts: [], images: [] })
+  const [project, setProject] = useState({
+    title: "",
+    tags: "",
+    appsAndPlatforms: "",
+    images: [],
+    parts: [],
+    description: "",
+    code: "",
+    githubFileURL: "",
+    userId: "",
+    thumbnailImageURL: "",
+  })
   const params = useParams()
   const { id } = params
   const codeRef = useRef(null)
