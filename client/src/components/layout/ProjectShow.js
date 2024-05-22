@@ -64,10 +64,10 @@ const ProjectShow = (props) => {
 
   return (
     <div className="project-show">
+      <h1>{project.title}</h1>
       <div id="show-page-thumbnail">
         <img src={project.thumbnailImageURL} />
       </div>
-      <h1>{project.title}</h1>
       <p>{project.description}</p>
       <h4>Parts:</h4>
       {partsList}

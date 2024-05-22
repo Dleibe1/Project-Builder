@@ -47,7 +47,7 @@ const MyBuildShow = (props) => {
       let build = responseBody.userBuild
       for (let [key, value] of Object.entries(build)) {
         if (value === null) {
-          build[key] = '';
+          build[key] = ""
         }
       }
       setMyBuild(build)
@@ -56,7 +56,9 @@ const MyBuildShow = (props) => {
     }
   }
 
-  const codeMessage = myBuild.githubFileURL.length ? `Code fetched just now from GitHub: (${myBuild.githubFileURL}) ` : "Code:"
+  const codeMessage = myBuild.githubFileURL.length
+    ? `Code fetched just now from GitHub: (${myBuild.githubFileURL}) `
+    : "Code:"
   const partsList = myBuild.parts.map((part) => {
     return <p>{part}</p>
   })
@@ -67,16 +69,14 @@ const MyBuildShow = (props) => {
 
   return (
     <div className="project-show">
-      <div className="button-container">
         <div className="button-container">
           <EditBuildButton id={id} />
           <DeleteBuildButton id={id} />
         </div>
-      </div>
+      <h1>{myBuild.title}</h1>
       <div id="show-page-thumbnail">
         <img src={myBuild.thumbnailImageURL} />
       </div>
-      <h1>{myBuild.title}</h1>
       <p>{myBuild.description}</p>
       <h4>Parts:</h4>
       {partsList}
@@ -85,7 +85,7 @@ const MyBuildShow = (props) => {
       <h4>Tags:</h4>
       <p>{myBuild.tags}</p>
       <div className="images-container">{imageList}</div>
-      <p className="github-url" >{codeMessage}</p>
+      <p className="github-url">{codeMessage}</p>
       <pre>
         <code ref={codeRef} className="language-c">
           {myBuild.code}
