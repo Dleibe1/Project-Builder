@@ -76,7 +76,7 @@ const ProjectShow = (props) => {
       <h4>Tags:</h4>
       <p>{project.tags}</p>
       <div className="images-container">{imageList}</div>
-      <p>{codeMessage}</p>
+      <p className="github-url" >{codeMessage}</p>
       <pre>
         <code ref={codeRef} className="language-c">
           {project.code}

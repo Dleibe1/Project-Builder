@@ -85,7 +85,7 @@ const MyBuildShow = (props) => {
       <h4>Tags:</h4>
       <p>{myBuild.tags}</p>
       <div className="images-container">{imageList}</div>
-      <p>{codeMessage}</p>
+      <p className="github-url" >{codeMessage}</p>
       <pre>
         <code ref={codeRef} className="language-c">
           {myBuild.code}
