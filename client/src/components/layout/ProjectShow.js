@@ -54,7 +54,7 @@ const ProjectShow = (props) => {
     }
   }
 
-  const codeMessage = project.githubFileURL.length ? `Code fetched from github just now: (${project.githubFileURL}) ` : "Code:" 
+  const codeMessage = project.githubFileURL.length ? `Code fetched just now from GitHub: (${project.githubFileURL}) ` : "Code:" 
   const partsList = project.parts.map((part) => {
     return <p>{part.partName}</p>
   })
