@@ -42,19 +42,28 @@ const ProjectShow = (props) => {
         throw error
       }
       const responseBody = await response.json()
-      setProject(responseBody.project)
+      let project = responseBody.project
+      for (let [key, value] of Object.entries(project)) {
+        if (value === null) {
+          project[key] = ""
+        }
+      }
+      setProject(project)
     } catch (error) {
       console.log(error)
     }
   }
 
+  const codeMessage = project.githubFileURL.length
+    ? `Main project code file contents fetched just now from github: (${project.githubFileURL}). `
+    : "Code:"
   const partsList = project.parts.map((part) => {
     return <p>{part.partName}</p>
   })
   const imageList = project.images.map((image) => {
     return <img className="project-image" src={`${image.imageURL}`} />
   })
-  
+
   return (
     <div className="project-show">
       <div id="show-page-thumbnail">
@@ -69,7 +78,7 @@ const ProjectShow = (props) => {
       <h4>Tags:</h4>
       <p>{project.tags}</p>
       <div className="images-container">{imageList}</div>
-      <h4>Code:</h4>
+      <p>{codeMessage}</p>
       <pre>
         <code ref={codeRef} className="language-c">
           {project.code}

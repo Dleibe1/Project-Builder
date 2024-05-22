@@ -44,14 +44,19 @@ const MyBuildShow = (props) => {
         throw error
       }
       const responseBody = await response.json()
-      setMyBuild(responseBody.userBuild)
+      let build = responseBody.userBuild
+      for (let [key, value] of Object.entries(build)) {
+        if (value === null) {
+          build[key] = '';
+        }
+      }
+      setMyBuild(build)
     } catch (error) {
       console.log(error)
     }
   }
 
-  console.log(myBuild.githubFileURL)
-
+  const codeMessage = myBuild.githubFileURL.length ? `Code fetched from github just now (${myBuild.githubFileURL}). ` : "Code:"
   const partsList = myBuild.parts.map((part) => {
     return <p>{part}</p>
   })
@@ -80,7 +85,7 @@ const MyBuildShow = (props) => {
       <h4>Tags:</h4>
       <p>{myBuild.tags}</p>
       <div className="images-container">{imageList}</div>
-      {/* <p>{codeMessage}</p> */}
+      <p>{codeMessage}</p>
       <pre>
         <code ref={codeRef} className="language-c">
           {myBuild.code}
