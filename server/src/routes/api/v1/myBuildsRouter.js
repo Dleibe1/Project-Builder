@@ -16,6 +16,7 @@ myBuildsRouter.get("/", async (req, res) => {
         return ProjectSerializer.getProjectDetails(userBuild, false)
       }),
     )
+    console.log(serializedUserBuilds)
     res.status(200).json({ userBuilds: serializedUserBuilds })
   } catch (error) {
     console.log(error)

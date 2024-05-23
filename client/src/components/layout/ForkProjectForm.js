@@ -51,7 +51,7 @@ const ForkProjectForm = (props) => {
 
   const postForkedProject = async (forkedProjectData) => {
     try {
-      const response = await fetch(`/api/v1/projects/fork-project`, {
+      const response = await fetch(`/api/v1/projects/fork-project/${id}`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const ForkProjectForm = (props) => {
 
   const partsList = forkedProject.parts.map((part, index) => {
     return (
-      <div id="parts-list" className="cell small-3 medium-6 large-4">
+      <div key={part} id="parts-list" className="cell small-3 medium-6 large-4">
         <h5 id="part">{part}</h5>
         <p id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
           Delete Part

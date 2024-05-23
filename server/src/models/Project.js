@@ -1,7 +1,12 @@
 const Model = require("./Model")
 const unique = require("objection-unique")
 
-class Project extends Model {
+const uniqueFunc = unique({
+  fields: ["thumbnailImageURL", "githubFileURL"],
+  identifiers: ["id"],
+})
+
+class Project extends uniqueFunc(Model) {
   static get tableName() {
     return "projects"
   }
@@ -15,18 +20,21 @@ class Project extends Model {
         title: { type: "string", minLength: 1 },
         appsAndPlatforms: { oneOf: [{ type: "string" }, { type: "null" }] },
         thumbnailImageURL: {
-          oneOf: [{ type: "string" }, { type: "null" }],
+          oneOf: [{ type: "string" }, { type: "null" }]
+        },
+        tags: {
+          oneOf: [{ type: "string" }, { type: "null" }]
+        },
+        documentation: {
+          oneOf: [{ type: "string" }, { type: "null" }]
         },
         description: { type: "string", minLength: 1 },
-        thumbnailImageURL: {
-          oneOf: [{ type: "string" }, { type: "null" }],
-        },
         code: { type: "string" },
         githubFileURL: {
-          oneOf: [{ type: "string" }, { type: "null" }],
+          oneOf: [{ type: "string" }, { type: "null" }]
         },
-        thumbnailImageURL: {
-          oneOf: [{ type: "string" }, { type: "null" }],
+        parentProjectId: {
+          oneOf: [{ type: "integer" }, { type: "null" }]
         },
       },
     }

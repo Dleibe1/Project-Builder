@@ -86,7 +86,7 @@ const NewProjectForm = (props) => {
 
   const partsList = newProject.parts.map((part, index) => {
     return (
-      <div id="parts-list" className="cell small-3 medium-6 large-4">
+      <div key={part} id="parts-list" className="cell small-3 medium-6 large-4">
         <h5 id="part">{part}</h5>
         <button id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
           Delete Part
@@ -114,7 +114,7 @@ const NewProjectForm = (props) => {
     <div className="new-build-form ">
       <h4>Add a New Project</h4>
       <ErrorList errors={errors} />
-      <form key={"new-build-form"} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="title">
           Name of project:
           <input onChange={handleInputChange} type="text" id="title" name="title" />

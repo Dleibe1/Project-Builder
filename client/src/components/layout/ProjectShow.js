@@ -54,10 +54,10 @@ const ProjectShow = (props) => {
       console.log(error)
     }
   }
-  const editBuildButton = [<ForkBuildButton id={id} />]
+  const editBuildButton = [<ForkBuildButton key={id} id={id} />]
   const codeMessage = project.githubFileURL.length ? `Code fetched just now from GitHub: (${project.githubFileURL}) ` : "Code:" 
   const partsList = project.parts.map((part) => {
-    return <p>{part.partName}</p>
+    return <p key={part.partName}>{part.partName}</p>
   })
   const imageList = project.images.map((image) => {
     return <img className="project-image" src={`${image.imageURL}`} />
