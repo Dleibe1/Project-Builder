@@ -1,12 +1,7 @@
 const Model = require("./Model")
-const unique = require("objection-unique")
 
-const uniqueFunc = unique({
-  fields: ["thumbnailImageURL", "githubFileURL"],
-  identifiers: ["id"],
-})
 
-class Project extends uniqueFunc(Model) {
+class Project extends Model {
   static get tableName() {
     return "projects"
   }
