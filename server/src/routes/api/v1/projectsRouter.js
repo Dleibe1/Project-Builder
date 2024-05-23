@@ -83,12 +83,14 @@ projectsRouter.post("/new-project", async (req, res) => {
   }
 })
 
-projectsRouter.post("/fork-project", async (req, res) => {
-  const { body, user } = req
+projectsRouter.post("/fork-project/:id", async (req, res) => {
+  const { body, user }= req
+  const originalProjectId = parseInt(req.params.id)
+  const userId = parseInt(user.id)
   try {
-    const formInput = cleanUserInput(body)
-    await forkProject()
-    res.status(201).json({ project: formInput })
+    const forkProjectFormInput = cleanUserInput(body)
+    await forkProject(originalProjectId, userId, forkProjectFormInput)
+    res.status(201).json({ project: forkProjectFormInput })
   } catch (error) {
     console.log(error)
     if (error instanceof ValidationError) {

@@ -20,6 +20,7 @@ class Seeder {
           "https://github.com/dmdhrumilmistry/ArduinoPrograms/blob/main/ArduinoUno/Projects/ControlServoMotorUsingIRremote/ControlServoMotorUsingIRremote.cpp",
         thumbnailImageURL:
           "https://projects.arduinocontent.cc/cover-images/70dad73c-8d46-4172-8ad9-def5688e6b19.jpg",
+          parentProjectId: 1
       },
       {
         userId: 1,
@@ -31,6 +32,7 @@ class Seeder {
           "https://github.com/AashiDutt/Arduino_Projects/blob/master/Dice%20Roller/sketch_jul19a/sketch_jul19a.ino",
         thumbnailImageURL:
           "https://projects.arduinocontent.cc/cover-images/1f887c02-812e-411d-ad69-7be71e3715f5.jpg",
+          parentProjectId: 2
       },
       {
         userId: 2,
@@ -42,6 +44,7 @@ class Seeder {
           "https://github.com/MexsonFernandes/ArduinoProjects/blob/master/combatRobot2.ino",
         thumbnailImageURL:
           "https://projects.arduinocontent.cc/cover-images/916c664e-bd6f-403a-a3f8-234147fc8501.jpg",
+          parentProjectId: 3
       },
       {
         userId: 2,
@@ -51,6 +54,7 @@ class Seeder {
         code: "Manually Entered Code: import arduino.h\nPinMode(5, OUTPUT)\nPinMode(6, OUTPUT)",
         thumbnailImageURL:
           "https://projects.arduinocontent.cc/cover-images/f27de0e3-aa87-4c5f-966a-37b14891dadd.jpg",
+          parentProjectId: 4
       },
     ])
 

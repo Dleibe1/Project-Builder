@@ -16,6 +16,7 @@ class ProjectSerializer {
       "code",
       "githubFileURL",
       "thumbnailImageURL",
+      "originalProjectId"
     ]
     let serializedProject = {}
     for (const attribute of allowedAttributes) {
@@ -42,7 +43,7 @@ class ProjectSerializer {
     serializedProject.githubFileURL = githubFileURLString
     return serializedProject
   }
-
+  //TODO: USE knex TRANSACTIONS! 
   static async handleNewProject({
     title,
     tags,
@@ -68,6 +69,9 @@ class ProjectSerializer {
       thumbnailImageURL,
     })
     const newProjectId = parseInt(newProject.id)
+    await Project.query().patchById(newProjectId, {
+      parentProjectId: newProjectId,
+    });
     for (const part of parts) {
       await Part.query().insert({ projectId: newProjectId, partName: part })
     }
@@ -88,6 +92,7 @@ class ProjectSerializer {
       parts,
       images,
       thumbnailImageURL,
+      parentProjectId
     },
     projectId,
   ) {
@@ -111,6 +116,7 @@ class ProjectSerializer {
         githubFileURL : githubFileURLString,
         thumbnailImageURL,
         userId,
+        parentProjectId
       })
       .where("id", projId)
   }

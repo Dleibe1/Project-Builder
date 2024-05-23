@@ -10,7 +10,7 @@ const myBuildsRouter = new express.Router()
 myBuildsRouter.get("/", async (req, res) => {
   const { user } = req
   try {
-    const userBuilds = await Project.query().where("userId", user.id)
+    const userBuilds = await Project.query().where("userId", parseInt(user.id))
     const serializedUserBuilds = await Promise.all(
       userBuilds.map((userBuild) => {
         return ProjectSerializer.getProjectDetails(userBuild, false)

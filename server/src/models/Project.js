@@ -1,4 +1,5 @@
 const Model = require("./Model")
+const unique = require("objection-unique")
 
 class Project extends Model {
   static get tableName() {
@@ -12,13 +13,21 @@ class Project extends Model {
       properties: {
         userId: { type: "integer" },
         title: { type: "string", minLength: 1 },
-        appsAndPlatforms: { type: "string" },
-        tags: { type: "string" },
+        appsAndPlatforms: { oneOf: [{ type: "string" }, { type: "null" }] },
+        thumbnailImageURL: {
+          oneOf: [{ type: "string" }, { type: "null" }],
+        },
         description: { type: "string", minLength: 1 },
-        documentation: { type: "string" },
+        thumbnailImageURL: {
+          oneOf: [{ type: "string" }, { type: "null" }],
+        },
         code: { type: "string" },
-        githubFileURL: { type: "string" },
-        thumbnailImageURL: { type: "string" }
+        githubFileURL: {
+          oneOf: [{ type: "string" }, { type: "null" }],
+        },
+        thumbnailImageURL: {
+          oneOf: [{ type: "string" }, { type: "null" }],
+        },
       },
     }
   }
@@ -39,8 +48,8 @@ class Project extends Model {
         modelClass: Project,
         join: {
           from: "projects.parentProjectId",
-          to: "projects.id"
-        }
+          to: "projects.id",
+        },
       },
       parts: {
         relation: Model.HasManyRelation,
@@ -55,9 +64,9 @@ class Project extends Model {
         modelClass: Image,
         join: {
           from: "projects.id",
-          to: "images.projectId"
-        }
-      }
+          to: "images.projectId",
+        },
+      },
     }
   }
 }
