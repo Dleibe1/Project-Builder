@@ -8,7 +8,7 @@ class GithubClient {
         const [, owner, repo, path] = match
         try {
           const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`
-          const apiKey = "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"
+          const apiKey = "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"
           const apiResponse = await got(url, {
             headers: {
               Accept: "application/vnd.github.v3.raw",
