@@ -7,14 +7,14 @@
     "e2e"
   ],
   "scripts": {
-    "build:client": "yarn workspace engage-boilerplate-client build",
-    "dev": "yarn workspace engage-boilerplate-server dev",
-    "dev:debug": "yarn workspace engage-boilerplate-server dev:debug",
-    "heroku-postbuild": "yarn workspace engage-boilerplate-client build",
-    "start": "yarn workspace engage-boilerplate-server start",
-    "dev:cypress": "yarn workspace engage-boilerplate-server dev:e2e",
-    "e2e:open": "yarn workspace engage-boilerplate-e2e e2e:open",
-    "e2e:run": "yarn workspace engage-boilerplate-e2e e2e:run"
+    "build:client": "yarn workspace project-builder-client build",
+    "dev": "yarn workspace project-builder-server dev",
+    "dev:debug": "yarn workspace project-builder-server dev:debug",
+    "heroku-postbuild": "yarn workspace project-builder-client build",
+    "start": "yarn workspace project-builder-server start",
+    "dev:cypress": "yarn workspace project-builder-server dev:e2e",
+    "e2e:open": "yarn workspace project-builder-e2e e2e:open",
+    "e2e:run": "yarn workspace project-builder-e2e e2e:run"
   },
   "engines": {
     "node": "^16.18"

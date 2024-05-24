@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
 import DeleteBuildButton from "./DeleteBuildButton"
 import EditBuildButton from "./EditBuildButton"
+import nullValuesToEmptyStrings from "../../services/nullValuesToEmptyStrings.js"
 
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
@@ -45,11 +46,7 @@ const MyBuildShow = (props) => {
       }
       const responseBody = await response.json()
       let build = responseBody.userBuild
-      for (let [key, value] of Object.entries(build)) {
-        if (value === null) {
-          build[key] = ""
-        }
-      }
+      nullValuesToEmptyStrings(build)
       setMyBuild(build)
     } catch (error) {
       console.log(error)

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
+import nullValuesToEmptyStrings from "../../services/nullValuesToEmptyStrings.js"
 
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -38,11 +39,7 @@ const EditBuildForm = (props) => {
       }
       const responseBody = await response.json()
       let build = responseBody.userBuild
-      for (let [key, value] of Object.entries(build)) {
-        if (value === null) {
-          build[key] = '';
-        }
-      }
+      nullValuesToEmptyStrings(build)
       setEditedProject(build)
     } catch (error) {
       console.log(error)

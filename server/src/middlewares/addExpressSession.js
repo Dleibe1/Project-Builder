@@ -4,7 +4,7 @@ import configuration from "../config.js";
 const addExpressSession = (app) => {
   app.use(
     session({
-      name: "engage-boilerplate-session",
+      name: "project-builder-session",
       keys: [configuration.session.secret],
       resave: true,
       maxAge: configuration.maxAge,

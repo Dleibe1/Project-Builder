@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
 import ForkBuildButton from "./ForkBuildButton"
+import nullValuesToEmptyStrings from "../../services/nullValuesToEmptyStrings.js"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -44,18 +45,16 @@ const ProjectShow = (props) => {
       }
       const responseBody = await response.json()
       let project = responseBody.project
-      for (let [key, value] of Object.entries(project)) {
-        if (value === null) {
-          project[key] = ""
-        }
-      }
+      nullValuesToEmptyStrings(project)
       setProject(project)
     } catch (error) {
       console.log(error)
     }
   }
   const editBuildButton = [<ForkBuildButton key={id} id={id} />]
-  const codeMessage = project.githubFileURL.length ? `Code fetched just now from GitHub: (${project.githubFileURL}) ` : "Code:" 
+  const codeMessage = project.githubFileURL.length
+    ? `Code fetched just now from GitHub: (${project.githubFileURL}) `
+    : "Code:"
   const partsList = project.parts.map((part) => {
     return <p key={part.partName}>{part.partName}</p>
   })
@@ -78,7 +77,7 @@ const ProjectShow = (props) => {
       <h4>Tags:</h4>
       <p>{project.tags}</p>
       <div className="images-container">{imageList}</div>
-      <p className="github-url" >{codeMessage}</p>
+      <p className="github-url">{codeMessage}</p>
       <pre>
         <code ref={codeRef} className="language-c">
           {project.code}

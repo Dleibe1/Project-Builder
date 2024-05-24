@@ -20,7 +20,7 @@
   "private": true,
   "type": "module",
   "version": "0.0.1",
-  "name": "engage-boilerplate-server",
+  "name": "project-builder-server",
   "engines": {
     "node": "^16.18"
   },

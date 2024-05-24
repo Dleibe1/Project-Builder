@@ -8,7 +8,7 @@ After unpacking the ZIP you can rename the folder/ directory for your new projec
 
 ### Rename Boilerplate
 
-The application will have all configurations set up with the name `engage-boilerplate`. You can change the name to match and be consistent with the name of your project. To do this, use a global search (using the Search magnifying glass in VSCode) to look for all instances of `engage-boilerplate` and replace it with the hyphenated name of your project (the search should find references to files with your database names, `package.json` files, etc.).
+The application will have all configurations set up with the name `project-builder`. You can change the name to match and be consistent with the name of your project. To do this, use a global search (using the Search magnifying glass in VSCode) to look for all instances of `project-builder` and replace it with the hyphenated name of your project (the search should find references to files with your database names, `package.json` files, etc.).
 
 ## Adding to GitHub
 
@@ -53,7 +53,7 @@ The application will have all configurations set up with the name `engage-boiler
 3. Create your base PostgreSQL database. Check the `server/src/config/getDatabaseUrl` file for the name of the `development` database. For example:
 
    ```sh
-   createdb engage-boilerplate_development
+   createdb project-builder_development
    ```
 
 4. Run the included `users` table migration:

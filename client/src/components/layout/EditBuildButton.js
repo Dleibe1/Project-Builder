@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const EditBuildButton = ({ id }) => {
   return (
-    <Link to={`/my-builds/${id}/edit`}>
+    <Link to={`/edit-my-build/${id}`}>
       <button id="edit-build-button">Edit Build</button>
     </Link>
   )
