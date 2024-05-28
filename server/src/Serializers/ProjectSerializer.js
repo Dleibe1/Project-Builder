@@ -39,8 +39,6 @@ class ProjectSerializer {
       project.githubFileURL && checkGithub
         ? await ProjectSerializer.getGithubProjectCode(project.githubFileURL)
         : project.code
-    const githubFileURLString = project.githubFileURL ? project.githubFileURL : ""
-    serializedProject.githubFileURL = githubFileURLString
     return serializedProject
   }
   //TODO: USE knex TRANSACTIONS! MOVE THESE TO PROJECT SERVICE FILE
@@ -96,14 +94,14 @@ class ProjectSerializer {
     projectId,
   ) {
     const projId = parseInt(projectId)
-    const githubFileURLString = githubFileURL ? githubFileURL : ""
-    await Part.query().delete().where("projectId", projId)
-    await Image.query().delete().where("projectId", projId)
-    for (const part of parts) {
-      await Part.query().insert({ projectId: projId, partName: part })
+    const githubFileURLField = githubFileURL ? githubFileURL : ""
+    await Part.query().delete().where("projectId", projectId)
+    await Image.query().delete().where("projectId", projectId)
+    for (const partName of parts) {
+      await Part.query().insert({ projectId: projId, partName: partName })
     }
-    for (const image of images) {
-      await Image.query().insert({ projectId: projId, imageURL: image })
+    for (const imageURL of images) {
+      await Image.query().insert({ projectId: projId, imageURL: imageURL })
     }
     await Project.query()
       .update({
@@ -112,7 +110,7 @@ class ProjectSerializer {
         appsAndPlatforms,
         description,
         code,
-        githubFileURL : githubFileURLString,
+        githubFileURL : githubFileURLField,
         thumbnailImageURL,
         userId,
       })
