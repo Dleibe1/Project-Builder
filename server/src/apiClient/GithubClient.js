@@ -18,13 +18,12 @@ class GithubClient {
           const responseBody = apiResponse.body
           return responseBody
         } catch (error) {
+          console.log(error)
           return { error: error.message }
         }
       } else {
-        return false
+        return `Could not fetch github code from the URL '${url}' Check the main project URL and try again.`
       }
-    } else {
-      return false
     }
   }
 }

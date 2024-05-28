@@ -37,7 +37,7 @@ class ProjectSerializer {
     serializedProject.images = relatedImages
     serializedProject.code =
       project.githubFileURL && checkGithub
-        ? await ProjectSerializer.getGithubProjectCode(project.githubFileURL)
+        ? await GithubClient.getCode(project.githubFileURL)
         : project.code
     return serializedProject
   }
@@ -55,7 +55,7 @@ class ProjectSerializer {
     thumbnailImageURL,
   }) {
     const projectCode = githubFileURL
-      ? await ProjectSerializer.getGithubProjectCode(githubFileURL)
+      ? await GithubClient.getCode(githubFileURL)
       : code
     const newProject = await Project.query().insert({
       title,
@@ -115,14 +115,6 @@ class ProjectSerializer {
         userId,
       })
       .where("id", projId)
-  }
-
-  static async getGithubProjectCode(githubFileURL) {
-    const regex = /^https:\/\/github.com\/([^\/]+)\/([^\/]+)\/blob\/[^\/]+\/(.+)$/
-    if (githubFileURL.match(regex)) {
-      return await GithubClient.getCode(githubFileURL)
-    }
-    return `Could not fetch github code from the URL '${githubFileURL}' Check the main project URL and try again.`
   }
 }
 
