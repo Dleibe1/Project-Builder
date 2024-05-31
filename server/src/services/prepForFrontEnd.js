@@ -1,4 +1,4 @@
-const nullValuesToEmptyString = (object) => {
+const prepForFrontEnd = (object) => {
   for (let [key, value] of Object.entries(object)) {
     if (value === null) {
       object[key] = ""
@@ -6,4 +6,4 @@ const nullValuesToEmptyString = (object) => {
   }
 }
 
-export default nullValuesToEmptyString
+export default prepForFrontEnd

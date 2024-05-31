@@ -8,15 +8,15 @@ class ProjectService {
     }
     const newProject = await Project.query().insert({
       userId: parseInt(userId),
-      githubFileURL: forkData.githubFileURL || originalProject.githubFileURL,
+      githubFileURL: forkData.githubFileURL,
       thumbnailImageURL: forkData.thumbnailImageURL || originalProject.thumbnailImageURL,
-      title: forkData.title || originalProject.title,
+      title: forkData.title,
       appsAndPlatforms: forkData.appsAndPlatforms || originalProject.appsAndPlatforms,
       tags: forkData.tags || originalProject.tags,
-      description: forkData.description || originalProject.description,
+      description: forkData.description,
       documentation: forkData.documentation || originalProject.documentation,
       code: forkData.code || originalProject.code,
-      parentProjectId: originalProjectId,
+      parentProjectId: originalProjectId
     })
     return newProject
   }

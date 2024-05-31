@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
-import nullValuesToEmptyStrings from "../../services/prepForFrontEnd.js"
+import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 
 const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -38,9 +38,9 @@ const ForkProjectForm = (props) => {
         throw error
       }
       const responseBody = await response.json()
-      let build = responseBody.userBuild
-      nullValuesToEmptyStrings(build)
-      setForkedProject(build)
+      let fork = responseBody.fork
+      prepForFrontEnd(fork)
+      setForkedProject(fork)
     } catch (error) {
       console.log(error)
     }
@@ -48,7 +48,7 @@ const ForkProjectForm = (props) => {
 
   const postForkedProject = async (forkedProjectData) => {
     try {
-      const response = await fetch(`/api/v1/projects/fork-project/${id}`, {
+      const response = await fetch(`/api/v1/project-forks/${id}`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -68,8 +68,9 @@ const ForkProjectForm = (props) => {
     }
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event) => { 
     event.preventDefault()
+    console.log(forkedProject)
     postForkedProject({ ...forkedProject, githubFileURL: forkedProject.githubFileURL.trim() })
   }
 
@@ -142,7 +143,7 @@ const ForkProjectForm = (props) => {
       <form key={"edit-build-form"} onSubmit={handleSubmit}>
         <label htmlFor="title">
           Name of project fork:
-          <input onChange={handleInputChange} type="text" id="title" name="title" />
+          <input onChange={handleInputChange} type="text" value={forkedProject.title} id="title" name="title" />
         </label>
         <label htmlFor="thumbnail-image-url">
           Thumbnail Image URL:

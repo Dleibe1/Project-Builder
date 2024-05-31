@@ -9,10 +9,10 @@ class Project extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["title", "description", "userId"],
+      required: ["title", "description", "userId", "parentProjectId"],
       properties: {
         userId: { type: "integer" },
-        title: { type: "string", minLength: 1 },
+        title: { type: "string" },
         appsAndPlatforms: { oneOf: [{ type: "string" }, { type: "null" }] },
         thumbnailImageURL: {
           oneOf: [{ type: "string" }, { type: "null" }]
@@ -23,7 +23,7 @@ class Project extends Model {
         documentation: {
           oneOf: [{ type: "string" }, { type: "null" }]
         },
-        description: { type: "string", minLength: 1 },
+        description: { type: "string" },
         code: { type: "string" },
         githubFileURL: {
           oneOf: [{ type: "string" }, { type: "null" }]
