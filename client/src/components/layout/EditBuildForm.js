@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
-import nullValuesToEmptyStrings from "../../services/nullValuesToEmptyStrings.js"
+import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -39,7 +39,7 @@ const EditBuildForm = (props) => {
       }
       const responseBody = await response.json()
       let build = responseBody.userBuild
-      nullValuesToEmptyStrings(build)
+      prepForFrontEnd(build)
       setEditedProject(build)
     } catch (error) {
       console.log(error)

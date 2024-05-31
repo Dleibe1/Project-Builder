@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
 import DeleteBuildButton from "./DeleteBuildButton"
 import EditBuildButton from "./EditBuildButton"
-import nullValuesToEmptyStrings from "../../services/nullValuesToEmptyStrings.js"
+import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
@@ -46,7 +46,7 @@ const MyBuildShow = (props) => {
       }
       const responseBody = await response.json()
       let build = responseBody.userBuild
-      nullValuesToEmptyStrings(build)
+      prepForFrontEnd(build)
       setMyBuild(build)
     } catch (error) {
       console.log(error)
@@ -54,7 +54,7 @@ const MyBuildShow = (props) => {
   }
 
   const codeMessage = myBuild.githubFileURL.length
-    ? `Code fetched just now from GitHub: (${myBuild.githubFileURL}) `
+    ? `Code fetched GitHub just now: (${myBuild.githubFileURL}) `
     : "Code:"
   const partsList = myBuild.parts.map((part) => {
     return <p>{part}</p>

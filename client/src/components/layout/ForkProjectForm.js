@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
-import nullValuesToEmptyStrings from "../../services/nullValuesToEmptyStrings.js"
+import nullValuesToEmptyStrings from "../../services/prepForFrontEnd.js"
 
 const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -31,7 +31,7 @@ const ForkProjectForm = (props) => {
 
   const getProject = async () => {
     try {
-      const response = await fetch(`/api/v1/projects/fork-data/${id}`)
+      const response = await fetch(`/api/v1/project-forks/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
@@ -142,12 +142,7 @@ const ForkProjectForm = (props) => {
       <form key={"edit-build-form"} onSubmit={handleSubmit}>
         <label htmlFor="title">
           Name of project fork:
-          <input
-            onChange={handleInputChange}
-            type="text"
-            id="title"
-            name="title"
-          />
+          <input onChange={handleInputChange} type="text" id="title" name="title" />
         </label>
         <label htmlFor="thumbnail-image-url">
           Thumbnail Image URL:

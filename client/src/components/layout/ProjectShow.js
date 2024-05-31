@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
 import ForkBuildButton from "./ForkBuildButton"
-import nullValuesToEmptyStrings from "../../services/nullValuesToEmptyStrings.js"
+import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -45,7 +45,7 @@ const ProjectShow = (props) => {
       }
       const responseBody = await response.json()
       let project = responseBody.project
-      nullValuesToEmptyStrings(project)
+      prepForFrontEnd(project)
       setProject(project)
     } catch (error) {
       console.log(error)
@@ -53,7 +53,7 @@ const ProjectShow = (props) => {
   }
   const editBuildButton = [<ForkBuildButton key={id} id={id} />]
   const codeMessage = project.githubFileURL.length
-    ? `Code fetched just now from GitHub: (${project.githubFileURL}) `
+    ? `Code fetched GitHub just now: (${project.githubFileURL}) `
     : "Code:"
   const partsList = project.parts.map((part) => {
     return <p key={part.partName}>{part.partName}</p>

@@ -18,7 +18,6 @@ import EditBuildForm from "./layout/EditBuildForm"
 import ForkProjectForm from "./layout/ForkProjectForm"
 
 const App = (props) => {
-  const [myBuilds, setMyBuilds] = useState([])
   const [currentUser, setCurrentUser] = useState(undefined)
   const fetchCurrentUser = async () => {
     try {

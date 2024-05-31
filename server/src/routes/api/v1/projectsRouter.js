@@ -3,7 +3,7 @@ import { Project, Part, Image } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 import objection from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
-import forkProject from "../../../services/projectService.js"
+import ProjectService from "../../../services/ProjectService.js"
 const { ValidationError } = objection
 
 const projectsRouter = new express.Router()
@@ -20,25 +20,6 @@ projectsRouter.get("/", async (req, res) => {
   } catch (err) {
     console.log(err)
     res.status(500).json({ errors: err })
-  }
-})
-
-projectsRouter.get("/fork-data/:id", async (req, res) => {
-  const id = req.params.id
-  try {
-    const userBuild = await Project.query().findById(id)
-    let serializedUserBuild = await ProjectSerializer.getProjectDetails(userBuild, true)
-    const partNamesArray = serializedUserBuild.parts.map(part => {
-      return part.partName
-    })
-    const imageUrlsArray = serializedUserBuild.images.map(imageData => {
-      return imageData.imageURL
-    })
-    serializedUserBuild.parts = partNamesArray
-    serializedUserBuild.images = imageUrlsArray
-    return res.status(200).json({ userBuild: serializedUserBuild })
-  } catch (error) {
-    return res.status(500).json({ errors: error })
   }
 })
 
@@ -89,7 +70,7 @@ projectsRouter.post("/fork-project/:id", async (req, res) => {
   const userId = parseInt(user.id)
   try {
     const forkProjectFormInput = cleanUserInput(body)
-    await forkProject(originalProjectId, userId, forkProjectFormInput)
+    await ProjectService.forkProject(originalProjectId, userId, forkProjectFormInput)
     res.status(201).json({ project: forkProjectFormInput })
   } catch (error) {
     console.log(error)
