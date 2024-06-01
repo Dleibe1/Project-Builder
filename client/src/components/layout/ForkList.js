@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom"
 import ProjectTile from "./ProjectTile"
 
 const ForkList = (props) => {
-  const [forks, setForks] = useState([])
-  const params = useParams([])
+  const params = useParams()
   const { id } = params
+  const [forks, setForks] = useState([])
   const getForks = async () => {
     try {
-      const response = await fetch(`/api/v1/projects/forks/${id}`)
+      const response = await fetch(`/api/v1/project-forks/${id}/fork-list`)
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
         throw newError
@@ -19,20 +19,20 @@ const ForkList = (props) => {
       console.log(err)
     }
   }
-
   useEffect(() => {
     getForks()
   }, [])
-
   const forksArray = forks.map((fork) => {
-    return (
-      <ProjectTile
-        key={fork.id}
-        id={fork.id}
-        title={fork.title}
-        thumbnailImage={fork.thumbnailImageURL}
-      />
-    )
+    if (fork.id !== id) {
+      return (
+        <ProjectTile
+          key={fork.id}
+          id={fork.id}
+          title={fork.title}
+          thumbnailImage={fork.thumbnailImageURL}
+        />
+      )
+    }
   })
   return (
     <div>

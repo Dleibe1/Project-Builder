@@ -66,10 +66,10 @@ const MyBuildShow = (props) => {
 
   return (
     <div className="project-show">
-        <div className="button-container">
-          <EditBuildButton id={id} />
-          <DeleteBuildButton id={id} />
-        </div>
+      <div className="button-container">
+        <EditBuildButton id={id} />
+        <DeleteBuildButton id={id} />
+      </div>
       <h1>{myBuild.title}</h1>
       <div id="show-page-thumbnail">
         <img src={myBuild.thumbnailImageURL} />

@@ -1,16 +1,16 @@
-import express from "express"
-import { Project } from "../../../models/index.js"
-import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
-import objection from "objection"
+import express from 'express'
+import { Project } from '../../../models/index.js'
+import ProjectSerializer from '../../../Serializers/ProjectSerializer.js'
+import objection from 'objection'
 const { ValidationError } = objection
-import cleanUserInput from "../../../services/cleanUserInput.js"
+import cleanUserInput from '../../../services/cleanUserInput.js'
 
 const myBuildsRouter = new express.Router()
 
-myBuildsRouter.get("/", async (req, res) => {
+myBuildsRouter.get('/', async (req, res) => {
   const { user } = req
   try {
-    const userBuilds = await Project.query().where("userId", parseInt(user.id))
+    const userBuilds = await Project.query().where('userId', parseInt(user.id))
     const serializedUserBuilds = await Promise.all(
       userBuilds.map((userBuild) => {
         return ProjectSerializer.getProjectDetails(userBuild, false)
@@ -23,7 +23,7 @@ myBuildsRouter.get("/", async (req, res) => {
   }
 })
 
-myBuildsRouter.get("/:id", async (req, res) => {
+myBuildsRouter.get('/:id', async (req, res) => {
   const id = req.params.id
   try {
     const userBuild = await Project.query().findById(id)
@@ -42,7 +42,7 @@ myBuildsRouter.get("/:id", async (req, res) => {
   }
 })
 
-myBuildsRouter.patch("/:id", async (req, res) => {
+myBuildsRouter.patch('/:id', async (req, res) => {
   const { body } = req
   const projectId = req.params.id
   try {

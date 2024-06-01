@@ -40,7 +40,7 @@ const ForkProjectForm = (props) => {
       const responseBody = await response.json()
       let fork = responseBody.fork
       prepForFrontEnd(fork)
-      setForkedProject(fork)
+      setForkedProject({...fork, githubFileURL: ""})
     } catch (error) {
       console.log(error)
     }

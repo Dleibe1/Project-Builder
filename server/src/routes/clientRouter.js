@@ -1,11 +1,11 @@
-import express from "express";
+import express from 'express';
 
-import getClientIndexPath from "../config/getClientIndexPath.js";
+import getClientIndexPath from '../config/getClientIndexPath.js';
 
 const router = new express.Router();
 
-const clientRoutes = ["/", "/user-sessions/new", "/users/new", "/projects/:id", "/create-new-build", "/my-builds", "/my-builds/:id", "/edit-my-build/:id", "/fork/:id" ]
-const authedClientRoutes = ["/profile"];
+const clientRoutes = ['/', '/user-sessions/new', '/users/new', '/projects/:id', '/create-new-build', '/my-builds', '/my-builds/:id', '/edit-my-build/:id', '/fork/:id', '/project-forks/:id/fork-list' ]
+const authedClientRoutes = ['/profile'];
 
 router.get(clientRoutes, (req, res) => {
   res.sendFile(getClientIndexPath());
@@ -15,7 +15,7 @@ router.get(authedClientRoutes, (req, res) => {
   if (req.user) {
     res.sendFile(getClientIndexPath());
   } else {
-    res.redirect("/user-sessions/new");
+    res.redirect('/user-sessions/new');
   }
 });
 

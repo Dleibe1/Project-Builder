@@ -7,7 +7,6 @@ import ProjectService from "../../../services/ProjectService.js"
 const { ValidationError } = objection
 
 const projectsRouter = new express.Router()
-
 projectsRouter.get("/", async (req, res) => {
   try {
     const projects = await Project.query()

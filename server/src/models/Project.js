@@ -9,7 +9,7 @@ class Project extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["title", "description", "userId"],
+      required: ["title", "description", "userId" ],
       properties: {
         userId: { type: "integer" },
         title: { type: "string" },

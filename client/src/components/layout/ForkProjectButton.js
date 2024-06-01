@@ -1,12 +1,12 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const ForkBuildButton = ({ id }) => {
+const ForkProjectButton = ({ id }) => {
   return (
-    <Link to={`/fork/${id}`}>
+    <Link to={`/project-forks/${id}`}>
       <button id="edit-build-button">Fork Project</button>
     </Link>
   )
 }
 
-export default ForkBuildButton
+export default ForkProjectButton

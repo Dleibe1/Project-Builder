@@ -8,15 +8,31 @@ const { ValidationError } = objection
 
 const forkRouter = new express.Router()
 
+forkRouter.get("/:id/fork-list", async (req, res) => {
+  const { id } = req.params
+  try {
+    const forks = await Project.query().where("parentProjectId", parseInt(id))
+    const serializedForks = await Promise.all(
+      forks.map((fork) => {
+          return ProjectSerializer.getProjectDetails(fork, false)
+      })
+    )
+    res.status(200).json({ forks: serializedForks })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ errors: error })
+  }
+})
+
 forkRouter.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
-    const userBuild = await Project.query().findById(id)
-    let serializedForkData = await ProjectSerializer.getProjectDetails(userBuild, true)
-    const partNames = serializedForkData.parts.map(part => {
+    const fork = await Project.query().findById(id)
+    let serializedForkData = await ProjectSerializer.getProjectDetails(fork, true)
+    const partNames = serializedForkData.parts.map((part) => {
       return part.partName
     })
-    const imageUrls = serializedForkData.images.map(imageData => {
+    const imageUrls = serializedForkData.images.map((imageData) => {
       return imageData.imageURL
     })
     serializedForkData.parts = partNames
@@ -31,7 +47,7 @@ forkRouter.get("/:id", async (req, res) => {
 })
 
 forkRouter.post("/:id", async (req, res) => {
-  const { body, user }= req
+  const { body, user } = req
   const originalProjectId = parseInt(req.params.id)
   const userId = parseInt(user.id)
   try {
