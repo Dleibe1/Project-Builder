@@ -5,7 +5,6 @@ dotenv.config();
 class GithubClient {
   static async getCode(url) {
     const regex = /^https:\/\/github.com\/([^\/]+)\/([^\/]+)\/blob\/[^\/]+\/(.+)$/
-    console.log()
     if (url) {
       const match = url.match(regex)
       if (match) {
