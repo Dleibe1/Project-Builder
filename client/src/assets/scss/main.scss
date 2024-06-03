@@ -45,7 +45,7 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
   justify-content: center;
-  align-items: stretch;
+  align-items: stretch; /* Ensures all items have the same height */
 }
 
 .project-tile {
@@ -53,24 +53,31 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 1.5rem;
+  padding-bottom: 0rem;
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
   text-align: center;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out content vertically */
+  height: 100%; /* Make all tiles have the same height */
 }
 
-.project-tile h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  color: #333;
-  font-family: "Montserrat", sans-serif;
+.project-tile img {
+  max-height: 180px; /* Set a maximum height for the image */
+  object-fit: cover; /* Ensures the image covers the area without stretching */
+  width: 100%;
+  border-radius: 10px;
+}
+
+.project-tile h3, .project-tile h4, .project-tile h5 { /* Adjust margin as needed */
+  font-size: 1.3rem;
 }
 
 .project-tile h4 {
-  margin-bottom: 0.3rem;
+  margin:0rem;
   font-size: 1.2rem;
   color: #555;
   font-family: "Montserrat", sans-serif;
@@ -128,7 +135,6 @@
   display: flex;
   align-items: center;
 }
-
 
 .project-show {
   padding: 2rem;

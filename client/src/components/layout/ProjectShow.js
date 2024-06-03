@@ -77,8 +77,8 @@ const ProjectShow = (props) => {
       {partsList}
       <h4>Apps and Platforms:</h4>
       <p>{project.appsAndPlatforms}</p>
-      <h4>Tags:</h4>
-      <p>{project.tags}</p>
+      {/* <h4>Tags:</h4>
+      <p>{project.tags}</p> */}
       <div className="images-container">{imageList}</div>
       <p className="github-url">{codeMessage}</p>
       <pre>

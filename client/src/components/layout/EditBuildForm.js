@@ -160,7 +160,7 @@ const EditBuildForm = (props) => {
             name="thumbnailImageURL"
           />
         </label>
-        <label htmlFor="tags">
+        {/* <label htmlFor="tags">
           Tags:
           <input
             value={editedProject.tags}
@@ -169,7 +169,7 @@ const EditBuildForm = (props) => {
             id="tags"
             name="tags"
           />
-        </label>
+        </label> */}
         <label htmlFor="apps-and-platforms">
           Apps and Platforms:
           <input

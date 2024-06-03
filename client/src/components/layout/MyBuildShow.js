@@ -79,8 +79,8 @@ const MyBuildShow = (props) => {
       {partsList}
       <h4>Apps and Platforms:</h4>
       <p>{myBuild.appsAndPlatforms}</p>
-      <h4>Tags:</h4>
-      <p>{myBuild.tags}</p>
+      {/* <h4>Tags:</h4>
+      <p>{myBuild.tags}</p> */}
       <div className="images-container">{imageList}</div>
       <p className="github-url">{codeMessage}</p>
       <pre>

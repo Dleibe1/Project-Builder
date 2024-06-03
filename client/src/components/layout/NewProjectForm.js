@@ -123,10 +123,10 @@ const NewProjectForm = (props) => {
           Thumbnail Image URL:
           <input onChange={handleInputChange} type="text" id="title" name="thumbnailImageURL" />
         </label>
-        <label htmlFor="tags">
+        {/* <label htmlFor="tags">
           Tags:
           <input onChange={handleInputChange} type="text" id="tags" name="tags" />
-        </label>
+        </label> */}
         <label htmlFor="apps-and-platforms">
           Apps and Platforms:
           <input
