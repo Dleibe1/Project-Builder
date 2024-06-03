@@ -9,11 +9,14 @@ exports.up = async (knex) => {
   return knex.schema.createTable("parts", (table) => {
     table.bigIncrements("id")
 
+
     table.bigInteger("projectId")
-    .unsigned()
-    .notNullable()
-    .index()
-    .references("projects.id")
+      .unsigned()
+      .notNullable()
+      .index()
+      .references("id")
+      .inTable("projects")
+      .onDelete('CASCADE')
 
     table.string("partName").notNullable()
 

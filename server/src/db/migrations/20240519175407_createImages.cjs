@@ -13,7 +13,9 @@ exports.up = async (knex) => {
     .unsigned()
     .notNullable()
     .index()
-    .references("projects.id")
+    .references("id")
+    .inTable("projects")
+    .onDelete('CASCADE')
 
     table.text("imageURL").notNullable()
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
