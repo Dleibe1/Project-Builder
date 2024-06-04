@@ -71,8 +71,8 @@ const MyBuildShow = (props) => {
         <DeleteBuildButton id={id} />
       </div>
       <h1>{myBuild.title}</h1>
-      <div id="show-page-thumbnail">
-        <img src={myBuild.thumbnailImageURL} />
+      <div className="images-container">
+        <img className="project-image" src={myBuild.thumbnailImageURL} />
       </div>
       <p>{myBuild.description}</p>
       <h4>Parts:</h4>

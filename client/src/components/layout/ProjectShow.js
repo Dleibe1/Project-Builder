@@ -69,8 +69,8 @@ const ProjectShow = (props) => {
       {props.user ? forkProjectButton : []}
       <ProjectForksButton id={id} />
       <h1>{project.title}</h1>
-      <div id="show-page-thumbnail">
-        <img src={project.thumbnailImageURL} />
+      <div className="images-container">
+        <img className="project-image" src={project.thumbnailImageURL} />
       </div>
       <p>{project.description}</p>
       <h4>Parts:</h4>
