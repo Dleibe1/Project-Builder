@@ -42,41 +42,6 @@ class ProjectSerializer {
     return serializedProject
   }
   //TODO: USE knex TRANSACTIONS! MOVE THESE TO PROJECT SERVICE FILE
-  static async handleNewProject({
-    title,
-    tags,
-    appsAndPlatforms,
-    description,
-    code,
-    githubFileURL,
-    userId,
-    parts,
-    images,
-    thumbnailImageURL,
-  }) {
-    const projectCode = githubFileURL
-      ? await GithubClient.getCode(githubFileURL)
-      : code
-    const newProject = await Project.query().insert({
-      title,
-      tags,
-      appsAndPlatforms,
-      description,
-      code: projectCode,
-      userId,
-      thumbnailImageURL,
-    })
-    const newProjectId = parseInt(newProject.id)
-    await Project.query().patchById(newProjectId, {
-      parentProjectId: newProjectId,
-    });
-    for (const part of parts) {
-      await Part.query().insert({ projectId: newProjectId, partName: part })
-    }
-    for (const image of images) {
-      await Image.query().insert({ projectId: newProjectId, imageURL: image })
-    }
-  }
 
   static async handleUpdateProject(
     {

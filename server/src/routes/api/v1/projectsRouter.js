@@ -2,6 +2,7 @@ import express from "express"
 import { Project, Part, Image } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 import objection from "objection"
+import handleNewProject from "../../../services/handleNewProject.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 const { ValidationError } = objection
 
@@ -50,7 +51,7 @@ projectsRouter.post("/new-project", async (req, res) => {
   const { body } = req
   try {
     const formInput = cleanUserInput(body)
-    await ProjectSerializer.handleNewProject(formInput)
+    await handleNewProject(formInput)
     res.status(201).json({ project: formInput })
   } catch (error) {
     console.log(error)
