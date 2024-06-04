@@ -55,7 +55,7 @@ const ProjectShow = (props) => {
 
   const forkProjectButton = [<ForkProjectButton key={id} id={id} />]
   const codeMessage = project.githubFileURL.length
-    ? `Code fetched GitHub just now: (${project.githubFileURL}) `
+    ? `Code fetched from GitHub just now: (${project.githubFileURL}) `
     : "Code:"
   const partsList = project.parts.map((part) => {
     return <p key={part.partName}>{part.partName}</p>
