@@ -1,7 +1,7 @@
 import express from "express"
 import { Project } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
-import ProjectService from "../../../services/ProjectService.js"
+import forkProject from "../../../services/forkProject.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import objection from "objection"
 const { ValidationError } = objection
@@ -52,7 +52,7 @@ forkRouter.post("/:id", async (req, res) => {
   const userId = parseInt(user.id)
   try {
     const forkProjectFormInput = cleanUserInput(body)
-    await ProjectService.forkProject(originalProjectId, userId, forkProjectFormInput)
+    await forkProject(originalProjectId, userId, forkProjectFormInput)
     res.status(201).json({ project: forkProjectFormInput })
   } catch (error) {
     console.log(error)

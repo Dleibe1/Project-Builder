@@ -3,7 +3,6 @@ import { Project, Part, Image } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 import objection from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
-import ProjectService from "../../../services/ProjectService.js"
 const { ValidationError } = objection
 
 const projectsRouter = new express.Router()
