@@ -1,6 +1,5 @@
 const Model = require("./Model")
 
-
 class Project extends Model {
   static get tableName() {
     return "projects"
@@ -9,27 +8,25 @@ class Project extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["title", "description", "userId" ],
+      required: ["title", "description", "userId", "thumbnailImageURL"],
       properties: {
         userId: { type: "integer" },
         title: { type: "string" },
         appsAndPlatforms: { oneOf: [{ type: "string" }, { type: "null" }] },
-        thumbnailImageURL: {
-          oneOf: [{ type: "string" }, { type: "null" }]
-        },
+        thumbnailImageURL: { type: "string" },
         tags: {
-          oneOf: [{ type: "string" }, { type: "null" }]
+          oneOf: [{ type: "string" }, { type: "null" }],
         },
         documentation: {
-          oneOf: [{ type: "string" }, { type: "null" }]
+          oneOf: [{ type: "string" }, { type: "null" }],
         },
         description: { type: "string" },
         code: { type: "string" },
         githubFileURL: {
-          oneOf: [{ type: "string" }, { type: "null" }]
+          oneOf: [{ type: "string" }, { type: "null" }],
         },
         parentProjectId: {
-          oneOf: [{ type: "integer" }, { type: "null" }]
+          oneOf: [{ type: "integer" }, { type: "null" }],
         },
       },
     }

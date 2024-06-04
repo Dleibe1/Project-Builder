@@ -1,4 +1,4 @@
-import { User, Project, Part, Image } from "../models/index.js"
+import { User } from "../models/index.js"
 import PartsSerializer from "./PartsSerializer.js"
 import ImageSerializer from "./ImagesSerializer.js"
 import GithubClient from "../apiClient/GithubClient.js"
