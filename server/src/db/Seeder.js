@@ -7,6 +7,7 @@ class Seeder {
       { email: "dleibe1@google.com", cryptedPassword: "111", userName: "dleibe1" },
       { email: "lukeM2@hotmail.com", cryptedPassword: "111", userName: "lukeTheMan" },
       { email: "chrisC@google.com", cryptedPassword: "111", userName: "BigChris" },
+      { email: "example@example.com", cryptedPassword: "example", userName: "Bob" },
     ])
 
     await Project.query().insert([
