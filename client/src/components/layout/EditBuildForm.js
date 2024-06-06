@@ -12,10 +12,6 @@ const EditBuildForm = (props) => {
   const params = useParams()
   const { id } = params
 
-  useEffect(() => {
-    getProject()
-  }, [])
-
   const [editedProject, setEditedProject] = useState({
     title: "",
     tags: "",
@@ -67,6 +63,10 @@ const EditBuildForm = (props) => {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    getProject()
+  }, [])
 
   const handleSubmit = (event) => {
     event.preventDefault()
