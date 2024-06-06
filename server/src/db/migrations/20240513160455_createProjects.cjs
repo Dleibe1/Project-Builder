@@ -26,7 +26,6 @@ exports.up = async (knex) => {
 
     table.bigInteger("parentProjectId")
     .unsigned()
-    .notNullable()
     .index()
     .references("id")
     .inTable("projects")
