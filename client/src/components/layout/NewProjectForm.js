@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Redirect } from "react-router-dom"
+import Dropzone from "react-dropzone"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 
@@ -8,6 +9,9 @@ const NewProjectForm = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [part, setPart] = useState("")
   const [image, setImage] = useState("")
+  const [imageFile, setImageFile] = useState({
+    image: {}
+  })
   const [newProject, setNewProject] = useState({
     title: "",
     tags: "",
@@ -20,6 +24,29 @@ const NewProjectForm = (props) => {
     userId: "",
     thumbnailImageURL: "",
   })
+
+  const uploadImage = async (event) => {
+    event.preventDefault()
+    const newImageFileData = new FormData()
+    newImageFileData.append("image", imageFile.image)
+
+    try {
+      const response = await fetch("/api/v1/image-uploading", {
+        method: "POST",
+        headers: {
+          Accept: "image/jpeg",
+        },
+        body: newImageFileData,
+      })
+      if (!response.ok) {
+        throw new Error(`${response.status} (${response.statusText})`)
+      }
+      const body = await response.json()
+      setNewProject({ ...newProject, images: [...newProject.images, body.imageURL] })
+    } catch (error) {
+      console.error(`Error in addMeme Fetch: ${error.message}`)
+    }
+  }
 
   const postProject = async (newProjectData) => {
     try {
@@ -45,7 +72,11 @@ const NewProjectForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    postProject({ ...newProject, userId: props.user.id, githubFileURL: newProject.githubFileURL.trim() })
+    postProject({
+      ...newProject,
+      userId: props.user.id,
+      githubFileURL: newProject.githubFileURL.trim(),
+    })
   }
 
   const handleInputChange = (event) => {
@@ -74,14 +105,20 @@ const NewProjectForm = (props) => {
     setImage("")
   }
 
+  const handleImageUpload = (acceptedImage) => {
+    setImageFile({
+      image: acceptedImage[0],
+    })
+  }
+
   const handlePartDelete = (index) => {
     const partsList = newProject.parts.filter((part, i) => i !== index)
     setNewProject({ ...newProject, parts: partsList })
   }
 
   const handleImageURLDelete = (index) => {
-    const imageList = newProject.images.filter((image, i ) => i !== index)
-    setNewProject({...newProject, images: imageList})
+    const imageList = newProject.images.filter((image, i) => i !== index)
+    setNewProject({ ...newProject, images: imageList })
   }
 
   const partsList = newProject.parts.map((part, index) => {
@@ -161,8 +198,8 @@ const NewProjectForm = (props) => {
         </label>
         <label htmlFor="github-url">
           <h5>
-          Is this a work in progress?  Pasting the URL of your main sketch file on Github will automatically
-            keep the code you share up to date.
+            Is this a work in progress? Pasting the URL of your main sketch file on Github will
+            automatically keep the code you share up to date.
           </h5>
           <h5>Example: https://github.com/antronyx/ServoTester/blob/main/main.ino</h5>
           Github main sketch file URL:
@@ -171,11 +208,30 @@ const NewProjectForm = (props) => {
         {imageList}
         <label htmlFor="image">
           Add Image URL:
-          <input value={image} onChange={handleImageURLInput} type="text" id="image-url" name="image" />
+          <input
+            value={image}
+            onChange={handleImageURLInput}
+            type="text"
+            id="image-url"
+            name="image"
+          />
           <h3 onClick={handleImageURLSubmit} className="part-button">
             Add Image URL
           </h3>
         </label>
+        <form className="callout primary" onSubmit={uploadImage}>
+          <Dropzone onDrop={handleImageUpload}>
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <p>Upload Your Meme - drag 'n' drop or click to upload</p>
+                </div>
+              </section>
+            )}
+          </Dropzone>
+          <input className="button" type="submit" value="Add" />
+        </form>
         <input type="submit" value="Submit Project" />
       </form>
     </div>

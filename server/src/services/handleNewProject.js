@@ -24,7 +24,7 @@ const handleNewProject = async ({
     thumbnailImageURL,
   })
   const newProjectId = parseInt(newProject.id)
-  await Project.query().patchById(newProjectId, {
+  await Project.query().patchAndFetchById(newProjectId, {
     parentProjectId: newProjectId,
   })
   for (const part of parts) {

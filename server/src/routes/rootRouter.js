@@ -5,7 +5,7 @@ import usersRouter from "./api/v1/usersRouter.js"
 import clientRouter from "./clientRouter.js"
 import projectsRouter from "./api/v1/projectsRouter.js"
 import myBuildsRouter from "./api/v1/myBuildsRouter.js"
-import imageUploadTestRouter from "./api/v1/imageUploadTestRouter.js"
+import imageUploadRouter from "./api/v1/imageUploadRouter.js"
 import forkRouter from "./api/v1/forkRouter.js"
 
 const rootRouter = new express.Router()
@@ -16,6 +16,6 @@ rootRouter.use("/api/v1/projects", projectsRouter)
 rootRouter.use("/api/v1/users", usersRouter)
 rootRouter.use("/api/v1/my-builds", myBuildsRouter)
 rootRouter.use ("/api/v1/project-forks", forkRouter)
-rootRouter.use("/api/v1/image-uploading", imageUploadTestRouter)
+rootRouter.use("/api/v1/image-uploading", imageUploadRouter)
 
 export default rootRouter

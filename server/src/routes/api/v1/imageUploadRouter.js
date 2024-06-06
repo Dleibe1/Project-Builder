@@ -2,9 +2,9 @@ import express from "express"
 import TestImageUpload from "../../../models/TestImageUpload.js"
 import uploadImage from "../../../services/uploadImage.js"
 
-const imageUploadTestRouter = new express.Router()
+const imageUploadRouter = new express.Router()
 
-imageUploadTestRouter.get("/", async (req, res) => {
+imageUploadRouter.get("/", async (req, res) => {
   try {
     const memes = await TestImageUpload.query()
     return res.status(200).json({ memes })
@@ -16,19 +16,13 @@ imageUploadTestRouter.get("/", async (req, res) => {
 
 // The setup and implementation for this endpoint will be explained in a different article! 
 
-imageUploadTestRouter.post("/", uploadImage.single("image"), async (req, res) => {
+imageUploadRouter.post("/", uploadImage.single("image"), async (req, res) => {
   try {
     const { body } = req
-    const data = {
-      ...body,
-      image: req.file.location,
-    }
-
+    const imageURL = req.file.location
     console.log(req.file.location)
-    console.log("MADE IT")
-    
-    const meme = await TestImageUpload.query().insertAndFetch(data)
-    return res.status(201).json({ meme })
+
+    return res.status(201).json({ imageURL })
   } catch (error) {
     console.log(error)
     console.log(error)
@@ -36,4 +30,4 @@ imageUploadTestRouter.post("/", uploadImage.single("image"), async (req, res) =>
   }
 })
 
-export default imageUploadTestRouter
+export default imageUploadRouter

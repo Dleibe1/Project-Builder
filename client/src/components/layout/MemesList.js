@@ -52,6 +52,8 @@ const MemesList = (props) => {
     })
   }
 
+  console.log(newMemeFormData)
+
   const addMeme = async (event) => {
     event.preventDefault()
     const newMemeBody = new FormData()
