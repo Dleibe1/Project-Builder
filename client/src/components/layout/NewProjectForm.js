@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Redirect } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import translateServerErrors from "../../services/translateServerErrors.js"
@@ -25,8 +25,7 @@ const NewProjectForm = (props) => {
     thumbnailImageURL: "",
   })
 
-  const uploadImage = async (event) => {
-    event.preventDefault()
+  const uploadImage = async () => {
     const newImageFileData = new FormData()
     newImageFileData.append("image", imageFile.image)
 
@@ -47,6 +46,16 @@ const NewProjectForm = (props) => {
       console.error(`Error in addMeme Fetch: ${error.message}`)
     }
   }
+
+  const handleImageUpload = (acceptedImage) => {
+    setImageFile({
+      image: acceptedImage[0],
+    })
+  }
+
+  useEffect(()=> {
+    uploadImage()
+  },[imageFile])
 
   const postProject = async (newProjectData) => {
     try {
@@ -103,12 +112,6 @@ const NewProjectForm = (props) => {
       setNewProject({ ...newProject, images: [...newProject.images, image.trim()] })
     }
     setImage("")
-  }
-
-  const handleImageUpload = (acceptedImage) => {
-    setImageFile({
-      image: acceptedImage[0],
-    })
   }
 
   const handlePartDelete = (index) => {
@@ -219,19 +222,16 @@ const NewProjectForm = (props) => {
             Add Image URL
           </h3>
         </label>
-        <form className="callout primary" onSubmit={uploadImage}>
           <Dropzone onDrop={handleImageUpload}>
             {({ getRootProps, getInputProps }) => (
               <section>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                  <p>Upload Your Meme - drag 'n' drop or click to upload</p>
+                  <p className="part-button dropzone">Upload an Image - drag 'n' drop or click to upload</p>
                 </div>
               </section>
             )}
           </Dropzone>
-          <input className="button" type="submit" value="Add" />
-        </form>
         <input type="submit" value="Submit Project" />
       </form>
     </div>

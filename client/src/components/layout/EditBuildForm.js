@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
+import Dropzone from "react-dropzone"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
@@ -9,6 +10,9 @@ const EditBuildForm = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [part, setPart] = useState("")
   const [image, setImage] = useState("")
+  const [imageFile, setImageFile] = useState({
+    image: {},
+  })
   const params = useParams()
   const { id } = params
 
@@ -64,13 +68,34 @@ const EditBuildForm = (props) => {
     }
   }
 
+  const uploadImage = async () => {
+    const newImageFileData = new FormData()
+    newImageFileData.append("image", imageFile.image)
+    try {
+      const response = await fetch("/api/v1/image-uploading", {
+        method: "POST",
+        headers: {
+          Accept: "image/jpeg",
+        },
+        body: newImageFileData,
+      })
+      if (!response.ok) {
+        throw new Error(`${response.status} (${response.statusText})`)
+      }
+      const body = await response.json()
+      setEditedProject({ ...editedProject, images: [...editedProject.images, body.imageURL] })
+    } catch (error) {
+      console.error(`Error in addMeme Fetch: ${error.message}`)
+    }
+  }
+
   useEffect(() => {
     getProject()
   }, [])
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    updateProject({...editedProject, githubFileURL: editedProject.githubFileURL.trim()})
+    updateProject({ ...editedProject, githubFileURL: editedProject.githubFileURL.trim() })
   }
 
   const handleInputChange = (event) => {
@@ -98,6 +123,16 @@ const EditBuildForm = (props) => {
     }
     setImage("")
   }
+
+  const handleImageUpload = (acceptedImage) => {
+    setImageFile({
+      image: acceptedImage[0],
+    })
+  }
+
+  useEffect(()=> {
+    uploadImage()
+  },[imageFile])
 
   const handlePartDelete = (index) => {
     const partsList = editedProject.parts.filter((part, i) => i !== index)
@@ -211,8 +246,8 @@ const EditBuildForm = (props) => {
         </label>
         <label htmlFor="github-url">
           <h5>
-            Is this a work in progress?  Pasting the URL of your main sketch file on Github will automatically
-            keep the code you share up to date.
+            Is this a work in progress? Pasting the URL of your main sketch file on Github will
+            automatically keep the code you share up to date.
           </h5>
           <h5>Example: https://github.com/antronyx/ServoTester/blob/main/main.ino</h5>
           Github main sketch file URL:
@@ -227,11 +262,27 @@ const EditBuildForm = (props) => {
         {imageList}
         <label htmlFor="image">
           Add Image URL:
-          <input value={image} onChange={handleImageURLInput} type="text" id="image-url" name="image" />
+          <input
+            value={image}
+            onChange={handleImageURLInput}
+            type="text"
+            id="image-url"
+            name="image"
+          />
           <h3 onClick={handleImageURLSubmit} className="part-button">
             Add Image URL
           </h3>
         </label>
+        <Dropzone onDrop={handleImageUpload}>
+          {({ getRootProps, getInputProps }) => (
+            <section>
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <p className="part-button dropzone">Upload an Image - drag 'n' drop or click to upload</p>
+              </div>
+            </section>
+          )}
+        </Dropzone>
         <input type="submit" value="Submit Project" />
       </form>
     </div>

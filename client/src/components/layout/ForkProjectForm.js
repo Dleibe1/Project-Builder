@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
+import Dropzone from "react-dropzone"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
@@ -9,6 +10,9 @@ const ForkProjectForm = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [part, setPart] = useState("")
   const [image, setImage] = useState("")
+  const [imageFile, setImageFile] = useState({
+    image: {},
+  })
   const params = useParams()
   const { id } = params
 
@@ -68,9 +72,29 @@ const ForkProjectForm = (props) => {
     }
   }
 
+  const uploadImage = async () => {
+    const newImageFileData = new FormData()
+    newImageFileData.append("image", imageFile.image)
+    try {
+      const response = await fetch("/api/v1/image-uploading", {
+        method: "POST",
+        headers: {
+          Accept: "image/jpeg",
+        },
+        body: newImageFileData,
+      })
+      if (!response.ok) {
+        throw new Error(`${response.status} (${response.statusText})`)
+      }
+      const body = await response.json()
+      setForkedProject({ ...forkedProject, images: [...forkedProject.images, body.imageURL] })
+    } catch (error) {
+      console.error(`Error in addMeme Fetch: ${error.message}`)
+    }
+  }
+
   const handleSubmit = (event) => { 
     event.preventDefault()
-    console.log(forkedProject)
     postForkedProject({ ...forkedProject, githubFileURL: forkedProject.githubFileURL.trim() })
   }
 
@@ -99,6 +123,16 @@ const ForkProjectForm = (props) => {
     }
     setImage("")
   }
+
+  const handleImageUpload = (acceptedImage) => {
+    setImageFile({
+      image: acceptedImage[0],
+    })
+  }
+
+  useEffect(()=> {
+    uploadImage()
+  },[imageFile])
 
   const handlePartDelete = (index) => {
     const partsList = forkedProject.parts.filter((part, i) => i !== index)
@@ -233,6 +267,16 @@ const ForkProjectForm = (props) => {
             Add Image URL
           </h3>
         </label>
+        <Dropzone onDrop={handleImageUpload}>
+          {({ getRootProps, getInputProps }) => (
+            <section>
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <p className="part-button dropzone">Upload an Image - drag 'n' drop or click to upload</p>
+              </div>
+            </section>
+          )}
+        </Dropzone>
         <input type="submit" value="Submit Project" />
       </form>
     </div>

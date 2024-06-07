@@ -254,7 +254,7 @@
   transition: background-color 0.2s ease;
 }
 
-#my-builds, #edit-build-button, #delete-build-button {
+#my-builds, #edit-build-button, #delete-build-button, #drag-and-drop {
   display: flex;
   margin-bottom: 20px;
   background-color: #e67e23;
@@ -289,6 +289,13 @@
 #new-build-button:hover,
 #my-builds:hover {
   background-color: #d5721c;
+}
+
+.dropzone {
+  font-size: 1.5rem;
+  width: 50%;
+  margin: 0 auto;
+  white-space: pre-wrap;
 }
 
 #my-builds {
