@@ -89,7 +89,7 @@ const ForkProjectForm = (props) => {
       const body = await response.json()
       setForkedProject({ ...forkedProject, images: [...forkedProject.images, body.imageURL] })
     } catch (error) {
-      console.error(`Error in addMeme Fetch: ${error.message}`)
+      console.error(`Error in uploadImage Fetch: ${error.message}`)
     }
   }
 

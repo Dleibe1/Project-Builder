@@ -85,7 +85,7 @@ const EditBuildForm = (props) => {
       const body = await response.json()
       setEditedProject({ ...editedProject, images: [...editedProject.images, body.imageURL] })
     } catch (error) {
-      console.error(`Error in addMeme Fetch: ${error.message}`)
+      console.error(`Error in uploadImage Fetch: ${error.message}`)
     }
   }
 

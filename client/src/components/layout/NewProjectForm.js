@@ -43,7 +43,7 @@ const NewProjectForm = (props) => {
       const body = await response.json()
       setNewProject({ ...newProject, images: [...newProject.images, body.imageURL] })
     } catch (error) {
-      console.error(`Error in addMeme Fetch: ${error.message}`)
+      console.error(`Error in uploadImage Fetch: ${error.message}`)
     }
   }
 

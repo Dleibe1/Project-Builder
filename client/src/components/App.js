@@ -16,7 +16,6 @@ import MyBuildList from './layout/MyBuildList'
 import MyBuildShow from './layout/MyBuildShow'
 import EditBuildForm from './layout/EditBuildForm'
 import ForkList from './layout/ForkList'
-import MemesList from './layout/MemesList'
 import ForkProjectForm from './layout/ForkProjectForm'
 
 const App = (props) => {
@@ -41,7 +40,6 @@ const App = (props) => {
         <Route exact path={'/'}>
           <ProjectList user={currentUser} />
         </Route>
-        <Route exact path="/meme" component={MemesList} />
         <Route exact path='/projects/:id'>
           <ProjectShow user={currentUser} />
         </Route>
