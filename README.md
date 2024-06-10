@@ -20,7 +20,7 @@
    createdb project-builder_development
    ```
 
-4. Run the included table migrations:
+4. Run the included database migrations:
 
    ```sh
    cd server
