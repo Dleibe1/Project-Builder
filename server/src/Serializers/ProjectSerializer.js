@@ -37,7 +37,7 @@ class ProjectSerializer {
     serializedProject.images = relatedImages
     serializedProject.code =
       project.githubFileURL && checkGithub
-        ? await GithubClient.getCode(project.githubFileURL)
+        ? await GithubClient.getProjectCode(project.githubFileURL)
         : project.code
     return serializedProject
   }

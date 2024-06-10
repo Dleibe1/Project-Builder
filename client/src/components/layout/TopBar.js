@@ -2,6 +2,7 @@ import React from "react"
 import { Link, useLocation } from "react-router-dom"
 
 import SignOutButton from "../authentication/SignOutButton"
+import GithubLogin from "../authentication/GithubLogin"
 
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
@@ -56,7 +57,9 @@ const TopBar = ({ user }) => {
       <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
       </div>
+      <GithubLogin />
       <div className={"build-buttons"}>
+
         {user && pathname !== "/create-new-build" ? newBuildButton : []}
         {user && pathname !== "/my-builds" ? myBuildsButton : []}
       </div>

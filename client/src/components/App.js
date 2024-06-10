@@ -17,6 +17,8 @@ import MyBuildShow from './layout/MyBuildShow'
 import EditBuildForm from './layout/EditBuildForm'
 import ForkList from './layout/ForkList'
 import ForkProjectForm from './layout/ForkProjectForm'
+import GithubLogin from './authentication/GithubLogin'
+import GithubCallback from './authentication/GithubCallback'
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -60,6 +62,12 @@ const App = (props) => {
         </Route>
         <Route exact path='/project-forks/:id'>
           <ForkProjectForm user={currentUser} />
+        </Route>
+        <Route exact path='/github-login'>
+          <GithubLogin user={currentUser} />
+        </Route>
+        <Route exact path='/github-callback'>
+          <GithubCallback user={currentUser} />
         </Route>
         <Route exact path='/users/new' component={RegistrationForm} />
         <Route exact path='/user-sessions/new' component={SignInForm} />

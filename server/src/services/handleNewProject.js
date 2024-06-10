@@ -13,7 +13,7 @@ const handleNewProject = async ({
   images,
   thumbnailImageURL,
 }) => {
-  const projectCode = githubFileURL ? await GithubClient.getCode(githubFileURL) : code
+  const projectCode = githubFileURL ? await GithubClient.getProjectCode(githubFileURL) : code
   const newProject = await Project.query().insert({
     title,
     tags,
