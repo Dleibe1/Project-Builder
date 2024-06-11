@@ -1,4 +1,3 @@
-
 ## Usage
 
 1. Install necessary dependencies with `yarn`:
@@ -7,11 +6,36 @@
    yarn install
    ```
 
-2. In the root of the server folder, create a `.env` file to hold the session secret and GitHub API Key. This will allow Passport to keep track of the currently signed-in user in session and enable the GitHub API to fetch code from a user's main project file. Include a SESSION_SECRET and GITHUB_API_KEY in the `.env`:
+2. In the root of the server folder, create a `.env` file to hold the environment variables listed below.  These environment variables are used for:
+```
+ SESSION_SECRET ...........Allows Passport to keep track of the currently signed-in user in session.
+ GITHUB_API_KEY ...........Enables the GitHub API to fetch code from a user's main project (.ino or main.cpp) file.
+ CLIENT_SECRET,
+ CLIENT_ID ................These are necessary for generating a user access token for use with GitHub apps.
+                           See GitHub apps documentation for more information:
+                           https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps 
+ AWS_ACCESS_KEY_ID,
+ AWS_SECRET_ACCESS_KEY,
+ S3_BUCKET_PRODUCTION,
+ S3_BUCKET_DEVELOPMENT ....These are necessary for image uploading.  For more information, visit
+                           https://aws.amazon.com/s3/
+ BASE_URL .................Necessary for GitHub callback (used with GitHub apps) where a full URL path is required.
+                           If hosting this app on the web, be sure to replace http://localhost:3000 with the
+                           base URL of your hosting site. 
+                           For example, https://project-builder-e7439342976b.herokuapp.com
+```
 
+ `.env`:
    ```env
-   SESSION_SECRET="ff521741-6d5a-48d2-96a9-b95bbcf60bc4"
-   GITHUB_API_KEY="Your-GitHub-API-Key"
+   SESSION_SECRET="your-session-secret"
+   GITHUB_API_KEY="your-github-api-key"
+   CLIENT_SECRET="your-client-secret"
+   CLIENT_ID="your-client-id"
+   AWS_ACCESS_KEY_ID="your-AWS-key-id"
+   AWS_SECRET_ACCESS_KEY="your-AWS-secret-access-key"
+   S3_BUCKET_PRODUCTION="your-AWS-S3-bucket"
+   S3_BUCKET_DEVELOPMENT="your-AWS-S3-bucket"
+   BASE_URL="http://localhost:3000"
    ```
 
 3. Create the base PostgreSQL database, project-builder_development
@@ -44,4 +68,3 @@
 
 7. Navigate to <http://localhost:3000>. You should see the homepage of
    the project-builder app, populated with example data.
-
