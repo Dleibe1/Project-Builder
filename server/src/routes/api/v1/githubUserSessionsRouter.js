@@ -32,7 +32,7 @@ githubUserSessionsRouter.get("/handle-callback", async (req, res) => {
 })
 
 githubUserSessionsRouter.get("/repos", async (req, res) => {
-  const token = req.query.token
+  const token = req.session.githubAccessToken
   try {
     const repos = await GithubClient.getUserRepos(token)
     res.json(repos)
