@@ -19,8 +19,11 @@ githubUserSessionsRouter.get("/handle-callback", async (req, res) => {
   try {
     const tokenData = await GithubClient.exchangeUserLoginCode(userLoginCode)
     if (tokenData.access_token) {
+      req.session.githubAccessToken = tokenData.access_token
       const userInfo = await GithubClient.getUserInfo(tokenData.access_token)
       const { login, name } = userInfo
+      req.session.githubLogin = login
+      req.session.githubName = name ? name : ""
       res.redirect(`${BASE_URL}/github-callback?name=${name ? name : ""}&login=${login}`)
     }
   } catch (error) {
