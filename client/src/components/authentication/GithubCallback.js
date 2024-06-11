@@ -1,14 +1,27 @@
 import React from "react"
+import { useState, useEffect } from "react"
 
 const GithubCallback = (props) => {
-  const params = new URLSearchParams(location.search)
-  const name = params.get("name")
-  const login = params.get("login")
+  const [userInfo, setUserInfo] = useState({})
+
+  const getUserInfo = () => {
+    const params = new URLSearchParams(location.search)
+    const name = params.get("name")
+    const login = params.get("login")
+    return { name, login }
+  }
+
+  useEffect(() => {
+    const userInfo = getUserInfo()
+    setUserInfo(userInfo)
+  }, [])
+
+  console.log(userInfo)
 
   return (
     <div>
       <h1>
-        Welcome, {name} {login})!
+        Welcome, {userInfo.name} {userInfo.login}!
       </h1>
     </div>
   )

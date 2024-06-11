@@ -1,9 +1,19 @@
 import React from "react"
 
 const GithubLogin = () => {
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("/api/v1/github-user-sessions/login")
+      const data = await response.json()
+      window.location.href = data.githubAuthUrl
+    } catch (error) {
+      console.error("Error fetching GitHub login URL:", error)
+    }
+  }
+
   return (
     <div>
-      <a href="localhost3000/api/v1/github-user-sessions/login">Login with GitHub</a>
+      <button onClick={handleLogin}>Login with GitHub</button>
     </div>
   )
 }

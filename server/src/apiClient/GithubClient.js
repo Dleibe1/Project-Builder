@@ -1,6 +1,6 @@
 import got from "got"
 import dotenv from "dotenv"
-import { response } from "express"
+
 dotenv.config()
 //TODO:  github_app_authorization webhook handling
 class GithubClient {
@@ -64,6 +64,23 @@ class GithubClient {
       return response.body
     } catch (error) {
       console.error("Error fetching user info:", error)
+      throw error
+    }
+  }
+
+  static async getUserRepos(token) {
+    try {
+      const response = await got.get("https://api.github.com/user/repos", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+        responseType: "json",
+      })
+
+      return response.body
+    } catch (error) {
+      console.error("Error fetching repositories:", error)
       throw error
     }
   }
