@@ -7,7 +7,7 @@
    ```
 
 2. In the root of the server folder, create a `.env` file to hold the environment variables listed below.  These environment variables are used for:
-
+```
  SESSION_SECRET ...........Allows Passport to keep track of the currently signed-in user in session.
  GITHUB_API_KEY ...........Enables the GitHub API to fetch code from a user's main project (.ino or main.cpp) file.
  CLIENT_SECRET,
@@ -23,6 +23,7 @@
                            If hosting this app on the web, be sure to replace http://localhost:3000 with the
                            base URL of your hosting site. 
                            For example, https://project-builder-e7439342976b.herokuapp.com
+```
 
  `.env`:
    ```env
