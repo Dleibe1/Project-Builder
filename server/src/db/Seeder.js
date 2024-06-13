@@ -4,10 +4,10 @@ import { User, Project, Part, Image } from "../models/index.js"
 class Seeder {
   static async seed() {
     await User.query().insert([
-      { email: "dleibe1@google.com", cryptedPassword: "111", userName: "dleibe1" },
-      { email: "lukeM2@hotmail.com", cryptedPassword: "111", userName: "lukeTheMan" },
-      { email: "chrisC@google.com", cryptedPassword: "111", userName: "BigChris" },
-      { email: "example@example.com", cryptedPassword: "example", userName: "Bob" },
+      { email: "dleibe1@google.com", cryptedPassword: "111", userName: "dleibe1", loginMethod: "standard" },
+      { email: "lukeM2@hotmail.com", cryptedPassword: "111", userName: "lukeTheMan", loginMethod: "standard" },
+      { email: "chrisC@google.com", cryptedPassword: "111", userName: "BigChris", loginMethod: "standard" },
+      { email: "example@example.com", cryptedPassword: "example", userName: "Bob", loginMethod: "standard" },
     ])
 
     await Project.query().insert([

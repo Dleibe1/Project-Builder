@@ -3,14 +3,14 @@ const getCurrentUser = async () => {
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-  });
+  })
   if (!response.ok) {
-    const errorMessage = `${response.status} (${response.statusText})`;
-    const error = new Error(errorMessage);
-    throw error;
+    const errorMessage = `${response.status} (${response.statusText})`
+    const error = new Error(errorMessage)
+    throw error
   }
-  const userData = await response.json();
-  return userData;
-};
+  const userData = await response.json()
+  return userData
+}
 
-export default getCurrentUser;
+export default getCurrentUser

@@ -26,9 +26,12 @@ githubUserSessionsRouter.get("/handle-callback", async (req, res) => {
       const { login, name } = userInfo
       req.session.githubLogin = login
       req.session.githubName = name ? name : ""
+      const existingUser = await User.query().where({loginMethod: "github", githubUserName: login})
+      const newUser = await User.query().insert({ loginMethod: "github", githubUserName: login })
       res.redirect(`${BASE_URL}/github-callback?name=${name ? name : ""}&login=${login}`)
     }
   } catch (error) {
+    console.log(error)
     res.status(500).json({ errors: error })
   }
 })

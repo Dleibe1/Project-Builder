@@ -16,8 +16,6 @@ const GithubCallback = (props) => {
     setUserInfo(userInfo)
   }, [])
 
-  console.log(userInfo)
-
   return (
     <div>
       <h1>

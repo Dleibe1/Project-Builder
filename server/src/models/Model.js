@@ -21,7 +21,6 @@ class Model extends ObjectionModel {
 
   async $checkUniqueness(property) {
     const existingRecord = await this.constructor.query().where(property, this[property]).first();
-
     if (existingRecord && existingRecord.id !== this.id) {
       const errorObject = {};
       errorObject[property] = [{ keyword: "unique", message: "already in use" }];
