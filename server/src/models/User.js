@@ -8,7 +8,7 @@ const saltRounds = 10
 
 
 const uniqueFunc = unique({
- fields: ["email", ["userName", "loginMethod"]],
+ fields: ["email", "userName"],
  identifiers: ["id"],
 })
 

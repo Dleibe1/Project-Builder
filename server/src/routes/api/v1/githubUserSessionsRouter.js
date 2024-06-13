@@ -21,13 +21,19 @@ githubUserSessionsRouter.get("/handle-callback", async (req, res) => {
   try {
     const tokenData = await GithubClient.exchangeUserLoginCode(userLoginCode)
     if (tokenData.access_token) {
+      console.log(tokenData)
       req.session.githubAccessToken = tokenData.access_token
       const userInfo = await GithubClient.getUserInfo(tokenData.access_token)
       const { login, name } = userInfo
       req.session.githubLogin = login
       req.session.githubName = name ? name : ""
-      const existingUser = await User.query().where({loginMethod: "github", githubUserName: login})
-      const newUser = await User.query().insert({ loginMethod: "github", githubUserName: login })
+      const existingUser = await User.query().where({
+        loginMethod: "github",
+        githubUserName: login,
+      })
+      if (!existingUser.length) {
+        await User.query().insert({ loginMethod: "github", githubUserName: login })
+      }
       res.redirect(`${BASE_URL}/github-callback?name=${name ? name : ""}&login=${login}`)
     }
   } catch (error) {
