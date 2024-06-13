@@ -1,5 +1,5 @@
-import session from "cookie-session";
-import configuration from "../config.js";
+import session from "cookie-session"
+import configuration from "../config.js"
 
 const addExpressSession = (app) => {
   app.use(
@@ -8,8 +8,9 @@ const addExpressSession = (app) => {
       keys: [configuration.session.secret],
       resave: true,
       maxAge: configuration.maxAge,
+      httpOnly: true,
     }),
-  );
-};
+  )
+}
 
-export default addExpressSession;
+export default addExpressSession

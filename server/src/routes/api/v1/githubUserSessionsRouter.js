@@ -1,6 +1,8 @@
 import GithubClient from "../../../apiClient/GithubClient.js"
+import { User } from "../../../models/index.js"
 import express from "express"
 import dotenv from "dotenv"
+
 dotenv.config()
 
 const CLIENT_ID = process.env.CLIENT_ID

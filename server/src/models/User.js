@@ -26,16 +26,29 @@ class User extends uniqueFunc(Model) {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["email", "userName"],
+      required: ["userName"],
 
       properties: {
         email: { type: "string", pattern: "^\\S+@\\S+\\.\\S+$" },
         cryptedPassword: { type: "string" },
-        userName: { type: "string" }
+        userName: { type: "string" },
+        loginMethod: {
+          type: "string",
+          default: "standard",
+          enum: ["standard", "github"]
+        }
       },
+      if: {
+        properties:{
+          loginMethod: {const: "standard"}
+        }
+      },
+      then: {
+        required: ["userName", "email"]
+      }
     }
   }
-
+  
   static get relationMappings() {
     const { Project } = require("./index.js")
     return {
