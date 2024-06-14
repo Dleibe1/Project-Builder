@@ -41,7 +41,7 @@
 3. Create the base PostgreSQL database, project-builder_development
 
    ```sh
-   createdb project-builder_development
+   createdb breakable-toy_development
    ```
 
 4. Run the included table migrations:
