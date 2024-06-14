@@ -3,15 +3,12 @@ const Bcrypt = require("bcrypt")
 const unique = require("objection-unique")
 const Model = require("./Model")
 
-
 const saltRounds = 10
-
 
 const uniqueFunc = unique({
  fields: ["email", "userName"],
  identifiers: ["id"],
 })
-
 
 class User extends uniqueFunc(Model) {
 

@@ -22,7 +22,13 @@
   display: block;
 }
 
+.user-builds-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
 .authentication-button {
+  margin: 1rem;
   background-color: #00979c;
   border-radius: 10px;
   color: #fff;
@@ -97,18 +103,21 @@
 }
 
 .menu,
-.top-bar {
+.navigation {
   display: flex;
   list-style: none;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
 }
 
+.top-bar-buttons-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .sign-up {
-  margin-top: 1rem;
-  margin-right: 2rem;
   align-items: flex-end;
 }
 
@@ -117,13 +126,14 @@
 }
 
 .sign-in {
-  margin: 1rem;
+  margin-top: 1rem;
 }
 
-.top-bar-right {
+.sign-in-sign-out {
   display: flex;
   flex-direction: column;
   margin-right: 10px;
+  height: 130px;
 }
 .top-bar-left {
   display: inline-block;
@@ -325,10 +335,9 @@
   text-align: left;
 }
 #logo-container {
-  display: flex;
+  padding: 0rem;
   height: 110px;
   width: 110px;
-  margin: 10px;
 }
 
 .user-logged-in {

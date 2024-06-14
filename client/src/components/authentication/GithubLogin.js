@@ -13,7 +13,7 @@ const GithubLogin = () => {
 
   return (
     <div>
-      <button onClick={handleLogin}>Login with GitHub</button>
+      <button className="button authentication-button" onClick={handleLogin}>Login with GitHub</button>
     </div>
   )
 }

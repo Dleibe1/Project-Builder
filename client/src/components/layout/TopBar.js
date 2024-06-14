@@ -7,7 +7,7 @@ import GithubLogin from "../authentication/GithubLogin"
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
     <li key="sign-in">
-      <Link className="sign-in" to="/user-sessions/new">
+      <Link className="sign-in button authentication-button" to="/user-sessions/new">
         Sign In
       </Link>
     </li>,
@@ -25,43 +25,43 @@ const TopBar = ({ user }) => {
   ]
 
   let newBuildButton = [
-    <Link
-      key={"new-build-button"}
-      id="new-build-button"
-      className="part-button"
-      to="/create-new-build"
-    >
-      + New Build
-    </Link>,
+    <div>
+      <Link
+        key={"new-build-button"}
+        id="new-build-button"
+        className="part-button"
+        to="/create-new-build"
+      >
+        + New Build
+      </Link>
+    </div>,
   ]
   const { pathname } = useLocation()
   let myBuildsButton = [
-    <Link key={"my-builds"} id="my-builds" className="part-button " to="/my-builds">
-      My Builds
-    </Link>,
+    <div>
+      <Link key={"my-builds"} id="my-builds" className="part-button " to="/my-builds">
+        My Builds
+      </Link>
+    </div>,
   ]
 
   return (
-    <div className="top-bar">
-      <div>
-        <div>
-          <div className="top-bar-left-container">
-            <Link id="logo-container" to="/">
-              <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
-            </Link>
-            {user ? <h5 className="user-logged-in">{user.userName}</h5> : []}
-          </div>
+    <div className="menu">
+      <div className="top-bar-left-container">
+        <Link id="logo-container" to="/">
+          <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
+        </Link>
+        {user ? <h5 className="user-logged-in">{user.userName}</h5> : []}
+      </div>
+      <div className="top-bar-buttons-container">
+        <div className="user-builds-buttons">
+          {user && pathname !== "/create-new-build" ? newBuildButton : []}
+          {user && pathname !== "/my-builds" ? myBuildsButton : []}
         </div>
-        <ul className="menu"></ul>
-      </div>
-      <div className="top-bar-right">
-        <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
-      </div>
-      <GithubLogin />
-      <div className={"build-buttons"}>
-
-        {user && pathname !== "/create-new-build" ? newBuildButton : []}
-        {user && pathname !== "/my-builds" ? myBuildsButton : []}
+        <div className="sign-in-sign-out">
+          {user ? authenticatedListItems : unauthenticatedListItems}
+        </div>
+        <GithubLogin />
       </div>
     </div>
   )
