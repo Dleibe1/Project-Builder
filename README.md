@@ -53,7 +53,7 @@ The application will have all configurations set up with the name `project-build
 3. Create your base PostgreSQL database. Check the `server/src/config/getDatabaseUrl` file for the name of the `development` database. For example:
 
    ```sh
-   createdb project-builder_development
+   createdb breakable-toy_development
    ```
 
 4. Run the included `users` table migration:
