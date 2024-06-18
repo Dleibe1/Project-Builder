@@ -8,13 +8,14 @@ The app is currently hosted at https://project-builder-e7439342976b.herokuapp.co
 <h4>GitHub API:</h4>
 
    Generally, Arduino/ESP32 projects have all of the creator's code in a single file
-   (usually a .ino file or main.cpp).  
-   Example:  https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
+   (usually a .ino file or main.cpp).
    After logging into to this app, Click "New Build."  Paste the url of your Arduino/ESP32
-   main program file.
+   main program file into the "Github main sketch file URL" section of at the bottom
+   of the form.
+   Example URL:  https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
    
    When users visit your project's page on this app, the code section is automatically populated
-   with your code from GitHub.  This way you don't have to paste your code into
+   with your main project file's code from GitHub.  This way you don't have to paste your code into
    this app every time you update your code on GitHub.  This feature does that automatically!
 
 <h4>Create, Edit, and Fork projects:</h4>
@@ -25,8 +26,8 @@ The app is currently hosted at https://project-builder-e7439342976b.herokuapp.co
 
    This is why I created the "Fork Project" feature, which 
    allows you to fork another user's entire build (including the parts), 
-   not just their code.  Once a project fork is created, clicking "Project Forks" on a project's page
-   will display the forked versions of the project.
+   not just their code.  Once a project fork is created, clicking "Project Forks" 
+   on a project's display page will show the forked versions of the project.
 
 ## Usage
 
