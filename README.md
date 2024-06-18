@@ -23,9 +23,8 @@ A demo of the app is currently hosted at https://project-builder-e7439342976b.he
    for any project.
 
    It is for this reason that I created the "Fork Project" feature, which 
-   allows a user to fork another user's entire build, which includes
-   the parts list in addition to the project's code.  
-   Once a project fork is created, clicking "Project Forks" 
+   allows a user to fork another user's entire build, including both the
+   parts list and code.  Once a project fork is created, clicking "Project Forks" 
    on a project's display page will show the forked versions of the project.
 
 ## Usage
