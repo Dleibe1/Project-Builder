@@ -1,5 +1,4 @@
 import React from "react"
-import GithubLogin from "../authentication/GithubLogin"
 
 const UsernameTile = ({ user }) => {
   if (user.userName) {
