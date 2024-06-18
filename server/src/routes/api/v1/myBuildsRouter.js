@@ -9,6 +9,7 @@ import cleanUserInput from "../../../services/cleanUserInput.js"
 const myBuildsRouter = new express.Router()
 
 myBuildsRouter.get("/", async (req, res) => {
+  let user = {}
   if (req.user) {
     user = req.user
   }
