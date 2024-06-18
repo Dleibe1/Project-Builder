@@ -1,8 +1,8 @@
 This is very much a work in progress!
 
-Current working features:
+<h3>Current working features:</h3>
 
-Login with GitHub (OAuth 2.0)
+<h4>Login with GitHub (OAuth 2.0)</h4>
 
 <h4>GitHub API:</h4>
    When creating a project, paste the url of your main Arduino/ESP32 project file.
@@ -12,7 +12,7 @@ Login with GitHub (OAuth 2.0)
    your project site every time you update your program on GitHub.  The app will
    do this automatically.
 
-Create, Edit, and Fork projects:
+<h4>Create, Edit, and Fork projects:</h4>
    Micro controller projects come with more than just code.  There is also a parts list
    for any project.  Sometimes, using different parts will work with the same code.
    For example, a remote control car project could be modified to use a larger power 
