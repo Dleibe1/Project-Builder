@@ -4,7 +4,7 @@ Current working features:
 
 Login with GitHub (OAuth 2.0)
 
-<h4>GitHub API:<h4>
+<h4>GitHub API:</h4>
    When creating a project, paste the url of your main Arduino/ESP32 project file.
    Example:  https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
    When users visit your project's page, the code section is automatically populated
