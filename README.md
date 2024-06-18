@@ -1,5 +1,5 @@
 <h3>This is very much a work in progress!</h3>
-The app is currently hosted at https://project-builder-e7439342976b.herokuapp.com/
+A demo of the app is currently hosted at https://project-builder-e7439342976b.herokuapp.com/
 
 <h3>Current working features:</h3>
 
