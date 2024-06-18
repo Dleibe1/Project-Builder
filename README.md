@@ -1,3 +1,28 @@
+This is very much a work in progress!
+
+Current working features:
+
+Login with GitHub (OAuth 2.0)
+
+GitHub API:
+   When creating a project, paste the url of your main Arduino/ESP32 project file.
+   Example:  https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
+   When users visit your project's page, the code section is automatically populated
+   with your code from GitHub.  This way you don't have to paste your new code into
+   your project site every time you update your program on GitHub.  The app will
+   do this automatically.
+
+Create, Edit, and Fork projects:
+   Micro controller projects come with more than just code.  There is also a parts list
+   for any project.  Sometimes, using different parts will work with the same code.
+   For example, a remote control car project could be modified to use a larger power 
+   supply and more powerful motors, while keeping the same code.
+
+   This is why I created the "Fork Project" feature, which 
+   allows you to fork another user's entire build, not just their code.  Once 
+   a project fork is created, clicking "Project Forks" on a project's page
+   will display the forked versions of the project.
+
 ## Usage
 
 1. Install necessary dependencies with `yarn`:
