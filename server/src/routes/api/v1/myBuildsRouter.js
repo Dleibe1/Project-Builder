@@ -9,7 +9,9 @@ import cleanUserInput from "../../../services/cleanUserInput.js"
 const myBuildsRouter = new express.Router()
 
 myBuildsRouter.get("/", async (req, res) => {
-  const { user } = req
+  if (req.user) {
+    user = req.user
+  }
   try {
     const userBuilds = await Project.query().where("userId", parseInt(user.id))
     const serializedUserBuilds = await Promise.all(

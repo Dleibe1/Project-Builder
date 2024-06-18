@@ -10,7 +10,7 @@ const NewProjectForm = (props) => {
   const [part, setPart] = useState("")
   const [image, setImage] = useState("")
   const [imageFile, setImageFile] = useState({
-    image: {}
+    image: {},
   })
   const [newProject, setNewProject] = useState({
     title: "",
@@ -53,9 +53,9 @@ const NewProjectForm = (props) => {
     })
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     uploadImage()
-  },[imageFile])
+  }, [imageFile])
 
   const postProject = async (newProjectData) => {
     try {
@@ -222,16 +222,18 @@ const NewProjectForm = (props) => {
             Add Image URL
           </h3>
         </label>
-          <Dropzone onDrop={handleImageUpload}>
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <p className="part-button dropzone">Upload an Image - drag 'n' drop or click to upload</p>
-                </div>
-              </section>
-            )}
-          </Dropzone>
+        <Dropzone onDrop={handleImageUpload}>
+          {({ getRootProps, getInputProps }) => (
+            <section>
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <p className="part-button dropzone">
+                  Upload an Image - drag 'n' drop or click to upload
+                </p>
+              </div>
+            </section>
+          )}
+        </Dropzone>
         <input type="submit" value="Submit Project" />
       </form>
     </div>

@@ -38,7 +38,7 @@
    BASE_URL="http://localhost:3000"
    ```
 
-3. Create the base PostgreSQL database, project-builder_development
+3. Create the base PostgreSQL database, breakable-toy_development
 
    ```sh
    createdb breakable-toy_development

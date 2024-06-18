@@ -405,3 +405,24 @@
 #delete-image {
   margin-left: 15px;
 }
+
+#github-login-button {
+  display: flex;
+  align-items: center;
+}
+
+#github-login-button:hover {
+  background-color: #777;
+  cursor: pointer;
+}
+
+#github-logo {
+  height: 70px;
+}
+
+#github-login-text{
+  font-family: "Montserrat", sans-serif;
+  font-size: large;
+  padding-right: 1rem;
+  margin:0rem;
+}

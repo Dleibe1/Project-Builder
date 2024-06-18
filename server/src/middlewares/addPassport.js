@@ -8,6 +8,7 @@ const addPassport = (app) => {
 };
 
 passport.use(strategy);
+// gets called when we call re.login
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });

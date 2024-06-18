@@ -1,5 +1,6 @@
 import GithubClient from "../../../apiClient/GithubClient.js"
 import { User } from "../../../models/index.js"
+import UserSerializer from "../../../Serializers/UserSerializer.js"
 import express from "express"
 import dotenv from "dotenv"
 
@@ -21,20 +22,24 @@ githubUserSessionsRouter.get("/handle-callback", async (req, res) => {
   try {
     const tokenData = await GithubClient.exchangeUserLoginCode(userLoginCode)
     if (tokenData.access_token) {
-      console.log(tokenData)
-      req.session.githubAccessToken = tokenData.access_token
       const userInfo = await GithubClient.getUserInfo(tokenData.access_token)
       const { login, name } = userInfo
-      req.session.githubLogin = login
-      req.session.githubName = name ? name : ""
-      const existingUser = await User.query().where({
+      let user
+      let existingUserResults = await User.query().findOne({
         loginMethod: "github",
         githubUserName: login,
       })
-      if (!existingUser.length) {
-        await User.query().insert({ loginMethod: "github", githubUserName: login })
+      console.log(existingUserResults)
+      if (!existingUserResults.length) {
+        user = await User.query().insertAndFetch({ loginMethod: "github", githubUserName: login })
+      } else {
+        user = existingUserResults[0]
       }
-      res.redirect(`${BASE_URL}/github-callback?name=${name ? name : ""}&login=${login}`)
+      return req.login(user, () => {
+        res.redirect(
+          `${BASE_URL}/github-callback-component?name=${name ? name : ""}&login=${login}`,
+        )
+      })
     }
   } catch (error) {
     console.log(error)
