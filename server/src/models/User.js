@@ -16,9 +16,7 @@ class User extends uniqueFunc(Model) {
   }
 
   set password(newPassword) {
-    if (this.loginMethod === standard) {
-      this.cryptedPassword = Bcrypt.hashSync(newPassword, saltRounds)
-    }
+    this.cryptedPassword = Bcrypt.hashSync(newPassword, saltRounds)
   }
 
   authenticate(password) {

@@ -15,12 +15,6 @@ class UserSerializer {
     )
     return serializedUser
   }
-  static getGithubUserInfo (githubUser) {
-    let serializedGithubUser = githubUser[0]
-    const userName = githubUser[0].githubUserName
-    serializedGithubUser.userName = userName
-    return serializedGithubUser
-  }
 }
 
 export default UserSerializer

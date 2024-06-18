@@ -1,6 +1,7 @@
 import React from "react"
 
-const GithubLogin = () => {
+const GithubLogin = (props) => {
+
   const handleLogin = async () => {
     try {
       const response = await fetch("/api/v1/github-user-sessions/login")

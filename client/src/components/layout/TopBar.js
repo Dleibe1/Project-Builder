@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom"
 
 import SignOutButton from "../authentication/SignOutButton"
 import GithubLogin from "../authentication/GithubLogin"
+import UsernameTile from "./UsernameTile"
 
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
@@ -51,7 +52,7 @@ const TopBar = ({ user }) => {
         <Link id="logo-container" to="/">
           <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
         </Link>
-        {user ? <h5 className="user-logged-in">{user.userName}</h5> : []}
+        {user ? <UsernameTile user={user} /> : []}
       </div>
       <div className="top-bar-buttons-container">
         <div className="user-builds-buttons">
@@ -61,7 +62,7 @@ const TopBar = ({ user }) => {
         <div className="sign-in-sign-out">
           {user ? authenticatedListItems : unauthenticatedListItems}
         </div>
-        <GithubLogin />
+        {user?.loginMethod === "github" ? [] : <GithubLogin />}
       </div>
     </div>
   )
