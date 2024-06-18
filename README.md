@@ -20,13 +20,12 @@ A demo of the app is currently hosted at https://project-builder-e7439342976b.he
 
 <h4>Create, Edit, and Fork projects:</h4>
    Micro controller projects come with more than just code.  There is also a parts list
-   for any project.  Sometimes, using different parts will work with the same code.
-   For example, a remote control car project could be modified to use a larger power 
-   supply and more powerful motors, while keeping the same code to control the motors.
+   for any project.
 
-   This is why I created the "Fork Project" feature, which 
-   allows you to fork another user's entire build (including the parts), 
-   not just their code.  Once a project fork is created, clicking "Project Forks" 
+   It is for this reason that I created the "Fork Project" feature, which 
+   allows a user to fork another user's entire build, which includes
+   the parts list in addition to the project's code.  
+   Once a project fork is created, clicking "Project Forks" 
    on a project's display page will show the forked versions of the project.
 
 ## Usage
