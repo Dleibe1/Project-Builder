@@ -236,6 +236,7 @@ const NewProjectForm = (props) => {
         </Dropzone>
         <input type="submit" value="Submit Project" />
       </form>
+      <ErrorList errors={errors} />
     </div>
   )
 }

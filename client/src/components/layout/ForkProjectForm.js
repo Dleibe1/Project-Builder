@@ -26,7 +26,7 @@ const ForkProjectForm = (props) => {
     appsAndPlatforms: "",
     images: [],
     parts: [],
-    description: "",
+    description: "Add a new description for your fork!",
     code: "",
     githubFileURL: "",
     userId: "",
@@ -279,6 +279,7 @@ const ForkProjectForm = (props) => {
         </Dropzone>
         <input type="submit" value="Submit Project" />
       </form>
+      <ErrorList errors={errors} />
     </div>
   )
 }
