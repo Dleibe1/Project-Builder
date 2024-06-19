@@ -26,7 +26,7 @@ const SignOutButton = () => {
   };
 
   if (shouldRedirect) {
-    location.href = "/";
+    location.href = "/project-list";
   }
 
   return (

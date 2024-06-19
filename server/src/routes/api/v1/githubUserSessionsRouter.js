@@ -36,7 +36,7 @@ githubUserSessionsRouter.get("/handle-callback", async (req, res) => {
       }
       return req.login(user, () => {
         res.redirect(
-          `${BASE_URL}`
+          `${BASE_URL}/project-list`
         )
       })
     }
