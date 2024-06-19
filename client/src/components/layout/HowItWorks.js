@@ -1,12 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 const HowItWorks = () => {
   return (
     <div className="landing-page">
       <div className="announcement">
         <p>🚧 This site is a work in progress. More features and improvements coming soon! 🚧</p>
-        <p>Connect with me on <a href="https://www.linkedin.com/in/daniel-patrick-leibensperger/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+        <p>
+          Connect with me on{" "}
+          <a
+            href="https://www.linkedin.com/in/daniel-patrick-leibensperger/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </p>
       </div>
       <div className="hero-section">
         <h1>View, share, and fork Arduino and ESP32 Projects!</h1>
@@ -16,6 +25,15 @@ const HowItWorks = () => {
       </div>
       <div className="content-section">
         <h2>Getting Started</h2>
+        <p>
+          <a
+            href="https://www.arduino.cc/en/Guide/Introduction"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get familiar with Arduino.
+          </a>
+        </p>
         <p>
           After creating an account or logging in with GitHub, click “New Build” to post your
           Microcontroller project to the site. Click “My Builds” to view the list of builds you've
@@ -29,16 +47,27 @@ const HowItWorks = () => {
         </p>
         <h4>Steps:</h4>
         <p>1. Create and login to your account, or click login with GitHub.</p>
-        <p>2. Click on a project thumbnail to view its display page. Click the orange “Fork Project” button to create a fork of that project.</p>
-        <p>3. After a project has been forked, clicking the orange “Project Forks” button on a project's display page will show you a list of forked versions of the project.</p>
+        <p>
+          2. Click on a project thumbnail to view its display page. Click the orange “Fork Project”
+          button to create a fork of that project.
+        </p>
+        <p>
+          3. After a project has been forked, clicking the orange “Project Forks” button on a
+          project's display page will show you a list of forked versions of the project.
+        </p>
         <h2>Keep your project's code up to date automatically:</h2>
         <p>
           When creating or forking a project, paste the URL path to your main project file on GitHub
           into the “GitHub main sketch file URL:” field near the bottom of the form.
         </p>
         <p>
-          Example URL text: <a href="https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino" target="_blank" rel="noopener noreferrer">
-          https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
+          Example URL text:{" "}
+          <a
+            href="https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
           </a>
         </p>
         <p>
@@ -48,7 +77,8 @@ const HowItWorks = () => {
           places (your GitHub and this app).
         </p>
         <p>
-          Code highlighting is applied using the Highlight.js library to keep your code looking pretty on the project's display page.
+          Code highlighting is applied using the Highlight.js library to keep your code looking
+          pretty on the project's display page.
         </p>
       </div>
       <div className="hero-section">
@@ -57,7 +87,7 @@ const HowItWorks = () => {
         </Link>
       </div>
     </div>
-  );
+  )
 }
 
-export default HowItWorks;
+export default HowItWorks
