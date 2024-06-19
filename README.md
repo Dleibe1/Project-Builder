@@ -1,4 +1,4 @@
-<h3>This is very much a work in progress!</h3>
+<h3>This is very much a work in progress!  This app is a portfolio building project.</h3>
 A demo of the app is currently hosted at https://project-builder-e7439342976b.herokuapp.com/
 
 <h3>Current working features:</h3>
@@ -26,6 +26,9 @@ A demo of the app is currently hosted at https://project-builder-e7439342976b.he
    allows a user to fork another user's entire build, including both the
    parts list and code.  Once a project fork is created, clicking "Project Forks" 
    on a project's display page will show the forked versions of the project.
+
+<h3>Other technologies used ing the creation of this app:</h3>
+   React.js, Express.js, PostgeSQL
 
 ## Usage
 
