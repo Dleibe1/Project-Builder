@@ -49,7 +49,7 @@ const TopBar = ({ user }) => {
   return (
     <div className="menu">
       <div className="top-bar-left-container">
-        <Link id="logo-container" to="/">
+        <Link id="logo-container" to="/project-list">
           <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
         </Link>
         {user ? <UsernameTile user={user} /> : []}

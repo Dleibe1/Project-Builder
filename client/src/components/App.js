@@ -19,6 +19,8 @@ import ForkList from "./layout/ForkList"
 import ForkProjectForm from "./layout/ForkProjectForm"
 import GithubLogin from "./authentication/GithubLogin"
 import GithubCallback from "./authentication/GithubCallback"
+import HowItWorks from "./layout/HowItWorks"
+
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -39,7 +41,10 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path={"/"}>
+      <Route exact path={"/"}>
+          <HowItWorks user={currentUser} />
+        </Route>
+        <Route exact path={"/project-list"}>
           <ProjectList user={currentUser} />
         </Route>
         <Route exact path="/projects/:id">
