@@ -49,11 +49,14 @@ const TopBar = ({ user }) => {
   return (
     <div className="menu">
       <div className="top-bar-left-container">
-        <Link id="logo-container" to="/">
+        <Link id="logo-container" to="/project-list">
           <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
         </Link>
         {user ? <UsernameTile user={user} /> : []}
       </div>
+      <Link id="how-to-use-icon" to="/">
+        <img src="https://i.imgur.com/MO53L50.png" />
+      </Link>
       <div className="top-bar-buttons-container">
         <div className="user-builds-buttons">
           {user && pathname !== "/create-new-build" ? newBuildButton : []}
