@@ -54,6 +54,9 @@ const TopBar = ({ user }) => {
         </Link>
         {user ? <UsernameTile user={user} /> : []}
       </div>
+      <Link id="how-to-use-icon" to="/">
+        <img src="https://i.imgur.com/MO53L50.png" />
+      </Link>
       <div className="top-bar-buttons-container">
         <div className="user-builds-buttons">
           {user && pathname !== "/create-new-build" ? newBuildButton : []}

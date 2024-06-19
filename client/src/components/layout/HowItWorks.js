@@ -46,6 +46,9 @@ const HowItWorks = () => {
           This way you don't have to worry about keeping your project's code up to date in two
           places (your GitHub and this app).
         </p>
+        <p>
+          Code highlighting is applied using the Highlight.js library to keep your code looking pretty on the project's display page.
+        </p>
       </div>
     </div>
   )
