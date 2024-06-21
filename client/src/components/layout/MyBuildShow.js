@@ -66,7 +66,7 @@ const MyBuildShow = (props) => {
 
   return (
     <div className="project-show">
-      <div className="button-container">
+      <div >
         <EditBuildButton id={id} />
         <DeleteBuildButton id={id} />
       </div>

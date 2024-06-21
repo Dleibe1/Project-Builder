@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom"
 import SignOutButton from "../authentication/SignOutButton"
 import GithubLogin from "../authentication/GithubLogin"
 import UsernameTile from "./UsernameTile"
+import Button from "@mui/material/Button"
 
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
@@ -26,24 +27,17 @@ const TopBar = ({ user }) => {
   ]
 
   let newBuildButton = [
-    <div>
-      <Link
-        key={"new-build-button"}
-        id="new-build-button"
-        className="part-button"
-        to="/create-new-build"
-      >
-        + New Build
-      </Link>
-    </div>,
+      
+        <Button variant="contained">Create Build
+        <Link id="create-build" to="/create-new-build" />
+        </Button>
   ]
   const { pathname } = useLocation()
   let myBuildsButton = [
-    <div>
-      <Link key={"my-builds"} id="my-builds" className="part-button " to="/my-builds">
-        My Builds
-      </Link>
-    </div>,
+    <Button variant="contained">
+      My Builds
+      <Link id="my-builds" key={"my-builds"} to="/my-builds" />
+    </Button>,
   ]
 
   return (
@@ -58,7 +52,7 @@ const TopBar = ({ user }) => {
         <img src="https://i.imgur.com/MO53L50.png" />
       </Link>
       <div className="top-bar-buttons-container">
-        <div className="user-builds-buttons">
+        <div className="user-build-buttons">
           {user && pathname !== "/create-new-build" ? newBuildButton : []}
           {user && pathname !== "/my-builds" ? myBuildsButton : []}
         </div>
