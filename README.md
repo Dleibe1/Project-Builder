@@ -1,4 +1,4 @@
-<h3>This is very much a work in progress!  This app is a portfolio building project.</h3>
+<h3>This is very much a work in progress (the styling needs a quite a bit of work)!  This app is a portfolio building project.</h3>
 A demo of the app is currently hosted at https://project-builder-e7439342976b.herokuapp.com/
 
 <h3>Current working features:</h3>

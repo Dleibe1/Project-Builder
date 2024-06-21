@@ -18,26 +18,28 @@ const TopBar = ({ user }) => {
         Sign Up
       </Link>
     </li>,
+    <li>
+      <GithubLogin />
+    </li>,
   ]
 
   const authenticatedListItems = [
     <li key="sign-out">
-      <SignOutButton />
+      <SignOutButton id="sign-out" />
     </li>,
-  ]
-
-  let newBuildButton = [
-      
-        <Button variant="contained">Create Build
-        <Link id="create-build" to="/create-new-build" />
-        </Button>
-  ]
-  const { pathname } = useLocation()
-  let myBuildsButton = [
-    <Button variant="contained">
-      My Builds
-      <Link id="my-builds" key={"my-builds"} to="/my-builds" />
-    </Button>,
+    <li>
+      <Link id="create-build" to="/create-new-build">
+        <Button variant="contained">Create Build</Button>
+      </Link>
+    </li>,
+    <li>
+      <Link id="my-builds" key={"my-builds"} to="/my-builds">
+        <Button variant="contained">My Builds</Button>
+      </Link>
+    </li>,
+    <li>
+      <UsernameTile user={user} />
+    </li>
   ]
 
   return (
@@ -46,20 +48,12 @@ const TopBar = ({ user }) => {
         <Link id="logo-container" to="/project-list">
           <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
         </Link>
-        {user ? <UsernameTile user={user} /> : []}
       </div>
       <Link id="how-to-use-icon" to="/">
         <img src="https://i.imgur.com/MO53L50.png" />
       </Link>
       <div className="top-bar-buttons-container">
-        <div className="user-build-buttons">
-          {user && pathname !== "/create-new-build" ? newBuildButton : []}
-          {user && pathname !== "/my-builds" ? myBuildsButton : []}
-        </div>
-        <div className="sign-in-sign-out">
-          {user ? authenticatedListItems : unauthenticatedListItems}
-        </div>
-        {user?.loginMethod === "github" ? [] : <GithubLogin />}
+        {user ? authenticatedListItems : unauthenticatedListItems}
       </div>
     </div>
   )

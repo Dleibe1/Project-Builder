@@ -116,6 +116,7 @@
 .top-bar-buttons-container {
   display: flex;
   flex-direction: row-reverse;
+  align-items: flex-start;
 }
 
 .sign-up {
@@ -123,7 +124,7 @@
 }
 
 .sign-out {
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .sign-in {
@@ -335,7 +336,6 @@
   border-radius: 5px;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
-  margin-top: 1rem;
   padding: 0.7rem 1rem;
   padding-top: 0.7rem;
   padding-right: 1rem;
