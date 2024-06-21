@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const ForkProjectButton = ({ id }) => {
   return (
-    <Link to={`/project-forks/${id}`}>
+    <Link to={`/fork-projects/${id}`}>
       <button id="edit-build-button">Fork Project</button>
     </Link>
   )

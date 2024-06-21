@@ -62,10 +62,10 @@ const App = (props) => {
         <Route exact path="/edit-my-build/:id">
           <EditBuildForm user={currentUser} />
         </Route>
-        <Route exact path={"/project-forks/:id/fork-list"}>
+        <Route exact path={"/project-forks/:id"}>
           <ForkList user={currentUser} />
         </Route>
-        <Route exact path="/project-forks/:id">
+        <Route exact path="/fork-project/:id">
           <ForkProjectForm user={currentUser} />
         </Route>
         <Route exact path="/github-login">
