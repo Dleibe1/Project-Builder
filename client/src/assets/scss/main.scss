@@ -23,19 +23,6 @@
   justify-content: flex-end;
 }
 
-.authentication-button {
-  margin: 1rem;
-  background-color: #00979c;
-  border-radius: 10px;
-  color: #fff;
-  cursor: pointer;
-  font-family: "Montserrat", sans-serif;
-}
-
-.authentication-button:hover {
-  background-color: #028184;
-}
-
 .grid-container {
   padding-left: 0;
   padding-right: 0;
@@ -114,10 +101,6 @@
   align-items: flex-start;
 }
 
-.sign-up {
-  align-items: flex-end;
-}
-
 .sign-out {
   margin-top: 0rem;
 }
@@ -148,6 +131,7 @@
   padding: 2rem;
   max-width: 1000px;
   margin: 0 auto;
+  margin-top:30px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -309,9 +293,7 @@
   text-align: left;
 }
 #logo {
-  padding-top: .2rem;
-  margin-right:20px;
-  height: 65px;
+  height: 60px;
 }
 
 #logo:hover{
@@ -387,8 +369,8 @@
 
 #github-logo {
   height: 50px;
-  padding-left: 10px;
-  margin-right: 20px;
+  margin-right: 8px;
+  // margin-right: 20px;
 }
 
 #github-logo:hover{
@@ -396,10 +378,7 @@
 }
 
 #github-login-button{
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin:0px;
 }
 
 .landing-page {
@@ -486,12 +465,12 @@
   padding: 0px;
 }
 
-#authenticated-items{
+#unauthenticated-items, #authenticated-items{
   display: flex;
   align-items: center;
 }
 
-#my-builds-button, #sign-in-button {
+#my-builds-button, #sign-in-button, #sign-out-button, #sign-up-button {
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -500,4 +479,8 @@
   display:flex;
   align-items: center;
   justify-content: space-between;
+}
+
+#menu-appbar ul{
+  padding:0px;
 }

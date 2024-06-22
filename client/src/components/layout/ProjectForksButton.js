@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 const ProjectForksButton = ({ id }) => {
   return (
     <Link to={`/project-forks/${id}`}>
-      <Button variant="text">Project Forks</Button>
+      <Button variant="contained">Project Forks</Button>
     </Link>
   )
 }

@@ -17,11 +17,11 @@ import AdbIcon from "@mui/icons-material/Adb"
 import SignOutButton from "../authentication/SignOutButton"
 import GithubLogin from "../authentication/GithubLogin"
 import UsernameTile from "./UsernameTile"
-
-const pages = ["Products", "Pricing", "Blog"]
-const settings = ["Profile", "Account", "Dashboard", "Logout"]
+import SignInButton from "../authentication/SignInButton"
+import SignUpButton from "../authentication/SignUpButton"
 
 const TopBar = ({ user }) => {
+  const [shouldRedirect, setShouldRedirect] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null)
 
@@ -32,12 +32,34 @@ const TopBar = ({ user }) => {
     setAnchorElUser(event.currentTarget)
   }
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
+  }
+
+  const signOut = async (event) => {
+    event.preventDefault()
+    try {
+      const response = await fetch("/api/v1/user-sessions", {
+        method: "delete",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+      })
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw error
+      }
+      const respBody = await response.json()
+      setShouldRedirect(true)
+      return { status: "ok" }
+    } catch (err) {
+      console.error(`Error in fetch: ${err.message}`)
+    }
+  }
+
+  if (shouldRedirect) {
+    location.href = "/project-list"
   }
 
   const unauthenticatedListItems = [
@@ -108,30 +130,6 @@ const TopBar = ({ user }) => {
             >
               <MenuIcon />
             </IconButton>
-            {/* <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
@@ -152,86 +150,61 @@ const TopBar = ({ user }) => {
           >
             LOGO
           </Typography>
-          {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+          {!user ? (
+            <Box id="unauthenticated-items" sx={{ flexGrow: 0 }}>
+              <SignUpButton />
+              <SignInButton />
+              <GithubLogin />
+            </Box>
+          ) : (
+            <Box id="authenticated-items" sx={{ flexGrow: 0 }}>
+              <Link key={"my-builds"} to="/my-builds">
+                <Button
+                  id="my-builds-button"
+                  key={"my-builds"}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  My Builds
+                </Button>
+              </Link>
+              <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
+              <Tooltip itle="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  {/* THIS IS WHERE THE LETTER IN THE USER CIRCLE GOES */}
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg">
+                    F
+                  </Avatar>
+                </IconButton>
+              </Tooltip>
+              {/* MENU FOR USER ICON */}
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
               >
-                {page}
-              </Button>
-            ))}
-          </Box> */}
-          <Box id="authenticated-items" sx={{ flexGrow: 0 }}>
-            <Link key={"my-builds"} to="/my-builds">
-              <Button
-                id="my-builds-button"
-                key={"my-builds"}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                My Builds
-              </Button>
-            </Link>
-            <Link to="/user-sessions/new">
-              <Button
-                id="sign-in-button"
-                key={"sign-in-button"}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                Sign In
-              </Button>
-            </Link>
-            <GithubLogin />
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {/* THIS IS WHERE THE LETTER IN THE USER CIRCLE GOES */}
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg">
-                  F
-                </Avatar>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={"avatar-logout"} onClick={handleCloseUserMenu}>
+                  <Typography onClick={signOut} textAlign="center">
+                    {"Logout"}
+                  </Typography>
                 </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+              </Menu>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
   )
-  // <div className="menu">
-  //   <div className="top-bar-left-container">
-  //     <Link id="logo-container" to="/project-list">
-  //       <img src="https://i.imgur.com/Y9merbS.png" className="logo" />
-  //     </Link>
-  //   </div>
-  //   <Link id="how-to-use-icon" to="/">
-  //     <img src="https://i.imgur.com/MO53L50.png" />
-  //   </Link>
-  //   <div className="top-bar-buttons-container">
-  //     {user ? authenticatedListItems : unauthenticatedListItems}
-  //   </div>
-  // </div>
-  // )
 }
 
 export default TopBar
