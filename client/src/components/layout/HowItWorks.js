@@ -60,16 +60,8 @@ const HowItWorks = () => {
           When creating or forking a project, paste the URL path to your main project file on GitHub
           into the “GitHub main sketch file URL:” field near the bottom of the form.
         </p>
-        <p>
-          Example URL text:{" "}
-          <a
-            href="https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
-          </a>
-        </p>
+        <p>Example URL text:</p>
+        <p>https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino</p>
         <p>
           The app uses the GitHub API to retrieve the contents of that file (if the project is
           public) and will display the code under the “Code” section of the project's display page.

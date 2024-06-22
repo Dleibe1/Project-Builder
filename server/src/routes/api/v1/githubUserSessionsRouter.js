@@ -1,6 +1,5 @@
 import GithubClient from "../../../apiClient/GithubClient.js"
 import { User } from "../../../models/index.js"
-import UserSerializer from "../../../Serializers/UserSerializer.js"
 import express from "express"
 import dotenv from "dotenv"
 
