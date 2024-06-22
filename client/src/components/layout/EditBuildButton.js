@@ -1,10 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import Button from '@mui/material/Button';
 
 const EditBuildButton = ({ id }) => {
   return (
     <Link to={`/edit-my-build/${id}`}>
-      <button id="edit-build-button">Edit Build</button>
+       <Button id="edit-build-button" variant="contained" >Edit Build</Button>
     </Link>
   )
 }

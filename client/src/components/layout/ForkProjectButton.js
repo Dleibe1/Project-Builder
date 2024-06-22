@@ -1,10 +1,12 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import Button from '@mui/material/Button';
+
 
 const ForkProjectButton = ({ id }) => {
   return (
     <Link to={`/fork-projects/${id}`}>
-      <button id="edit-build-button">Fork Project</button>
+      <Button className="large-button" id="fork-project" variant="contained">Fork Project</Button>
     </Link>
   )
 }

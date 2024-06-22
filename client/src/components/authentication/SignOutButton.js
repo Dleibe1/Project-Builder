@@ -1,39 +1,21 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { Button } from "@mui/material"
 
-const SignOutButton = () => {
-  const [shouldRedirect, setShouldRedirect] = useState(false);
-
-  const signOut = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await fetch("/api/v1/user-sessions", {
-        method: "delete",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-      });
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`;
-        const error = new Error(errorMessage);
-        throw error;
-      }
-      const respBody = await response.json();
-      setShouldRedirect(true);
-      return { status: "ok" };
-    } catch (err) {
-      console.error(`Error in fetch: ${err.message}`);
-    }
-  };
-
+const SignOutButton = ({ signOut, shouldRedirect }) => {
   if (shouldRedirect) {
-    location.href = "/project-list";
+    location.href = "/project-list"
   }
 
   return (
-    <button type="button" className="button authentication-button sign-out" onClick={signOut}>
+    <Button
+      onClick={signOut}
+      id="sign-out-button"
+      key={"sign-out-button"}
+      sx={{ my: 2, color: "white", display: "block" }}
+    >
       Sign Out
-    </button>
-  );
-};
+    </Button>
+  )
+}
 
-export default SignOutButton;
+export default SignOutButton

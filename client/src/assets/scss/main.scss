@@ -17,27 +17,10 @@
   tab-size: 4;
 }
 
-.logo {
-  padding: 0;
-  display: block;
-}
-
 .user-builds-buttons {
   display: flex;
   flex-direction: column;
-}
-
-.authentication-button {
-  margin: 1rem;
-  background-color: #00979c;
-  border-radius: 10px;
-  color: #fff;
-  cursor: pointer;
-  font-family: "Montserrat", sans-serif;
-}
-
-.authentication-button:hover {
-  background-color: #028184;
+  justify-content: flex-end;
 }
 
 .grid-container {
@@ -115,14 +98,11 @@
 .top-bar-buttons-container {
   display: flex;
   flex-direction: row-reverse;
-}
-
-.sign-up {
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .sign-out {
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .sign-in {
@@ -151,6 +131,7 @@
   padding: 2rem;
   max-width: 1000px;
   margin: 0 auto;
+  margin-top:30px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -161,6 +142,7 @@
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  margin-top: 1rem;
   color: #333;
   font-family: "Montserrat", sans-serif;
 }
@@ -264,7 +246,7 @@
   transition: background-color 0.2s ease;
 }
 
-#my-builds, #edit-build-button, #delete-build-button, #drag-and-drop {
+#delete-build, #drag-and-drop {
   display: flex;
   margin-bottom: 20px;
   background-color: #e67e23;
@@ -272,33 +254,12 @@
   justify-content: center;
 }
 
+#edit-build-button{
+  margin-right: 20px;
+}
+
 .part-button:hover {
   background-color: #028184;
-}
-
-#new-build-button,
-#my-builds, #edit-build-button, #delete-build-button {
-  display: inline-block;
-  background-color: #e67e23;
-  margin-right: 10px;
-  text-align: center;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  font-family: "Montserrat", sans-serif;
-  line-height: 1;
-  margin-top: 1rem;
-  padding: 0.7rem 1rem;
-  padding-top: 0.7rem;
-  padding-right: 1rem;
-  padding-bottom: 0.7rem;
-  padding-left: 1rem;
-}
-
-#new-build-button:hover,
-#my-builds:hover {
-  background-color: #d5721c;
 }
 
 .dropzone {
@@ -308,9 +269,6 @@
   white-space: pre-wrap;
 }
 
-#my-builds {
-  display: flex;
-}
 
 #delete-part {
   margin-left: 10px;
@@ -334,11 +292,14 @@
 #part {
   text-align: left;
 }
-#logo-container {
-  padding: 0rem;
-  height: 110px;
-  width: 110px;
+#logo {
+  height: 60px;
 }
+
+#logo:hover{
+  cursor: pointer;
+}
+
 #how-to-use-icon {
   padding: 0rem;
   height: 130px;
@@ -357,7 +318,6 @@
   border-radius: 5px;
   font-family: "Montserrat", sans-serif;
   line-height: 1;
-  margin-top: 1rem;
   padding: 0.7rem 1rem;
   padding-top: 0.7rem;
   padding-right: 1rem;
@@ -378,10 +338,6 @@
 }
 #show-page-thumbnail img{
   height: 100%;
-}
-
-.button-container {
-  display: flex
 }
 
 .build-buttons {
@@ -411,25 +367,18 @@
   margin-left: 15px;
 }
 
-#github-login-button {
-  display: flex;
-  align-items: center;
+#github-logo {
+  height: 50px;
+  margin-right: 8px;
+  // margin-right: 20px;
 }
 
-#github-login-button:hover {
-  background-color: #777;
+#github-logo:hover{
   cursor: pointer;
 }
 
-#github-logo {
-  height: 70px;
-}
-
-#github-login-text{
-  font-family: "Montserrat", sans-serif;
-  font-size: large;
-  padding-right: 1rem;
-  margin:0rem;
+#github-login-button{
+  margin:0px;
 }
 
 .landing-page {
@@ -506,4 +455,35 @@
 
 .content-section a:hover {
   text-decoration: underline;
+}
+
+#fork-project{
+  margin-right: 1rem;
+}
+
+#create-build {
+  padding: 0px;
+}
+
+#unauthenticated-items, #authenticated-items{
+  display: flex;
+  align-items: center;
+}
+
+#my-builds-button, #sign-in-button, #sign-out-button, #sign-up-button {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#homepage-button{
+  margin:0;
+}
+
+#top-bar-items{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#menu-appbar ul{
+  padding:0px;
 }
