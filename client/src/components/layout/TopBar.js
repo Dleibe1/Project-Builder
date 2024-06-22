@@ -36,6 +36,9 @@ const TopBar = ({ user }) => {
     setAnchorElUser(null)
   }
 
+  const loggedInUserName = user ? user.userName || user.githubUserName : ""
+  const avatarLetter = loggedInUserName[0]?.toUpperCase()
+
   const signOut = async (event) => {
     event.preventDefault()
     try {
@@ -66,6 +69,16 @@ const TopBar = ({ user }) => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar id="top-bar-items" disableGutters>
+          <div className="top-left-app-bar">
+          <Link to="/">
+            <Button
+              id="how-to-use-button"
+              key={"how-to-use-button"}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              How To Use
+            </Button>
+          </Link>
           <Link to="/project-list">
             <Button
               id="homepage-button"
@@ -76,6 +89,7 @@ const TopBar = ({ user }) => {
               Home
             </Button>
           </Link>
+          </div>
           <Typography
             variant="h6"
             noWrap
@@ -142,13 +156,12 @@ const TopBar = ({ user }) => {
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
               <Tooltip itle="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  {/* THIS IS WHERE THE LETTER IN THE USER CIRCLE GOES */}
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg">
-                    F
+                    {avatarLetter}
                   </Avatar>
                 </IconButton>
               </Tooltip>
-              {/* MENU FOR USER ICON */}
+              {/* MENU FOR USER AVATAR */}
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"

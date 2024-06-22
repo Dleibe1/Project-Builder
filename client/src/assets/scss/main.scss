@@ -300,12 +300,6 @@
   cursor: pointer;
 }
 
-#how-to-use-icon {
-  padding: 0rem;
-  height: 130px;
-  width: 130px;
-}
-
 .user-logged-in {
   display: inline-block;
   white-space: nowrap; 
@@ -476,15 +470,26 @@
 }
 #homepage-button{
   margin:0;
+  margin-right: 20px;
   padding:0px;
 }
 
 #top-bar-items{
   display:flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
 }
 
 #menu-appbar ul{
   padding:0px;
+}
+
+.top-left-app-bar{
+display: flex;
+align-items: baseline;
+flex-direction: row-reverse;
+}
+
+#how-to-use-button{
+  margin-left: 20px;
 }
