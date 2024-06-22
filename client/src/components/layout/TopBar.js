@@ -102,7 +102,14 @@ const TopBar = ({ user }) => {
       <Container maxWidth="xl">
         <Toolbar id="top-bar-items" disableGutters>
           <Link to="/project-list">
-            <img src="https://i.imgur.com/bE8OYhz.png" id="logo" />
+            <Button
+              id="homepage-button"
+              key={"homepage-button"}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              <img src="https://i.imgur.com/bE8OYhz.png" id="logo" />
+              Home
+            </Button>
           </Link>
           <Typography
             variant="h6"
