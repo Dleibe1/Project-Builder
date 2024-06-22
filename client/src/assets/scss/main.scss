@@ -17,11 +17,6 @@
   tab-size: 4;
 }
 
-.logo {
-  padding: 0;
-  display: block;
-}
-
 .user-builds-buttons {
   display: flex;
   flex-direction: column;
@@ -313,11 +308,16 @@
 #part {
   text-align: left;
 }
-#logo-container {
-  padding: 0rem;
-  height: 110px;
-  width: 110px;
+#logo {
+  padding-top: .2rem;
+  margin-right:20px;
+  height: 65px;
 }
+
+#logo:hover{
+  cursor: pointer;
+}
+
 #how-to-use-icon {
   padding: 0rem;
   height: 130px;
