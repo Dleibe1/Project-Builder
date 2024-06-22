@@ -385,25 +385,21 @@
   margin-left: 15px;
 }
 
-#github-login-button {
-  display: flex;
-  align-items: center;
+#github-logo {
+  height: 50px;
+  padding-left: 10px;
+  margin-right: 20px;
 }
 
-#github-login-button:hover {
-  background-color: #777;
+#github-logo:hover{
   cursor: pointer;
 }
 
-#github-logo {
-  height: 70px;
-}
-
-#github-login-text{
-  font-family: "Montserrat", sans-serif;
-  font-size: large;
-  padding-right: 1rem;
-  margin:0rem;
+#github-login-button{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .landing-page {
@@ -492,8 +488,16 @@
 
 #authenticated-items{
   display: flex;
+  align-items: center;
 }
 
-#my-builds-button {
-  margin-right: 20px;
+#my-builds-button, #sign-in-button {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#top-bar-items{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
 }

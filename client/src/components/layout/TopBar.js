@@ -78,9 +78,10 @@ const TopBar = ({ user }) => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <img src="https://i.imgur.com/bE8OYhz.png" id="logo" />
-
+        <Toolbar id="top-bar-items" disableGutters>
+          <Link to="/project-list">
+            <img src="https://i.imgur.com/bE8OYhz.png" id="logo" />
+          </Link>
           <Typography
             variant="h6"
             noWrap
@@ -107,7 +108,7 @@ const TopBar = ({ user }) => {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
+            {/* <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -130,7 +131,7 @@ const TopBar = ({ user }) => {
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
@@ -151,7 +152,7 @@ const TopBar = ({ user }) => {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -161,7 +162,7 @@ const TopBar = ({ user }) => {
                 {page}
               </Button>
             ))}
-          </Box>
+          </Box> */}
           <Box id="authenticated-items" sx={{ flexGrow: 0 }}>
             <Link key={"my-builds"} to="/my-builds">
               <Button
@@ -170,6 +171,15 @@ const TopBar = ({ user }) => {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 My Builds
+              </Button>
+            </Link>
+            <Link to="/user-sessions/new">
+              <Button
+                id="sign-in-button"
+                key={"sign-in-button"}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Sign In
               </Button>
             </Link>
             <GithubLogin />

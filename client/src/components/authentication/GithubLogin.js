@@ -13,14 +13,17 @@ const GithubLogin = (props) => {
   }
 
   return (
-    <Button
-      id="my-builds-button"
-      onClick={handleLogin}
-      key={"my-builds"}
-      sx={{ my: 2, color: "white", display: "block" }}
-    >
-      LOGIN WITH GITHUB
-    </Button>
+    <>
+      <Button
+        id="github-login-button"
+        onClick={handleLogin}
+        key={"github-login-button"}
+        sx={{ my: 2, color: "white", display: "block" }}
+      >
+        LOGIN WITH GITHUB
+      </Button>
+      <img onClick={handleLogin} id="github-logo" src="https://i.imgur.com/9aand0d.png" />
+    </>
   )
 }
 
