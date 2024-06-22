@@ -1,7 +1,7 @@
 import React from "react"
+import { Button } from "@mui/material"
 
 const GithubLogin = (props) => {
-
   const handleLogin = async () => {
     try {
       const response = await fetch("/api/v1/github-user-sessions/login")
@@ -13,15 +13,14 @@ const GithubLogin = (props) => {
   }
 
   return (
-    <div>
-      <button
-        id="github-login-button"
-        className="sign-in authentication-button button"
-        onClick={handleLogin}>
-        <p id="github-login-text">Login with GitHub</p>
-        <img id="github-logo" src="https://i.imgur.com/9aand0d.png" />
-      </button>
-    </div>
+    <Button
+      id="my-builds-button"
+      onClick={handleLogin}
+      key={"my-builds"}
+      sx={{ my: 2, color: "white", display: "block" }}
+    >
+      LOGIN WITH GITHUB
+    </Button>
   )
 }
 

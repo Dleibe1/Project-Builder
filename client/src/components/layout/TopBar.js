@@ -79,7 +79,7 @@ const TopBar = ({ user }) => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <img src="https://i.imgur.com/bE8OYhz.png" id="logo" />
+          <img src="https://i.imgur.com/bE8OYhz.png" id="logo" />
 
           <Typography
             variant="h6"
@@ -95,8 +95,7 @@ const TopBar = ({ user }) => {
               color: "inherit",
               textDecoration: "none",
             }}
-          >
-          </Typography>
+          ></Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -163,11 +162,23 @@ const TopBar = ({ user }) => {
               </Button>
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
+          <Box id="authenticated-items" sx={{ flexGrow: 0 }}>
+            <Link key={"my-builds"} to="/my-builds">
+              <Button
+                id="my-builds-button"
+                key={"my-builds"}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                My Builds
+              </Button>
+            </Link>
+            <GithubLogin />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                {/* THIS IS WHERE THE LETTER IN THE USER CIRCLE GOES */}
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg">
+                  F
+                </Avatar>
               </IconButton>
             </Tooltip>
             <Menu
