@@ -30,7 +30,7 @@ A demo of the app is currently hosted at https://project-builder-e7439342976b.he
    on a project's display page will show the forked versions of the project.
 
 <h3>Other technologies used ing the creation of this app:</h3>
-   React.js, Express.js, PostgeSQL
+   React.js, Express.js, PostgeSQL, Objection.js
 
 ## Usage
 
