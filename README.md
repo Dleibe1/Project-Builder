@@ -73,10 +73,10 @@ A demo of the app is currently hosted at https://project-builder-e7439342976b.he
    BASE_URL="http://localhost:3000"
    ```
 
-3. Create the base PostgreSQL database, breakable-toy_development
+3. Create the base PostgreSQL database, project-builder_development
 
    ```sh
-   createdb breakable-toy_development
+   createdb project-builder_development
    ```
 
 4. Run the included table migrations:
