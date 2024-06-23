@@ -1,49 +1,43 @@
-<h4>🚧 This is a work in progress 🚧</h4>
-<h4>This is a portfolio building project.</h4>
+# 🚧 This is a work in progress 🚧
+## This is a portfolio-building project.
 
-A demo of the app is currently hosted at https://project-builder-e7439342976b.herokuapp.com/
+A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 
-<h3>Current working features:</h3>
+### Current working features:
 
-<h4>Login with GitHub (OAuth 2.0)</h4>
+#### Login with GitHub (OAuth 2.0)
 
-<h4>GitHub API:</h4>
+#### GitHub API:
 
-   Generally, Arduino/ESP32 projects have all of the creator's code in a single file
-   (usually a .ino file or main.cpp).
-   After logging into to this app, Click "New Build."  Paste the url of your Arduino/ESP32
-   main program file into the "Github main sketch file URL" section of at the bottom
-   of the form.
-   Example URL:  https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
-   
-   When users visit your project's page on this app, the code section is automatically populated
-   with your main project file's code from GitHub.  This way you don't have to paste your code into
-   this app every time you update your code on GitHub.  This feature does that automatically!
+Generally, Arduino/ESP32 projects have all of the creator's code in a single file (usually a .ino file or main.cpp). After logging into to this app, Click "New Build." Paste the URL of your Arduino/ESP32 main program file into the "Github main sketch file URL" section at the bottom of the form.
+Example URL: [https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino](https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino)
 
-<h4>Create, Edit, and Fork projects:</h4>
-   Micro controller projects come with more than just code.  There is also a parts list
-   for any project.
+When users visit your project's page on this app, the code section is automatically populated with your main project file's code from GitHub. This way you don't have to paste your code into this app every time you update your code on GitHub. This feature does that automatically!
 
-   It is for this reason that I created the "Fork Project" feature, which 
-   allows a user to fork another user's entire build, including both the
-   parts list and code.  Once a project fork is created, clicking "Project Forks" 
-   on a project's display page will show the forked versions of the project.
+#### Create, Edit, and Fork projects:
 
-<h3>Other technologies used ing the creation of this app:</h3>
-   React.js, Express.js, Objection.js, PostgeSQL
+Micro controller projects come with more than just code. There is also a parts list for any project.
 
-<h3>Improvements coming soon:</h3>
-1.  More Material UI integration (so far it's only being used for the top bar).
-2.  Option to add a link to purchase parts from the parts list.
-3.  Improve forms to have an "add section" option so that users can
-    change the order of what appears on their project's display page.  
-    For example, adding instructions after an image rather than putting all
-    instructions in the description and giving the option to add multiple code 
-    sections if there's more than one code file the user has created.
+It is for this reason that I created the "Fork Project" feature, which allows a user to fork another user's entire build, including both the parts list and code. Once a project fork is created, clicking "Project Forks" on a project's display page will show the forked versions of the project.
 
-<h3>Dream features:</h3>
-<p>1.  Generative AI API integration for code suggestions.</p>
-<p>2.  More usage of GitHub apps.  Currently it's just there to login with GitHub.</p>
+### Other technologies used in the creation of this app:
+
+- React.js
+- Express.js
+- Objection.js
+- PostgreSQL
+
+### Improvements coming soon:
+
+1. More Material UI integration (so far it's only being used for the top bar).
+2. Option to add a link to purchase parts from the parts list.
+3. Improve forms to have an "add section" option so that users can change the order of what appears on their project's display page.  
+   For example, adding instructions after an image rather than putting all instructions in the description and giving the option to add multiple code sections if there's more than one code file the user has created.
+
+### Dream features:
+
+1. Generative AI API integration for code suggestions.
+2. More usage of GitHub apps. Currently, it's just there to log in with GitHub.
 
 ## Usage
 
