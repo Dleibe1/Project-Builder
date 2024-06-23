@@ -156,7 +156,7 @@ const TopBar = ({ user }) => {
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
               <Tooltip itle="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg">
+                  <Avatar alt="Remy Sharp">
                     {avatarLetter}
                   </Avatar>
                 </IconButton>
