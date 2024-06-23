@@ -33,17 +33,17 @@ A demo of the app is currently hosted at https://project-builder-e7439342976b.he
    React.js, Express.js, Objection.js, PostgeSQL
 
 <h3>Improvements coming soon:</h3>
-1.  More Material UI integration (so far it's only being used for the top bar).
-2.  Option to add a link to purchase parts from the parts list.
-3.  Improve forms to have an "add section" option so that users can
+<p>1.  More Material UI integration (so far it's only being used for the top bar).</p>
+<p>2.  Option to add a link to purchase parts from the parts list.</p>
+<p>3.  Improve forms to have an "add section" option so that users can
     change the order of what appears on their project's display page.  
     For example, adding instructions after an image rather than putting all
     instructions in the description and giving the option to add multiple code 
-    sections if there's more than one code file the user has created.
+    sections if there's more than one code file the user has created.</p>
 
 <h3>Dream features:</h3>
-1.  Generative AI API integration for code suggestions.
-2.  More usage of GitHub apps.  Currently it's just there to login with GitHub.
+<p>1.  Generative AI API integration for code suggestions.</p>
+<p>2.  More usage of GitHub apps.  Currently it's just there to login with GitHub.</p>
 
 ## Usage
 
