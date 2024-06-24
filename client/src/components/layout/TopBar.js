@@ -16,7 +16,7 @@ import AdbIcon from "@mui/icons-material/Adb"
 
 import SignOutButton from "../authentication/SignOutButton"
 import GithubLogin from "../authentication/GithubLogin"
-import UsernameTile from "./UsernameTile"
+import NewBuildButton from "./NewBuildButton"
 import SignInButton from "../authentication/SignInButton"
 import SignUpButton from "../authentication/SignUpButton"
 
@@ -134,7 +134,6 @@ const TopBar = ({ user }) => {
               textDecoration: "none",
             }}
           >
-            LOGO
           </Typography>
           {!user ? (
             <Box id="unauthenticated-items" sx={{ flexGrow: 0 }}>
@@ -153,8 +152,9 @@ const TopBar = ({ user }) => {
                   My Builds
                 </Button>
               </Link>
+              <NewBuildButton />
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
-              <Tooltip itle="Open settings">
+              <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp">
                     {avatarLetter}
