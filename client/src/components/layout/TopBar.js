@@ -17,6 +17,7 @@ import AdbIcon from "@mui/icons-material/Adb"
 import SignOutButton from "../authentication/SignOutButton"
 import GithubLogin from "../authentication/GithubLogin"
 import NewBuildButton from "./NewBuildButton"
+import MyBuildsButton from "./MyBuildsButton"
 import SignInButton from "../authentication/SignInButton"
 import SignUpButton from "../authentication/SignUpButton"
 
@@ -70,25 +71,25 @@ const TopBar = ({ user }) => {
       <Container maxWidth="xl">
         <Toolbar id="top-bar-items" disableGutters>
           <div className="top-left-app-bar">
-          <Link to="/">
-            <Button
-              id="how-to-use-button"
-              key={"how-to-use-button"}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              How To Use
-            </Button>
-          </Link>
-          <Link to="/project-list">
-            <Button
-              id="homepage-button"
-              key={"homepage-button"}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              <img src="https://i.imgur.com/bE8OYhz.png" id="logo" />
-              Home
-            </Button>
-          </Link>
+            <Link to="/">
+              <Button
+                id="how-to-use-button"
+                key={"how-to-use-button"}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                How To Use
+              </Button>
+            </Link>
+            <Link to="/project-list">
+              <Button
+                id="homepage-button"
+                key={"homepage-button"}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <img src="https://i.imgur.com/bE8OYhz.png" id="logo" />
+                Home
+              </Button>
+            </Link>
           </div>
           <Typography
             variant="h6"
@@ -133,8 +134,7 @@ const TopBar = ({ user }) => {
               color: "inherit",
               textDecoration: "none",
             }}
-          >
-          </Typography>
+          ></Typography>
           {!user ? (
             <Box id="unauthenticated-items" sx={{ flexGrow: 0 }}>
               <SignUpButton />
@@ -143,22 +143,12 @@ const TopBar = ({ user }) => {
             </Box>
           ) : (
             <Box id="authenticated-items" sx={{ flexGrow: 0 }}>
-              <Link key={"my-builds"} to="/my-builds">
-                <Button
-                  id="my-builds-button"
-                  key={"my-builds"}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  My Builds
-                </Button>
-              </Link>
+              <MyBuildsButton />
               <NewBuildButton />
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp">
-                    {avatarLetter}
-                  </Avatar>
+                  <Avatar alt="Remy Sharp">{avatarLetter}</Avatar>
                 </IconButton>
               </Tooltip>
               {/* MENU FOR USER AVATAR */}
