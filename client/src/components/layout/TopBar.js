@@ -118,7 +118,6 @@ const TopBar = ({ user }) => {
               <MenuIcon />
             </IconButton>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -146,9 +145,9 @@ const TopBar = ({ user }) => {
               <MyBuildsButton />
               <NewBuildButton />
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
-              <Tooltip title="Open settings">
+              <Tooltip>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp">{avatarLetter}</Avatar>
+                  <Avatar >{avatarLetter}</Avatar>
                 </IconButton>
               </Tooltip>
               {/* MENU FOR USER AVATAR */}
