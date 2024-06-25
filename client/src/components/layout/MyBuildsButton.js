@@ -8,7 +8,7 @@ const MyBuildsButton = () => {
       <Button
         id="my-builds-button"
         key={"my-builds-button"}
-        sx={{ my: 2, color: "white", display: "block" }}
+        sx={{ my: 2, color: "white",display: { xs: "none", md: "block" } }}
       >
         My Builds
       </Button>

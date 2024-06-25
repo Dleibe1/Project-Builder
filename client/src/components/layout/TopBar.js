@@ -30,7 +30,7 @@ const TopBar = ({ user }) => {
     setAnchorElNav(event.currentTarget)
   }
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    setAnchorElNav(null)
   }
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget)
@@ -69,6 +69,16 @@ const TopBar = ({ user }) => {
 
   if (shouldRedirect) {
     location.href = "/project-list"
+  }
+
+  const handleGithubLogin = async () => {
+    try {
+      const response = await fetch("/api/v1/github-user-sessions/login")
+      const data = await response.json()
+      window.location.href = data.githubAuthUrl
+    } catch (error) {
+      console.error("Error fetching GitHub login URL:", error)
+    }
   }
 
   return (
@@ -110,60 +120,68 @@ const TopBar = ({ user }) => {
               textDecoration: "none",
             }}
           ></Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            {/* <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-               <MenuItem >
-                  <Typography onClick={()=>{history.push("/")}} textAlign="center">
-                    My Builds
-                  </Typography>
-                </MenuItem>
-              {"list of menu choices"}
-            </Menu> */}
-          </Box>
-          {!user ? (
-            <Box id="unauthenticated-items" sx={{ flexGrow: 0 }}>
-              <SignUpButton />
-              <SignInButton />
-              <GithubLogin />
-            </Box>
-          ) : (
+
+          {user ? (
             <Box id="authenticated-items" sx={{ flexGrow: 0 }}>
               <MyBuildsButton />
               <NewBuildButton />
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: "block", md: "none" },
+                  }}
+                >
+                  <MenuItem>
+                    <Typography
+                      onClick={() => {
+                        history.push("/my-builds")
+                      }}
+                      textAlign="center"
+                    >
+                      My Builds
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem>
+                    <Typography
+                      onClick={() => {
+                        history.push("/create-new-build")
+                      }}
+                      textAlign="center"
+                    >
+                      Create Build
+                    </Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
               <Tooltip>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar >{avatarLetter}</Avatar>
+                  <Avatar>{avatarLetter}</Avatar>
                 </IconButton>
               </Tooltip>
-              {/* MENU FOR USER AVATAR */}
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"
@@ -182,10 +200,64 @@ const TopBar = ({ user }) => {
               >
                 <MenuItem key={"avatar-logout"} onClick={handleCloseUserMenu}>
                   <Typography onClick={signOut} textAlign="center">
-                    {"Logout"}
+                    Sign Out
                   </Typography>
                 </MenuItem>
               </Menu>
+            </Box>
+          ) : (
+            <Box id="unauthenticated-items" sx={{ flexGrow: 0 }}>
+              <SignUpButton />
+              <SignInButton />
+              <GithubLogin />
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: "block", md: "none" },
+                  }}
+                >
+                  <MenuItem
+                    onClick={() => {
+                      history.push("/user-sessions/new")
+                    }}
+                  >
+                    <Typography textAlign="center">Sign In</Typography>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      history.push("/users/new")
+                    }}
+                  >
+                    <Typography textAlign="center">Sign Up</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleGithubLogin}>
+                    <Typography textAlign="center">Login With GitHub</Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
             </Box>
           )}
         </Toolbar>

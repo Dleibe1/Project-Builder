@@ -8,7 +8,7 @@ const SignInButton = (props) => {
       <Button
         id="sign-in-button"
         key={"sign-in-button"}
-        sx={{ my: 2, color: "white", display: "block" }}
+        sx={{ my: 2, color: "white",display: { xs: "none", md: "block" } }}
       >
         Sign In
       </Button>

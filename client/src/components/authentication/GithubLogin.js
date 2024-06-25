@@ -2,7 +2,7 @@ import React from "react"
 import { Button } from "@mui/material"
 
 const GithubLogin = (props) => {
-  const handleLogin = async () => {
+  const handleGithubLogin = async () => {
     try {
       const response = await fetch("/api/v1/github-user-sessions/login")
       const data = await response.json()
@@ -15,11 +15,11 @@ const GithubLogin = (props) => {
   return (
     <Button
       id="github-login-button"
-      onClick={handleLogin}
+      onClick={handleGithubLogin}
       key={"github-login-button"}
-      sx={{ my: 2, color: "white", display: "block" }}
+      sx={{ my: 2, color: "white",display: { xs: "none", md: "block" } }}
     >
-      <img onClick={handleLogin} id="github-logo" src="https://i.imgur.com/9aand0d.png" />
+      <img onClick={handleGithubLogin} id="github-logo" src="https://i.imgur.com/9aand0d.png" />
       LOGIN WITH GITHUB
     </Button>
   )
