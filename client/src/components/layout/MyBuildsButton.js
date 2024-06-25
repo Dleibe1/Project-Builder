@@ -4,10 +4,10 @@ import Button from "@mui/material/Button"
 
 const MyBuildsButton = () => {
   return (
-    <Link to="/create-new-build">
+    <Link to="/my-builds">
       <Button
-        id="new-build-button"
-        key={"new-build-button"}
+        id="my-builds-button"
+        key={"my-builds-button"}
         sx={{ my: 2, color: "white", display: "block" }}
       >
         My Builds
