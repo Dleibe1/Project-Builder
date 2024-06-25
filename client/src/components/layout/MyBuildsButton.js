@@ -4,15 +4,24 @@ import Button from "@mui/material/Button"
 
 const MyBuildsButton = () => {
   return (
-    <Link to="/my-builds">
-      <Button
-        id="my-builds-button"
-        key={"my-builds-button"}
-        sx={{ my: 2, color: "white",display: { xs: "none", md: "block" } }}
-      >
-        My Builds
-      </Button>
-    </Link>
+    <Button
+      component={Link}
+      to="/my-builds"
+      id="new-build-button"
+      key={"new-build-button"}
+      sx={{
+        my: 2,
+        color: "white",
+        display: "block",
+        "&:hover": {
+          textDecoration: "none",
+          backgroundColor: "#1665c0",
+          color: "white",
+        },
+      }}
+    >
+      My Builds
+    </Button>
   )
 }
 

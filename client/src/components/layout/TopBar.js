@@ -12,7 +12,6 @@ import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import Tooltip from "@mui/material/Tooltip"
 import MenuItem from "@mui/material/MenuItem"
-import AdbIcon from "@mui/icons-material/Adb"
 
 import SignOutButton from "../authentication/SignOutButton"
 import GithubLogin from "../authentication/GithubLogin"
@@ -157,9 +156,14 @@ const TopBar = ({ user }) => {
                 >
                   <MenuItem>
                     <Typography
-                      onClick={() => {
-                        history.push("/my-builds")
+                      component={Link}
+                      sx={{
+                        color: "black",
+                        "&:hover": {
+                          color: "black",
+                        },
                       }}
+                      to="/my-builds"
                       textAlign="center"
                     >
                       My Builds
@@ -167,8 +171,13 @@ const TopBar = ({ user }) => {
                   </MenuItem>
                   <MenuItem>
                     <Typography
-                      onClick={() => {
-                        history.push("/create-new-build")
+                      component={Link}
+                      to="/create-new-build"
+                      sx={{
+                        color: "black",
+                        "&:hover": {
+                          color: "black",
+                        },
                       }}
                       textAlign="center"
                     >
@@ -239,19 +248,31 @@ const TopBar = ({ user }) => {
                     display: { xs: "block", md: "none" },
                   }}
                 >
-                  <MenuItem
-                    onClick={() => {
-                      history.push("/user-sessions/new")
-                    }}
-                  >
-                    <Typography textAlign="center">Sign In</Typography>
+                  <MenuItem component={Link} to="/user-sessions/new">
+                    <Typography
+                      sx={{
+                        color: "black",
+                        "&:hover": {
+                          color: "black",
+                        },
+                      }}
+                      textAlign="center"
+                    >
+                      Sign In
+                    </Typography>
                   </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      history.push("/users/new")
-                    }}
-                  >
-                    <Typography textAlign="center">Sign Up</Typography>
+                  <MenuItem component={Link} to="/users/new">
+                    <Typography
+                      sx={{
+                        color: "black",
+                        "&:hover": {
+                          color: "black",
+                        },
+                      }}
+                      textAlign="center"
+                    >
+                      Sign Up
+                    </Typography>
                   </MenuItem>
                   <MenuItem onClick={handleGithubLogin}>
                     <Typography textAlign="center">Login With GitHub</Typography>

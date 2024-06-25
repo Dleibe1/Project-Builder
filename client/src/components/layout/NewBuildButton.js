@@ -1,18 +1,20 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import Button from "@mui/material/Button"
 
 const NewBuildButton = () => {
+  const history = useHistory()
   return (
-    <Link to="/create-new-build">
-      <Button
-        id="new-build-button"
-        key={"new-build-button"}
-        sx={{ my: 2, color: "white",display: { xs: "none", md: "block" } }}
-      >
-        Create Build
-      </Button>
-    </Link>
+    <Button
+      onClick={() => {
+        history.push("/create-new-build")
+      }}
+      id="new-build-button"
+      key={"new-build-button"}
+      sx={{ my: 2, color: "white", display: { xs: "none", md: "block" } }}
+    >
+      Create Build
+    </Button>
   )
 }
 
