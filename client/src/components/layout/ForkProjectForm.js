@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
+import { Button } from "@mui/material"
+import DeleteIcon from "@mui/icons-material/Delete"
+import CloudUpload from "@mui/icons-material/CloudUpload"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
@@ -44,7 +47,7 @@ const ForkProjectForm = (props) => {
       const responseBody = await response.json()
       let fork = responseBody.fork
       prepForFrontEnd(fork)
-      setForkedProject({...fork, githubFileURL: ""})
+      setForkedProject({ ...fork, githubFileURL: "" })
     } catch (error) {
       console.log(error)
     }
@@ -93,7 +96,7 @@ const ForkProjectForm = (props) => {
     }
   }
 
-  const handleSubmit = (event) => { 
+  const handleSubmit = (event) => {
     event.preventDefault()
     postForkedProject({ ...forkedProject, githubFileURL: forkedProject.githubFileURL.trim() })
   }
@@ -130,9 +133,9 @@ const ForkProjectForm = (props) => {
     })
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     uploadImage()
-  },[imageFile])
+  }, [imageFile])
 
   const handlePartDelete = (index) => {
     const partsList = forkedProject.parts.filter((part, i) => i !== index)
@@ -146,22 +149,46 @@ const ForkProjectForm = (props) => {
 
   const partsList = forkedProject.parts.map((part, index) => {
     return (
-      <div key={part} id="parts-list" className="cell small-3 medium-6 large-4">
-        <h5 id="part">{part}</h5>
-        <p id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
+      <div key={`${part}${index}`} id="parts-list" className="cell small-3 medium-6 large-4">
+        <h5 className="part-title">{part}</h5>
+        <Button
+          onClick={() => handlePartDelete(index)}
+          className="large-button"
+          id="delete-part"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+          startIcon={<DeleteIcon />}
+        >
           Delete Part
-        </p>
+        </Button>
       </div>
-    )
-  })
+    );
+  });
 
   const imageList = forkedProject.images.map((image, index) => {
     return (
       <div id="image-list">
         <img id="image-list-project-form" src={image} />
-        <button id="delete-image" onClick={() => handleImageURLDelete(index)}>
-          Delete image
-        </button>
+        <Button
+          onClick={() => handleImageURLDelete(index)}
+          className="large-button"
+          id="delete-image"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+          startIcon={<DeleteIcon />}
+        >
+          Delete Image
+        </Button>
       </div>
     )
   })
@@ -174,10 +201,16 @@ const ForkProjectForm = (props) => {
     <div className="new-build-form ">
       <h4>Fork This Build</h4>
       <ErrorList errors={errors} />
-      <form key={"edit-build-form"} onSubmit={handleSubmit}>
+      <form key={"fork-project-form"} onSubmit={handleSubmit}>
         <label htmlFor="title">
           Name of project fork:
-          <input onChange={handleInputChange} type="text" value={forkedProject.title} id="title" name="title" />
+          <input
+            onChange={handleInputChange}
+            type="text"
+            value={forkedProject.title}
+            id="title"
+            name="title"
+          />
         </label>
         <label htmlFor="thumbnail-image-url">
           Thumbnail Image URL:
@@ -212,9 +245,20 @@ const ForkProjectForm = (props) => {
         {partsList}
         <label htmlFor="part">
           <input value={part} onChange={handlePartInput} type="text" id="parts" name="part" />
-          <h3 onClick={handlePartSubmit} className="part-button">
+          <Button
+            onClick={handlePartSubmit}
+            className="large-button"
+            id="add-part"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+          >
             Add Part
-          </h3>
+          </Button>
         </label>
         <label htmlFor="description">
           Description:
@@ -263,16 +307,40 @@ const ForkProjectForm = (props) => {
             id="image-url"
             name="image"
           />
-          <h3 onClick={handleImageURLSubmit} className="part-button">
+          <Button
+            onClick={handleImageURLSubmit}
+            className="large-button"
+            id="add-part"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+          >
             Add Image URL
-          </h3>
+          </Button>
         </label>
         <Dropzone onDrop={handleImageUpload}>
           {({ getRootProps, getInputProps }) => (
             <section>
               <div {...getRootProps()}>
                 <input {...getInputProps()} />
-                <p className="part-button dropzone">Upload an Image - drag 'n' drop or click to upload</p>
+                <Button
+                  className="large-button"
+                  id="upload-image"
+                  variant="contained"
+                  sx={{
+                    "&:hover": {
+                      textDecoration: "none",
+                      color: "white",
+                    },
+                  }}
+                  startIcon={<CloudUpload />}
+                >
+                  Upload Image
+                </Button>
               </div>
             </section>
           )}

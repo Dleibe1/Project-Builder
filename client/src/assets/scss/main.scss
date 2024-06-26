@@ -219,22 +219,6 @@
   box-shadow: 0 0 5px rgba(0, 151, 156, 0.5);
 }
 
-.new-build-form button {
-  background-color: #00979c;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  margin-top: 20px;
-}
-
-.new-build-form button:hover {
-  background-color: #028184;
-}
-
 .part-button {
   cursor: pointer;
   font-size: 18px;
@@ -269,20 +253,11 @@
   white-space: pre-wrap;
 }
 
-
-#delete-part {
-  margin-left: 10px;
-  width: 8rem;
-}
-
 #parts-list {
   display: flex;
-  margin: 1rem;
+  margin-bottom: 10px;
   flex-direction: column;
   align-items: flex-start;
-  border-bottom: 2px solid #028184;
-  border-radius: 10px;
-  padding: 10px;
 }
 
 #parts-list h5 {
@@ -358,7 +333,7 @@
 }
 
 #delete-image {
-  margin-left: 15px;
+  margin: 15px;
 }
 
 #github-logo {
@@ -496,4 +471,23 @@ flex-direction: row-reverse;
 #how-to-use-button{
   padding-left: 15px;
   padding-right: 15px;
+}
+
+#upload-image{
+  margin-bottom: 15px;
+}
+
+#image-list{
+  border: 2px solid #767676;
+  border-radius: 10px;
+}
+
+.part-title {
+  font-size: 1.5em;
+  color: #333; 
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background-color: #f0f0f0; 
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

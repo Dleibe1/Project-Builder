@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { Redirect } from "react-router-dom"
 import Dropzone from "react-dropzone"
+import { Button } from "@mui/material"
+import DeleteIcon from "@mui/icons-material/Delete"
+import CloudUpload from "@mui/icons-material/CloudUpload"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 
@@ -126,11 +129,23 @@ const NewProjectForm = (props) => {
 
   const partsList = newProject.parts.map((part, index) => {
     return (
-      <div key={part} id="parts-list" className="cell small-3 medium-6 large-4">
-        <h5 id="part">{part}</h5>
-        <button id="delete-part" onClick={() => handlePartDelete(index)} className="part-button ">
+      <div key={`${part}${index}`} id="parts-list" className="cell small-3 medium-6 large-4">
+        <h5 className="part-title">{part}</h5>
+        <Button
+          onClick={() => handlePartDelete(index)}
+          className="large-button"
+          id="delete-part"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+          startIcon={<DeleteIcon />}
+        >
           Delete Part
-        </button>
+        </Button>
       </div>
     )
   })
@@ -139,9 +154,21 @@ const NewProjectForm = (props) => {
     return (
       <div id="image-list">
         <img id="image-list-project-form" src={imageURL} />
-        <button id="delete-image" onClick={() => handleImageURLDelete(index)}>
-          Delete image
-        </button>
+        <Button
+          onClick={() => handleImageURLDelete(index)}
+          className="large-button"
+          id="delete-image"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+          startIcon={<DeleteIcon />}
+        >
+          Delete Image
+        </Button>
       </div>
     )
   })
@@ -180,9 +207,20 @@ const NewProjectForm = (props) => {
         {partsList}
         <label htmlFor="part">
           <input value={part} onChange={handlePartInput} type="text" id="parts" name="part" />
-          <h3 onClick={handlePartSubmit} className="part-button">
+          <Button
+            onClick={handlePartSubmit}
+            className="large-button"
+            id="add-part"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+          >
             Add Part
-          </h3>
+          </Button>
         </label>
         <label htmlFor="description">
           Description:
@@ -218,18 +256,40 @@ const NewProjectForm = (props) => {
             id="image-url"
             name="image"
           />
-          <h3 onClick={handleImageURLSubmit} className="part-button">
+          <Button
+            onClick={handleImageURLSubmit}
+            className="large-button"
+            id="add-part"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+          >
             Add Image URL
-          </h3>
+          </Button>
         </label>
         <Dropzone onDrop={handleImageUpload}>
           {({ getRootProps, getInputProps }) => (
             <section>
               <div {...getRootProps()}>
                 <input {...getInputProps()} />
-                <p className="part-button dropzone">
-                  Upload an Image - drag 'n' drop or click to upload
-                </p>
+                <Button
+                  className="large-button"
+                  id="upload-image"
+                  variant="contained"
+                  sx={{
+                    "&:hover": {
+                      textDecoration: "none",
+                      color: "white",
+                    },
+                  }}
+                  startIcon={<CloudUpload />}
+                >
+                  Upload Image
+                </Button>
               </div>
             </section>
           )}
