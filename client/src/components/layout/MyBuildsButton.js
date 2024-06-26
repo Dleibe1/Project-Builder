@@ -12,9 +12,8 @@ const MyBuildsButton = () => {
       sx={{
         my: 2,
         color: "white",
-        display: "block",
+        display: { xs: "none", md: "block" },
         "&:hover": {
-          textDecoration: "none",
           backgroundColor: "#1665c0",
           color: "white",
         },

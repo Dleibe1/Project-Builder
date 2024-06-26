@@ -11,7 +11,16 @@ const SignOutButton = ({ signOut, shouldRedirect }) => {
       onClick={signOut}
       id="sign-out-button"
       key={"sign-out-button"}
-      sx={{ my: 2, color: "white",display: { xs: "none", md: "block" } }}
+      sx={{
+        my: 2,
+        color: "white",
+        display: { xs: "none", md: "block" },
+        marginRight: "1rem",
+        "&:hover": {
+          backgroundColor: "#1665c0",
+          color: "white",
+        },
+      }}
     >
       Sign Out
     </Button>

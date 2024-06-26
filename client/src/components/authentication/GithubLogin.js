@@ -17,7 +17,16 @@ const GithubLogin = (props) => {
       id="github-login-button"
       onClick={handleGithubLogin}
       key={"github-login-button"}
-      sx={{ my: 2, color: "white",display: { xs: "none", md: "block" } }}
+      sx={{
+        my: 2,
+        color: "white",
+        display: { xs: "none", md: "block" },
+        marginRight: "1rem",
+        "&:hover": {
+          backgroundColor: "#1665c0",
+          color: "white",
+        },
+      }}
     >
       <img onClick={handleGithubLogin} id="github-logo" src="https://i.imgur.com/9aand0d.png" />
       LOGIN WITH GITHUB

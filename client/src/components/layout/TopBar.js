@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
@@ -38,8 +38,6 @@ const TopBar = ({ user }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
-
-  const history = useHistory()
 
   const loggedInUserName = user ? user.userName || user.githubUserName : ""
   const avatarLetter = loggedInUserName[0]?.toUpperCase()
@@ -85,25 +83,42 @@ const TopBar = ({ user }) => {
       <Container maxWidth="xl">
         <Toolbar id="top-bar-items" disableGutters>
           <div className="top-left-app-bar">
-            <Link to="/">
-              <Button
-                id="how-to-use-button"
-                key={"how-to-use-button"}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                How To Use
-              </Button>
-            </Link>
-            <Link to="/project-list">
-              <Button
-                id="homepage-button"
-                key={"homepage-button"}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                <img src="https://i.imgur.com/bE8OYhz.png" id="logo" />
-                Home
-              </Button>
-            </Link>
+            <Button
+              component={Link}
+              to="/"
+              id="how-to-use-button"
+              key={"how-to-use-button"}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                marginRight: "1rem",
+                "&:hover": {
+                  backgroundColor: "#1665c0",
+                  color: "white",
+                },
+              }}
+            >
+              How To Use
+            </Button>
+            <Button
+              component={Link}
+              to="/project-list"
+              id="homepage-button"
+              key={"homepage-button"}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                "&:hover": {
+                  backgroundColor: "#1665c0",
+                  color: "white",
+                },
+              }}
+            >
+              <img src="https://i.imgur.com/Eknhhmt.png" id="logo" />
+              Home
+            </Button>
           </div>
           <Typography
             variant="h6"
