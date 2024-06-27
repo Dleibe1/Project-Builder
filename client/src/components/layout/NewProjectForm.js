@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { Redirect } from "react-router-dom"
 import Dropzone from "react-dropzone"
-import { Button } from "@mui/material"
+import { Button, TextField, Typography } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import CloudUpload from "@mui/icons-material/CloudUpload"
+import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 
@@ -178,35 +179,78 @@ const NewProjectForm = (props) => {
   }
 
   return (
-    <div className="new-build-form ">
-      <h4>Add a New Project</h4>
+    <div className="new-build-form-container">
+      <Typography variant="h3" gutterBottom>
+        Add New Project
+      </Typography>
       <ErrorList errors={errors} />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">
-          Name of project:
-          <input onChange={handleInputChange} type="text" id="title" name="title" />
+      <form id="new-build-form" onSubmit={handleSubmit}>
+        <label htmlFor="form-title" className="form-input">
+          <Typography variant="h5" gutterBottom>
+            Project Title:
+          </Typography>
+          <TextField
+            fullWidth
+            id="form-title"
+            onChange={handleInputChange}
+            label="Project Title *"
+            name="title"
+          />
         </label>
-        <label htmlFor="thumbnail-image-url">
-          Thumbnail Image URL:
-          <input onChange={handleInputChange} type="text" id="title" name="thumbnailImageURL" />
+        <label htmlFor="thumbnail-url" className="form-input">
+          <Typography variant="h5" gutterBottom>
+            Thumbnail image url:
+          </Typography>
+          <TextField
+            fullWidth
+            id="thumbnail-url"
+            name="thumbnailImageURL"
+            onChange={handleInputChange}
+            label="Thumbnail image url"
+          />
         </label>
         {/* <label htmlFor="tags">
           Tags:
           <input onChange={handleInputChange} type="text" id="tags" name="tags" />
         </label> */}
-        <label htmlFor="apps-and-platforms">
-          Apps and Platforms:
-          <input
-            onChange={handleInputChange}
-            type="text"
+        <label htmlFor="apps-and-platforms" className="form-input">
+          <Typography variant="h5" gutterBottom>
+            Apps and platforms:
+          </Typography>
+          <TextField
+            fullWidth
             id="apps-and-platforms"
+            onChange={handleInputChange}
+            label="Apps and platforms"
             name="appsAndPlatforms"
           />
         </label>
-        <h5>Parts:</h5>
+        <label htmlFor="description" className="form-input">
+          <Typography variant="h5" gutterBottom>
+            Description and instructions:
+          </Typography>
+          <TextField
+            fullWidth
+            id="description"
+            name="description"
+            onChange={handleInputChange}
+            label="Description and instructions"
+          />
+        </label>
+        <Typography variant="h5" gutterBottom>
+          Parts:
+        </Typography>
         {partsList}
-        <label htmlFor="part">
-          <input value={part} onChange={handlePartInput} type="text" id="parts" name="part" />
+        <label htmlFor="part" id="part-input-container">
+          <TextField
+            sx={{ width: "100%" }}
+            id="part"
+            className="part"
+            value={part}
+            onChange={handlePartInput}
+            label="Enter new part"
+            name="part"
+          />
           <Button
             onClick={handlePartSubmit}
             className="large-button"
@@ -222,12 +266,10 @@ const NewProjectForm = (props) => {
             Add Part
           </Button>
         </label>
-        <label htmlFor="description">
-          Description:
-          <input onChange={handleInputChange} type="text" id="description" name="description" />
-        </label>
-        <label htmlFor="code">
-          Code:
+        <label htmlFor="code" className="form-input" id="code-input">
+          <Typography variant="h5" gutterBottom>
+            Code:
+          </Typography>
           <textarea
             rows="20"
             cols="1"
@@ -238,28 +280,40 @@ const NewProjectForm = (props) => {
           />
         </label>
         <label htmlFor="github-url">
-          <h5>
+          <h5 >
             Is this a work in progress? Pasting the URL of your main sketch file on Github will
             automatically keep the code you share up to date.
           </h5>
-          <h5>Example: https://github.com/antronyx/ServoTester/blob/main/main.ino</h5>
-          Github main sketch file URL:
-          <input onChange={handleInputChange} type="text" id="github-url" name="githubFileURL" />
+          <Typography id="github-example-url" variant="h6" gutterBottom>
+            Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
+          </Typography>
+          <Typography variant="h5" gutterBottom>
+            GitHub main sketch file URL:
+          </Typography>
+          <TextField
+            fullWidth
+            id="github-url"
+            onChange={handleInputChange}
+            label="GitHub main sketch file URL"
+            name="githubFileURL"
+          />
         </label>
+        <h5>Project Images:</h5>
         {imageList}
-        <label htmlFor="image">
-          Add Image URL:
-          <input
+        <label htmlFor="image" className="form-input" id="image-url-input-container">
+          Image URL:
+          <TextField
+            fullWidth
+            id="image-url"
             value={image}
             onChange={handleImageURLInput}
-            type="text"
-            id="image-url"
+            label="Image URL"
             name="image"
           />
           <Button
             onClick={handleImageURLSubmit}
             className="large-button"
-            id="add-part"
+            id="add-image"
             variant="contained"
             sx={{
               "&:hover": {
@@ -271,32 +325,41 @@ const NewProjectForm = (props) => {
             Add Image URL
           </Button>
         </label>
-        <Dropzone onDrop={handleImageUpload}>
-          {({ getRootProps, getInputProps }) => (
-            <section>
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <Button
-                  className="large-button"
-                  id="upload-image"
-                  variant="contained"
-                  sx={{
-                    "&:hover": {
-                      textDecoration: "none",
-                      color: "white",
-                    },
-                  }}
-                  startIcon={<CloudUpload />}
-                >
-                  Upload Image
-                </Button>
-              </div>
-            </section>
-          )}
-        </Dropzone>
-        <input type="submit" value="Submit Project" />
+        <Button
+          className="large-button"
+          id="upload-image"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+          startIcon={<CloudUpload />}
+        >
+          <Dropzone onDrop={handleImageUpload}>
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  Upload Image File
+                </div>
+              </section>
+            )}
+          </Dropzone>
+        </Button>
+        <ErrorList errors={errors} id="form-error-list" />
+        <Button
+          type="submit"
+          className="large-button"
+          id="submit-form"
+          variant="outlined"
+          size="large"
+          endIcon={<Send />}
+        >
+          Submit Project
+        </Button>
       </form>
-      <ErrorList errors={errors} />
     </div>
   )
 }

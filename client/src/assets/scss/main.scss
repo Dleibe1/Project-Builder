@@ -34,7 +34,7 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
   justify-content: center;
-  align-items: stretch; /* Ensures all items have the same height */
+  align-items: stretch;
 }
 
 .project-tile {
@@ -45,29 +45,33 @@
   padding-bottom: 0rem;
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   text-align: center;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Space out content vertically */
-  height: 100%; /* Make all tiles have the same height */
+  justify-content: space-between;
+  height: 100%;
 }
 
 .project-tile img {
-  max-height: 180px; /* Set a maximum height for the image */
-  object-fit: cover; /* Ensures the image covers the area without stretching */
+  max-height: 180px;
+  object-fit: cover;
   width: 100%;
   border-radius: 10px;
 }
 
-.project-tile h3, .project-tile h4, .project-tile h5 { /* Adjust margin as needed */
+.project-tile h3,
+.project-tile h4,
+.project-tile h5 {
   font-size: 1.3rem;
   color: #000;
 }
 
 .project-tile h4 {
-  margin:0rem;
+  margin: 0rem;
   font-size: 1.2rem;
   color: #555;
   font-family: "Montserrat", sans-serif;
@@ -122,7 +126,7 @@
   margin-right: 10px;
 }
 
-.top-bar-left-container{
+.top-bar-left-container {
   display: flex;
   align-items: center;
 }
@@ -131,7 +135,7 @@
   padding: 2rem;
   max-width: 1000px;
   margin: 0 auto;
-  margin-top:30px;
+  margin-top: 30px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -170,7 +174,7 @@
   font-family: "Roboto", sans-serif;
 }
 
-.new-build-form {
+.new-build-form-container {
   width: 75%;
   margin: 20px auto;
   text-align: center;
@@ -181,43 +185,27 @@
   font-family: "Roboto", sans-serif;
 }
 
-.new-build-form h4 {
+.new-build-form-container h4 {
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   color: #333;
   margin-bottom: 20px;
 }
 
-.new-build-form form {
+.new-build-form-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.new-build-form label {
-  width: 100%;
-  margin-bottom: 15px;
-  font-size: 1.1rem;
-  color: #555;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.new-build-form input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  margin-top: 5px;
-}
-
-.new-build-form input:focus {
-  outline: none;
-  border-color: #00979c;
-  box-shadow: 0 0 5px rgba(0, 151, 156, 0.5);
-}
+// .new-build-form-container label {
+//   width: 100%;
+//   margin-bottom: 15px;
+//   color: #555;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+// }
 
 .part-button {
   cursor: pointer;
@@ -230,7 +218,8 @@
   transition: background-color 0.2s ease;
 }
 
-#delete-build, #drag-and-drop {
+#delete-build,
+#drag-and-drop {
   display: flex;
   margin-bottom: 20px;
   background-color: #e67e23;
@@ -238,7 +227,7 @@
   justify-content: center;
 }
 
-#edit-build-button{
+#edit-build-button {
   margin-right: 20px;
 }
 
@@ -271,13 +260,13 @@
   height: 60px;
 }
 
-#logo:hover{
+#logo:hover {
   cursor: pointer;
 }
 
 .user-logged-in {
   display: inline-block;
-  white-space: nowrap; 
+  white-space: nowrap;
   height: 3rem;
   text-align: center;
   background-color: #eaeaea;
@@ -294,8 +283,8 @@
   padding-left: 1rem;
 }
 
-.user-logged-in:hover{
-  cursor:default;
+.user-logged-in:hover {
+  cursor: default;
 }
 
 #thumbnail-image {
@@ -305,7 +294,7 @@
 #show-page-thumbnail {
   text-align: center;
 }
-#show-page-thumbnail img{
+#show-page-thumbnail img {
   height: 100%;
 }
 
@@ -339,15 +328,14 @@
 #github-logo {
   height: 50px;
   margin-right: 8px;
-  // margin-right: 20px;
 }
 
-#github-logo:hover{
+#github-logo:hover {
   cursor: pointer;
 }
 
-#github-login-button{
-  margin:0px;
+#github-login-button {
+  margin: 0px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -428,7 +416,7 @@
   text-decoration: underline;
 }
 
-#fork-project{
+#fork-project {
   margin-right: 1rem;
 }
 
@@ -436,58 +424,123 @@
   padding: 0px;
 }
 
-#unauthenticated-items, #authenticated-items{
+#unauthenticated-items,
+#authenticated-items {
   display: flex;
   align-items: center;
 }
 
-#my-builds-button, #sign-in-button, #sign-out-button, #sign-up-button, #new-build-button {
+#my-builds-button,
+#sign-in-button,
+#sign-out-button,
+#sign-up-button,
+#new-build-button {
   padding-left: 20px;
   padding-right: 20px;
 }
 
-#homepage-button{
-  margin:0;
-  padding:0px;
+#homepage-button {
+  margin: 0;
+  padding: 0px;
   padding-right: 20px;
 }
 
-#top-bar-items{
-  display:flex;
+#top-bar-items {
+  display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-#menu-appbar ul{
-  padding:0px;
+#menu-appbar ul {
+  padding: 0px;
 }
 
-.top-left-app-bar{
-display: flex;
-align-items: baseline;
-flex-direction: row-reverse;
+.top-left-app-bar {
+  display: flex;
+  align-items: baseline;
+  flex-direction: row-reverse;
 }
 
-#how-to-use-button{
+#how-to-use-button {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-#upload-image{
-  margin-bottom: 15px;
+#upload-image {
+  margin-bottom: 50px;
+  margin-top: 30px;
 }
 
-#image-list{
+#image-list {
   border: 2px solid #767676;
   border-radius: 10px;
+  margin-top: 40px;
 }
 
 .part-title {
   font-size: 1.5em;
-  color: #333; 
+  color: #333;
   margin-bottom: 10px;
   padding: 5px 10px;
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#new-build-form {
+  border: none;
+}
+
+#new-build-form input {
+  border: none;
+  box-shadow: none;
+}
+
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+  margin-bottom: 20px;
+}
+
+.form-input {
+  width: 100%;
+}
+
+
+#code-input {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.callout.alert {
+  width: 100%;
+}
+
+#add-image-url{
+  display: flex;
+}
+
+#image-url-input-container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+#part-input-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+
+#add-part{
+  margin-top: 5px;
+}
+
+#part{
+  width: 100%;
+}
+
+#github-example-url{
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
