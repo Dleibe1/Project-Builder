@@ -181,7 +181,7 @@ const NewProjectForm = (props) => {
   return (
     <div className="new-build-form-container">
       <Typography variant="h3" gutterBottom>
-        Add New Project
+        Create New Project
       </Typography>
       <ErrorList errors={errors} />
       <form id="new-build-form" onSubmit={handleSubmit}>
@@ -280,7 +280,7 @@ const NewProjectForm = (props) => {
           />
         </label>
         <label htmlFor="github-url">
-          <h5 >
+          <h5>
             Is this a work in progress? Pasting the URL of your main sketch file on Github will
             automatically keep the code you share up to date.
           </h5>
@@ -298,10 +298,11 @@ const NewProjectForm = (props) => {
             name="githubFileURL"
           />
         </label>
-        <h5>Project Images:</h5>
+        <Typography variant="h5" gutterBottom>
+          Project Images:
+        </Typography>
         {imageList}
         <label htmlFor="image" className="form-input" id="image-url-input-container">
-          Image URL:
           <TextField
             fullWidth
             id="image-url"
