@@ -24,8 +24,6 @@ const ForkList = (props) => {
     getForks()
   }, [])
 
-  console.log(forks)
-
   const forksArray = forks.map((fork) => {
     if (fork.id !== id) {
       return (
