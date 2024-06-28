@@ -7,7 +7,7 @@ const HowItWorks = () => {
       <div className="announcement">
         <p>🚧 This site is a work in progress. More features and improvements coming soon! 🚧</p>
         <p>
-          Connect with me on{" "}
+          Connect on{" "}
           <a
             href="https://www.linkedin.com/in/daniel-patrick-leibensperger/"
             target="_blank"
