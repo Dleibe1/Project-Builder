@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
-import { Button } from "@mui/material"
+import { Button, TextField, Typography } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import CloudUpload from "@mui/icons-material/CloudUpload"
+import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
@@ -35,6 +36,34 @@ const ForkProjectForm = (props) => {
     userId: "",
     thumbnailImageURL: "",
   })
+
+  const uploadImage = async () => {
+    const newImageFileData = new FormData()
+    newImageFileData.append("image", imageFile.image)
+
+    try {
+      const response = await fetch("/api/v1/image-uploading", {
+        method: "POST",
+        headers: {
+          Accept: "image/jpeg",
+        },
+        body: newImageFileData,
+      })
+      if (!response.ok) {
+        throw new Error(`${response.status} (${response.statusText})`)
+      }
+      const body = await response.json()
+      setForkedProject({ ...forkedProject, images: [...forkedProject.images, body.imageURL] })
+    } catch (error) {
+      console.error(`Error in uploadImage Fetch: ${error.message}`)
+    }
+  }
+
+  const handleImageUpload = (acceptedImage) => {
+    setImageFile({
+      image: acceptedImage[0],
+    })
+  }
 
   const getProject = async () => {
     try {
@@ -75,27 +104,6 @@ const ForkProjectForm = (props) => {
     }
   }
 
-  const uploadImage = async () => {
-    const newImageFileData = new FormData()
-    newImageFileData.append("image", imageFile.image)
-    try {
-      const response = await fetch("/api/v1/image-uploading", {
-        method: "POST",
-        headers: {
-          Accept: "image/jpeg",
-        },
-        body: newImageFileData,
-      })
-      if (!response.ok) {
-        throw new Error(`${response.status} (${response.statusText})`)
-      }
-      const body = await response.json()
-      setForkedProject({ ...forkedProject, images: [...forkedProject.images, body.imageURL] })
-    } catch (error) {
-      console.error(`Error in uploadImage Fetch: ${error.message}`)
-    }
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault()
     postForkedProject({ ...forkedProject, githubFileURL: forkedProject.githubFileURL.trim() })
@@ -125,12 +133,6 @@ const ForkProjectForm = (props) => {
       setForkedProject({ ...forkedProject, images: [...forkedProject.images, image.trim()] })
     }
     setImage("")
-  }
-
-  const handleImageUpload = (acceptedImage) => {
-    setImageFile({
-      image: acceptedImage[0],
-    })
   }
 
   useEffect(() => {
@@ -167,13 +169,13 @@ const ForkProjectForm = (props) => {
           Delete Part
         </Button>
       </div>
-    );
-  });
+    )
+  })
 
-  const imageList = forkedProject.images.map((image, index) => {
+  const imageList = forkedProject.images.map((imageURL, index) => {
     return (
       <div id="image-list">
-        <img id="image-list-project-form" src={image} />
+        <img id="image-list-project-form" src={imageURL} />
         <Button
           onClick={() => handleImageURLDelete(index)}
           className="large-button"
@@ -198,30 +200,28 @@ const ForkProjectForm = (props) => {
   }
 
   return (
-    <div className="new-build-form ">
-      <h4>Fork This Build</h4>
+    <div className="fork-project-form-container">
+      <Typography variant="h3" gutterBottom>
+        Fork This Project
+      </Typography>
       <ErrorList errors={errors} />
-      <form key={"fork-project-form"} onSubmit={handleSubmit}>
-        <label htmlFor="title">
-          Name of project fork:
-          <input
-            onChange={handleInputChange}
-            type="text"
-            value={forkedProject.title}
-            id="title"
-            name="title"
-          />
-        </label>
-        <label htmlFor="thumbnail-image-url">
-          Thumbnail Image URL:
-          <input
-            value={forkedProject.thumbnailImageURL}
-            onChange={handleInputChange}
-            type="text"
-            id="title"
-            name="thumbnailImageURL"
-          />
-        </label>
+      <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
+        <TextField
+          value={forkedProject.title}
+          fullWidth
+          id="form-title"
+          onChange={handleInputChange}
+          label="Project Title *"
+          name="title"
+        />
+        <TextField
+          value={forkedProject.thumbnailImageURL}
+          fullWidth
+          id="thumbnail-url"
+          name="thumbnailImageURL"
+          onChange={handleInputChange}
+          label="Thumbnail image url"
+        />
         {/* <label htmlFor="tags">
           Tags:
           <input
@@ -232,19 +232,36 @@ const ForkProjectForm = (props) => {
             name="tags"
           />
         </label> */}
-        <label htmlFor="apps-and-platforms">
-          Apps and Platforms:
-          <input
-            onChange={handleInputChange}
-            type="text"
-            id="apps-and-platforms"
-            name="appsAndPlatforms"
-          />
-        </label>
-        <h5>Parts:</h5>
+        <TextField
+          value={forkedProject.appsAndPlatforms}
+          fullWidth
+          id="apps-and-platforms"
+          onChange={handleInputChange}
+          label="Apps and platforms"
+          name="appsAndPlatforms"
+        />
+        <TextField
+          value={forkedProject.description}
+          fullWidth
+          id="description"
+          name="description"
+          onChange={handleInputChange}
+          label="Description and instructions"
+        />
+        <Typography variant="h5" gutterBottom>
+          Parts:
+        </Typography>
         {partsList}
-        <label htmlFor="part">
-          <input value={part} onChange={handlePartInput} type="text" id="parts" name="part" />
+        <div id="part-input-container">
+          <TextField
+            sx={{ width: "100%" }}
+            id="part"
+            className="part"
+            value={part}
+            onChange={handlePartInput}
+            label="Enter new part"
+            name="part"
+          />
           <Button
             onClick={handlePartSubmit}
             className="large-button"
@@ -259,18 +276,8 @@ const ForkProjectForm = (props) => {
           >
             Add Part
           </Button>
-        </label>
-        <label htmlFor="description">
-          Description:
-          <input
-            value={forkedProject.description}
-            onChange={handleInputChange}
-            type="text"
-            id="description"
-            name="description"
-          />
-        </label>
-        <label htmlFor="code">
+        </div>
+        <label htmlFor="code" className="form-input" id="code-input">
           Code:
           <textarea
             value={forkedProject.code}
@@ -282,35 +289,38 @@ const ForkProjectForm = (props) => {
             name="code"
           />
         </label>
-        <label htmlFor="github-url">
-          <h5>
-            Is this a work in progress? Pasting the URL of your main sketch file on Github will
-            automatically keep the code you share up to date.
-          </h5>
-          <h5>Example: https://github.com/antronyx/ServoTester/blob/main/main.ino</h5>
-          Github main sketch file URL:
-          <input
-            value={forkedProject.githubFileURL}
-            onChange={handleInputChange}
-            type="text"
-            id="github-url"
-            name="githubFileURL"
-          />
-        </label>
+        <Typography id="github-url-explanation" variant="h5" gutterBottom>
+          Is this a work in progress? Pasting the URL of your main sketch file on Github will
+          automatically keep the code you share up to date.
+        </Typography>
+        <Typography id="github-example-url" variant="h6" gutterBottom>
+          Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
+        </Typography>
+        <TextField
+          value={forkedProject.githubFileURL}
+          fullWidth
+          id="github-url"
+          onChange={handleInputChange}
+          label="GitHub main sketch file URL"
+          name="githubFileURL"
+        />
+        <Typography variant="h5" gutterBottom>
+          Project Images:
+        </Typography>
         {imageList}
-        <label htmlFor="image">
-          Add Image URL:
-          <input
+        <div className="form-input" id="image-url-input-container">
+          <TextField
+            fullWidth
+            id="image-url"
             value={image}
             onChange={handleImageURLInput}
-            type="text"
-            id="image-url"
+            label="Image URL"
             name="image"
           />
           <Button
             onClick={handleImageURLSubmit}
             className="large-button"
-            id="add-part"
+            id="add-image"
             variant="contained"
             sx={{
               "&:hover": {
@@ -321,33 +331,42 @@ const ForkProjectForm = (props) => {
           >
             Add Image URL
           </Button>
-        </label>
-        <Dropzone onDrop={handleImageUpload}>
-          {({ getRootProps, getInputProps }) => (
-            <section>
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <Button
-                  className="large-button"
-                  id="upload-image"
-                  variant="contained"
-                  sx={{
-                    "&:hover": {
-                      textDecoration: "none",
-                      color: "white",
-                    },
-                  }}
-                  startIcon={<CloudUpload />}
-                >
-                  Upload Image
-                </Button>
-              </div>
-            </section>
-          )}
-        </Dropzone>
-        <input type="submit" value="Submit Project" />
+        </div>
+        <Button
+          className="large-button"
+          id="upload-image"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+          startIcon={<CloudUpload />}
+        >
+          <Dropzone onDrop={handleImageUpload}>
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  Upload Image File
+                </div>
+              </section>
+            )}
+          </Dropzone>
+        </Button>
+        <ErrorList errors={errors} id="form-error-list" />
+        <Button
+          type="submit"
+          className="large-button"
+          id="submit-form"
+          variant="outlined"
+          size="large"
+          endIcon={<Send />}
+        >
+          Submit Project
+        </Button>
       </form>
-      <ErrorList errors={errors} />
     </div>
   )
 }

@@ -200,7 +200,7 @@ const EditBuildForm = (props) => {
   }
 
   return (
-    <div className="edit-build-form-container">
+    <div className="edit-project-form-container">
       <Typography variant="h3" gutterBottom>
         Edit Project
       </Typography>

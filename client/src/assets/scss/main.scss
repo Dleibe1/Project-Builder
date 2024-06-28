@@ -175,7 +175,8 @@
 }
 
 .new-build-form-container,
-.edit-build-form-container {
+.edit-project-form-container,
+.fork-project-form-container {
   width: 75%;
   margin: 20px auto;
   text-align: left;
@@ -187,13 +188,15 @@
 }
 
 .new-build-form-container h3,
-.edit-build-form-container h3 {
+.edit-project-form-container h3,
+.fork-project-form-container h3 {
   text-align: center;
   margin-bottom: 20px;
 }
 
 .new-build-form-container form,
-.edit-build-form-container form {
+.edit-project-form-container form,
+.fork-project-form-container form{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -465,6 +468,7 @@
   border: 2px solid #767676;
   border-radius: 10px;
   margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .part-title {
