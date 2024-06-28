@@ -30,7 +30,7 @@ const ForkProjectForm = (props) => {
     appsAndPlatforms: "",
     images: [],
     parts: [],
-    description: "Add a new description for your fork!",
+    description: "",
     code: "",
     githubFileURL: "",
     userId: "",
@@ -208,6 +208,7 @@ const ForkProjectForm = (props) => {
       <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
         <TextField
           value={forkedProject.title}
+          className="form-input text-field"
           fullWidth
           id="form-title"
           onChange={handleInputChange}
@@ -216,6 +217,7 @@ const ForkProjectForm = (props) => {
         />
         <TextField
           value={forkedProject.thumbnailImageURL}
+          className="form-input text-field"
           fullWidth
           id="thumbnail-url"
           name="thumbnailImageURL"
@@ -234,6 +236,7 @@ const ForkProjectForm = (props) => {
         </label> */}
         <TextField
           value={forkedProject.appsAndPlatforms}
+          className="form-input text-field"
           fullWidth
           id="apps-and-platforms"
           onChange={handleInputChange}
@@ -242,6 +245,7 @@ const ForkProjectForm = (props) => {
         />
         <TextField
           value={forkedProject.description}
+          className="form-input text-field"
           fullWidth
           id="description"
           name="description"
@@ -278,7 +282,9 @@ const ForkProjectForm = (props) => {
           </Button>
         </div>
         <label htmlFor="code" className="form-input" id="code-input">
-          Code:
+        <Typography variant="h5" gutterBottom>
+            Code:
+          </Typography>
           <textarea
             value={forkedProject.code}
             rows="20"

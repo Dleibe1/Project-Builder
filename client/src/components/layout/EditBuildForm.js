@@ -208,6 +208,7 @@ const EditBuildForm = (props) => {
       <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
         <TextField
           value={editedProject.title}
+          className="form-input text-field"
           fullWidth
           id="form-title"
           onChange={handleInputChange}
@@ -216,6 +217,7 @@ const EditBuildForm = (props) => {
         />
         <TextField
           value={editedProject.thumbnailImageURL}
+          className="form-input text-field"
           fullWidth
           id="thumbnail-url"
           name="thumbnailImageURL"
@@ -234,6 +236,7 @@ const EditBuildForm = (props) => {
         </label> */}
         <TextField
           value={editedProject.appsAndPlatforms}
+          className="form-input text-field"
           fullWidth
           id="apps-and-platforms"
           onChange={handleInputChange}
@@ -242,6 +245,7 @@ const EditBuildForm = (props) => {
         />
         <TextField
           value={editedProject.description}
+          className="form-input text-field"
           fullWidth
           id="description"
           name="description"
@@ -278,7 +282,9 @@ const EditBuildForm = (props) => {
           </Button>
         </div>
         <label htmlFor="code" className="form-input" id="code-input">
-          Code:
+        <Typography variant="h5" gutterBottom>
+            Code:
+          </Typography>
           <textarea
             value={editedProject.code}
             rows="20"

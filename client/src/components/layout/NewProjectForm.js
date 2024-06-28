@@ -187,6 +187,7 @@ const NewProjectForm = (props) => {
       <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
         <TextField
           value={newProject.title}
+          className="form-input text-field"
           fullWidth
           id="form-title"
           onChange={handleInputChange}
@@ -195,6 +196,7 @@ const NewProjectForm = (props) => {
         />
         <TextField
           value={newProject.thumbnailImageURL}
+          className="form-input text-field"
           fullWidth
           id="thumbnail-url"
           name="thumbnailImageURL"
@@ -208,6 +210,7 @@ const NewProjectForm = (props) => {
         </label> */}
         <TextField
           value={newProject.appsAndPlatforms}
+          className="form-input text-field"
           fullWidth
           id="apps-and-platforms"
           onChange={handleInputChange}
@@ -216,6 +219,7 @@ const NewProjectForm = (props) => {
         />
         <TextField
           value={newProject.description}
+          className="form-input text-field"
           fullWidth
           id="description"
           name="description"

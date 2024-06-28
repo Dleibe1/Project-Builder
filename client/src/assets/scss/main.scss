@@ -496,7 +496,12 @@
   margin-bottom: 20px;
 }
 
-.form-input {
+.form-input.text-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-input{
   width: 100%;
 }
 
