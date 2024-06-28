@@ -40,6 +40,7 @@ myBuildsRouter.get("/:id", async (req, res) => {
     })
     serializedUserBuild.parts = partNamesArray
     serializedUserBuild.images = imageUrlsArray
+    serializedUserBuild.title = ""
     return res.status(200).json({ userBuild: serializedUserBuild })
   } catch (error) {
     return res.status(500).json({ errors: error })

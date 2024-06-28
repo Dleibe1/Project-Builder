@@ -232,10 +232,8 @@ const TopBar = ({ user }) => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <MenuItem key={"avatar-logout"} onClick={signOut} >
-                  <Typography  textAlign="center">
-                    Sign Out
-                  </Typography>
+                <MenuItem key={"avatar-logout"} onClick={signOut}>
+                  <Typography textAlign="center">Sign Out</Typography>
                 </MenuItem>
               </Menu>
             </Box>

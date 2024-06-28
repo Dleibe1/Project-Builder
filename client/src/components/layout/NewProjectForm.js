@@ -184,64 +184,49 @@ const NewProjectForm = (props) => {
         Create New Project
       </Typography>
       <ErrorList errors={errors} />
-      <form id="new-build-form" onSubmit={handleSubmit}>
-        <label htmlFor="form-title" className="form-input">
-          <Typography variant="h5" gutterBottom>
-            Project Title:
-          </Typography>
-          <TextField
-            fullWidth
-            id="form-title"
-            onChange={handleInputChange}
-            label="Project Title *"
-            name="title"
-          />
-        </label>
-        <label htmlFor="thumbnail-url" className="form-input">
-          <Typography variant="h5" gutterBottom>
-            Thumbnail image url:
-          </Typography>
-          <TextField
-            fullWidth
-            id="thumbnail-url"
-            name="thumbnailImageURL"
-            onChange={handleInputChange}
-            label="Thumbnail image url"
-          />
-        </label>
+      <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
+        <TextField
+          value={newProject.title}
+          fullWidth
+          id="form-title"
+          onChange={handleInputChange}
+          label="Project Title *"
+          name="title"
+        />
+        <TextField
+          value={newProject.thumbnailImageURL}
+          fullWidth
+          id="thumbnail-url"
+          name="thumbnailImageURL"
+          onChange={handleInputChange}
+          label="Thumbnail image url"
+        />
+
         {/* <label htmlFor="tags">
           Tags:
           <input onChange={handleInputChange} type="text" id="tags" name="tags" />
         </label> */}
-        <label htmlFor="apps-and-platforms" className="form-input">
-          <Typography variant="h5" gutterBottom>
-            Apps and platforms:
-          </Typography>
-          <TextField
-            fullWidth
-            id="apps-and-platforms"
-            onChange={handleInputChange}
-            label="Apps and platforms"
-            name="appsAndPlatforms"
-          />
-        </label>
-        <label htmlFor="description" className="form-input">
-          <Typography variant="h5" gutterBottom>
-            Description and instructions:
-          </Typography>
-          <TextField
-            fullWidth
-            id="description"
-            name="description"
-            onChange={handleInputChange}
-            label="Description and instructions"
-          />
-        </label>
+        <TextField
+          value={newProject.appsAndPlatforms}
+          fullWidth
+          id="apps-and-platforms"
+          onChange={handleInputChange}
+          label="Apps and platforms"
+          name="appsAndPlatforms"
+        />
+        <TextField
+          value={newProject.description}
+          fullWidth
+          id="description"
+          name="description"
+          onChange={handleInputChange}
+          label="Description and instructions"
+        />
         <Typography variant="h5" gutterBottom>
           Parts:
         </Typography>
         {partsList}
-        <label htmlFor="part" id="part-input-container">
+        <div id="part-input-container">
           <TextField
             sx={{ width: "100%" }}
             id="part"
@@ -265,12 +250,13 @@ const NewProjectForm = (props) => {
           >
             Add Part
           </Button>
-        </label>
+        </div>
         <label htmlFor="code" className="form-input" id="code-input">
           <Typography variant="h5" gutterBottom>
             Code:
           </Typography>
           <textarea
+            value={newProject.code}
             rows="20"
             cols="1"
             onChange={handleInputChange}
@@ -279,30 +265,26 @@ const NewProjectForm = (props) => {
             name="code"
           />
         </label>
-        <label htmlFor="github-url">
-          <h5>
-            Is this a work in progress? Pasting the URL of your main sketch file on Github will
-            automatically keep the code you share up to date.
-          </h5>
-          <Typography id="github-example-url" variant="h6" gutterBottom>
-            Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
-          </Typography>
-          <Typography variant="h5" gutterBottom>
-            GitHub main sketch file URL:
-          </Typography>
-          <TextField
-            fullWidth
-            id="github-url"
-            onChange={handleInputChange}
-            label="GitHub main sketch file URL"
-            name="githubFileURL"
-          />
-        </label>
+        <Typography id="github-url-explanation" variant="h5" gutterBottom>
+          Is this a work in progress? Pasting the URL of your main sketch file on Github will
+          automatically keep the code you share up to date.
+        </Typography>
+        <Typography id="github-example-url" variant="h6" gutterBottom>
+          Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
+        </Typography>
+        <TextField
+          value={newProject.githubFileURL}
+          fullWidth
+          id="github-url"
+          onChange={handleInputChange}
+          label="GitHub main sketch file URL"
+          name="githubFileURL"
+        />
         <Typography variant="h5" gutterBottom>
           Project Images:
         </Typography>
         {imageList}
-        <label htmlFor="image" className="form-input" id="image-url-input-container">
+        <div className="form-input" id="image-url-input-container">
           <TextField
             fullWidth
             id="image-url"
@@ -325,7 +307,7 @@ const NewProjectForm = (props) => {
           >
             Add Image URL
           </Button>
-        </label>
+        </div>
         <Button
           className="large-button"
           id="upload-image"

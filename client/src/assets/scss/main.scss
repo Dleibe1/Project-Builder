@@ -174,7 +174,8 @@
   font-family: "Roboto", sans-serif;
 }
 
-.new-build-form-container {
+.new-build-form-container,
+.edit-build-form-container {
   width: 75%;
   margin: 20px auto;
   text-align: left;
@@ -185,25 +186,18 @@
   font-family: "Roboto", sans-serif;
 }
 
-.new-build-form-container h3 {
+.new-build-form-container h3,
+.edit-build-form-container h3 {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.new-build-form-container form {
+.new-build-form-container form,
+.edit-build-form-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-// .new-build-form-container label {
-//   width: 100%;
-//   margin-bottom: 15px;
-//   color: #555;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-// }
 
 .part-button {
   cursor: pointer;
@@ -223,6 +217,10 @@
   background-color: #e67e23;
   width: 150px;
   justify-content: center;
+}
+
+#delete-part {
+  margin-bottom: 20px;
 }
 
 #edit-build-button {
@@ -311,12 +309,6 @@
 .project-image {
   width: auto;
   height: auto;
-}
-
-.github-url {
-  margin-top: 50px;
-  word-wrap: break-word;
-  white-space: pre-wrap;
 }
 
 #delete-image {
@@ -485,11 +477,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#new-build-form {
+#new-build-form,
+#edit-build-form {
   border: none;
 }
 
-#new-build-form input {
+#new-build-form input,
+#edit-build-form input {
   border: none;
   box-shadow: none;
 }
@@ -502,7 +496,6 @@
   width: 100%;
 }
 
-
 #code-input {
   width: 100%;
   margin-top: 30px;
@@ -512,17 +505,17 @@
   width: 100%;
 }
 
-#add-image-url{
+#add-image-url {
   display: flex;
 }
 
-#image-url-input-container{
+#image-url-input-container {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
 }
 
-#part-input-container{
+#part-input-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -530,15 +523,14 @@
   justify-content: flex-start;
 }
 
-#add-part{
+#add-part {
   margin-top: 5px;
 }
 
-#part{
+#part {
   width: 100%;
 }
 
-#github-example-url{
+#github-example-url {
   margin-top: 30px;
-  margin-bottom: 30px;
 }
