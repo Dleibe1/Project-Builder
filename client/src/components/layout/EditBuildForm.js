@@ -152,46 +152,46 @@ const EditBuildForm = (props) => {
   const partsList = editedProject.parts.map((part, index) => {
     return (
       <div key={`${part}${index}`} id="parts-list" className="cell small-3 medium-6 large-4">
-      <h5 className="part-title">{part}</h5>
-      <Button
-        onClick={() => handlePartDelete(index)}
-        className="large-button"
-        id="delete-part"
-        variant="contained"
-        sx={{
-          "&:hover": {
-            textDecoration: "none",
-            color: "white",
-          },
-        }}
-        startIcon={<DeleteIcon />}
-      >
-        Delete Part
-      </Button>
-    </div>
+        <h5 className="part-title">{part}</h5>
+        <Button
+          onClick={() => handlePartDelete(index)}
+          className="large-button"
+          id="delete-part"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+          startIcon={<DeleteIcon />}
+        >
+          Delete Part
+        </Button>
+      </div>
     )
   })
 
   const imageList = editedProject.images.map((imageURL, index) => {
     return (
       <div id="image-list">
-      <img id="image-list-project-form" src={imageURL} />
-      <Button
-        onClick={() => handleImageURLDelete(index)}
-        className="large-button"
-        id="delete-image"
-        variant="contained"
-        sx={{
-          "&:hover": {
-            textDecoration: "none",
-            color: "white",
-          },
-        }}
-        startIcon={<DeleteIcon />}
-      >
-        Delete Image
-      </Button>
-    </div>
+        <img id="image-list-project-form" src={imageURL} />
+        <Button
+          onClick={() => handleImageURLDelete(index)}
+          className="large-button"
+          id="delete-image"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+          startIcon={<DeleteIcon />}
+        >
+          Delete Image
+        </Button>
+      </div>
     )
   })
 
@@ -282,7 +282,7 @@ const EditBuildForm = (props) => {
           </Button>
         </div>
         <label htmlFor="code" className="form-input" id="code-input">
-        <Typography variant="h5" gutterBottom>
+          <Typography variant="h5" gutterBottom>
             Code:
           </Typography>
           <textarea
@@ -316,6 +316,7 @@ const EditBuildForm = (props) => {
         {imageList}
         <div className="form-input" id="image-url-input-container">
           <TextField
+            className="form-input text-field"
             fullWidth
             id="image-url"
             value={image}

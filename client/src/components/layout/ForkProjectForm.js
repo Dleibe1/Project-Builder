@@ -282,7 +282,7 @@ const ForkProjectForm = (props) => {
           </Button>
         </div>
         <label htmlFor="code" className="form-input" id="code-input">
-        <Typography variant="h5" gutterBottom>
+          <Typography variant="h5" gutterBottom>
             Code:
           </Typography>
           <textarea
@@ -316,6 +316,7 @@ const ForkProjectForm = (props) => {
         {imageList}
         <div className="form-input" id="image-url-input-container">
           <TextField
+            className="form-input text-field"
             fullWidth
             id="image-url"
             value={image}

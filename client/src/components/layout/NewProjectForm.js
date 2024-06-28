@@ -291,6 +291,7 @@ const NewProjectForm = (props) => {
         <div className="form-input" id="image-url-input-container">
           <TextField
             fullWidth
+            className="form-input text-field"
             id="image-url"
             value={image}
             onChange={handleImageURLInput}
