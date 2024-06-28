@@ -19,17 +19,22 @@ const ForkList = (props) => {
       console.log(err)
     }
   }
+
   useEffect(() => {
     getForks()
   }, [])
+
+  console.log(forks)
+
   const forksArray = forks.map((fork) => {
     if (fork.id !== id) {
       return (
         <ProjectTile
-          key={fork.id}
-          id={fork.id}
-          title={fork.title}
-          thumbnailImage={fork.thumbnailImageURL}
+        key={fork.id}
+        id={fork.id}
+        title={fork.title}
+        createdBy={fork.user}
+        thumbnailImage={fork.thumbnailImageURL}
         />
       )
     }

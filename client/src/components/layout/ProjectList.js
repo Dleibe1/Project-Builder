@@ -20,6 +20,7 @@ const ProjectList = (props) => {
   useEffect(() => {
     getProjectsData()
   }, [])
+  
   const projectsArray = projects.map((project) => {
     if (project.id === project.parentProjectId) {
       return (

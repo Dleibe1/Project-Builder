@@ -25,7 +25,7 @@ class ProjectSerializer {
     const relatedUserData = await User.query().findOne({ id: project.userId })
     const relatedPartsData = await project.$relatedQuery("parts")
     const relatedImagesData = await project.$relatedQuery("images")
-    const userName = relatedUserData.userName
+    const userName = relatedUserData.userName || relatedUserData.githubUserName
     serializedProject.user = userName
     const relatedParts = relatedPartsData.map((part) => {
       return PartsSerializer.getPartDetails(part)
