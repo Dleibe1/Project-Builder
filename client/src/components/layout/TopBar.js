@@ -1,6 +1,18 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem } from "@mui/material"
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Avatar,
+  Button,
+  Tooltip,
+  MenuItem,
+} from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
 import SignOutButton from "../authentication/SignOutButton"
 import GithubLogin from "../authentication/GithubLogin"
@@ -80,7 +92,7 @@ const TopBar = ({ user }) => {
               sx={{
                 my: 2,
                 color: "white",
-                display: "block",
+                display: { xs: "none", md: "block" },
                 marginRight: "1rem",
                 "&:hover": {
                   backgroundColor: "#1665c0",
@@ -158,25 +170,34 @@ const TopBar = ({ user }) => {
                     display: { xs: "block", md: "none" },
                   }}
                 >
-                  <MenuItem>
+                  <MenuItem component={Link} to="/">
                     <Typography
-                      component={Link}
                       sx={{
                         color: "black",
                         "&:hover": {
                           color: "black",
                         },
                       }}
-                      to="/my-builds"
+                      textAlign="center"
+                    >
+                      How to use
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem component={Link} to="/my-builds">
+                    <Typography
+                      sx={{
+                        color: "black",
+                        "&:hover": {
+                          color: "black",
+                        },
+                      }}
                       textAlign="center"
                     >
                       My Builds
                     </Typography>
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem component={Link} to="/create-new-build">
                     <Typography
-                      component={Link}
-                      to="/create-new-build"
                       sx={{
                         color: "black",
                         "&:hover": {
@@ -211,8 +232,8 @@ const TopBar = ({ user }) => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <MenuItem key={"avatar-logout"} onClick={handleCloseUserMenu}>
-                  <Typography onClick={signOut} textAlign="center">
+                <MenuItem key={"avatar-logout"} onClick={signOut} >
+                  <Typography  textAlign="center">
                     Sign Out
                   </Typography>
                 </MenuItem>
@@ -280,6 +301,20 @@ const TopBar = ({ user }) => {
                   </MenuItem>
                   <MenuItem onClick={handleGithubLogin}>
                     <Typography textAlign="center">Login With GitHub</Typography>
+                  </MenuItem>
+                  <MenuItem component={Link} to="/">
+                    <Typography
+                      sx={{
+                        color: "black",
+                        "&:hover": {
+                          color: "black",
+                        },
+                      }}
+                      to="/"
+                      textAlign="center"
+                    >
+                      How to use
+                    </Typography>
                   </MenuItem>
                 </Menu>
               </Box>
