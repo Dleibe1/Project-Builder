@@ -111,27 +111,17 @@
   font-family: "Roboto", sans-serif;
 }
 
-.project-show h1 {
+.project-show h2 {
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-  color: #333;
-  font-family: "Montserrat", sans-serif;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
-.project-show p {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: #555;
-}
-
-.project-show h4 {
-  font-size: 1.3rem;
-  margin-top: 1.5rem;
-  color: #333;
-  font-family: "Montserrat", sans-serif;
-}
+// .project-show p {
+//   font-size: 1.1rem;
+//   margin-bottom: 1rem;
+//   color: #555;
+// }
 
 .project-show code {
   display: block;
@@ -453,4 +443,22 @@
 
 #github-example-url {
   margin-top: 30px;
+}
+
+.showpage-items-container{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: 5px solid black;
+  border-radius: 10px;
+  width: 100%;
+  padding: 16px;
+}
+
+#project-images{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Optional: To ensure text alignment inside the Typography component */
+  width: 100%; /* Optional: Ensures the Box takes the full width of its container */
+  height: 100%;
 }

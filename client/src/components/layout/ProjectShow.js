@@ -66,21 +66,31 @@ const ProjectShow = (props) => {
 
   return (
     <div className="project-show">
-      {props.user ? forkProjectButton : []}
-      <ProjectForksButton id={id} />
-      <h1>{project.title}</h1>
-      <div className="images-container">
-        <img className="project-image" src={project.thumbnailImageURL} />
+      <div>
+        {props.user ? forkProjectButton : []}
+        <ProjectForksButton id={id} />
       </div>
-      <p>{project.description}</p>
-      <h4>Parts:</h4>
-      {partsList}
-      <h4>Apps and Platforms:</h4>
-      <p>{project.appsAndPlatforms}</p>
-      {/* <h4>Tags:</h4>
-      <p>{project.tags}</p> */}
+      <h2>{project.title}</h2>
+      <div className="images-container">
+        <img className="project-image" src={project.thumbnailImageURL} alt="thumbnail" />
+      </div>
+      <div className="showpage-items-container">
+        <h4>Description And Instructions:</h4>
+        <p>{project.description}</p>
+      </div>
+      <div className="showpage-items-container">
+        <h4>Parts:</h4>
+        <div className="parts-list">{partsList}</div>
+      </div>
+      <div className="showpage-items-container">
+        <h4>Apps and Platforms:</h4>
+        <div>{project.appsAndPlatforms}</div>
+      </div>
+      <div id="project-images">
+        <h4>Project Images</h4>
+      </div>
       <div className="images-container">{imageList}</div>
-      <p className="github-url">{codeMessage}</p>
+      <h5 className="github-url">{codeMessage}</h5>
       <pre>
         <code ref={codeRef} className="language-c">
           {project.code}
