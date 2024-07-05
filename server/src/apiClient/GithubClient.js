@@ -61,7 +61,6 @@ class GithubClient {
         },
         responseType: "json",
       })
-      console.log(response.body)
       return response.body
     } catch (error) {
       console.error("Error fetching user info:", error)
