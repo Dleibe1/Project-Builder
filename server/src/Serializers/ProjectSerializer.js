@@ -4,7 +4,7 @@ import ImageSerializer from "./ImagesSerializer.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
 class ProjectSerializer {
-  static async getProjectDetails(project, checkGithub) {
+  static async getProjectDetails(project, showPage) {
     const allowedAttributes = [
       "id",
       "userId",
@@ -36,7 +36,7 @@ class ProjectSerializer {
     })
     serializedProject.images = relatedImages
     serializedProject.code =
-      project.githubFileURL && checkGithub
+      project.githubFileURL && showPage
         ? await GithubClient.getProjectCode(project.githubFileURL)
         : project.code
     return serializedProject
