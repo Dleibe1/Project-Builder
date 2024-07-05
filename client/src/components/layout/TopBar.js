@@ -40,6 +40,8 @@ const TopBar = ({ user }) => {
     setAnchorElUser(null)
   }
 
+  console.log(user)
+
   const loggedInUserName = user ? user.userName || user.githubUserName : ""
   const avatarLetter = loggedInUserName[0]?.toUpperCase()
 
