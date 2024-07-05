@@ -22,7 +22,7 @@ githubUserSessionsRouter.get("/handle-callback", async (req, res) => {
     const tokenData = await GithubClient.exchangeUserLoginCode(userLoginCode)
     if (tokenData.access_token) {
       const userInfo = await GithubClient.getUserInfo(tokenData.access_token)
-      const { login } = userInfo
+      const { login, avatar_url } = userInfo
       let user
       let existingUserResults = await User.query().findOne({
         loginMethod: "github",
