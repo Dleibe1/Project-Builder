@@ -40,9 +40,6 @@ const TopBar = ({ user }) => {
     setAnchorElUser(null)
   }
 
-  const loggedInUserName = user ? user.userName || user.githubUserName : ""
-  const avatarLetter = loggedInUserName[0]?.toUpperCase()
-
   const signOut = async (event) => {
     event.preventDefault()
     try {
@@ -69,6 +66,8 @@ const TopBar = ({ user }) => {
     location.href = "/project-list"
   }
 
+  console.log(user)
+
   const handleGithubLogin = async () => {
     try {
       const response = await fetch("/api/v1/github-user-sessions/login")
@@ -78,6 +77,12 @@ const TopBar = ({ user }) => {
       console.error("Error fetching GitHub login URL:", error)
     }
   }
+
+  const loggedInUserName = user ? user.userName || user.githubUserName : ""
+  const avatarLetter = loggedInUserName[0]?.toUpperCase()
+  const avatarImageURL = user?.githubAvatarURL
+  const avatarWithImage = [<Avatar alt={loggedInUserName} src={avatarImageURL} />]
+  const avatarJustALetter = [<Avatar alt={loggedInUserName}>{avatarLetter}</Avatar>]
 
   return (
     <AppBar position="static">
@@ -213,7 +218,7 @@ const TopBar = ({ user }) => {
               </Box>
               <Tooltip>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar>{avatarLetter}</Avatar>
+                  {user?.githubAvatarURL ? avatarWithImage : avatarJustALetter}
                 </IconButton>
               </Tooltip>
               <Menu
