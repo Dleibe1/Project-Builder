@@ -90,7 +90,7 @@ const MyBuildShow = (props) => {
         <h4>Project Images</h4>
       </div>
       <div className="images-container">{imageList}</div>
-      <h5 className="github-url">{codeMessage}</h5>
+      <h6 className="github-url">{codeMessage}</h6>
       <pre>
         <code ref={codeRef} className="language-c">
           {myBuild.code}
