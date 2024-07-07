@@ -174,12 +174,11 @@ const EditBuildForm = (props) => {
 
   const imageList = editedProject.images.map((imageURL, index) => {
     return (
-      <div id="image-list">
-        <img id="image-list-project-form" src={imageURL} />
+      <div className="image-list-container">
+        <img className="project-image" src={imageURL} />
         <Button
           onClick={() => handleImageURLDelete(index)}
-          className="large-button"
-          id="delete-image"
+          className="large-button delete-image"
           variant="contained"
           sx={{
             "&:hover": {
