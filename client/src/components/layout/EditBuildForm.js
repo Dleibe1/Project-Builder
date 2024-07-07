@@ -151,7 +151,7 @@ const EditBuildForm = (props) => {
 
   const partsList = editedProject.parts.map((part, index) => {
     return (
-      <div key={`${part}${index}`} id="parts-list" className="cell small-3 medium-6 large-4">
+      <div key={`${part}${index}`} className="cell small-3 medium-6 large-4 parts-list">
         <h5 className="part-title">{part}</h5>
         <Button
           onClick={() => handlePartDelete(index)}
@@ -174,7 +174,7 @@ const EditBuildForm = (props) => {
 
   const imageList = editedProject.images.map((imageURL, index) => {
     return (
-      <div className="image-list-container">
+      <div key={`${imageURL}${index}`} className="image-list-container">
         <img className="project-image" src={imageURL} />
         <Button
           onClick={() => handleImageURLDelete(index)}
