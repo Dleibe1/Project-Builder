@@ -12,20 +12,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-body{
-  background-image: url('https://store-usa.arduino.cc/cdn/shop/products/A000066_03.front_970c6014-61ab-4226-a20f-14cc6d8d682c_934x700.jpg?v=1629816078');
-
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  /* Fixed background */
-  background-attachment: fixed;
-}
 
 :root {
   -moz-tab-size: 4;
@@ -39,6 +25,7 @@ body{
 }
 
 .project-list {
+  margin-top:100px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;

@@ -21,7 +21,6 @@ import GithubLogin from "./authentication/GithubLogin"
 import GithubCallback from "./authentication/GithubCallback"
 import HowItWorks from "./layout/HowItWorks"
 
-
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
   const fetchCurrentUser = async () => {
@@ -39,44 +38,44 @@ const App = (props) => {
 
   return (
     <Router>
-      <TopBar user={currentUser} />
-      <Switch>
-      <Route exact path={"/"}>
-          <HowItWorks user={currentUser} />
-        </Route>
-        <Route exact path={"/project-list"}>
-          <ProjectList user={currentUser} />
-        </Route>
-        <Route exact path="/projects/:id">
-          <ProjectShow user={currentUser} />
-        </Route>
-        <Route exact path="/create-new-build">
-          <NewProjectForm user={currentUser} />
-        </Route>
-        <Route exact path={"/my-builds"}>
-          <MyBuildList user={currentUser} />
-        </Route>
-        <Route exact path={"/my-builds/:id"}>
-          <MyBuildShow user={currentUser} />
-        </Route>
-        <Route exact path="/edit-my-build/:id">
-          <EditBuildForm user={currentUser} />
-        </Route>
-        <Route exact path={"/project-forks/:id"}>
-          <ForkList user={currentUser} />
-        </Route>
-        <Route exact path="/fork-project/:id">
-          <ForkProjectForm user={currentUser} />
-        </Route>
-        <Route exact path="/github-login">
-          <GithubLogin user={currentUser} />
-        </Route>
-        <Route exact path="/github-callback-component">
-          <GithubCallback user={currentUser} />
-        </Route>
-        <Route exact path="/users/new" component={RegistrationForm} />
-        <Route exact path="/user-sessions/new" component={SignInForm} />
-      </Switch>
+        <TopBar user={currentUser} />
+        <Switch>
+          <Route exact path={"/"}>
+            <HowItWorks user={currentUser} />
+          </Route>
+          <Route exact path={"/project-list"}>
+            <ProjectList user={currentUser} />
+          </Route>
+          <Route exact path="/projects/:id">
+            <ProjectShow user={currentUser} />
+          </Route>
+          <Route exact path="/create-new-build">
+            <NewProjectForm user={currentUser} />
+          </Route>
+          <Route exact path={"/my-builds"}>
+            <MyBuildList user={currentUser} />
+          </Route>
+          <Route exact path={"/my-builds/:id"}>
+            <MyBuildShow user={currentUser} />
+          </Route>
+          <Route exact path="/edit-my-build/:id">
+            <EditBuildForm user={currentUser} />
+          </Route>
+          <Route exact path={"/project-forks/:id"}>
+            <ForkList user={currentUser} />
+          </Route>
+          <Route exact path="/fork-project/:id">
+            <ForkProjectForm user={currentUser} />
+          </Route>
+          <Route exact path="/github-login">
+            <GithubLogin user={currentUser} />
+          </Route>
+          <Route exact path="/github-callback-component">
+            <GithubCallback user={currentUser} />
+          </Route>
+          <Route exact path="/users/new" component={RegistrationForm} />
+          <Route exact path="/user-sessions/new" component={SignInForm} />
+        </Switch>
     </Router>
   )
 }
