@@ -20,7 +20,7 @@ const HowItWorks = () => {
       <div className="hero-section">
         <h1>View, share, and fork Arduino and ESP32 Projects!</h1>
         <Link to="/project-list" className="main-link">
-          Click here to continue to the app
+          Click here to continue to the site
         </Link>
       </div>
       <div className="content-section">
@@ -72,11 +72,6 @@ const HowItWorks = () => {
           Code highlighting is applied using the Highlight.js library to keep your code looking
           pretty on the project's display page.
         </p>
-      </div>
-      <div className="hero-section">
-        <Link to="/project-list" className="main-link">
-          Click here to continue to the app
-        </Link>
       </div>
     </div>
   )
