@@ -13,9 +13,7 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  position: relative;
-  background: none; 
+  background-color: #d4a373;
 }
 
 body::before {
@@ -25,9 +23,9 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('https://i.imgur.com/eZUwSpr.png') bottom left no-repeat fixed,
-              url('https://i.imgur.com/y13kUPj.png') bottom right no-repeat fixed;
-  background-size: auto, auto;
+  background: url('https://i.imgur.com/eZUwSpr.png') center left no-repeat fixed,
+              url('https://i.imgur.com/y13kUPj.png') center right no-repeat fixed;
+  background-size: 13%, 13%;
   opacity: 1;
   transition: opacity 1s ease-out;
   z-index: -1;
@@ -53,6 +51,8 @@ body::before {
 
 .project-list {
   margin-top:100px;
+  margin-left: 15px;
+  margin-right: 15px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
@@ -62,11 +62,11 @@ body::before {
 
 .project-tile {
   margin-top: 1rem;
-  border: 1px solid #ccc;
+  // border: 1px solid #FFADAD;
   border-radius: 10px;
   padding: 1.5rem;
   padding-bottom: 0rem;
-  background-color: #f9f9f9;
+  background-color: #fefae0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.2s,
@@ -90,7 +90,7 @@ body::before {
 .project-tile h4,
 .project-tile h5 {
   font-size: 1.3rem;
-  color: #374146;
+  color: #000000;
 }
 
 .project-tile h4 {
@@ -133,7 +133,7 @@ body::before {
   padding: 2rem;
   max-width: 1000px;
   margin: 100px auto;
-  background-color: #fff;
+  background-color: #caf0f8;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: "Roboto", sans-serif;
@@ -480,6 +480,7 @@ body::before {
 }
 
 .showpage-items-container{
+  background-color: #fefae0;
   margin-top: 30px;
   margin-bottom: 30px;
   border: 5px solid black;
