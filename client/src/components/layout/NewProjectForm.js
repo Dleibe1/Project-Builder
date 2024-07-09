@@ -74,6 +74,8 @@ const NewProjectForm = (props) => {
     }
   }
 
+  console.log(newProject)
+
   const handleProjectImageUpload = (acceptedImage) => {
     setImageFile({
       image: acceptedImage[0],
@@ -241,7 +243,7 @@ const NewProjectForm = (props) => {
               <section>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                  Upload Thumbnail Image
+                 {newProject.thumbnailImageURL.length ? "Change Thumbnail Image" : "Upload Thumbnail Image"} 
                 </div>
               </section>
             )}

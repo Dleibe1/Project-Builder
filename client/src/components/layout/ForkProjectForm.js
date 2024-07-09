@@ -256,7 +256,7 @@ const ForkProjectForm = (props) => {
               <section>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                  Upload Thumbnail Image
+                  Change Thumbnail Image
                 </div>
               </section>
             )}
