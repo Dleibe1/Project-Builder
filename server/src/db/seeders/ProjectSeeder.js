@@ -149,6 +149,59 @@ class ProjectSeeder {
           "https://www.siraudiotools.com/pics/spectrumAnalyzer_slide0.jpg",
         parentProjectId: 4,
       },
+      {
+        userId: 2,
+        title: "New Version of OLED Eyes Animation for Robotics Projects",
+        description: descriptions[4],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[4],
+        thumbnailImage:
+          "https://i.ytimg.com/vi/n3Fj2zCOv98/sddefault.jpg",
+        parentProjectId: 5,
+      },
+      {
+        userId: 2,
+        title: "Modified Object Tracking 4-DOF Robotics Arm With Arduino",
+        description: descriptions[5],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[5],
+        thumbnailImage:
+          "https://wp.technologyreview.com/wp-content/uploads/2019/06/eva-main-imageedited-10.jpg",
+        parentProjectId: 6,
+      },
+      {
+        userId: 2,
+        title: "ARPoLAN: Network Monitoring and Security Tool",
+        description: descriptions[6],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[6],
+        githubFileURL: "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
+        thumbnailImage:
+          "https://hackaday.com/wp-content/uploads/2018/09/ducky_feat.jpg",
+        parentProjectId: 7,
+      },
+      {
+        userId: 2,
+        title: "Arduino UNO modified game system",
+        description: descriptions[7],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[7],
+        githubFileURL: "https://github.com/Smashcat/UNO_Manic_Miner/blob/main/games/ManicMiner/ManicMiner.ino",
+        thumbnailImage:
+          "https://cdn.mobygames.com/screenshots/1971819-basketball-atari-2600-the-game-in-black-and-white-mode.png",
+        parentProjectId: 8,
+      },
+      {
+        userId: 2,
+        title: "To Boil Or Not To Boil? That Is The Question!",
+        description: descriptions[8],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[8],
+        thumbnailImage:
+          "https://www.smartmachine.com/wp-content/uploads/2018/05/Cooper-River-Brewery.jpg",
+        parentProjectId: 9,
+      },
+      
     ]
     await Project.query().insert(parentProjects)
     await Project.query().insert(forks)
