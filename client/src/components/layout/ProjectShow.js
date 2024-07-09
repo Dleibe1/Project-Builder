@@ -75,7 +75,7 @@ const ProjectShow = (props) => {
         <img className="project-image" src={project.thumbnailImageURL} alt="thumbnail" />
       </div>
       <div className="showpage-items-container">
-        <h4>Description And Instructions:</h4>
+        <h4>Description and Instructions:</h4>
         <p>{project.description}</p>
       </div>
       <div className="showpage-items-container">
