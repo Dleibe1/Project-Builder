@@ -28,7 +28,7 @@ const GithubLogin = (props) => {
         },
       }}
     >
-      <img onClick={handleGithubLogin} id="github-logo" src="https://i.imgur.com/9aand0d.png" />
+      <img onClick={handleGithubLogin} id="github-logo" src="images/github-logo.png" />
       LOGIN WITH GITHUB
     </Button>
   )
