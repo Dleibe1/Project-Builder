@@ -8,7 +8,7 @@ const forkProject = async (originalProjectId, userId, forkData) => {
   const newProject = await Project.query().insert({
     userId: parseInt(userId),
     githubFileURL: forkData.githubFileURL,
-    thumbnailImageURL: forkData.thumbnailImageURL || originalProject.thumbnailImageURL,
+    thumbnailImage: forkData.thumbnailImage || originalProject.thumbnailImage,
     title: forkData.title,
     appsAndPlatforms: forkData.appsAndPlatforms || originalProject.appsAndPlatforms,
     tags: forkData.tags || originalProject.tags,

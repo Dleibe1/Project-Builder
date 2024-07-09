@@ -28,7 +28,7 @@ const NewProjectForm = (props) => {
     code: "",
     githubFileURL: "",
     userId: "",
-    thumbnailImageURL: "",
+    thumbnailImage: "",
   })
 
   const uploadProjectImage = async () => {
@@ -68,7 +68,7 @@ const NewProjectForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setNewProject({ ...newProject, thumbnailImageURL: body.imageURL })
+      setNewProject({ ...newProject, thumbnailImage: body.imageURL })
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
@@ -154,11 +154,11 @@ const NewProjectForm = (props) => {
 
   let thumbNailImage = [
     <div className="image-list-container">
-      <img className="project-image" src={newProject.thumbnailImageURL} />
+      <img className="project-image" src={newProject.thumbnailImage} />
     </div>
   ]
 
-  thumbNailImage = newProject.thumbnailImageURL.length ? thumbNailImage : []
+  thumbNailImage = newProject.thumbnailImage.length ? thumbNailImage : []
 
   const partsList = newProject.parts.map((part, index) => {
     return (
@@ -243,7 +243,7 @@ const NewProjectForm = (props) => {
               <section>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                 {newProject.thumbnailImageURL.length ? "Change Thumbnail Image" : "Upload Thumbnail Image"} 
+                 {newProject.thumbnailImage.length ? "Change Thumbnail Image" : "Upload Thumbnail Image"} 
                 </div>
               </section>
             )}

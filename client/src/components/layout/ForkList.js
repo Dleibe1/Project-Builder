@@ -32,7 +32,7 @@ const ForkList = (props) => {
         id={fork.id}
         title={fork.title}
         createdBy={fork.user}
-        thumbnailImage={fork.thumbnailImageURL}
+        thumbnailImage={fork.thumbnailImage}
         />
       )
     }

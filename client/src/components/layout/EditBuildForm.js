@@ -33,7 +33,7 @@ const EditBuildForm = (props) => {
     code: "",
     githubFileURL: "",
     userId: "",
-    thumbnailImageURL: "",
+    thumbnailImage: "",
   })
 
   const uploadProjectImage = async () => {
@@ -73,7 +73,7 @@ const EditBuildForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setEditedProject({ ...editedProject, thumbnailImageURL: body.imageURL })
+      setEditedProject({ ...editedProject, thumbnailImage: body.imageURL })
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
@@ -249,7 +249,7 @@ const EditBuildForm = (props) => {
           name="title"
         />
         <div className="image-list-container">
-          <img className="project-image" src={editedProject.thumbnailImageURL} />
+          <img className="project-image" src={editedProject.thumbnailImage} />
         </div>
         <Button
           className="large-button"
@@ -268,7 +268,7 @@ const EditBuildForm = (props) => {
               <section>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                  Upload Thumbnail Image
+                  Change Thumbnail Image
                 </div>
               </section>
             )}

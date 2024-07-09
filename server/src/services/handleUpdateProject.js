@@ -11,7 +11,7 @@ const handleUpdateProject = async (
     userId,
     parts,
     images,
-    thumbnailImageURL,
+    thumbnailImage,
   },
   projectId,
 ) => {
@@ -33,7 +33,7 @@ const handleUpdateProject = async (
       description,
       code,
       githubFileURL: githubFileURLField,
-      thumbnailImageURL,
+      thumbnailImage,
       userId,
     })
     .where("id", projId)

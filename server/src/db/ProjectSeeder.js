@@ -14,7 +14,7 @@ class ProjectSeeder {
         code: code[0],
         githubFileURL:
           "https://github.com/dmdhrumilmistry/ArduinoPrograms/blob/main/ArduinoUno/Projects/ControlServoMotorUsingIRremote/ControlServoMotorUsingIRremote.cpp",
-        thumbnailImageURL:
+        thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/70dad73c-8d46-4172-8ad9-def5688e6b19.jpg",
         parentProjectId: 1,
       },
@@ -25,7 +25,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[1],
         githubFileURL: "",
-        thumbnailImageURL:
+        thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/1f887c02-812e-411d-ad69-7be71e3715f5.jpg",
         parentProjectId: 2,
       },
@@ -36,7 +36,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[2],
         githubFileURL: "",
-        thumbnailImageURL:
+        thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/916c664e-bd6f-403a-a3f8-234147fc8501.jpg",
         parentProjectId: 3,
       },
@@ -46,7 +46,7 @@ class ProjectSeeder {
         description: descriptions[3],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[3],
-        thumbnailImageURL:
+        thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/f27de0e3-aa87-4c5f-966a-37b14891dadd.jpg",
         parentProjectId: 4,
       },
@@ -61,7 +61,7 @@ class ProjectSeeder {
         code: code[0],
         githubFileURL:
           "https://github.com/dmdhrumilmistry/ArduinoPrograms/blob/main/ArduinoUno/Projects/ControlServoMotorUsingIRremote/ControlServoMotorUsingIRremote.cpp",
-        thumbnailImageURL:
+        thumbnailImage:
           "https://upload.wikimedia.org/wikipedia/en/c/ca/Big_Brother_US_2020_Logo.png",
         parentProjectId: 1,
       },
@@ -72,7 +72,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[1],
         githubFileURL: "",
-        thumbnailImageURL:
+        thumbnailImage:
           "https://assets.newatlas.com/dims4/default/692e5c9/2147483647/strip/true/crop/3360x2240+0+0/resize/1200x800!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Fa8%2Fea%2F4bafa7a94a7cbc817052c3a82274%2Findi-09.jpg",
         parentProjectId: 2,
       },
@@ -83,7 +83,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[2],
         githubFileURL: "",
-        thumbnailImageURL:
+        thumbnailImage:
           "https://m.media-amazon.com/images/I/71HHUsbSsrL.jpg",
         parentProjectId: 3,
       },
@@ -93,7 +93,7 @@ class ProjectSeeder {
         description: descriptions[3],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[3],
-        thumbnailImageURL:
+        thumbnailImage:
           "https://www.siraudiotools.com/pics/spectrumAnalyzer_slide0.jpg",
         parentProjectId: 4,
       },

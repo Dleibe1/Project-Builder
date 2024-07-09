@@ -15,7 +15,7 @@ class ProjectSerializer {
       "documentation",
       "code",
       "githubFileURL",
-      "thumbnailImageURL",
+      "thumbnailImage",
       "parentProjectId"
     ]
     let serializedProject = {}

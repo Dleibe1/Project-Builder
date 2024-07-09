@@ -8,12 +8,12 @@ class Project extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["title", "description", "userId", "thumbnailImageURL"],
+      required: ["title", "description", "userId", "thumbnailImage"],
       properties: {
         userId: { type: "integer" },
         title: { type: "string" },
         appsAndPlatforms: { oneOf: [{ type: "string" }, { type: "null" }] },
-        thumbnailImageURL: { type: "string" },
+        thumbnailImage: { type: "string" },
         tags: {
           oneOf: [{ type: "string" }, { type: "null" }],
         },

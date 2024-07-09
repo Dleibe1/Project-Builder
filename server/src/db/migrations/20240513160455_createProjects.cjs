@@ -16,7 +16,7 @@ exports.up = async (knex) => {
     .references("users.id")
 
     table.text("githubFileURL")
-    table.text("thumbnailImageURL").notNullable()
+    table.text("thumbnailImage").notNullable()
     table.string("title").notNullable()
     table.string("appsAndPlatforms")
     table.text("tags")

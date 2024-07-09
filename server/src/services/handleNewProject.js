@@ -11,7 +11,7 @@ const handleNewProject = async ({
   userId,
   parts,
   images,
-  thumbnailImageURL,
+  thumbnailImage,
 }) => {
   const projectCode = githubFileURL ? await GithubClient.getProjectCode(githubFileURL) : code
   const newProject = await Project.query().insert({
@@ -21,7 +21,7 @@ const handleNewProject = async ({
     description,
     code: projectCode,
     userId,
-    thumbnailImageURL,
+    thumbnailImage,
   })
   const newProjectId = parseInt(newProject.id)
   await Project.query().patchAndFetchById(newProjectId, {

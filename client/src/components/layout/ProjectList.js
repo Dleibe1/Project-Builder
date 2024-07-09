@@ -29,7 +29,7 @@ const ProjectList = (props) => {
           id={project.id}
           title={project.title}
           createdBy={project.user}
-          thumbnailImage={project.thumbnailImageURL}
+          thumbnailImage={project.thumbnailImage}
         />
       )
     }

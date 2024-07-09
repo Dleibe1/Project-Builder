@@ -36,7 +36,7 @@ const ForkProjectForm = (props) => {
     code: "",
     githubFileURL: "",
     userId: "",
-    thumbnailImageURL: "",
+    thumbnailImage: "",
   })
 
   const uploadProjectImage = async () => {
@@ -76,7 +76,7 @@ const ForkProjectForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setForkedProject({ ...forkedProject, thumbnailImageURL: body.imageURL })
+      setForkedProject({ ...forkedProject, thumbnailImage: body.imageURL })
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
@@ -237,7 +237,7 @@ const ForkProjectForm = (props) => {
           name="title"
         />
         <div className="image-list-container">
-          <img className="project-image" src={forkedProject.thumbnailImageURL} />
+          <img className="project-image" src={forkedProject.thumbnailImage} />
         </div>
         <Button
           className="large-button"

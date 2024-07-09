@@ -18,7 +18,7 @@ const MyBuildShow = (props) => {
     code: "",
     githubFileURL: "",
     userId: "",
-    thumbnailImageURL: "",
+    thumbnailImage: "",
   })
   const params = useParams()
   const { id } = params
@@ -72,7 +72,7 @@ const MyBuildShow = (props) => {
       </div>
       <h2>{myBuild.title}</h2>
       <div className="images-container">
-        <img className="project-image" src={myBuild.thumbnailImageURL} alt="thumbnail" />
+        <img className="project-image" src={myBuild.thumbnailImage} alt="thumbnail" />
       </div>
       <div className="showpage-items-container">
         <h4>Description And Instructions:</h4>
