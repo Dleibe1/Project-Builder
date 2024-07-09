@@ -26,6 +26,7 @@ It is for this reason that I created the "Fork Project" feature, which allows a 
 - Express.js
 - Objection.js
 - PostgreSQL
+- GitHub Apps
 
 ### Improvements coming soon:
 

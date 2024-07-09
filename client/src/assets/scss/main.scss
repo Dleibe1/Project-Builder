@@ -169,7 +169,7 @@ body::before {
   text-align: left;
   padding: 20px;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: #fefae0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: "Roboto", sans-serif;
 }
@@ -188,6 +188,14 @@ body::before {
   flex-direction: column;
   align-items: center;
 }
+
+.new-build-form-container input,
+.edit-project-form-container input,
+.fork-project-form-container input,
+#description {
+  background-color: #fffdf1;
+}
+
 
 #delete-part {
   margin-bottom: 20px;

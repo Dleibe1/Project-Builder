@@ -13,8 +13,10 @@ const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [part, setPart] = useState("")
-  const [image, setImage] = useState("")
   const [imageFile, setImageFile] = useState({
+    image: {},
+  })
+  const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
   const params = useParams()
@@ -37,7 +39,7 @@ const ForkProjectForm = (props) => {
     thumbnailImageURL: "",
   })
 
-  const uploadImage = async () => {
+  const uploadProjectImage = async () => {
     const newImageFileData = new FormData()
     newImageFileData.append("image", imageFile.image)
 
@@ -55,12 +57,39 @@ const ForkProjectForm = (props) => {
       const body = await response.json()
       setForkedProject({ ...forkedProject, images: [...forkedProject.images, body.imageURL] })
     } catch (error) {
-      console.error(`Error in uploadImage Fetch: ${error.message}`)
+      console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
   }
 
-  const handleImageUpload = (acceptedImage) => {
+  const uploadThumbnailImage = async () => {
+    const thumbnailImageFileData = new FormData()
+    thumbnailImageFileData.append("image", thumbnailImageFile.image)
+    try {
+      const response = await fetch("/api/v1/image-uploading", {
+        method: "POST",
+        headers: {
+          Accept: "image/jpeg",
+        },
+        body: thumbnailImageFileData,
+      })
+      if (!response.ok) {
+        throw new Error(`${response.status} (${response.statusText})`)
+      }
+      const body = await response.json()
+      setForkedProject({ ...forkedProject, thumbnailImageURL: body.imageURL })
+    } catch (error) {
+      console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
+    }
+  }
+
+  const handleProjectImageUpload = (acceptedImage) => {
     setImageFile({
+      image: acceptedImage[0],
+    })
+  }
+
+  const handleThumbnailImageUpload = (acceptedImage) => {
+    setThumbnailImageFile({
       image: acceptedImage[0],
     })
   }
@@ -117,10 +146,6 @@ const ForkProjectForm = (props) => {
     setPart(event.currentTarget.value)
   }
 
-  const handleImageURLInput = (event) => {
-    setImage(event.currentTarget.value)
-  }
-
   const handlePartSubmit = () => {
     if (part.length) {
       setForkedProject({ ...forkedProject, parts: [...forkedProject.parts, part] })
@@ -128,16 +153,13 @@ const ForkProjectForm = (props) => {
     setPart("")
   }
 
-  const handleImageURLSubmit = () => {
-    if (image.length) {
-      setForkedProject({ ...forkedProject, images: [...forkedProject.images, image.trim()] })
-    }
-    setImage("")
-  }
+  useEffect(() => {
+    uploadProjectImage()
+  }, [imageFile])
 
   useEffect(() => {
-    uploadImage()
-  }, [imageFile])
+    uploadThumbnailImage()
+  }, [thumbnailImageFile])
 
   const handlePartDelete = (index) => {
     const partsList = forkedProject.parts.filter((part, i) => i !== index)
@@ -214,15 +236,32 @@ const ForkProjectForm = (props) => {
           label="Project Title *"
           name="title"
         />
-        <TextField
-          value={forkedProject.thumbnailImageURL}
-          className="form-input text-field"
-          fullWidth
-          id="thumbnail-url"
-          name="thumbnailImageURL"
-          onChange={handleInputChange}
-          label="Thumbnail image url"
-        />
+        <div className="image-list-container">
+          <img className="project-image" src={forkedProject.thumbnailImageURL} />
+        </div>
+        <Button
+          className="large-button"
+          id="upload-image"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+          startIcon={<CloudUpload />}
+        >
+          <Dropzone onDrop={handleThumbnailImageUpload}>
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  Upload Thumbnail Image
+                </div>
+              </section>
+            )}
+          </Dropzone>
+        </Button>
         {/* <label htmlFor="tags">
           Tags:
           <input
@@ -244,8 +283,8 @@ const ForkProjectForm = (props) => {
         />
         <TextField
           value={forkedProject.description}
+          multiline
           className="form-input text-field"
-          fullWidth
           id="description"
           name="description"
           onChange={handleInputChange}
@@ -313,31 +352,6 @@ const ForkProjectForm = (props) => {
           Project Images:
         </Typography>
         {imageList}
-        <div className="form-input" id="image-url-input-container">
-          <TextField
-            className="form-input text-field"
-            fullWidth
-            id="image-url"
-            value={image}
-            onChange={handleImageURLInput}
-            label="Image URL"
-            name="image"
-          />
-          <Button
-            onClick={handleImageURLSubmit}
-            className="large-button"
-            id="add-image"
-            variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
-          >
-            Add Image URL
-          </Button>
-        </div>
         <Button
           className="large-button"
           id="upload-image"
@@ -350,12 +364,12 @@ const ForkProjectForm = (props) => {
           }}
           startIcon={<CloudUpload />}
         >
-          <Dropzone onDrop={handleImageUpload}>
+          <Dropzone onDrop={handleProjectImageUpload}>
             {({ getRootProps, getInputProps }) => (
               <section>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                  Upload Image File
+                  Upload Project Image
                 </div>
               </section>
             )}

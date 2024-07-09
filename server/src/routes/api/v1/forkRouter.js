@@ -38,7 +38,6 @@ forkRouter.get("/:id", async (req, res) => {
     serializedForkData.parts = partNames
     serializedForkData.images = imageUrls
     serializedForkData.title = ""
-    serializedForkData.description = ""
     return res.status(200).json({ fork: serializedForkData })
   } catch (error) {
     console.log(error)
