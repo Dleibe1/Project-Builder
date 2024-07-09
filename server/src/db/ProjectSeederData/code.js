@@ -29,7 +29,7 @@ const code = [
              Serial.write(rcd); 
            } 
         }`,
-`#include "virtuabotixRTC.h" 
+  `#include "virtuabotixRTC.h" 
         #define MORNING_WATERING false 
         #define EVENING_WATERING true 
         #define MORNING_WATERING_HOUR 8 
@@ -125,7 +125,7 @@ const code = [
            delay(5000); // Iterate every 5 seconds 
         } 
         `,
-        `/*
+  `/*
         Copyright (c) 2020 Janux
       
         Permission is hereby granted,   free of charge, to any person obtaining a copy
@@ -491,7 +491,1293 @@ const code = [
            }
         }
       }
-      //by Janux®, Last version on 28/06/2020.`
+      //by Janux®, Last version on 28/06/2020.`,
+
+  `#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+
+#define SCREEN_WIDTH 128  // OLED display width, in pixels
+#define SCREEN_HEIGHT 64  // OLED display height, in pixels
+
+#define OLED_RESET -1        // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3C  ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+
+// Adjustable
+int ref_eye_height = 40;
+int ref_eye_width = 40;
+int ref_space_between_eye = 10;
+int ref_corner_radius = 10;
+
+//current state of the eyes
+int left_eye_height = ref_eye_height;
+int left_eye_width = ref_eye_width;
+int left_eye_x = 32;
+int left_eye_y = 32;
+int right_eye_x = 32 + ref_eye_width + ref_space_between_eye;
+int right_eye_y = 32;
+int right_eye_height = ref_eye_height;
+int right_eye_width = ref_eye_width;
+
+int dir_x = 0;
+int dir_y = 0;
+int count = 0;
+
+void draw_eyes(bool update = true);
+void center_eyes(bool update = true);
+void blink(int speed = 12);
+void sleep();
+void wakeup();
+void happy_eye();
+void saccade(int direction_x, int direction_y);
+void move_right_big_eye();
+void move_left_big_eye();
+void move_big_eye(int direction);
+
+int timeD = 1000;
+
+
+void draw_eyes(bool update = true) {
+  display.clearDisplay();
+  //draw from center
+  int x = int(left_eye_x - left_eye_width / 2);
+  int y = int(left_eye_y - left_eye_height / 2);
+  display.fillRoundRect(x, y, left_eye_width, left_eye_height, ref_corner_radius, SSD1306_WHITE);
+  x = int(right_eye_x - right_eye_width / 2);
+  y = int(right_eye_y - right_eye_height / 2);
+  display.fillRoundRect(x, y, right_eye_width, right_eye_height, ref_corner_radius, SSD1306_WHITE);
+  if (update) {
+    display.display();
+  }
+}
+
+void center_eyes(bool update = true) {
+  //move eyes to the center of the display, defined by SCREEN_WIDTH, SCREEN_HEIGHT
+  left_eye_height = ref_eye_height;
+  left_eye_width = ref_eye_width;
+  right_eye_height = ref_eye_height;
+  right_eye_width = ref_eye_width;
+
+  left_eye_x = SCREEN_WIDTH / 2 - ref_eye_width / 2 - ref_space_between_eye / 2;
+  left_eye_y = SCREEN_HEIGHT / 2;
+  right_eye_x = SCREEN_WIDTH / 2 + ref_eye_width / 2 + ref_space_between_eye / 2;
+  right_eye_y = SCREEN_HEIGHT / 2;
+
+  draw_eyes(update);
+}
+
+void blink(int speed = 12) {
+  draw_eyes();
+
+
+  for (int i = 0; i < 3; i++) {
+    left_eye_height = left_eye_height - speed;
+    right_eye_height = right_eye_height - speed;
+    draw_eyes();
+    delay(1);
+  }
+  for (int i = 0; i < 3; i++) {
+    left_eye_height = left_eye_height + speed;
+    right_eye_height = right_eye_height + speed;
+
+    draw_eyes();
+    delay(1);
+  }
+}
+
+void sleep() {  // DRAWS A LINE TO LOOK LIKE SLEEPING
+  left_eye_height = 2;
+  right_eye_height = 2;
+  draw_eyes(true);
+}
+
+void wakeup() {  // WAKE UP THE EYES FROM AN LINE TO ROUND CORNERED SQUARE
+
+  sleep();
+
+  for (int h = 0; h <= ref_eye_height; h += 2) {
+    left_eye_height = h;
+    right_eye_height = h;
+    draw_eyes(true);
+  }
+}
+
+void happy_eye() {
+  center_eyes(false);
+  //draw inverted triangle over eye lower part
+  int offset = ref_eye_height / 2;
+  for (int i = 0; i < 10; i++) {
+    display.fillTriangle(left_eye_x - left_eye_width / 2 - 1, left_eye_y + offset, left_eye_x + left_eye_width / 2 + 1, left_eye_y + 5 + offset, left_eye_x - left_eye_width / 2 - 1, left_eye_y + left_eye_height + offset, SSD1306_BLACK);
+    // display.fillRect(left_eye_x-left_eye_width/2-1, left_eye_y+5, left_eye_width+1, 20,SSD1306_BLACK);
+
+    display.fillTriangle(right_eye_x + right_eye_width / 2 + 1, right_eye_y + offset, right_eye_x - left_eye_width / 2 - 1, right_eye_y + 5 + offset, right_eye_x + right_eye_width / 2 + 1, right_eye_y + right_eye_height + offset, SSD1306_BLACK);
+    // display.fillRect(right_eye_x-right_eye_width/2-1, right_eye_y+5, right_eye_width+1, 20,SSD1306_BLACK);
+    offset -= 2;
+    display.display();
+    delay(1);
+  }
+
+
+  display.display();
+  delay(1000);
+}
+
+void saccade(int direction_x, int direction_y) {
+  //quick movement of the eye, no size change. stay at position after movement, will not move back,  call again with opposite direction
+  //direction == -1 :  move left
+  //direction == 1 :  move right
+
+  int direction_x_movement_amplitude = 8;
+  int direction_y_movement_amplitude = 6;
+  int blink_amplitude = 8;
+
+  for (int i = 0; i < 1; i++) {
+    left_eye_x += direction_x_movement_amplitude * direction_x;
+    right_eye_x += direction_x_movement_amplitude * direction_x;
+    left_eye_y += direction_y_movement_amplitude * direction_y;
+    right_eye_y += direction_y_movement_amplitude * direction_y;
+
+    right_eye_height -= blink_amplitude;
+    left_eye_height -= blink_amplitude;
+    draw_eyes();
+    delay(1);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    left_eye_x += direction_x_movement_amplitude * direction_x;
+    right_eye_x += direction_x_movement_amplitude * direction_x;
+    left_eye_y += direction_y_movement_amplitude * direction_y;
+    right_eye_y += direction_y_movement_amplitude * direction_y;
+
+    right_eye_height += blink_amplitude;
+    left_eye_height += blink_amplitude;
+
+    draw_eyes();
+    delay(1);
+  }
+}
+
+void move_right_big_eye() {
+  move_big_eye(1);
+}
+
+void move_left_big_eye() {
+  move_big_eye(-1);
+}
+
+void move_big_eye(int direction) {  // MOVES TO RIGHT OR LEFT DEPENDING ON 1 OR -1 INPUT.
+  //direction == -1 :  move left
+  //direction == 1 :  move right
+
+  int direction_oversize = 1;
+  int direction_movement_amplitude = 2;
+  int blink_amplitude = 5;
+
+  for (int i = 0; i < 3; i++) {
+    left_eye_x += direction_movement_amplitude * direction;
+    right_eye_x += direction_movement_amplitude * direction;
+    right_eye_height -= blink_amplitude;
+    left_eye_height -= blink_amplitude;
+    if (direction > 0) {
+      right_eye_height += direction_oversize;
+      right_eye_width += direction_oversize;
+    } else {
+      left_eye_height += direction_oversize;
+      left_eye_width += direction_oversize;
+    }
+
+    draw_eyes();
+    delay(1);
+  }
+  for (int i = 0; i < 3; i++) {
+    left_eye_x += direction_movement_amplitude * direction;
+    right_eye_x += direction_movement_amplitude * direction;
+    right_eye_height += blink_amplitude;
+    left_eye_height += blink_amplitude;
+    if (direction > 0) {
+      right_eye_height += direction_oversize;
+      right_eye_width += direction_oversize;
+    } else {
+      left_eye_height += direction_oversize;
+      left_eye_width += direction_oversize;
+    }
+    draw_eyes();
+    delay(1);
+  }
+
+  delay(1000);
+
+  for (int i = 0; i < 3; i++) {
+    left_eye_x -= direction_movement_amplitude * direction;
+    right_eye_x -= direction_movement_amplitude * direction;
+    right_eye_height -= blink_amplitude;
+    left_eye_height -= blink_amplitude;
+    if (direction > 0) {
+      right_eye_height -= direction_oversize;
+      right_eye_width -= direction_oversize;
+    } else {
+      left_eye_height -= direction_oversize;
+      left_eye_width -= direction_oversize;
+    }
+    draw_eyes();
+    delay(1);
+  }
+  for (int i = 0; i < 3; i++) {
+    left_eye_x -= direction_movement_amplitude * direction;
+    right_eye_x -= direction_movement_amplitude * direction;
+    right_eye_height += blink_amplitude;
+    left_eye_height += blink_amplitude;
+    if (direction > 0) {
+      right_eye_height -= direction_oversize;
+      right_eye_width -= direction_oversize;
+    } else {
+      left_eye_height -= direction_oversize;
+      left_eye_width -= direction_oversize;
+    }
+    draw_eyes();
+    delay(1);
+  }
+
+
+  center_eyes();
+}
+
+
+void setup() {
+
+  Serial.begin(115200);
+
+  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {  // Address 0x3D for 128x64
+    Serial.println(F("SSD1306 allocation failed"));
+    for (;;)
+      ;  // Don't proceed, loop forever
+  }
+
+
+  // Clear the buffer
+  display.clearDisplay();
+
+  display.setTextSize(1);               // Normal 1:1 pixel scale
+  display.setTextColor(SSD1306_WHITE);  // Draw white text
+  display.setCursor(0, 0);              // Start at top-left corner
+
+  display.println(F("GITHUB Link:"));
+  display.println(F("  "));
+  display.println(F("intellar/oled_eye_display"));
+  display.println(F("  "));
+  display.println(F("Press \"N\" for          Next Animation"));
+
+  display.display();
+  delay(5000);
+}
+
+
+void loop() {
+  // delay(timeD);
+  // wakeup();
+  // Serial.println("Wake UP!");
+  // delay(timeD);
+  // center_eyes(true);
+  // Serial.println("Center Eyes!");
+  // delay(timeD);
+  // move_right_big_eye();
+  // Serial.println("Moving Right!");
+  // delay(timeD);
+  // move_left_big_eye();
+  // Serial.println("Moving Left!");
+  // delay(timeD);
+  // blink(10);
+  // Serial.println("Short Blink!");
+  // delay(timeD);
+  // happy_eye();
+  // Serial.println("Happy Eye!");
+  // delay(timeD);
+  // blink(20);
+  // Serial.println("Long Blink!");
+  // delay(timeD);
+  // Serial.println("All Motion!");
+  // // BOTTOM LEFT
+  // dir_x = -1;
+  // dir_y = 1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // BOTTOM
+  // dir_x = 0;
+  // dir_y = 1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // BOTTOM RIGHT
+  // dir_x = 1;
+  // dir_y = 1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // RIGHT
+  // dir_x = 1;
+  // dir_y = 0;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // TOP RIGHT
+  // dir_x = 1;
+  // dir_y = -1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // TOP
+  // dir_x = 0;
+  // dir_y = -1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // TOP LEFT
+  // dir_x = -1;
+  // dir_y = -1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // LEFT
+  // dir_x = -1;
+  // dir_y = 0;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+  // delay(timeD);
+  // sleep();
+
+  //send A for one by one animation
+  if (Serial.available()) {
+    String data = Serial.readString();
+    data.trim();
+    char cmd = data[0];
+
+    if (cmd == 'N') {
+
+      switch (count) {
+        case 0:
+          wakeup();
+          Serial.println("Wake UP!");
+          break;
+        case 1:
+          center_eyes(true);
+          Serial.println("Center Eyes!");
+          break;
+        case 2:
+          move_right_big_eye();
+          Serial.println("Moving Right!");
+          break;
+        case 3:
+          move_left_big_eye();
+          Serial.println("Moving Left!");
+          break;
+        case 4:
+          blink(10);
+          Serial.println("Short Blink!");
+          break;
+        case 5:
+          happy_eye();
+          Serial.println("Happy Eye!");
+          break;
+        case 6:
+          blink(20);
+          Serial.println("Long Blink!");
+          break;
+        case 7:
+          Serial.println("All Motion!");
+          // BOTTOM LEFT
+          dir_x = -1;
+          dir_y = 1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // BOTTOM
+          dir_x = 0;
+          dir_y = 1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // BOTTOM RIGHT
+          dir_x = 1;
+          dir_y = 1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // RIGHT
+          dir_x = 1;
+          dir_y = 0;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // TOP RIGHT
+          dir_x = 1;
+          dir_y = -1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // TOP
+          dir_x = 0;
+          dir_y = -1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // TOP LEFT
+          dir_x = -1;
+          dir_y = -1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // LEFT
+          dir_x = -1;
+          dir_y = 0;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          break;
+        case 8:
+          sleep();
+          break;
+        default:
+          Serial.println("Default!");
+          break;
+      }
+
+      count += 1;
+      if (count == 9) { count = 0; }
+    }
+  }
+}`,
+
+  `#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+
+#define SCREEN_WIDTH 128  // OLED display width, in pixels
+#define SCREEN_HEIGHT 64  // OLED display height, in pixels
+
+#define OLED_RESET -1        // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3C  ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+
+// Adjustable
+int ref_eye_height = 40;
+int ref_eye_width = 40;
+int ref_space_between_eye = 10;
+int ref_corner_radius = 10;
+
+//current state of the eyes
+int left_eye_height = ref_eye_height;
+int left_eye_width = ref_eye_width;
+int left_eye_x = 32;
+int left_eye_y = 32;
+int right_eye_x = 32 + ref_eye_width + ref_space_between_eye;
+int right_eye_y = 32;
+int right_eye_height = ref_eye_height;
+int right_eye_width = ref_eye_width;
+
+int dir_x = 0;
+int dir_y = 0;
+int count = 0;
+
+void draw_eyes(bool update = true);
+void center_eyes(bool update = true);
+void blink(int speed = 12);
+void sleep();
+void wakeup();
+void happy_eye();
+void saccade(int direction_x, int direction_y);
+void move_right_big_eye();
+void move_left_big_eye();
+void move_big_eye(int direction);
+
+int timeD = 1000;
+
+
+void draw_eyes(bool update = true) {
+  display.clearDisplay();
+  //draw from center
+  int x = int(left_eye_x - left_eye_width / 2);
+  int y = int(left_eye_y - left_eye_height / 2);
+  display.fillRoundRect(x, y, left_eye_width, left_eye_height, ref_corner_radius, SSD1306_WHITE);
+  x = int(right_eye_x - right_eye_width / 2);
+  y = int(right_eye_y - right_eye_height / 2);
+  display.fillRoundRect(x, y, right_eye_width, right_eye_height, ref_corner_radius, SSD1306_WHITE);
+  if (update) {
+    display.display();
+  }
+}
+
+void center_eyes(bool update = true) {
+  //move eyes to the center of the display, defined by SCREEN_WIDTH, SCREEN_HEIGHT
+  left_eye_height = ref_eye_height;
+  left_eye_width = ref_eye_width;
+  right_eye_height = ref_eye_height;
+  right_eye_width = ref_eye_width;
+
+  left_eye_x = SCREEN_WIDTH / 2 - ref_eye_width / 2 - ref_space_between_eye / 2;
+  left_eye_y = SCREEN_HEIGHT / 2;
+  right_eye_x = SCREEN_WIDTH / 2 + ref_eye_width / 2 + ref_space_between_eye / 2;
+  right_eye_y = SCREEN_HEIGHT / 2;
+
+  draw_eyes(update);
+}
+
+void blink(int speed = 12) {
+  draw_eyes();
+
+
+  for (int i = 0; i < 3; i++) {
+    left_eye_height = left_eye_height - speed;
+    right_eye_height = right_eye_height - speed;
+    draw_eyes();
+    delay(1);
+  }
+  for (int i = 0; i < 3; i++) {
+    left_eye_height = left_eye_height + speed;
+    right_eye_height = right_eye_height + speed;
+
+    draw_eyes();
+    delay(1);
+  }
+}
+
+void sleep() {  // DRAWS A LINE TO LOOK LIKE SLEEPING
+  left_eye_height = 2;
+  right_eye_height = 2;
+  draw_eyes(true);
+}
+
+void wakeup() {  // WAKE UP THE EYES FROM AN LINE TO ROUND CORNERED SQUARE
+
+  sleep();
+
+  for (int h = 0; h <= ref_eye_height; h += 2) {
+    left_eye_height = h;
+    right_eye_height = h;
+    draw_eyes(true);
+  }
+}
+
+void happy_eye() {
+  center_eyes(false);
+  //draw inverted triangle over eye lower part
+  int offset = ref_eye_height / 2;
+  for (int i = 0; i < 10; i++) {
+    display.fillTriangle(left_eye_x - left_eye_width / 2 - 1, left_eye_y + offset, left_eye_x + left_eye_width / 2 + 1, left_eye_y + 5 + offset, left_eye_x - left_eye_width / 2 - 1, left_eye_y + left_eye_height + offset, SSD1306_BLACK);
+    // display.fillRect(left_eye_x-left_eye_width/2-1, left_eye_y+5, left_eye_width+1, 20,SSD1306_BLACK);
+
+    display.fillTriangle(right_eye_x + right_eye_width / 2 + 1, right_eye_y + offset, right_eye_x - left_eye_width / 2 - 1, right_eye_y + 5 + offset, right_eye_x + right_eye_width / 2 + 1, right_eye_y + right_eye_height + offset, SSD1306_BLACK);
+    // display.fillRect(right_eye_x-right_eye_width/2-1, right_eye_y+5, right_eye_width+1, 20,SSD1306_BLACK);
+    offset -= 2;
+    display.display();
+    delay(1);
+  }
+
+
+  display.display();
+  delay(1000);
+}
+
+void saccade(int direction_x, int direction_y) {
+  //quick movement of the eye, no size change. stay at position after movement, will not move back,  call again with opposite direction
+  //direction == -1 :  move left
+  //direction == 1 :  move right
+
+  int direction_x_movement_amplitude = 8;
+  int direction_y_movement_amplitude = 6;
+  int blink_amplitude = 8;
+
+  for (int i = 0; i < 1; i++) {
+    left_eye_x += direction_x_movement_amplitude * direction_x;
+    right_eye_x += direction_x_movement_amplitude * direction_x;
+    left_eye_y += direction_y_movement_amplitude * direction_y;
+    right_eye_y += direction_y_movement_amplitude * direction_y;
+
+    right_eye_height -= blink_amplitude;
+    left_eye_height -= blink_amplitude;
+    draw_eyes();
+    delay(1);
+  }
+
+  for (int i = 0; i < 1; i++) {
+    left_eye_x += direction_x_movement_amplitude * direction_x;
+    right_eye_x += direction_x_movement_amplitude * direction_x;
+    left_eye_y += direction_y_movement_amplitude * direction_y;
+    right_eye_y += direction_y_movement_amplitude * direction_y;
+
+    right_eye_height += blink_amplitude;
+    left_eye_height += blink_amplitude;
+
+    draw_eyes();
+    delay(1);
+  }
+}
+
+void move_right_big_eye() {
+  move_big_eye(1);
+}
+
+void move_left_big_eye() {
+  move_big_eye(-1);
+}
+
+void move_big_eye(int direction) {  // MOVES TO RIGHT OR LEFT DEPENDING ON 1 OR -1 INPUT.
+  //direction == -1 :  move left
+  //direction == 1 :  move right
+
+  int direction_oversize = 1;
+  int direction_movement_amplitude = 2;
+  int blink_amplitude = 5;
+
+  for (int i = 0; i < 3; i++) {
+    left_eye_x += direction_movement_amplitude * direction;
+    right_eye_x += direction_movement_amplitude * direction;
+    right_eye_height -= blink_amplitude;
+    left_eye_height -= blink_amplitude;
+    if (direction > 0) {
+      right_eye_height += direction_oversize;
+      right_eye_width += direction_oversize;
+    } else {
+      left_eye_height += direction_oversize;
+      left_eye_width += direction_oversize;
+    }
+
+    draw_eyes();
+    delay(1);
+  }
+  for (int i = 0; i < 3; i++) {
+    left_eye_x += direction_movement_amplitude * direction;
+    right_eye_x += direction_movement_amplitude * direction;
+    right_eye_height += blink_amplitude;
+    left_eye_height += blink_amplitude;
+    if (direction > 0) {
+      right_eye_height += direction_oversize;
+      right_eye_width += direction_oversize;
+    } else {
+      left_eye_height += direction_oversize;
+      left_eye_width += direction_oversize;
+    }
+    draw_eyes();
+    delay(1);
+  }
+
+  delay(1000);
+
+  for (int i = 0; i < 3; i++) {
+    left_eye_x -= direction_movement_amplitude * direction;
+    right_eye_x -= direction_movement_amplitude * direction;
+    right_eye_height -= blink_amplitude;
+    left_eye_height -= blink_amplitude;
+    if (direction > 0) {
+      right_eye_height -= direction_oversize;
+      right_eye_width -= direction_oversize;
+    } else {
+      left_eye_height -= direction_oversize;
+      left_eye_width -= direction_oversize;
+    }
+    draw_eyes();
+    delay(1);
+  }
+  for (int i = 0; i < 3; i++) {
+    left_eye_x -= direction_movement_amplitude * direction;
+    right_eye_x -= direction_movement_amplitude * direction;
+    right_eye_height += blink_amplitude;
+    left_eye_height += blink_amplitude;
+    if (direction > 0) {
+      right_eye_height -= direction_oversize;
+      right_eye_width -= direction_oversize;
+    } else {
+      left_eye_height -= direction_oversize;
+      left_eye_width -= direction_oversize;
+    }
+    draw_eyes();
+    delay(1);
+  }
+
+
+  center_eyes();
+}
+
+
+void setup() {
+
+  Serial.begin(115200);
+
+  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {  // Address 0x3D for 128x64
+    Serial.println(F("SSD1306 allocation failed"));
+    for (;;)
+      ;  // Don't proceed, loop forever
+  }
+
+
+  // Clear the buffer
+  display.clearDisplay();
+
+  display.setTextSize(1);               // Normal 1:1 pixel scale
+  display.setTextColor(SSD1306_WHITE);  // Draw white text
+  display.setCursor(0, 0);              // Start at top-left corner
+
+  display.println(F("GITHUB Link:"));
+  display.println(F("  "));
+  display.println(F("intellar/oled_eye_display"));
+  display.println(F("  "));
+  display.println(F("Press \"N\" for          Next Animation"));
+
+  display.display();
+  delay(5000);
+}
+
+
+void loop() {
+  // delay(timeD);
+  // wakeup();
+  // Serial.println("Wake UP!");
+  // delay(timeD);
+  // center_eyes(true);
+  // Serial.println("Center Eyes!");
+  // delay(timeD);
+  // move_right_big_eye();
+  // Serial.println("Moving Right!");
+  // delay(timeD);
+  // move_left_big_eye();
+  // Serial.println("Moving Left!");
+  // delay(timeD);
+  // blink(10);
+  // Serial.println("Short Blink!");
+  // delay(timeD);
+  // happy_eye();
+  // Serial.println("Happy Eye!");
+  // delay(timeD);
+  // blink(20);
+  // Serial.println("Long Blink!");
+  // delay(timeD);
+  // Serial.println("All Motion!");
+  // // BOTTOM LEFT
+  // dir_x = -1;
+  // dir_y = 1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // BOTTOM
+  // dir_x = 0;
+  // dir_y = 1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // BOTTOM RIGHT
+  // dir_x = 1;
+  // dir_y = 1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // RIGHT
+  // dir_x = 1;
+  // dir_y = 0;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // TOP RIGHT
+  // dir_x = 1;
+  // dir_y = -1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // TOP
+  // dir_x = 0;
+  // dir_y = -1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // TOP LEFT
+  // dir_x = -1;
+  // dir_y = -1;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+
+  // // LEFT
+  // dir_x = -1;
+  // dir_y = 0;
+  // saccade(dir_x, dir_y);
+  // delay(300);
+  // saccade(-dir_x, -dir_y);
+  // delay(300);
+  // delay(timeD);
+  // sleep();
+
+  //send A for one by one animation
+  if (Serial.available()) {
+    String data = Serial.readString();
+    data.trim();
+    char cmd = data[0];
+
+    if (cmd == 'N') {
+
+      switch (count) {
+        case 0:
+          wakeup();
+          Serial.println("Wake UP!");
+          break;
+        case 1:
+          center_eyes(true);
+          Serial.println("Center Eyes!");
+          break;
+        case 2:
+          move_right_big_eye();
+          Serial.println("Moving Right!");
+          break;
+        case 3:
+          move_left_big_eye();
+          Serial.println("Moving Left!");
+          break;
+        case 4:
+          blink(10);
+          Serial.println("Short Blink!");
+          break;
+        case 5:
+          happy_eye();
+          Serial.println("Happy Eye!");
+          break;
+        case 6:
+          blink(20);
+          Serial.println("Long Blink!");
+          break;
+        case 7:
+          Serial.println("All Motion!");
+          // BOTTOM LEFT
+          dir_x = -1;
+          dir_y = 1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // BOTTOM
+          dir_x = 0;
+          dir_y = 1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // BOTTOM RIGHT
+          dir_x = 1;
+          dir_y = 1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // RIGHT
+          dir_x = 1;
+          dir_y = 0;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // TOP RIGHT
+          dir_x = 1;
+          dir_y = -1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // TOP
+          dir_x = 0;
+          dir_y = -1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // TOP LEFT
+          dir_x = -1;
+          dir_y = -1;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          // LEFT
+          dir_x = -1;
+          dir_y = 0;
+          saccade(dir_x, dir_y);
+          delay(300);
+          saccade(-dir_x, -dir_y);
+          delay(300);
+
+          break;
+        case 8:
+          sleep();
+          break;
+        default:
+          Serial.println("Default!");
+          break;
+      }
+
+      count += 1;
+      if (count == 9) { count = 0; }
+    }
+  }
+}`,
+
+  `#include <Wire.h>    
+#include <Adafruit_PWMServoDriver.h>    
+#include <SoftwareSerial.h>    
+#include <NewPing.h>    
+Adafruit_PWMServoDriver PWM = Adafruit_PWMServoDriver();    
+const int RIGHT = A2;               // Right IR sensor connected to analog pin A2 of Arduino Uno    
+const int LEFT = A3;                // Left IR sensor connected to analog pin A3 of Arduino Uno    
+const int TRIGGER_PIN = A1;         // Trigger pin connected to analog pin A1 of Arduino Uno    
+const int ECHO_PIN = A0;            // Echo pin connected to analog pin A0 of Arduino Uno    
+const int MAX_DISTANCE = 200;       // Maximum ping distance    
+unsigned int distance = 0;          // Variable to store ultrasonic sensor distance    
+unsigned int Right_Value = 0;       // Variable to store Right IR sensor value    
+unsigned int Left_Value = 0;        // Variable to store Left IR sensor value    
+NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);  // NewPing setup of pins and maximum distance    
+const int servo1 = 0;    
+const int servo2 = 1;    
+const int servo3 = 2;    
+const int servo4 = 3;    
+int Servo1Degree = 150;    
+int Servo2Degree = 150;    
+int Servo3Degree = 150;    
+int Servo4Degree = 325;    
+void setup() {    
+	 Serial.begin(9600);    
+	 pinMode(RIGHT, INPUT); // Set analog pin RIGHT as an input    
+	 pinMode(LEFT, INPUT);  // Set analog pin LEFT as an input    
+	 PWM.begin();    
+	 PWM.setPWMFreq(60);    
+	 PWM.setPWM(servo1, 0, Servo1Degree);    
+	 PWM.setPWM(servo2, 0, Servo2Degree);    
+	 PWM.setPWM(servo3, 0, Servo3Degree);    
+	 PWM.setPWM(servo4, 0, Servo4Degree);    
+	 delay(3000);    
+}    
+void loop() {    
+	 delay(50);                                      // Wait 50ms between pings    
+	 distance = sonar.ping_cm();                     // Send ping, get distance in cm and store it in 'distance' variable    
+	 Serial.print("Distance: ");    
+	 Serial.println(distance);                       // Print the distance in the serial monitor    
+	 Right_Value = digitalRead(RIGHT);               // Read the value from Right IR sensor    
+	 Left_Value = digitalRead(LEFT);                 // Read the value from Left IR sensor    
+	 Serial.print("RIGHT: ");    
+	 Serial.println(Right_Value);                    // Print the right IR sensor value in the serial monitor    
+	 Serial.print("LEFT: ");    
+	 Serial.println(Left_Value);                     // Print the left IR sensor value in the serial monitor    
+	 if ((distance > 15) && (distance < 25)) {        // Check whether the ultrasonic sensor's value stays between 15 to 25.    
+	   // Move Forward:    
+	   Serial.println("Move Forward");    
+	   PWM.setPWM(servo2, 0, (Servo2Degree += 3));    
+	 } else if ((Right_Value == 0) && (Left_Value == 0)) {    
+	   // Move Right    
+	   Serial.println("Move Right");    
+	   PWM.setPWM(servo1, 0, Servo1Degree += 3);    
+	 } else if ((Right_Value == 1) && (Left_Value == 1)) {    
+	   // Move Left    
+	   Serial.println("Move Left");    
+	   PWM.setPWM(servo1, 0, Servo1Degree -= 3);    
+	 } else if ((distance > 5) && (distance < 15)) {    
+	   // Move Backward    
+	   Serial.println("Move Backward");    
+	   PWM.setPWM(servo2, 0, Servo2Degree -= 3);    
+	 } else if ((distance > 25) && (distance < 35)) {    
+	   // Move Downward    
+	   Serial.println("Move Downward");    
+	   PWM.setPWM(servo3, 0, Servo3Degree -= 3);    
+	 } else if ((distance > 35) && (distance < 45)) {    
+	   // Move Upward    
+	   Serial.println("Move Upward");    
+	   PWM.setPWM(servo3, 0, Servo3Degree += 3);    
+	 } else if ((distance > 1) && (distance <= 5)) {    
+	   // Open Finger    
+	   PWM.setPWM(servo4, 0, 325);    
+	   delay(150);    
+	   PWM.setPWM(servo4, 0, 400);    
+	   delay(900);    
+	   PWM.setPWM(servo4, 0, 325);    
+	 } else if ((distance > 40) && (Right_Value == 1) && (Left_Value == 0)) {    
+	   // Move Stop    
+	   Serial.println("Move Stop");    
+	   PWM.setPWM(servo1, 0, Servo1Degree);    
+	   PWM.setPWM(servo2, 0, Servo2Degree);    
+	   PWM.setPWM(servo3, 0, Servo3Degree);    
+	   PWM.setPWM(servo4, 0, 325);    
+	 }    
+}    
+`,
+
+`Github Code Should Appear Here`,
+
+`/* =============
+  Copyright (c) 2024, STMicroelectronics
+
+  All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+  the following conditions are met:
+
+  Redistributions of source code must retain the above copyright notice, this list of conditions and the
+  following disclaimer.
+
+  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+  following disclaimer in the documentation and/or other materials provided with the distribution.
+
+  Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+  products derived from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER / OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+  USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*
+*/
+
+/* If you want to use NEAI functions please, include NEAI library
+   in your Arduino libraries then, uncomment NEAI parts in the following code
+*/
+
+/* Libraries part */
+#include "ArduinoGraphics.h"
+#include "Arduino_LED_Matrix.h"
+#include <Wire.h>
+#include <Adafruit_LIS3DH.h>
+#include <Adafruit_Sensor.h>
+#include <NanoEdgeAI.h>
+#include "knowledge.h"
+
+/* Macros definitions */
+#define SERIAL_BAUD_RATE  115200
+
+/* Default address is 0x18 but, if SDO is powered at 3v3,
+    address is set to 0x19, so you need to change it
+    depending on your current hardware configuration.
+*/
+#define SENSOR_I2C_ADDR 0x19
+
+/* Sensor data rates.
+   You can choose from:
+   LIS3DH_DATARATE_1_HZ
+   LIS3DH_DATARATE_10_HZ
+   LIS3DH_DATARATE_25_HZ
+   LIS3DH_DATARATE_50_HZ
+   LIS3DH_DATARATE_100_HZ
+   LIS3DH_DATARATE_200_HZ
+   LIS3DH_DATARATE_400_HZ
+   LIS3DH_DATARATE_LOWPOWER_1K6HZ
+   LIS3DH_DATARATE_LOWPOWER_5KHZ
+*/
+#define SENSOR_DATA_RATE	LIS3DH_DATARATE_LOWPOWER_1K6HZ
+
+/* Sensor ranges.
+   You can choose from:
+   LIS3DH_RANGE_16_G
+   LIS3DH_RANGE_8_G
+   LIS3DH_RANGE_4_G
+   LIS3DH_RANGE_2_G
+*/
+#define SENSOR_RANGE	LIS3DH_RANGE_2_G
+
+/* NanoEdgeAI defines part
+   NEAI_MODE = 1: NanoEdgeAI functions = AI Mode.
+   NEAI_MODE = 0: Datalogging mode.
+*/
+#define NEAI_MODE 1
+#define SENSOR_SAMPLES	512
+#define AXIS  3
+
+/* In this example, we use I2C connection */
+Adafruit_LIS3DH lis = Adafruit_LIS3DH();
+
+/* Global variables definitions */
+static uint16_t neai_ptr = 0; //pointers to fill for sound buffer
+static float neai_buffer[SENSOR_SAMPLES * AXIS] = {0.0}; //souhnd buffer
+
+uint8_t neai_code = 0; //initialization code
+uint16_t id_class = 0; // Point to id class (see argument of neai_classification fct)
+float output_class_buffer[CLASS_NUMBER]; // Buffer of class probabilities
+const char *id2class[CLASS_NUMBER + 1] = { // Buffer for mapping class id to class name
+  "unknown",
+  "bouepas_concat",
+  "boue_concat",
+};
+
+/* Declare matrix to display */
+byte frame[8][12] = {
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+};
+
+char text[30];
+
+ArduinoLEDMatrix matrix;
+
+
+/* Initialization function: In this function,
+    code runs only once at boot / reset.
+*/
+void setup() {
+  /* Init serial at baud rate 115200 */
+  Serial.begin(SERIAL_BAUD_RATE);
+  delay(10);
+  matrix.begin();
+
+  pinMode(A0, OUTPUT);
+
+  /* I2C workaround: Sometimes, on some boards,
+     I2C get stuck after software reboot, reset so,
+     to avoid this, we toggle I2C clock pin at boot.
+  */
+  pinMode(SCL, OUTPUT);
+  for (uint8_t i = 0; i < 20; i++) {
+    digitalWrite(SCL, !digitalRead(SCL));
+    delay(1);
+  }
+  delay(100);
+
+  /* Init I2C connection between board & sensor */
+  if (!lis.begin(SENSOR_I2C_ADDR)) {
+    Serial.print("Can't initialize I2C comm with LIS3DH sensor...\n");
+    while (1);
+  }
+
+  /* Init LIS3DH with desired settings: odr & range */
+  lis.setRange(SENSOR_RANGE);
+  lis.setDataRate(SENSOR_DATA_RATE);
+
+  /* Initialize NanoEdgeAI AI */
+  neai_code = neai_classification_init(knowledge);
+  if (neai_code != NEAI_OK) {
+    Serial.print("Not supported board.\n");
+  }
+}
+
+/* Main function: Code run indefinitely */
+void loop() {
+  /* Get data in the neai buffer */
+  while (neai_ptr < SENSOR_SAMPLES) {
+    /* Check if new data if available */
+    if (lis.haveNewData()) {
+      /* If new data is available we read it ! */
+      lis.read();
+      /* Fill neai buffer with new accel data */
+      neai_buffer[AXIS * neai_ptr] = (float) lis.x;
+      neai_buffer[(AXIS * neai_ptr) + 1] = (float) lis.y;
+      neai_buffer[(AXIS * neai_ptr) + 2] = (float) lis.z;
+      /* Increment neai pointer */
+      neai_ptr++;
+    }
+  }
+  /* Reset pointer */
+  neai_ptr = 0;
+
+  /* Depending on NEAI_MODE value, run NanoEdge AI functions
+     or print accelerometer data to the serial (datalogging)
+  */
+  if (NEAI_MODE) {
+    neai_classification(neai_buffer, output_class_buffer, &id_class);
+    switch (id_class) {
+      case 1:
+        strcpy (text, " !!! Boiling !!! ");
+        digitalWrite(A0, HIGH);
+        break;
+      case 2:
+        strcpy (text, " Not Boiling ");
+        digitalWrite(A0, LOW);
+        break;
+      default:
+        strcpy (text, " ERROR ");
+        break;
+    }
+    Serial.print(output_class_buffer[1]);
+    Serial.print(' ');
+    Serial.print(output_class_buffer[0]);
+    Serial.println(' ');
+
+    matrix.beginDraw();
+    matrix.stroke(0xFFFFFFFF);
+    matrix.textScrollSpeed(50);
+    matrix.textFont(Font_5x7);
+    matrix.beginText(0, 1, 0xFFFFFF);
+    matrix.println(text);
+    matrix.endText(SCROLL_LEFT);
+    matrix.endDraw();
+
+  }
+  else {
+    /* Print the whole buffer to the serial */
+    for (uint16_t i = 0; i < AXIS * SENSOR_SAMPLES; i++) {
+      Serial.print((String)neai_buffer[i] + " ");
+    }
+    Serial.print("\n");
+  }
+  /* Clean neai buffer */
+  memset(neai_buffer, 0.0, AXIS * SENSOR_SAMPLES * sizeof(float));
+}`,
+
 
 ]
 

@@ -1,6 +1,6 @@
-import { Project } from "../models/index.js"
-import code from "./ProjectSeederData/code.js"
-import descriptions from "./ProjectSeederData/descriptions.js"
+import { Project } from "../../models/index.js"
+import code from "../ProjectSeederData/code.js"
+import descriptions from "../ProjectSeederData/descriptions.js"
 
 
 class ProjectSeeder {
@@ -49,6 +49,58 @@ class ProjectSeeder {
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/f27de0e3-aa87-4c5f-966a-37b14891dadd.jpg",
         parentProjectId: 4,
+      },
+      {
+        userId: 2,
+        title: "Arduino OLED Eyes Animation for Robotics Projects",
+        description: descriptions[4],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[4],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/0633ba80-aeb9-426a-89fc-ab9197b6191f.jpg",
+        parentProjectId: 5,
+      },
+      {
+        userId: 2,
+        title: "Build Your Own Object Tracking 4-DOF Robotics Arm With Arduino",
+        description: descriptions[5],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[5],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/d3d28934-f6b8-4626-9fc2-f06fe058b398.png",
+        parentProjectId: 6,
+      },
+      {
+        userId: 2,
+        title: "ARPoLAN: Network Monitoring and Security Tool",
+        description: descriptions[6],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[6],
+        githubFileURL: "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/bd1eaad5-6738-4bbb-bf71-be3028fa1032.jpg",
+        parentProjectId: 7,
+      },
+      {
+        userId: 2,
+        title: "Arduino UNO game engine with composite video output",
+        description: descriptions[7],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[7],
+        githubFileURL: "https://github.com/Smashcat/UNO_Manic_Miner/blob/main/games/ManicMiner/ManicMiner.ino",
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/a5e8e30a-2819-4b67-8d5b-604723ac43af.png",
+        parentProjectId: 8,
+      },
+      {
+        userId: 2,
+        title: "To Boil Or Not To Boil? That Is The Question!",
+        description: descriptions[8],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[8],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/946b62af-00b7-4230-8925-6bcae9614ede.gif",
+        parentProjectId: 9,
       },
     ]
 
