@@ -46,14 +46,14 @@ const HowItWorks = () => {
           images.
         </p>
         <h4>Steps:</h4>
-        <p>1. Create and login to your account, or click login with GitHub.</p>
+        <p>1. Create an account or login with GitHub.</p>
         <p>
-          2. Click on a project thumbnail to view its display page. Click the orange “Fork Project”
+          2. Click on a project thumbnail to view its display page. Click the “Fork Project”
           button to create a fork of that project.
         </p>
         <p>
-          3. After a project has been forked, clicking the orange “Project Forks” button on a
-          project's display page will show you a list of forked versions of the project.
+          3. After a project has been forked, clicking the “Project Forks” button on a
+          project's display page will show you a list of the forked versions of the project.
         </p>
         <h2>Keep your project's code up to date automatically:</h2>
         <p>
