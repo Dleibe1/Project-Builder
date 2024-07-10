@@ -67,7 +67,6 @@ body::before {
 
 .project-tile {
   margin-top: 1rem;
-  // border: 1px solid #FFADAD;
   border-radius: 10px;
   padding: 1.5rem;
   padding-bottom: 0rem;
@@ -82,6 +81,10 @@ body::before {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+}
+
+.project-tile .project-tile-forks-button {
+  margin-top: 0;
 }
 
 .project-tile img {
@@ -115,6 +118,12 @@ body::before {
 .project-tile:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .menu {

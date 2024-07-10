@@ -23,6 +23,7 @@ const MyBuildShow = (props) => {
   const params = useParams()
   const { id } = params
   const codeRef = useRef(null)
+
   useEffect(() => {
     getMyBuild()
   }, [])

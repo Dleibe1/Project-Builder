@@ -25,7 +25,6 @@ const ForkList = (props) => {
   }, [])
 
   const forksArray = forks.map((fork) => {
-    if (fork.id !== id) {
       return (
         <ProjectTile
         key={fork.id}
@@ -35,7 +34,6 @@ const ForkList = (props) => {
         thumbnailImage={fork.thumbnailImage}
         />
       )
-    }
   })
   return (
     <div>

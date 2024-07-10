@@ -11,12 +11,13 @@ const forkRouter = new express.Router()
 forkRouter.get("/:id/fork-list", async (req, res) => {
   const { id } = req.params
   try {
-    const forks = await Project.query().where("parentProjectId", parseInt(id))
-    const serializedForks = await Promise.all(
-      forks.map((fork) => {
-          return ProjectSerializer.getProjectDetails(fork, false)
+    const projects = await Project.query().where("parentProjectId", parseInt(id))
+    const serializedProjects = await Promise.all(
+      projects.map((fork) => {
+        return ProjectSerializer.getProjectDetails(fork, false)
       })
     )
+    const serializedForks = serializedProjects.filter((project) => project.id !== project.parentProjectId)
     res.status(200).json({ forks: serializedForks })
   } catch (error) {
     console.log(error)

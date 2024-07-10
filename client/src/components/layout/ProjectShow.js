@@ -19,6 +19,7 @@ const ProjectShow = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+  const [hasForks, setHasForks] = useState(false)
   const params = useParams()
   const { id } = params
   const codeRef = useRef(null)
@@ -53,6 +54,27 @@ const ProjectShow = (props) => {
     }
   }
 
+  const checkForForks = async () => {
+    try {
+      const response = await fetch(`/api/v1/project-forks/${id}/fork-list`)
+      if (!response.ok) {
+        const newError = new Error("Error in the fetch!")
+        throw newError
+      }
+      const responseBody = await response.json()
+      console.log(responseBody.forks)
+      if (responseBody.forks.length) {
+        setHasForks(true)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    checkForForks()
+  }, [])
+
   const forkProjectButton = [<ForkProjectButton key={id} id={id} />]
   const codeMessage = project.githubFileURL.length
     ? `Code fetched from GitHub just now: (${project.githubFileURL}) `
@@ -68,7 +90,7 @@ const ProjectShow = (props) => {
     <div className="project-show">
       <div>
         {props.user ? forkProjectButton : []}
-        <ProjectForksButton id={id} />
+        {hasForks ? <ProjectForksButton id={id} /> : []}
       </div>
       <h2>{project.title}</h2>
       <div className="images-container">

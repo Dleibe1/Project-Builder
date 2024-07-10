@@ -17,7 +17,7 @@ const ForkProjectButton = ({ id }) => {
         },
       }}
     >
-      Fork Project
+      Fork This Project
     </Button>
   )
 }
