@@ -205,6 +205,10 @@ class ProjectSeeder {
     ]
     await Project.query().insert(parentProjects)
     await Project.query().insert(forks)
+
+    //Below is the data for the example user:
+    
+
   }
 }
 
