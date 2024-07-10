@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import config from "../../config"
 
@@ -11,12 +11,20 @@ const RegistrationForm = () => {
     email: "",
     password: "",
     passwordConfirmation: "",
-    userName: ""
+    userName: "",
   })
 
   const [errors, setErrors] = useState({})
   const [serverErrors, setServerErrors] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
+
+  useEffect(() => {
+    document.body.classList.add("hide-background")
+
+    return () => {
+      document.body.classList.remove("hide-background")
+    }
+  }, [])
 
   const validateInput = (payload) => {
     setErrors({})
@@ -51,10 +59,10 @@ const RegistrationForm = () => {
         }
       }
     }
-    if (userName.trim() === ""){
+    if (userName.trim() === "") {
       newErrors = {
         ...newErrors,
-        userName: "is required"
+        userName: "is required",
       }
     }
 
@@ -120,7 +128,12 @@ const RegistrationForm = () => {
         <div>
           <label>
             Enter Desired Username
-            <input type="text" name="userName" value={userPayload.userName} onChange={onInputChange} />
+            <input
+              type="text"
+              name="userName"
+              value={userPayload.userName}
+              onChange={onInputChange}
+            />
             <FormError error={errors.userName} />
           </label>
         </div>

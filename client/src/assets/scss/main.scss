@@ -32,6 +32,14 @@ body::before {
   z-index: -1;
 }
 
+body.hide-background::before {
+  content: none;
+}
+
+body.hide-background{
+  background-color: white;
+}
+
 @media (max-width: 1500px) {
   body::before {
     opacity: 0;
