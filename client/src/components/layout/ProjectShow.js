@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Redirect } from "react-router-dom"
 import ForkProjectButton from "./ForkProjectButton.js"
 import ProjectForksButton from "./ProjectForksButton.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
@@ -20,6 +20,7 @@ const ProjectShow = (props) => {
     thumbnailImage: "",
   })
   const [hasForks, setHasForks] = useState(false)
+  const [shouldRedirect, setShouldRedirect] = useState(false)
   const params = useParams()
   const { id } = params
   const codeRef = useRef(null)
@@ -46,9 +47,10 @@ const ProjectShow = (props) => {
         throw error
       }
       const responseBody = await response.json()
-      let project = responseBody.project
-      console.log(project)
-      console.log(props.user)
+      const project = responseBody.project
+      if(project.userId === props.user.id){
+        setShouldRedirect(true)
+      }
       prepForFrontEnd(project)
       setProject(project)
     } catch (error) {
@@ -75,6 +77,10 @@ const ProjectShow = (props) => {
   useEffect(() => {
     checkForForks()
   }, [])
+
+  if (shouldRedirect) {
+    return <Redirect push to={`/my-builds/${id}`} />
+   }
 
   const forkProjectButton = [<ForkProjectButton key={id} id={id} />]
   const codeMessage = project.githubFileURL.length
