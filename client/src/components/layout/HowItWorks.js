@@ -34,11 +34,18 @@ const HowItWorks = () => {
             Get familiar with Arduino.
           </a>
         </p>
-        <p>
-          After creating an account or logging in with GitHub, click “New Build” to post your
-          Microcontroller project to the site. Click “My Builds” to view the list of builds you've
-          created.
-        </p>
+        <p>Login with the example account:</p>
+        <ol>
+          <li>Click "Sign In"</li>
+          <li>Use the following credentials:</li>
+        </ol>
+        <h5>Email:</h5>
+        <h4>example@example.com </h4>
+        <h5>Password:</h5>
+        <h4>cat</h4>
+        As an alternative, you can login in with GitHub or create an account. Click “New Build” to
+        post your Microcontroller project to the site. Click “My Builds” to view and edit the list
+        of projects you've created.
         <h2>Fork another user's project:</h2>
         <p>
           Create your own version of another user's project. You can change any aspect of the
@@ -48,12 +55,12 @@ const HowItWorks = () => {
         <h4>Steps:</h4>
         <p>1. Create an account or login with GitHub.</p>
         <p>
-          2. Click on a project thumbnail to view its display page. Click the “Fork Project”
-          button to create a fork of that project.
+          2. Click on a project thumbnail to view its display page. Click the “Fork Project” button
+          to create a fork of that project.
         </p>
         <p>
-          3. After a project has been forked, clicking the “Project Forks” button on a
-          project's display page will show you a list of the forked versions of the project.
+          3. After a project has been forked, clicking the “Project Forks” button on a project's
+          display page will show you a list of the forked versions of the project.
         </p>
         <h2>Keep your project's code up to date automatically:</h2>
         <p>
