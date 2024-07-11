@@ -15,7 +15,7 @@ class UserSeeder {
       { email: "dleibe1@google.com", cryptedPassword: hashedPasswords[0], userName: "dleibe1", loginMethod: "standard" },
       { email: "lukeM2@hotmail.com", cryptedPassword: hashedPasswords[1], userName: "lukeTheMan", loginMethod: "standard" },
       { email: "chrisC@google.com", cryptedPassword: hashedPasswords[2], userName: "BigChris", loginMethod: "standard" },
-      { email: "example@example.com", cryptedPassword: hashedPasswords[3], userName: "Example", loginMethod: "standard" },
+      { email: "example@example.com", cryptedPassword: hashedPasswords[3], userName: "Example", loginMethod: "standard", githubAvatarURL: 'https://us.123rf.com/450wm/davids47/davids472308/davids47230801943/212002604-isolated-cute-female-hipster-character-avatar-vector.jpg?ver=6' },
     ])
   }
 }

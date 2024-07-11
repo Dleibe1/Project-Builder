@@ -48,6 +48,7 @@ const ProjectShow = (props) => {
       const responseBody = await response.json()
       let project = responseBody.project
       console.log(project)
+      console.log(props.user)
       prepForFrontEnd(project)
       setProject(project)
     } catch (error) {
