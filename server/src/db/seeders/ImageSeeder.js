@@ -170,6 +170,22 @@ class ImageSeeder {
         projectId: 18,
         imageURL: "https://projects.arduinocontent.cc/688b4430-cf27-4157-ab6e-cd0841517e64.png",
       },
+      {
+        projectId: 19,
+        imageURL: "https://projects.arduinocontent.cc/62b67aa4-b14c-41c9-aab6-20971c5c4f96.jpg",
+      },
+      {
+        projectId: 19,
+        imageURL: "https://projects.arduinocontent.cc/2fdee64a-c300-40aa-95b4-3dd0fe622e0e.png",
+      },
+      {
+        projectId: 19,
+        imageURL: "https://projects.arduinocontent.cc/622ce4fe-cd0d-420f-9f7c-2e9dbbf654fb.png",
+      },
+      {
+        projectId: 19,
+        imageURL: "https://projects.arduinocontent.cc/222f15b6-f4c6-4acb-b01d-6e54ac36e159.png",
+      },
      
     ])
   }

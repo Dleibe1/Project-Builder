@@ -1778,7 +1778,123 @@ void loop() {
   memset(neai_buffer, 0.0, AXIS * SENSOR_SAMPLES * sizeof(float));
 }`,
 
+`/* Libraries ----------------------------------------------------------*/
+#include "ArduinoGraphics.h"
+#include "Arduino_LED_Matrix.h"
+#include "NanoEdgeAI.h"
+#include "knowledge.h"
+
+/* Defines  ----------------------------------------------------------*/
+#define SENSOR_SAMPLES    1024 //buffer size
+#define AXIS              1    //microphone is 1 axis
+#define DOWNSAMPLE        32   //microphone as a very high data rate, we downsample it
+
+
+/* Prototypes ----------------------------------------------------------*/
+void get_microphone_data(); //function to collect buffer of sound
+
+/* Global variables ----------------------------------------------------------*/
+static uint16_t neai_ptr = 0; //pointers to fill for sound buffer
+static float neai_buffer[SENSOR_SAMPLES * AXIS] = {0.0}; //souhnd buffer
+int const AMP_PIN = A0;       // Preamp output pin connected to A0
+
+/* NEAI PART*/
+uint8_t neai_code = 0; //initialization code
+uint16_t id_class = 0; // Point to id class (see argument of neai_classification fct)
+float output_class_buffer[CLASS_NUMBER]; // Buffer of class probabilities
+const char *id2class[CLASS_NUMBER + 1] = { // Buffer for mapping class id to class name
+  "unknown",
+  "up",
+  "down",
+};
+
+/* Declare matrix to display */
+byte frame[8][12] = {
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+};
+
+char text[30];
+
+
+/* Objects  ----------------------------------------------------------*/
+ArduinoLEDMatrix matrix;
+
+
+/* Setup function ----------------------------------------------------------*/
+void setup() {
+  Serial.begin(115200);
+  delay(10);
+  matrix.begin();
+
+  /* Initialize NanoEdgeAI AI */
+  neai_code = neai_classification_init(knowledge);
+  if (neai_code != NEAI_OK) {
+    Serial.print("Not supported board.\n");
+  }
+}
+
+/* Infinite loop ----------------------------------------------------------*/
+void loop() {
+  get_microphone_data();
+  neai_classification(neai_buffer, output_class_buffer, &id_class);
+  /* DISPLAY THE SONG NAME */
+ switch(id_class){
+  case 1:
+    strcpy (text, " song1 ");
+    break;
+  case 2:
+    strcpy (text, " song2 ");
+    break;
+  default:
+    strcpy (text, " check switch in code ");
+    break;
+ }
+
+  Serial.println(id_class);
+  matrix.beginDraw();
+  matrix.stroke(0xFFFFFFFF);
+  matrix.textScrollSpeed(50);
+  matrix.textFont(Font_5x7);
+  matrix.beginText(0, 1, 0xFFFFFF);
+  matrix.println(text);
+  matrix.endText(SCROLL_LEFT);
+  matrix.endDraw();
+}
+
+
+/* Functions declaration ----------------------------------------------------------*/
+void get_microphone_data()
+{
+  static uint16_t temp = 0; //stock values
+  int sub = 0; //increment to downsample
+  //while the buffer is not full
+  while (neai_ptr < SENSOR_SAMPLES) {
+    //we only get a value every DOWNSAMPLE (32 in this case)
+    if (sub > DOWNSAMPLE) {
+      /* Fill neai buffer with new accel data */
+      neai_buffer[neai_ptr] = analogRead(AMP_PIN);
+      /* Increment neai pointer */
+      neai_ptr++;
+      sub = 0; //reset increment
+    }
+    else {
+      //we read the sample even if we don't use it
+      //else it is instantaneous and we don't downsample
+      temp = analogRead(AMP_PIN);
+    }
+    sub ++;
+  }
+  neai_ptr = 0; //reset the beginning position
+}`
 
 ]
+
 
 export default code

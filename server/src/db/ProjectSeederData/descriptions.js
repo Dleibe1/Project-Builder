@@ -54,8 +54,40 @@ We can create some code to collect data from the accelerometer, but NanoEdge giv
 Open NanoEdge Go the Data Logger Select Arduino boards Select the LIS3DH 
 `,
 
+`In this tutorial we will collect microphone data to get chunks of songs and use NanoEdge AI Studio (a free tool) to automatically create an AI model able to classify our songs. 
+Do not worry, you don't need knowledge in AI to follow this tutorial :) 
+ 
+Here is the plan: 
+Step 1: Setup Step 2: Collect microphone data Step 3: Create the classification model Step 4: Add the model in our Arduino code Step 5: Use the LED matrix to display the song detected 
 
+First, we need to connect the microphone to the Arduino board. 
+Use jumper wires to connect: 
+OUT (mic) to A0 (board) GND to one of the GND on the board VCC to 3.3v 
+Make sure that you have a USB data cable connecting the board to the pc. 
+ 
+In Arduino IDE: 
+Make sure you selected the right COM port: Tools > Port and select the right one. 
+Select the right board: 
+Tools > Boards > Arduino Renesas UNO R4 boards > Arduino UNO R4 WIFI If you don't find it, click on Tools > Boards > Boards Manager..., look for the UNO R4 and install the package 
+ 
+Step 2: Logging Data With Microphone
+We use a digital microphone that has a very high data rate. 
+We will collect chucks of the music by collecting buffers of values from the microphone and also reduce the data rate by keeping only 1 value every 32 collected. 
+We collect buffers of music and note single notes to classify them. Even for a human it is impossible to recognize a song with one random note taken from the song. 
+ 
+To accomplish this: 
+Define the AMP_PIN to A0 as our microphone use the A0 pin to send data We define a buffer called neai_buffer to stock the value collected In our case, the buffer is of size 1024 (SENSOR_SAMPLE) We initialize the serial in the setup() We create a get_microphone_data() to collect buffers of data from the microphone. We get only 1/32 values We print the buffer to send it via serial. 
 
+Open NanoEdge Create a N-class classification project Select the Arduino R4 WIFI board as target (other boards are compatible) Select Microphone 1axis as sensor Click Next 
+Then we will collect data for every music. In the SIGNAL STEP: 
+Click ADD SIGNAL then FROM SERIAL (USB) First launch the music (on a phone for example) Then click START/STOP to collect data (make sure the right COM port is selected) Collect the buffers while playing the song at least two times. Avoid empty buffers (pause if you need) Click CONTINUE then IMPORT Rename the file if you want repeat for each song 
+Once you have everything that you want, go to the BENCHMARK STEP. 
+ 
+The more song you have, the harder it will get, so start simple. 
+Click on NEW BENCHMARK Select all the song and click START 
+The benchmark will look for the best model and preprocessing of your data to find a model that is able to classify the songs. 
+
+`
 
 ]
 

@@ -24,8 +24,8 @@ body::before {
   width: 100%;
   height: 100%;
   background:
-    url("https://i.imgur.com/eZUwSpr.png") center left no-repeat fixed,
-    url("https://i.imgur.com/y13kUPj.png") center right no-repeat fixed;
+    url("../../../public/images/left-background.png") center left no-repeat fixed,
+    url("../../../public/images/right-background.png") center right no-repeat fixed;
   background-size: 13%, 13%;
   opacity: 1;
   transition: opacity 1s ease-out;

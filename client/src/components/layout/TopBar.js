@@ -122,7 +122,7 @@ const TopBar = ({ user }) => {
                 },
               }}
             >
-              <img src="https://i.imgur.com/8RVIu4u.png" id="logo" />
+              <img src="images/project-builder-logo.png" id="logo" />
               Home
             </Button>
           </div>

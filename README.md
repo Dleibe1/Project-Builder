@@ -99,6 +99,7 @@ It is for this reason that I created the "Fork Project" feature, which allows a 
    ```sh
    cd server
    yarn db:seed
+   
    ```
 
 6. Start up the application, from the root folder:

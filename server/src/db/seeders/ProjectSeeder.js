@@ -2,10 +2,9 @@ import { Project } from "../../models/index.js"
 import code from "../ProjectSeederData/code.js"
 import descriptions from "../ProjectSeederData/descriptions.js"
 
-
 class ProjectSeeder {
   static async seed() {
-   const parentProjects = [
+    const parentProjects1 = [
       {
         userId: 1,
         title: "Big Brother is watching you",
@@ -76,7 +75,8 @@ class ProjectSeeder {
         description: descriptions[6],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[6],
-        githubFileURL: "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
+        githubFileURL:
+          "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/bd1eaad5-6738-4bbb-bf71-be3028fa1032.jpg",
         parentProjectId: 7,
@@ -87,7 +87,8 @@ class ProjectSeeder {
         description: descriptions[7],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[7],
-        githubFileURL: "https://github.com/Smashcat/UNO_Manic_Miner/blob/main/games/ManicMiner/ManicMiner.ino",
+        githubFileURL:
+          "https://github.com/Smashcat/UNO_Manic_Miner/blob/main/games/ManicMiner/ManicMiner.ino",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/a5e8e30a-2819-4b67-8d5b-604723ac43af.png",
         parentProjectId: 8,
@@ -104,8 +105,9 @@ class ProjectSeeder {
       },
     ]
 
-    const forks = [
+    const forks1 = [
       {
+        //id = 10
         userId: 2,
         title: "My version of Big Brother is watching you",
         description: descriptions[0],
@@ -135,8 +137,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[2],
         githubFileURL: "",
-        thumbnailImage:
-          "https://m.media-amazon.com/images/I/71HHUsbSsrL.jpg",
+        thumbnailImage: "https://m.media-amazon.com/images/I/71HHUsbSsrL.jpg",
         parentProjectId: 3,
       },
       {
@@ -145,8 +146,7 @@ class ProjectSeeder {
         description: descriptions[3],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[3],
-        thumbnailImage:
-          "https://www.siraudiotools.com/pics/spectrumAnalyzer_slide0.jpg",
+        thumbnailImage: "https://www.siraudiotools.com/pics/spectrumAnalyzer_slide0.jpg",
         parentProjectId: 4,
       },
       {
@@ -155,8 +155,7 @@ class ProjectSeeder {
         description: descriptions[4],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[4],
-        thumbnailImage:
-          "https://i.ytimg.com/vi/n3Fj2zCOv98/sddefault.jpg",
+        thumbnailImage: "https://i.ytimg.com/vi/n3Fj2zCOv98/sddefault.jpg",
         parentProjectId: 5,
       },
       {
@@ -175,9 +174,9 @@ class ProjectSeeder {
         description: descriptions[6],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[6],
-        githubFileURL: "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
-        thumbnailImage:
-          "https://hackaday.com/wp-content/uploads/2018/09/ducky_feat.jpg",
+        githubFileURL:
+          "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
+        thumbnailImage: "https://hackaday.com/wp-content/uploads/2018/09/ducky_feat.jpg",
         parentProjectId: 7,
       },
       {
@@ -186,12 +185,14 @@ class ProjectSeeder {
         description: descriptions[7],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[7],
-        githubFileURL: "https://github.com/Smashcat/UNO_Manic_Miner/blob/main/games/ManicMiner/ManicMiner.ino",
+        githubFileURL:
+          "https://github.com/Smashcat/UNO_Manic_Miner/blob/main/games/ManicMiner/ManicMiner.ino",
         thumbnailImage:
           "https://cdn.mobygames.com/screenshots/1971819-basketball-atari-2600-the-game-in-black-and-white-mode.png",
         parentProjectId: 8,
       },
       {
+        // id = 18
         userId: 2,
         title: "To Boil Or Not To Boil? That Is The Question!",
         description: descriptions[8],
@@ -201,13 +202,24 @@ class ProjectSeeder {
           "https://www.smartmachine.com/wp-content/uploads/2018/05/Cooper-River-Brewery.jpg",
         parentProjectId: 9,
       },
-      
     ]
-    await Project.query().insert(parentProjects)
-    await Project.query().insert(forks)
+    await Project.query().insert(parentProjects1)
+    await Project.query().insert(forks1)
 
-    //Below is the data for the example user:
-    
+    const exampleUserProjects = [
+      {
+        // id = 19
+        userId: 4,
+        title: "How To Do Automatic Song classification",
+        description: descriptions[9],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[9],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/898064f0-ad8a-4ea9-a666-c2afbea15f41.gif",
+        parentProjectId: 19
+      },
+    ]
+    await Project.query().insert(exampleUserProjects)
 
   }
 }
