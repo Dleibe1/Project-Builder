@@ -212,11 +212,21 @@ class ProjectSeeder {
         userId: 4,
         title: "How To Do Automatic Song classification",
         description: descriptions[9],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IDE and NanoEdge AI Studio",
         code: code[9],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/898064f0-ad8a-4ea9-a666-c2afbea15f41.gif",
         parentProjectId: 19
+      },
+      {
+        userId: 4,
+        title: "How to make simplest possible autorange Capacitance meter",
+        description: descriptions[10],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[10],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/cea949c5-d9fa-40cd-b847-d5db51a3f787.jpg",
+        parentProjectId: 20
       },
     ]
     await Project.query().insert(exampleUserProjects)

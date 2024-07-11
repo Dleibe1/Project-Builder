@@ -1892,6 +1892,119 @@ void get_microphone_data()
     sub ++;
   }
   neai_ptr = 0; //reset the beginning position
+}`,
+
+`#include <U8g2lib.h>
+#include <Capacitor.h>
+
+U8G2_ST7565_ERC12864_1_4W_SW_SPI u8g2 ( U8G2_R0, /* scl=*/  13 , /* si=*/  11 , /* cs=*/  10 , /* rs=*/  9 , /* rse=*/  8 ) ;
+
+Capacitor cap1(7,A2);
+
+int X1,C; //resistance value
+byte  f_ic, xp;
+char R1_str[3];
+char R_str[4];
+float tau1;   
+unsigned long T1, T2, tau;
+
+void setup() {
+  Serial.begin(9600);
+   u8g2.begin();
+   u8g2.setContrast(35);
+}
+
+   
+    void loop() {
+ // Serial.println(cap1.Measure());  // Measure the capacitance (in pF), print to Serial Monitor
+ // delay(1000);                     // Wait for 1 second, then repeat
+  Pomiar_C();
+}  
+
+
+void Pomiar_C(){
+  Cyfry();
+  char C_str[4];
+  sprintf(C_str,"%d", X1);
+  u8g2.firstPage();
+  do {
+
+  u8g2.drawFrame(0,0,128,64);  
+  u8g2.drawRFrame(2,2,124,60,3);
+    
+     u8g2.setFont(u8g2_font_10x20_tr);
+     u8g2.drawStr(20, 18, "Capacity:");        
+     if (f_ic > 6) { 
+        u8g2.setFont(u8g2_font_fub25_t_symbol);
+        u8g2.drawGlyph(80,52,956);               //symbol u
+     }   
+     u8g2.setFont(u8g2_font_fub25_tr);
+     u8g2.drawStr(xp, 52, C_str);
+     if (f_ic < 7) {u8g2.drawStr(76, 52, "n");}
+     if (f_ic < 4) {u8g2.drawStr(76, 52, "p");}
+     u8g2.drawStr(100, 52, "F"); 
+     if (f_ic == 1 or f_ic == 4 or f_ic == 7) {
+         u8g2.drawStr(28, 52, "."); 
+         u8g2.drawStr(40, 52, R1_str); 
+     }    
+  } while ( u8g2.nextPage() );
+  delay(500);
+}
+
+void Cyfry(){
+//  if (P1 == LOW) {tau1 = tau/2.329;}    
+//  if (P2 == LOW) {tau1 = tau/350;}
+ // if (P3 == LOW) {tau1 = cap1.Measure();}
+
+ tau1 = cap1.Measure();
+  //obliczenie ilości cyfr wartości
+  if (tau1 >= 1 && tau1 <10) {                  
+     X1 = tau1;
+     int X2 = 10 * (tau1 - X1);
+  sprintf(R1_str,"%d", X2);
+     f_ic = 1;
+     xp = 10;     
+  }
+  if (tau1 >= 10 && tau1 <100) {            
+     X1 = tau1;
+     f_ic = 2;
+     xp = 32;
+  }
+  if (tau1 >= 100 && tau1 <1000) {         
+     X1 = tau1;
+     f_ic = 3;
+     xp = 10;
+  }
+  if (tau1/1000 >= 1 && tau1/1000 <10) {        
+     X1 = int(tau1/1000);
+     f_ic = 4;
+     xp = 10;
+     int X2 = 10 * (tau1/1000 - X1);
+   sprintf(R1_str,"%d", X2);
+  }
+  if (tau1/10000 >= 1 && tau1/10000 <10) {      
+     X1 = int(tau1/1000);
+     f_ic = 5;
+     xp = 32;
+  }
+  if (tau1/100000 >= 1 && tau1/100000 <10) {    
+     X1 = int(tau1/1000);
+     f_ic = 6;
+     xp = 10;
+  }
+  if (tau1/1000000 >= 1 && tau1/1000000 <10) {  
+     X1 = int(tau1/1000000);
+     f_ic = 7;
+     xp = 10;
+     
+     int X2 = 10 * (tau1/1000000 - X1);
+   sprintf(R1_str,"%d", X2);
+  }
+   if (tau1/10000000 >= 1 && tau1/10000000 <10) {  
+     X1 = int(tau1/1000000);
+     f_ic = 8;
+     xp = 30;
+   }
 }`
 
 ]

@@ -50,6 +50,10 @@ class PartSeeder {
       { partName: "Arduino UNO R4 WIFI", projectId: 18 },
       { partName: "TIP120 Transistor", projectId: 18 },
       { partName: "LIS3DH Triple-Axis Accelerometer", projectId: 18 },
+      { partName: "MAX4466 microphone", projectId: 19 },
+      { partName: "Arduino® UNO R4 WiFi", projectId: 19 },
+      { partName: "Graphic LCD 128x64 STN LED Backlight", projectId: 20 },
+      { partName: "Arduino Nano R3", projectId: 20 },
 
     ])
   }
