@@ -48,7 +48,7 @@ const ProjectShow = (props) => {
       }
       const responseBody = await response.json()
       const project = responseBody.project
-      if (project.userId === props.user.id) {
+      if (project.userId === props.user?.id) {
         setShouldRedirect(true)
       }
       prepForFrontEnd(project)

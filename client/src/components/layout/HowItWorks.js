@@ -5,9 +5,8 @@ const HowItWorks = () => {
   return (
     <div className="landing-page">
       <div className="announcement">
-        <p>🚧 This site is a work in progress and is primarily for portfolio building. 🚧 
-          <p>
-            </p>  More features and improvements coming soon! </p>
+        <p>🚧 This site is a work in progress and is primarily for portfolio building. 🚧</p>
+        <p>More features and improvements coming soon! </p>
         <p>
           Connect with me on{" "}
           <a
