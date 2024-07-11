@@ -47,6 +47,7 @@ const ProjectShow = (props) => {
       }
       const responseBody = await response.json()
       let project = responseBody.project
+      console.log(project)
       prepForFrontEnd(project)
       setProject(project)
     } catch (error) {
@@ -62,7 +63,6 @@ const ProjectShow = (props) => {
         throw newError
       }
       const responseBody = await response.json()
-      console.log(responseBody.forks)
       if (responseBody.forks.length) {
         setHasForks(true)
       }

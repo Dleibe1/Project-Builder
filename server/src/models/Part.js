@@ -10,7 +10,7 @@ class Part extends Model {
       required: ["partName", "projectId"],
       properties: {
         projectId: { type: "integer" },
-        partName: { type: "string" },
+        partName: { type: "string", maxLength: 100 },
       },
     }
   }

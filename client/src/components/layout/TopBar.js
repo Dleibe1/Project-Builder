@@ -66,8 +66,6 @@ const TopBar = ({ user }) => {
     location.href = "/project-list"
   }
 
-  console.log(user)
-
   const handleGithubLogin = async () => {
     try {
       const response = await fetch("/api/v1/github-user-sessions/login")

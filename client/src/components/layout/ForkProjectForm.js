@@ -281,14 +281,17 @@ const ForkProjectForm = (props) => {
           label="Apps and platforms"
           name="appsAndPlatforms"
         />
-        <TextField
+        <Typography variant="h5" gutterBottom>
+          Description and Instructions:
+        </Typography>
+        <textarea
           value={forkedProject.description}
-          multiline
-          className="form-input text-field"
+          rows="10"
+          cols="1"
+          onChange={handleInputChange}
+          type="text"
           id="description"
           name="description"
-          onChange={handleInputChange}
-          label="Description and instructions"
         />
         <Typography variant="h5" gutterBottom>
           Parts:

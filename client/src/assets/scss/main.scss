@@ -65,6 +65,7 @@ body.hide-background{
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-content: center;
   align-items: stretch;
+  gap:1rem 0rem;
 }
 
 .project-list > * {
@@ -88,7 +89,7 @@ body.hide-background{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: auto;
 }
 
 .project-tile .project-tile-forks-button {
@@ -191,7 +192,7 @@ body.hide-background{
   text-align: left;
   padding: 20px;
   border-radius: 10px;
-  background-color: #fefae0;
+  background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: "Roboto", sans-serif;
 }
@@ -211,12 +212,12 @@ body.hide-background{
   align-items: center;
 }
 
-.new-build-form-container input,
-.edit-project-form-container input,
-.fork-project-form-container input,
-#description {
-  background-color: #fffdf1;
-}
+// .new-build-form-container input,
+// .edit-project-form-container input,
+// .fork-project-form-container input,
+// #description {
+//   background-color: #fffdf1;
+// }
 
 #delete-part {
   margin-bottom: 20px;

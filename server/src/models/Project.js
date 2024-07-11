@@ -11,7 +11,7 @@ class Project extends Model {
       required: ["title", "description", "userId", "thumbnailImage"],
       properties: {
         userId: { type: "integer" },
-        title: { type: "string" },
+        title: { type: "string", maxLength: 70 },
         appsAndPlatforms: { oneOf: [{ type: "string" }, { type: "null" }] },
         thumbnailImage: { type: "string" },
         tags: {

@@ -74,8 +74,6 @@ const NewProjectForm = (props) => {
     }
   }
 
-  console.log(newProject)
-
   const handleProjectImageUpload = (acceptedImage) => {
     setImageFile({
       image: acceptedImage[0],
@@ -155,7 +153,7 @@ const NewProjectForm = (props) => {
   let thumbNailImage = [
     <div className="image-list-container">
       <img className="project-image" src={newProject.thumbnailImage} />
-    </div>
+    </div>,
   ]
 
   thumbNailImage = newProject.thumbnailImage.length ? thumbNailImage : []
@@ -225,7 +223,7 @@ const NewProjectForm = (props) => {
           label="Project Title *"
           name="title"
         />
-       {thumbNailImage}
+        {thumbNailImage}
         <Button
           className="large-button"
           id="upload-image"
@@ -243,7 +241,9 @@ const NewProjectForm = (props) => {
               <section>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                 {newProject.thumbnailImage.length ? "Change Thumbnail Image" : "Upload Thumbnail Image"} 
+                  {newProject.thumbnailImage.length
+                    ? "Change Thumbnail Image"
+                    : "Upload Thumbnail Image"}
                 </div>
               </section>
             )}
@@ -263,14 +263,17 @@ const NewProjectForm = (props) => {
           label="Apps and platforms"
           name="appsAndPlatforms"
         />
-        <TextField
+        <Typography variant="h5" gutterBottom>
+          Description and Instructions:
+        </Typography>
+        <textarea
           value={newProject.description}
-          className="form-input text-field"
-          fullWidth
+          rows="10"
+          cols="1"
+          onChange={handleInputChange}
+          type="text"
           id="description"
           name="description"
-          onChange={handleInputChange}
-          label="Description and instructions"
         />
         <Typography variant="h5" gutterBottom>
           Parts:

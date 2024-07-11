@@ -293,15 +293,18 @@ const EditBuildForm = (props) => {
           label="Apps and platforms"
           name="appsAndPlatforms"
         />
-        <TextField
-          value={editedProject.description}
-          multiline
-          className="form-input text-field"
-          id="description"
-          name="description"
-          onChange={handleInputChange}
-          label="Description and instructions"
-        />
+         <Typography variant="h5" gutterBottom>
+            Description and Instructions:
+          </Typography>
+         <textarea
+            value={editedProject.description}
+            rows="10"
+            cols="1"
+            onChange={handleInputChange}
+            type="text"
+            id="description"
+            name="description"
+          />
         <Typography variant="h5" gutterBottom>
           Parts:
         </Typography>
