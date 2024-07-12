@@ -160,12 +160,11 @@ const NewProjectForm = (props) => {
 
   const partsList = newProject.parts.map((part, index) => {
     return (
-      <div key={`${part}${index}`} id="parts-list" className="cell small-3 medium-6 large-4">
+      <div key={`${part}${index}`} className="cell small-3 medium-6 large-4 parts-list">
         <h5 className="part-title">{part}</h5>
         <Button
           onClick={() => handlePartDelete(index)}
-          className="large-button"
-          id="delete-part"
+          className="large-button delete-part"
           variant="contained"
           sx={{
             "&:hover": {

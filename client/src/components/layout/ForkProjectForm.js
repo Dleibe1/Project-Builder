@@ -173,12 +173,11 @@ const ForkProjectForm = (props) => {
 
   const partsList = forkedProject.parts.map((part, index) => {
     return (
-      <div key={`${part}${index}`} id="parts-list" className="cell small-3 medium-6 large-4">
+      <div key={`${part}${index}`} className="cell small-3 medium-6 large-4 parts-list">
         <h5 className="part-title">{part}</h5>
         <Button
           onClick={() => handlePartDelete(index)}
-          className="large-button"
-          id="delete-part"
+          className="large-button delete-part"
           variant="contained"
           sx={{
             "&:hover": {
@@ -226,7 +225,7 @@ const ForkProjectForm = (props) => {
         Fork This Project
       </Typography>
       <ErrorList errors={errors} />
-      <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
+      <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
         <TextField
           value={forkedProject.title}
           className="form-input text-field"

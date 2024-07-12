@@ -8,7 +8,7 @@ const EditBuildButton = ({ id }) => {
       component={Link}
       to={`/edit-my-build/${id}`}
       className="large-button"
-      id="fork-project"
+      id="edit-project"
       variant="contained"
       sx={{
         "&:hover": {

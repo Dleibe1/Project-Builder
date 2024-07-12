@@ -13,7 +13,6 @@ const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [part, setPart] = useState("")
-  const [image, setImage] = useState("")
   const [imageFile, setImageFile] = useState({
     image: {},
   })
@@ -147,22 +146,11 @@ const EditBuildForm = (props) => {
     setPart(event.currentTarget.value)
   }
 
-  const handleImageURLInput = (event) => {
-    setImage(event.currentTarget.value)
-  }
-
   const handlePartSubmit = () => {
     if (part.length) {
       setEditedProject({ ...editedProject, parts: [...editedProject.parts, part] })
     }
     setPart("")
-  }
-
-  const handleImageURLSubmit = () => {
-    if (image.length) {
-      setEditedProject({ ...editedProject, images: [...editedProject.images, image.trim()] })
-    }
-    setImage("")
   }
 
   useEffect(() => {
@@ -189,8 +177,7 @@ const EditBuildForm = (props) => {
         <h5 className="part-title">{part}</h5>
         <Button
           onClick={() => handlePartDelete(index)}
-          className="large-button"
-          id="delete-part"
+          className="large-button delete-part"
           variant="contained"
           sx={{
             "&:hover": {
