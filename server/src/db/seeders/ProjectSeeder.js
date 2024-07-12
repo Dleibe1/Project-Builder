@@ -60,7 +60,7 @@ class ProjectSeeder {
         parentProjectId: 5,
       },
       {
-        userId: 2,
+        userId: 1,
         title: "Build Your Own Object Tracking 4-DOF Robotics Arm With Arduino",
         description: descriptions[5],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
@@ -82,7 +82,7 @@ class ProjectSeeder {
         parentProjectId: 7,
       },
       {
-        userId: 2,
+        userId: 1,
         title: "Arduino UNO game engine with composite video output",
         description: descriptions[7],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
@@ -94,7 +94,7 @@ class ProjectSeeder {
         parentProjectId: 8,
       },
       {
-        userId: 2,
+        userId: 3,
         title: "To Boil Or Not To Boil? That Is The Question!",
         description: descriptions[8],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
@@ -150,7 +150,7 @@ class ProjectSeeder {
         parentProjectId: 4,
       },
       {
-        userId: 2,
+        userId: 3,
         title: "New Version of OLED Eyes Animation for Robotics Projects",
         description: descriptions[4],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
@@ -169,7 +169,7 @@ class ProjectSeeder {
         parentProjectId: 6,
       },
       {
-        userId: 2,
+        userId: 1,
         title: "ARPoLAN: Network Monitoring and Security Tool",
         description: descriptions[6],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
