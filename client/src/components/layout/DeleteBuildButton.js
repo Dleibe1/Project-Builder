@@ -4,7 +4,7 @@ import Button from "@mui/material/Button"
 
 const DeleteBuildButton = ({ id }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const deleteBuild = async (event) => {
+  const deleteBuild = async () => {
     try {
       const response = await fetch(`/api/v1/projects/${id}`, {
         method: "DELETE",
