@@ -50,10 +50,11 @@ It is for this reason that I created the "Fork Project" feature, which allows a 
 
 2. In the root of the server folder, create a `.env` file to hold the environment variables listed below.  These environment variables are used for:
 ```
- SESSION_SECRET ...........Allows Passport to keep track of the currently signed-in user in session.
- GITHUB_API_KEY ...........Enables the GitHub API to fetch code from a user's main project (.ino or main.cpp) file.
+ SESSION_SECRET ...........This is for Passport.  Allows Passport to keep track of the currently signed-in user in session.
+ GITHUB_API_KEY ...........You will need a GitHub API key to fetch code from a user's main project (.ino or main.cpp) file.
  CLIENT_SECRET,
- CLIENT_ID ................These are necessary for generating a user access token for use with GitHub apps.
+ CLIENT_ID ................CLIENT_SECRET and CLIENT_ID are obtained when registering this app with GitHub Apps.  
+                           They are necessary for generating a user access token, which allows the app to perform actions with GitHub on the user's behalf.
                            See GitHub apps documentation for more information:
                            https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps 
  AWS_ACCESS_KEY_ID,
@@ -62,7 +63,7 @@ It is for this reason that I created the "Fork Project" feature, which allows a 
  S3_BUCKET_DEVELOPMENT ....These are necessary for image uploading.  For more information, visit
                            https://aws.amazon.com/s3/
                            
- BASE_URL .................Necessary for GitHub callback (used with GitHub apps) where a full URL path is required.
+ BASE_URL .................This is necessary for the GitHub callback address (used with GitHub apps) where a full URL path is required.
                            If hosting this app on the web, be sure to replace http://localhost:3000 with the
                            base URL of your hosting site. 
                            For example, https://project-builder-e7439342976b.herokuapp.com
@@ -110,5 +111,4 @@ It is for this reason that I created the "Fork Project" feature, which allows a 
    yarn run dev
    ```
 
-7. Navigate to <http://localhost:3000>. You should see the homepage of
-   the project-builder app, populated with example data.
+7. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
