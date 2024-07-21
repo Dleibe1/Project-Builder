@@ -2,14 +2,8 @@ import React from "react"
 import { Button } from "@mui/material"
 
 const GithubLogin = (props) => {
-  const handleGithubLogin = async () => {
-    try {
-      const response = await fetch("/api/v1/github-user-sessions/login")
-      const data = await response.json()
-      window.location.href = data.githubAuthUrl
-    } catch (error) {
-      console.error("Error fetching GitHub login URL:", error)
-    }
+  const handleGithubLogin = () => {
+    window.location.href = "/api/v1/github-user-sessions/login"
   }
 
   return (
