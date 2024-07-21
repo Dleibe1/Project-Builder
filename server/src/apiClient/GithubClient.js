@@ -1,8 +1,5 @@
 import got from "got"
-import dotenv from "dotenv"
 
-dotenv.config()
-//TODO:  github_app_authorization webhook handling
 class GithubClient {
   static async getProjectCode(url) {
     const regex = /^https:\/\/github.com\/([^\/]+)\/([^\/]+)\/blob\/[^\/]+\/(.+)$/
@@ -28,60 +25,6 @@ class GithubClient {
       } else {
         return `Could not fetch github code from the URL '${url}' Check the main project URL and try again.`
       }
-    }
-  }
-
-  static async exchangeUserLoginCode(code) {
-    const CLIENT_ID = process.env.CLIENT_ID
-    const CLIENT_SECRET = process.env.CLIENT_SECRET
-    try {
-      const tokenResponse = await got.post("https://github.com/login/oauth/access_token", {
-        json: {
-          client_id: CLIENT_ID,
-          client_secret: CLIENT_SECRET,
-          code: code,
-        },
-        headers: {
-          Accept: "application/json",
-        },
-        responseType: "json",
-      })
-      return tokenResponse.body
-    } catch (error) {
-      console.error("Error exchanging code for token:", error)
-    }
-  }
-
-  static async getUserInfo(token) {
-    try {
-      const response = await got.get("https://api.github.com/user", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-        },
-        responseType: "json",
-      })
-      return response.body
-    } catch (error) {
-      console.error("Error fetching user info:", error)
-      throw error
-    }
-  }
-
-  static async getUserRepos(token) {
-    try {
-      const response = await got.get("https://api.github.com/user/repos", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-        },
-        responseType: "json",
-      })
-
-      return response.body
-    } catch (error) {
-      console.error("Error fetching repositories:", error)
-      throw error
     }
   }
 }

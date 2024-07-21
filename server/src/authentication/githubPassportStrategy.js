@@ -27,7 +27,6 @@ const githubPassportStrategy = new OAuth2Strategy(
         loginMethod: "github",
         githubUserName: login,
       })
-
       if (!user) {
         user = await User.query().insertAndFetch({
           loginMethod: "github",
@@ -37,7 +36,6 @@ const githubPassportStrategy = new OAuth2Strategy(
       } else {
         user = await user.$query().patchAndFetch({ githubAvatarURL: avatar_url })
       }
-
       return cb(null, user)
     } catch (error) {
       console.error("Error fetching user info:", error)
