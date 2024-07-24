@@ -9,7 +9,7 @@ describe("As a user visiting the sign in page", () => {
     cy.task("db:truncate", "User")
     cy.task("db:insert", {
       modelName: "User",
-      json: { email: "user@example.com", password: "password" },
+      json: { email: "user@example.com", password: "password", userName: "Dan", githubUserName: "None" },
     })
   })
 
@@ -22,7 +22,7 @@ describe("As a user visiting the sign in page", () => {
 
       cy.root().submit()
 
-      cy.url().should("eq", `${Cypress.config().baseUrl}/`)
+      cy.url().should("eq", `${Cypress.config().baseUrl}/project-list`)
     })
     cy.contains("Sign Out")
   })

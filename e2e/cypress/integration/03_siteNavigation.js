@@ -1,17 +1,8 @@
 /// <reference types="Cypress" />
 
 describe("As a user visiting the website's baseUrl", () => {
-
-	before(() => {
-		cy.task("db:truncate", "User")
-		cy.task("db:insert", {
-		  modelName: "User",
-		  json: { email: "user@example.com", password: "password" },
-		})
-	  })
-
   it("Has a link to the creator's LinkedIn profile", () => {
-	cy.visit("/")
+    cy.visit("/")
     cy.contains("LinkedIn").should("have.attr", "href").and("include", "linkedin.com")
   })
 
@@ -26,8 +17,7 @@ describe("As a user visiting the website's baseUrl", () => {
   })
 
   it("Clicking 'HOME' on the top bar brings the user to the list of projects", () => {
-	cy.get ("#homepage-button").click()
-	cy.url().should("eq", `${Cypress.config().baseUrl}/project-list`)
+    cy.get("#homepage-button").click()
+    cy.url().should("eq", `${Cypress.config().baseUrl}/project-list`)
   })
-
 })
