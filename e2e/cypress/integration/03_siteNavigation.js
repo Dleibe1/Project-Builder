@@ -1,8 +1,13 @@
 /// <reference types="Cypress" />
 
+import "../support/dbSetup.js"
+
 describe("As a user visiting the website's baseUrl", () => {
-  it("Has a link to the creator's LinkedIn profile", () => {
+  beforeEach(() => {
     cy.visit("/")
+  })
+
+  it("Has a link to the creator's LinkedIn profile", () => {
     cy.contains("LinkedIn").should("have.attr", "href").and("include", "linkedin.com")
   })
 
@@ -19,5 +24,11 @@ describe("As a user visiting the website's baseUrl", () => {
   it("Clicking 'HOME' on the top bar brings the user to the list of projects", () => {
     cy.get("#homepage-button").click()
     cy.url().should("eq", `${Cypress.config().baseUrl}/project-list`)
+  })
+  after(() => {
+    cy.task("db:truncate", "User")
+    cy.task("db:truncate", "Project")
+    cy.task("db:truncate", "Part")
+    cy.task("db:truncate", "Image")
   })
 })

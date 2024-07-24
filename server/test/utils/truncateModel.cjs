@@ -15,6 +15,6 @@ module.exports = async function truncateModel(modelClass) {
   if (modelClass) {
     await modelClass
       .knex()
-      .raw(`TRUNCATE TABLE :tableName: CASCADE`, { tableName: modelClass.tableName });
+      .raw(`TRUNCATE TABLE :tableName: RESTART IDENTITY CASCADE`, { tableName: modelClass.tableName });
   }
 };
