@@ -205,13 +205,6 @@ body.hide-background {
   align-items: center;
 }
 
-// .new-build-form-container input,
-// .edit-project-form-container input,
-// .fork-project-form-container input,
-// #description {
-//   background-color: #fffdf1;
-// }
-
 .parts-list {
   display: flex;
   margin-bottom: 10px;
@@ -289,7 +282,10 @@ body.hide-background {
 }
 
 #github-login-button {
+  height: 52px;
   margin: 0px;
+  padding-top:0px;
+  padding-bottom:0px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -385,16 +381,26 @@ body.hide-background {
 #sign-in-button,
 #sign-out-button,
 #sign-up-button,
-#new-build-button {
+#new-build-button,
+#how-to-use-button {
+  align-items: center;
+  height: 52px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   padding-left: 20px;
   padding-right: 20px;
 }
+
 
 .sign-in {
   margin: 100px auto;
 }
 
 #homepage-button {
+  display: flex;
+  height: 52px;
   margin: 0;
   padding: 0px;
   padding-right: 20px;
@@ -404,6 +410,7 @@ body.hide-background {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 0px;
 }
 
 #menu-appbar ul {
@@ -412,13 +419,8 @@ body.hide-background {
 
 .top-left-app-bar {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-direction: row-reverse;
-}
-
-#how-to-use-button {
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
 #upload-image {
