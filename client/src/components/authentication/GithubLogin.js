@@ -14,7 +14,7 @@ const GithubLogin = (props) => {
       sx={{
         my: 2,
         color: "white",
-        display: { xs: "none", md: "block" },
+        display: { xs: "none", md: "flex" },
         marginRight: "1rem",
         "&:hover": {
           backgroundColor: "#1665c0",
