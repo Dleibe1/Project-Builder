@@ -1,15 +1,23 @@
 /// <reference types="Cypress" />
 
+import seedAllTables from "../support/seedAllTables.js"
+import truncateAllTables from "../support/truncateAllTables.js"
+
 describe("As a user visiting the sign in page", () => {
   const visitSignInPage = () => {
     cy.visit("/user-sessions/new")
   }
 
   before(() => {
-    cy.task("db:truncate", "User")
+    seedAllTables()
     cy.task("db:insert", {
       modelName: "User",
-      json: { email: "user@example.com", password: "password", userName: "Dan", githubUserName: "None" },
+      json: {
+        email: "user@example.com",
+        password: "password",
+        userName: "Dan",
+        loginMethod: "standard",
+      },
     })
   })
 
@@ -46,5 +54,9 @@ describe("As a user visiting the sign in page", () => {
 
       cy.contains("is invalid")
     })
+  })
+
+  after(() => {
+    truncateAllTables()
   })
 })

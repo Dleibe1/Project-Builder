@@ -1,10 +1,14 @@
 /// <reference types="Cypress" />
 
-import "../support/dbSetup.js"
+import seedAllTables from "../support/seedAllTables.js"
+import truncateAllTables from "../support/truncateAllTables.js"
 
 describe("As a user visiting the website's baseUrl", () => {
   beforeEach(() => {
     cy.visit("/")
+  })
+  before(()=> {
+    seedAllTables()
   })
 
   it("Has a link to the creator's LinkedIn profile", () => {
@@ -26,9 +30,6 @@ describe("As a user visiting the website's baseUrl", () => {
     cy.url().should("eq", `${Cypress.config().baseUrl}/project-list`)
   })
   after(() => {
-    cy.task("db:truncate", "User")
-    cy.task("db:truncate", "Project")
-    cy.task("db:truncate", "Part")
-    cy.task("db:truncate", "Image")
+    truncateAllTables()
   })
 })

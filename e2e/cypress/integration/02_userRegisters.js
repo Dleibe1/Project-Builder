@@ -1,4 +1,6 @@
 /// <reference types="Cypress" />
+import seedAllTables from "../support/seedAllTables.js"
+import truncateAllTables from "../support/truncateAllTables.js"
 
 describe("As a user visiting the sign in page", () => {
   const visitRegistrationPage = () => {
@@ -6,7 +8,7 @@ describe("As a user visiting the sign in page", () => {
   }
 
   before(() => {
-    cy.task("db:truncate", "User")
+    seedAllTables()
   })
 
   it("If I provide a valid email, password, and password confirmation, I will be signed in", () => {
@@ -56,5 +58,8 @@ describe("As a user visiting the sign in page", () => {
 
       cy.contains("is invalid")
     })
+  })
+  after(() => {
+   truncateAllTables()
   })
 })
