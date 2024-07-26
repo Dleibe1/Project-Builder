@@ -85,12 +85,8 @@ const images = [
 const seedAllTables = () => {
   cy.task("db:truncate", "User")
     .then(() => {
-      return cy.task("db:truncate", "Project")
-    })
-    .then(() => {
-      return cy.task("db:truncate", "Part")
-    })
-    .then(() => {
+      cy.task("db:truncate", "Project")
+      cy.task("db:truncate", "Part")
       return cy.task("db:truncate", "Image")
     })
     .then(() => {
