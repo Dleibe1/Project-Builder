@@ -25,7 +25,7 @@ const HowItWorks = () => {
         </Link>
       </div>
       <div className="content-section">
-        <h2>Getting Started</h2>
+        <h2>Sample User Instructions</h2>
         <p>
           <a
             href="https://www.arduino.cc/en/Guide/Introduction"

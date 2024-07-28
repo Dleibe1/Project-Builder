@@ -40,6 +40,10 @@ projectsRouter.delete("/:id", async (req, res) => {
     await Part.query().delete().where("projectId", projectId)
     await Image.query().delete().where("projectId", projectId)
     await Project.query().deleteById(projectId)
+
+
+    // find all forked projects and update their parentProjectId to be null 
+
     return res.status(200).json({})
   } catch (error) {
     console.log(error)
