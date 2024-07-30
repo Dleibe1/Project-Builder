@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { hot } from "react-hot-loader/root"
+import LandingPageContent from "./layout/LandingPageContent"
 
 import "../assets/scss/main.scss"
 
@@ -18,7 +19,7 @@ import EditBuildForm from "./layout/EditBuildForm"
 import ForkList from "./layout/ForkList"
 import ForkProjectForm from "./layout/ForkProjectForm"
 import GithubLogin from "./authentication/GithubLogin"
-import HowItWorks from "./layout/HowItWorks"
+import HowToUse from "./layout/HowToUse"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -40,7 +41,10 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path={"/"}>
-          <HowItWorks user={currentUser} />
+          <LandingPageContent/>
+        </Route>
+        <Route exact path={"/how-to-use"}>
+          <HowToUse user={currentUser} />
         </Route>
         <Route exact path={"/project-list"}>
           <ProjectList user={currentUser} />

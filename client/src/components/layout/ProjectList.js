@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import ProjectTile from "./ProjectTile"
+import LandingPageContent from "./LandingPageContent"
 
 const ProjectList = (props) => {
-  
   const [projects, setProjects] = useState([])
   const getProjectsData = async () => {
     try {
@@ -21,7 +21,7 @@ const ProjectList = (props) => {
   useEffect(() => {
     getProjectsData()
   }, [])
-  
+
   const projectsArray = projects.map((project) => {
     if (project.id === project.parentProjectId) {
       return (
@@ -37,9 +37,9 @@ const ProjectList = (props) => {
   })
 
   return (
-    <div className="grid-container">
-      <div className="grid-x grid-margin-x project-list">{projectsArray}</div>
-    </div>
+      <div className="grid-container">
+        <div className="grid-x grid-margin-x project-list">{projectsArray}</div>
+      </div>
   )
 }
 

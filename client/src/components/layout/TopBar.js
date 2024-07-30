@@ -89,7 +89,7 @@ const TopBar = ({ user }) => {
           <div className="top-left-app-bar">
             <Button
               component={Link}
-              to="/"
+              to="/how-to-use"
               id="how-to-use-button"
               key={"how-to-use-button"}
               sx={{
@@ -108,6 +108,23 @@ const TopBar = ({ user }) => {
             <Button
               component={Link}
               to="/project-list"
+              id="projects-button"
+              key={"projects-button"}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                "&:hover": {
+                  backgroundColor: "#1665c0",
+                  color: "white",
+                },
+              }}
+            >
+              Projects
+            </Button>
+            <Button
+              component={Link}
+              to="/"
               id="homepage-button"
               key={"homepage-button"}
               sx={{
