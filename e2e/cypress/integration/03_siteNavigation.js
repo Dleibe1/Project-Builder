@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 
-import seedAllTables from "../support/seedAllTables.js"
 import truncateAllTables from "../support/truncateAllTables.js"
 
 describe("As a user visiting the website's baseUrl", () => {
@@ -15,21 +14,23 @@ describe("As a user visiting the website's baseUrl", () => {
     cy.contains("LinkedIn").should("have.attr", "href").and("include", "linkedin.com")
   })
 
-  it("Clicking 'Click here to continue to the site' brings the user to /project-list", () => {
-    cy.get(".main-link").click()
-    cy.url().should("eq", `${Cypress.config().baseUrl}/project-list`)
-  })
-
-  it("Clicking 'HOW TO USE' on the top bar brings the user back to the welcome page", () => {
+  it("Clicking 'HOW TO USE' on the top bar brings the user to instructions for the site", () => {
     cy.get("#how-to-use-button").click()
-    cy.url().should("eq", `${Cypress.config().baseUrl}/`)
+    cy.url().should("eq", `${Cypress.config().baseUrl}/how-to-use`)
   })
 
-  it("Clicking 'HOME' on the top bar brings the user to the list of projects", () => {
-    cy.get("#homepage-button").click()
-    cy.url().should("eq", `${Cypress.config().baseUrl}/project-list`)
+  it("Clicking 'PROJECTS' brings the user to the projects-list page", () => {
+    cy.get("#projects-button").click()
+    cy.url().should("eq", `${Cypress.config().baseUrl}/projects-list`)
   })
-  after(() => {
-    truncateAllTables()
+
+  it("How to use site has the creator's LinkedIn", () => {
+    cy.get("#how-to-use-button").click()
+    cy.contains("LinkedIn").should("have.attr", "href").and("include", "linkedin.com")
+  })
+
+  it("Clicking 'HOME' on the top bar brings the user to the landing page", () => {
+    cy.get("#homepage-button").click()
+    cy.url().should("eq", `${Cypress.config().baseUrl}/`)
   })
 })
