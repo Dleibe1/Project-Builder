@@ -51,13 +51,15 @@ const HowToUse = () => {
           images.
         </p>
         <h4>Steps:</h4>
-        <p>1. Create an account or login with GitHub.</p>
+        <p>1. Login using the sample user account, create an account or login with GitHub.</p>
         <p>
-          2. Click on a project thumbnail to view its display page. Click the “Fork Project” button
-          to create a fork of that project.
+          2. Click the "Projects" button on the top bar to visit the list of user-created projects.  Clicking "Forked Versions" on a project's thumbnail will bring you to forked versions of the project. 
         </p>
         <p>
-          3. After a project has been forked, clicking the “Project Forks” button on a project's
+        3. Clicking on a project's thumbnail will bring you to the project's display page.  Click the “Fork Project” button to create a fork of that project.
+        </p>
+        <p>
+          4. After a project has been forked, clicking the “Project Forks” button on a project's
           display page will show you a list of the forked versions of the project.
         </p>
         <h2>Keep your project's code up to date automatically:</h2>

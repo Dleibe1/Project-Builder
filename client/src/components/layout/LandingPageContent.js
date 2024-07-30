@@ -13,7 +13,7 @@ const LandingPageContent = (props) => {
     <>
       <div className="banner landing-page-section-container-left top-banner">
         <img className="banner-image" src="https://i.imgur.com/dOywizt.png" />
-        <h1>Create and Fork Micro controller Projects.</h1>
+        <h1>Create and Fork Micro Controller Projects.</h1>
       </div>
       <div className="banner second-banner landing-page-section-container-right">
         <img className="banner-image" src="https://i.imgur.com/L0awTWh.png" />
