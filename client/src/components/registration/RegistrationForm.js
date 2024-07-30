@@ -114,7 +114,7 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div className="grid-container sign-in">
+    <div className="grid-container sign-in registration">
       <h1>Register</h1>
       <ErrorList errors={serverErrors} />
       <form onSubmit={onSubmit}>

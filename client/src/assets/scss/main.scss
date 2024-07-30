@@ -56,6 +56,62 @@ body.hide-background {
   width: 100%;
 }
 
+.banner {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  display: flex;
+  justify-content: center;
+  height: 400px;
+  text-wrap: wrap;
+  text-align: center;
+  background-color: #a8f1f2;
+  align-items: center;
+  box-sizing: unset;
+}
+
+.banner.top-banner {
+  padding-top: 90px;
+}
+
+.banner.landing-page-section-container-right {
+  flex-direction: row-reverse;
+  background-color: #ffffff;
+}
+
+.banner img {
+  height: inherit;
+  object-fit: contain;
+  padding: 10px 0 10px 10px;
+}
+
+.banner.second-banner {
+  padding-top: 120px;
+}
+
+.banner.second-banner img {
+  padding-right: 50px;
+  height: 600px;
+  object-fit: fill;
+}
+
+// #landing-page-section-container h1::before {
+//   display: block;
+//   height: 100%;
+// }
+
+.banner h1 {
+  margin-left: 50px;
+  max-height: max-content;
+  font-size: clamp(3rem, 5vw, 4rem);
+  color: #303030;
+  max-width: 50%;
+  font-family:
+    Chronicle Deck,
+    Times,
+    serif;
+  font-weight: 900;
+}
+
 .project-list {
   margin-top: 120px;
   margin-left: 15px;
@@ -71,7 +127,6 @@ body.hide-background {
   border-radius: 10px;
   padding: 1.5rem;
   padding-bottom: 0rem;
-  background-color: #fefae0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.2s,
@@ -141,7 +196,17 @@ body.hide-background {
 }
 
 .sign-in {
-  margin-top: 1rem;
+  margin-top: 100px;
+}
+
+.sign-in.registration,
+.sign-in.standard-sign-in {
+  margin-left: 100px;
+}
+
+.sign-in.registration form,
+.sign-in.standard-sign-in form {
+  margin-right: 200px;
 }
 
 .project-show {
@@ -159,12 +224,6 @@ body.hide-background {
   margin-top: 30px;
   margin-bottom: 30px;
 }
-
-// .project-show p {
-//   font-size: 1.1rem;
-//   margin-bottom: 1rem;
-//   color: #555;
-// }
 
 .project-show code {
   display: block;
@@ -283,8 +342,8 @@ body.hide-background {
 #github-login-button {
   height: 52px;
   margin: 0px;
-  padding-top:0px;
-  padding-bottom:0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -376,8 +435,10 @@ body.hide-background {
 #sign-out-button,
 #sign-up-button,
 #new-build-button,
-#how-to-use-button {
+#how-to-use-button,
+#projects-button {
   align-items: center;
+  color: white;
   height: 52px;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -387,13 +448,9 @@ body.hide-background {
   padding-right: 20px;
 }
 
-
-.sign-in {
-  margin: 100px auto;
-}
-
 #homepage-button {
   display: flex;
+  color: white;
   height: 52px;
   margin: 0;
   padding: 0px;

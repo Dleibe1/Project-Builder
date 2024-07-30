@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const HowItWorks = () => {
+const HowToUse = () => {
   return (
     <div className="landing-page">
       <div className="announcement">
@@ -20,9 +20,6 @@ const HowItWorks = () => {
       </div>
       <div className="hero-section">
         <h1>View, share, and fork Arduino and ESP32 Projects!</h1>
-        <Link to="/project-list" className="main-link">
-          Click here to continue to the site
-        </Link>
       </div>
       <div className="content-section">
         <h2>Sample User Instructions</h2>
@@ -85,4 +82,4 @@ const HowItWorks = () => {
   )
 }
 
-export default HowItWorks
+export default HowToUse
