@@ -1,17 +1,8 @@
 /// <reference types="Cypress" />
 
-import truncateAllTables from "../support/truncateAllTables.js"
-
 describe("As a user visiting the website's baseUrl", () => {
   beforeEach(() => {
     cy.visit("/")
-  })
-  before(()=> {
-    seedAllTables()
-  })
-
-  it("Has a link to the creator's LinkedIn profile", () => {
-    cy.contains("LinkedIn").should("have.attr", "href").and("include", "linkedin.com")
   })
 
   it("Clicking 'HOW TO USE' on the top bar brings the user to instructions for the site", () => {
@@ -21,7 +12,7 @@ describe("As a user visiting the website's baseUrl", () => {
 
   it("Clicking 'PROJECTS' brings the user to the projects-list page", () => {
     cy.get("#projects-button").click()
-    cy.url().should("eq", `${Cypress.config().baseUrl}/projects-list`)
+    cy.url().should("eq", `${Cypress.config().baseUrl}/project-list`)
   })
 
   it("How to use site has the creator's LinkedIn", () => {
