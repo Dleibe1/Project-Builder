@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import ProjectTile from "./ProjectTile"
-import LandingPageContent from "./LandingPageContent"
+import LandingPage from "./LandingPage"
 
 const ProjectList = (props) => {
   const [projects, setProjects] = useState([])

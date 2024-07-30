@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { hot } from "react-hot-loader/root"
-import LandingPageContent from "./layout/LandingPageContent"
+import LandingPage from "./layout/LandingPage"
 
 import "../assets/scss/main.scss"
 
@@ -41,7 +41,7 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path={"/"}>
-          <LandingPageContent/>
+          <LandingPage/>
         </Route>
         <Route exact path={"/how-to-use"}>
           <HowToUse user={currentUser} />

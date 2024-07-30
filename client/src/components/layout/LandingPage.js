@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-const LandingPageContent = (props) => {
+const LandingPage = (props) => {
   useEffect(() => {
     document.body.classList.add("hide-background")
 
@@ -16,11 +16,11 @@ const LandingPageContent = (props) => {
         <h1>Create and Fork Micro Controller Projects.</h1>
       </div>
       <div className="banner second-banner landing-page-section-container-right">
-        <img className="banner-image" src="https://i.imgur.com/ul5C8jI.png" />
+        <img className="banner-image" src="https://i.imgur.com/9hI9Tds.png" />
         <h1>Forking a project is the sincerest form of flattery.</h1>
       </div>
     </>
   )
 }
 
-export default LandingPageContent
+export default LandingPage
