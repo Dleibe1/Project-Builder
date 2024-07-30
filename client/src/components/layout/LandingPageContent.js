@@ -16,7 +16,7 @@ const LandingPageContent = (props) => {
         <h1>Create and Fork Micro Controller Projects.</h1>
       </div>
       <div className="banner second-banner landing-page-section-container-right">
-        <img className="banner-image" src="https://i.imgur.com/L0awTWh.png" />
+        <img className="banner-image" src="https://i.imgur.com/ul5C8jI.png" />
         <h1>Forking a project is the sincerest form of flattery.</h1>
       </div>
     </>
@@ -24,18 +24,3 @@ const LandingPageContent = (props) => {
 }
 
 export default LandingPageContent
-
-{
-  /* <div className="landing-page-section-left">
-<img
-  className="landing-page-image-left"
-  src="https://www.youmaketech.com/wp-content/uploads/2021/06/Thumbnail1_transparent.png"
-/>
-</div>
-<div className="landing-page-section-right">
-<img
-  className="landing-page-image-right"
-  src="https://www.xiaorgeek.net/cdn/shop/files/DS_wireless_rc_smart_robot_car_800x.png?v=1715744622"
-/>
-</div> */
-}
