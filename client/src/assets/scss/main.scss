@@ -57,8 +57,8 @@ body.hide-background {
 }
 
 .banner {
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding-top: 170px;
+  padding-bottom: 170px;
   display: flex;
   justify-content: center;
   height: 400px;
@@ -67,10 +67,6 @@ body.hide-background {
   background-color: #a8f1f2;
   align-items: center;
   box-sizing: unset;
-}
-
-.banner.top-banner {
-  padding-top: 90px;
 }
 
 .banner.landing-page-section-container-right {
@@ -84,9 +80,17 @@ body.hide-background {
   padding: 10px 0 10px 10px;
 }
 
+.banner.top-banner {
+  padding-top:200px;
+}
+
+.banner.top-banner img {
+  height:490px;
+}
+
 .banner.second-banner img {
   padding-right: 50px;
-  height: 550px;
+  height: 700px;
   object-fit: contain;
 }
 
@@ -96,13 +100,28 @@ body.hide-background {
   object-fit: contain;
 }
 
+.banner.fourth-banner img {
+  height: 500px;
+  object-fit: contain;
+}
+.banner.fifth-banner img{
+  height:550px;
+}
+
 .banner h1 {
   max-height: max-content;
   font-size: clamp(3rem, 5vw, 4rem);
   color: #303030;
   max-width: 50%;
-  font-family: Chronicle Deck, Times, serif;
+  font-family:
+    Chronicle Deck,
+    Times,
+    serif;
   font-weight: 900;
+}
+
+.landing-page-end {
+  margin: 200px;
 }
 
 .project-list {
