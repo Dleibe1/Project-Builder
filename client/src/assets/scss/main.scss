@@ -84,31 +84,24 @@ body.hide-background {
   padding: 10px 0 10px 10px;
 }
 
-.banner.second-banner {
-  padding-top: 120px;
-}
-
 .banner.second-banner img {
   padding-right: 50px;
-  height: 600px;
-  object-fit: fill;
+  height: 550px;
+  object-fit: contain;
 }
 
-// #landing-page-section-container h1::before {
-//   display: block;
-//   height: 100%;
-// }
+.banner.third-banner img {
+  padding-right: 50px;
+  height: 450px;
+  object-fit: contain;
+}
 
 .banner h1 {
-  margin-left: 50px;
   max-height: max-content;
   font-size: clamp(3rem, 5vw, 4rem);
   color: #303030;
   max-width: 50%;
-  font-family:
-    Chronicle Deck,
-    Times,
-    serif;
+  font-family: Chronicle Deck, Times, serif;
   font-weight: 900;
 }
 
