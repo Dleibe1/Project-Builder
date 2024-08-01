@@ -31,7 +31,10 @@ const LandingPage = (props) => {
         <img className="banner-image" src="https://i.imgur.com/dOywizt.png" />
         <h1>Join the Project Builder community today!  Sign up for an account or login with GitHub.</h1>
       </div>
-      <div className="landing-page-end">
+      <div className="happy-building banner">
+        <h1>Happy Building!</h1>
+      </div>
+      <div className="end-landing-page">
       </div>
     </>
   )

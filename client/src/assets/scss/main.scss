@@ -64,14 +64,12 @@ body.hide-background {
   height: 400px;
   text-wrap: wrap;
   text-align: center;
-  background-color: #a8f1f2;
   align-items: center;
   box-sizing: unset;
 }
 
 .banner.landing-page-section-container-right {
   flex-direction: row-reverse;
-  background-color: #ffffff;
 }
 
 .banner img {
@@ -120,8 +118,13 @@ body.hide-background {
   font-weight: 900;
 }
 
-.landing-page-end {
-  margin: 200px;
+.banner.happy-building h1 {
+  min-width: 100%;
+  font-size: clamp(6rem, 5vw, 7rem);
+}
+
+.banner.banner.happy-building {
+  padding-bottom: 300px;
 }
 
 .project-list {
