@@ -95,9 +95,6 @@ const MyBuildShow = (props) => {
         <h4>Apps and Platforms:</h4>
         <div>{myBuild.appsAndPlatforms}</div>
       </div>
-      <div id="project-images">
-        <h4>Project Images</h4>
-      </div>
       <div className="images-container">{imageList}</div>
       <h6 className="github-url">{codeMessage}</h6>
       <pre>
