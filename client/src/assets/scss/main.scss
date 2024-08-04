@@ -90,6 +90,10 @@ body.grey-background {
   background-color: #00979d;
 }
 
+.banner.fifth-banner {
+  margin-bottom: 100px;
+}
+
 .banner.top-banner h1,
 .banner.third-banner h1,
 .banner.fifth-banner h1 {
@@ -136,7 +140,7 @@ body.grey-background {
 
 @media (max-width: 768px) {
   .banner h1 {
-    max-width: 90%; /* Increase max width to 90% on smaller screens */
+    max-width: 90%;
   }
   .banner img {
     max-width: 90%;
@@ -149,6 +153,7 @@ body.grey-background {
 
 .banner.happy-building h1 {
   min-width: 100%;
+  padding-top: 250px;
   font-size: clamp(6rem, 5vw, 7rem);
 }
 
