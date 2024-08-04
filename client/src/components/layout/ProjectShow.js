@@ -103,7 +103,7 @@ const ProjectShow = (props) => {
 
   return (
     <div className="project-show">
-      <div>
+      <div className="fork-project-button-container">
         {props.user ? forkProjectButton : []}
         {hasForks ? <ProjectForksButton id={id} /> : []}
       </div>

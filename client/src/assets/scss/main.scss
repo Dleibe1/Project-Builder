@@ -355,8 +355,8 @@ body.grey-background {
 }
 
 .images-container {
+  background-color: white;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
@@ -364,7 +364,6 @@ body.grey-background {
 .project-image {
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
   margin-bottom: 15px;
 }
 
@@ -610,6 +609,13 @@ body.grey-background {
 
 .showpage-items-container.description{
   margin-top:0px;
+}
+
+.fork-project-button-container,
+.edit-delete-build-button-container {
+  background-color: white;
+  padding: 10px;
+  border-radius: 6px;
 }
 
 #project-images {
