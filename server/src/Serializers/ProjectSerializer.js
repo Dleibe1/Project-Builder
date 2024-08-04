@@ -1,6 +1,6 @@
 import { User } from "../models/index.js"
 import PartsSerializer from "./PartsSerializer.js"
-import ImageSerializer from "./ImagesSerializer.js"
+import InstructionSerializer from "./InstructionSerializer.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
 class ProjectSerializer {
@@ -32,7 +32,7 @@ class ProjectSerializer {
     })
     serializedProject.parts = relatedParts
     const relatedImages = relatedImagesData.map((image) => {
-      return ImageSerializer.getImageDetails(image)
+      return InstructionSerializer.getInstructionDetails(image)
     })
     serializedProject.images = relatedImages
     serializedProject.code =
