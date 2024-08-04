@@ -304,12 +304,11 @@ body.grey-background {
 }
 
 .parts-list p {
-  text-align: center;
   white-space: pre-line; 
   overflow-wrap: anywhere; 
   padding: 5px; 
   box-sizing: border-box; 
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #c9d2d2;
 }
 
 .parts-list .delete-part {
@@ -357,6 +356,7 @@ body.grey-background {
 .images-container {
   background-color: white;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
