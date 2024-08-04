@@ -41,7 +41,7 @@ const HowToUse = () => {
         <h4>example@example.com </h4>
         <h5>Password:</h5>
         <h4>cat</h4>
-        As an alternative, you can login in with GitHub or create an account. Click “New Build” to
+        As an alternative, you can login in with GitHub or create an account. Once logged in, click “New Build” to
         post your Microcontroller project to the site. Click “My Builds” to view and edit the list
         of projects you've created.
         <h2>Fork another user's project:</h2>
