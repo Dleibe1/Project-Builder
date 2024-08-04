@@ -78,8 +78,17 @@ body.hide-background {
   padding: 10px 0 10px 10px;
 }
 
-.banner.top-banner {
-  padding-top:300px;
+.banner.top-banner,
+.banner.third-banner,
+.banner.fifth-banner {
+  padding-top:200px;
+  background-color: #00979d;
+}
+
+.banner.top-banner h1,
+.banner.third-banner h1,
+.banner.fifth-banner h1 {
+  color:white;
 }
 
 .banner.top-banner img {
