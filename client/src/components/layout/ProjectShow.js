@@ -38,6 +38,14 @@ const ProjectShow = (props) => {
     }
   }, [project])
 
+  useEffect(() => {
+    document.body.classList.add("grey-background")
+
+    return () => {
+      document.body.classList.remove("grey-background")
+    }
+  }, [])
+
   const getProject = async () => {
     try {
       const response = await fetch(`/api/v1/projects/${id}`)

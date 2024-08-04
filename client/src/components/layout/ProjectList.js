@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import ProjectTile from "./ProjectTile"
-import LandingPage from "./LandingPage"
 
 const ProjectList = (props) => {
   const [projects, setProjects] = useState([])
@@ -20,6 +19,14 @@ const ProjectList = (props) => {
 
   useEffect(() => {
     getProjectsData()
+  }, [])
+
+  useEffect(() => {
+    document.body.classList.add("grey-background")
+
+    return () => {
+      document.body.classList.remove("grey-background")
+    }
   }, [])
 
   const projectsArray = projects.map((project) => {
