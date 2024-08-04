@@ -33,7 +33,7 @@ class Project extends Model {
   }
 
   static get relationMappings() {
-    const { User, Part, Image } = require("./index.js")
+    const { User, Part, Instruction } = require("./index.js")
     return {
       user: {
         relation: Model.HasOneRelation,
@@ -59,12 +59,12 @@ class Project extends Model {
           to: "parts.projectId",
         },
       },
-      images: {
+      instructions: {
         relation: Model.HasManyRelation,
-        modelClass: Image,
+        modelClass: Instruction,
         join: {
           from: "projects.id",
-          to: "images.projectId",
+          to: "instructions.projectId",
         },
       },
     }

@@ -2,17 +2,21 @@ const Model = require("./Model")
 
 class Instruction extends Model {
   static get tableName() {
-    return "instruction"
+    return "instructions"
   }
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["instruction", "projectId", "imageURL"],
+      required: "projectId",
       properties: {
         imageURL: { type: "string" },
         projectId: { type: "integer" },
         instruction: { type: "string" },
       },
+      anyOf: [
+        { required: ["imageURL"] },
+        { required: ["instruction"] }
+      ]
     }
   }
   
@@ -23,7 +27,7 @@ class Instruction extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: Project,
         join: {
-          from: "instruction.projectId",
+          from: "instructions.projectId",
           to: "project.id",
         },
       },
