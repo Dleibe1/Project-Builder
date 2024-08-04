@@ -107,11 +107,11 @@ const ProjectShow = (props) => {
         {props.user ? forkProjectButton : []}
         {hasForks ? <ProjectForksButton id={id} /> : []}
       </div>
-      <h2>{project.title}</h2>
       <div className="images-container">
         <img className="project-image" src={project.thumbnailImage} alt="thumbnail" />
       </div>
-      <div className="showpage-items-container">
+      <h2>{project.title}</h2>
+      <div className="showpage-items-container description">
         <h4>Description and Instructions:</h4>
         <p>{project.description}</p>
       </div>
@@ -122,9 +122,6 @@ const ProjectShow = (props) => {
       <div className="showpage-items-container">
         <h4>Apps and Platforms:</h4>
         <div>{project.appsAndPlatforms}</div>
-      </div>
-      <div id="project-images">
-        <h4>Project Images</h4>
       </div>
       <div className="images-container">{imageList}</div>
       <h6 className="github-url">{codeMessage}</h6>
