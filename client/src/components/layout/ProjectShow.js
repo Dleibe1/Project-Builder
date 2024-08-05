@@ -98,9 +98,9 @@ const ProjectShow = (props) => {
     return <p key={part.partName}>{part.partName}</p>
   })
   const instructionList = project.instructions.map((instruction) => {
-    if (instruction.imageURL.length) {
+    if (instruction.imageURL) {
       return <img className="project-image" src={`${instruction.imageURL}`} />
-    } else if (instruction.instructionText.length) {
+    } else if (instruction.instructionText) {
       return <p>{instruction.instructionText}</p>
     }
   })

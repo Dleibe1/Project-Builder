@@ -71,9 +71,9 @@ const MyBuildShow = (props) => {
   })
 
   const instructionList = myBuild.instructions.map((instruction) => {
-    if (instruction.imageURL.length) {
+    if (instruction.imageURL) {
       return <img className="project-image" src={`${instruction.imageURL}`} />
-    } else if (instruction.instructionText.length) {
+    } else if (instruction.instructionText) {
       return <p>{instruction.instructionText}</p>
     }
   })
@@ -89,7 +89,7 @@ const MyBuildShow = (props) => {
       </div>
       <h2>{myBuild.title}</h2>
       <div className="showpage-items-container description">
-        <h4>Description And Instructions:</h4>
+        <h4>Description:</h4>
         <p>{myBuild.description}</p>
       </div>
       <div className="showpage-items-container">
