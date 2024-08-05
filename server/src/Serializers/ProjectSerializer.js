@@ -4,7 +4,27 @@ import InstructionSerializer from "./InstructionSerializer.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
 class ProjectSerializer {
-  static async getProjectDetails(project, showPage) {
+  static async getProjectListDetails(project) {
+    const allowedAttributes = [
+      "id",
+      "userId",
+      "title",
+      "appsAndPlatforms",
+      "tags",
+      "thumbnailImage",
+      "parentProjectId"
+    ]
+    let serializedProject = {}
+    for (const attribute of allowedAttributes) {
+      serializedProject[attribute] = project[attribute]
+    }
+    const relatedUserData = await User.query().findOne({ id: project.userId })
+    const userName = relatedUserData.userName || relatedUserData.githubUserName
+    serializedProject.user = userName
+    return serializedProject
+  }
+
+  static async getProjectShowPageDetails(project){
     const allowedAttributes = [
       "id",
       "userId",
@@ -36,7 +56,7 @@ class ProjectSerializer {
     })
     serializedProject.instructions = relatedInstructions
     serializedProject.code =
-      project.githubFileURL && showPage
+      project.githubFileURL
         ? await GithubClient.getProjectCode(project.githubFileURL)
         : project.code
     return serializedProject

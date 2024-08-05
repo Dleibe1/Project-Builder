@@ -16,7 +16,7 @@ exports.up = async (knex) => {
 		.references("id")
 		.inTable("projects")
   
-	  table.text("instruction").notNullable()
+	  table.text("instructionText")
 	  table.text("imageURL")
   
 	  table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
@@ -28,5 +28,5 @@ exports.up = async (knex) => {
    * @param {Knex} knex
    */
   exports.down = async (knex) => {
-	return knex.schema.dropTableIfExists("instruction")
+	return knex.schema.dropTableIfExists("instructions")
   };

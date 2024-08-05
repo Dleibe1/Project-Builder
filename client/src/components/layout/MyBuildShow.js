@@ -12,7 +12,7 @@ const MyBuildShow = (props) => {
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    images: [],
+    instructions: [],
     parts: [],
     description: "",
     code: "",
@@ -55,6 +55,7 @@ const MyBuildShow = (props) => {
       }
       const responseBody = await response.json()
       let build = responseBody.userBuild
+      console.log(build)
       prepForFrontEnd(build)
       setMyBuild(build)
     } catch (error) {
@@ -66,11 +67,15 @@ const MyBuildShow = (props) => {
     ? `Code fetched from GitHub just now: (${myBuild.githubFileURL}) `
     : "Code:"
   const partsList = myBuild.parts.map((part) => {
-    return <p>{part}</p>
+    return <p>{part.partName}</p>
   })
 
-  const imageList = myBuild.images.map((image) => {
-    return <img className="project-image" src={`${image}`} />
+  const instructionList = myBuild.instructions.map((instruction) => {
+    if (instruction.imageURL.length) {
+      return <img className="project-image" src={`${instruction.imageURL}`} />
+    } else if (instruction.instructionText.length) {
+      return <p>{instruction.instructionText}</p>
+    }
   })
 
   return (
@@ -95,7 +100,7 @@ const MyBuildShow = (props) => {
         <h4>Apps and Platforms:</h4>
         <div>{myBuild.appsAndPlatforms}</div>
       </div>
-      <div className="images-container">{imageList}</div>
+      <div className="images-container">{instructionList}</div>
       <h6 className="github-url">{codeMessage}</h6>
       <pre>
         <code ref={codeRef} className="language-c">

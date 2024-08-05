@@ -7,15 +7,15 @@ class Instruction extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: "projectId",
+      required: ["projectId"],
       properties: {
         imageURL: { type: "string" },
         projectId: { type: "integer" },
-        instruction: { type: "string" },
+        instructionText: { type: "string" },
       },
       anyOf: [
         { required: ["imageURL"] },
-        { required: ["instruction"] }
+        { required: ["instructionText"] }
       ]
     }
   }

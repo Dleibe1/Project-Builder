@@ -18,11 +18,12 @@ const NewProjectForm = (props) => {
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
+  const [instructionText, setInstructionText] = useState ("")
   const [newProject, setNewProject] = useState({
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    images: [],
+    instructions: [],
     parts: [],
     description: "",
     code: "",
@@ -47,7 +48,10 @@ const NewProjectForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setNewProject({ ...newProject, images: [...newProject.images, body.imageURL] })
+      setNewProject({
+        ...newProject,
+        instructions: [...newProject.instructions, { imageURL: body.imageURL }],
+      })
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
@@ -145,9 +149,20 @@ const NewProjectForm = (props) => {
     setNewProject({ ...newProject, parts: partsList })
   }
 
-  const handleImageURLDelete = (index) => {
-    const imageList = newProject.images.filter((image, i) => i !== index)
-    setNewProject({ ...newProject, images: imageList })
+  const handleInstructionTextInput= (event) => {
+   setInstructionText(event.currentTarget.value)
+  }
+
+  const handleInstructionTextSubmit = () => {
+    if(instructionText.length){
+      setNewProject({...newProject, instructions:[...newProject.instructions, {instructionText: instructionText}]})
+    }
+    setInstructionText("")
+  }
+
+  const handleInstructionDelete = (index) => {
+    const instructionList = newProject.instructions.filter((instruction, i) => i !== index)
+    setNewProject({ ...newProject, instructions: instructionList })
   }
 
   let thumbNailImage = [
@@ -180,26 +195,48 @@ const NewProjectForm = (props) => {
     )
   })
 
-  const imageList = newProject.images.map((imageURL, index) => {
-    return (
-      <div className="image-list-container">
-        <img className="project-image" src={imageURL} />
-        <Button
-          onClick={() => handleImageURLDelete(index)}
-          className="large-button delete-image"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-          startIcon={<DeleteIcon />}
-        >
-          Delete Image
-        </Button>
-      </div>
-    )
+  const instructionList = newProject.instructions.map((instruction, index) => {
+    if (instruction.imageURL.length) {
+      return (
+        <div className="image-list-container">
+          <img className="project-image" src={instruction.imageURL} />
+          <Button
+            onClick={() => handleInstructionDelete(index)}
+            className="large-button delete-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Image
+          </Button>
+        </div>
+      )
+    } else if (instruction.instructionText.length) {
+      return (
+        <div className="instruction-text-container">
+          <p>{instruction.instructionText}</p>
+          <Button
+            onClick={() => handleInstructionDelete(index)}
+            className="large-button delete-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Instruction
+          </Button>
+        </div>
+      )
+    }
   })
 
   if (shouldRedirect) {
@@ -333,9 +370,9 @@ const NewProjectForm = (props) => {
           name="githubFileURL"
         />
         <Typography variant="h5" gutterBottom>
-          Project Images:
+          Instructions:
         </Typography>
-        {imageList}
+        {instructionList}
         <Button
           className="large-button"
           id="upload-image"
@@ -358,6 +395,29 @@ const NewProjectForm = (props) => {
               </section>
             )}
           </Dropzone>
+        </Button>
+        <textarea
+          value={instructionText}
+          rows="10"
+          cols="1"
+          onChange={handleInstructionTextInput}
+          type="text"
+          id="instruction-text"
+          name="instructionText"
+        />
+        <Button
+          onClick={handleInstructionTextSubmit}
+          className="large-button"
+          id="add-instruction-text"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+        >
+          Add Instruction
         </Button>
         <ErrorList errors={errors} id="form-error-list" />
         <Button

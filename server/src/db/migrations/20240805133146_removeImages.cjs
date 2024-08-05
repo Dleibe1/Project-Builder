@@ -7,11 +7,12 @@
  */
 exports.up = async (knex) => {
 	return knex.schema.dropTableIfExists("images")
-  };
+  }
   
   /**
    * @param {Knex} knex
    */
-  exports.down = async (knex) => {
+  exports.down = (knex) => {
 	return knex.schema.dropTableIfExists("images")
-  };
+  }
+  

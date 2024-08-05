@@ -24,7 +24,8 @@ class PartSeeder {
       { partName: "Arduino UNO R4 WIFI", projectId: 9 },
       { partName: "TIP120 Transistor", projectId: 9 },
       { partName: "LIS3DH Triple-Axis Accelerometer", projectId: 9 },
-
+      { partName: "MAX4466 microphone", projectId: 19 },
+      { partName: "Arduino® UNO R4 WiFi", projectId: 19 },
     ])
 
     //Project Fork Parts

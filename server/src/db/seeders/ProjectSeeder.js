@@ -229,7 +229,32 @@ class ProjectSeeder {
         parentProjectId: 20
       },
     ]
+    const exampleUserProjectForks = [
+      {
+        // id = 19
+        userId: 3,
+        title: "My version of How To Do Automatic Song classification",
+        description: descriptions[9],
+        appsAndPlatforms: "Arduino IDE and NanoEdge AI Studio",
+        code: code[9],
+        thumbnailImage:
+          "https://cdn.sparkfun.com/assets/9/1/e/4/8/515b4656ce395f8a38000000.png",
+        parentProjectId: 19
+      },
+      {
+        userId: 3,
+        title: "My version of simplest possible autorange Capacitance meter",
+        description: descriptions[10],
+        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        code: code[10],
+        thumbnailImage:
+          "https://content.instructables.com/FIO/94AS/IDH7U229/FIO94ASIDH7U229.png",
+        parentProjectId: 20
+      },
+    ]
     await Project.query().insert(exampleUserProjects)
+    await Project.query().insert(exampleUserProjectForks)
+
 
   }
 }

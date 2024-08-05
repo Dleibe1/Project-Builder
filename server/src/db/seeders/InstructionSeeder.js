@@ -1,8 +1,8 @@
-import { Image } from "../../models/index.js";
+import { Instruction } from "../../models/index.js";
 
-class ImageSeeder {
+class InstructionSeeder {
   static async seed(){
-    await Image.query().insert([
+    await Instruction.query().insert([
       {
         projectId: 1,
         imageURL: "https://projects.arduinocontent.cc/5dcac3f5-28bf-4a60-91c0-b71b5d034810.jpg",
@@ -88,7 +88,7 @@ class ImageSeeder {
     ])
 
     //Forked Project
-    await Image.query().insert([
+    await Instruction.query().insert([
       {
         projectId: 10,
         imageURL: "https://projects.arduinocontent.cc/5dcac3f5-28bf-4a60-91c0-b71b5d034810.jpg",
@@ -209,4 +209,4 @@ class ImageSeeder {
   
 }
 
-export default ImageSeeder
+export default InstructionSeeder
