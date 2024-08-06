@@ -185,13 +185,14 @@ const NewProjectForm = (props) => {
 
   const partsList = newProject.parts.map((part, index) => {
     return (
-      <div key={`${part}${index}`} className="cell small-3 medium-6 large-4 parts-list">
-        <h5 className="part-title">{part}</h5>
+      <div key={`${part}${index}`}>
+        <p>{part}</p>
         <Button
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"
           variant="contained"
           sx={{
+            width: "max-content",
             "&:hover": {
               textDecoration: "none",
               color: "white",
@@ -312,7 +313,9 @@ const NewProjectForm = (props) => {
         <Typography variant="h5" gutterBottom>
           Parts:
         </Typography>
-        {partsList}
+        <div className="showpage-items-container">
+          <div className="form-parts-list">{partsList}</div>
+        </div>
         <div id="part-input-container">
           <TextField
             sx={{ width: "100%" }}

@@ -322,11 +322,16 @@ body.grey-background {
 }
 
 .parts-list,
-.apps-and-platforms {
+.apps-and-platforms,
+.form-parts-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
   margin-bottom: 10px;
+}
+
+.form-parts-list {
+  gap:80px;
 }
 
 .parts-list p,
@@ -336,10 +341,6 @@ body.grey-background {
   padding: 5px; 
   box-sizing: border-box; 
   border-bottom: 2px solid #c9d2d2;
-}
-
-.parts-list .delete-part {
-  margin-bottom: 20px;
 }
 
 #part {
