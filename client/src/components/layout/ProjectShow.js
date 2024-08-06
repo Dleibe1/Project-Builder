@@ -99,9 +99,17 @@ const ProjectShow = (props) => {
   })
   const instructionList = project.instructions.map((instruction) => {
     if (instruction.imageURL) {
-      return <img className="project-image" src={`${instruction.imageURL}`} />
+      return (
+        <div className="showpage-items-container">
+          <img className="project-image" src={`${instruction.imageURL}`} />
+        </div>
+      )
     } else if (instruction.instructionText) {
-      return <p>{instruction.instructionText}</p>
+      return (
+        <div className="showpage-items-container">
+          <p>{instruction.instructionText}</p>
+        </div>
+      )
     }
   })
 
@@ -111,10 +119,14 @@ const ProjectShow = (props) => {
         {props.user ? forkProjectButton : []}
         {hasForks ? <ProjectForksButton id={id} /> : []}
       </div>
-      <div className="images-container">
-        <img className="project-image" src={project.thumbnailImage} alt="thumbnail" />
+      <div id="thumbnail-and-title">
+        <img
+          className="project-image show-page-thumbnail"
+          src={project.thumbnailImage}
+          alt="thumbnail"
+        />
+        <h2>{project.title}</h2>
       </div>
-      <h2>{project.title}</h2>
       <div className="showpage-items-container description">
         <h4>Description</h4>
         <p>{project.description}</p>
@@ -125,10 +137,14 @@ const ProjectShow = (props) => {
       </div>
       <div className="showpage-items-container">
         <h4>Apps and Platforms:</h4>
-        <div>{project.appsAndPlatforms}</div>
+        <div className="apps-and-platforms">
+          <p>{project.appsAndPlatforms}</p>
+        </div>
       </div>
-      <div className="images-container">{instructionList}</div>
-      <h6 className="github-url">{codeMessage}</h6>
+      {instructionList}
+      <div className="showpage-items-container">
+        <p className="github-url"> {codeMessage}</p>
+      </div>
       <pre>
         <code ref={codeRef} className="language-c">
           {project.code}

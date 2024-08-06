@@ -317,14 +317,20 @@ body.grey-background {
   align-items: center;
 }
 
-.parts-list {
+#submit-form-button {
+  margin-top:25px;
+}
+
+.parts-list,
+.apps-and-platforms {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
 
-.parts-list p {
+.parts-list p,
+.apps-and-platforms p {
   white-space: pre-line; 
   overflow-wrap: anywhere; 
   padding: 5px; 
@@ -374,6 +380,10 @@ body.grey-background {
   height: 180px;
 }
 
+#thumbnail-and-title{
+  background-color: white;
+}
+
 .images-container {
   background-color: white;
   display: flex;
@@ -382,10 +392,19 @@ body.grey-background {
   align-items: center;
 }
 
+.images-container.instructions-images {
+  background-color: #ecf1f1;
+}
+
 .project-image {
   max-width: 100%;
   height: auto;
   margin-bottom: 15px;
+}
+
+.project-image.show-page-thumbnail {
+  padding: 0px 10px 15px 10px;
+  background:white;
 }
 
 #delete-image {
@@ -536,11 +555,6 @@ body.grey-background {
   flex-direction: row-reverse;
 }
 
-#upload-image {
-  margin-bottom: 50px;
-  margin-top: 30px;
-}
-
 .image-list-container {
   display: flex;
   flex-direction: column;
@@ -581,6 +595,10 @@ body.grey-background {
 
 .form-input {
   width: 100%;
+}
+
+#upload-thumbnail-image {
+  margin-bottom:30px;
 }
 
 #code-input {
@@ -628,28 +646,14 @@ body.grey-background {
   padding: 16px;
 }
 
-.showpage-items-container.description{
-  margin-top:0px;
-}
-
 .fork-project-button-container,
 .edit-delete-build-button-container {
   background-color: white;
   padding: 10px;
-  border-radius: 6px;
-}
-
-#project-images {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  height: 100%;
+  border-radius: 6px 6px 0px 0px;
 }
 
 .github-url {
-  margin-top: 30px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   width: 100%;

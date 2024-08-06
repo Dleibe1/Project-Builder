@@ -18,7 +18,7 @@ const NewProjectForm = (props) => {
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
-  const [instructionText, setInstructionText] = useState ("")
+  const [instructionText, setInstructionText] = useState("")
   const [newProject, setNewProject] = useState({
     title: "",
     tags: "",
@@ -31,6 +31,13 @@ const NewProjectForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+
+  useEffect(() => {
+    document.body.classList.add("grey-background")
+    return () => {
+      document.body.classList.remove("grey-background")
+    }
+  }, [])
 
   const uploadProjectImage = async () => {
     const newImageFileData = new FormData()
@@ -149,13 +156,16 @@ const NewProjectForm = (props) => {
     setNewProject({ ...newProject, parts: partsList })
   }
 
-  const handleInstructionTextInput= (event) => {
-   setInstructionText(event.currentTarget.value)
+  const handleInstructionTextInput = (event) => {
+    setInstructionText(event.currentTarget.value)
   }
 
   const handleInstructionTextSubmit = () => {
-    if(instructionText.length){
-      setNewProject({...newProject, instructions:[...newProject.instructions, {instructionText: instructionText}]})
+    if (instructionText.length) {
+      setNewProject({
+        ...newProject,
+        instructions: [...newProject.instructions, { instructionText: instructionText }],
+      })
     }
     setInstructionText("")
   }
@@ -196,7 +206,7 @@ const NewProjectForm = (props) => {
   })
 
   const instructionList = newProject.instructions.map((instruction, index) => {
-    if (instruction.imageURL.length) {
+    if (instruction.imageURL) {
       return (
         <div className="image-list-container">
           <img className="project-image" src={instruction.imageURL} />
@@ -216,7 +226,7 @@ const NewProjectForm = (props) => {
           </Button>
         </div>
       )
-    } else if (instruction.instructionText.length) {
+    } else if (instruction.instructionText) {
       return (
         <div className="instruction-text-container">
           <p>{instruction.instructionText}</p>
@@ -262,7 +272,7 @@ const NewProjectForm = (props) => {
         {thumbNailImage}
         <Button
           className="large-button"
-          id="upload-image"
+          id="upload-thumbnail-image"
           variant="contained"
           sx={{
             "&:hover": {
@@ -298,18 +308,6 @@ const NewProjectForm = (props) => {
           onChange={handleInputChange}
           label="Apps and platforms"
           name="appsAndPlatforms"
-        />
-        <Typography variant="h5" gutterBottom>
-          Description and Instructions:
-        </Typography>
-        <textarea
-          value={newProject.description}
-          rows="10"
-          cols="1"
-          onChange={handleInputChange}
-          type="text"
-          id="description"
-          name="description"
         />
         <Typography variant="h5" gutterBottom>
           Parts:
@@ -370,35 +368,12 @@ const NewProjectForm = (props) => {
           name="githubFileURL"
         />
         <Typography variant="h5" gutterBottom>
-          Instructions:
+          Add Instructions and Images:
         </Typography>
         {instructionList}
-        <Button
-          className="large-button"
-          id="upload-image"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-          startIcon={<CloudUpload />}
-        >
-          <Dropzone onDrop={handleProjectImageUpload}>
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  Upload Image File
-                </div>
-              </section>
-            )}
-          </Dropzone>
-        </Button>
         <textarea
           value={instructionText}
-          rows="10"
+          rows="5"
           cols="1"
           onChange={handleInstructionTextInput}
           type="text"
@@ -419,11 +394,34 @@ const NewProjectForm = (props) => {
         >
           Add Instruction
         </Button>
+        <Button
+          className="large-button"
+          id="upload-image"
+          variant="contained"
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+              color: "white",
+            },
+          }}
+          startIcon={<CloudUpload />}
+        >
+          <Dropzone onDrop={handleProjectImageUpload}>
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  Upload Image
+                </div>
+              </section>
+            )}
+          </Dropzone>
+        </Button>
         <ErrorList errors={errors} id="form-error-list" />
         <Button
           type="submit"
           className="large-button"
-          id="submit-form"
+          id="submit-form-button"
           variant="outlined"
           size="large"
           endIcon={<Send />}
