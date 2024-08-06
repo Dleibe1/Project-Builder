@@ -32,13 +32,6 @@ const NewProjectForm = (props) => {
     thumbnailImage: "",
   })
 
-  useEffect(() => {
-    document.body.classList.add("grey-background")
-    return () => {
-      document.body.classList.remove("grey-background")
-    }
-  }, [])
-
   const uploadProjectImage = async () => {
     const newImageFileData = new FormData()
     newImageFileData.append("image", imageFile.image)
@@ -185,7 +178,7 @@ const NewProjectForm = (props) => {
 
   const partsList = newProject.parts.map((part, index) => {
     return (
-      <div key={`${part}${index}`}>
+      <div key={`${part}${index}`} className="part-item-in-form">
         <p>{part}</p>
         <Button
           onClick={() => handlePartDelete(index)}
@@ -263,9 +256,8 @@ const NewProjectForm = (props) => {
       <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
         <TextField
           value={newProject.title}
-          className="form-input text-field"
+          className="form-input text-field title-input"
           fullWidth
-          id="form-title"
           onChange={handleInputChange}
           label="Project Title *"
           name="title"
@@ -341,6 +333,58 @@ const NewProjectForm = (props) => {
             Add Part
           </Button>
         </div>
+        <Typography variant="h5" gutterBottom>
+          Add Instructions and Images:
+        </Typography>
+        {instructionList}
+        <textarea
+          value={instructionText}
+          rows="5"
+          cols="1"
+          onChange={handleInstructionTextInput}
+          type="text"
+          id="instruction-text"
+          name="instructionText"
+        />
+        <div className="add-instruction-button-container">
+          <Button
+            onClick={handleInstructionTextSubmit}
+            className="large-button "
+            id="add-instruction-text"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+          >
+            Add Instruction
+          </Button>
+          <Button
+            className="large-button"
+            id="add-instruction-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<CloudUpload />}
+          >
+            <Dropzone onDrop={handleProjectImageUpload}>
+              {({ getRootProps, getInputProps }) => (
+                <section>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    Upload Image
+                  </div>
+                </section>
+              )}
+            </Dropzone>
+          </Button>
+        </div>
         <label htmlFor="code" className="form-input" id="code-input">
           <Typography variant="h5" gutterBottom>
             Code:
@@ -370,56 +414,7 @@ const NewProjectForm = (props) => {
           label="GitHub main sketch file URL"
           name="githubFileURL"
         />
-        <Typography variant="h5" gutterBottom>
-          Add Instructions and Images:
-        </Typography>
-        {instructionList}
-        <textarea
-          value={instructionText}
-          rows="5"
-          cols="1"
-          onChange={handleInstructionTextInput}
-          type="text"
-          id="instruction-text"
-          name="instructionText"
-        />
-        <Button
-          onClick={handleInstructionTextSubmit}
-          className="large-button"
-          id="add-instruction-text"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-        >
-          Add Instruction
-        </Button>
-        <Button
-          className="large-button"
-          id="upload-image"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-          startIcon={<CloudUpload />}
-        >
-          <Dropzone onDrop={handleProjectImageUpload}>
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  Upload Image
-                </div>
-              </section>
-            )}
-          </Dropzone>
-        </Button>
+        
         <ErrorList errors={errors} id="form-error-list" />
         <Button
           type="submit"

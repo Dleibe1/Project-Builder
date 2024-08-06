@@ -21,14 +21,6 @@ const ProjectList = (props) => {
     getProjectsData()
   }, [])
 
-  useEffect(() => {
-    document.body.classList.add("grey-background")
-
-    return () => {
-      document.body.classList.remove("grey-background")
-    }
-  }, [])
-
   const projectsArray = projects.map((project) => {
     if (project.id === project.parentProjectId) {
       return (

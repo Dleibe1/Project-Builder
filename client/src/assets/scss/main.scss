@@ -13,6 +13,7 @@
 
 body {
   margin: 0;
+  background-color: #ecf1f1;
 }
 
 body::before {
@@ -37,10 +38,6 @@ body.hide-background::before {
 
 body.hide-background {
   background-color: white;
-}
-
-body.grey-background {
-  background-color: #ecf1f1;
 }
 
 @media (max-width: 1500px) {
@@ -343,6 +340,13 @@ body.grey-background {
   border-bottom: 2px solid #c9d2d2;
 }
 
+.part-item-in-form {
+  width: fit-content;
+  overflow-wrap: anywhere;
+  border-right: 2px solid #c9d2d2;
+  padding-right:10px;
+}
+
 #part {
   text-align: left;
 }
@@ -585,6 +589,10 @@ body.grey-background {
   box-shadow: none;
 }
 
+#upload-thumbnail-image {
+  margin-bottom: 40px;
+}
+
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
   margin-bottom: 20px;
 }
@@ -594,12 +602,17 @@ body.grey-background {
   margin-bottom: 40px;
 }
 
+.form-input.text-field.title-input{
+  margin-bottom: 20px;
+}
+
 .form-input {
   width: 100%;
 }
 
-#upload-thumbnail-image {
-  margin-bottom:30px;
+#add-instruction-text,
+#add-instruction-image {
+  margin: 0px 30px 0px 30px;
 }
 
 #code-input {
