@@ -51,7 +51,7 @@ const ProjectShow = (props) => {
       if (project.userId === props.user?.id) {
         setShouldRedirect(true)
       }
-      prepForFrontEnd(project)
+      // prepForFrontEnd(project)
       setProject(project)
     } catch (error) {
       console.log(error)

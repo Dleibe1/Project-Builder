@@ -47,7 +47,6 @@ const MyBuildShow = (props) => {
       }
       const responseBody = await response.json()
       let build = responseBody.userBuild
-      console.log(build)
       prepForFrontEnd(build)
       setMyBuild(build)
     } catch (error) {

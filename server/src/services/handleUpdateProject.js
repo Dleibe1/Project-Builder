@@ -18,8 +18,8 @@ const handleUpdateProject = async (
   const projId = parseInt(projectId)
   const githubFileURLField = githubFileURL ? githubFileURL : ""
   await Part.query().delete().where("projectId", projectId)
-  for (const partName of parts) {
-    await Part.query().insert({ projectId: projId, partName: partName })
+  for (const part of parts) {
+    await Part.query().insert({ projectId: projId, partName: part.partName })
   }
   for (const instruction of instructions) {
     await  Instruction.query().delete().where("projectId", projectId)

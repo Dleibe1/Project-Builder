@@ -202,7 +202,7 @@ const NewProjectForm = (props) => {
   const instructionList = newProject.instructions.map((instruction, index) => {
     if (instruction.imageURL) {
       return (
-        <div className="image-list-container">
+        <div key={`${instruction.imageURL}${index}`} className="image-list-container">
           <img className="project-image" src={instruction.imageURL} />
           <Button
             onClick={() => handleInstructionDelete(index)}
@@ -256,16 +256,28 @@ const NewProjectForm = (props) => {
       <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
         <TextField
           value={newProject.title}
-          className="form-input text-field title-input"
+          className="form-input text-field"
           fullWidth
           onChange={handleInputChange}
           label="Project Title *"
           name="title"
         />
+        <Typography variant="h5" gutterBottom>
+          Description:
+        </Typography>
+        <textarea
+          value={newProject.description}
+          rows="3"
+          cols="1"
+          onChange={handleInputChange}
+          type="text"
+          id="description"
+          name="description"
+        />
         {thumbNailImage}
         <Button
           className="large-button"
-          id="upload-thumbnail-image"
+          id="upload-image"
           variant="contained"
           sx={{
             "&:hover": {
