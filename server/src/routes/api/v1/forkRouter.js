@@ -30,15 +30,6 @@ forkRouter.get("/:id", async (req, res) => {
   try {
     const fork = await Project.query().findById(id)
     let serializedForkData = await ProjectSerializer.getProjectShowPageDetails(fork)
-    const partNames = serializedForkData.parts.map((part) => {
-      return part.partName
-    })
-    const imageUrls = serializedForkData.images.map((imageData) => {
-      return imageData.imageURL
-    })
-    serializedForkData.parts = partNames
-    serializedForkData.images = imageUrls
-    serializedForkData.title = ""
     return res.status(200).json({ fork: serializedForkData })
   } catch (error) {
     console.log(error)

@@ -41,7 +41,7 @@ projectsRouter.delete("/:id", async (req, res) => {
     await Part.query().delete().where("projectId", projectId)
     await Instruction.query().delete().where("projectId", projectId)
     await Project.query()
-      .update({
+      .patch({
         parentProjectId: null,
       })
       .where("parentProjectId", projectId)

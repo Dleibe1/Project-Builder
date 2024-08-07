@@ -560,7 +560,8 @@ body.hide-background {
   flex-direction: row-reverse;
 }
 
-.image-list-container {
+.image-list-container,
+.instruction-list-container {
   display: flex;
   flex-direction: column;
   align-items: center;

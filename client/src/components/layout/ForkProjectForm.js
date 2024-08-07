@@ -19,6 +19,7 @@ const ForkProjectForm = (props) => {
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
+  const [instructionText, setInstructionText] = useState("")
   const params = useParams()
   const { id } = params
 
@@ -30,7 +31,7 @@ const ForkProjectForm = (props) => {
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    images: [],
+    instructions: [],
     parts: [],
     description: "",
     code: "",
@@ -94,6 +95,25 @@ const ForkProjectForm = (props) => {
     })
   }
 
+  const handleInstructionTextInput = (event) => {
+    setInstructionText(event.currentTarget.value)
+  }
+
+  const handleInstructionTextSubmit = () => {
+    if (instructionText.length) {
+      setForkedProject({
+        ...forkedProject,
+        instructions: [...forkedProject.instructions, { instructionText: instructionText }],
+      })
+    }
+    setInstructionText("")
+  }
+
+  const handleInstructionDelete = (index) => {
+    const instructionList = forkedProject.instructions.filter((instruction, i) => i !== index)
+    setForkedProject({ ...forkedProject, instructions: instructionList })
+  }
+
   const getProject = async () => {
     try {
       const response = await fetch(`/api/v1/project-forks/${id}`)
@@ -105,7 +125,7 @@ const ForkProjectForm = (props) => {
       const responseBody = await response.json()
       let fork = responseBody.fork
       prepForFrontEnd(fork)
-      setForkedProject({ ...fork, githubFileURL: "" })
+      setForkedProject(fork)
     } catch (error) {
       console.log(error)
     }
@@ -148,7 +168,7 @@ const ForkProjectForm = (props) => {
 
   const handlePartSubmit = () => {
     if (part.length) {
-      setForkedProject({ ...forkedProject, parts: [...forkedProject.parts, part] })
+      setForkedProject({ ...forkedProject, parts: [...forkedProject.parts, { partName: part }] })
     }
     setPart("")
   }
@@ -173,13 +193,14 @@ const ForkProjectForm = (props) => {
 
   const partsList = forkedProject.parts.map((part, index) => {
     return (
-      <div key={`${part}${index}`} className="cell small-3 medium-6 large-4 parts-list">
-        <h5 className="part-title">{part}</h5>
+      <div className="part-item-in-form">
+        <p key={`${part.partName}${index}`}> {part.partName}</p>
         <Button
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"
           variant="contained"
           sx={{
+            width: "max-content",
             "&:hover": {
               textDecoration: "none",
               color: "white",
@@ -193,27 +214,51 @@ const ForkProjectForm = (props) => {
     )
   })
 
-  const imageList = forkedProject.images.map((imageURL, index) => {
-    return (
-      <div className="image-list-container">
-        <img className="project-image" src={imageURL} />
-        <Button
-          onClick={() => handleImageURLDelete(index)}
-          className="large-button delete-image"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-          startIcon={<DeleteIcon />}
-        >
-          Delete Image
-        </Button>
-      </div>
-    )
+  const instructionList = forkedProject.instructions.map((instruction, index) => {
+    if (instruction.imageURL) {
+      return (
+        <div key={`${instruction.imageURL}${index}`} className="image-list-container">
+          <img className="project-image" src={instruction.imageURL} />
+          <Button
+            onClick={() => handleInstructionDelete(index)}
+            className="large-button delete-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Image
+          </Button>
+        </div>
+      )
+    } else {
+      return (
+        <div key={`${instruction.instructionText}${index}`} className="instruction-list-container">
+          <p>{instruction.instructionText}</p>
+          <Button
+            onClick={() => handleInstructionDelete(index)}
+            className="large-button delete-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Instruction
+          </Button>
+        </div>
+      )
+    }
   })
+
+  console.log(forkedProject)
 
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds"} />
@@ -234,6 +279,18 @@ const ForkProjectForm = (props) => {
           onChange={handleInputChange}
           label="Project Title *"
           name="title"
+        />
+        <Typography variant="h5" gutterBottom>
+          Description:
+        </Typography>
+        <textarea
+          value={forkedProject.description}
+          rows="10"
+          cols="1"
+          onChange={handleInputChange}
+          type="text"
+          id="description"
+          name="description"
         />
         <div className="image-list-container">
           <img className="project-image" src={forkedProject.thumbnailImage} />
@@ -281,21 +338,11 @@ const ForkProjectForm = (props) => {
           name="appsAndPlatforms"
         />
         <Typography variant="h5" gutterBottom>
-          Description and Instructions:
-        </Typography>
-        <textarea
-          value={forkedProject.description}
-          rows="10"
-          cols="1"
-          onChange={handleInputChange}
-          type="text"
-          id="description"
-          name="description"
-        />
-        <Typography variant="h5" gutterBottom>
           Parts:
         </Typography>
-        {partsList}
+        <div className="showpage-items-container">
+          <div className="form-parts-list">{partsList}</div>
+        </div>
         <div id="part-input-container">
           <TextField
             sx={{ width: "100%" }}
@@ -335,6 +382,58 @@ const ForkProjectForm = (props) => {
             name="code"
           />
         </label>
+        <Typography variant="h5" gutterBottom>
+          Add Instructions and Images:
+        </Typography>
+        {instructionList}
+        <textarea
+          value={instructionText}
+          rows="5"
+          cols="1"
+          onChange={handleInstructionTextInput}
+          type="text"
+          id="instruction-text"
+          name="instructionText"
+        />
+        <div className="add-instruction-button-container">
+          <Button
+            onClick={handleInstructionTextSubmit}
+            className="large-button "
+            id="add-instruction-text"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+          >
+            Add Instruction
+          </Button>
+          <Button
+            className="large-button"
+            id="add-instruction-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<CloudUpload />}
+          >
+            <Dropzone onDrop={handleProjectImageUpload}>
+              {({ getRootProps, getInputProps }) => (
+                <section>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    Upload Image
+                  </div>
+                </section>
+              )}
+            </Dropzone>
+          </Button>
+        </div>
         <Typography id="github-url-explanation" variant="h5" gutterBottom>
           Is this a work in progress? Pasting the URL of your main sketch file on Github will
           automatically keep the code you share up to date.
@@ -350,33 +449,6 @@ const ForkProjectForm = (props) => {
           label="GitHub main sketch file URL"
           name="githubFileURL"
         />
-        <Typography variant="h5" gutterBottom>
-          Project Images:
-        </Typography>
-        {imageList}
-        <Button
-          className="large-button"
-          id="upload-image"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-          startIcon={<CloudUpload />}
-        >
-          <Dropzone onDrop={handleProjectImageUpload}>
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  Upload Project Image
-                </div>
-              </section>
-            )}
-          </Dropzone>
-        </Button>
         <ErrorList errors={errors} id="form-error-list" />
         <Button
           type="submit"

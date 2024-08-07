@@ -153,8 +153,6 @@ const EditBuildForm = (props) => {
     setPart("")
   }
 
-  console.log(editedProject)
-
   const handlePartDelete = (index) => {
     const partsList = editedProject.parts.filter((part, i) => i !== index)
     setEditedProject({ ...editedProject, parts: partsList })
@@ -176,11 +174,6 @@ const EditBuildForm = (props) => {
     setInstructionText(event.currentTarget.value)
   }
 
-  const handleInstructionDelete = (index) => {
-    const instructionList = editedProject.instructions.filter((instruction, i) => i !== index)
-    setEditedProject({ ...editedProject, instructions: instructionList })
-  }
-
   const handleInstructionTextSubmit = () => {
     if (instructionText.length) {
       setEditedProject({
@@ -189,6 +182,11 @@ const EditBuildForm = (props) => {
       })
     }
     setInstructionText("")
+  }
+
+  const handleInstructionDelete = (index) => {
+    const instructionList = editedProject.instructions.filter((instruction, i) => i !== index)
+    setEditedProject({ ...editedProject, instructions: instructionList })
   }
 
   const partsList = editedProject.parts.map((part, index) => {
@@ -215,25 +213,48 @@ const EditBuildForm = (props) => {
   })
 
   const instructionList = editedProject.instructions.map((instruction, index) => {
-    return (
-      <div key={`${instruction.imageURL}${index}`} className="image-list-container">
-        <img className="project-image" src={instruction.imageURL} />
-        <Button
-          onClick={() => handleInstructionDelete(index)}
-          className="large-button delete-image"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-          startIcon={<DeleteIcon />}
-        >
-          Delete Image
-        </Button>
-      </div>
-    )
+    if (instruction.imageURL) {
+      return (
+        <div key={`${instruction.imageURL}${index}`} className="image-list-container">
+          <img className="project-image" src={instruction.imageURL} />
+          <Button
+            onClick={() => handleInstructionDelete(index)}
+            className="large-button delete-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Image
+          </Button>
+        </div>
+      )
+    } else {
+      return (
+        <div key ={`${instruction.instructionText}${index}`} className="instruction-list-container">
+          <p>{instruction.instructionText}</p>
+          <Button
+            onClick={() => handleInstructionDelete(index)}
+            className="large-button delete-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Instruction
+          </Button>
+        </div>
+        
+      )
+    }
   })
 
   if (shouldRedirect) {
@@ -246,7 +267,7 @@ const EditBuildForm = (props) => {
         Edit Project
       </Typography>
       <ErrorList errors={errors} />
-      <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
+      <form key="edit-build-form" id="edit-build-form" onSubmit={handleSubmit}>
         <TextField
           value={editedProject.title}
           className="form-input text-field"
@@ -345,6 +366,20 @@ const EditBuildForm = (props) => {
             Add Part
           </Button>
         </div>
+        <label htmlFor="code" className="form-input" id="code-input">
+          <Typography variant="h5" gutterBottom>
+            Code:
+          </Typography>
+          <textarea
+            value={editedProject.code}
+            rows="20"
+            cols="1"
+            onChange={handleInputChange}
+            type="text"
+            id="code"
+            name="code"
+          />
+        </label>
         <Typography variant="h5" gutterBottom>
           Add Instructions and Images:
         </Typography>
@@ -397,20 +432,6 @@ const EditBuildForm = (props) => {
             </Dropzone>
           </Button>
         </div>
-        <label htmlFor="code" className="form-input" id="code-input">
-          <Typography variant="h5" gutterBottom>
-            Code:
-          </Typography>
-          <textarea
-            value={editedProject.code}
-            rows="20"
-            cols="1"
-            onChange={handleInputChange}
-            type="text"
-            id="code"
-            name="code"
-          />
-        </label>
         <Typography id="github-url-explanation" variant="h5" gutterBottom>
           Is this a work in progress? Pasting the URL of your main sketch file on Github will
           automatically keep the code you share up to date.
