@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react"
 import { useParams, Redirect } from "react-router-dom"
 import ForkProjectButton from "./ForkProjectButton.js"
 import ProjectForksButton from "./ProjectForksButton.js"
-import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -82,7 +81,7 @@ const ProjectShow = (props) => {
     return <Redirect push to={`/my-builds/${id}`} />
   }
 
-  const forkProjectButton = [<ForkProjectButton key={id} id={id} />]
+  const forkProjectButton = [<ForkProjectButton key={"fork-project"} />]
   const codeMessage = project.githubFileURL.length
     ? `Code fetched from GitHub just now: (${project.githubFileURL}) `
     : "Code:"
