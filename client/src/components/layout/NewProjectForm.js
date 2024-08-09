@@ -18,11 +18,12 @@ const NewProjectForm = (props) => {
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
+  const [instructionText, setInstructionText] = useState("")
   const [newProject, setNewProject] = useState({
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    images: [],
+    instructions: [],
     parts: [],
     description: "",
     code: "",
@@ -47,7 +48,10 @@ const NewProjectForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setNewProject({ ...newProject, images: [...newProject.images, body.imageURL] })
+      setNewProject({
+        ...newProject,
+        instructions: [...newProject.instructions, { imageURL: body.imageURL }],
+      })
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
@@ -145,13 +149,27 @@ const NewProjectForm = (props) => {
     setNewProject({ ...newProject, parts: partsList })
   }
 
-  const handleImageURLDelete = (index) => {
-    const imageList = newProject.images.filter((image, i) => i !== index)
-    setNewProject({ ...newProject, images: imageList })
+  const handleInstructionTextInput = (event) => {
+    setInstructionText(event.currentTarget.value)
+  }
+
+  const handleInstructionTextSubmit = () => {
+    if (instructionText.length) {
+      setNewProject({
+        ...newProject,
+        instructions: [...newProject.instructions, { instructionText: instructionText }],
+      })
+    }
+    setInstructionText("")
+  }
+
+  const handleInstructionDelete = (index) => {
+    const instructionList = newProject.instructions.filter((instruction, i) => i !== index)
+    setNewProject({ ...newProject, instructions: instructionList })
   }
 
   let thumbNailImage = [
-    <div className="image-list-container">
+    <div className="project-image-container">
       <img className="project-image" src={newProject.thumbnailImage} />
     </div>,
   ]
@@ -160,13 +178,14 @@ const NewProjectForm = (props) => {
 
   const partsList = newProject.parts.map((part, index) => {
     return (
-      <div key={`${part}${index}`} className="cell small-3 medium-6 large-4 parts-list">
-        <h5 className="part-title">{part}</h5>
+      <div key={`${part}${index}`} className="part-item-in-form">
+        <p>{part}</p>
         <Button
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"
           variant="contained"
           sx={{
+            width: "max-content",
             "&:hover": {
               textDecoration: "none",
               color: "white",
@@ -180,26 +199,48 @@ const NewProjectForm = (props) => {
     )
   })
 
-  const imageList = newProject.images.map((imageURL, index) => {
-    return (
-      <div className="image-list-container">
-        <img className="project-image" src={imageURL} />
-        <Button
-          onClick={() => handleImageURLDelete(index)}
-          className="large-button delete-image"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-          startIcon={<DeleteIcon />}
-        >
-          Delete Image
-        </Button>
-      </div>
-    )
+  const instructionList = newProject.instructions.map((instruction, index) => {
+    if (instruction.imageURL) {
+      return (
+        <div key={`${instruction.imageURL}${index}`} className="project-image-container">
+          <img className="project-image" src={instruction.imageURL} />
+          <Button
+            onClick={() => handleInstructionDelete(index)}
+            className="large-button delete-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Image
+          </Button>
+        </div>
+      )
+    } else if (instruction.instructionText) {
+      return (
+        <div className="instruction-text-container">
+          <p>{instruction.instructionText}</p>
+          <Button
+            onClick={() => handleInstructionDelete(index)}
+            className="large-button delete-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Instruction
+          </Button>
+        </div>
+      )
+    }
   })
 
   if (shouldRedirect) {
@@ -217,15 +258,26 @@ const NewProjectForm = (props) => {
           value={newProject.title}
           className="form-input text-field"
           fullWidth
-          id="form-title"
           onChange={handleInputChange}
           label="Project Title *"
           name="title"
         />
+        <Typography variant="h5" gutterBottom>
+          Description:
+        </Typography>
+        <textarea
+          value={newProject.description}
+          rows="3"
+          cols="1"
+          onChange={handleInputChange}
+          type="text"
+          id="description"
+          name="description"
+        />
         {thumbNailImage}
         <Button
           className="large-button"
-          id="upload-image"
+          id="upload-thumbnail-image"
           variant="contained"
           sx={{
             "&:hover": {
@@ -263,21 +315,11 @@ const NewProjectForm = (props) => {
           name="appsAndPlatforms"
         />
         <Typography variant="h5" gutterBottom>
-          Description and Instructions:
-        </Typography>
-        <textarea
-          value={newProject.description}
-          rows="10"
-          cols="1"
-          onChange={handleInputChange}
-          type="text"
-          id="description"
-          name="description"
-        />
-        <Typography variant="h5" gutterBottom>
           Parts:
         </Typography>
-        {partsList}
+        <div className="showpage-items-container">
+          <div className="form-parts-list">{partsList}</div>
+        </div>
         <div id="part-input-container">
           <TextField
             sx={{ width: "100%" }}
@@ -301,6 +343,58 @@ const NewProjectForm = (props) => {
             }}
           >
             Add Part
+          </Button>
+        </div>
+        <Typography variant="h5" gutterBottom>
+          Add Instructions and Images:
+        </Typography>
+        {instructionList}
+        <textarea
+          value={instructionText}
+          rows="5"
+          cols="1"
+          onChange={handleInstructionTextInput}
+          type="text"
+          id="instruction-text"
+          name="instructionText"
+        />
+        <div className="add-instruction-button-container">
+          <Button
+            onClick={handleInstructionTextSubmit}
+            className="large-button "
+            id="add-instruction-text"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+          >
+            Add Instruction
+          </Button>
+          <Button
+            className="large-button"
+            id="add-instruction-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<CloudUpload />}
+          >
+            <Dropzone onDrop={handleProjectImageUpload}>
+              {({ getRootProps, getInputProps }) => (
+                <section>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    Upload Image
+                  </div>
+                </section>
+              )}
+            </Dropzone>
           </Button>
         </div>
         <label htmlFor="code" className="form-input" id="code-input">
@@ -332,38 +426,12 @@ const NewProjectForm = (props) => {
           label="GitHub main sketch file URL"
           name="githubFileURL"
         />
-        <Typography variant="h5" gutterBottom>
-          Project Images:
-        </Typography>
-        {imageList}
-        <Button
-          className="large-button"
-          id="upload-image"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-          startIcon={<CloudUpload />}
-        >
-          <Dropzone onDrop={handleProjectImageUpload}>
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  Upload Image File
-                </div>
-              </section>
-            )}
-          </Dropzone>
-        </Button>
+        
         <ErrorList errors={errors} id="form-error-list" />
         <Button
           type="submit"
           className="large-button"
-          id="submit-form"
+          id="submit-form-button"
           variant="outlined"
           size="large"
           endIcon={<Send />}

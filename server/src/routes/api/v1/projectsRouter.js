@@ -1,5 +1,5 @@
 import express from "express"
-import { Project, Part, Image } from "../../../models/index.js"
+import { Project, Part, Instruction } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 import objection from "objection"
 import handleNewProject from "../../../services/handleNewProject.js"
@@ -7,12 +7,13 @@ import cleanUserInput from "../../../services/cleanUserInput.js"
 const { ValidationError } = objection
 
 const projectsRouter = new express.Router()
+
 projectsRouter.get("/", async (req, res) => {
   try {
     const projects = await Project.query()
     const serializedProjects = await Promise.all(
       projects.map((project) => {
-        return ProjectSerializer.getProjectDetails(project, false)
+        return ProjectSerializer.getProjectListDetails(project, false)
       }),
     )
     res.status(200).json({ projects: serializedProjects })
@@ -26,7 +27,7 @@ projectsRouter.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
     const project = await Project.query().findById(id)
-    const serializedProject = await ProjectSerializer.getProjectDetails(project, true)
+    const serializedProject = await ProjectSerializer.getProjectShowPageDetails(project)
     return res.status(200).json({ project: serializedProject })
   } catch (error) {
     console.log(error)
@@ -38,12 +39,13 @@ projectsRouter.delete("/:id", async (req, res) => {
   const projectId = req.params.id
   try {
     await Part.query().delete().where("projectId", projectId)
-    await Image.query().delete().where("projectId", projectId)
+    await Instruction.query().delete().where("projectId", projectId)
+    await Project.query()
+      .patch({
+        parentProjectId: null,
+      })
+      .where("parentProjectId", projectId)
     await Project.query().deleteById(projectId)
-
-
-    // find all forked projects and update their parentProjectId to be null 
-
     return res.status(200).json({})
   } catch (error) {
     console.log(error)

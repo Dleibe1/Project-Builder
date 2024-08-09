@@ -12,7 +12,7 @@ const MyBuildShow = (props) => {
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    images: [],
+    instructions: [],
     parts: [],
     description: "",
     code: "",
@@ -37,14 +37,6 @@ const MyBuildShow = (props) => {
     }
   }, [myBuild])
 
-  useEffect(() => {
-    document.body.classList.add("grey-background")
-
-    return () => {
-      document.body.classList.remove("grey-background")
-    }
-  }, [])
-
   const getMyBuild = async () => {
     try {
       const response = await fetch(`/api/v1/my-builds/${id}`)
@@ -66,11 +58,15 @@ const MyBuildShow = (props) => {
     ? `Code fetched from GitHub just now: (${myBuild.githubFileURL}) `
     : "Code:"
   const partsList = myBuild.parts.map((part) => {
-    return <p>{part}</p>
+    return <p>{part.partName}</p>
   })
 
-  const imageList = myBuild.images.map((image) => {
-    return <img className="project-image" src={`${image}`} />
+  const instructionList = myBuild.instructions.map((instruction) => {
+    if (instruction.imageURL) {
+      return <img className="project-image" src={`${instruction.imageURL}`} />
+    } else if (instruction.instructionText) {
+      return <p>{instruction.instructionText}</p>
+    }
   })
 
   return (
@@ -84,7 +80,7 @@ const MyBuildShow = (props) => {
       </div>
       <h2>{myBuild.title}</h2>
       <div className="showpage-items-container description">
-        <h4>Description And Instructions:</h4>
+        <h4>Description:</h4>
         <p>{myBuild.description}</p>
       </div>
       <div className="showpage-items-container">
@@ -95,10 +91,7 @@ const MyBuildShow = (props) => {
         <h4>Apps and Platforms:</h4>
         <div>{myBuild.appsAndPlatforms}</div>
       </div>
-      <div id="project-images">
-        <h4>Project Images</h4>
-      </div>
-      <div className="images-container">{imageList}</div>
+      <div className="images-container">{instructionList}</div>
       <h6 className="github-url">{codeMessage}</h6>
       <pre>
         <code ref={codeRef} className="language-c">

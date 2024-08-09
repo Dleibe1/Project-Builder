@@ -1,4 +1,4 @@
-import { Project, Part, Image } from "../models/index.js"
+import { Project, Part, Instruction } from "../models/index.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
 const handleNewProject = async ({
@@ -10,7 +10,7 @@ const handleNewProject = async ({
   githubFileURL,
   userId,
   parts,
-  images,
+  instructions,
   thumbnailImage,
 }) => {
   const projectCode = githubFileURL ? await GithubClient.getProjectCode(githubFileURL) : code
@@ -30,8 +30,12 @@ const handleNewProject = async ({
   for (const part of parts) {
     await Part.query().insert({ projectId: newProjectId, partName: part })
   }
-  for (const image of images) {
-    await Image.query().insert({ projectId: newProjectId, imageURL: image })
+  for (const instruction of instructions) {
+    await Instruction.query().insert({
+      projectId: newProjectId,
+      imageURL: instruction.imageURL,
+      instructionText: instruction.instructionText,
+    })
   }
 }
 

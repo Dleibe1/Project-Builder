@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react"
 import { useParams, Redirect } from "react-router-dom"
 import ForkProjectButton from "./ForkProjectButton.js"
 import ProjectForksButton from "./ProjectForksButton.js"
-import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -11,7 +10,7 @@ const ProjectShow = (props) => {
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    images: [],
+    instructions: [],
     parts: [],
     description: "",
     code: "",
@@ -38,14 +37,6 @@ const ProjectShow = (props) => {
     }
   }, [project])
 
-  useEffect(() => {
-    document.body.classList.add("grey-background")
-
-    return () => {
-      document.body.classList.remove("grey-background")
-    }
-  }, [])
-
   const getProject = async () => {
     try {
       const response = await fetch(`/api/v1/projects/${id}`)
@@ -59,7 +50,6 @@ const ProjectShow = (props) => {
       if (project.userId === props.user?.id) {
         setShouldRedirect(true)
       }
-      prepForFrontEnd(project)
       setProject(project)
     } catch (error) {
       console.log(error)
@@ -90,15 +80,27 @@ const ProjectShow = (props) => {
     return <Redirect push to={`/my-builds/${id}`} />
   }
 
-  const forkProjectButton = [<ForkProjectButton key={id} id={id} />]
+  const forkProjectButton = [<ForkProjectButton key={"fork-project"} id={id} />]
   const codeMessage = project.githubFileURL.length
     ? `Code fetched from GitHub just now: (${project.githubFileURL}) `
     : "Code:"
   const partsList = project.parts.map((part) => {
     return <p key={part.partName}>{part.partName}</p>
   })
-  const imageList = project.images.map((image) => {
-    return <img className="project-image" src={`${image.imageURL}`} />
+  const instructionList = project.instructions.map((instruction) => {
+    if (instruction.imageURL) {
+      return (
+        <div className="showpage-items-container">
+          <img className="project-image" src={`${instruction.imageURL}`} />
+        </div>
+      )
+    } else if (instruction.instructionText) {
+      return (
+        <div className="showpage-items-container">
+          <p>{instruction.instructionText}</p>
+        </div>
+      )
+    }
   })
 
   return (
@@ -107,12 +109,16 @@ const ProjectShow = (props) => {
         {props.user ? forkProjectButton : []}
         {hasForks ? <ProjectForksButton id={id} /> : []}
       </div>
-      <div className="images-container">
-        <img className="project-image" src={project.thumbnailImage} alt="thumbnail" />
+      <div id="thumbnail-and-title">
+        <img
+          className="project-image show-page-thumbnail"
+          src={project.thumbnailImage}
+          alt="thumbnail"
+        />
+        <h2>{project.title}</h2>
       </div>
-      <h2>{project.title}</h2>
       <div className="showpage-items-container description">
-        <h4>Description and Instructions:</h4>
+        <h4>Description</h4>
         <p>{project.description}</p>
       </div>
       <div className="showpage-items-container">
@@ -121,10 +127,14 @@ const ProjectShow = (props) => {
       </div>
       <div className="showpage-items-container">
         <h4>Apps and Platforms:</h4>
-        <div>{project.appsAndPlatforms}</div>
+        <div className="apps-and-platforms">
+          <p>{project.appsAndPlatforms}</p>
+        </div>
       </div>
-      <div className="images-container">{imageList}</div>
-      <h6 className="github-url">{codeMessage}</h6>
+      {instructionList}
+      <div className="showpage-items-container">
+        <p className="github-url"> {codeMessage}</p>
+      </div>
       <pre>
         <code ref={codeRef} className="language-c">
           {project.code}

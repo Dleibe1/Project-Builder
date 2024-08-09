@@ -13,6 +13,7 @@
 
 body {
   margin: 0;
+  background-color: #ecf1f1;
 }
 
 body::before {
@@ -37,10 +38,6 @@ body.hide-background::before {
 
 body.hide-background {
   background-color: white;
-}
-
-body.grey-background {
-  background-color: #ecf1f1;
 }
 
 @media (max-width: 1500px) {
@@ -91,21 +88,14 @@ body.grey-background {
 }
 
 .banner.top-banner {
-  margin-top:150px;
+  margin-top: 150px;
 }
 
 .banner.fifth-banner {
   margin-bottom: 100px;
 }
-
-.banner.top-banner h1,
-.banner.third-banner h1,
-.banner.fifth-banner h1 {
-  color:white;
-}
-
 .banner.top-banner img {
-  height:490px;
+  height: 490px;
 }
 
 .banner.second-banner img {
@@ -124,22 +114,43 @@ body.grey-background {
   height: 500px;
   object-fit: contain;
 }
-.banner.fifth-banner img{
-  height:550px;
+.banner.fifth-banner img {
+  height: 550px;
 }
 
+.banner h1,
+.banner h2,
+.how-to-use h1,
+.how-to-use h2,
+.how-to-use p,
+.how-to-use li {
+  color: #303030;
+  font-family:
+    Chronicle Deck,
+    Times,
+    serif;
+  font-weight: 900;
+  letter-spacing: 0.015em;
+}
+
+.how-to-use p,
+.how-to-use li {
+  font-size: 1.5rem;
+  white-space: break-spaces;
+}
 
 .banner h1 {
-  letter-spacing: .015em;
-  flex: 1 1 100%; 
-  max-width: 50%; 
+  flex: 1 1 100%;
+  max-width: 50%;
   max-height: max-content;
   font-size: clamp(3rem, 5vw, 4rem);
-  color: #303030;
-  font-family: Chronicle Deck, Times, serif;
-  font-weight: 900;
-  letter-spacing: .015em;
-  margin: 0 auto; 
+  margin: 0 auto;
+}
+
+.banner.top-banner *,
+.banner.third-banner *,
+.banner.fifth-banner * {
+  color: white;
 }
 
 @media (max-width: 768px) {
@@ -155,14 +166,20 @@ body.grey-background {
   padding: 0px 0px;
 }
 
-.banner.happy-building h1 {
-  min-width: 100%;
-  padding-top: 250px;
-  font-size: clamp(6rem, 5vw, 7rem);
+#how-to-use-logo {
+  margin-top: 0px;
+  background-color: inherit;
 }
 
-.banner.banner.happy-building {
-  padding-bottom: 250px;
+.how-to-use .example-user-credentials {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#example-email,
+#example-password {
+  border: 2px solid #c9d2d2;
+  padding: 5px;
 }
 
 .project-list {
@@ -263,12 +280,26 @@ body.grey-background {
   margin-right: 200px;
 }
 
-.project-show {
+.project-show,
+.how-to-use {
   padding: 2rem;
   max-width: 1000px;
   margin: 100px auto;
-  background-color: #ecf1f1;
   font-family: "Roboto", sans-serif;
+}
+
+.project-show {
+  background-color: #ecf1f1;
+}
+
+.how-to-use {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.how-to-use img {
+  width: 500px;
 }
 
 .project-show h2 {
@@ -317,23 +348,37 @@ body.grey-background {
   align-items: center;
 }
 
-.parts-list {
+#submit-form-button {
+  margin-top: 25px;
+}
+
+.parts-list,
+.apps-and-platforms,
+.form-parts-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
 
-.parts-list p {
-  white-space: pre-line; 
-  overflow-wrap: anywhere; 
-  padding: 5px; 
-  box-sizing: border-box; 
+.form-parts-list {
+  gap: 80px;
+}
+
+.parts-list p,
+.apps-and-platforms p {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  padding: 5px;
+  box-sizing: border-box;
   border-bottom: 2px solid #c9d2d2;
 }
 
-.parts-list .delete-part {
-  margin-bottom: 20px;
+.part-item-in-form {
+  width: fit-content;
+  overflow-wrap: anywhere;
+  border-right: 2px solid #c9d2d2;
+  padding-right: 10px;
 }
 
 #part {
@@ -374,6 +419,10 @@ body.grey-background {
   height: 180px;
 }
 
+#thumbnail-and-title {
+  background-color: white;
+}
+
 .images-container {
   background-color: white;
   display: flex;
@@ -382,14 +431,23 @@ body.grey-background {
   align-items: center;
 }
 
+.images-container.instructions-images {
+  background-color: #ecf1f1;
+}
+
 .project-image {
   max-width: 100%;
   height: auto;
   margin-bottom: 15px;
 }
 
-#delete-image {
-  margin: 15px;
+.project-image.show-page-thumbnail {
+  padding: 0px 10px 15px 10px;
+  background: white;
+}
+
+.large-button.delete-image {
+  margin-bottom: 15px;
 }
 
 #github-logo {
@@ -408,78 +466,6 @@ body.grey-background {
   padding-bottom: 0px;
   padding-left: 15px;
   padding-right: 15px;
-}
-
-.landing-page {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  max-width: 800px;
-  margin: 100px auto;
-}
-
-.announcement {
-  background-color: #ffeb3b;
-  padding: 10px;
-  text-align: center;
-  margin-bottom: 20px;
-  border-radius: 8px;
-}
-
-.announcement p {
-  margin: 5px 0;
-}
-
-.hero-section {
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.hero-section h1 {
-  color: #333;
-}
-
-.hero-section .main-link {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #007acc;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.hero-section .main-link:hover {
-  background-color: #005fa3;
-}
-
-.content-section {
-  padding: 20px;
-}
-
-.content-section h2 {
-  color: #007acc;
-  margin-top: 20px;
-}
-
-.content-section h4 {
-  color: #007acc;
-}
-
-.content-section p {
-  color: #555;
-  line-height: 1.6;
-}
-
-.content-section a {
-  color: #007acc;
-  text-decoration: none;
-}
-
-.content-section a:hover {
-  text-decoration: underline;
 }
 
 #fork-project,
@@ -536,12 +522,8 @@ body.grey-background {
   flex-direction: row-reverse;
 }
 
-#upload-image {
-  margin-bottom: 50px;
-  margin-top: 30px;
-}
-
-.image-list-container {
+.project-image-container,
+.instruction-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -570,8 +552,21 @@ body.grey-background {
   box-shadow: none;
 }
 
+#upload-thumbnail-image {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+#upload-project-image {
+  margin-bottom: 50px;
+}
+
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
   margin-bottom: 20px;
+}
+
+#github-url-explanation {
+  margin-top: 50px;
 }
 
 .form-input.text-field {
@@ -579,8 +574,17 @@ body.grey-background {
   margin-bottom: 40px;
 }
 
+.form-input.text-field.title-input {
+  margin-bottom: 20px;
+}
+
 .form-input {
   width: 100%;
+}
+
+#add-instruction-text,
+#add-instruction-image {
+  margin: 10px 30px 10px 30px;
 }
 
 #code-input {
@@ -619,7 +623,8 @@ body.grey-background {
   margin-bottom: 30px;
 }
 
-.showpage-items-container {
+.showpage-items-container,
+.how-to-use-page-items-container {
   background-color: white;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -628,28 +633,35 @@ body.grey-background {
   padding: 16px;
 }
 
-.showpage-items-container.description{
-  margin-top:0px;
+.how-to-use-page-items-container.how-to-fork * {
+  color: white;
+}
+
+.how-to-use-page-items-container.how-to-fork{
+  background-color: #00979d;
+}
+
+.how-to-use .how-to-use-page-items-container.top-banner {
+  margin-top: 0px;
+}
+
+.how-to-use .announcement {
+  background-color: yellow;
+}
+
+.how-to-fork h1 {
+  text-align: center;
+  padding: 30px 0px;
 }
 
 .fork-project-button-container,
 .edit-delete-build-button-container {
   background-color: white;
   padding: 10px;
-  border-radius: 6px;
-}
-
-#project-images {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  height: 100%;
+  border-radius: 6px 6px 0px 0px;
 }
 
 .github-url {
-  margin-top: 30px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   width: 100%;

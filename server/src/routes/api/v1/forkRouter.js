@@ -14,7 +14,7 @@ forkRouter.get("/:id/fork-list", async (req, res) => {
     const projects = await Project.query().where("parentProjectId", parseInt(id))
     const serializedProjects = await Promise.all(
       projects.map((fork) => {
-        return ProjectSerializer.getProjectDetails(fork, false)
+        return ProjectSerializer.getProjectListDetails(fork)
       })
     )
     const serializedForks = serializedProjects.filter((project) => project.id !== project.parentProjectId)
@@ -29,16 +29,7 @@ forkRouter.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
     const fork = await Project.query().findById(id)
-    let serializedForkData = await ProjectSerializer.getProjectDetails(fork, true)
-    const partNames = serializedForkData.parts.map((part) => {
-      return part.partName
-    })
-    const imageUrls = serializedForkData.images.map((imageData) => {
-      return imageData.imageURL
-    })
-    serializedForkData.parts = partNames
-    serializedForkData.images = imageUrls
-    serializedForkData.title = ""
+    let serializedForkData = await ProjectSerializer.getProjectShowPageDetails(fork)
     return res.status(200).json({ fork: serializedForkData })
   } catch (error) {
     console.log(error)

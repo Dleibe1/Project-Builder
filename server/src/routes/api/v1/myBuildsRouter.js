@@ -17,7 +17,7 @@ myBuildsRouter.get("/", async (req, res) => {
     const userBuilds = await Project.query().where("userId", parseInt(user.id))
     const serializedUserBuilds = await Promise.all(
       userBuilds.map((userBuild) => {
-        return ProjectSerializer.getProjectDetails(userBuild, false)
+        return ProjectSerializer.getProjectListDetails(userBuild)
       }),
     )
     res.status(200).json({ userBuilds: serializedUserBuilds })
@@ -31,15 +31,7 @@ myBuildsRouter.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
     const userBuild = await Project.query().findById(id)
-    let serializedUserBuild = await ProjectSerializer.getProjectDetails(userBuild, true)
-    const partNamesArray = serializedUserBuild.parts.map((part) => {
-      return part.partName
-    })
-    const imageUrlsArray = serializedUserBuild.images.map((imageData) => {
-      return imageData.imageURL
-    })
-    serializedUserBuild.parts = partNamesArray
-    serializedUserBuild.images = imageUrlsArray
+    const serializedUserBuild = await ProjectSerializer.getProjectShowPageDetails(userBuild)
     return res.status(200).json({ userBuild: serializedUserBuild })
   } catch (error) {
     return res.status(500).json({ errors: error })

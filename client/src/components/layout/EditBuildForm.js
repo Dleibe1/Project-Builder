@@ -19,6 +19,7 @@ const EditBuildForm = (props) => {
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
+  const [instructionText, setInstructionText] = useState("")
   const params = useParams()
   const { id } = params
 
@@ -26,7 +27,7 @@ const EditBuildForm = (props) => {
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    images: [],
+    instructions: [],
     parts: [],
     description: "",
     code: "",
@@ -51,11 +52,18 @@ const EditBuildForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setEditedProject({ ...editedProject, images: [...editedProject.images, body.imageURL] })
+      setEditedProject({
+        ...editedProject,
+        instructions: [...editedProject.instructions, { imageURL: body.imageURL }],
+      })
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
   }
+
+  useEffect(() => {
+    uploadProjectImage()
+  }, [imageFile])
 
   const uploadThumbnailImage = async () => {
     const thumbnailImageFileData = new FormData()
@@ -78,17 +86,9 @@ const EditBuildForm = (props) => {
     }
   }
 
-  const handleProjectImageUpload = (acceptedImage) => {
-    setImageFile({
-      image: acceptedImage[0],
-    })
-  }
-
-  const handleThumbnailImageUpload = (acceptedImage) => {
-    setThumbnailImageFile({
-      image: acceptedImage[0],
-    })
-  }
+  useEffect(() => {
+    uploadThumbnailImage()
+  }, [thumbnailImageFile])
 
   const getProject = async () => {
     try {
@@ -106,6 +106,10 @@ const EditBuildForm = (props) => {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    getProject()
+  }, [])
 
   const updateProject = async (editedProjectData) => {
     try {
@@ -129,10 +133,6 @@ const EditBuildForm = (props) => {
     }
   }
 
-  useEffect(() => {
-    getProject()
-  }, [])
-
   const handleSubmit = (event) => {
     event.preventDefault()
     updateProject({ ...editedProject, githubFileURL: editedProject.githubFileURL.trim() })
@@ -148,38 +148,57 @@ const EditBuildForm = (props) => {
 
   const handlePartSubmit = () => {
     if (part.length) {
-      setEditedProject({ ...editedProject, parts: [...editedProject.parts, part] })
+      setEditedProject({ ...editedProject, parts: [...editedProject.parts, { partName: part }] })
     }
     setPart("")
   }
-
-  useEffect(() => {
-    uploadProjectImage()
-  }, [imageFile])
-
-  useEffect(() => {
-    uploadThumbnailImage()
-  }, [thumbnailImageFile])
 
   const handlePartDelete = (index) => {
     const partsList = editedProject.parts.filter((part, i) => i !== index)
     setEditedProject({ ...editedProject, parts: partsList })
   }
 
-  const handleImageURLDelete = (index) => {
-    const imageList = editedProject.images.filter((image, i) => i !== index)
-    setEditedProject({ ...editedProject, images: imageList })
+  const handleProjectImageUpload = (acceptedImage) => {
+    setImageFile({
+      image: acceptedImage[0],
+    })
+  }
+
+  const handleThumbnailImageUpload = (acceptedImage) => {
+    setThumbnailImageFile({
+      image: acceptedImage[0],
+    })
+  }
+
+  const handleInstructionTextInput = (event) => {
+    setInstructionText(event.currentTarget.value)
+  }
+
+  const handleInstructionTextSubmit = () => {
+    if (instructionText.length) {
+      setEditedProject({
+        ...editedProject,
+        instructions: [...editedProject.instructions, { instructionText: instructionText }],
+      })
+    }
+    setInstructionText("")
+  }
+
+  const handleInstructionDelete = (index) => {
+    const instructionList = editedProject.instructions.filter((instruction, i) => i !== index)
+    setEditedProject({ ...editedProject, instructions: instructionList })
   }
 
   const partsList = editedProject.parts.map((part, index) => {
     return (
-      <div key={`${part}${index}`} className="cell small-3 medium-6 large-4 parts-list">
-        <h5 className="part-title">{part}</h5>
+      <div className="part-item-in-form">
+        <p key={`${part.partName}${index}`}> {part.partName}</p>
         <Button
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"
           variant="contained"
           sx={{
+            width: "max-content",
             "&:hover": {
               textDecoration: "none",
               color: "white",
@@ -193,26 +212,48 @@ const EditBuildForm = (props) => {
     )
   })
 
-  const imageList = editedProject.images.map((imageURL, index) => {
-    return (
-      <div key={`${imageURL}${index}`} className="image-list-container">
-        <img className="project-image" src={imageURL} />
-        <Button
-          onClick={() => handleImageURLDelete(index)}
-          className="large-button delete-image"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-          startIcon={<DeleteIcon />}
-        >
-          Delete Image
-        </Button>
-      </div>
-    )
+  const instructionList = editedProject.instructions.map((instruction, index) => {
+    if (instruction.imageURL) {
+      return (
+        <div key={`${instruction.imageURL}${index}`} className="project-image-container">
+          <img className="project-image" src={instruction.imageURL} />
+          <Button
+            onClick={() => handleInstructionDelete(index)}
+            className="large-button delete-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Image
+          </Button>
+        </div>
+      )
+    } else {
+      return (
+        <div key={`${instruction.instructionText}${index}`} className="instruction-container">
+          <p>{instruction.instructionText}</p>
+          <Button
+            onClick={() => handleInstructionDelete(index)}
+            className="large-button delete-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<DeleteIcon />}
+          >
+            Delete Instruction
+          </Button>
+        </div>
+      )
+    }
   })
 
   if (shouldRedirect) {
@@ -225,7 +266,7 @@ const EditBuildForm = (props) => {
         Edit Project
       </Typography>
       <ErrorList errors={errors} />
-      <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
+      <form key="edit-build-form" id="edit-build-form" onSubmit={handleSubmit}>
         <TextField
           value={editedProject.title}
           className="form-input text-field"
@@ -235,12 +276,24 @@ const EditBuildForm = (props) => {
           label="Project Title *"
           name="title"
         />
-        <div className="image-list-container">
-          <img className="project-image" src={editedProject.thumbnailImage} />
+        <Typography variant="h5" gutterBottom>
+          Description:
+        </Typography>
+        <textarea
+          value={editedProject.description}
+          rows="3"
+          cols="1"
+          onChange={handleInputChange}
+          type="text"
+          id="description"
+          name="description"
+        />
+        <div className="project-image-container">
+          <img className="project-image thumbnail-image" src={editedProject.thumbnailImage} />
         </div>
         <Button
           className="large-button"
-          id="upload-image"
+          id="upload-thumbnail-image"
           variant="contained"
           sx={{
             "&:hover": {
@@ -280,22 +333,13 @@ const EditBuildForm = (props) => {
           label="Apps and platforms"
           name="appsAndPlatforms"
         />
-         <Typography variant="h5" gutterBottom>
-            Description and Instructions:
-          </Typography>
-         <textarea
-            value={editedProject.description}
-            rows="10"
-            cols="1"
-            onChange={handleInputChange}
-            type="text"
-            id="description"
-            name="description"
-          />
+
         <Typography variant="h5" gutterBottom>
           Parts:
         </Typography>
-        {partsList}
+        <div className="showpage-items-container">
+          <div className="form-parts-list">{partsList}</div>
+        </div>
         <div id="part-input-container">
           <TextField
             sx={{ width: "100%" }}
@@ -335,6 +379,58 @@ const EditBuildForm = (props) => {
             name="code"
           />
         </label>
+        <Typography variant="h5" gutterBottom>
+          Add Instructions and Images:
+        </Typography>
+        <div className="showpage-items-container">{instructionList}</div>
+        <textarea
+          value={instructionText}
+          rows="5"
+          cols="1"
+          onChange={handleInstructionTextInput}
+          type="text"
+          id="instruction-text"
+          name="instructionText"
+        />
+        <div className="add-instruction-button-container">
+          <Button
+            onClick={handleInstructionTextSubmit}
+            className="large-button "
+            id="add-instruction-text"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+          >
+            Add Instruction
+          </Button>
+          <Button
+            className="large-button"
+            id="add-instruction-image"
+            variant="contained"
+            sx={{
+              "&:hover": {
+                textDecoration: "none",
+                color: "white",
+              },
+            }}
+            startIcon={<CloudUpload />}
+          >
+            <Dropzone onDrop={handleProjectImageUpload}>
+              {({ getRootProps, getInputProps }) => (
+                <section>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    Upload Image
+                  </div>
+                </section>
+              )}
+            </Dropzone>
+          </Button>
+        </div>
         <Typography id="github-url-explanation" variant="h5" gutterBottom>
           Is this a work in progress? Pasting the URL of your main sketch file on Github will
           automatically keep the code you share up to date.
@@ -350,33 +446,6 @@ const EditBuildForm = (props) => {
           label="GitHub main sketch file URL"
           name="githubFileURL"
         />
-        <Typography variant="h5" gutterBottom>
-          Project Images:
-        </Typography>
-        {imageList}
-        <Button
-          className="large-button"
-          id="upload-image"
-          variant="contained"
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
-          startIcon={<CloudUpload />}
-        >
-          <Dropzone onDrop={handleProjectImageUpload}>
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  Upload Image File
-                </div>
-              </section>
-            )}
-          </Dropzone>
-        </Button>
         <ErrorList errors={errors} id="form-error-list" />
         <Button
           type="submit"
