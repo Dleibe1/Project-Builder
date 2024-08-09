@@ -4,6 +4,7 @@ class Part extends Model {
   static get tableName() {
     return "parts"
   }
+  
   static get jsonSchema() {
     return {
       type: "object",
