@@ -215,7 +215,7 @@ const EditBuildForm = (props) => {
   const instructionList = editedProject.instructions.map((instruction, index) => {
     if (instruction.imageURL) {
       return (
-        <div key={`${instruction.imageURL}${index}`} className="image-list-container">
+        <div key={`${instruction.imageURL}${index}`} className="project-image-container">
           <img className="project-image" src={instruction.imageURL} />
           <Button
             onClick={() => handleInstructionDelete(index)}
@@ -235,7 +235,7 @@ const EditBuildForm = (props) => {
       )
     } else {
       return (
-        <div key ={`${instruction.instructionText}${index}`} className="instruction-list-container">
+        <div key={`${instruction.instructionText}${index}`} className="instruction-container">
           <p>{instruction.instructionText}</p>
           <Button
             onClick={() => handleInstructionDelete(index)}
@@ -252,7 +252,6 @@ const EditBuildForm = (props) => {
             Delete Instruction
           </Button>
         </div>
-        
       )
     }
   })
@@ -289,12 +288,12 @@ const EditBuildForm = (props) => {
           id="description"
           name="description"
         />
-        <div className="image-list-container">
-          <img className="project-image" src={editedProject.thumbnailImage} />
+        <div className="project-image-container">
+          <img className="project-image thumbnail-image" src={editedProject.thumbnailImage} />
         </div>
         <Button
           className="large-button"
-          id="upload-image"
+          id="upload-thumbnail-image"
           variant="contained"
           sx={{
             "&:hover": {
@@ -383,7 +382,7 @@ const EditBuildForm = (props) => {
         <Typography variant="h5" gutterBottom>
           Add Instructions and Images:
         </Typography>
-        {instructionList}
+        <div className="showpage-items-container">{instructionList}</div>
         <textarea
           value={instructionText}
           rows="5"

@@ -217,7 +217,7 @@ const ForkProjectForm = (props) => {
   const instructionList = forkedProject.instructions.map((instruction, index) => {
     if (instruction.imageURL) {
       return (
-        <div key={`${instruction.imageURL}${index}`} className="image-list-container">
+        <div key={`${instruction.imageURL}${index}`} className="project-image-container">
           <img className="project-image" src={instruction.imageURL} />
           <Button
             onClick={() => handleInstructionDelete(index)}
@@ -237,7 +237,7 @@ const ForkProjectForm = (props) => {
       )
     } else {
       return (
-        <div key={`${instruction.instructionText}${index}`} className="instruction-list-container">
+        <div key={`${instruction.instructionText}${index}`} className="instruction-container">
           <p>{instruction.instructionText}</p>
           <Button
             onClick={() => handleInstructionDelete(index)}
@@ -292,12 +292,12 @@ const ForkProjectForm = (props) => {
           id="description"
           name="description"
         />
-        <div className="image-list-container">
+        <div className="project-image-container">
           <img className="project-image" src={forkedProject.thumbnailImage} />
         </div>
         <Button
           className="large-button"
-          id="upload-image"
+          id="upload-thumbnail-image"
           variant="contained"
           sx={{
             "&:hover": {

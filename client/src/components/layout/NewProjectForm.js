@@ -169,7 +169,7 @@ const NewProjectForm = (props) => {
   }
 
   let thumbNailImage = [
-    <div className="image-list-container">
+    <div className="project-image-container">
       <img className="project-image" src={newProject.thumbnailImage} />
     </div>,
   ]
@@ -202,7 +202,7 @@ const NewProjectForm = (props) => {
   const instructionList = newProject.instructions.map((instruction, index) => {
     if (instruction.imageURL) {
       return (
-        <div key={`${instruction.imageURL}${index}`} className="image-list-container">
+        <div key={`${instruction.imageURL}${index}`} className="project-image-container">
           <img className="project-image" src={instruction.imageURL} />
           <Button
             onClick={() => handleInstructionDelete(index)}
@@ -277,7 +277,7 @@ const NewProjectForm = (props) => {
         {thumbNailImage}
         <Button
           className="large-button"
-          id="upload-image"
+          id="upload-thumbnail-image"
           variant="contained"
           sx={{
             "&:hover": {
