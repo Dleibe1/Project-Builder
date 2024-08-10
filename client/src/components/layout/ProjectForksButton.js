@@ -7,11 +7,11 @@ const ProjectForksButton = ({ id }) => {
       <Button
         component={Link}
         to={`/project-forks/${id}`}
-        className="project-tile-forks-button"
         key={`project-tile-forks-button${id}`}
         sx={{
           my: 2,
           color: "white",
+          margin:"0px",
           backgroundColor: "#1976d2", 
           "&:hover": {
             backgroundColor: "#1665c0",

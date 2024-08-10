@@ -92,14 +92,14 @@ const ProjectShow = (props) => {
   const instructionList = project.instructions.map((instruction) => {
     if (instruction.imageURL) {
       return (
-        <div className="showpage-items-container">
+        <div>
           <img className="project-image" src={`${instruction.imageURL}`} />
         </div>
       )
     } else if (instruction.instructionText) {
       return (
-        <div className="showpage-items-container">
-          <p className="preserve-white-space">{instruction.instructionText}</p>
+        <div>
+          <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
         </div>
       )
     }
@@ -112,19 +112,22 @@ const ProjectShow = (props) => {
         {hasForks ? <ProjectForksButton id={id} /> : []}
       </div>
       <div id="thumbnail-and-title">
+      <h2 className="showpage-title">{project.title}</h2>
+
         <img
           className="project-image show-page-thumbnail"
           src={project.thumbnailImage}
           alt="thumbnail"
         />
-        <h2>{project.title}</h2>
       </div>
       <div className="showpage-items-container description">
-        <h4>Description</h4>
+        <h2 className="description-title">Description</h2>
         <p className="preserve-white-space">{project.description}</p>
       </div>
+      <div>
+        <h2>Parts</h2>
+      </div>
       <div className="showpage-items-container parts-section">
-        <h4>Parts:</h4>
         <div className="parts-list">{partsList}</div>
       </div>
       <div className="showpage-items-container">
@@ -133,17 +136,19 @@ const ProjectShow = (props) => {
           <p>{project.appsAndPlatforms}</p>
         </div>
       </div>
-      {instructionList}
-      <div>
       <div className="showpage-items-container">
-        <p className="github-url"> {codeMessage}</p>
-      <pre>
-        <code ref={codeRef} className="language-c">
-          {project.code}
-        </code>
-      </pre>
+        <h2>Instructions</h2>
+        {instructionList}
       </div>
-
+      <div>
+        <div className="showpage-items-container">
+          <p className="github-url"> {codeMessage}</p>
+          <pre>
+            <code ref={codeRef} className="language-c">
+              {project.code}
+            </code>
+          </pre>
+        </div>
       </div>
     </div>
   )

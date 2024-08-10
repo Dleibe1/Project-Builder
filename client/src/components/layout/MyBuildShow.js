@@ -74,30 +74,45 @@ const MyBuildShow = (props) => {
       <div className="edit-delete-build-button-container">
         <EditBuildButton id={id} />
         <DeleteBuildButton id={id} />
+      </div>  
+      <div id="thumbnail-and-title">
+        <img
+          className="project-image show-page-thumbnail"
+          src={myBuild.thumbnailImage}
+          alt="thumbnail"
+        />
+        <h2>{myBuild.title}</h2>
       </div>
-      <div className="images-container">
-        <img className="project-image" src={myBuild.thumbnailImage} alt="thumbnail" />
-      </div>
-      <h2>{myBuild.title}</h2>
       <div className="showpage-items-container description">
-        <h4>Description:</h4>
-        <p>{myBuild.description}</p>
+        <h2 className="description-title">Description</h2>
+        <p className="preserve-white-space">{myBuild.description}</p>
+      </div>
+      <div>
+        <h2>Parts</h2>
       </div>
       <div className="showpage-items-container parts-section">
-        <h4>Parts:</h4>
         <div className="parts-list">{partsList}</div>
       </div>
       <div className="showpage-items-container">
         <h4>Apps and Platforms:</h4>
-        <div>{myBuild.appsAndPlatforms}</div>
+        <div className="apps-and-platforms">
+          <p>{myBuild.appsAndPlatforms}</p>
+        </div>
       </div>
-      <div className="images-container">{instructionList}</div>
-      <h6 className="github-url">{codeMessage}</h6>
-      <pre>
-        <code ref={codeRef} className="language-c">
-          {myBuild.code}
-        </code>
-      </pre>
+      <div>
+        <h2>Instructions</h2>
+        {instructionList}
+      </div>
+      <div>
+        <div className="showpage-items-container">
+          <p className="github-url"> {codeMessage}</p>
+          <pre>
+            <code ref={codeRef} className="language-c">
+              {myBuild.code}
+            </code>
+          </pre>
+        </div>
+      </div>
     </div>
   )
 }

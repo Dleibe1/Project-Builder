@@ -220,7 +220,7 @@ body.hide-background {
   height: auto;
 }
 
-.project-tile .project-tile-forks-button {
+.project-tile {
   margin-top: 0;
 }
 
@@ -313,10 +313,20 @@ body.hide-background {
 }
 
 .project-show h2 {
+  font-size: 3rem;
+  font-family: OpenSans-Regular;
+  margin-bottom: 0;
+  color: #374146;
+  line-height: 170%;
+  letter-spacing: 0.01em;
   margin-bottom: 0px;
   background-color: white;
   text-align: center;
-  padding:30px;
+  padding: 30px;
+}
+
+.project-show .description-title {
+  padding-top: 10px;
 }
 
 .project-show code {
@@ -394,6 +404,10 @@ body.hide-background {
   border-bottom: 2px solid #c9d2d2;
 }
 
+.showpage-items-container .parts-list p {
+  
+}
+
 .part-item-in-form {
   width: fit-content;
   overflow-wrap: anywhere;
@@ -441,6 +455,8 @@ body.hide-background {
 
 #thumbnail-and-title {
   background-color: white;
+  margin-bottom: 30px;
+  border-radius: 6px;
 }
 
 .images-container {
@@ -458,11 +474,12 @@ body.hide-background {
 .project-image {
   width: 100%;
   height: auto;
+  padding: 0px 10px;
   margin-bottom: 15px;
 }
 
 .project-image.show-page-thumbnail {
-  padding: 0px 10px 15px 10px;
+  padding: 0px 10px;
   background: white;
 }
 
@@ -646,15 +663,33 @@ body.hide-background {
 .showpage-items-container,
 .how-to-use-page-items-container {
   background-color: white;
-  margin-top: 30px;
   margin-bottom: 30px;
   border-radius: 6px;
   width: 100%;
   padding: 16px;
 }
 
+.showpage-items-container p {
+  font-family: OpenSans-Regular;
+  font-style: normal;
+  line-height: 170%;
+  letter-spacing: 0.01em;
+  color: #374146;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.project-show .showpage-title {
+  padding-top: 20px;
+  font-weight: 700;
+}
+
 .project-show .preserve-white-space {
   white-space: pre-wrap;
+}
+
+.see-forked-versions-button {
+  margin: 0px;
 }
 
 .how-to-use-page-items-container.how-to-fork * {
