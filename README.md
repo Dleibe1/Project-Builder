@@ -10,7 +10,7 @@ A demo of the app is currently hosted at [https://project-builder-e7439342976b.h
 #### GitHub API:
 
 Generally, Arduino/ESP32 projects have all of the creator's code in a single file (usually a .ino file or main.cpp). After logging into to this app, Click "New Build." Paste the URL of your Arduino/ESP32 main program file into the "Github main sketch file URL" section at the bottom of the form.
-Example URL: [https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino](https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino)
+Example URL: https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
 
 When users visit your project's page on this app, the code section is automatically populated with your main project file's code from GitHub. This way you don't have to paste your code into this app every time you update your code on GitHub. This feature does that automatically!
 

@@ -46,7 +46,7 @@ const MyBuildShow = (props) => {
         throw error
       }
       const responseBody = await response.json()
-      let build = responseBody.userBuild
+      const build = responseBody.userBuild
       prepForFrontEnd(build)
       setMyBuild(build)
     } catch (error) {
@@ -65,7 +65,7 @@ const MyBuildShow = (props) => {
     if (instruction.imageURL) {
       return <img className="project-image" src={`${instruction.imageURL}`} />
     } else if (instruction.instructionText) {
-      return <p>{instruction.instructionText}</p>
+      return <p className="preserve-white-space">{instruction.instructionText}</p>
     }
   })
 
@@ -83,7 +83,7 @@ const MyBuildShow = (props) => {
         <h4>Description:</h4>
         <p>{myBuild.description}</p>
       </div>
-      <div className="showpage-items-container">
+      <div className="showpage-items-container parts-section">
         <h4>Parts:</h4>
         <div className="parts-list">{partsList}</div>
       </div>

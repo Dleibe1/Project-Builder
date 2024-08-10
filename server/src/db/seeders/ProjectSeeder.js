@@ -9,10 +9,9 @@ class ProjectSeeder {
         userId: 1,
         title: "Big Brother is watching you",
         description: descriptions[0],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IDE",
         code: code[0],
-        githubFileURL:
-          "https://github.com/dmdhrumilmistry/ArduinoPrograms/blob/main/ArduinoUno/Projects/ControlServoMotorUsingIRremote/ControlServoMotorUsingIRremote.cpp",
+        githubFileURL: "",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/70dad73c-8d46-4172-8ad9-def5688e6b19.jpg",
         parentProjectId: 1,

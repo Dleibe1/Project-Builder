@@ -4,6 +4,7 @@ import ForkProjectButton from "./ForkProjectButton.js"
 import ProjectForksButton from "./ProjectForksButton.js"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
+import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 
 const ProjectShow = (props) => {
   const [project, setProject] = useState({
@@ -50,6 +51,7 @@ const ProjectShow = (props) => {
       if (project.userId === props.user?.id) {
         setShouldRedirect(true)
       }
+      prepForFrontEnd(project)
       setProject(project)
     } catch (error) {
       console.log(error)
@@ -83,7 +85,7 @@ const ProjectShow = (props) => {
   const forkProjectButton = [<ForkProjectButton key={"fork-project"} id={id} />]
   const codeMessage = project.githubFileURL.length
     ? `Code fetched from GitHub just now: (${project.githubFileURL}) `
-    : "Code:"
+    : [<h2 className="code-message">Project Code</h2>]
   const partsList = project.parts.map((part) => {
     return <p key={part.partName}>{part.partName}</p>
   })
@@ -97,7 +99,7 @@ const ProjectShow = (props) => {
     } else if (instruction.instructionText) {
       return (
         <div className="showpage-items-container">
-          <p>{instruction.instructionText}</p>
+          <p className="preserve-white-space">{instruction.instructionText}</p>
         </div>
       )
     }
@@ -119,9 +121,9 @@ const ProjectShow = (props) => {
       </div>
       <div className="showpage-items-container description">
         <h4>Description</h4>
-        <p>{project.description}</p>
+        <p className="preserve-white-space">{project.description}</p>
       </div>
-      <div className="showpage-items-container">
+      <div className="showpage-items-container parts-section">
         <h4>Parts:</h4>
         <div className="parts-list">{partsList}</div>
       </div>
@@ -132,14 +134,17 @@ const ProjectShow = (props) => {
         </div>
       </div>
       {instructionList}
+      <div>
       <div className="showpage-items-container">
         <p className="github-url"> {codeMessage}</p>
-      </div>
       <pre>
         <code ref={codeRef} className="language-c">
           {project.code}
         </code>
       </pre>
+      </div>
+
+      </div>
     </div>
   )
 }

@@ -66,7 +66,7 @@ const HowToUse = () => {
           <h1>Keep your project's code up to date automatically</h1>
           <p>
             When creating or forking a project, paste the URL path to your main project file on
-            GitHub into the “GitHub main sketch file URL:” field near the bottom of the form.
+            GitHub into the “GitHub main sketch file URL” field near the bottom of the form.
           </p>
           <p>Example URL text:</p>
           <p className="example-github-url">https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino</p>

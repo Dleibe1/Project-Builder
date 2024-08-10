@@ -3,8 +3,12 @@ import { Part } from "../../models/index.js"
 class PartSeeder {
   static async seed(){
     await Part.query().insert([
-      { partName: "Arduino", projectId: 1 },
-      { partName: "Breadboard", projectId: 1 },
+      { partName: "Breadboard 170 pins", projectId: 1 },
+      { partName: "Arduino Nano Every", projectId: 1 },
+      { partName: "Ultrasonic Sensor - HC-SR04", projectId: 1 },
+      { partName: "double sided tape", projectId: 1 },
+      { partName: "SG90 Micro Servo", projectId: 1 },
+
       { partName: "Arduino", projectId: 2 },
       { partName: "H-bridge", projectId: 2 },
       { partName: "ESP32", projectId: 3 },
