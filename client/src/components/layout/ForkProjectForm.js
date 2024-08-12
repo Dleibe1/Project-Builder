@@ -292,7 +292,7 @@ const ForkProjectForm = (props) => {
           id="description"
           name="description"
         />
-        <div className="project-image-container">
+        <div className="project-image-container thumbnail-image-container">
           <img className="project-image" src={forkedProject.thumbnailImage} />
         </div>
         <Button
@@ -368,20 +368,6 @@ const ForkProjectForm = (props) => {
             Add Part
           </Button>
         </div>
-        <label htmlFor="code" className="form-input" id="code-input">
-          <Typography variant="h5" gutterBottom>
-            Code:
-          </Typography>
-          <textarea
-            value={forkedProject.code}
-            rows="20"
-            cols="1"
-            onChange={handleInputChange}
-            type="text"
-            id="code"
-            name="code"
-          />
-        </label>
         <Typography variant="h5" gutterBottom>
           Add Instructions and Images:
         </Typography>
@@ -434,6 +420,20 @@ const ForkProjectForm = (props) => {
             </Dropzone>
           </Button>
         </div>
+        <label htmlFor="code" className="form-input" id="code-input">
+          <Typography variant="h5" gutterBottom>
+            Code:
+          </Typography>
+          <textarea
+            value={forkedProject.code}
+            rows="20"
+            cols="1"
+            onChange={handleInputChange}
+            type="text"
+            id="code"
+            name="code"
+          />
+        </label>
         <Typography id="github-url-explanation" variant="h5" gutterBottom>
           Is this a work in progress? Pasting the URL of your main sketch file on Github will
           automatically keep the code you share up to date.

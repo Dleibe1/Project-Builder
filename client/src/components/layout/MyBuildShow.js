@@ -33,7 +33,7 @@ const MyBuildShow = (props) => {
       if (codeRef.current.dataset.highlighted) {
         delete codeRef.current.dataset.highlighted
       }
-      hljs.highlightElement(codeRef.current)
+      hljs.highlightElement(codeRef.current )
     }
   }, [myBuild])
 
@@ -74,7 +74,7 @@ const MyBuildShow = (props) => {
       <div className="edit-delete-build-button-container">
         <EditBuildButton id={id} />
         <DeleteBuildButton id={id} />
-      </div>  
+      </div>
       <div id="thumbnail-and-title">
         <img
           className="project-image show-page-thumbnail"

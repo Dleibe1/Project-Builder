@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField, Typography } from "@mui/material"
+import Textarea from "@mui/joy/Textarea"
 import DeleteIcon from "@mui/icons-material/Delete"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
@@ -279,17 +280,17 @@ const EditBuildForm = (props) => {
         <Typography variant="h5" gutterBottom>
           Description:
         </Typography>
-        <textarea
+        <Textarea
+          minRows={3}
           value={editedProject.description}
-          rows="3"
-          cols="1"
+          placeholder="Enter description"
           onChange={handleInputChange}
-          type="text"
-          id="description"
           name="description"
+          label="Enter Project Description"
+          sx={{ minWidth: "100%", backgroundColor: "white" }}
         />
-        <div className="project-image-container">
-          <img className="project-image thumbnail-image" src={editedProject.thumbnailImage} />
+        <div className="project-image-container thumbnail-image-container">
+          <img className="project-image" src={editedProject.thumbnailImage} />
         </div>
         <Button
           className="large-button"
@@ -365,32 +366,18 @@ const EditBuildForm = (props) => {
             Add Part
           </Button>
         </div>
-        <label htmlFor="code" className="form-input" id="code-input">
-          <Typography variant="h5" gutterBottom>
-            Code:
-          </Typography>
-          <textarea
-            value={editedProject.code}
-            rows="20"
-            cols="1"
-            onChange={handleInputChange}
-            type="text"
-            id="code"
-            name="code"
-          />
-        </label>
         <Typography variant="h5" gutterBottom>
-          Add Instructions and Images:
+          Instructions and Images:
         </Typography>
         <div className="showpage-items-container">{instructionList}</div>
-        <textarea
+        <Textarea
+          minRows={3}
           value={instructionText}
-          rows="5"
-          cols="1"
+          placeholder="Enter new instruction"
           onChange={handleInstructionTextInput}
-          type="text"
-          id="instruction-text"
           name="instructionText"
+          label="Enter Project Description"
+          sx={{ minWidth: "100%", backgroundColor: "white" }}
         />
         <div className="add-instruction-button-container">
           <Button
@@ -431,6 +418,20 @@ const EditBuildForm = (props) => {
             </Dropzone>
           </Button>
         </div>
+        <label htmlFor="code" className="form-input" id="code-input">
+          <Typography variant="h5" gutterBottom>
+            Code:
+          </Typography>
+          <textarea
+            value={editedProject.code}
+            rows="20"
+            cols="1"
+            onChange={handleInputChange}
+            type="text"
+            id="code"
+            name="code"
+          />
+        </label>
         <Typography id="github-url-explanation" variant="h5" gutterBottom>
           Is this a work in progress? Pasting the URL of your main sketch file on Github will
           automatically keep the code you share up to date.

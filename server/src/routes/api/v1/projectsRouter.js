@@ -37,6 +37,8 @@ projectsRouter.get("/:id", async (req, res) => {
 
 projectsRouter.delete("/:id", async (req, res) => {
   const projectId = req.params.id
+  console.log(projectId)
+  console.log(req.user)
   try {
     await Part.query().delete().where("projectId", projectId)
     await Instruction.query().delete().where("projectId", projectId)

@@ -5,6 +5,7 @@ import { Button, TextField, Typography } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
+import Textarea from "@mui/joy/Textarea"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 
@@ -169,7 +170,7 @@ const NewProjectForm = (props) => {
   }
 
   let thumbNailImage = [
-    <div className="project-image-container">
+    <div className="project-image-container thumbnail-image-container ">
       <img className="project-image" src={newProject.thumbnailImage} />
     </div>,
   ]
@@ -263,16 +264,16 @@ const NewProjectForm = (props) => {
           name="title"
         />
         <Typography variant="h5" gutterBottom>
-          Description:
+          Project Description:
         </Typography>
-        <textarea
+        <Textarea
+          minRows={3}
           value={newProject.description}
-          rows="3"
-          cols="1"
+          placeholder="Enter description"
           onChange={handleInputChange}
-          type="text"
-          id="description"
           name="description"
+          label="Enter Project Description"
+          sx={{ minWidth: "100%", backgroundColor: "white" }}
         />
         {thumbNailImage}
         <Button
@@ -317,8 +318,8 @@ const NewProjectForm = (props) => {
         <Typography variant="h5" gutterBottom>
           Parts:
         </Typography>
-        <div className="showpage-items-container">
-          <div className="form-parts-list">{partsList}</div>
+        <div className="showpage-items-container parts-section">
+          <div className="parts-list form-parts-list">{partsList}</div>
         </div>
         <div id="part-input-container">
           <TextField
@@ -346,17 +347,17 @@ const NewProjectForm = (props) => {
           </Button>
         </div>
         <Typography variant="h5" gutterBottom>
-          Add Instructions and Images:
+          Instructions and Images:
         </Typography>
         {instructionList}
-        <textarea
+        <Textarea
+          minRows={3}
           value={instructionText}
-          rows="5"
-          cols="1"
+          placeholder="Enter new instruction"
           onChange={handleInstructionTextInput}
-          type="text"
-          id="instruction-text"
           name="instructionText"
+          label="Enter Project Description"
+          sx={{ minWidth: "100%", backgroundColor: "white" }}
         />
         <div className="add-instruction-button-container">
           <Button
@@ -426,7 +427,7 @@ const NewProjectForm = (props) => {
           label="GitHub main sketch file URL"
           name="githubFileURL"
         />
-        
+
         <ErrorList errors={errors} id="form-error-list" />
         <Button
           type="submit"

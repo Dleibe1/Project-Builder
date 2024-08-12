@@ -39,7 +39,7 @@ const ProjectTile = ({ title, createdBy, thumbnailImage, id }) => {
       <h4>Created By:</h4>
       <h5>{createdBy}</h5>
       {hasForks ? (
-        <div className="button-container" onClick={(e) => e.stopPropagation()}>
+        <div className="button-container see-forked-versions-button" onClick={(e) => e.stopPropagation()}>
           <ProjectForksButton id={id} />
         </div>
       ) : null}

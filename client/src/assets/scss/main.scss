@@ -263,6 +263,10 @@ body.hide-background {
   width: 100%;
 }
 
+.project-tile .see-forked-versions-button{
+  margin-bottom: 10px;
+}
+
 .menu {
   display: flex;
   list-style: none;
@@ -356,11 +360,28 @@ body.hide-background {
   font-family: "Roboto", sans-serif;
 }
 
+
+.new-build-form-container .css-sws92j-JoyTextarea-textarea,
+.edit-project-form-container .css-sws92j-JoyTextarea-textarea,
+.fork-project-form-container .css-sws92j-JoyTextarea-textarea {
+  border:none;
+  box-shadow: none;
+}
+
 .new-build-form-container h3,
 .edit-project-form-container h3,
-.fork-project-form-container h3 {
+.fork-project-form-container h3,
+.new-build-form-container h5,
+.edit-project-form-container h5,
+.fork-project-form-container h5 {
   text-align: center;
   margin-bottom: 20px;
+}
+
+.new-build-form-container p,
+.edit-project-form-container p,
+.fork-project-form-container p {
+
 }
 
 .new-build-form-container form,
@@ -385,6 +406,10 @@ body.hide-background {
   margin-bottom: 10px;
 }
 
+.form-parts-list {
+  align-items: end;
+}
+
 .showpage-items-container.parts-section {
   display: flex;
   flex-direction: column;
@@ -393,6 +418,17 @@ body.hide-background {
 
 .form-parts-list {
   gap: 80px;
+}
+
+.parts-list.form-parts-list p {
+  border-bottom: none;
+}
+
+@media (max-width: 600px) { /* Adjust the max-width as needed */
+  .form-parts-list {
+    display: flex;
+    flex-wrap:wrap;
+  }
 }
 
 .parts-list p,
@@ -404,15 +440,17 @@ body.hide-background {
   border-bottom: 2px solid #c9d2d2;
 }
 
-.showpage-items-container .parts-list p {
-  
-}
-
 .part-item-in-form {
-  width: fit-content;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
   overflow-wrap: anywhere;
   border-right: 2px solid #c9d2d2;
+  border-bottom: 2px solid #c9d2d2;
   padding-right: 10px;
+  padding-bottom: 10px;
 }
 
 #part {
@@ -572,6 +610,14 @@ body.hide-background {
   overflow: hidden;
 }
 
+.project-image-container.thumbnail-image-container {
+  margin-bottom: 0px;
+}
+
+.thumbnail-image-container .project-image {
+  padding:0px;
+}
+
 .part-title {
   font-size: 1.5em;
   color: #333;
@@ -587,6 +633,12 @@ body.hide-background {
 #fork-project-form input {
   border: none;
   box-shadow: none;
+}
+
+#new-build-form .instruction-text-container,
+#edit-build-form .instruction-text-container,
+#fork-project-form .instruction-text-container {
+  min-width:100%;
 }
 
 #upload-thumbnail-image {
@@ -656,6 +708,7 @@ body.hide-background {
 }
 
 #github-example-url {
+  overflow-wrap: anywhere;
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -669,7 +722,7 @@ body.hide-background {
   padding: 16px;
 }
 
-.showpage-items-container p {
+.showpage-items-container p, {
   font-family: OpenSans-Regular;
   font-style: normal;
   line-height: 170%;
