@@ -93,101 +93,7 @@ void loop()
              Serial.write(rcd); 
            } 
         }`,
-  `#include "virtuabotixRTC.h" 
-        #define MORNING_WATERING false 
-        #define EVENING_WATERING true 
-        #define MORNING_WATERING_HOUR 8 
-        #define EVENING_WATERING_HOUR 20 
-        #define LED_RED_PIN 7 
-        #define LED_GREEN_PIN 8 
-        #define BUTTON_PUSH_PIN 10 
-        #define BUTTON_TOGGLE_PIN 2 
-        #define POTENTIOMETER_PIN A0 
-        #define POTENTIOMETER_MIN_SECONDS 0 
-        #define POTENTIOMETER_MAX_SECONDS 10 
-        #define PUMP_BASE_PIN 11 
-        #define DS1302_CLK_PIN A5 
-        #define DS1302_DAT_PIN A4 
-        #define DS1302_RST_PIN 13 
-        bool morningWatered = false; 
-        bool eveningWatered = false; 
-        struct button { 
-           byte pressed = 0; 
-        }; 
-        struct toggle { 
-           byte on = 0; 
-        }; 
-        struct potentiometer { 
-           byte level = 0; 
-        }; 
-        button button; 
-        toggle toggle; 
-        potentiometer potentiometer; 
-        virtuabotixRTC RTC(DS1302_CLK_PIN, DS1302_DAT_PIN, DS1302_RST_PIN); 
-        void setup() 
-        { 
-           // Set pin mode for LEDs 
-           pinMode(LED_RED_PIN, OUTPUT); 
-           pinMode(LED_GREEN_PIN, OUTPUT); 
-           // Turn red LED ON (setup in progress...) 
-           digitalWrite(LED_RED_PIN, HIGH); 
-           delay(3000); 
-           // Set pin mode for buttons 
-           pinMode(BUTTON_TOGGLE_PIN, INPUT_PULLUP); 
-           pinMode(BUTTON_PUSH_PIN, INPUT_PULLUP); 
-           // Set pin mode for potentiometer 
-           pinMode(POTENTIOMETER_PIN, INPUT); 
-           // Set pin mode for water pump 
-           pinMode(PUMP_BASE_PIN, OUTPUT); 
-           // Set sketch compiling time 
-           setDateTime(RTC, __DATE__, __TIME__); 
-           // Turn red LED OFF and green LED ON 
-           digitalWrite(LED_RED_PIN, LOW); 
-           digitalWrite(LED_GREEN_PIN, HIGH); 
-           delay(1500); 
-           // Turn green LED OFF 
-           digitalWrite(LED_GREEN_PIN, LOW); 
-        } 
-        void loop() 
-        { 
-           // Allow updates of variables 
-           RTC.updateTime(); 
-           // Read input values 
-           button.pressed = isButtonPressed(BUTTON_PUSH_PIN); 
-           potentiometer.level = readPotentiometerLevelMapped(POTENTIOMETER_PIN); 
-           toggle.on = isToggleOn(BUTTON_TOGGLE_PIN); 
-           // Turn ON morning watering 
-           if (MORNING_WATERING && RTC.hours == MORNING_WATERING_HOUR) { 
-             if (morningWatered == false) { 
-               morningWatered = true; 
-               int wateringMilliseconds = getMillisecondsByPotentiometerLevel(potentiometer.level); 
-               turnPumpTemporaryOn(wateringMilliseconds); 
-             } 
-           } else { 
-             morningWatered = false; 
-           } 
-           // Turn ON evening watering 
-           if (EVENING_WATERING && RTC.hours == EVENING_WATERING_HOUR) { 
-             if (eveningWatered == false) { 
-               eveningWatered = true; 
-               int wateringMilliseconds = getMillisecondsByPotentiometerLevel(potentiometer.level); 
-               turnPumpTemporaryOn(wateringMilliseconds); 
-             } 
-           } else { 
-             eveningWatered = false; 
-           } 
-           // Turn ON manual watering 
-           if (button.pressed) { 
-             turnPumpOn(); 
-             // Wait while the button is ON 
-             do { 
-               button.pressed = isButtonPressed(BUTTON_PUSH_PIN); 
-               delay(100); 
-             } while (button.pressed); 
-             turnPumpOff(); 
-           } 
-           delay(5000); // Iterate every 5 seconds 
-        } 
+  ` #include Arduino.h
         `,
   `/*
         Copyright (c) 2020 Janux
@@ -1626,449 +1532,517 @@ void loop() {
 }    
 `,
 
-`Github Code Should Appear Here`,
-
-`/* =============
-  Copyright (c) 2024, STMicroelectronics
-
-  All rights reserved.
-
-  Redistribution and use in source and binary forms, with or without modification, are permitted provided that
-  the following conditions are met:
-
-  Redistributions of source code must retain the above copyright notice, this list of conditions and the
-  following disclaimer.
-
-  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
-  following disclaimer in the documentation and/or other materials provided with the distribution.
-
-  Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
-  products derived from this software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER / OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
-  USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*
-*/
-
-/* If you want to use NEAI functions please, include NEAI library
-   in your Arduino libraries then, uncomment NEAI parts in the following code
-*/
-
-/* Libraries part */
-#include "ArduinoGraphics.h"
-#include "Arduino_LED_Matrix.h"
-#include <Wire.h>
-#include <Adafruit_LIS3DH.h>
-#include <Adafruit_Sensor.h>
-#include <NanoEdgeAI.h>
-#include "knowledge.h"
-
-/* Macros definitions */
-#define SERIAL_BAUD_RATE  115200
-
-/* Default address is 0x18 but, if SDO is powered at 3v3,
-    address is set to 0x19, so you need to change it
-    depending on your current hardware configuration.
-*/
-#define SENSOR_I2C_ADDR 0x19
-
-/* Sensor data rates.
-   You can choose from:
-   LIS3DH_DATARATE_1_HZ
-   LIS3DH_DATARATE_10_HZ
-   LIS3DH_DATARATE_25_HZ
-   LIS3DH_DATARATE_50_HZ
-   LIS3DH_DATARATE_100_HZ
-   LIS3DH_DATARATE_200_HZ
-   LIS3DH_DATARATE_400_HZ
-   LIS3DH_DATARATE_LOWPOWER_1K6HZ
-   LIS3DH_DATARATE_LOWPOWER_5KHZ
-*/
-#define SENSOR_DATA_RATE	LIS3DH_DATARATE_LOWPOWER_1K6HZ
-
-/* Sensor ranges.
-   You can choose from:
-   LIS3DH_RANGE_16_G
-   LIS3DH_RANGE_8_G
-   LIS3DH_RANGE_4_G
-   LIS3DH_RANGE_2_G
-*/
-#define SENSOR_RANGE	LIS3DH_RANGE_2_G
-
-/* NanoEdgeAI defines part
-   NEAI_MODE = 1: NanoEdgeAI functions = AI Mode.
-   NEAI_MODE = 0: Datalogging mode.
-*/
-#define NEAI_MODE 1
-#define SENSOR_SAMPLES	512
-#define AXIS  3
-
-/* In this example, we use I2C connection */
-Adafruit_LIS3DH lis = Adafruit_LIS3DH();
-
-/* Global variables definitions */
-static uint16_t neai_ptr = 0; //pointers to fill for sound buffer
-static float neai_buffer[SENSOR_SAMPLES * AXIS] = {0.0}; //souhnd buffer
-
-uint8_t neai_code = 0; //initialization code
-uint16_t id_class = 0; // Point to id class (see argument of neai_classification fct)
-float output_class_buffer[CLASS_NUMBER]; // Buffer of class probabilities
-const char *id2class[CLASS_NUMBER + 1] = { // Buffer for mapping class id to class name
-  "unknown",
-  "bouepas_concat",
-  "boue_concat",
-};
-
-/* Declare matrix to display */
-byte frame[8][12] = {
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-};
-
-char text[30];
-
-ArduinoLEDMatrix matrix;
+`#include <Servo.h> 
+#include <SPI.h>
+#include "Ucglib.h"           
 
 
-/* Initialization function: In this function,
-    code runs only once at boot / reset.
-*/
-void setup() {
-  /* Init serial at baud rate 115200 */
-  Serial.begin(SERIAL_BAUD_RATE);
-  delay(10);
-  matrix.begin();
+#define  trigPin   6       
+#define  echoPin   5        
+#define  ServoPin  3         
+int Ymax = 240;              
+int Xmax = 320;              
 
-  pinMode(A0, OUTPUT);
+int Xcent = Xmax / 2;       
+int base = 210;              
+int scanline = 185;         
 
-  /* I2C workaround: Sometimes, on some boards,
-     I2C get stuck after software reboot, reset so,
-     to avoid this, we toggle I2C clock pin at boot.
-  */
-  pinMode(SCL, OUTPUT);
-  for (uint8_t i = 0; i < 20; i++) {
-    digitalWrite(SCL, !digitalRead(SCL));
+Servo baseServo; 
+//Ucglib_ILI9341_18x240x320_SWSPI ucg(/*sclk=*/ 13, /*data=*/ 11, /*cd=*/ 9, /*cs=*/ 10, /*reset=*/ 8);
+Ucglib_ILI9341_18x240x320_HWSPI ucg(/*cd=*/ 9, /*cs=*/ 10, /*reset=*/ 8);
+
+void setup(void)
+{
+ 
+      ucg.begin(UCG_FONT_MODE_SOLID); 
+      ucg.setRotate90();             
+      
+      pinMode(trigPin, OUTPUT);      
+      pinMode(echoPin, INPUT);       
+      Serial.begin(115200);            
+      baseServo.attach(ServoPin);   
+    
+      
+      ucg.setFontMode(UCG_FONT_MODE_TRANSPARENT);
+      ucg.setColor(0, 0, 100, 0);
+      ucg.setColor(1, 0, 100, 0);
+      ucg.setColor(2, 20, 20,20);
+      ucg.setColor(3, 20, 20, 20);
+      ucg.drawGradientBox(0, 0, 320, 240);
+      ucg.setPrintDir(0);
+      ucg.setColor(0, 5, 0);
+      ucg.setPrintPos(70,120);
+      ucg.setFont(ucg_font_logisoso32_tf);  
+      ucg.print("Mini Radar");
+      ucg.setColor(0, 255, 0);
+      ucg.setPrintPos(70,120);
+      ucg.print("Mini Radar");
+      ucg.setFont(ucg_font_courB14_tf);
+      ucg.setColor(20, 255, 20);
+      ucg.setPrintPos(90,200);
+      ucg.print("Testing...");
+      baseServo.write(90);
+    
+    
+      for(int x=0;x<180;x+=5)
+          { baseServo.write(x);
+            delay(50);
+           }
+      ucg.print("OK!");
+      delay(500);
+      ucg.setColor(0,0, 0, 0);
+      ucg.setColor(1,0, 0, 0);
+      ucg.setColor(2,0, 0, 0);
+      ucg.setColor(3,0, 0, 0);
+      ucg.drawGradientBox(0, 0, 320, 240);
+      delay(10);
+    
+    
+      //ucg.clearScreen();
+      cls();
+      ucg.setFontMode(UCG_FONT_MODE_SOLID);
+      ucg.setFont(ucg_font_helvR08_hr);   // or freedoomr10_tr
+  
+}
+
+
+void cls()
+{
+ 
+  ucg.setColor(0, 0, 0, 0);
+  for(int s=0;s<240;s++)
+  {
+    ucg.drawHLine(0,s,320);
     delay(1);
   }
-  delay(100);
+    
+  //ucg.drawBox(0, 0, 160, 60);
 
-  /* Init I2C connection between board & sensor */
-  if (!lis.begin(SENSOR_I2C_ADDR)) {
-    Serial.print("Can't initialize I2C comm with LIS3DH sensor...\n");
-    while (1);
+}
+
+
+int calculateDistance()
+{ 
+      long duration;
+    
+      digitalWrite(trigPin, LOW); 
+      delayMicroseconds(2);
+      
+      digitalWrite(trigPin, HIGH); 
+      delayMicroseconds(10);
+      digitalWrite(trigPin, LOW);
+      
+      duration = pulseIn(echoPin, HIGH);
+     
+      return duration*0.034/2;
+}
+
+void fix_font() 
+{
+      ucg.setColor(0, 180, 0);
+      ucg.setPrintPos(144,44);
+      ucg.print("1.00");
+      ucg.setPrintPos(144,100);
+      ucg.print("0.60");
+      ucg.setPrintPos(144,165);
+      ucg.print("0.30");
+}
+
+void fix()
+{
+
+      ucg.setColor(0, 180, 0);
+    
+      ucg.drawDisc(Xcent, base+1, 3, UCG_DRAW_ALL); 
+      ucg.drawCircle(Xcent, base+1, 210, UCG_DRAW_UPPER_LEFT);
+      ucg.drawCircle(Xcent, base+1, 210, UCG_DRAW_UPPER_RIGHT);
+      ucg.drawCircle(Xcent, base+1, 135, UCG_DRAW_UPPER_LEFT);
+      ucg.drawCircle(Xcent, base+1, 135, UCG_DRAW_UPPER_RIGHT);
+      ucg.drawCircle(Xcent, base+1, 70, UCG_DRAW_UPPER_LEFT);
+      ucg.drawCircle(Xcent, base+1, 70, UCG_DRAW_UPPER_RIGHT);
+      ucg.drawLine(0, base+1, Xmax,base+1);
+     
+      ucg.setColor(0, 180, 0);
+     
+       for(int i= 40;i < 300; i+=2)
+       {
+
+        if (i % 10 == 0) 
+          ucg.drawLine(185*cos(radians(i))+Xcent,base - 185*sin(radians(i)) , 205*cos(radians(i))+Xcent,base - 205*sin(radians(i)));
+        
+        else
+        
+         ucg.drawLine(195*cos(radians(i))+Xcent,base - 195*sin(radians(i)) , 205*cos(radians(i))+Xcent,base - 205*sin(radians(i)));
+         
+       }
+          
+     
+       ucg.setColor(0,200,0);
+       ucg.drawLine(0,0,0,36);
+       for(int i= 0;i < 5; i++)
+       {
+          ucg.setColor(0,random(200)+50,0);
+          ucg.drawBox(2,i*8,random(28)+3,6);
+       }
+
+       ucg.setColor(0,180,0);
+       ucg.drawFrame(292,0,28,28);
+       ucg.setColor(0,60,0);
+       ucg.drawHLine(296,0,20);
+       ucg.drawVLine(292,4,20);
+       ucg.drawHLine(296,52,20);
+       ucg.drawVLine(318,4,20);
+        
+       ucg.setColor(0,220,0);
+       ucg.drawBox(296,4,8,8);
+       ucg.drawBox(296,16,8,8);
+       ucg.drawBox(308,16,8,8);
+       ucg.setColor(0,100,0);
+       ucg.drawBox(308,4,8,8);
+
+       ucg.setColor(0,90,0);
+       ucg.drawTetragon(124,220,116,230,196,230,204,220);
+       ucg.setColor(0,160,0);
+       ucg.drawTetragon(134,220,126,230,186,230,194,220);
+       ucg.setColor(0,210,0);
+       ucg.drawTetragon(144,220,136,230,176,230,184,220);
+}
+
+
+
+void loop(void)
+{
+  
+  int distance;
+  
+  fix(); 
+  fix_font(); 
+
+  for (int x=180; x > 4; x-=2){      
+     
+      baseServo.write(x);             
+      
+     
+      int f = x - 4; 
+      ucg.setColor(0, 255, 0);
+      ucg.drawLine(Xcent, base, scanline*cos(radians(f))+Xcent,base - scanline*sin(radians(f)));
+      f+=2;
+      ucg.setColor(0, 128, 0);
+      ucg.drawLine(Xcent, base, scanline*cos(radians(f))+Xcent,base - scanline*sin(radians(f)));
+      f+=2;
+      ucg.setColor(0, 0, 0);
+      ucg.drawLine(Xcent, base, scanline*cos(radians(f))+Xcent,base - scanline*sin(radians(f)));
+      ucg.setColor(0,200, 0);
+     
+      distance = calculateDistance();
+     
+     
+      if (distance < 100)
+      {
+        ucg.setColor(255,0,0);
+        ucg.drawDisc(2.2*distance*cos(radians(x))+ Xcent,-2.2*distance*sin(radians(x))+base, 1, UCG_DRAW_ALL);
+      }
+      else
+      { 
+        ucg.setColor(255,255,0);
+        ucg.drawDisc(208*cos(radians(x))+Xcent,-208*sin(radians(x))+base, 1, UCG_DRAW_ALL);
+      }
+    
+           
+     
+      Serial.print(x); 
+      Serial.print("    ,   ");
+      Serial.println(distance); 
+     
+
+      if (x > 70 and x < 110)  fix_font(); 
+
+
+      ucg.setColor(255,255,  0);
+      ucg.setPrintPos(20,230);
+      ucg.print("DEG: "); 
+      ucg.setPrintPos(54,230);
+      ucg.print(x);
+      ucg.print("  ");
+      ucg.setPrintPos(240,230);
+      ucg.print("     ");
+      ucg.print(distance);
+      ucg.print(" cm    "); 
+      
   }
+  //ucg.clearScreen();  
+  delay(50);
+  cls();   
+ 
+  fix(); 
+  fix_font();         
+  
+  for (int  x=1; x < 176; x+=2){     
+      baseServo.write(x);             
+      
+     
+      int f = x + 4;
+      ucg.setColor(0, 255, 0);
+      ucg.drawLine(Xcent, base, scanline*cos(radians(f))+Xcent,base - scanline*sin(radians(f)));
+      f-=2;
+      ucg.setColor(0, 128, 0);
+      ucg.drawLine(Xcent, base, scanline*cos(radians(f))+Xcent,base - scanline*sin(radians(f)));
+      f-=2;
+      ucg.setColor(0, 0, 0);
+      ucg.drawLine(Xcent, base, scanline*cos(radians(f))+Xcent,base - scanline*sin(radians(f)));
+      ucg.setColor(0, 200, 0);
+      
+      distance = calculateDistance();
 
-  /* Init LIS3DH with desired settings: odr & range */
-  lis.setRange(SENSOR_RANGE);
-  lis.setDataRate(SENSOR_DATA_RATE);
+      
+      if (distance < 100)
+      {
+        ucg.setColor(255,0,0);
+        ucg.drawDisc(2.2*distance*cos(radians(x))+Xcent,-2.2*distance*sin(radians(x))+base, 1, UCG_DRAW_ALL);
+      }
+      else
+      { 
+        ucg.setColor(255,255,0);
+        ucg.drawDisc(208*cos(radians(x))+Xcent,-208*sin(radians(x))+base, 1, UCG_DRAW_ALL);
+      }
+           
+      
+      Serial.print(x); 
+      Serial.print("    ,   ");
+      Serial.println(distance); 
+     
+      if (x > 70 and x < 110)  fix_font(); 
+      
+      ucg.setColor(255,255,  0);
+      ucg.setPrintPos(20,230);
+      ucg.print("DEG: "); 
+      ucg.setPrintPos(54,230);
+      ucg.print(x);
+      ucg.print("  ");
+      ucg.setPrintPos(240,230);
+      ucg.print("     ");
+      ucg.print(distance);
+      ucg.print(" cm    "); 
+  
+  }
+ //ucg.clearScreen(); //
+ delay(50);
+ cls();
 
-  /* Initialize NanoEdgeAI AI */
-  neai_code = neai_classification_init(knowledge);
-  if (neai_code != NEAI_OK) {
-    Serial.print("Not supported board.\n");
+
+}`,
+
+`#include <IRremote.h>
+
+int RECV_PIN = 11;
+
+IRrecv irrecv(RECV_PIN);
+
+decode_results  results;
+
+void setup()
+{
+  Serial.begin(9600);
+  irrecv.enableIRIn();  // Start the receiver
+}
+
+void loop() {
+  if (irrecv.decode(&results))  {
+   
+    Serial.println(results.value, HEX);
+    irrecv.resume(); // Receive  the next value
   }
 }
 
-/* Main function: Code run indefinitely */
+//`,
+
+`int motor1pin1 = 2;
+int motor1pin2 = 3;
+
+int motor2pin1 = 4;
+int   motor2pin2 = 5;
+
+void setup() {
+  // put your setup code here, to run once:
+   pinMode(motor1pin1, OUTPUT);
+  pinMode(motor1pin2, OUTPUT);
+  pinMode(motor2pin1,   OUTPUT);
+  pinMode(motor2pin2, OUTPUT);
+
+  //(Optional)
+  pinMode(9,   OUTPUT); 
+  pinMode(10, OUTPUT);
+  //(Optional)
+}
+
 void loop() {
-  /* Get data in the neai buffer */
-  while (neai_ptr < SENSOR_SAMPLES) {
-    /* Check if new data if available */
-    if (lis.haveNewData()) {
-      /* If new data is available we read it ! */
-      lis.read();
-      /* Fill neai buffer with new accel data */
-      neai_buffer[AXIS * neai_ptr] = (float) lis.x;
-      neai_buffer[(AXIS * neai_ptr) + 1] = (float) lis.y;
-      neai_buffer[(AXIS * neai_ptr) + 2] = (float) lis.z;
-      /* Increment neai pointer */
-      neai_ptr++;
-    }
+   // put your main code here, to run repeatedly:
+
+  //Controlling speed (0   = off and 255 = max speed):     
+  //(Optional)
+  analogWrite(9, 100); //ENA   pin
+  analogWrite(10, 200); //ENB pin
+  //(Optional)
+  
+  digitalWrite(motor1pin1,   HIGH);
+  digitalWrite(motor1pin2, LOW);
+
+  digitalWrite(motor2pin1, HIGH);
+   digitalWrite(motor2pin2, LOW);
+  delay(3000);
+
+  digitalWrite(motor1pin1,   LOW);
+  digitalWrite(motor1pin2, HIGH);
+
+  digitalWrite(motor2pin1, LOW);
+   digitalWrite(motor2pin2, HIGH);
+  delay(3000);
+}
+`,
+
+`/* 
+  Sketch generated by the Arduino IoT Cloud Thing "MKR WiFi 1010 and DHT22"
+  https://create.arduino.cc/cloud/things/e75efe13-eb5e-432a-86d3-0bf1cd34aaac 
+  
+Arduino IoT Cloud Variables description
+
+  The following variables are automatically generated and updated when changes are made to the Thing
+
+  CloudTemperatureSensor temperature;
+  CloudRelativeHumidity humidity;
+
+  Variables which are marked as READ/WRITE in the Cloud Thing will also have functions
+  which are called when their values are changed from the Dashboard.
+  These functions are generated with the Thing and added at the end of this sketch.
+*/
+
+#include "thingProperties.h"
+#include <Adafruit_Sensor.h>
+#include <DHT.h>
+#include <DHT_U.h>
+
+#define DHTPIN 7    // Digital pin connected to the DHT sensor 
+#define DHTTYPE    DHT22     // Write DHT11 or DHT22 According to your Sensor
+
+DHT_Unified dht(DHTPIN, DHTTYPE);
+uint32_t delayMS;
+unsigned long previousMillis = 0;
+const long interval = 20000; //milliseconds  total time for 20 Seconds
+
+
+
+void setup() {
+  // Initialize serial and wait for port to open:
+  Serial.begin(9600);
+  // This delay gives the chance to wait for a Serial Monitor without blocking if none is found
+  delay(1500); 
+
+  // Defined in thingProperties.h
+  initProperties();
+
+  // Connect to Arduino IoT Cloud
+  ArduinoCloud.begin(ArduinoIoTPreferredConnection);
+  
+  /*
+     The following function allows you to obtain more information
+     related to the state of network and IoT Cloud connection and errors
+     the higher number the more granular information you’ll get.
+     The default is 0 (only errors).
+     Maximum is 4
+ */
+  setDebugMessageLevel(2);
+  ArduinoCloud.printDebugInfo();
+
+  dht.begin(); //Init DHT
+
+  Serial.println(F("DHTxx Unified Sensor Example"));
+  // Print temperature sensor details.
+  sensor_t sensor;
+  dht.temperature().getSensor(&sensor);
+  Serial.println(F("------------------------------------"));
+  Serial.println(F("Temperature Sensor"));
+  Serial.print  (F("Sensor Type: ")); Serial.println(sensor.name);
+  Serial.print  (F("Driver Ver:  ")); Serial.println(sensor.version);
+  Serial.print  (F("Unique ID:   ")); Serial.println(sensor.sensor_id);
+  Serial.print  (F("Max Value:   ")); Serial.print(sensor.max_value); Serial.println(F("°C"));
+  Serial.print  (F("Min Value:   ")); Serial.print(sensor.min_value); Serial.println(F("°C"));
+  Serial.print  (F("Resolution:  ")); Serial.print(sensor.resolution); Serial.println(F("°C"));
+  Serial.println(F("------------------------------------"));
+  // Print humidity sensor details.
+  dht.humidity().getSensor(&sensor);
+  Serial.println(F("Humidity Sensor"));
+  Serial.print  (F("Sensor Type: ")); Serial.println(sensor.name);
+  Serial.print  (F("Driver Ver:  ")); Serial.println(sensor.version);
+  Serial.print  (F("Unique ID:   ")); Serial.println(sensor.sensor_id);
+  Serial.print  (F("Max Value:   ")); Serial.print(sensor.max_value); Serial.println(F("%"));
+  Serial.print  (F("Min Value:   ")); Serial.print(sensor.min_value); Serial.println(F("%"));
+  Serial.print  (F("Resolution:  ")); Serial.print(sensor.resolution); Serial.println(F("%"));
+  Serial.println(F("------------------------------------"));
+  // Set delay between sensor readings based on sensor details.
+  delayMS = sensor.min_delay / 1000;
+  STHAM();
+  
+}
+
+void loop() {
+  ArduinoCloud.update();
+  // Your code here 
+  
+  unsigned long currentMillis = millis();
+  if (currentMillis - previousMillis >= interval) {
+    STHAM();
+    previousMillis = currentMillis;
   }
-  /* Reset pointer */
-  neai_ptr = 0;
+}
 
-  /* Depending on NEAI_MODE value, run NanoEdge AI functions
-     or print accelerometer data to the serial (datalogging)
-  */
-  if (NEAI_MODE) {
-    neai_classification(neai_buffer, output_class_buffer, &id_class);
-    switch (id_class) {
-      case 1:
-        strcpy (text, " !!! Boiling !!! ");
-        digitalWrite(A0, HIGH);
-        break;
-      case 2:
-        strcpy (text, " Not Boiling ");
-        digitalWrite(A0, LOW);
-        break;
-      default:
-        strcpy (text, " ERROR ");
-        break;
-    }
-    Serial.print(output_class_buffer[1]);
-    Serial.print(' ');
-    Serial.print(output_class_buffer[0]);
-    Serial.println(' ');
 
-    matrix.beginDraw();
-    matrix.stroke(0xFFFFFFFF);
-    matrix.textScrollSpeed(50);
-    matrix.textFont(Font_5x7);
-    matrix.beginText(0, 1, 0xFFFFFF);
-    matrix.println(text);
-    matrix.endText(SCROLL_LEFT);
-    matrix.endDraw();
-
+void STHAM(){
+  // Get temperature event and print its value.
+  sensors_event_t event;
+  dht.temperature().getEvent(&event);
+  if (isnan(event.temperature)) {
+    Serial.println(F("Error reading temperature!"));
+    //Assign temperature value 0 to Cloud Variable
+    temperature=0;
   }
   else {
-    /* Print the whole buffer to the serial */
-    for (uint16_t i = 0; i < AXIS * SENSOR_SAMPLES; i++) {
-      Serial.print((String)neai_buffer[i] + " ");
-    }
-    Serial.print("\n");
+    Serial.print(F("Temperature: "));
+    Serial.print(event.temperature);
+    Serial.println(F("°C"));
+    //Assign temperature value to Cloud Variable
+    temperature=event.temperature;
   }
-  /* Clean neai buffer */
-  memset(neai_buffer, 0.0, AXIS * SENSOR_SAMPLES * sizeof(float));
-}`,
-
-`/* Libraries ----------------------------------------------------------*/
-#include "ArduinoGraphics.h"
-#include "Arduino_LED_Matrix.h"
-#include "NanoEdgeAI.h"
-#include "knowledge.h"
-
-/* Defines  ----------------------------------------------------------*/
-#define SENSOR_SAMPLES    1024 //buffer size
-#define AXIS              1    //microphone is 1 axis
-#define DOWNSAMPLE        32   //microphone as a very high data rate, we downsample it
-
-
-/* Prototypes ----------------------------------------------------------*/
-void get_microphone_data(); //function to collect buffer of sound
-
-/* Global variables ----------------------------------------------------------*/
-static uint16_t neai_ptr = 0; //pointers to fill for sound buffer
-static float neai_buffer[SENSOR_SAMPLES * AXIS] = {0.0}; //souhnd buffer
-int const AMP_PIN = A0;       // Preamp output pin connected to A0
-
-/* NEAI PART*/
-uint8_t neai_code = 0; //initialization code
-uint16_t id_class = 0; // Point to id class (see argument of neai_classification fct)
-float output_class_buffer[CLASS_NUMBER]; // Buffer of class probabilities
-const char *id2class[CLASS_NUMBER + 1] = { // Buffer for mapping class id to class name
-  "unknown",
-  "up",
-  "down",
-};
-
-/* Declare matrix to display */
-byte frame[8][12] = {
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-  { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-};
-
-char text[30];
-
-
-/* Objects  ----------------------------------------------------------*/
-ArduinoLEDMatrix matrix;
-
-
-/* Setup function ----------------------------------------------------------*/
-void setup() {
-  Serial.begin(115200);
-  delay(10);
-  matrix.begin();
-
-  /* Initialize NanoEdgeAI AI */
-  neai_code = neai_classification_init(knowledge);
-  if (neai_code != NEAI_OK) {
-    Serial.print("Not supported board.\n");
+  
+  // Get humidity event and print its value.
+  dht.humidity().getEvent(&event);
+  if (isnan(event.relative_humidity)) {
+    Serial.println(F("Error reading humidity!"));
+    //Assign humidity value 0 to Cloud Variable
+    humidity=0;
+  }
+  else {
+    Serial.print(F("Humidity: "));
+    Serial.print(event.relative_humidity);
+    Serial.println(F("%"));
+    //Assign humidity value to Cloud Variable
+    humidity=event.relative_humidity;
   }
 }
 
-/* Infinite loop ----------------------------------------------------------*/
-void loop() {
-  get_microphone_data();
-  neai_classification(neai_buffer, output_class_buffer, &id_class);
-  /* DISPLAY THE SONG NAME */
- switch(id_class){
-  case 1:
-    strcpy (text, " song1 ");
-    break;
-  case 2:
-    strcpy (text, " song2 ");
-    break;
-  default:
-    strcpy (text, " check switch in code ");
-    break;
- }
-
-  Serial.println(id_class);
-  matrix.beginDraw();
-  matrix.stroke(0xFFFFFFFF);
-  matrix.textScrollSpeed(50);
-  matrix.textFont(Font_5x7);
-  matrix.beginText(0, 1, 0xFFFFFF);
-  matrix.println(text);
-  matrix.endText(SCROLL_LEFT);
-  matrix.endDraw();
+/*
+  Since Temperature is READ_WRITE variable, onTemperatureChange() is
+  executed every time a new value is received from IoT Cloud.
+*/
+void onTemperatureChange()  {
+  // Add your code here to act upon Temperature change
 }
 
-
-/* Functions declaration ----------------------------------------------------------*/
-void get_microphone_data()
-{
-  static uint16_t temp = 0; //stock values
-  int sub = 0; //increment to downsample
-  //while the buffer is not full
-  while (neai_ptr < SENSOR_SAMPLES) {
-    //we only get a value every DOWNSAMPLE (32 in this case)
-    if (sub > DOWNSAMPLE) {
-      /* Fill neai buffer with new accel data */
-      neai_buffer[neai_ptr] = analogRead(AMP_PIN);
-      /* Increment neai pointer */
-      neai_ptr++;
-      sub = 0; //reset increment
-    }
-    else {
-      //we read the sample even if we don't use it
-      //else it is instantaneous and we don't downsample
-      temp = analogRead(AMP_PIN);
-    }
-    sub ++;
-  }
-  neai_ptr = 0; //reset the beginning position
-}`,
-
-`#include <U8g2lib.h>
-#include <Capacitor.h>
-
-U8G2_ST7565_ERC12864_1_4W_SW_SPI u8g2 ( U8G2_R0, /* scl=*/  13 , /* si=*/  11 , /* cs=*/  10 , /* rs=*/  9 , /* rse=*/  8 ) ;
-
-Capacitor cap1(7,A2);
-
-int X1,C; //resistance value
-byte  f_ic, xp;
-char R1_str[3];
-char R_str[4];
-float tau1;   
-unsigned long T1, T2, tau;
-
-void setup() {
-  Serial.begin(9600);
-   u8g2.begin();
-   u8g2.setContrast(35);
-}
-
-   
-    void loop() {
- // Serial.println(cap1.Measure());  // Measure the capacitance (in pF), print to Serial Monitor
- // delay(1000);                     // Wait for 1 second, then repeat
-  Pomiar_C();
-}  
-
-
-void Pomiar_C(){
-  Cyfry();
-  char C_str[4];
-  sprintf(C_str,"%d", X1);
-  u8g2.firstPage();
-  do {
-
-  u8g2.drawFrame(0,0,128,64);  
-  u8g2.drawRFrame(2,2,124,60,3);
-    
-     u8g2.setFont(u8g2_font_10x20_tr);
-     u8g2.drawStr(20, 18, "Capacity:");        
-     if (f_ic > 6) { 
-        u8g2.setFont(u8g2_font_fub25_t_symbol);
-        u8g2.drawGlyph(80,52,956);               //symbol u
-     }   
-     u8g2.setFont(u8g2_font_fub25_tr);
-     u8g2.drawStr(xp, 52, C_str);
-     if (f_ic < 7) {u8g2.drawStr(76, 52, "n");}
-     if (f_ic < 4) {u8g2.drawStr(76, 52, "p");}
-     u8g2.drawStr(100, 52, "F"); 
-     if (f_ic == 1 or f_ic == 4 or f_ic == 7) {
-         u8g2.drawStr(28, 52, "."); 
-         u8g2.drawStr(40, 52, R1_str); 
-     }    
-  } while ( u8g2.nextPage() );
-  delay(500);
-}
-
-void Cyfry(){
-//  if (P1 == LOW) {tau1 = tau/2.329;}    
-//  if (P2 == LOW) {tau1 = tau/350;}
- // if (P3 == LOW) {tau1 = cap1.Measure();}
-
- tau1 = cap1.Measure();
-  //obliczenie ilości cyfr wartości
-  if (tau1 >= 1 && tau1 <10) {                  
-     X1 = tau1;
-     int X2 = 10 * (tau1 - X1);
-  sprintf(R1_str,"%d", X2);
-     f_ic = 1;
-     xp = 10;     
-  }
-  if (tau1 >= 10 && tau1 <100) {            
-     X1 = tau1;
-     f_ic = 2;
-     xp = 32;
-  }
-  if (tau1 >= 100 && tau1 <1000) {         
-     X1 = tau1;
-     f_ic = 3;
-     xp = 10;
-  }
-  if (tau1/1000 >= 1 && tau1/1000 <10) {        
-     X1 = int(tau1/1000);
-     f_ic = 4;
-     xp = 10;
-     int X2 = 10 * (tau1/1000 - X1);
-   sprintf(R1_str,"%d", X2);
-  }
-  if (tau1/10000 >= 1 && tau1/10000 <10) {      
-     X1 = int(tau1/1000);
-     f_ic = 5;
-     xp = 32;
-  }
-  if (tau1/100000 >= 1 && tau1/100000 <10) {    
-     X1 = int(tau1/1000);
-     f_ic = 6;
-     xp = 10;
-  }
-  if (tau1/1000000 >= 1 && tau1/1000000 <10) {  
-     X1 = int(tau1/1000000);
-     f_ic = 7;
-     xp = 10;
-     
-     int X2 = 10 * (tau1/1000000 - X1);
-   sprintf(R1_str,"%d", X2);
-  }
-   if (tau1/10000000 >= 1 && tau1/10000000 <10) {  
-     X1 = int(tau1/1000000);
-     f_ic = 8;
-     xp = 30;
-   }
+/*
+  Since Humidity is READ_WRITE variable, onHumidityChange() is
+  executed every time a new value is received from IoT Cloud.
+*/
+void onHumidityChange()  {
+  // Add your code here to act upon Humidity change
 }`
 
 ]

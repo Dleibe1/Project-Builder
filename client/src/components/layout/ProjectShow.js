@@ -92,13 +92,13 @@ const ProjectShow = (props) => {
   const instructionList = project.instructions.map((instruction) => {
     if (instruction.imageURL) {
       return (
-        <div>
+        <div className="showpage-items-container">
           <img className="project-image" src={`${instruction.imageURL}`} />
         </div>
       )
     } else if (instruction.instructionText) {
       return (
-        <div>
+        <div className="showpage-items-container">
           <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
         </div>
       )
@@ -136,10 +136,8 @@ const ProjectShow = (props) => {
           <p>{project.appsAndPlatforms}</p>
         </div>
       </div>
-      <div className="showpage-items-container">
         <h2>Instructions</h2>
         {instructionList}
-      </div>
       <div>
         <div className="showpage-items-container">
           <p className="github-url"> {codeMessage}</p>

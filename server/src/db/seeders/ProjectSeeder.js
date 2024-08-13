@@ -20,7 +20,7 @@ class ProjectSeeder {
         userId: 1,
         title: "SmartPhone Controlled Arduino Based Bluetooth Car",
         description: descriptions[1],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IDE, MIT App Inventor 2",
         code: code[1],
         githubFileURL: "",
         thumbnailImage:
@@ -31,9 +31,9 @@ class ProjectSeeder {
         userId: 2,
         title: "Automated plants watering system",
         description: descriptions[2],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IDE",
         code: code[2],
-        githubFileURL: "",
+        githubFileURL: "https://github.com/hibit-dev/plants-care/blob/master/src/station/station.ino",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/916c664e-bd6f-403a-a3f8-234147fc8501.jpg",
         parentProjectId: 3,
@@ -42,7 +42,7 @@ class ProjectSeeder {
         userId: 2,
         title: "Arduino FFT Audio Spectrum analyzer on 8x32 color matrix WS2812B",
         description: descriptions[3],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IDE",
         code: code[3],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/f27de0e3-aa87-4c5f-966a-37b14891dadd.jpg",
@@ -62,7 +62,7 @@ class ProjectSeeder {
         userId: 1,
         title: "Build Your Own Object Tracking 4-DOF Robotics Arm With Arduino",
         description: descriptions[5],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IDE",
         code: code[5],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/d3d28934-f6b8-4626-9fc2-f06fe058b398.png",
@@ -72,7 +72,7 @@ class ProjectSeeder {
         userId: 2,
         title: "ARPoLAN: Network Monitoring and Security Tool",
         description: descriptions[6],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IDE",
         code: code[6],
         githubFileURL:
           "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
@@ -82,24 +82,24 @@ class ProjectSeeder {
       },
       {
         userId: 1,
-        title: "Arduino UNO game engine with composite video output",
+        title: "DIY Arduino ultrasonic Sonar - Radar on TFT display",
         description: descriptions[7],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IDE",
         code: code[7],
         githubFileURL:
-          "https://github.com/Smashcat/UNO_Manic_Miner/blob/main/games/ManicMiner/ManicMiner.ino",
+          "",
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/a5e8e30a-2819-4b67-8d5b-604723ac43af.png",
+          "https://projects.arduinocontent.cc/cover-images/bf79fd77-788d-4d92-bc5a-2a628633939a.jpg",
         parentProjectId: 8,
       },
       {
         userId: 3,
-        title: "To Boil Or Not To Boil? That Is The Question!",
+        title: "Decode IR Remote Control Signals of any Remote Using Arduino",
         description: descriptions[8],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "rogerbit.",
         code: code[8],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/946b62af-00b7-4230-8925-6bcae9614ede.gif",
+          "https://projects.arduinocontent.cc/cover-images/5454a669-2c00-4c8e-8e56-90d863ab3315.blob",
         parentProjectId: 9,
       },
     ]
@@ -209,22 +209,22 @@ class ProjectSeeder {
       {
         // id = 19
         userId: 4,
-        title: "How To Do Automatic Song classification",
+        title: "L298n Motor driver Arduino",
         description: descriptions[9],
         appsAndPlatforms: "Arduino IDE and NanoEdge AI Studio",
         code: code[9],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/898064f0-ad8a-4ea9-a666-c2afbea15f41.gif",
+          "https://projects.arduinocontent.cc/cover-images/8b4f6361-dff4-4900-851d-7983e78e338a.blob",
         parentProjectId: 19
       },
       {
         userId: 4,
-        title: "How to make simplest possible autorange Capacitance meter",
+        title: "Temperature Monitoring with Arduino IoT Cloud using DHT22",
         description: descriptions[10],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IoT Cloud",
         code: code[10],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/cea949c5-d9fa-40cd-b847-d5db51a3f787.jpg",
+          "https://projects.arduinocontent.cc/cover-images/91fa89b7-2009-4a9c-b8de-aec71f62ee82.png",
         parentProjectId: 20
       },
     ]

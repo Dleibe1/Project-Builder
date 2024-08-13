@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import ProjectTile from "./ProjectTile"
 
 const ProjectList = (props) => {
+  
   const [projects, setProjects] = useState([])
   const getProjectsData = async () => {
     try {

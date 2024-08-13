@@ -236,7 +236,7 @@ const EditBuildForm = (props) => {
       )
     } else {
       return (
-        <div key={`${instruction.instructionText}${index}`} className="instruction-container">
+        <div key={`${instruction.instructionText}${index}`} className="instruction-text-container">
           <p>{instruction.instructionText}</p>
           <Button
             onClick={() => handleInstructionDelete(index)}

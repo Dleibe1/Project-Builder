@@ -9,26 +9,25 @@ So I decided to make this pair of eyes that follows the movements of an object t
 And if you're reading this, you clicked. This is great for my goal and I thank you for it. 
 `,
 
-  `Have you ever dreamt of commanding a robot car with just your phone? Well, dream no more! This project equips you with the tools and know-how to build your very own Bluetooth-controlled robot car, ready to zoom and zip at your every whim.`,
+  `Calling all tinkerers, tech enthusiasts, and robot aficionados! Are you ready to unleash your inner inventor and build a robot car that dances to your smartphone's commands? This guide will be your roadmap to crafting a mini marvel that zips and zooms under your wireless control. Buckle up, because we're about to dive into the exciting world of Bluetooth-controlled robotics! `,
 
-  `In the world of do-it-yourself (DIY) projects, few activities match the practicality of constructing your own Arduino-powered automatic watering system. `,
+  `Imagine a setup where technology integrates effortlessly with nature, allowing you to take control of your plant care routine.`,
 
-  `The spectrum analyzer displays the amplitude of signals as a function of frequency.`,
+  `This is an extremely simple, but still visually very effective project, and can serve as a gadget on your desktop, or as an addition to an audio device.`,
 
-  `The "Arduino OLED Eyes Animation for Robotics Projects" is a curated guide showcasing five different methods for creating lively and expressive eye animations on Arduino-based robots using OLED displays.`,
+  `The "Arduino OLED Eyes Animation for Robotics Projects" is a curated guide showcasing five different methods for creating lively and expressive eye animations on Arduino-based robots using OLED displays. Each method offers unique features and functionalities, from simple eye movements and mood expressions to more sophisticated techniques involving bitmap images and optimized memory usage. Whether you're a beginner or seasoned hobbyist, this project provides a comprehensive overview of how to implement captivating eye animations that add personality and realism to your robotic creations. Explore the diverse options and unleash your creativity in the exciting realm of Arduino robotics!`,
 
-  `In this project, the robotic arm will execute actions corresponding to the commands received from the sensors. `,
+  `In this project, the robotic arm will execute actions corresponding to the commands received from the sensors. For example, if the object moves to the left, the robotic arm will respond by moving to the left, and similarly for movements to the right, up, and down. `,
 
-  `Welcome back, tech enthusiasts! Today, I'm excited to introduce ARPoLan, a project that started as an experiment to explore the potential of combining the Arduino Pro Micro and the W5500 Ethernet module. `,
+  `A tool for network scanning and ARP spoofing using the Atmega32u4 and W5500`,
 
-`This is my game engine for the Arduino UNO. It allows the 8-bit micro to output composite video at 256x256 resolution, with scrolling tilemap graphics and 16x16 sprites.`,
+`This is a very simple, easy to make, visually effective, and self-contained device intended for both beginners and more advanced DIYers.`,
 
-`When preparing the lunch, everyone has probably encountered the moment when you let the pan on the fire and the water or milk start boiling and coming out of the pan. `,
+`In this project you will be going to decode the signal sent by any type of Remote to make Projects`,
 
-`In this tutorial we will collect microphone data to get chunks of songs and use NanoEdge AI Studio (a free tool) to automatically create an AI model able to classify our songs.
-`,
+`Here, We will learn "How to use L298n Motor Driver with Arduino Uno". Also We will control the Speed & Direction of Motor.`,
 
-`The capacity measurement option is usually only available in more expensive multimeters, so it is desirable to make such an instrument ourselves, especially if it is very simple to make and inexpensive.`
+`In this project you will learn how to monitor temperature & humidity using DHT22 sensor and MKR WiFi 1010 with Arduino IoT Cloud.`
 
 ]
 
