@@ -220,6 +220,10 @@ body.hide-background {
   height: auto;
 }
 
+.project-tile.my-builds-tile {
+  height:100%;
+}
+
 .project-tile {
   margin-top: 0;
 }
@@ -316,7 +320,8 @@ body.hide-background {
   width: 500px;
 }
 
-.project-show h2 {
+.project-show h2,
+.project-show h1 {
   font-size: 3rem;
   font-family: OpenSans-Regular;
   margin-bottom: 0;
@@ -327,6 +332,16 @@ body.hide-background {
   background-color: white;
   text-align: center;
   padding: 30px;
+}
+
+.project-show h1 {
+  font-size: 4rem;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  width: 90%;
+  margin-bottom: 100px;
+  border-bottom: 2px solid #c9d2d2;
+  font-weight: 700;
 }
 
 .project-show .description-title {
@@ -350,13 +365,10 @@ body.hide-background {
 .new-build-form-container,
 .edit-project-form-container,
 .fork-project-form-container {
-  width: 75%;
   margin: 100px auto;
   text-align: left;
   padding: 20px;
   border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: "Roboto", sans-serif;
 }
 
@@ -377,9 +389,10 @@ body.hide-background {
   margin-bottom: 20px;
 }
 
-.new-build-form-container p,
-.edit-project-form-container p,
-.fork-project-form-container p {
+#github-url-explanation{
+  text-align: left;
+  font-size: 2.3rem;
+  padding:0px;
 }
 
 .new-build-form-container form,
@@ -390,7 +403,8 @@ body.hide-background {
   align-items: center;
 }
 
-#submit-form-button {
+#submit-form {
+  width:fit-content;
   margin-top: 25px;
 }
 
@@ -408,7 +422,7 @@ body.hide-background {
   align-items: end;
 }
 
-.showpage-items-container.parts-section {
+.showpage-items-container.parts-section{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -428,6 +442,13 @@ body.hide-background {
     display: flex;
     flex-wrap: wrap;
   }
+}
+
+#parts-heading-form {
+  padding:0px;
+  margin-bottom:40px;
+  border-bottom: 2px solid #c9d2d2;
+  width:80%;
 }
 
 .parts-list p,
@@ -456,7 +477,7 @@ body.hide-background {
   text-align: left;
 }
 #logo {
-  height: 60px;
+  height: 52px;
 }
 
 #logo:hover {
@@ -518,10 +539,6 @@ body.hide-background {
 .project-image.show-page-thumbnail {
   padding: 0px 10px;
   background: white;
-}
-
-.large-button.delete-image {
-  margin-bottom: 15px;
 }
 
 #github-logo {
@@ -628,21 +645,53 @@ body.hide-background {
 }
 
 #new-build-form input,
-#edit-build-form input,
+#edit-project-form input,
 #fork-project-form input {
   border: none;
   box-shadow: none;
 }
 
 #new-build-form .instruction-text-container,
-#edit-build-form .instruction-text-container,
+#edit-project-form .instruction-text-container,
 #fork-project-form .instruction-text-container {
   min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#upload-thumbnail-image {
-  margin-top: 40px;
-  margin-bottom: 50px;
+.form-items-container .large-button.change-thumbnail-image {
+  width:fit-content;
+  margin-bottom:60px;
+}
+
+.form-items-container.github-url-and-submit{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#form-instructions-heading {
+  border-radius: 6px;
+  translate: 0px 6px;
+}
+
+.instructions-and-images {
+  width: 100%;
+}
+
+.form-items-container.top-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instruction-text-container.form-items-container .large-button.delete-instruction {
+  width:fit-content;
+}
+
+#code-heading{
+  padding:0px;
 }
 
 #upload-project-image {
@@ -653,9 +702,6 @@ body.hide-background {
   margin-bottom: 20px;
 }
 
-#github-url-explanation {
-  margin-top: 50px;
-}
 
 .form-input.text-field {
   width: 100%;
@@ -672,7 +718,7 @@ body.hide-background {
 
 #add-instruction-text,
 #add-instruction-image {
-  margin: 10px 30px 10px 30px;
+  margin: 10px 0px;
 }
 
 #code-input {
@@ -713,6 +759,7 @@ body.hide-background {
 }
 
 .showpage-items-container,
+.form-items-container,
 .how-to-use-page-items-container {
   background-color: white;
   margin-bottom: 30px;
@@ -721,7 +768,8 @@ body.hide-background {
   padding: 16px;
 }
 
-.showpage-items-container p {
+.showpage-items-container p,
+.form-items-container p {
   font-family: OpenSans-Regular;
   overflow-wrap: anywhere;
   font-style: normal;
@@ -730,6 +778,10 @@ body.hide-background {
   color: #374146;
   font-weight: 400;
   font-size: 1.5rem;
+}
+
+.form-items-container.apps-and-platforms{
+  margin-bottom: 0px;
 }
 
 .project-show .showpage-title {

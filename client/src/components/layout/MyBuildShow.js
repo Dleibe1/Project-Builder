@@ -33,7 +33,7 @@ const MyBuildShow = (props) => {
       if (codeRef.current.dataset.highlighted) {
         delete codeRef.current.dataset.highlighted
       }
-      hljs.highlightElement(codeRef.current )
+      hljs.highlightElement(codeRef.current)
     }
   }, [myBuild])
 
@@ -63,9 +63,17 @@ const MyBuildShow = (props) => {
 
   const instructionList = myBuild.instructions.map((instruction) => {
     if (instruction.imageURL) {
-      return <img className="project-image" src={`${instruction.imageURL}`} />
+      return (
+        <div className="showpage-items-container">
+          <img className="project-image" src={`${instruction.imageURL}`} />
+        </div>
+      )
     } else if (instruction.instructionText) {
-      return <p className="preserve-white-space">{instruction.instructionText}</p>
+      return (
+        <div className="showpage-items-container">
+          <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
+        </div>
+      )
     }
   })
 

@@ -34,7 +34,7 @@ const MyBuildList = (props) => {
   return (
     <div>
       <div className="grid-container">
-        <div className="grid-x grid-margin-x project-list">{myBuildsArray}</div>
+        <div className="project-list">{myBuildsArray}</div>
       </div>
     </div>
   )
