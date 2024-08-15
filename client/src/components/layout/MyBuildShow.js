@@ -54,6 +54,8 @@ const MyBuildShow = (props) => {
     }
   }
 
+  console.log(myBuild)
+
   const codeMessage = myBuild.githubFileURL.length
     ? `Code fetched from GitHub just now: (${myBuild.githubFileURL}) `
     : "Code:"
