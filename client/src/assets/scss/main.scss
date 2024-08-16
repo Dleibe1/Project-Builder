@@ -374,18 +374,14 @@ body.hide-background {
 
 .new-build-form-container .css-sws92j-JoyTextarea-textarea,
 .edit-project-form-container .css-sws92j-JoyTextarea-textarea,
-.fork-project-form-container .css-sws92j-JoyTextarea-textarea
+.fork-project-form-container .css-sws92j-JoyTextarea-textarea,
+.new-build-form-container .MuiTextarea-textarea,
+.edit-project-form-container .MuiTextarea-textarea,
+.fork-project-form-container .MuiTextarea-textarea,
+.new-build-form-container .MuiTextarea-textarea:focus,
+.edit-project-form-container .MuiTextarea-textarea:focus,
+.fork-project-form-container .MuiTextarea-textarea:focus
 {
-  border: none;
-  box-shadow: none;
-}
-
-#description-text-area-new-project-form{
-  border: none;
-  box-shadow: none;
-}
-
-#description-text-area-new-project-form:focus {
   border: none;
   box-shadow: none;
 }
