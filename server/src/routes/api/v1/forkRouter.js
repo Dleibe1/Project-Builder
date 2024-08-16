@@ -1,7 +1,7 @@
 import express from "express"
 import { Project } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
-import forkProject from "../../../services/forkProject.js"
+import handleForkProject from "../../../services/handleForkProject.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import objection from "objection"
 const { ValidationError } = objection
@@ -42,9 +42,9 @@ forkRouter.post("/:id", async (req, res) => {
   const originalProjectId = parseInt(req.params.id)
   const userId = parseInt(user.id)
   try {
-    const forkProjectFormInput = cleanUserInput(body)
-    await forkProject(originalProjectId, userId, forkProjectFormInput)
-    res.status(201).json({ project: forkProjectFormInput })
+    const handleForkProjectFormInput = cleanUserInput(body)
+    await handleForkProject(originalProjectId, userId, handleForkProjectFormInput)
+    res.status(201).json({ project: handleForkProjectFormInput })
   } catch (error) {
     console.log(error)
     if (error instanceof ValidationError) {

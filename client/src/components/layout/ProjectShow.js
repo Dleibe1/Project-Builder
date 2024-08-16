@@ -84,8 +84,8 @@ const ProjectShow = (props) => {
 
   const forkProjectButton = [<ForkProjectButton key={"fork-project"} id={id} />]
   const codeMessage = project.githubFileURL.length
-    ? `Code fetched from GitHub just now: (${project.githubFileURL}) `
-    : [<h2 className="code-message">Project Code</h2>]
+    ? [<h2>Code fetched from GitHub just now:</h2>, <p>project.githubFileURL</p>]
+    : <h2>Project Code</h2>
   const partsList = project.parts.map((part) => {
     return <p key={part.partName}>{part.partName}</p>
   })
@@ -112,7 +112,7 @@ const ProjectShow = (props) => {
         {hasForks ? <ProjectForksButton id={id} /> : []}
       </div>
       <div id="thumbnail-and-title">
-      <h2 className="showpage-title">{project.title}</h2>
+        <h2 className="showpage-title">{project.title}</h2>
 
         <img
           className="project-image show-page-thumbnail"
@@ -136,11 +136,11 @@ const ProjectShow = (props) => {
           <p>{project.appsAndPlatforms}</p>
         </div>
       </div>
-        <h2>Instructions</h2>
-        {instructionList}
+      <h2>Instructions</h2>
+      {instructionList}
       <div>
         <div className="showpage-items-container">
-          <p className="github-url"> {codeMessage}</p>
+          {codeMessage}
           <pre>
             <code ref={codeRef} className="language-c">
               {project.code}

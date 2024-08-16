@@ -37,16 +37,22 @@ projectsRouter.get("/:id", async (req, res) => {
 
 projectsRouter.delete("/:id", async (req, res) => {
   const projectId = req.params.id
+  const loggedInUser = req.user
   try {
-    await Part.query().delete().where("projectId", projectId)
-    await Instruction.query().delete().where("projectId", projectId)
-    await Project.query()
-      .patch({
-        parentProjectId: null,
-      })
-      .where("parentProjectId", projectId)
-    await Project.query().deleteById(projectId)
-    return res.status(200).json({})
+    const currentProject = await Project.query().findOne("id", projectId)
+    if (currentProject.userId === loggedInUser.id) {
+      await Part.query().delete().where("projectId", projectId)
+      await Instruction.query().delete().where("projectId", projectId)
+      await Project.query()
+        .patch({
+          parentProjectId: null,
+        })
+        .where("parentProjectId", projectId)
+      await Project.query().deleteById(projectId)
+      return res.status(200).json({})
+    } else {
+      return res.status(400).json({ errors: "The current user is not the creator of this project" })
+    }
   } catch (error) {
     console.log(error)
     return res.status(500).json({ errors: error })

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField, Typography } from "@mui/material"
@@ -36,11 +36,31 @@ const EditBuildForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+  const isInitialMount = useRef(true)
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+    } else {
+      uploadProjectImage()
+    }
+  }, [imageFile])
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+    } else {
+      uploadThumbnailImage()
+    }
+  }, [thumbnailImageFile])
+
+  useEffect(() => {
+    getProject()
+  }, [])
 
   const uploadProjectImage = async () => {
     const newImageFileData = new FormData()
     newImageFileData.append("image", imageFile.image)
-
     try {
       const response = await fetch("/api/v1/image-uploading", {
         method: "POST",
@@ -61,10 +81,6 @@ const EditBuildForm = (props) => {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
   }
-
-  useEffect(() => {
-    uploadProjectImage()
-  }, [imageFile])
 
   const uploadThumbnailImage = async () => {
     const thumbnailImageFileData = new FormData()
@@ -87,10 +103,6 @@ const EditBuildForm = (props) => {
     }
   }
 
-  useEffect(() => {
-    uploadThumbnailImage()
-  }, [thumbnailImageFile])
-
   const getProject = async () => {
     try {
       const response = await fetch(`/api/v1/my-builds/${id}`)
@@ -107,10 +119,6 @@ const EditBuildForm = (props) => {
       console.log(error)
     }
   }
-
-  useEffect(() => {
-    getProject()
-  }, [])
 
   const updateProject = async (editedProjectData) => {
     try {
@@ -434,7 +442,7 @@ const EditBuildForm = (props) => {
           </label>
         </div>
         <div className="form-items-container github-url-and-submit">
-          <h2 id="github-url-explanation" >
+          <h2 id="github-url-explanation">
             Is this a work in progress? Pasting the URL of your main sketch file on Github will
             automatically keep the code you share up to date.
           </h2>

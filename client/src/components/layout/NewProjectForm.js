@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { Redirect } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField, Typography } from "@mui/material"
@@ -32,6 +32,24 @@ const NewProjectForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+
+  const isInitialMount = useRef(true)
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+    } else {
+      uploadProjectImage()
+    }
+  }, [imageFile])
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+    } else {
+      uploadThumbnailImage()
+    }
+  }, [thumbnailImageFile])
 
   const uploadProjectImage = async () => {
     const newImageFileData = new FormData()
@@ -90,14 +108,6 @@ const NewProjectForm = (props) => {
       image: acceptedImage[0],
     })
   }
-
-  useEffect(() => {
-    uploadProjectImage()
-  }, [imageFile])
-
-  useEffect(() => {
-    uploadThumbnailImage()
-  }, [thumbnailImageFile])
 
   const postProject = async (newProjectData) => {
     try {
@@ -254,9 +264,9 @@ const NewProjectForm = (props) => {
   return (
     <div className="new-build-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="edit-project-form" id="edit-project-form" onSubmit={handleSubmit}>
+      <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
-          <h1>Edit Project</h1>
+          <h1>New Project</h1>
           <TextField
             value={newProject.title}
             className="form-input text-field"

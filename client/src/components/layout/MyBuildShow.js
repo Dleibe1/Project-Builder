@@ -54,11 +54,9 @@ const MyBuildShow = (props) => {
     }
   }
 
-  console.log(myBuild)
-
   const codeMessage = myBuild.githubFileURL.length
-    ? `Code fetched from GitHub just now: (${myBuild.githubFileURL}) `
-    : "Code:"
+    ? [<h2>Code fetched from GitHub just now:</h2>, <p>({myBuild.githubFileURL})</p>]
+    : <h2>Project Code</h2>
   const partsList = myBuild.parts.map((part) => {
     return <p>{part.partName}</p>
   })

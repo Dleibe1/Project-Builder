@@ -40,10 +40,16 @@ myBuildsRouter.get("/:id", async (req, res) => {
 
 myBuildsRouter.patch("/:id", async (req, res) => {
   const { body } = req
+  const loggedInUser = req.user
   const projectId = req.params.id
   try {
     const formInput = cleanUserInput(body)
-    await handleUpdateProject(formInput, projectId)
+    const currentProject = await Project.query().findOne("id", projectId)
+    if(currentProject.userId === loggedInUser.id){
+      await handleUpdateProject(formInput, projectId)
+    } else {
+      return res.status(400).json({ errors: "The current user is not the creator of this project" })
+    }
     res.status(201).json({ project: formInput })
   } catch (error) {
     console.log(error)

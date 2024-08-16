@@ -1,6 +1,6 @@
 import { Project } from "../models/index.js"
 
-const forkProject = async (originalProjectId, userId, forkData) => {
+const handleForkProject = async (originalProjectId, userId, forkData) => {
   const originalProject = await Project.query().findById(originalProjectId)
   if (!originalProject) {
     throw new Error("Original project not found")
@@ -20,4 +20,4 @@ const forkProject = async (originalProjectId, userId, forkData) => {
   return newProject
 }
 
-export default forkProject
+export default handleForkProject

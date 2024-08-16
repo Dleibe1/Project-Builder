@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField, Typography } from "@mui/material"
@@ -24,10 +24,6 @@ const ForkProjectForm = (props) => {
   const params = useParams()
   const { id } = params
 
-  useEffect(() => {
-    getProject()
-  }, [])
-
   const [forkedProject, setForkedProject] = useState({
     title: "",
     tags: "",
@@ -40,6 +36,27 @@ const ForkProjectForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+  const isInitialMount = useRef(true)
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+    } else {
+      uploadProjectImage()
+    }
+  }, [imageFile])
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+    } else {
+      uploadThumbnailImage()
+    }
+  }, [thumbnailImageFile])
+
+  useEffect(() => {
+    getProject()
+  }, [])
 
   const uploadProjectImage = async () => {
     const newImageFileData = new FormData()
@@ -84,37 +101,6 @@ const ForkProjectForm = (props) => {
     }
   }
 
-  const handleProjectImageUpload = (acceptedImage) => {
-    setImageFile({
-      image: acceptedImage[0],
-    })
-  }
-
-  const handleThumbnailImageUpload = (acceptedImage) => {
-    setThumbnailImageFile({
-      image: acceptedImage[0],
-    })
-  }
-
-  const handleInstructionTextInput = (event) => {
-    setInstructionText(event.currentTarget.value)
-  }
-
-  const handleInstructionTextSubmit = () => {
-    if (instructionText.length) {
-      setForkedProject({
-        ...forkedProject,
-        instructions: [...forkedProject.instructions, { instructionText: instructionText }],
-      })
-    }
-    setInstructionText("")
-  }
-
-  const handleInstructionDelete = (index) => {
-    const instructionList = forkedProject.instructions.filter((instruction, i) => i !== index)
-    setForkedProject({ ...forkedProject, instructions: instructionList })
-  }
-
   const getProject = async () => {
     try {
       const response = await fetch(`/api/v1/project-forks/${id}`)
@@ -154,6 +140,39 @@ const ForkProjectForm = (props) => {
     }
   }
 
+  const handleProjectImageUpload = (acceptedImage) => {
+    setImageFile({
+      image: acceptedImage[0],
+    })
+    uploadProjectImage()
+  }
+
+  const handleThumbnailImageUpload = (acceptedImage) => {
+    setThumbnailImageFile({
+      image: acceptedImage[0],
+    })
+    uploadThumbnailImage()
+  }
+
+  const handleInstructionTextInput = (event) => {
+    setInstructionText(event.currentTarget.value)
+  }
+
+  const handleInstructionTextSubmit = () => {
+    if (instructionText.length) {
+      setForkedProject({
+        ...forkedProject,
+        instructions: [...forkedProject.instructions, { instructionText: instructionText }],
+      })
+    }
+    setInstructionText("")
+  }
+
+  const handleInstructionDelete = (index) => {
+    const instructionList = forkedProject.instructions.filter((instruction, i) => i !== index)
+    setForkedProject({ ...forkedProject, instructions: instructionList })
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     postForkedProject({ ...forkedProject, githubFileURL: forkedProject.githubFileURL.trim() })
@@ -173,14 +192,6 @@ const ForkProjectForm = (props) => {
     }
     setPart("")
   }
-
-  useEffect(() => {
-    uploadProjectImage()
-  }, [imageFile])
-
-  useEffect(() => {
-    uploadThumbnailImage()
-  }, [thumbnailImageFile])
 
   const handlePartDelete = (index) => {
     const partsList = forkedProject.parts.filter((part, i) => i !== index)
