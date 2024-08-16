@@ -87,7 +87,7 @@ const ProjectShow = (props) => {
     ? [<h2>Code fetched from GitHub just now:</h2>, <p>project.githubFileURL</p>]
     : <h2>Project Code</h2>
   const partsList = project.parts.map((part) => {
-    return <p key={part.partName}>{part.partName}</p>
+    return <p>{part.partName}</p>
   })
   const instructionList = project.instructions.map((instruction) => {
     if (instruction.imageURL) {

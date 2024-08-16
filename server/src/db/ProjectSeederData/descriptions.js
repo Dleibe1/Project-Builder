@@ -27,7 +27,15 @@ And if you're reading this, you clicked. This is great for my goal and I thank y
 
 `Here, We will learn "How to use L298n Motor Driver with Arduino Uno". Also We will control the Speed & Direction of Motor.`,
 
-`In this project you will learn how to monitor temperature & humidity using DHT22 sensor and MKR WiFi 1010 with Arduino IoT Cloud.`
+`In this project you will learn how to monitor temperature & humidity using DHT22 sensor and MKR WiFi 1010 with Arduino IoT Cloud.`,
+
+`An example showing how to easily add AI to an Arduino project using NanoEdge AI Studio`,
+
+`Want to build a DIY project where you need to sense movement within a certain range then HC-SR501 Passive Infrared (PIR) sensor is perfect. Learn how to use PIR sensor to detect motion of person or animal.`,
+
+`In this project, we will learn how to interface RGB LED with Arduino Uno. The RGB LED is controlled by PWM signals.`,
+
+`This tutorial will show you how to use DHT11 with Arduino.`
 
 ]
 

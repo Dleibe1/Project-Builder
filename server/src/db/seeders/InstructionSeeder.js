@@ -237,7 +237,7 @@ In wrapping up our journey through the practical implementation of an Arduino-po
       {
         projectId: 4,
         instructionText:
-          "The spectrum analyzer displays the amplitude of signals as a function of frequency, allowing engineers and technicians to visualize and analyze signal characteristics. In particular, the audio analyzer performs a visual presentation of an acoustic signal in the frequency domain, where the frequency of the signal is displayed on the x-axis, while the amplitude of a certain frequency is displayed on the y-axis. In several of my previous $ videos $ I have presented several different types of such devices, but this time the FHT Arduino library is used for the first time. This library is several times faster than the commonly used FFT library, but at the expense of speed certain loss of resolution and precision appear at the two ends of the audio range. ",
+          "The spectrum analyzer displays the amplitude of signals as a function of frequency, allowing engineers and technicians to visualize and analyze signal characteristics. In particular, the audio analyzer performs a visual presentation of an acoustic signal in the frequency domain, where the frequency of the signal is displayed on the x-axis, while the amplitude of a certain frequency is displayed on the y-axis. In several of my previous videos I have presented several different types of such devices, but this time the FHT Arduino library is used for the first time. This library is several times faster than the commonly used FFT library, but at the expense of speed certain loss of resolution and precision appear at the two ends of the audio range. ",
       },
       {
         projectId: 4,
@@ -353,7 +353,7 @@ Option 5: Arduino UNO Robotic Eye Animations by Picaio `,
         projectId: 5,
         instructionText: `Picaio offers a sophisticated yet realistic approach with diverse eye movements and expressions, enhancing animation realism. Pro: Optimized technique for efficient memory usage. Con: May be challenging for beginners due to its complexity. 
  
-Whether you're a seasoned hobbyist or just starting out, these methods provide a gateway to bringing your robot's personality to life! Get ready to dive in, experiment, and unleash your creativity with our official webpage Explaining this project $ Arduino OLED Animations $ as your guide! 
+Whether you're a seasoned hobbyist or just starting out, these methods provide a gateway to bringing your robot's personality to life! Get ready to dive in, experiment, and unleash your creativity.
  
 Let's animate those robotic eyes and inject some fun into your Arduino projects! 🤖👀 
 `,
@@ -575,7 +575,7 @@ GitHub repository: github.com/cifertech/arpolan
       {
         projectId: 8,
         instructionText:
-          `Ultrasonic sonar is devices that use sound waves with frequencies higher than the upper audible limit of human hearing (typically above 20 kHz) to measure distances to objects. They work on the principle of sending out a sound wave, and then measuring the time it takes for the sound wave to bounce back after hitting an object. By calculating the time difference between sending and receiving the sound wave, the distance to the object can be determined using the speed of sound in air. In some of my previous $ videos $ , you can see several different builds of such a device with special functionalities. All of them display the result on a PC monitor using an additional program written in the Processing application. 
+          `Ultrasonic sonar is devices that use sound waves with frequencies higher than the upper audible limit of human hearing (typically above 20 kHz) to measure distances to objects. They work on the principle of sending out a sound wave, and then measuring the time it takes for the sound wave to bounce back after hitting an object. By calculating the time difference between sending and receiving the sound wave, the distance to the object can be determined using the speed of sound in air.
 
 This time I will describe to you a simple way how to make an independent Sonar, where the results are displayed on a TFT color display in the form of a radar image, which is why it is often mistakenly called radar instead of sonar. 
 https://youtu.be/XOZAGRH_6hA`,
@@ -759,7 +759,7 @@ Connect the third and the last pin ( VCC pin) with 5V pin of Arduino.
 
 Uploading and Testing
 
-Remember to install the IRremote.h library from $ here $ 
+Remember to install the IRremote.h library.
 
 Copy or download the code attached with the project. 
 
@@ -1121,13 +1121,337 @@ I have created 6 different projects in the book which are using different types 
 
 For developers and IoT engineers, I have written two special chapters that focus on how to use the Arduino IoT Cloud API and Arduino Cloud CLI to integrate their solution with other 3rd party clouds and services, and Arduino Cloud CLI helps engineers and administrators to automate and manage bulk deployments using the command-line tool. 
 `,
-      },{
-        projectId: 20,
-        imageURL: "https://projects.arduinocontent.cc/ebe991fd-7885-43c2-9646-c80cd9a7e734.png",
       },
       {
-        projectId: 20,
-        instructionText: ``,
+        projectId: 21,
+        instructionText: `The goal of this tutorial is to show you a way to easily add AI to a project , without any knowledge in this field, using the software NanoEdge AI Studio and its Arduino compatible libraries! 
+
+This tutorial guides you through building a cardboard touchpad that relies on vibration analysis and an Embedded AI algorithm running on an Arduino UNO R4 . The UNO emulates a USB keyboard device. 
+
+Vibration data from the cardboard is captured using a basic accelerometer connected via the Qwiic connector. Within the UNO microcontroller, vibrations are classified using a NanoEdge AI library. 
+
+Based on the detected class, the touchpad triggers either a "PageUp" or "PageDown" keystroke. 
+`,
+      },
+      {
+        projectId: 21,
+        instructionText: `NanoEdge AI Studio: 
+        
+NanoEdge is a free machine learning software developed by STMicroelectronics which allow to easily create and integrate AI libraries to any cortex M microcontroller. Essentially, select a project type, import data locally, run a benchmark to find the best model automatically, test the model if you want and get an AI library. 
+
+In Nanoedge AI Studio, four kinds of projects are available, each serving a different purpose: 
+
+Anomaly detection (AD): to detect a nominal behavior and an abnormal one. Can be retrained directly on board. 
+
+1 class classification (1c): Create a model to detect both nominal and abnormal behavior but with only nominal data. (In case you cannot collect abnormal examples) 
+
+N class classification (Nc): Create a model to classify data into multiple classes that you define 
+
+Extrapolation (Ex): Regression in short. To predict a value instead of a class from the input data (a speed or temperature for example). 
+`,
+      },
+      {
+        projectId: 21,
+        instructionText: `Open Arduino IDE and create a new project: 
+
+Copy data logger source code available below. Click on Sketch > Include Library > Adafruit_LiS3DH to install the library. 
+
+Be careful : If your board is emulating a keyboard, you need to double press the reset button to be able to flash it. 
+ 
+Open the serial in Arduino IDE to check that the accelerometer data is correctly coming to your computer. (don't forget to close the serial after that) 
+`,
+      },
+      {
+        projectId: 21,
+        imageURL: `https://projects.arduinocontent.cc/aa31e081-1080-46bd-9b6e-084e16cdb658.png`,
+      },
+      {
+        projectId: 21,
+        instructionText: `Now we will automatically create an AI model able to recognize classes of gestures using vibration patterns. 
+
+Open NanoEdge AI Studio and create a new " N-Class Classification " project. 
+ 
+In project settings: 
+Set target to "UNO R4 Wifi" Sensor to 3-axes accelerometer 
+`,
+      },
+      {
+        projectId: 21,
+        imageURL: `https://projects.arduinocontent.cc/036751c3-350c-47b5-be56-df2478d69917.png`,
+      },
+      {
+        projectId: 21,
+        instructionText: `In the Signal step , collect one dataset per class ("Nothing","Swipe","Multitap" or any gesture that you want) using serial port. 
+Collect one kind of gesture per dataset! 
+ 
+Here is how to proceed: 
+
+Make sure the board is connected to the pc with the data logger code flashed on it 
+
+Click ADD SIGNAL > FROM SERIAL Make sure to select the right come port 
+
+Click START/STOP to collect data (100 buffers per signal should be enough) Once finished click CONTINUE and then IMPORT 
+
+If everything is correct, you should see a new dataset added with plots and information. 
+`,
+      },
+      {
+        projectId: 21,
+        imageURL: `https://projects.arduinocontent.cc/73727b45-b30a-4b8a-940c-5be372c72dbf.png`,
+      },
+      {
+        projectId: 21,
+        instructionText: `Create the AI model: 
+
+Once you have all the classses that you want to recognize, go to the Benchmark step. 
+
+Click RUN NEW BENCHMARK. Select all your datasets and click START. 
+
+NanoEdge AI Studio will take your data and look for a model that is able to classify them. (it also applies pretreatment on its own to your data) 
+
+You get the accuracy of the model and its RAM and Flash requirements. 
+
+You should reach around 99% pretty fast if you collected good data. You can stop the benchmark when it happens. 
+`,
+      },
+      {
+        projectId: 21,
+        imageURL: `https://projects.arduinocontent.cc/ae3a036a-2afe-4aee-9708-dbc2d1ae5447.png`,
+      },
+      {
+        projectId: 21,
+        instructionText: `In the validation step, you can compare the libraries (model + preprocessing) if you want, look here for more info: 
+https://wiki.st.com/stm32mcu/wiki/AI:NanoEdge_AI_Studio#Validation
+ 
+Test the model: 
+
+The emulator step is more useful for us here, you can use the serial to test the model directly in the tool: 
+
+Click INITIALIZE EMULATOR 
+Click FROM SERIAL 
+Test your model with new real time data 
+`,
+      },
+      {
+        projectId: 21,
+        imageURL: `https://projects.arduinocontent.cc/934034b2-cf67-4208-9e4a-d68e9b15193e.png`,
+      },
+      {
+        projectId: 21,
+        instructionText: `The last step in NanoEdge is to get the AI library that we will use in Arduino IDE: 
+Click COMPILE LIBRARY 
+
+Get and extract the .zip file 
+
+The library is the .zip file in the folder Arduin , we will use it below: 
+`,
+      },
+      {
+        projectId: 21,
+        imageURL: `https://projects.arduinocontent.cc/cb1cadc0-a02d-4521-8e0d-d0ff4042e45b.png`,
+      },
+      {
+        projectId: 21,
+        instructionText: `Create the demo: 
+Open a new project in Arduino IDE 
+
+Get the main code below and paste it in your project 
+
+Click on Sketch > Include Library > Adafruit_LIS3DH 
+
+Add the Nanoedge AI Library (select the previously extracted zip): 
+`,
+      },
+      {
+        projectId: 21,
+        imageURL: `https://projects.arduinocontent.cc/a36090e3-13ae-4859-9646-2c6c1d15da6a.png`,
+      },
+      {
+        projectId: 21,
+        instructionText: `Compile the code. Flash the code. 
+
+It is finished, you can play with it. 
+ 
+Through this example, this tutorial shows how to add AI to an Arduino project using NanoEdge AI Studio. It is now up to you to think about other use case and do them on your own! 
+`,
+      },
+      {
+        projectId: 21,
+        instructionText: `PIR sensors are widely used for motion detection in various applications, from security systems to automatic lighting. In this guide, we will explore PIR sensor, its working principles, and interfacing it with Arduino. 
+
+In this project we will create a motion detection system using a PIR sensor and an Arduino board. The PIR sensor will detect motion within its detection range and trigger an action, such as turning on an LED or activating an alarm. 
+
+Understanding PIR Sensor
+
+Before we dive into the project implementation, let's first understand how a PIR sensor works. PIR sensor detects changes in infrared radiation emitted by objects within its field of view. This radiation is emitted by all objects with a temperature above absolute zero, including humans and animals. The sensor consists of a pyroelectric sensor, which generates an electrical signal in response to changes in infrared radiation, and a circuit that processes and amplifies this signal to detect motion. 
+
+HCSR04 Ultrasonic Sensor Pinout
+The Pinout is given as below: 
+`
+      },
+      {
+        projectId: 22,
+        imageURL: `https://projects.arduinocontent.cc/947a4793-1603-4d45-b9fa-e314f780e848.jpg`
+      },
+      {
+        projectId: 22,
+        instructionText: `VCC is the power pin of the module. 
+
+GND is the GND pin of the module. 
+
+Out is the data output pin of the module. 
+
+Interfacing PIR Sensor with Arduino
+
+Now that we have a basic understanding of how PIR sensors work, let's proceed to interface the PIR sensor with Arduino. Here's a step-by-step guide: 
+`
+      },
+      {
+        projectId: 22,
+        imageURL: `https://projects.arduinocontent.cc/f3b88737-328c-4ace-bd4c-76b95195d2a6.jpg`
+      },
+      {
+        projectId: 22,
+        instructionText: `Connect the VCC pin of the PIR sensor to the 5V pin on the Arduino board. 
+Connect the GND pin of the PIR sensor to the GND pin on the Arduino board. 
+Connect the OUT pin of the PIR sensor to a digital pin e.g., pin 2 on the Arduino board. `
+      },
+      {
+        projectId: 22,
+        instructionText: `Arduino code for interfacing PIR sensor with Arduino
+Here is the complete line by line code explanation for Interfacing Arduino with PIR Sensor. The complete code can be found at the absolute bottom of the project. 
+This line includes the LiquidCrystal library, which allows interfacing with LCD displays. 
+ 
+#include <LiquidCrystal.h> // Include the LiquidCrystal library for LCD display      
+This line initializes an instance of the LiquidCrystal class named lcd, specifying the pin numbers to which the LCD display is connected. The parameters represent (RS, EN, D4, D5, D6, D7) pins respectively. 
+ 
+LiquidCrystal lcd(12, 11, 6, 7, 8, 9); // Initialize the LCD object with pin numbers      
+These lines declare two integer variables: sensorInput, which represents the pin number connected to the PIR sensor, and sensorReturn, which will store the output of the PIR sensor. 
+ 
+int sensorInput = 2;   // PIR sensor input pin      
+int sensorReturn = 0;  // Variable to store PIR sensor output      
+The setup() function is called once when the Arduino board starts. Now we set the sensorInput pin as an input pin, indicating that it will be used to read data from the PIR sensor. Then initialize the LCD display with 16 columns and 2 rows, indicating the display's dimensions. Initial messages are printed on the LCD display, positioning the cursor at the beginning of the second row. 
+ 
+void setup() {      
+pinMode(sensorInput, INPUT); // Set sensor pin as input      
+// Set up the LCD's number of columns and rows      
+lcd.begin(16, 2);      
+	// Print initial message on the LCD      
+	 lcd.setCursor(0, 0);      
+	 lcd.print("PIR Sensor Says:");      
+	 lcd.setCursor(0, 1);      
+}      
+In the loop() function, the value of the PIR sensor output is read using digitalRead(sensorInput). 
+If motion is detected (sensor output is HIGH), a message indicating motion occurrence is displayed on the LCD. If no motion is detected (sensor output is LOW), a message indicating motion stops is displayed on the LCD. 
+ 
+void loop() {      
+	 sensorReturn = digitalRead(sensorInput); // Read input value from PIR sensor      
+	 // Check if motion is detected      
+	 if (sensorReturn == HIGH) {      
+	   // Set cursor to the second row and print motion detection message      
+	   lcd.setCursor(0, 1);      
+	   lcd.print("Motion Occurs   ");      
+	 } else {      
+	   // Set cursor to the second row and print motion stopped message      
+	   lcd.setCursor(0, 1);      
+	   lcd.print("Motion Stops    ");      
+	 }      
+}      
+`
+      },
+      {
+        projectId: 23,
+        instructionText: `This project is made for Arduino beginners who are looking for learning how to interface the RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse width modulation (PWM) signals. 
+
+RGB LED Types and Structure 
+
+RGB LEDs have three LEDs inside them and usually, these three internal LEDs share either a common anode or a common cathode especially in a through-hole package. So basically, we can categorize RGB LEDs as either common anode or common cathode type just like in seven segment displays. 
+`
+      },
+      {
+        projectId: 23,
+        imageURL: `https://projects.arduinocontent.cc/6ce54a92-5d7b-4a79-9bb9-14646cee8d8d.png`
+      },
+      {
+        projectId: 23,
+        instructionText: `Common Anode 
+
+In a common anode RGB LED, the anode of the internal LEDs are all connected to the external anode lead. To control each color, you need to apply a LOW signal or ground to the red, green, and blue leads and connect the anode lead to the positive terminal of the power supply. 
+`
+      },
+      {
+        projectId: 23,
+        imageURL: `https://projects.arduinocontent.cc/50bfbc76-b401-44e6-8806-4c07057a4c63.png`
+      },
+      {
+        projectId: 23,
+        instructionText: `Common Cathode 
+
+In a common cathode RGB LED, the cathode of the internal LEDs are all connected to the external cathode lead. To control each color, you need to apply a HIGH signal or VCC to the red, green, and blue leads and connect the anode lead to the negative terminal of the power supply. 
+`
+      },
+      {
+        projectId: 23,
+        imageURL: `https://projects.arduinocontent.cc/a402677b-ba8b-4441-a052-cda5b140852b.png`
+      },
+      {
+        projectId: 23,
+        instructionText: `Basics of PWM (Pulse Width Modulation) 
+
+Pulse Width Modulation, or PWM, is a technique for getting analog results with digital means. Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board (e.g., 5 V on UNO, 3.3 V on a MKR board) and off (0 Volts) by changing the portion of the time the signal spends on versus the time that the signal spends off. The duration of "on time" is called the pulse width. To get varying analog values, you change, or modulate, that pulse width. If you repeat this on-off pattern fast enough with an LED for example, the result is as if the signal is a steady voltage between 0 and Vcc controlling the brightness of the LED.  In the graphic below, the green lines represent a regular time period. This duration or period is the inverse of the PWM frequency. In other words, with Arduino's PWM frequency at about 500Hz, the green lines would measure 2 milliseconds each. 
+`
+      },
+      {
+        projectId: 23,
+        imageURL: `https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif`
+      },
+      {
+        projectId: 24,
+        instructionText: `Ever wanted to know the temperature and humidity around you? If yes, this project will be very helpful for you. If no, it'll be cool anyway. What I mean is, you can use this in anything from home automations to smart watches. 
+
+What is humidity?
+
+Humidity is the water vapor around you mixed with air. It is measured in per cents. So, if the humidity is 60 per cent(which is the average humidity), then 60 per cent of the air around you is water vapor. If it is 100%, then it means either the sensor is not correct, the sensor is broken/damaged, the Arduino crashed, the Arduino can't receive any signal, there's an error in the code or you're underwater *. If it's 0%, it means all the reasons above except the last one, you're in space or you're in the middle of a desert**. 
+
+* Correction: it means the air cannot hold any more water. 
+
+**  The air in a desert does contain some water but it is a very little amount compared to a normal place. The Sahara Desert has a mean humidity of 25%. 
+
+
+The world's lowest recorded relative humidity value occurred at Coober Pedy in the South Australia desert when the temperature was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 percent. (source:  'www.chicagotribune.com') 
+
+Is your sensor different?
+
+My sensor is like this: 
+`
+      },
+      {
+        projectId: 24,
+        imageURL: `https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg`
+      },
+      {
+        projectId: 24,
+        instructionText: `My sensor has 3 pins and it's fitted on a board. If yours has 4 pins, then you need to build this circuit after the sensor: `
+      },
+      {
+        projectId: 24,
+        imageURL: `https://projects.arduinocontent.cc/8187f1a6-b715-4b52-8c11-1507c3e80da4.png`
+      },
+      {
+        projectId: 24,
+        instructionText: `If it is same as mine, then just ignore the resistor. 
+
+Then, build the circuit! 
+
+Details about the code
+
+You need to follow these instructions to make it work: 
+
+1. You need to add the library to the Arduino IDE. 
+2. Upload the code. 
+3. When the code is uploaded, open the Serial Monitor and set the baud rate to 9600. 
+4. You will see the humidity and temperature. 
+`
       },
     ])
   }

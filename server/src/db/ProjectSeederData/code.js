@@ -2043,8 +2043,231 @@ void onTemperatureChange()  {
 */
 void onHumidityChange()  {
   // Add your code here to act upon Humidity change
-}`
+}`,
+`/* If you want to use NEAI functions please, include NEAI library
+ * in your Arduino libraries then, uncomment NEAI parts in the following code
+ */
 
+/* Libraries part */
+#include <Wire.h>
+#include <Adafruit_LIS3DH.h>
+#include <Adafruit_Sensor.h>
+#include <Keyboard.h>
+#include <NanoEdgeAI.h>
+#include "knowledge.h"
+float input_user_buffer[DATA_INPUT_USER * AXIS_NUMBER]; // Buffer of input values
+float output_class_buffer[CLASS_NUMBER]; // Buffer of class probabilities
+uint16_t id_class = 0;
+  
+/* Macros definitions */
+#define SERIAL_BAUD_RATE  115200
+
+/* Default address is 0x18 but, if SDO is powered at 3v3,
+ *  address is set to 0x19, so you need to change it
+ *  depending on your current hardware configuration.
+ */
+#define SENSOR_I2C_ADDR 0x18
+
+/* Sensor data rates.
+ * You can choose from:
+ * LIS3DH_DATARATE_1_HZ
+ * LIS3DH_DATARATE_10_HZ
+ * LIS3DH_DATARATE_25_HZ
+ * LIS3DH_DATARATE_50_HZ
+ * LIS3DH_DATARATE_100_HZ
+ * LIS3DH_DATARATE_200_HZ
+ * LIS3DH_DATARATE_400_HZ
+ * LIS3DH_DATARATE_LOWPOWER_1K6HZ
+ * LIS3DH_DATARATE_LOWPOWER_5KHZ
+ */
+#define SENSOR_DATA_RATE	LIS3DH_DATARATE_400_HZ
+
+/* Sensor ranges.
+ * You can choose from:
+ * LIS3DH_RANGE_16_G
+ * LIS3DH_RANGE_8_G
+ * LIS3DH_RANGE_4_G
+ * LIS3DH_RANGE_2_G
+ */
+#define SENSOR_RANGE	LIS3DH_RANGE_2_G
+
+/* NanoEdgeAI defines part
+ * NEAI_MODE = 1: NanoEdgeAI functions = AI Mode.
+ * NEAI_MODE = 0: Datalogging mode.
+ */
+#define NEAI_MODE 1
+#define SENSOR_SAMPLES	256
+#define AXIS  3
+
+Adafruit_LIS3DH lis = Adafruit_LIS3DH();
+
+/* Global variables definitions */
+static uint16_t neai_ptr = 0;
+static float neai_buffer[SENSOR_SAMPLES * AXIS] = {0.0};
+
+
+/* Initialization function: In this function,
+ *  code runs only once at boot / reset.
+ */
+void setup() {
+  /* Init serial at baud rate 115200 */
+  Serial.begin(SERIAL_BAUD_RATE);
+
+  /* Init I2C connection between board & sensor */
+  if (!lis.begin(SENSOR_I2C_ADDR)) {
+    Serial.println("Can't initialize I2C comm with LIS3DH sensor...\n");
+    while(1);
+  }
+  Serial.println("OK");
+  /* Init LIS3DH with desired settings: odr & range */
+  lis.setRange(SENSOR_RANGE);
+  lis.setDataRate(SENSOR_DATA_RATE);
+
+  /* Initialize NanoEdgeAI AI */
+  enum neai_state error_code = neai_classification_init(knowledge);
+  if (error_code != NEAI_OK) {
+    Serial.println("Error starting NanoEdge AI lib");
+    /* This happens if the knowledge does not correspond to the library or if the library works into a not supported board. */
+  }
+
+  Keyboard.begin();
+  delay(1000);
+}
+
+/* Main function: Code run indefinitely */
+void loop() {
+  /* Get data in the neai buffer */
+  while (neai_ptr < SENSOR_SAMPLES) {
+     /* Check if new data if available */
+    if (lis.haveNewData()) {
+      /* If new data is available we read it ! */
+      lis.read();
+      /* Fill neai buffer with new accel data */
+      neai_buffer[AXIS * neai_ptr] = (float) lis.x;
+      neai_buffer[(AXIS * neai_ptr) + 1] = (float) lis.y;
+      neai_buffer[(AXIS * neai_ptr) + 2] = (float) lis.z;
+      /* Increment neai pointer */
+      neai_ptr++;
+    }
+  }
+  /* Reset pointer */
+  neai_ptr = 0;
+
+  /* Depending on NEAI_MODE value, run NanoEdge AI functions
+   * or print accelerometer data to the serial (datalogging)
+   */
+  
+  if (NEAI_MODE) {
+    neai_classification(neai_buffer, output_class_buffer, &id_class);
+
+    if (id_class == 1) {
+      Keyboard.write(KEY_PAGE_DOWN);
+      delay(100);  
+    } else if (id_class == 2) {
+      Keyboard.write(KEY_PAGE_UP);
+      delay(100); 
+    }
+  } else {
+    /* Print the whole buffer to the serial */
+    for (uint16_t i = 0; i < AXIS * SENSOR_SAMPLES; i++) {
+      Serial.print((String)neai_buffer[i] + " ");
+    }
+    Serial.print("\n");
+  }
+
+  /* Clean neai buffer */
+  memset(neai_buffer, 0.0, AXIS * SENSOR_SAMPLES * sizeof(float));
+}`,
+`#include <LiquidCrystal.h> // Include the LiquidCrystal library for LCD display
+LiquidCrystal lcd(12, 11, 6, 7, 8, 9); // Initialize the LCD object with pin numbers
+
+int sensorInput = 2;   // PIR sensor input pin
+int sensorReturn = 0;  // Variable to store PIR sensor output
+
+void setup() {
+  pinMode(sensorInput, INPUT); // Set sensor pin as input
+  // Set up the LCD's number of columns and rows
+  lcd.begin(16, 2);
+  // Print initial message on the LCD
+  lcd.setCursor(0, 0);
+  lcd.print("PIR Sensor Says:");
+  lcd.setCursor(0, 1);
+}
+
+void loop() {
+  sensorReturn = digitalRead(sensorInput); // Read input value from PIR sensor
+  
+  // Check if motion is detected
+  if (sensorReturn == HIGH) {
+    // Set cursor to the second row and print motion detection message
+    lcd.setCursor(0, 1);
+    lcd.print("Motion Occurs   ");
+  } else {
+    // Set cursor to the second row and print motion stopped message
+    lcd.setCursor(0, 1);
+    lcd.print("Motion Stops    ");
+  }
+}`,
+`// *Interfacing RGB LED with Arduino 
+// * Author: Osama Ahmed 
+
+//Defining  variable and the GPIO pin on Arduino
+int redPin= 5;
+int greenPin = 6;
+int  bluePin = 7;
+
+void setup() {
+  //Defining the pins as OUTPUT
+  pinMode(redPin,  OUTPUT);              
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+}
+void  loop() {
+  setColor(255, 0, 0); // Red Color
+  delay(1000);
+  setColor(0,  255, 0); // Green Color
+  delay(1000);
+  setColor(0, 0, 255); // Blue Color
+  delay(1000);
+  setColor(255, 255, 255); // White Color
+  delay(1000);
+  setColor(170, 0, 255); // Purple Color
+  delay(1000);
+  setColor(127, 127,  127); // Light Blue
+  delay(1000);
+}
+void setColor(int redValue, int greenValue,  int blueValue) {
+  analogWrite(redPin, redValue);
+  analogWrite(greenPin,  greenValue);
+  analogWrite(bluePin, blueValue);
+}
+`,
+`#include <dht11.h>
+#define DHT11PIN 4
+
+dht11 DHT11;
+
+void  setup()
+{
+  Serial.begin(9600);
+ 
+}
+
+void loop()
+{
+  Serial.println();
+
+  int chk = DHT11.read(DHT11PIN);
+
+  Serial.print("Humidity (%): ");
+  Serial.println((float)DHT11.humidity, 2);
+
+  Serial.print("Temperature  (C): ");
+  Serial.println((float)DHT11.temperature, 2);
+
+  delay(2000);
+
+}`
 ]
 
 

@@ -73,6 +73,27 @@ class PartSeeder {
       {partName: "Arduino MKR WiFi 1010", projectId: 20},
       {partName: "Pack of 50 female-female jumper wires in various colors", projectId: 20},
 
+      {partName: "Arduino® UNO R4 WiFi", projectId: 21},
+      {partName: "LIS3DH Triple-Axis Accelerometer", projectId: 21},
+
+      {partName: "16x2 LCD display with I²C interface", projectId: 22},
+      {partName: "HC-SR501", projectId: 22},
+      {partName: "Arduino Uno Rev3", projectId: 22},
+      {partName: "Breadboard Jumper Wire Pack (200mm&100mm)", projectId: 22},
+      {partName: "Breadboard - 830 contacts", projectId: 22},
+      {partName: "Resistor 220 Ohm", projectId: 22},
+
+      {partName: "RGB Diffused Common Anode", projectId: 23},
+      {partName: "RGB Diffused Common Cathode", projectId: 23},
+      {partName: "Arduino UNO", projectId: 23},
+      {partName: "Breadboard (generic)", projectId: 23},
+      {partName: "Jumper wires (generic)", projectId: 23},
+      {partName: "Resistor 220 ohm", projectId: 23},
+
+      {partName: "DHT22 Temperature Sensor", projectId: 24},
+      {partName: "Jumper wires (generic)", projectId: 24},
+      {partName: "Arduino UNO", projectId: 24},
+      {partName: "Breadboard (generic)", projectId: 24},
     ])
 
     //Project Fork Parts

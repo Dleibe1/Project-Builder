@@ -227,6 +227,46 @@ class ProjectSeeder {
           "https://projects.arduinocontent.cc/cover-images/91fa89b7-2009-4a9c-b8de-aec71f62ee82.png",
         parentProjectId: 20
       },
+      {
+        userId: 4,
+        title: "Temperature Monitoring with Arduino IoT Cloud using DHT22",
+        description: descriptions[11],
+        appsAndPlatforms: "NanoEdge AI Studio and Arduino IDE 1.8.19",
+        code: code[11],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/4a43b1e1-7bb2-4e8b-8abf-1a805760311b.gif",
+        parentProjectId: 21
+      },
+      {
+        userId: 4,
+        title: "How PIR Sensor Works and How To Interface It with Arduino",
+        description: descriptions[12],
+        appsAndPlatforms: "Arduino IDE",
+        code: code[12],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/e4de2c23-7118-4b3f-abf8-50cb8282cf62.jpg",
+        parentProjectId: 22
+      },
+      {
+        userId: 4,
+        title: "Interfacing RGB Led with Arduino",
+        description: descriptions[13],
+        appsAndPlatforms: "Arduino IDE",
+        code: code[13],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/36ab7d7a-100b-4350-8f17-0b0234582c0b.blob",
+        parentProjectId: 23
+      },
+      {
+        userId: 4,
+        title: "Using DHT11",
+        description: descriptions[14],
+        appsAndPlatforms: "Arduino IDE",
+        code: code[14],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/70b80f40-3f40-4b90-84d2-a1a66301d7bc.blob",
+        parentProjectId: 24
+      },
     ]
     const exampleUserProjectForks = [
       {
