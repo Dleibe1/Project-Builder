@@ -278,6 +278,7 @@ const NewProjectForm = (props) => {
           />
           <h2>Description:</h2>
           <Textarea
+            id="description-text-area-new-project-form"
             minRows={3}
             value={newProject.description}
             placeholder="Enter description"
