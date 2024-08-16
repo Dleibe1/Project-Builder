@@ -27,13 +27,13 @@ It is for this reason that I created the "Fork Project" feature, which allows a 
 - Objection.js
 - PostgreSQL
 - GitHub Apps
+- Cypress.js
 
 ### Improvements coming soon:
 
-1. More Material UI integration (so far it's only being used for the top bar).
+1. More Material UI integration.
 2. Option to add a link to purchase parts from the parts list.
-3. Improve forms to have an "add section" option so that users can change the order of what appears on their project's display page.  
-   For example, adding instructions after an image rather than putting all instructions in the description and giving the option to add multiple code sections if there's more than one code file the user has created.
+3. Add a search feature for projects.
 
 ### Dream features:
 
