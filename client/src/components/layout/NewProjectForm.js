@@ -278,14 +278,13 @@ const NewProjectForm = (props) => {
           />
           <h2>Description:</h2>
           <Textarea
-            id="description-text-area-new-project-form"
             minRows={3}
             value={newProject.description}
             placeholder="Enter description"
             onChange={handleInputChange}
             name="description"
             label="Enter Project Description"
-            sx={{ minWidth: "100%", backgroundColor: "white" }}
+            sx={{ minWidth: "100%", backgroundColor: "white", boxShadow: "none", border: "none" }}
           />
           <div className="project-image-container thumbnail-image-container">
             <img className="project-image" src={newProject.thumbnailImage} />
