@@ -8,15 +8,22 @@ const { ValidationError } = objection
 
 const projectsRouter = new express.Router()
 
-projectsRouter.get("/", async (req, res) => {
+projectsRouter.get("/page/:currentPage/:projectsPerPage", async (req, res) => {
+  const currentPage = parseInt(req.params.currentPage) || 1
+  const projectsPerPage = parseInt(req.params.projectsPerPage)
   try {
+    const projectCount = await Project.query().whereRaw('id = "parentProjectId"').resultSize()
     const projects = await Project.query()
+      .orderBy("createdAt", "desc")
+      .limit(projectsPerPage)
+      .whereRaw('id = "parentProjectId"')
+      .offset((currentPage - 1) * projectsPerPage)
     const serializedProjects = await Promise.all(
       projects.map((project) => {
-        return ProjectSerializer.getProjectListDetails(project, false)
+        return ProjectSerializer.getProjectListDetails(project)
       }),
     )
-    res.status(200).json({ projects: serializedProjects })
+    res.status(200).json({ projects: serializedProjects, projectCount })
   } catch (err) {
     console.log(err)
     res.status(500).json({ errors: err })
@@ -39,15 +46,15 @@ projectsRouter.delete("/:id", async (req, res) => {
   const projectId = req.params.id
   const loggedInUser = req.user
   try {
-    const currentProject = await Project.query().findOne("id", projectId)
     if (currentProject.userId === loggedInUser.id) {
+      const forksOfThisProject = await Project.query().where("parentProjectId", projectId)
+      await Promise.all(
+        forksOfThisProject.map((fork) =>
+          Project.query().patch({ parentProjectId: fork.id }).where("id", fork.id),
+        ),
+      )
       await Part.query().delete().where("projectId", projectId)
       await Instruction.query().delete().where("projectId", projectId)
-      await Project.query()
-        .patch({
-          parentProjectId: null,
-        })
-        .where("parentProjectId", projectId)
       await Project.query().deleteById(projectId)
       return res.status(200).json({})
     } else {

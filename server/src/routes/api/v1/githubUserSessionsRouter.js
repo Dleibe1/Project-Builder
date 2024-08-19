@@ -8,7 +8,7 @@ githubUserSessionsRouter.get(
   "/handle-callback",
   passport.authenticate("oauth2", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect("/project-list")
+    res.redirect("/project-list/page/1")
   },
 )
 

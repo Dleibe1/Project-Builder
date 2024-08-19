@@ -1,5 +1,4 @@
 import express from "express"
-
 import userSessionsRouter from "./api/v1/userSessionsRouter.js"
 import usersRouter from "./api/v1/usersRouter.js"
 import clientRouter from "./clientRouter.js"
@@ -16,7 +15,7 @@ rootRouter.use("/api/v1/user-sessions", userSessionsRouter)
 rootRouter.use("/api/v1/projects", projectsRouter)
 rootRouter.use("/api/v1/users", usersRouter)
 rootRouter.use("/api/v1/my-builds", myBuildsRouter)
-rootRouter.use ("/api/v1/project-forks", forkRouter)
+rootRouter.use("/api/v1/project-forks", forkRouter)
 rootRouter.use("/api/v1/image-uploading", imageUploadRouter)
 rootRouter.use("/api/v1/github-user-sessions", githubUserSessionsRouter)
 
