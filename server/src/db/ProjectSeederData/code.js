@@ -2267,6 +2267,170 @@ void loop()
 
   delay(2000);
 
+}`,
+`const int buzzer = 8;
+const int trig_pin = 9;
+const int echo_pin = 10;
+float timing = 0.0;
+float distance = 0.0;
+
+void setup()
+{
+  pinMode(echo_pin, INPUT);
+  pinMode(trig_pin, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+  
+  digitalWrite(trig_pin, LOW);
+  digitalWrite(buzzer, LOW);
+    
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  digitalWrite(trig_pin, LOW);
+  delay(2);
+  
+  digitalWrite(trig_pin, HIGH);
+  delay(10);
+  digitalWrite(trig_pin, LOW);
+  
+  timing = pulseIn(echo_pin, HIGH);
+  distance = (timing * 0.034) / 2;
+  
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.print("cm | ");
+  Serial.print(distance / 2.54);
+  Serial.println("in");
+  
+    
+  if (distance <= 50) {
+  	tone(buzzer, 500);
+  } else {
+  	noTone(buzzer);
+  }
+  
+  delay(100);
+}`,
+`int greenLight = 0; //Defining pins
+int yellowLight = 1;
+int redLight   = 2;
+int piezoBuzzer = 3;
+int maximumMoistureLevel; //The max moisture level   and current moisture levels will be needed for percentage calculations
+int currentMoistureLevel;//Like   so: current/max*100 = Moisture level as a percentage
+
+void moistureDetection(){   //Create a function for all the long code, to keep the loop free
+  if(currentMoistureLevel/maximumMoistureLevel   <= 0.1){ //If the moisture is below 10%
+    digitalWrite(greenLight, LOW);
+     digitalWrite(yellowLight, LOW);
+    digitalWrite(redLight, HIGH); //Switch   on red light, and sound the buzzer
+    tone(piezoBuzzer, 5000, 500);
+    delay(2000);
+   }else if (currentMoistureLevel/maximumMoistureLevel <= 0.3 && currentMoistureLevel/maximumMoistureLevel   > 0.1)
+  {//if the moisture level is in between 10 and 30%
+    digitalWrite(greenLight,   LOW);
+    digitalWrite(yellowLight, LOW);
+    digitalWrite(redLight, HIGH);   //Switch red light on, but don't sound the buzzer
+  }else if (currentMoistureLevel/maximumMoistureLevel   <= 0.6 && currentMoistureLevel/maximumMoistureLevel > 0.3)
+  {//if the moisture   level is in between 30 and 60%
+    digitalWrite(greenLight, LOW);
+    digitalWrite(yellowLight,   HIGH);//Just switch yellow light on
+    digitalWrite(redLight, LOW);
+  } else   //Otherwise the moisture level is above 60%, and therefore it's good enough
+   {
+    digitalWrite(greenLight, HIGH);//Switch green light on
+    digitalWrite(yellowLight,   LOW);
+    digitalWrite(redLight, LOW);
+  }
+}
+
+void setup() {
+   for (int i = 0; i < 4; i++)//Use a for loop, to not have to initiate all the pins   by hand
+  {
+    pinMode(i, OUTPUT);
+  }
+  pinMode (A0, INPUT); //A0   is the pin used for the Soil Moisture Sensor
+  maximumMoistureLevel = analogRead(A0);
+   tone(piezoBuzzer, 5000, 500);
+  delay(200);
+  tone(piezoBuzzer, 6000, 500);//Make   a sound to show that the program has been initiated.
+  delay(600);
+}
+
+void   loop() {
+  currentMoistureLevel = analogRead(A0); //Keep renewing the readings   for the current moisture level
+  moistureDetection();
+  delay(100); //Short   delay to not overload the program
+  Serial.println(currentMoistureLevel);//Just   so you can see the moisture level as a reading between 0-1023
+  
+  
+}`,
+`#include "thingProperties.h"
+#include <Button2.h>
+#include <DaikinHeatpumpIR.h>
+
+
+constexpr int IR_PIN = 12;
+constexpr int BTN_PIN = 39;
+
+IRSenderESP32 irSender(IR_PIN, 0);
+DaikinHeatpumpIR irHeatpump;
+Button2 button;
+
+void setup() {
+  // Connect to Arduino IoT Cloud
+  initProperties();
+  ArduinoCloud.begin(ArduinoIoTPreferredConnection);
+  
+  // Initialize variables and pins
+  pinMode(39, INPUT_PULLUP);
+  //pinMode(IR_PIN, OUTPUT);
+
+  button.begin(BTN_PIN);
+  button.setTapHandler([](Button2& btn) {
+    mode = (mode == "OFF") ? "COOL" : "OFF";
+    send();
+  });  
+}
+
+void loop() {
+  ArduinoCloud.update();
+  button.loop();
+}
+
+// Handle incoming messages
+void onOnOffChange()  {
+  send();
+}
+
+void send() {
+  if (mode == "HEAT") {
+    irHeatpump.send(irSender, POWER_ON, MODE_HEAT, FAN_AUTO, temperature, VDIR_UP, HDIR_AUTO);
+  } else if (mode == "COOL") {
+    irHeatpump.send(irSender, POWER_ON, MODE_COOL, FAN_AUTO, temperature, VDIR_UP, HDIR_AUTO);
+  } else if (mode == "DRY") {
+    irHeatpump.send(irSender, POWER_ON, MODE_DRY, FAN_AUTO, temperature, VDIR_UP, HDIR_AUTO);
+  } else {
+    irHeatpump.send(irSender, POWER_OFF, MODE_HEAT, FAN_AUTO, 30, VDIR_UP, HDIR_AUTO);
+  }
+}
+
+/*
+  Since Mode is READ_WRITE variable, onModeChange() is
+  executed every time a new value is received from IoT Cloud.
+*/
+void onModeChange()  {
+  // Add your code here to act upon Mode change
+  send();
+}
+/*
+  Since Temperature is READ_WRITE variable, onTemperatureChange() is
+  executed every time a new value is received from IoT Cloud.
+*/
+void onTemperatureChange()  {
+  // Add your code here to act upon Temperature change
+  send();
 }`
 ]
 

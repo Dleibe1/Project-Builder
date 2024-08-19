@@ -35,7 +35,13 @@ And if you're reading this, you clicked. This is great for my goal and I thank y
 
 `In this project, we will learn how to interface RGB LED with Arduino Uno. The RGB LED is controlled by PWM signals.`,
 
-`This tutorial will show you how to use DHT11 with Arduino.`
+`This tutorial will show you how to use DHT11 with Arduino.`,
+
+`Learn how to use the ultrasonic sensor (HC-SR04) with Arduino. This tutorial will teach you what it is, how to assemble the sensor on Arduino, and, at the end, you'll implement it into an alarm system project.`,
+
+`A simple soil moisture sensor, so you always know when to water your plants. Will suit any level of skill, and is incredibly cheap to make.`,
+
+`Add WiFi capability to any AC unit by emulating an infrared remote control, and build an interface that you can use from your smartphone.`
 
 ]
 

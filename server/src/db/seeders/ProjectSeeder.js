@@ -267,6 +267,36 @@ class ProjectSeeder {
           "https://projects.arduinocontent.cc/cover-images/70b80f40-3f40-4b90-84d2-a1a66301d7bc.blob",
         parentProjectId: 24
       },
+      {
+        userId: 2,
+        title: "Ultrasonic sensor with Arduino - Complete Guide",
+        description: descriptions[15],
+        appsAndPlatforms: "Arduino IDE",
+        code: code[15],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/9cf024c7-0b54-4a19-adbf-15ba0889cb32.png",
+        parentProjectId: 25
+      },
+      {
+        userId: 2,
+        title: "Simple Soil Moisture Sensor",
+        description: descriptions[16],
+        appsAndPlatforms: "Arduino IDE",
+        code: code[16],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/d06d87dd-8c15-43c1-b987-de6567c72f37.blob",
+        parentProjectId: 26
+      },
+      {
+        userId: 2,
+        title: "Control your air conditioner remotely",
+        description: descriptions[17],
+        appsAndPlatforms: "Arduino IoT Cloud",
+        code: code[17],
+        thumbnailImage:
+          "https://projects.arduinocontent.cc/cover-images/876135e3-82cc-462f-83b5-e21ebacd87ea.jpg",
+        parentProjectId: 27
+      },
     ]
     const exampleUserProjectForks = [
       {

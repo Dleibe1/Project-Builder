@@ -94,6 +94,26 @@ class PartSeeder {
       {partName: "Jumper wires (generic)", projectId: 24},
       {partName: "Arduino UNO", projectId: 24},
       {partName: "Breadboard (generic)", projectId: 24},
+
+      {partName: "Arduino uno Board", projectId: 25},
+      {partName: "Ultrasonic Sensor - HC-SR04", projectId: 25},
+      {partName: "Active Buzzer 5V (HXD)", projectId: 25},
+      {partName: "Breadboard 100x160", projectId: 25},
+      {partName: "jumper wires for arduino", projectId: 25},
+      
+      {partName: "SparkFun Soil Moisture Sensor (with Screw Terminals)", projectId: 26},
+      {partName: "Male/Female Jumper Wires", projectId: 26},
+      {partName: "Buzzer", projectId: 26},
+      {partName: "9V battery (generic)", projectId: 26},
+      {partName: "Jumper wires (generic)", projectId: 26},
+      {partName: "Resistor 220 ohm", projectId: 26},
+      {partName: "Mini Breadboard", projectId: 26},
+      {partName: "10 mm Heat Shrink", projectId: 26},
+      {partName: "9V Battery Clip", projectId: 26},
+
+      {partName: "M5Stack ATOM Lite", projectId: 27},
+
+
     ])
 
     //Project Fork Parts

@@ -1453,6 +1453,232 @@ You need to follow these instructions to make it work:
 4. You will see the humidity and temperature. 
 `
       },
+      {
+        projectId: 25,
+        instructionText: `The ultrasonic sensor is a device that can measure distances using sound waves . It works in a similar way than bats and dolphins - by emitting sound waves and listening them bound back `
+      },
+      {
+        projectId: 25,
+        imageURL: "https://projects.arduinocontent.cc/cc7047f6-2bbf-43ed-87e9-76b07f4522e8.jpg"
+      },
+      {
+        projectId: 25,
+        imageURL: "https://projects.arduinocontent.cc/8ab8bfd4-b0b9-42e1-9309-4f2a734ad439.jpg"
+      },
+      {
+        projectId: 25,
+        instructionText: `The sensor consists of two primary components: a transmitter and a receiver . The transmitter is responsible for emitting a high-frequency sound. In essence, ultrasonic refers to frequencies beyond the range of the human hearing - so something higher than 20kHz. 
+
+When the sound wave hits an object, it bounces back like echo. This returning wave is detected by the receiver. The sensor will use the micro-controller (Arduino) internal clock to find out how much it took for the sound to bounce back. This small clock turns on when a high-frequency wave is emitted and turns off when its echo is detected. 
+
+Using code, we can write a program that will store the timing between those two events into a variable. Then, we can use this information to calculate the distance between the sensor and the object. 
+
+You may be thinking: how can we find the distance if all we know is the timing? 
+
+Well, as you know, velocity is distance divided by time. Based on this equation, if we multiply the velocity by the time, we'll find the distance . I told you the sensor emits sound waves, so the velocity we need is the speed of sound in air (340 m/s). 
+
+Velocity = Distance / Time 
+Distance = Velocity * Time 
+
+But if we multiply this speed with the timing we found, we'll discover a value that's twice the real distance. That's happens because the sound hit the object and came back, in other words, it traveled the same path twice. Then to find the real distance, multiply the speed of sound with the timing and divide the result by two. 
+
+Distance = (Velocity * Time) / 2 
+`
+      },
+      {
+        projectId: 25,
+        imageURL: "https://projects.arduinocontent.cc/328c3323-cf29-434e-baf4-4c5b60eb5216.png"
+      },
+      {
+        projectId: 25,
+        imageURL: "https://projects.arduinocontent.cc/328c3323-cf29-434e-baf4-4c5b60eb5216.png"
+      },
+      {
+        projectId: 25,
+        imageURL: "https://projects.arduinocontent.cc/50ba2ab9-a2a5-4649-b4d1-553464059068.png"
+      },
+      {
+        projectId: 25,
+        instructionText: `In this article, I will show you how to build an alarm system using Arduino and the ultrasonic sensor. If you don't have all components or would like to test before assembling anything, I created a simulation of this alarm system on Tinkercad . You can run it directly on your browser by clicking $ here $ . 
+
+Moving on, for this project, you'll need: an Arduino board, a breadboard, a bunch of jumper wires, a buzzer,and an ultrasonic sensor. 
+
+Assembly
+
+Firstly, attach the ultrasonic sensor and the buzzer on the breadboard. Then connect the VCC and GND pins on Arduino 5V and ground ports. 
+`
+      },
+      {
+        projectId: 25,
+        imageURL: "https://projects.arduinocontent.cc/5d9e9e7a-35dc-47be-91c5-7f2503be7949.jpg"
+      },
+      {
+        projectId: 25,
+        instructionText: `After that connect the trigger pin to port 9, the echo pin to port 10, and the buzzer to port 8. Also attach the buzzer GND to Arduino GND. `
+      },
+      {
+        projectId: 25,
+        imageURL: "https://projects.arduinocontent.cc/5d823b9b-7ca8-453f-846a-65d58515efce.jpg"
+      },
+      {
+        projectId: 25,
+        instructionText: `At the end, upload the alarm-system-arduino.ino file that I provided on this article, and now our alarm system is finished. 
+        
+Code explanation
+
+At first, we defined the constants and variables we'll need. Then, at the setup function, we configured some important aspects of the code - like defining the echo pin as INPUT and the trigger and buzzer pins as OUTPUT. We also started the serial communication - and it'll be important to visualize the distances being measured. 
+`
+      },
+      {
+        projectId: 25,
+        imageURL: "https://projects.arduinocontent.cc/96e0a1f3-94ba-4045-a270-a0fb390afa0d.png"
+      },
+      {
+        projectId: 25,
+        instructionText: `At the end, there's the loop function. It starts by turning off the emitter and then activating it for 10 milliseconds before turning it off again. This piece of code will generate the wave sound that will be bounced back by the near objects. 
+
+At line 28 we find how much time the sensor took to detect the echo. This information is crucial for calculating the distance at line 29. In this case, we found the distance in centimeters. After that, from lines 30 to 35 we print the distance. 
+
+The last part of the code is an if-statement that turns on the buzzer when the object is at 50 centimeters or closer from the sensor. In case this statement is false, the buzzer turns down. 
+`
+      },
+      {
+        projectId: 26,
+        instructionText: `This project is for a school code quest. I have seen many projects with soil moisture sensors, but all of them included expensive and complicated materials such as LCD screens or automatic watering systems. I took it as a challenge to create an incredibly cheap and simple Soil Moisture Sensor. The project is designed for people that might not know when to water their plants or water them too much or too little. The Soil Moisture Sensor distinguishes how wet the soil is, and identifies when the soil should be watered for you. `
+      },
+      {
+        projectId: 26,
+        instructionText: `This design only includes a soil moisture sensor, a couple of LEDs and a buzzer. The LEDs constantly show the moisture level (Red - 0-30%, Yellow - 30-60% and green 60%+ switch on at those levels of moisture), and when the moisture level falls below 10%, the buzzer starts beeping. I designed this for a Port Jackson Ficus Bonsai, and have tested this extensively. The percentages I'm using works perfectly for me but might change depending on your plant. If you feel like the red light switches on way too late, when the soil is already too dry, you can change the Red percentage to 0-50% and Yellow to 50-80%, because that seems to also be working well. 
+
+How it works: 
+
+
+It works, when electrical currents are sent through the legs of the moisture sensor. The sensor then calculates the resistance it's getting. Since water conducts electricity - the wetter the soil is, the less resistance there should be. It's then connected to an Analog Pin and the Arduino can use that for the program. 
+
+The Soil Moisture Sensor needs to know the maximum moisture that the soil can reach, so we can calculate the percentages. This is called calibration. The sensor calibrates right when the circuit is switched on, in the Setup() function. Therefore, it should already be in freshly watered soil, when it is switched on. 
+
+Here are some photos of the circuit without the casing: 
+`
+      },
+      {
+        projectId: 26,
+        imageURL: "https://projects.arduinocontent.cc/bb269a1e-9020-4253-8e6d-a38f7fd4298d.JPG"
+      },
+      {
+        projectId: 26,
+        imageURL: "https://projects.arduinocontent.cc/353ed111-13e9-476c-9417-12ed55022db5.JPG"
+      },
+      {
+        projectId: 26,
+        imageURL: "https://projects.arduinocontent.cc/82d28236-fed8-454e-af83-fc25fc94a1c5.JPG"
+      },
+      {
+        projectId: 26,
+        instructionText: `The soil moisture sensor I used has a screwable pin terminal, so no soldering is required. The most popular one sensor is the SparkFun moisture sensor and requires soldering. So I got one, that doesn't need soldering and can just have Male to Male wires screwed in, here . `
+      },
+      {
+        projectId: 26,
+        instructionText: `Casing: 
+
+The casing is a simple box, with the LEDs coming out of the top, and the buzzer on the side. The Soil Moisture Sensor comes out of the side with wires and is stuck into the soil, so it's relatively far from all the water-sensitive components. 
+`
+      },
+      {
+        projectId: 27,
+        instructionText: `I needed to turn on and off some AC units located in a remote house, so that I can pre-cool (or pre-heat) the rooms in advance before I go. 
+
+Such units are very common appliances by Daikin, which provides WiFi capability on newer models but that's not something available on mine. The solution was easy: I just had to simulate an infrared remote controller with Arduino, place it close to the AC unit and control it remotely. 
+`
+      },
+      {
+        projectId: 27,
+        instructionText: `For this, I chose the ATOM Lite by M5Stack . It is very compact, comes with its little enclosure, and includes an IR emitter as well as a physical button  . The only drawback is that the emitter is not very powerful and the hole in the enclosure is very little, so it can't be placed much far away from the unit. In the end, I just used some bi-adhesive tape and a USB cable: `
+      },
+      {
+        projectId: 27,
+        imageURL: "https://projects.arduinocontent.cc/87de5418-a5e8-43f6-9b42-0e000329fd22.jpg"
+      },
+      {
+        projectId: 27,
+        instructionText: `As an alternative to using this M5Stack board, you can use any Arduino board (such as a Nano or a MKR) and connect an infrared LED to its pins. You'll find hundreds of tutorials out there. `
+      },
+      {
+        projectId: 27,
+        instructionText: `Software
+On the software side, I used the fantastic $ arduino-heatpumpir $ library to generate the infrared signals. There are many libraries for that purpose, but this one worked great and it supports a large number of AC manufacturers with the same code instructions. 
+
+
+So, if you have a Daikin AC like mine you can use my code below without changes. If you have another brand, follow these steps: 
+
+1. Find the name of the .h file related to your AC model. In my case, that's DaikinHeatpumpIR.h . 
+
+2. Replace DaikinHeatpumpIR.h and DaikinHeatpumpIR in my code with the name you found. 
+
+That's it! If you're lucky enough, you won't need to change other things. 
+
+The code I wrote supports heat/cool/dry modes as well as temperature configuration. It doesn't let you configure fan speed or other parameters, but it's very simple to tweak to expose more parameters. In addition, it detects the pressure of the physical button on the board so that you can use it to test easily if the IR signals are read by the AC unit. `
+      },
+      {
+        projectId: 27,
+        instructionText: `Remote control
+
+
+Last but not least, I used the Arduino IoT Cloud to build a simple graphic interface to send commands remotely. To do this, follow these steps: 
+
+1. Open Arduino IoT Cloud and create a free account if you don't have one. 
+
+2. Create a device and select "M5Stack-ATOM" as the model. Make sure you save the secret key returned at the end of the device creation procedure. The interface is pretty straightforward, but you might want to follow the more detailed steps explained in the official documentation. 
+https://docs.arduino.cc/arduino-cloud/getting-started/esp-32-cloud`
+      },
+      {
+        projectId: 27,
+        instructionText: `3. Create a thing and configure WiFi credentials for it. 
+
+4. Configure two variables in the thing: 
+a string variable called mode an integer variable called temperature 
+
+5. Copy the sketch code in the "Sketch" tab and upload it to the board. 
+
+6. Create a dashboard like this: `
+      },
+      {
+        projectId: 27,
+        imageURL: "https://projects.arduinocontent.cc/5d147029-cc54-4c89-8060-d6c4b3964cb4.png"
+      },
+      {
+        projectId: 27,
+        instructionText: `That's it. Enjoy! ❄️ 
+Over-the-air updates
+
+
+In case you want to modify the code after the board is installed, don't worry about physically removing it. Thanks to Arduino IoT Cloud you can just edit the code from your browser, and with one click you'll be able to upload it to the board over WiFi (and even remotely). 
+
+Optional: closing the loop
+
+When controlling remote things, it is always a good idea to put some sensors to get feedback to make sure that your commands are correctly executed. In our case, I can imagine a very simple failure: the bi-adhesive tape falls apart, and you can't turn on (or worse, you can't turn off) your AC unit anymore. 
+So I recommend adding a simple temperature/humidity sensor in the room to see if your AC unit is doing what expected. There are many solutions; a very simple one is described in this tutorial
+https://docs.arduino.cc/arduino-cloud/tutorials/cloud-environmental-data 
+and can be done with a MKR WiFi 1010 board, a MKR ENV Shield, and IoT Cloud. 
+`
+      },
+      {
+        projectId: 27,
+        imageURL: ""
+      },
+      {
+        projectId: 27,
+        instructionText: ``
+      },
+      {
+        projectId: 27,
+        imageURL: ""
+      },
+      {
+        projectId: 27,
+        instructionText: ``
+      },
+      
+      
     ])
   }
 }
