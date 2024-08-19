@@ -67,10 +67,6 @@ const ProjectList = (props) => {
           color={"primary"}
           size={"large"}
           sx={{
-            "& .MuiPaginationItem-root": {
-              fontSize: "2rem",
-              padding: "25px",
-            },
             "& .MuiPagination-ul": {
               justifyContent: "center",
             },

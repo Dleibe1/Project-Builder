@@ -105,7 +105,7 @@ const EditBuildForm = (props) => {
 
   const getProject = async () => {
     try {
-      const response = await fetch(`/api/v1/my-builds/${id}`)
+      const response = await fetch(`/api/v1/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
@@ -272,7 +272,7 @@ const EditBuildForm = (props) => {
   })
 
   if (shouldRedirect) {
-    return <Redirect push to={"/my-builds"} />
+    return <Redirect push to={"/my-builds-list"} />
   }
 
   return (

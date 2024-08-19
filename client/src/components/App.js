@@ -55,7 +55,7 @@ const App = (props) => {
         <Route exact path="/create-new-build">
           <NewProjectForm user={currentUser} />
         </Route>
-        <Route exact path={"/my-builds"}>
+        <Route exact path={"/my-builds-list"}>
           <MyBuildList user={currentUser} />
         </Route>
         <Route exact path={"/my-builds/:id"}>

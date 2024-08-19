@@ -272,7 +272,7 @@ const ForkProjectForm = (props) => {
   })
 
   if (shouldRedirect) {
-    return <Redirect push to={"/my-builds"} />
+    return <Redirect push to={"/my-builds-list"} />
   }
 
   return (
