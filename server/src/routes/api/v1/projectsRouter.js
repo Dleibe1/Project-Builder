@@ -14,7 +14,7 @@ projectsRouter.get("/page/:currentPage/:projectsPerPage", async (req, res) => {
   try {
     const projectCount = await Project.query().whereRaw('id = "parentProjectId"').resultSize()
     const projects = await Project.query()
-      .orderBy("createdAt", "desc")
+      .orderBy("id", "acs")
       .limit(projectsPerPage)
       .whereRaw('id = "parentProjectId"')
       .offset((currentPage - 1) * projectsPerPage)

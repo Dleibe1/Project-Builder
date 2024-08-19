@@ -51,12 +51,6 @@ body.hide-background {
   tab-size: 4;
 }
 
-.grid-container {
-  padding-left: 0;
-  padding-right: 0;
-  width: 100%;
-}
-
 .banner {
   padding-top: 100px;
   padding-bottom: 100px;
@@ -203,14 +197,25 @@ body.hide-background {
   gap: 1.3rem;
 }
 
+.project-list-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
 .project-list-pagination-container {
-  height:100px;
+  margin-top:30px;
+  margin-bottom:30px;
 }
 
 .project-tile {
   border-radius: 10px;
   background-color: white;
-  padding: 1.5rem;
+  padding: .7rem;
   padding-bottom: 0rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition:

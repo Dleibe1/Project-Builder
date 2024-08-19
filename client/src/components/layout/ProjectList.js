@@ -25,6 +25,7 @@ const ProjectList = (props) => {
 
   useEffect(() => {
     getProjectsData()
+    window.scrollTo({top: 0});
   }, [currentPage])
 
   const totalPages = Math.ceil(projectCount / projectsPerPage)
@@ -47,7 +48,7 @@ const ProjectList = (props) => {
   })
 
   return (
-    <div className="grid-container">
+    <div className="grid-container project-list-page-container">
       <div className="project-list">{projectsArray}</div>
       <div className="project-list-pagination-container">
         <Pagination

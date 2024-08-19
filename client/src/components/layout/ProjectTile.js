@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import ProjectForksButton from "./ProjectForksButton";
+import React, { useEffect, useState } from "react"
+import { Link, useHistory } from "react-router-dom"
+import ProjectForksButton from "./ProjectForksButton"
 
 const ProjectTile = ({ title, createdBy, thumbnailImage, id }) => {
-  const [hasForks, setHasForks] = useState(false);
-  const history = useHistory();
+  const [hasForks, setHasForks] = useState(false)
+  const history = useHistory()
 
   const checkForForks = async () => {
     try {
-      const response = await fetch(`/api/v1/project-forks/${id}/fork-list`);
+      const response = await fetch(`/api/v1/project-forks/${id}/fork-list`)
       if (!response.ok) {
-        const newError = new Error("Error in the fetch!");
-        throw newError;
+        const newError = new Error("Error in the fetch!")
+        throw newError
       }
-      const responseBody = await response.json();
+      const responseBody = await response.json()
       if (responseBody.forks.length) {
-        setHasForks(true);
+        setHasForks(true)
       }
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   useEffect(() => {
-    checkForForks();
-  }, []);
+    checkForForks()
+  }, [])
 
   const handleTileClick = () => {
-    history.push(`/projects/${id}`);
-  };
+    history.push(`/projects/${id}`)
+  }
 
   return (
     <div className="project-tile" onClick={handleTileClick}>
@@ -39,12 +39,15 @@ const ProjectTile = ({ title, createdBy, thumbnailImage, id }) => {
       <h4>Created By:</h4>
       <h5>{createdBy}</h5>
       {hasForks ? (
-        <div className="button-container see-forked-versions-button" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="button-container see-forked-versions-button"
+          onClick={(e) => e.stopPropagation()}
+        >
           <ProjectForksButton id={id} />
         </div>
       ) : null}
     </div>
-  );
-};
+  )
+}
 
-export default ProjectTile;
+export default ProjectTile
