@@ -63,7 +63,7 @@ const TopBar = ({ user }) => {
   }
 
   if (shouldRedirect) {
-    location.href = "/project-list"
+    location.href = "/project-list/page/1"
   }
 
   const handleGithubLogin = async () => {
@@ -107,7 +107,7 @@ const TopBar = ({ user }) => {
             </Button>
             <Button
               component={Link}
-              to="/project-list"
+              to="/project-list/page/1"
               id="projects-button"
               key={"projects-button"}
               sx={{

@@ -9,6 +9,7 @@ import cleanUserInput from "../../../services/cleanUserInput.js"
 const myBuildsRouter = new express.Router()
 
 myBuildsRouter.get("/", async (req, res) => {
+  //TODO add message that the user must be logged in to view these pages in components
   let user = {}
   if (req.user) {
     user = req.user

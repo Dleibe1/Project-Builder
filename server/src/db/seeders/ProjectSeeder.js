@@ -141,7 +141,7 @@ class ProjectSeeder {
       },
       {
         userId: 1,
-        title: "Arduino FFT Audio Spectrum analyzer on 8x32 color matrix WS2812B",
+        title: "Arduino FFT Audio Spectrum analyzer on 8x32 color matrix",
         description: descriptions[3],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[3],
