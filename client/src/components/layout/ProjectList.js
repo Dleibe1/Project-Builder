@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react"
+import { useParams, useHistory } from "react-router-dom"
 import ProjectTile from "./ProjectTile"
 import { Pagination } from "@mui/material"
 
 const ProjectList = (props) => {
   const [projects, setProjects] = useState([])
   const [projectCount, setProjectCount] = useState(0)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(parseInt(pageNumber || 1))
 
-  const projectsPerPage = 9
+  const history = useHistory()
+  const { pageNumber } = useParams()
+  const projectsPerPage = 6
+  const totalPages = Math.ceil(projectCount / projectsPerPage)
   const getProjectsData = async () => {
     try {
       const response = await fetch(`/api/v1/projects/page/${currentPage}/${projectsPerPage}`)
@@ -24,13 +28,19 @@ const ProjectList = (props) => {
   }
 
   useEffect(() => {
+    if (pageNumber && parseInt(pageNumber) !== currentPage) {
+      setCurrentPage(parseInt(pageNumber))
+    }
+  }, [pageNumber])
+
+  useEffect(() => {
     getProjectsData()
     window.scrollTo({top: 0});
   }, [currentPage])
 
-  const totalPages = Math.ceil(projectCount / projectsPerPage)
-  const handlePagninationChange = (event, pageNumber ) => {
-    setCurrentPage(pageNumber)
+  const handlePagninationChange = (event, selectedPage ) => {
+    setCurrentPage(selectedPage)
+    history.push(`/project-list/${selectedPage}`)
   }
 
   const projectsArray = projects.map((project, index) => {
@@ -52,6 +62,7 @@ const ProjectList = (props) => {
       <div className="project-list">{projectsArray}</div>
       <div className="project-list-pagination-container">
         <Pagination
+          page={currentPage}
           onChange={handlePagninationChange}
           color={"primary"}
           size={"large"}

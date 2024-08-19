@@ -110,7 +110,7 @@ const RegistrationForm = () => {
   }
 
   if (shouldRedirect) {
-    location.href = "/project-list/page/1"
+    location.href = "/project-list/1"
   }
 
   return (
