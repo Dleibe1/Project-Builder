@@ -8,19 +8,26 @@ import cleanUserInput from "../../../services/cleanUserInput.js"
 
 const myBuildsRouter = new express.Router()
 
-myBuildsRouter.get("/", async (req, res) => {
+myBuildsRouter.get("/page/:currentPage/:projectsPerPage", async (req, res) => {
+  const currentPage = parseInt(req.params.currentPage) || 1
+  const projectsPerPage = parseInt(req.params.projectsPerPage)
   let user = {}
   if (req.user) {
     user = req.user
   }
   try {
-    const userBuilds = await Project.query().where("userId", parseInt(user.id))
+    const userBuildCount = await Project.query().where("userId", parseInt(user.id)).resultSize()
+    const userBuildsList = await Project.query()
+    .orderBy("id", "acs")
+    .limit(projectsPerPage)
+    .where("userId", parseInt(user.id))
+    .offset((currentPage - 1) * projectsPerPage)
     const serializedUserBuilds = await Promise.all(
-      userBuilds.map((userBuild) => {
+      userBuildsList.map((userBuild) => {
         return ProjectSerializer.getProjectListDetails(userBuild)
-      }),
+      })
     )
-    res.status(200).json({ userBuilds: serializedUserBuilds })
+    res.status(200).json({ userBuilds: serializedUserBuilds, userBuildCount })
   } catch (error) {
     console.log(error)
     res.status(500).json({ errors: error })

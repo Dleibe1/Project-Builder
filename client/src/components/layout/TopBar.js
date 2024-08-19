@@ -203,7 +203,7 @@ const TopBar = ({ user }) => {
                       How to use
                     </Typography>
                   </MenuItem>
-                  <MenuItem component={Link} to="/my-builds-list">
+                  <MenuItem component={Link} to="/my-builds-list/1">
                     <Typography
                       sx={{
                         color: "black",

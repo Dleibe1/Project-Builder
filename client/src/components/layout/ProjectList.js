@@ -35,10 +35,10 @@ const ProjectList = (props) => {
 
   useEffect(() => {
     getProjectsData()
-    window.scrollTo({top: 0});
+    window.scrollTo({ top: 0 })
   }, [currentPage])
 
-  const handlePagninationChange = (event, selectedPage ) => {
+  const handlePagninationChange = (event, selectedPage) => {
     setCurrentPage(selectedPage)
     history.push(`/project-list/${selectedPage}`)
   }

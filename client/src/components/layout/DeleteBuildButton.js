@@ -23,7 +23,7 @@ const DeleteBuildButton = ({ id }) => {
     }
   }
   if (shouldRedirect) {
-    return <Redirect push to={"/my-builds-list"} />
+    return <Redirect push to={"/my-builds-list/1"} />
   }
 
   return (
