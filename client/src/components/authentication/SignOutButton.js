@@ -3,7 +3,7 @@ import { Button } from "@mui/material"
 
 const SignOutButton = ({ signOut, shouldRedirect }) => {
   if (shouldRedirect) {
-    location.href = "/project-list/page/1"
+    location.href = "/project-list/1"
   }
 
   return (

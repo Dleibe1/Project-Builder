@@ -46,7 +46,7 @@ const App = (props) => {
         <Route exact path={"/how-to-use"}>
           <HowToUse user={currentUser} />
         </Route>
-        <Route exact path={"/project-list/page/:pageNumber"}>
+        <Route exact path={"/project-list/:pageNumber"}>
           <ProjectList user={currentUser} />
         </Route>
         <Route exact path="/projects/:id">
