@@ -24,6 +24,8 @@ const EditBuildForm = (props) => {
   const params = useParams()
   const { id } = params
 
+  console.log(editedProject)
+
   const [editedProject, setEditedProject] = useState({
     title: "",
     tags: "",
@@ -105,7 +107,7 @@ const EditBuildForm = (props) => {
 
   const getProject = async () => {
     try {
-      const response = await fetch(`/api/v1/${id}`)
+      const response = await fetch(`/api/v1/my-builds/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
