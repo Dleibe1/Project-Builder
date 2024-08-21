@@ -405,7 +405,6 @@ const ForkProjectForm = (props) => {
               Add Instruction
             </Button>
           </div>
-
           <Button
             className="large-button"
             id="add-instruction-image"
