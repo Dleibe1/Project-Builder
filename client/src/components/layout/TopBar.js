@@ -21,6 +21,8 @@ import MyBuildsButton from "./MyBuildsButton"
 import SignInButton from "../authentication/SignInButton"
 import SignUpButton from "../authentication/SignUpButton"
 
+import TopBarSearch from "./TobBarSearch"
+
 const TopBar = ({ user }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState(null)
@@ -77,6 +79,7 @@ const TopBar = ({ user }) => {
   const avatarJustALetter = [<Avatar alt={loggedInUserName}>{avatarLetter}</Avatar>]
 
   return (
+    
     <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar id="top-bar-items" disableGutters>
@@ -137,6 +140,7 @@ const TopBar = ({ user }) => {
           </div>
           {user ? (
             <Box id="authenticated-items" sx={{ flexGrow: 0 }}>
+              <TopBarSearch />
               <MyBuildsButton />
               <NewBuildButton />
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />

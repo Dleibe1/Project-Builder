@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import Button from "@mui/material/Button"
-import Build from "@mui/icons-material/Build"
 
 const NewBuildButton = () => {
   return (
@@ -13,7 +12,7 @@ const NewBuildButton = () => {
       sx={{
         my: 2,
         color: "white",
-        display: { xs: "none", md: "block" },
+        display: { xs: "none", sm: "none", md: "none", lg: "block" },
         "&:hover": {
           backgroundColor: "#1665c0",
           color: "white",
