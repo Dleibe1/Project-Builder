@@ -7,6 +7,7 @@ import myBuildsRouter from "./api/v1/myBuildsRouter.js"
 import imageUploadRouter from "./api/v1/imageUploadRouter.js"
 import forkRouter from "./api/v1/forkRouter.js"
 import githubUserSessionsRouter from "./api/v1/githubUserSessionsRouter.js"
+import searchRouter from "./api/v1/searchRouter.js"
 
 const rootRouter = new express.Router()
 
@@ -18,5 +19,6 @@ rootRouter.use("/api/v1/my-builds", myBuildsRouter)
 rootRouter.use("/api/v1/project-forks", forkRouter)
 rootRouter.use("/api/v1/image-uploading", imageUploadRouter)
 rootRouter.use("/api/v1/github-user-sessions", githubUserSessionsRouter)
+rootRouter.use("/api/v1/search", searchRouter)
 
 export default rootRouter

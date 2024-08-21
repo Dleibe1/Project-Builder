@@ -3,15 +3,15 @@ import { useParams, useHistory } from "react-router-dom"
 import ProjectTile from "./ProjectTile"
 import { Pagination } from "@mui/material"
 
-const ProjectList = (props) => {
+const ProjectList = ({ projectsPerPage }) => {
   const [projects, setProjects] = useState([])
   const [projectCount, setProjectCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(parseInt(pageNumber || 1))
 
   const history = useHistory()
   const { pageNumber } = useParams()
-  const projectsPerPage = 6
   const totalPages = Math.ceil(projectCount / projectsPerPage)
+
   const getProjectsData = async () => {
     try {
       const response = await fetch(`/api/v1/projects/page/${currentPage}/${projectsPerPage}`)
