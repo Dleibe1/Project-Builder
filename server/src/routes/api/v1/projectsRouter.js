@@ -43,14 +43,17 @@ projectsRouter.get("/:id", async (req, res) => {
 })
 
 projectsRouter.delete("/:id", async (req, res) => {
-  const projectId = req.params.id
+  const projectId = parseInt(req.params.id)
   const loggedInUser = req.user
   try {
+    const currentProject = await Project.query().findById(projectId)
     if (currentProject.userId === loggedInUser.id) {
       const forksOfThisProject = await Project.query().where("parentProjectId", projectId)
       await Promise.all(
         forksOfThisProject.map((fork) =>
-          Project.query().patch({ parentProjectId: fork.id }).where("id", fork.id),
+          Project.query()
+            .patch({ parentProjectId: parseInt(fork.id) })
+            .where("id", parseInt(fork.id)),
         ),
       )
       await Part.query().delete().where("projectId", projectId)
