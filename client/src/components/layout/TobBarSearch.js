@@ -58,8 +58,10 @@ const TopBarSearch = ({ projectsPerPage }) => {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault()
-	  history.push(`/search/${query}`)
-      executeSearch(query)
+      if(query){
+        history.push(`/search/${query}/1`)
+        executeSearch(query)
+      }
     }
   }
 
