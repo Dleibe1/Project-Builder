@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField, Typography } from "@mui/material"
@@ -24,8 +24,6 @@ const EditBuildForm = (props) => {
   const params = useParams()
   const { id } = params
 
-  console.log(editedProject)
-
   const [editedProject, setEditedProject] = useState({
     title: "",
     tags: "",
@@ -38,22 +36,13 @@ const EditBuildForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
-  const isInitialMount = useRef(true)
 
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false
-    } else {
       uploadProjectImage()
-    }
   }, [imageFile])
 
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false
-    } else {
       uploadThumbnailImage()
-    }
   }, [thumbnailImageFile])
 
   useEffect(() => {

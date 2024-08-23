@@ -17,7 +17,7 @@ const clientRoutes = [
   "/project-forks/:id",
   "/github-login",
   "/project-list/:pageNumber",
-  "/search/:searchTerm/:pageNumber",
+  "/search/:addressBarSearchTerm/:pageNumber",
   "/how-to-use",
 ]
 const authedClientRoutes = ["/profile"]

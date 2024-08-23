@@ -1,34 +1,60 @@
-import React, { useState, useEffect } from "react"
-import { useParams, useHistory } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { useHistory, useParams } from "react-router-dom"
 import { useSearch } from "../contexts/SearchContext"
 import ProjectTile from "./ProjectTile"
 import { Pagination } from "@mui/material"
 
 const SearchList = ({ projectsPerPage }) => {
-  const { searchResults } = useSearch()
-  const [projects, setProjects] = useState([])
+  const { searchResults, setSearchResults } = useSearch()
   const [projectCount, setProjectCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(parseInt(pageNumber || 1))
   const [query, setQuery] = useState("")
 
   const history = useHistory()
-  const { searchTerm, pageNumber } = useParams()
+  const { addressBarSearchTerm, pageNumber } = useParams()
   const totalPages = Math.ceil(projectCount / projectsPerPage)
 
   useEffect(() => {
-    if (searchTerm) {
-      setQuery(searchTerm)
-    }
-  }, [searchTerm])
+    setQuery(addressBarSearchTerm)
+    window.scrollTo({ top: 0 })
+  }, [addressBarSearchTerm])
 
-  console.log(searchTerm)
+  useEffect(() => {
+    executeSearch(query)
+    window.scrollTo({ top: 0 })
+  }, [query, currentPage])
+
+  useEffect(() => {
+    if (pageNumber && parseInt(pageNumber) !== currentPage) {
+      setCurrentPage(parseInt(pageNumber))
+    }
+  }, [pageNumber])
+
+  console.log(projectCount, " ", searchResults)
+
+  const executeSearch = async (searchQuery) => {
+    try {
+      const response = await fetch(
+        `/api/v1/search/${searchQuery}/${currentPage}/${projectsPerPage}`,
+      )
+      if (!response.ok) {
+        const newError = new Error("Error in the fetch!")
+        throw newError
+      }
+      const responseBody = await response.json()
+      setSearchResults(responseBody.projects)
+      setProjectCount(responseBody.projectCount)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handlePagninationChange = (event, selectedPage) => {
     setCurrentPage(selectedPage)
-    history.push(`/project-list/${selectedPage}`)
+    history.push(`/search/${query}/${selectedPage}`)
   }
 
-  const projectsArray = projects.map((project, index) => {
+  const projectsArray = searchResults.map((project, index) => {
     if (project.id === project.parentProjectId) {
       return (
         <ProjectTile

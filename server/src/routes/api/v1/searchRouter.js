@@ -4,28 +4,38 @@ import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 
 const searchRouter = new express.Router()
 
-searchRouter.get("/:searchQuery/:projectsPerPage", async (req, res) => {
+searchRouter.get("/:searchQuery/:currentPage/:projectsPerPage", async (req, res) => {
   const searchQuery = req.params.searchQuery.trim()
+  const currentPage = parseInt(req.params.currentPage) || 1
   const projectsPerPage = parseInt(req.params.projectsPerPage)
-  if (searchQuery) {
-    try {
-      const projects = await Project.query()
-        .orderBy("id", "acs")
-        .limit(projectsPerPage)
-        .where("title", "ilike", `%${searchQuery}%`)
-        .orWhere("description", "ilike", `%${searchQuery}`)
-      const serializedProjects = await Promise.all(
-        projects.map((project) => {
-          return ProjectSerializer.getProjectListDetails(project)
-        }),
-      )
-      res.status(200).json({ projects: serializedProjects })
-    } catch (error) {
-      console.log(error)
-      res.status(500).json({ errors: error })
-    }
-  } else {
-    return res.status(400).json({ errors: "The search query was empty" })
+  try {
+    const projectCount = await Project.query()
+      .whereRaw('id = "parentProjectId"')
+      .where((builder) => {
+        builder
+          .where("title", "ilike", `%${searchQuery}%`)
+          .orWhere("description", "ilike", `%${searchQuery}%`)
+      })
+      .resultSize()
+    const projects = await Project.query()
+      .orderBy("id", "acs")
+      .limit(projectsPerPage)
+      .whereRaw('id = "parentProjectId"')
+      .where((builder) => {
+        builder
+          .where("title", "ilike", `%${searchQuery}%`)
+          .orWhere("description", "ilike", `%${searchQuery}%`)
+      })
+      .offset((currentPage - 1) * projectsPerPage)
+    const serializedProjects = await Promise.all(
+      projects.map((project) => {
+        return ProjectSerializer.getProjectListDetails(project)
+      }),
+    )
+    res.status(200).json({ projects: serializedProjects, projectCount })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ errors: error })
   }
 })
 

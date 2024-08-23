@@ -240,6 +240,7 @@ const TopBar = ({ user, projectsPerPage }) => {
             </Box>
           ) : (
             <Box id="unauthenticated-items" sx={{ flexGrow: 0 }}>
+              <TopBarSearch projectsPerPage={projectsPerPage} />
               <SignUpButton />
               <SignInButton />
               <GithubLogin />

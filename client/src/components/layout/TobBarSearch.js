@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { useSearch } from "../contexts/SearchContext"
 import { styled, alpha } from "@mui/material/styles"
 import InputBase from "@mui/material/InputBase"
@@ -47,8 +47,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 const TopBarSearch = ({ projectsPerPage }) => {
-  const [query, setQuery] = useState("")
   const { setSearchResults } = useSearch()
+  const [query, setQuery] = useState("")
   const history = useHistory()
 
   const handleInputChange = (event) => {
@@ -56,28 +56,29 @@ const TopBarSearch = ({ projectsPerPage }) => {
   }
 
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
+    //TODO: THIS IS CAUSING THE ERROR "localhost/:1 EventSource's response has a MIME type ("text/html") that is not "text/event-stream". Aborting the connection." TO APPEAR IN CHROME CONSOLE
+    if (event.key === "Enter" && query.trim().length) {
       event.preventDefault()
-      if(query){
-        history.push(`/search/${query}/1`)
-        executeSearch(query)
-      }
+      history.push(`/search/${query}/1`)
+      executeSearch(query)
+    }else if (event.key === "Enter" && query.trim().length === 0) {
+      event.preventDefault()
+      history.push(`/project-list/1`)
     }
   }
 
   const executeSearch = async (searchQuery) => {
-    if (searchQuery) {
-      try {
-        const response = await fetch(`/api/v1/search/${searchQuery}/${projectsPerPage}`)
-        if (!response.ok) {
-          const newError = new Error("Error in the fetch!")
-          throw newError
-        }
-        const responseBody = await response.json()
-        setSearchResults(responseBody.projects)
-      } catch (error) {
-        console.log(error)
+    const pageNumber = 1
+    try {
+      const response = await fetch(`/api/v1/search/${searchQuery}/${pageNumber}/${projectsPerPage}`)
+      if (!response.ok) {
+        const newError = new Error("Error in the fetch!")
+        throw newError
       }
+      const responseBody = await response.json()
+      setSearchResults(responseBody.projects)
+    } catch (error) {
+      console.log(error)
     }
   }
 
