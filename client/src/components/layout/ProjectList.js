@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useHistory } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import ProjectTile from "./ProjectTile"
 import { Pagination } from "@mui/material"
 
 const ProjectList = ({ projectsPerPage }) => {
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)
+  const pageNumberURLParam = params.get("page")
+
   const [projects, setProjects] = useState([])
   const [projectCount, setProjectCount] = useState(0)
-  const [currentPage, setCurrentPage] = useState(parseInt(pageNumber || 1))
+  const [currentPage, setCurrentPage] = useState(parseInt(pageNumberURLParam || 1))
 
   const history = useHistory()
-  const { pageNumber } = useParams()
   const totalPages = Math.ceil(projectCount / projectsPerPage)
 
   const getProjectsData = async () => {
     try {
-      const response = await fetch(`/api/v1/projects/page/${currentPage}/${projectsPerPage}`)
+      const response = await fetch(`/api/v1/projects/?page=${currentPage}&limit=${projectsPerPage}`)
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
         throw newError
@@ -28,10 +31,10 @@ const ProjectList = ({ projectsPerPage }) => {
   }
 
   useEffect(() => {
-    if (pageNumber && parseInt(pageNumber) !== currentPage) {
-      setCurrentPage(parseInt(pageNumber))
+    if (pageNumberURLParam && parseInt(pageNumberURLParam) !== currentPage) {
+      setCurrentPage(parseInt(pageNumberURLParam))
     }
-  }, [pageNumber])
+  }, [pageNumberURLParam])
 
   useEffect(() => {
     getProjectsData()
@@ -40,7 +43,7 @@ const ProjectList = ({ projectsPerPage }) => {
 
   const handlePagninationChange = (event, selectedPage) => {
     setCurrentPage(selectedPage)
-    history.push(`/project-list/${selectedPage}`)
+    history.push(`/project-list?page=${selectedPage}`)
   }
 
   const projectsArray = projects.map((project, index) => {

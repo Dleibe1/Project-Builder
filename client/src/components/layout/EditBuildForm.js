@@ -263,7 +263,7 @@ const EditBuildForm = (props) => {
   })
 
   if (shouldRedirect) {
-    return <Redirect push to={"/my-builds-list/1"} />
+    return <Redirect push to={"/my-builds-list?page=1"} />
   }
 
   return (

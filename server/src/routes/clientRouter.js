@@ -10,14 +10,14 @@ const clientRoutes = [
   "/users/new",
   "/projects/:id",
   "/create-new-build",
-  "/my-builds-list/:pageNumber",
+  "/my-builds-list",
   "/:id",
   "/edit-my-build/:id",
   "/fork-project/:id",
   "/project-forks/:id",
   "/github-login",
-  "/project-list/:pageNumber",
-  "/search/:addressBarSearchTerm/:pageNumber",
+  "/project-list",
+  "/search",
   "/how-to-use",
 ]
 const authedClientRoutes = ["/profile"]

@@ -1,41 +1,48 @@
 import React, { useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import { useSearch } from "../contexts/SearchContext"
 import ProjectTile from "./ProjectTile"
 import { Pagination } from "@mui/material"
 
 const SearchList = ({ projectsPerPage }) => {
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)
+  const pageNumberURLParam = params.get("page")
+  const queryURLParam = params.get("q")
+
   const { searchResults, setSearchResults } = useSearch()
   const [projectCount, setProjectCount] = useState(0)
-  const [currentPage, setCurrentPage] = useState(parseInt(pageNumber || 1))
-  const [query, setQuery] = useState("")
+  const [currentPage, setCurrentPage] = useState(parseInt(pageNumberURLParam || 1))
+  const [query, setQuery] = useState(queryURLParam.trim() || "")
 
   const history = useHistory()
-  const { addressBarSearchTerm, pageNumber } = useParams()
   const totalPages = Math.ceil(projectCount / projectsPerPage)
 
   useEffect(() => {
-    setQuery(addressBarSearchTerm)
-    window.scrollTo({ top: 0 })
-  }, [addressBarSearchTerm])
+    const newPage = parseInt(pageNumberURLParam || 1)
+    if (newPage && parseInt(newPage) !== currentPage) {
+      setCurrentPage(newPage)
+      window.scrollTo({ top: 0 })
+    }
+  }, [pageNumberURLParam])
+
+  useEffect(() => {
+    const newQuery = queryURLParam ? queryURLParam.trim() : ""
+    if (newQuery !== query) {
+      setQuery(newQuery)
+      window.scrollTo({ top: 0 })
+    }
+  }, [queryURLParam])
 
   useEffect(() => {
     executeSearch(query)
     window.scrollTo({ top: 0 })
   }, [query, currentPage])
 
-  useEffect(() => {
-    if (pageNumber && parseInt(pageNumber) !== currentPage) {
-      setCurrentPage(parseInt(pageNumber))
-    }
-  }, [pageNumber])
-
-  console.log(projectCount, " ", searchResults)
-
   const executeSearch = async (searchQuery) => {
     try {
       const response = await fetch(
-        `/api/v1/search/${searchQuery}/${currentPage}/${projectsPerPage}`,
+        `/api/v1/search?q=${searchQuery}&page=${currentPage}&limit=${projectsPerPage}`,
       )
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
@@ -51,7 +58,7 @@ const SearchList = ({ projectsPerPage }) => {
 
   const handlePagninationChange = (event, selectedPage) => {
     setCurrentPage(selectedPage)
-    history.push(`/search/${query}/${selectedPage}`)
+    history.push(`/search?q=${query}&page=${selectedPage}`)
   }
 
   const projectsArray = searchResults.map((project, index) => {

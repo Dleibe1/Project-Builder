@@ -8,9 +8,13 @@ const { ValidationError } = objection
 
 const projectsRouter = new express.Router()
 
-projectsRouter.get("/page/:currentPage/:projectsPerPage", async (req, res) => {
-  const currentPage = parseInt(req.params.currentPage) || 1
-  const projectsPerPage = parseInt(req.params.projectsPerPage)
+projectsRouter.get("/", async (req, res) => {
+  const { page = 1, limit = 10 } = req.query
+  const currentPage = parseInt(page)
+  const projectsPerPage = parseInt(limit)
+  if (isNaN(currentPage) || isNaN(projectsPerPage) || currentPage < 1 || projectsPerPage < 1) {
+    return res.status(400).json({ error: "Invalid query parameters" })
+  }
   try {
     const projectCount = await Project.query().whereRaw('id = "parentProjectId"').resultSize()
     const projects = await Project.query()

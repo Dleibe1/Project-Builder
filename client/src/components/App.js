@@ -50,16 +50,16 @@ const App = (props) => {
           <Route exact path={"/how-to-use"}>
             <HowToUse user={currentUser} />
           </Route>
-          <Route exact path={"/project-list/:pageNumber"}>
+          <Route exact path={"/project-list"}>
             <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
           </Route>
-          <Route exact path={"/my-builds-list/:pageNumber"}>
+          <Route exact path={"/my-builds-list"}>
             <MyBuildList projectsPerPage={projectsPerPage} user={currentUser} />
           </Route>
           <Route exact path={"/project-forks/:id"}>
             <ForkList projectsPerPage={projectsPerPage} user={currentUser} />
           </Route>
-          <Route exact path={"/search/:addressBarSearchTerm/:pageNumber"}>
+          <Route exact path={"/search"}>
             <SearchList projectsPerPage={projectsPerPage} user={currentUser} />
           </Route>
           <Route exact path="/projects/:id">

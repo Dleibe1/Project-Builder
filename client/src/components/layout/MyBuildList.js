@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useHistory } from "react-router-dom"
+import { useParams, useLocation, useHistory } from "react-router-dom"
 import { Pagination } from "@mui/material"
 import MyBuildTile from "./MyBuildTile"
 
-const MyBuildList = (props) => {
+const MyBuildList = ({ projectsPerPage }) => {
   const [myBuilds, setMyBuilds] = useState([])
   const [projectCount, setProjectCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(parseInt(pageNumber || 1))
 
   const history = useHistory()
-  const { pageNumber } = useParams()
-  const projectsPerPage = 6
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)
   const totalPages = Math.ceil(projectCount / projectsPerPage)
   const getMyBuilds = async () => {
     try {
@@ -40,7 +40,7 @@ const MyBuildList = (props) => {
 
   const handlePagninationChange = (event, selectedPage) => {
     setCurrentPage(selectedPage)
-    history.push(`/my-builds-list/${selectedPage}`)
+    history.push(`/my-builds-list?page=${selectedPage}`)
   }
 
   const myBuildsArray = myBuilds.map((myBuild) => {

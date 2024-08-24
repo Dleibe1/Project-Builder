@@ -4,10 +4,11 @@ import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 
 const searchRouter = new express.Router()
 
-searchRouter.get("/:searchQuery/:currentPage/:projectsPerPage", async (req, res) => {
-  const searchQuery = req.params.searchQuery.trim()
-  const currentPage = parseInt(req.params.currentPage) || 1
-  const projectsPerPage = parseInt(req.params.projectsPerPage)
+searchRouter.get("/", async (req, res) => {
+  const { q = "", page = 1, limit = 10 } = req.query
+  const searchQuery = q.trim()
+  const currentPage = parseInt(page)
+  const projectsPerPage = parseInt(limit)
   try {
     const projectCount = await Project.query()
       .whereRaw('id = "parentProjectId"')

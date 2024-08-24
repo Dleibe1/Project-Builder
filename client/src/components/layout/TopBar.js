@@ -64,7 +64,7 @@ const TopBar = ({ user, projectsPerPage }) => {
   }
 
   if (shouldRedirect) {
-    location.href = "/project-list/1"
+    location.href = "/project-list?page=1"
   }
 
   const handleGithubLogin = () => {
@@ -102,7 +102,7 @@ const TopBar = ({ user, projectsPerPage }) => {
             </Button>
             <Button
               component={Link}
-              to="/project-list/1"
+              to="/project-list?page=1"
               id="projects-button"
               key={"projects-button"}
               sx={{
@@ -184,7 +184,7 @@ const TopBar = ({ user, projectsPerPage }) => {
                       How to use
                     </Typography>
                   </MenuItem>
-                  <MenuItem component={Link} to="/my-builds-list/1">
+                  <MenuItem component={Link} to="/my-builds-list?page=1">
                     <Typography
                       sx={{
                         color: "black",

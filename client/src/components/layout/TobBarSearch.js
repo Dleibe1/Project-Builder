@@ -59,18 +59,18 @@ const TopBarSearch = ({ projectsPerPage }) => {
     //TODO: THIS IS CAUSING THE ERROR "localhost/:1 EventSource's response has a MIME type ("text/html") that is not "text/event-stream". Aborting the connection." TO APPEAR IN CHROME CONSOLE
     if (event.key === "Enter" && query.trim().length) {
       event.preventDefault()
-      history.push(`/search/${query}/1`)
+      history.push(`/search?q=${query}&page=1`)
       executeSearch(query)
     }else if (event.key === "Enter" && query.trim().length === 0) {
       event.preventDefault()
-      history.push(`/project-list/1`)
+      history.push(`/project-list?page=1`)
     }
   }
 
   const executeSearch = async (searchQuery) => {
     const pageNumber = 1
     try {
-      const response = await fetch(`/api/v1/search/${searchQuery}/${pageNumber}/${projectsPerPage}`)
+      const response = await fetch(`/api/v1/search?q=${searchQuery}&page=${pageNumber}&limit=${projectsPerPage}`)
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
         throw newError
