@@ -89,6 +89,7 @@ const TopBarSearch = ({ projectsPerPage }) => {
       </SearchIconWrapper>
       <StyledInputBase
         placeholder="Search…"
+        className="top-bar-search"
         onKeyDown={handleKeyDown}
         onChange={handleInputChange}
         value={query}
