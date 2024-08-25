@@ -89,11 +89,12 @@ const TopBarSearch = ({ projectsPerPage }) => {
       </SearchIconWrapper>
       <StyledInputBase
         placeholder="Search…"
-        className="top-bar-search"
         onKeyDown={handleKeyDown}
         onChange={handleInputChange}
         value={query}
-        inputProps={{ "aria-label": "search" }}
+        inputProps={{ "aria-label": "search",
+          className: "top-bar-search"
+         }}
       />
     </Search>
   )
