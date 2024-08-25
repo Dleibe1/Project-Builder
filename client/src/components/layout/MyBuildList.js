@@ -41,8 +41,8 @@ const MyBuildList = ({ projectsPerPage }) => {
   }, [currentPage])
 
   const handlePaginationChange = (event, selectedPage) => {
-    setCurrentPage(selectedPage)
     history.push(`/my-builds-list?page=${selectedPage}`)
+    setCurrentPage(selectedPage)
   }
 
   const myBuildsArray = myBuilds.map((myBuild) => {

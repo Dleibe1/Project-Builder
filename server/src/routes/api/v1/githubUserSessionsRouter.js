@@ -2,7 +2,7 @@ import passport from "passport"
 import express from "express"
 const githubUserSessionsRouter = new express.Router()
 
-githubUserSessionsRouter.get("/login", passport.authenticate("oauth2")), (req, res) => {}
+githubUserSessionsRouter.get("/login", passport.authenticate("oauth2"))
 
 githubUserSessionsRouter.get(
   "/handle-callback",
