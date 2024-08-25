@@ -61,7 +61,6 @@ projectsRouter.delete("/:id", async (req, res) => {
         Instruction.query().delete().where("projectId", projectId),
         Project.query().deleteById(projectId),
       ])
-
       return res.status(200).json({})
     } else {
       return res.status(400).json({ errors: "The current user is not the creator of this project" })
