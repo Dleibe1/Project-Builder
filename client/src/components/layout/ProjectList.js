@@ -29,6 +29,8 @@ const ProjectList = ({ projectsPerPage }) => {
     }
   }
 
+  console.log(projects)
+
   useEffect(() => {
     if (pageNumberURLParam && parseInt(pageNumberURLParam) !== currentPage) {
       setCurrentPage(parseInt(pageNumberURLParam))

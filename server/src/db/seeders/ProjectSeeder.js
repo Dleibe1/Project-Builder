@@ -198,7 +198,7 @@ class ProjectSeeder {
 
     const exampleUserProjects = [
       {
-        // id = 19
+        // id = 22
         userId: 4,
         title: "L298n Motor driver Arduino",
         description: descriptions[9],
@@ -282,31 +282,28 @@ class ProjectSeeder {
     ]
     const exampleUserProjectForks = [
       {
-        // id = 19
         userId: 3,
-        title: "My version of How To Do Automatic Song classification",
+        title: "My version of L298n Motor driver Arduino",
         description: descriptions[9],
         appsAndPlatforms: "Arduino IDE and NanoEdge AI Studio",
         code: code[9],
         thumbnailImage:
-          "https://cdn.sparkfun.com/assets/9/1/e/4/8/515b4656ce395f8a38000000.png",
-        parentProjectId: 19
+          "https://i.ebayimg.com/images/g/Jb0AAOSwESNZ7v2s/s-l1200.jpg",
+        parentProjectId: 22
       },
       {
         userId: 3,
-        title: "My version of simplest possible autorange Capacitance meter",
+        title: "Temperature Monitoring with Arduino IoT Cloud using DHT22",
         description: descriptions[10],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IoT Cloud",
         code: code[10],
         thumbnailImage:
-          "https://content.instructables.com/FIO/94AS/IDH7U229/FIO94ASIDH7U229.png",
-        parentProjectId: 20
+          "https://lh6.googleusercontent.com/JsLZemW1wRz4n8uDI3qn3MXR-LbZ5ar9HGE0TiCUcMpM8ZlH91lj4r4RbEEDrJsAOZVX5YDhCFjp6pj5e2EwCMQOyd2nTzgKI5-0yibtaPkRyZmshc3dLSjzpYuUZksV8zlWV8E",
+        parentProjectId: 23
       },
     ]
     await Project.query().insert(exampleUserProjects)
     await Project.query().insert(exampleUserProjectForks)
-
-
   }
 }
 
