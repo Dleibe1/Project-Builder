@@ -8,7 +8,7 @@ const ProjectTile = ({ title, createdBy, thumbnailImage, id }) => {
 
   const checkForForks = async () => {
     try {
-      const response = await fetch(`/api/v1/project-forks/${id}/fork-list`)
+      const response = await fetch(`/api/v1/project-forks/fork-list/${id}`)
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
         throw newError

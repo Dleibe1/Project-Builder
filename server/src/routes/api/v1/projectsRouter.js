@@ -16,16 +16,16 @@ projectsRouter.get("/", async (req, res) => {
     return res.status(400).json({ error: "Invalid query parameters" })
   }
   try {
-    const projectCount = await Project.query().whereRaw('id = "parentProjectId"').resultSize()
+    const projectCount = await Project.query().whereNull("parentProjectId").resultSize()
     const projects = await Project.query()
       .orderBy("id", "acs")
       .limit(projectsPerPage)
-      .whereRaw('id = "parentProjectId"')
+      .whereNull("parentProjectId")
       .offset((currentPage - 1) * projectsPerPage)
     const serializedProjects = await Promise.all(
       projects.map((project) => {
         return ProjectSerializer.getProjectListDetails(project)
-      }),
+      })
     )
     res.status(200).json({ projects: serializedProjects, projectCount })
   } catch (err) {
@@ -53,16 +53,15 @@ projectsRouter.delete("/:id", async (req, res) => {
     const currentProject = await Project.query().findById(projectId)
     if (currentProject.userId === loggedInUser.id) {
       const forksOfThisProject = await Project.query().where("parentProjectId", projectId)
-      await Promise.all(
-        forksOfThisProject.map((fork) =>
-          Project.query()
-            .patch({ parentProjectId: parseInt(fork.id) })
-            .where("id", parseInt(fork.id)),
-        ),
-      )
-      await Part.query().delete().where("projectId", projectId)
-      await Instruction.query().delete().where("projectId", projectId)
-      await Project.query().deleteById(projectId)
+      await Promise.all([
+        ...forksOfThisProject.map((fork) => {
+          return Project.query().patch({ parentProjectId: null }).where("id", parseInt(fork.id))
+        }),
+        Part.query().delete().where("projectId", projectId),
+        Instruction.query().delete().where("projectId", projectId),
+        Project.query().deleteById(projectId),
+      ])
+
       return res.status(200).json({})
     } else {
       return res.status(400).json({ errors: "The current user is not the creator of this project" })

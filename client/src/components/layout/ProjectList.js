@@ -5,9 +5,8 @@ import { Pagination } from "@mui/material"
 
 const ProjectList = ({ projectsPerPage }) => {
   const location = useLocation()
-  const params = new URLSearchParams(location.search)
-  const pageNumberURLParam = params.get("page")
-
+  const searchParams = new URLSearchParams(location.search)
+  const pageNumberURLParam = searchParams.get("page")
   const [projects, setProjects] = useState([])
   const [projectCount, setProjectCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(parseInt(pageNumberURLParam || 1))
@@ -41,13 +40,13 @@ const ProjectList = ({ projectsPerPage }) => {
     window.scrollTo({ top: 0 })
   }, [currentPage])
 
-  const handlePagninationChange = (event, selectedPage) => {
-    setCurrentPage(selectedPage)
+  const handlePaginationChange = (event, selectedPage) => {
     history.push(`/project-list?page=${selectedPage}`)
+    setCurrentPage(selectedPage)
   }
 
   const projectsArray = projects.map((project, index) => {
-    if (project.id === project.parentProjectId) {
+    if (!project.parentProjectId) {
       return (
         <ProjectTile
           key={project.id}
@@ -66,7 +65,7 @@ const ProjectList = ({ projectsPerPage }) => {
       <div className="project-list-pagination-container">
         <Pagination
           page={currentPage}
-          onChange={handlePagninationChange}
+          onChange={handlePaginationChange}
           color={"primary"}
           size={"large"}
           sx={{

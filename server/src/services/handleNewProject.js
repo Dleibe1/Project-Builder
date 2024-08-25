@@ -24,19 +24,25 @@ const handleNewProject = async ({
     thumbnailImage,
   })
   const newProjectId = parseInt(newProject.id)
-  await Project.query().patchAndFetchById(newProjectId, {
-    parentProjectId: newProjectId,
-  })
-  for (const part of parts) {
-    await Part.query().insert({ projectId: newProjectId, partName: part })
-  }
-  for (const instruction of instructions) {
-    await Instruction.query().insert({
-      projectId: newProjectId,
-      imageURL: instruction.imageURL,
-      instructionText: instruction.instructionText,
-    })
-  }
+
+  await Promise.all([
+    ...parts.map((part) => {
+     return Part.query().insert({ projectId: newProjectId, partName: part })
+    }),
+    ...instructions.map((instruction) => {
+      if (instruction.imageURL) {
+       return Instruction.query().insert({
+          projectId: newProjectId,
+          imageURL: instruction.imageURL,
+        })
+      } else if (instruction.instructionText) {
+       return Instruction.query().insert({
+          projectId: newProjectId,
+          instructionText: instruction.instructionText,
+        })
+      }
+    }),
+  ])
 }
 
 export default handleNewProject

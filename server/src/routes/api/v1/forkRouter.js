@@ -8,17 +8,34 @@ const { ValidationError } = objection
 
 const forkRouter = new express.Router()
 
-forkRouter.get("/:id/fork-list", async (req, res) => {
+forkRouter.get("/fork-list/:id", async (req, res) => {
   const { id } = req.params
+  const { page = 1, limit = 10 } = req.query
+  const currentPage = parseInt(page)
+  const projectsPerPage = parseInt(limit)
+  if (
+    isNaN(currentPage) ||
+    isNaN(projectsPerPage) ||
+    isNaN(id) ||
+    currentPage < 1 ||
+    projectsPerPage < 1
+  ) {
+    return res.status(400).json({ error: "Invalid query parameters" })
+  }
   try {
-    const projects = await Project.query().where("parentProjectId", parseInt(id))
-    const serializedProjects = await Promise.all(
-      projects.map((fork) => {
+    const forkedProjectCount = await Project.query()
+      .where("parentProjectId", parseInt(id))
+      .resultSize()
+    const forkedProjects = await Project.query()
+      .orderBy("id", "acs")
+      .limit(projectsPerPage)
+      .where("parentProjectId", parseInt(id))
+    const serializedForks = await Promise.all(
+      forkedProjects.map((fork) => {
         return ProjectSerializer.getProjectListDetails(fork)
-      })
+      }),
     )
-    const serializedForks = serializedProjects.filter((project) => project.id !== project.parentProjectId)
-    res.status(200).json({ forks: serializedForks })
+    res.status(200).json({ forks: serializedForks, forkedProjectCount })
   } catch (error) {
     console.log(error)
     res.status(500).json({ errors: error })

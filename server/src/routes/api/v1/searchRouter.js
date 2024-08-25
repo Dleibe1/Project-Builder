@@ -11,7 +11,7 @@ searchRouter.get("/", async (req, res) => {
   const projectsPerPage = parseInt(limit)
   try {
     const projectCount = await Project.query()
-      .whereRaw('id = "parentProjectId"')
+      .whereNull("parentProjectId")
       .where((builder) => {
         builder
           .where("title", "ilike", `%${searchQuery}%`)
@@ -21,7 +21,7 @@ searchRouter.get("/", async (req, res) => {
     const projects = await Project.query()
       .orderBy("id", "acs")
       .limit(projectsPerPage)
-      .whereRaw('id = "parentProjectId"')
+      .whereNull("parentProjectId")
       .where((builder) => {
         builder
           .where("title", "ilike", `%${searchQuery}%`)
