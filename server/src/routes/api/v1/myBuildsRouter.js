@@ -8,29 +8,36 @@ import cleanUserInput from "../../../services/cleanUserInput.js"
 
 const myBuildsRouter = new express.Router()
 
-myBuildsRouter.get("/page/:currentPage/:projectsPerPage", async (req, res) => {
-  const currentPage = parseInt(req.params.currentPage) || 1
-  const projectsPerPage = parseInt(req.params.projectsPerPage)
-  let user = {}
-  if (req.user) {
-    user = req.user
-  }
-  try {
-    const userBuildCount = await Project.query().where("userId", parseInt(user.id)).resultSize()
-    const userBuildsList = await Project.query()
-    .orderBy("id", "acs")
-    .limit(projectsPerPage)
-    .where("userId", parseInt(user.id))
-    .offset((currentPage - 1) * projectsPerPage)
-    const serializedUserBuilds = await Promise.all(
-      userBuildsList.map((userBuild) => {
-        return ProjectSerializer.getProjectListDetails(userBuild)
-      })
-    )
-    res.status(200).json({ userBuilds: serializedUserBuilds, userBuildCount })
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ errors: error })
+myBuildsRouter.get("/", async (req, res) => {
+  const { page = 1, limit = 10 } = req.query
+  const currentPage = parseInt(page)
+  const projectsPerPage = parseInt(limit)
+  const currentUser = req.user ? req.user : null
+  if (currentUser) {
+    if (isNaN(currentPage) || isNaN(projectsPerPage) || currentPage < 1 || projectsPerPage < 1) {
+      return res.status(400).json({ error: "Invalid query parameters" })
+    }
+    try {
+      const userBuildCount = await Project.query()
+        .where("userId", parseInt(currentUser.id))
+        .resultSize()
+      const userBuildsList = await Project.query()
+        .orderBy("id", "acs")
+        .limit(projectsPerPage)
+        .where("userId", parseInt(currentUser.id))
+        .offset((currentPage - 1) * projectsPerPage)
+      const serializedUserBuilds = await Promise.all(
+        userBuildsList.map((userBuild) => {
+          return ProjectSerializer.getProjectListDetails(userBuild)
+        })
+      )
+      res.status(200).json({ userBuilds: serializedUserBuilds, userBuildCount })
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ errors: error })
+    }
+  } else {
+    return res.status(400).json({ errors: "There is no logged in user." })
   }
 })
 
@@ -52,7 +59,7 @@ myBuildsRouter.patch("/:id", async (req, res) => {
   try {
     const formInput = cleanUserInput(body)
     const currentProject = await Project.query().findOne("id", projectId)
-    if(currentProject.userId === loggedInUser.id){
+    if (currentProject.userId === loggedInUser.id) {
       await handleUpdateProject(formInput, projectId)
     } else {
       return res.status(400).json({ errors: "The current user is not the creator of this project" })

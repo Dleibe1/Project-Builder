@@ -20,8 +20,9 @@ import NewBuildButton from "./NewBuildButton"
 import MyBuildsButton from "./MyBuildsButton"
 import SignInButton from "../authentication/SignInButton"
 import SignUpButton from "../authentication/SignUpButton"
+import TopBarSearch from "./TobBarSearch"
 
-const TopBar = ({ user }) => {
+const TopBar = ({ user, projectsPerPage }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null)
@@ -63,7 +64,7 @@ const TopBar = ({ user }) => {
   }
 
   if (shouldRedirect) {
-    location.href = "/project-list/1"
+    location.href = "/project-list?page=1"
   }
 
   const handleGithubLogin = () => {
@@ -89,7 +90,7 @@ const TopBar = ({ user }) => {
               sx={{
                 my: 2,
                 color: "white",
-                display: { xs: "none", md: "flex" },
+                display: { xs: "none", sm: "none", md: "none", lg: "flex" },
                 marginRight: "1rem",
                 "&:hover": {
                   backgroundColor: "#1665c0",
@@ -101,7 +102,7 @@ const TopBar = ({ user }) => {
             </Button>
             <Button
               component={Link}
-              to="/project-list/1"
+              to="/project-list?page=1"
               id="projects-button"
               key={"projects-button"}
               sx={{
@@ -137,6 +138,7 @@ const TopBar = ({ user }) => {
           </div>
           {user ? (
             <Box id="authenticated-items" sx={{ flexGrow: 0 }}>
+              <TopBarSearch projectsPerPage={projectsPerPage} />
               <MyBuildsButton />
               <NewBuildButton />
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
@@ -182,7 +184,7 @@ const TopBar = ({ user }) => {
                       How to use
                     </Typography>
                   </MenuItem>
-                  <MenuItem component={Link} to="/my-builds-list/1">
+                  <MenuItem component={Link} to="/my-builds-list?page=1">
                     <Typography
                       sx={{
                         color: "black",
@@ -238,6 +240,7 @@ const TopBar = ({ user }) => {
             </Box>
           ) : (
             <Box id="unauthenticated-items" sx={{ flexGrow: 0 }}>
+              <TopBarSearch projectsPerPage={projectsPerPage} />
               <SignUpButton />
               <SignInButton />
               <GithubLogin />

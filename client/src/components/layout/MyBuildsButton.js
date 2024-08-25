@@ -6,7 +6,7 @@ const MyBuildsButton = () => {
   return (
     <Button
       component={Link}
-      to="/my-builds-list/1"
+      to="/my-builds-list?page=1"
       id="new-build-button"
       key={"new-build-button"}
       sx={{

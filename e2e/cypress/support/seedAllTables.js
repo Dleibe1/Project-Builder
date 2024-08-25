@@ -26,7 +26,6 @@ const parentProjects = [
       "https://github.com/dmdhrumilmistry/ArduinoPrograms/blob/main/ArduinoUno/Projects/ControlServoMotorUsingIRremote/ControlServoMotorUsingIRremote.cpp",
     thumbnailImage:
       "https://projects.arduinocontent.cc/cover-images/70dad73c-8d46-4172-8ad9-def5688e6b19.jpg",
-    parentProjectId: 1,
   },
   {
     userId: 1,
@@ -37,7 +36,6 @@ const parentProjects = [
     githubFileURL: "",
     thumbnailImage:
       "https://projects.arduinocontent.cc/cover-images/1f887c02-812e-411d-ad69-7be71e3715f5.jpg",
-    parentProjectId: 2,
   },
 ]
 

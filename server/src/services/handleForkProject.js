@@ -22,22 +22,26 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
   const parts = forkData.parts
   const instructions = forkData.instructions
   const forkedProjectId = parseInt(forkedProject.id)
-  for (const part of parts) {
-    await Part.query().insert({ projectId: forkedProjectId, partName: part.partName })
-  }
-  for (const instruction of instructions) {
-    if (instruction.imageURL) {
-      await Instruction.query().insert({
-        projectId: forkedProjectId,
-        imageURL: instruction.imageURL,
-      })
-    } else if (instruction.instructionText) {
-      await Instruction.query().insert({
-        projectId: forkedProjectId,
-        instructionText: instruction.instructionText,
-      })
-    }
-  }
+  await Promise.all(
+    parts.map((part) => {
+      return Part.query().insert({ projectId: forkedProjectId, partName: part.partName })
+    }),
+  )
+  await Promise.all(
+    instructions.map((instruction) => {
+      if (instruction.imageURL) {
+        return Instruction.query().insert({
+          projectId: forkedProjectId,
+          imageURL: instruction.imageURL,
+        })
+      } else if (instruction.instructionText) {
+        return Instruction.query().insert({
+          projectId: forkedProjectId,
+          instructionText: instruction.instructionText,
+        })
+      }
+    }),
+  )
 }
 
 export default handleForkProject

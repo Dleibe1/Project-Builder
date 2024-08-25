@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useHistory } from "react-router-dom"
+import { useLocation, useHistory } from "react-router-dom"
 import { Pagination } from "@mui/material"
 import MyBuildTile from "./MyBuildTile"
 
-const MyBuildList = (props) => {
+const MyBuildList = ({ projectsPerPage }) => {
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const pageNumberURLParam = searchParams.get("page")
   const [myBuilds, setMyBuilds] = useState([])
   const [projectCount, setProjectCount] = useState(0)
-  const [currentPage, setCurrentPage] = useState(parseInt(pageNumber || 1))
+  const [currentPage, setCurrentPage] = useState(parseInt(pageNumberURLParam || 1))
 
   const history = useHistory()
-  const { pageNumber } = useParams()
-  const projectsPerPage = 6
   const totalPages = Math.ceil(projectCount / projectsPerPage)
+
   const getMyBuilds = async () => {
     try {
-      const response = await fetch(`/api/v1/my-builds/page/${currentPage}/${projectsPerPage}`)
+      const response = await fetch(`/api/v1/my-builds?page=${currentPage}&limit=${projectsPerPage}`)
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
         throw newError
@@ -28,19 +30,19 @@ const MyBuildList = (props) => {
   }
 
   useEffect(() => {
-    if (pageNumber && parseInt(pageNumber) !== currentPage) {
-      setCurrentPage(parseInt(pageNumber))
+    if (pageNumberURLParam && parseInt(pageNumberURLParam) !== currentPage) {
+      setCurrentPage(parseInt(pageNumberURLParam))
     }
-  }, [pageNumber])
+  }, [pageNumberURLParam])
 
   useEffect(() => {
     getMyBuilds()
     window.scrollTo({ top: 0 })
   }, [currentPage])
 
-  const handlePagninationChange = (event, selectedPage) => {
+  const handlePaginationChange = (event, selectedPage) => {
     setCurrentPage(selectedPage)
-    history.push(`/my-builds-list/${selectedPage}`)
+    history.push(`/my-builds-list?page=${selectedPage}`)
   }
 
   const myBuildsArray = myBuilds.map((myBuild) => {
@@ -60,7 +62,7 @@ const MyBuildList = (props) => {
       <div className="project-list-pagination-container">
         <Pagination
           page={currentPage}
-          onChange={handlePagninationChange}
+          onChange={handlePaginationChange}
           color={"primary"}
           size={"large"}
           sx={{

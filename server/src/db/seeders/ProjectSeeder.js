@@ -14,7 +14,6 @@ class ProjectSeeder {
         githubFileURL: "",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/70dad73c-8d46-4172-8ad9-def5688e6b19.jpg",
-        parentProjectId: 1,
       },
       {
         userId: 1,
@@ -25,7 +24,6 @@ class ProjectSeeder {
         githubFileURL: "",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/1f887c02-812e-411d-ad69-7be71e3715f5.jpg",
-        parentProjectId: 2,
       },
       {
         userId: 2,
@@ -36,7 +34,6 @@ class ProjectSeeder {
         githubFileURL: "https://github.com/hibit-dev/plants-care/blob/master/src/station/station.ino",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/916c664e-bd6f-403a-a3f8-234147fc8501.jpg",
-        parentProjectId: 3,
       },
       {
         userId: 2,
@@ -46,7 +43,6 @@ class ProjectSeeder {
         code: code[3],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/f27de0e3-aa87-4c5f-966a-37b14891dadd.jpg",
-        parentProjectId: 4,
       },
       {
         userId: 2,
@@ -56,7 +52,6 @@ class ProjectSeeder {
         code: code[4],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/0633ba80-aeb9-426a-89fc-ab9197b6191f.jpg",
-        parentProjectId: 5,
       },
       {
         userId: 1,
@@ -66,7 +61,6 @@ class ProjectSeeder {
         code: code[5],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/d3d28934-f6b8-4626-9fc2-f06fe058b398.png",
-        parentProjectId: 6,
       },
       {
         userId: 2,
@@ -78,7 +72,6 @@ class ProjectSeeder {
           "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/bd1eaad5-6738-4bbb-bf71-be3028fa1032.jpg",
-        parentProjectId: 7,
       },
       {
         userId: 1,
@@ -90,7 +83,6 @@ class ProjectSeeder {
           "",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/bf79fd77-788d-4d92-bc5a-2a628633939a.jpg",
-        parentProjectId: 8,
       },
       {
         userId: 3,
@@ -100,7 +92,6 @@ class ProjectSeeder {
         code: code[8],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/5454a669-2c00-4c8e-8e56-90d863ab3315.blob",
-        parentProjectId: 9,
       },
     ]
 
@@ -207,7 +198,7 @@ class ProjectSeeder {
 
     const exampleUserProjects = [
       {
-        // id = 19
+        // id = 22
         userId: 4,
         title: "L298n Motor driver Arduino",
         description: descriptions[9],
@@ -215,7 +206,6 @@ class ProjectSeeder {
         code: code[9],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/8b4f6361-dff4-4900-851d-7983e78e338a.blob",
-        parentProjectId: 19
       },
       {
         userId: 4,
@@ -225,7 +215,6 @@ class ProjectSeeder {
         code: code[10],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/91fa89b7-2009-4a9c-b8de-aec71f62ee82.png",
-        parentProjectId: 20
       },
       {
         userId: 4,
@@ -235,7 +224,6 @@ class ProjectSeeder {
         code: code[11],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/4a43b1e1-7bb2-4e8b-8abf-1a805760311b.gif",
-        parentProjectId: 21
       },
       {
         userId: 4,
@@ -245,7 +233,6 @@ class ProjectSeeder {
         code: code[12],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/e4de2c23-7118-4b3f-abf8-50cb8282cf62.jpg",
-        parentProjectId: 22
       },
       {
         userId: 4,
@@ -255,7 +242,6 @@ class ProjectSeeder {
         code: code[13],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/36ab7d7a-100b-4350-8f17-0b0234582c0b.blob",
-        parentProjectId: 23
       },
       {
         userId: 4,
@@ -265,7 +251,6 @@ class ProjectSeeder {
         code: code[14],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/70b80f40-3f40-4b90-84d2-a1a66301d7bc.blob",
-        parentProjectId: 24
       },
       {
         userId: 2,
@@ -275,7 +260,6 @@ class ProjectSeeder {
         code: code[15],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/9cf024c7-0b54-4a19-adbf-15ba0889cb32.png",
-        parentProjectId: 25
       },
       {
         userId: 2,
@@ -285,7 +269,6 @@ class ProjectSeeder {
         code: code[16],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/d06d87dd-8c15-43c1-b987-de6567c72f37.blob",
-        parentProjectId: 26
       },
       {
         userId: 2,
@@ -295,36 +278,32 @@ class ProjectSeeder {
         code: code[17],
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/876135e3-82cc-462f-83b5-e21ebacd87ea.jpg",
-        parentProjectId: 27
       },
     ]
     const exampleUserProjectForks = [
       {
-        // id = 19
         userId: 3,
-        title: "My version of How To Do Automatic Song classification",
+        title: "My version of L298n Motor driver Arduino",
         description: descriptions[9],
         appsAndPlatforms: "Arduino IDE and NanoEdge AI Studio",
         code: code[9],
         thumbnailImage:
-          "https://cdn.sparkfun.com/assets/9/1/e/4/8/515b4656ce395f8a38000000.png",
-        parentProjectId: 19
+          "https://i.ebayimg.com/images/g/Jb0AAOSwESNZ7v2s/s-l1200.jpg",
+        parentProjectId: 22
       },
       {
         userId: 3,
-        title: "My version of simplest possible autorange Capacitance meter",
+        title: "Temperature Monitoring with Arduino IoT Cloud using DHT22",
         description: descriptions[10],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
+        appsAndPlatforms: "Arduino IoT Cloud",
         code: code[10],
         thumbnailImage:
-          "https://content.instructables.com/FIO/94AS/IDH7U229/FIO94ASIDH7U229.png",
-        parentProjectId: 20
+          "https://lh6.googleusercontent.com/JsLZemW1wRz4n8uDI3qn3MXR-LbZ5ar9HGE0TiCUcMpM8ZlH91lj4r4RbEEDrJsAOZVX5YDhCFjp6pj5e2EwCMQOyd2nTzgKI5-0yibtaPkRyZmshc3dLSjzpYuUZksV8zlWV8E",
+        parentProjectId: 23
       },
     ]
     await Project.query().insert(exampleUserProjects)
     await Project.query().insert(exampleUserProjectForks)
-
-
   }
 }
 
