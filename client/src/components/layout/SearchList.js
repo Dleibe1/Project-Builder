@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useLocation } from "react-router-dom"
-import { useSearch } from "../contexts/SearchContext"
 import ProjectTile from "./ProjectTile"
 import { Pagination } from "@mui/material"
 
@@ -10,7 +9,7 @@ const SearchList = ({ projectsPerPage }) => {
   const pageNumberURLParam = searchParams.get("page")
   const queryURLParam = searchParams.get("q")
 
-  const { searchResults, setSearchResults } = useSearch()
+  const [searchResults, setSearchResults] = useState([])
   const [projectCount, setProjectCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(parseInt(pageNumberURLParam || 1))
   const [query, setQuery] = useState(queryURLParam.trim() || "")

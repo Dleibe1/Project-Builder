@@ -21,7 +21,6 @@ import ForkList from "./layout/ForkList"
 import ForkProjectForm from "./layout/ForkProjectForm"
 import GithubLogin from "./authentication/GithubLogin"
 import HowToUse from "./layout/HowToUse"
-import { SearchProvider } from "./contexts/SearchContext"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -41,7 +40,6 @@ const App = (props) => {
 
   return (
     <Router>
-      <SearchProvider>
         <TopBar projectsPerPage={projectsPerPage} user={currentUser} />
         <Switch>
           <Route exact path={"/"}>
@@ -83,7 +81,6 @@ const App = (props) => {
           <Route exact path="/users/new" component={RegistrationForm} />
           <Route exact path="/user-sessions/new" component={SignInForm} />
         </Switch>
-      </SearchProvider>
     </Router>
   )
 }

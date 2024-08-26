@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
-import { useSearch } from "../contexts/SearchContext"
 import { styled, alpha } from "@mui/material/styles"
 import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
@@ -46,8 +45,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }))
 
-const TopBarSearch = ({ projectsPerPage }) => {
-  const { setSearchResults } = useSearch()
+const TopBarSearch = () => {
   const [query, setQuery] = useState("")
   const history = useHistory()
 
@@ -60,25 +58,9 @@ const TopBarSearch = ({ projectsPerPage }) => {
     if (event.key === "Enter" && query.trim().length) {
       event.preventDefault()
       history.push(`/search?q=${query}&page=1`)
-      executeSearch(query)
     }else if (event.key === "Enter" && query.trim().length === 0) {
       event.preventDefault()
       history.push(`/project-list?page=1`)
-    }
-  }
-
-  const executeSearch = async (searchQuery) => {
-    const pageNumber = 1
-    try {
-      const response = await fetch(`/api/v1/search?q=${searchQuery}&page=${pageNumber}&limit=${projectsPerPage}`)
-      if (!response.ok) {
-        const newError = new Error("Error in the fetch!")
-        throw newError
-      }
-      const responseBody = await response.json()
-      setSearchResults(responseBody.projects)
-    } catch (error) {
-      console.log(error)
     }
   }
 
