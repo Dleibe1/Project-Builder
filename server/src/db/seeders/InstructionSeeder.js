@@ -1661,24 +1661,6 @@ https://docs.arduino.cc/arduino-cloud/tutorials/cloud-environmental-data
 and can be done with a MKR WiFi 1010 board, a MKR ENV Shield, and IoT Cloud. 
 `
       },
-      {
-        projectId: 27,
-        imageURL: ""
-      },
-      {
-        projectId: 27,
-        instructionText: ``
-      },
-      {
-        projectId: 27,
-        imageURL: ""
-      },
-      {
-        projectId: 27,
-        instructionText: ``
-      },
-      
-      
     ])
   }
 }
