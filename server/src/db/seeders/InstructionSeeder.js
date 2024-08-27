@@ -3,6 +3,53 @@ import { Instruction } from "../../models/index.js"
 class InstructionSeeder {
   static async seed() {
     await Instruction.query().insert([
+
+      {
+        projectId: 1,
+        instructionText: `This project is made for Arduino beginners who are looking for learning how to interface the RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse width modulation (PWM) signals. 
+
+RGB LED Types and Structure 
+
+RGB LEDs have three LEDs inside them and usually, these three internal LEDs share either a common anode or a common cathode especially in a through-hole package. So basically, we can categorize RGB LEDs as either common anode or common cathode type just like in seven segment displays. 
+`
+      },
+      {
+        projectId: 1,
+        imageURL: `https://projects.arduinocontent.cc/6ce54a92-5d7b-4a79-9bb9-14646cee8d8d.png`
+      },
+      {
+        projectId: 1,
+        instructionText: `Common Anode 
+
+In a common anode RGB LED, the anode of the internal LEDs are all connected to the external anode lead. To control each color, you need to apply a LOW signal or ground to the red, green, and blue leads and connect the anode lead to the positive terminal of the power supply. 
+`
+      },
+      {
+        projectId: 1,
+        imageURL: `https://projects.arduinocontent.cc/50bfbc76-b401-44e6-8806-4c07057a4c63.png`
+      },
+      {
+        projectId: 1,
+        instructionText: `Common Cathode 
+
+In a common cathode RGB LED, the cathode of the internal LEDs are all connected to the external cathode lead. To control each color, you need to apply a HIGH signal or VCC to the red, green, and blue leads and connect the anode lead to the negative terminal of the power supply. 
+`
+      },
+      {
+        projectId: 1,
+        imageURL: `https://projects.arduinocontent.cc/a402677b-ba8b-4441-a052-cda5b140852b.png`
+      },
+      {
+        projectId: 1,
+        instructionText: `Basics of PWM (Pulse Width Modulation) 
+
+Pulse Width Modulation, or PWM, is a technique for getting analog results with digital means. Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board (e.g., 5 V on UNO, 3.3 V on a MKR board) and off (0 Volts) by changing the portion of the time the signal spends on versus the time that the signal spends off. The duration of "on time" is called the pulse width. To get varying analog values, you change, or modulate, that pulse width. If you repeat this on-off pattern fast enough with an LED for example, the result is as if the signal is a steady voltage between 0 and Vcc controlling the brightness of the LED.  In the graphic below, the green lines represent a regular time period. This duration or period is the inverse of the PWM frequency. In other words, with Arduino's PWM frequency at about 500Hz, the green lines would measure 2 milliseconds each. 
+`
+      },
+      {
+        projectId: 1,
+        imageURL: `https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif`
+      },
       {
         projectId: 14,
         instructionText: `The two eyes are painted on two ping-pong balls which are sticked on two servo motors. Two ultrasonic sensors measure the object's position. An Arduino Nano Every board reads the measurements from the ultrasonic sensors and controls the sevo motors accordingly. 
