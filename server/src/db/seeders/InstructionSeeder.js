@@ -1448,7 +1448,7 @@ and can be done with a MKR WiFi 1010 board, a MKR ENV Shield, and IoT Cloud.
     ])
 
     //Forks
-    await Instruction.query().insert(
+    await Instruction.query().insert([
       {
         projectId: 19,
         instructionText: `This project is made for Arduino beginners who are looking for learning how to interface the RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse width modulation (PWM) signals. 
@@ -1498,7 +1498,7 @@ Pulse Width Modulation, or PWM, is a technique for getting analog results with d
       {
         projectId: 19,
         instructionText: `Explanation of the Changes from the Original Version of this Project:
-
+        
 Button Input:
 
 A button is connected to pin 2 of the Arduino, and it is configured with an internal pull-up resistor (INPUT_PULLUP mode). This means that when the button is not pressed, the pin reads HIGH, and when pressed, it reads LOW.
@@ -1510,7 +1510,7 @@ Debouncing:
 A small delay (delay(300)) is added after each button press to debounce the button, preventing multiple triggers from a single press.
 This modification allows the RGB LED to change colors each time the button is pressed, providing interactive control over the LED.`,
       },
-    )
+    ])
   }
 }
 

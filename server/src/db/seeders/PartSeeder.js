@@ -119,6 +119,7 @@ class PartSeeder {
       { partName: "Jumper wires (generic)", projectId: 19 },
       { partName: "Resistor 220 ohm", projectId: 19 },
     ]
+    await Part.query().insert(forks)
   }
 }
 
