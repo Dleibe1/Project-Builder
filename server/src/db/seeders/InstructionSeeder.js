@@ -4,26 +4,26 @@ class InstructionSeeder {
   static async seed() {
     await Instruction.query().insert([
       {
-        projectId: 1,
+        projectId: 14,
         instructionText: `The two eyes are painted on two ping-pong balls which are sticked on two servo motors. Two ultrasonic sensors measure the object's position. An Arduino Nano Every board reads the measurements from the ultrasonic sensors and controls the sevo motors accordingly. 
 
 The servo motors are SG90 micro servos and the ultrasonic sensors are HC-SR04. These are very common and very inexpensive devices. The Arduino board may be of another model than the nano Every, provided that 5V is available to power the servo motors and the ultrasonic sensors. 
 `,
       },
       {
-        projectId: 1,
+        projectId: 14,
         imageURL: `https://projects.arduinocontent.cc/781dcb46-650d-4a7d-9177-5f7e4ee1ee1b.jpg`,
       },
       {
-        projectId: 1,
+        projectId: 14,
         instructionText: `The servo motors and ultrasonic sensors are sticked on a plate according to the arrangement shown on the following plan: `,
       },
       {
-        projectId: 1,
+        projectId: 14,
         imageURL: "https://projects.arduinocontent.cc/e0fd7c1d-3a35-474b-b284-60a1b0a110d3.jpg",
       },
       {
-        projectId: 1,
+        projectId: 14,
         instructionText: `The position of the X ultrasonic sensor can be different, for example to follow larger objects. In this case, the constants A and B must be adjusted in the software to reflect the actual position of the X ultrasonic sensor. These two values must be less than 200 cm.
 
 The connections to be made are as follows: 
@@ -40,7 +40,7 @@ The following diagram shows the connections to be made:
 `,
       },
       {
-        projectId: 1,
+        projectId: 14,
         instructionText: `Software
 
 The software is extremely simple, less than 70 lines. No library is required. 
@@ -1498,7 +1498,7 @@ Pulse Width Modulation, or PWM, is a technique for getting analog results with d
       {
         projectId: 19,
         instructionText: `Explanation of the Changes from the Original Version of this Project:
-        
+
 Button Input:
 
 A button is connected to pin 2 of the Arduino, and it is configured with an internal pull-up resistor (INPUT_PULLUP mode). This means that when the button is not pressed, the pin reads HIGH, and when pressed, it reads LOW.
