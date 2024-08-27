@@ -113,7 +113,7 @@ const ForkProjectForm = (props) => {
         throw error
       }
       const responseBody = await response.json()
-      let fork = responseBody.fork
+      const fork = responseBody.fork
       prepForFrontEnd(fork)
       setForkedProject(fork)
     } catch (error) {

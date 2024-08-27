@@ -2431,7 +2431,70 @@ void onModeChange()  {
 void onTemperatureChange()  {
   // Add your code here to act upon Temperature change
   send();
-}`
+}`,
+
+//Below is a fork of projectId: 1
+`// Interfacing RGB LED with Arduino and Button Control
+// Author: Osama Ahmed (Modified by Luke Alberts)
+
+// Defining variables and GPIO pins on Arduino
+int redPin = 11;
+int greenPin = 10;
+int bluePin = 9;
+int buttonPin = 3; // Button pin
+int buttonState = 0; // Variable to store the state of the button
+int colorIndex = 0; // Variable to cycle through colors
+
+void setup() {
+  // Defining the pins as OUTPUT
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP); // Set button pin as input with internal pull-up resistor
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin); // Read the state of the button
+
+  if (buttonState == LOW) { // Check if the button is pressed (LOW because of pull-up)
+    colorIndex++; // Increment color index
+    if (colorIndex > 5) {
+      colorIndex = 0; // Reset index if it exceeds the number of colors
+    }
+    changeColor(colorIndex); // Change color based on the index
+    delay(300); // Debounce delay to avoid multiple triggers
+  }
+}
+
+void changeColor(int index) {
+  switch (index) {
+    case 0:
+      setColor(255, 0, 0); // Red Color
+      break;
+    case 1:
+      setColor(0, 255, 0); // Green Color
+      break;
+    case 2:
+      setColor(0, 0, 255); // Blue Color
+      break;
+    case 3:
+      setColor(255, 255, 255); // White Color
+      break;
+    case 4:
+      setColor(170, 0, 255); // Purple Color
+      break;
+    case 5:
+      setColor(127, 127, 127); // Light Blue
+      break;
+  }
+}
+
+void setColor(int redValue, int greenValue, int blueValue) {
+  analogWrite(redPin, redValue);
+  analogWrite(greenPin, greenValue);
+  analogWrite(bluePin, blueValue);
+}
+`
 ]
 
 

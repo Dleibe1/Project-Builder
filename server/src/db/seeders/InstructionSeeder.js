@@ -360,8 +360,7 @@ Let's animate those robotic eyes and inject some fun into your Arduino projects!
       },
       {
         projectId: 6,
-        instructionText:
-          `Greetings everyone, and welcome to my Instructables tutorial. Today, I'll guide you through the process of creating an Object Tracking 4-DOF Robotics Arm. 
+        instructionText: `Greetings everyone, and welcome to my Instructables tutorial. Today, I'll guide you through the process of creating an Object Tracking 4-DOF Robotics Arm. 
 Project Overview: 
 
 In this project, the robotic arm will execute actions corresponding to the commands received from the sensors. For example, if the object moves to the left, the robotic arm will respond by moving to the left, and similarly for movements to the right, up, and down. 
@@ -371,19 +370,18 @@ Without further ado, let's dive into the project and get started!
       },
       {
         projectId: 6,
-        instructionText:
-          `Step 1: Assemble the Robotics Arm Kit
+        instructionText: `Step 1: Assemble the Robotics Arm Kit
 https://youtu.be/TMv3JR06yuo
 Watch the attached video for a complete step-by-step assembly of the Robotics Arm Kit. 
 Step 2: Servo Motors & PWM Servo Motor Driver Wiring `,
-      },{
+      },
+      {
         projectId: 6,
         imageURL: "https://projects.arduinocontent.cc/16e51e8c-81e8-4931-be46-69505c3bacd1.jpg",
       },
       {
         projectId: 6,
-        instructionText:
-          `Refer to the attached image and connect all four servo motor wires to the PWM servo motor driver pins. 
+        instructionText: `Refer to the attached image and connect all four servo motor wires to the PWM servo motor driver pins. 
 
 Figure Servo -> PWM servo pin 0
 Right side Servo -> PWM servo pin 1 
@@ -392,14 +390,14 @@ Base Servo -> PWM servo pin 3
 
 Step 3: PWM Servo Motor Driver & Arduino Uno Wiring
 `,
-      },{
+      },
+      {
         projectId: 6,
         imageURL: "https://projects.arduinocontent.cc/00e1a573-4371-49bf-ba42-6884f62999ad.png",
       },
       {
         projectId: 6,
-        instructionText:
-          `Follow the Circuit Diagram: 
+        instructionText: `Follow the Circuit Diagram: 
 PWM Servo Motor Driver  -> Arduino Uno 
 GND   ->    GND 
 SCL   ->    A4 
@@ -408,14 +406,14 @@ VCC   ->    VIN
 
 Step 4: Mounting the Sensors Into the Robotics Arm
 `,
-      },{
+      },
+      {
         projectId: 6,
         imageURL: "https://projects.arduinocontent.cc/fdab1aff-be31-4855-9328-99ec1bb9e356.jpg",
       },
       {
         projectId: 6,
-        instructionText:
-          `Follow the Steps: 
+        instructionText: `Follow the Steps: 
 - Insert the Ultrasonic Sensor into the designated sensor case. 
 - Securely attach the sensor case to the robotics arm as illustrated in the provided image. 
 - Utilize hot glue to ensure proper mounting of the sensor case. 
@@ -432,8 +430,7 @@ Step 5: Ultrasonic Sensor, IR Sensor & Arduino Uno Wiring
       },
       {
         projectId: 6,
-        instructionText:
-          `Follow the Circuit Diagram: 
+        instructionText: `Follow the Circuit Diagram: 
 
 Ultrasonic Sensor -> Arduino Uno 
 GND -> GND ECHO -> A3 TRIG -> A2 VCC -> VIN 
@@ -454,23 +451,20 @@ Step 6: Time to Upload the Sketch
       },
       {
         projectId: 6,
-        instructionText:
-          `- Now connect the USB cable to the Arduino Uno. 
+        instructionText: `- Now connect the USB cable to the Arduino Uno. 
 Next, upload the following code: 
 `,
       },
       {
         projectId: 7,
-        instructionText:
-          `About the Project
+        instructionText: `About the Project
 
 Welcome back, tech enthusiasts! Today, I'm excited to introduce ARPoLan, a project that started as an experiment to explore the potential of combining the Arduino Pro Micro and the W5500 Ethernet module. This powerful device can perform network scanning, ARP spoofing, and even act as a local Rubber Ducky. Let me take you through building and testing this network security tool. 
 `,
-      }, 
+      },
       {
         projectId: 7,
-        instructionText:
-          `Features & Components
+        instructionText: `Features & Components
 
 ARPoLan combines several powerful components to deliver its impressive capabilities: 
  
@@ -482,19 +476,18 @@ ARPoLan combines several powerful components to deliver its impressive capabilit
       },
       {
         projectId: 7,
-        instructionText:
-          `Getting Started
+        instructionText: `Getting Started
 
 I designed the PCB for ARPoLan using Altium Designer, creating a simple yet efficient two-layer layout. Here’s a breakdown of the components used: 
 `,
-      }, {
+      },
+      {
         projectId: 7,
         imageURL: "https://projects.arduinocontent.cc/88d1456c-cb9c-4a24-8b67-44c7d5ea7dc9.jpg",
       },
       {
         projectId: 7,
-        instructionText:
-          `Atmega32u4 Microcontroller: Handles USB communication and processing tasks. 
+        instructionText: `Atmega32u4 Microcontroller: Handles USB communication and processing tasks. 
 
 W5500 Ethernet Module: Provides reliable network connectivity with an integrated hardware TCP/IP stack. 
 
@@ -515,8 +508,7 @@ The communication between the W5500 and the Atmega32u4 is handled via the SPI pr
       },
       {
         projectId: 7,
-        instructionText:
-          `Schematic
+        instructionText: `Schematic
 
 The PCB for ARPoLan was designed using Altium Designer, featuring a two-layer layout optimized for compactness and efficiency. The board integrates all necessary components, ensuring reliable connections between the Atmega32u4 and the W5500. 
 `,
@@ -527,8 +519,7 @@ The PCB for ARPoLan was designed using Altium Designer, featuring a two-layer la
       },
       {
         projectId: 7,
-        instructionText:
-          `Connection Table
+        instructionText: `Connection Table
 Ensure the VCC pin of the W5500 is connected to a 3.3V power supply, as the module operates at 3.3V logic levels. 
 
 The SS (Slave Select) pin can be connected to any digital pin on the Arduino Pro Micro, but it must be defined correctly in the code. 
@@ -544,14 +535,13 @@ This setup will enable SPI communication between the Arduino Pro Micro and the W
       },
       {
         projectId: 7,
-        instructionText:`Conclusion
+        instructionText: `Conclusion
 Creating ARPoLan was a fascinating journey into network security and hardware integration. From designing the PCB to writing and testing the code, this project showcased the potential of combining simple yet powerful components to achieve sophisticated functionalities. Stay tuned for future updates and enhancements, and don’t forget to check out the project details on my GitHub. If you have any ideas or suggestions, I would love to hear them! 
 `,
       },
       {
         projectId: 7,
-        instructionText:
-          `Usage
+        instructionText: `Usage
 First Code: Local Rubber Ducky The first piece of code transforms ARPoLan into a local Rubber Ducky. The Atmega32u4's USB HID capabilities allow it to act like a keyboard or mouse, injecting pre-programmed keystrokes into a connected computer. This was a fun experiment, though I refer to it as the "bad idea" code due to its potential risks. 
  
 Second Code: ARP Spoofing Next, I tested the ARP spoofing code. This script injects malicious ARP packets into the network, leveraging the processing power of the Atmega32u4 and the network capabilities of the W5500. While not overly powerful, it demonstrated the device's potential for network security tasks. 
@@ -563,8 +553,7 @@ Third Code: Network Scanning The final code was for network scanning. By sending
       },
       {
         projectId: 7,
-        instructionText:
-          `Code & PCB
+        instructionText: `Code & PCB
 
 If you're interested in building this project, the code and schematic are available on GitHub. Simply visit the GitHub repository to download the necessary files. If the project gains attention, I’ll open-source the PCB files as well. Feel free to test the code and share your feedback or improvements. 
  
@@ -574,25 +563,22 @@ GitHub repository: github.com/cifertech/arpolan
 
       {
         projectId: 8,
-        instructionText:
-          `Ultrasonic sonar is devices that use sound waves with frequencies higher than the upper audible limit of human hearing (typically above 20 kHz) to measure distances to objects. They work on the principle of sending out a sound wave, and then measuring the time it takes for the sound wave to bounce back after hitting an object. By calculating the time difference between sending and receiving the sound wave, the distance to the object can be determined using the speed of sound in air.
+        instructionText: `Ultrasonic sonar is devices that use sound waves with frequencies higher than the upper audible limit of human hearing (typically above 20 kHz) to measure distances to objects. They work on the principle of sending out a sound wave, and then measuring the time it takes for the sound wave to bounce back after hitting an object. By calculating the time difference between sending and receiving the sound wave, the distance to the object can be determined using the speed of sound in air.
 
 This time I will describe to you a simple way how to make an independent Sonar, where the results are displayed on a TFT color display in the form of a radar image, which is why it is often mistakenly called radar instead of sonar. 
 https://youtu.be/XOZAGRH_6hA`,
       },
       {
         projectId: 8,
-        instructionText:
-          `I got the idea quite by accident from a picture on the internet, and then after a little research I found that project on Github. The original project was made on a 1.8 inch display which is really a very small surface for this purpose. So I reworked the code for a larger 3.2 inch TFT display, where the image is much clearer. `,
-      },{
-        projectId: 8,
-        imageURL:
-          "https://projects.arduinocontent.cc/77c2652f-24f9-4051-b804-ee01d27a19fb.jpg",
+        instructionText: `I got the idea quite by accident from a picture on the internet, and then after a little research I found that project on Github. The original project was made on a 1.8 inch display which is really a very small surface for this purpose. So I reworked the code for a larger 3.2 inch TFT display, where the image is much clearer. `,
       },
       {
         projectId: 8,
-        instructionText:
-          `The device is really simple to make and consists of only a few components 
+        imageURL: "https://projects.arduinocontent.cc/77c2652f-24f9-4051-b804-ee01d27a19fb.jpg",
+      },
+      {
+        projectId: 8,
+        instructionText: `The device is really simple to make and consists of only a few components 
 - Arduino Nano microcontroller board 
 - TFT display with a resolution of 240 x 320 pixels and an ILI9341 driver chip 
 - Ultrasonic sensor type HC-SR04 
@@ -601,56 +587,48 @@ https://youtu.be/XOZAGRH_6hA`,
 
 The servo and ultrasonic sensor are housed in a separate box, which I used from a previous project, and connected to the main box with flat cables. 
 `,
-      },{
-        projectId: 8,
-        imageURL:
-          "https://projects.arduinocontent.cc/551833cf-1265-4704-b8ed-624bc04e00fc.jpg",
       },
       {
         projectId: 8,
-        instructionText:
-          `Now let's see how the device works in real conditions: 
+        imageURL: "https://projects.arduinocontent.cc/551833cf-1265-4704-b8ed-624bc04e00fc.jpg",
+      },
+      {
+        projectId: 8,
+        instructionText: `Now let's see how the device works in real conditions: 
 
 At the beginning, I separated the ultrasonic sensor from the servo in order to calibrate the graphic presentation with the real distance of the object. As you can see, the real distance fully corresponds to the distance shown on the display. 
 `,
       },
       {
         projectId: 8,
-        imageURL:
-          "https://projects.arduinocontent.cc/3332450b-d347-4c5c-871c-e1d3c5db8c73.jpg",
+        imageURL: "https://projects.arduinocontent.cc/3332450b-d347-4c5c-871c-e1d3c5db8c73.jpg",
       },
       {
         projectId: 8,
-        instructionText:
-          `Now we mount the sensor on the servo and place the obstacles to be detected. At power on, the servo is tested first, then the Radar like screen is drawn on the display and scanning begins. `,
+        instructionText: `Now we mount the sensor on the servo and place the obstacles to be detected. At power on, the servo is tested first, then the Radar like screen is drawn on the display and scanning begins. `,
       },
       {
         projectId: 8,
-        imageURL:
-          "https://projects.arduinocontent.cc/58696a6b-fc25-414b-bd8d-8fb2244937a5.jpg",
+        imageURL: "https://projects.arduinocontent.cc/58696a6b-fc25-414b-bd8d-8fb2244937a5.jpg",
       },
       {
         projectId: 8,
-        instructionText:
-          `Obstacles are marked with red dots. In the lower left corner, the scanning area is displayed, and on the right, the distance between the sensor and the obstacle in centimeters. The three green arcs with marked distances serve us for easier visibility and an idea of the real distance. If the nearest obstacle is greater than 1 meter, yellow dots are drawn on the last arc, indicating an out of range condition. Scanning is performed first from 180 to 0 degrees, and then vice versa, from 0 to 180 degrees. `,
-      },{
-        projectId: 8,
-        imageURL:
-          "https://projects.arduinocontent.cc/c08bc3f4-47b9-469f-a32a-07aa775c9549.jpg",
+        instructionText: `Obstacles are marked with red dots. In the lower left corner, the scanning area is displayed, and on the right, the distance between the sensor and the obstacle in centimeters. The three green arcs with marked distances serve us for easier visibility and an idea of the real distance. If the nearest obstacle is greater than 1 meter, yellow dots are drawn on the last arc, indicating an out of range condition. Scanning is performed first from 180 to 0 degrees, and then vice versa, from 0 to 180 degrees. `,
       },
       {
         projectId: 8,
-        instructionText:
-          `For the sake of stability during operation, the device is preferably powered by an external power source, but it also works via USB on the Arduino. All display colors can be easily changed in the code according to the user's preference. 
+        imageURL: "https://projects.arduinocontent.cc/c08bc3f4-47b9-469f-a32a-07aa775c9549.jpg",
+      },
+      {
+        projectId: 8,
+        instructionText: `For the sake of stability during operation, the device is preferably powered by an external power source, but it also works via USB on the Arduino. All display colors can be easily changed in the code according to the user's preference. 
 And finally a short conclusion. Most such devices show the scan result on a PC monitor which requires an additional application and code. This is a very simple, easy to make, visually effective, and self-contained device intended for both beginners and more advanced DIYers. I've used cases from previous projects, but it's desirable to have it all in one case with a slanted front display to visually simulate a real radar system. 
 `,
       },
 
-
       {
         projectId: 9,
-        instructionText:
-          `In this exciting tutorial, we will show you how to build your own security camera using an ESP32-CAM and an AM312 PIR sensor to detect motion. Best of all, photos will be saved directly to an SD card! 
+        instructionText: `In this exciting tutorial, we will show you how to build your own security camera using an ESP32-CAM and an AM312 PIR sensor to detect motion. Best of all, photos will be saved directly to an SD card! 
 
           Throughout this video, we will guide you through the following steps: 
 Link projects and update in https://rogerbit.com/wprb/2023/10/captura-con-esp32/
@@ -678,8 +656,7 @@ usb serial adapter
       },
       {
         projectId: 9,
-        instructionText:
-          `Description 
+        instructionText: `Description 
 FTDI Basic Program Downloader USB to TTL FT232RL 3.3V 5V DTR 
 
 This is a basic breakout board for the FTDI FT232RL USB to serial IC. The pinout of this board matches the FTDI cable to work with official Arduino boards and cloned 5V Arduino boards. It can also be used for general serial applications. The main difference with this board is that it highlights the DTR pin instead of the RTS pin of the FTDI cable. The DTR pin allows an Arduino target to automatically reset when a new Sketch is downloaded. This is a really nice feature and allows you to download a sketch without having to hit the reset button. This board will automatically reset any Arduino board that has the reset pin on a 6-pin connector. 
@@ -720,8 +697,7 @@ Cables Dupont
       },
       {
         projectId: 9,
-        instructionText:
-          `Introduction
+        instructionText: `Introduction
 In this project I will show you how to Decode IR Remote Control Signals' of any Remote using Arduino. 
 
 The remotes which we use in our home are basically made of IR transmissions for example TV remote, DVD remote, Sound System remote etc. But these signals never interfere with each other because every key in the remote control has unique operation code in Hexadecimal format. By decoding these signals we can know what is the unique code of the key. By knowing the codes we can implement several applications where we can control with same remote. 
@@ -747,8 +723,7 @@ Prototype Image's
       },
       {
         projectId: 9,
-        instructionText:
-          `Hookup
+        instructionText: `Hookup
 Follow the Steps:- 
 
 Connect the First pin from the left of TSOP1738 ( OUT pin) with pin 11 of Arduino. 
@@ -772,164 +747,19 @@ Now, see in the serial monitor. You will see a code of the corresponding button 
 Note the codes on a paper or copy them in a document file on PC. 
 `,
       },
-
-
-    ])
-
-    //Forked Project
-    await Instruction.query().insert([
       {
         projectId: 10,
-        imageURL: "https://projects.arduinocontent.cc/5dcac3f5-28bf-4a60-91c0-b71b5d034810.jpg",
-      },
-      {
-        projectId: 10,
-        imageURL: "https://projects.arduinocontent.cc/22cb4e0d-ce36-4b55-a743-42a64ca1b9d0.jpg",
-      },
-      {
-        projectId: 11,
-        imageURL:
-          "https://circuitdigest.com/sites/default/files/circuitdiagram_mic/Arduino-Robot-Circuit-Diagram.png",
-      },
-      {
-        projectId: 12,
-        imageURL: "https://www.hibit.dev/images/posts/2024/watering_bottle_pump_connector.png",
-      },
-      {
-        projectId: 12,
-        imageURL: "https://www.hibit.dev/images/posts/2024/schemas/watering_system.png",
-      },
-      {
-        projectId: 13,
-        imageURL: "https://projects.arduinocontent.cc/4e0bc386-4bd4-467a-8b59-084830978a17.jpg",
-      },
-      {
-        projectId: 13,
-        imageURL: "https://projects.arduinocontent.cc/baa52ff1-ba12-4836-8e73-c7d2ea01f084.jpg",
-      },
-      {
-        projectId: 14,
-        imageURL: "https://projects.arduinocontent.cc/414272c9-2c90-4576-9430-7599672fbcda.jpg",
-      },
-      {
-        projectId: 14,
-        imageURL: "https://projects.arduinocontent.cc/dc1bda48-7902-4555-9369-708247c04e14.jpg",
-      },
-      {
-        projectId: 14,
-        imageURL: "https://projects.arduinocontent.cc/3f6ae98e-f7e9-40d2-8573-c242dc66d89c.jpg",
-      },
-      {
-        projectId: 15,
-        imageURL: "https://projects.arduinocontent.cc/16e51e8c-81e8-4931-be46-69505c3bacd1.jpg",
-      },
-      {
-        projectId: 15,
-        imageURL: "https://projects.arduinocontent.cc/00e1a573-4371-49bf-ba42-6884f62999ad.png",
-      },
-      {
-        projectId: 15,
-        imageURL: "https://projects.arduinocontent.cc/fdab1aff-be31-4855-9328-99ec1bb9e356.jpg",
-      },
-      {
-        projectId: 16,
-        imageURL: "https://projects.arduinocontent.cc/88d1456c-cb9c-4a24-8b67-44c7d5ea7dc9.jpg",
-      },
-      {
-        projectId: 16,
-        imageURL: "https://projects.arduinocontent.cc/519e6eda-d64e-4e1a-a08e-b4eff9fc6ea5.jpg",
-      },
-      {
-        projectId: 16,
-        imageURL: "https://projects.arduinocontent.cc/8547968a-7461-406c-9ee1-b6951c0422b1.jpg",
-      },
-      {
-        projectId: 17,
-        imageURL:
-          "https://camo.githubusercontent.com/1184ca196713be3739b0cf2af4ba3306d623754614c137cf6b8f80abe5583bf7/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f45596d614d367945664c382f302e6a7067",
-      },
-      {
-        projectId: 17,
-        imageURL:
-          "https://camo.githubusercontent.com/e3a79514aa8c1742f853c12d8bb9f8052d36b64919cf6b861e6e0962bf3d4c23/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f62535368362d4c796d66672f302e6a7067",
-      },
-      {
-        projectId: 18,
-        imageURL: "https://projects.arduinocontent.cc/6821f45e-31ee-4176-b790-1b305872bbfb.jpg",
-      },
-      {
-        projectId: 18,
-        imageURL: "https://projects.arduinocontent.cc/688b4430-cf27-4157-ab6e-cd0841517e64.png",
-      },
-
-
-      {
-        projectId: 19,
-        instructionText: `Here, You can learn "How to Control Motors using L298n Motor Driver & Arduino Uno". 
-You can even control Speed & Direction of Motors using this tutorial. 
- 
-Additionally, I am Attaching a Video for your proper guidance. 
-You can see Step by Step Process physically- 
-`,
-      },   {
-        projectId: 19,
-        imageURL: "https://projects.arduinocontent.cc/f50108d1-ac6d-4d5f-acb5-90ca5a093cd4.jpg",
-      },
-      {
-        projectId: 19,
-        instructionText: `Here, I am attached a L298n Motor Driver Pinout Diagram- `,
-      },   {
-        projectId: 19,
-        imageURL: "https://projects.arduinocontent.cc/918a766f-aeb8-4f94-aeda-57f183d1cf86.jpg",
-      },
-      {
-        projectId: 19,
-        instructionText: `Firstly, Connect your Motors with L298n Motor Driver `,
-      },   
-      {
-        projectId: 19,
-        imageURL: "https://projects.arduinocontent.cc/e0fd14ab-6166-4870-ad6e-b73c47009d86.png",
-      },
-      {
-        projectId: 19,
-        instructionText: `Now, Connect your L298n Pins with Arduino Uno Pins `,
-      },
-      {
-        projectId: 19,
-        imageURL: "https://projects.arduinocontent.cc/7d20b0ad-496b-4a90-80ce-669ec9db1fd2.png",
-      },
-      {
-        projectId: 19,
-        instructionText: `Now, Connect following Pins- 
-L298n (+5V) =>Arduino (+5V) 
-L298n (Gnd) =>Arduino (Gnd) 
- 
-Now Connect Battery- 
-L298n (+12V) =>Battery (+ve) 
-L298n (Gnd) =>Battery (-ve) 
- 
-Above Pin System can Run your L298n Motor Driver module as well as Arduino. 
- 
-But, If you want to Control Speed you have to do some simple extra work. 
-`,
-      },
-      {
-        projectId: 19,
-        imageURL: "https://projects.arduinocontent.cc/a73bfc9c-7c69-44fa-9d0f-321e034d6f4e.png",
-      },
-      {
-        projectId: 19,
         instructionText: `Now You can Control your Motor Speed. 
 
 I am attached my Final Look of our Project. 
 `,
-      }, 
+      },
       {
-        projectId: 19,
+        projectId: 10,
         imageURL: "https://projects.arduinocontent.cc/a5dae994-fc70-4093-91ce-37b2ed3f44af.jpg",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `Hello everyone, 
 
         Welcome back to another interesting and easy tutorial after a long time. Sorry guys I was busy in writing very fantastic book regarding Arduino IoT Cloud and I will share the details at the end of this tutorial. so this book writing approx took 1 year and 2 months. 
@@ -941,35 +771,35 @@ I am attached my Final Look of our Project.
         Buckle up, guys, and collect the MKR WiFi 1010 and DHT22 with male-to-male cables. Connect the DHT22 to the MKR WiFi 1010 as per the below diagram. `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/28e6dbad-bfb6-42fb-baad-7b7741ca689f.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `It's time to navigate towards Arduino IoT Cloud https://app.arduino.cc/ if you didn't have account then just create the account. Now our first step is to create Thing it's basically a container in Arduino IoT Cloud which holds the Device, Cloud variables, Code and Meta data of of IoT node. Click on Thing menu which is available in the left side bar as per below image. `,
-      }, 
+      },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://i.imgur.com/7UPq84L.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `Now click on + CREATE THING button which is shown in the center of the page as per below image. `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/16c97c36-b414-4a56-8fd3-e23096496af0.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `After that you will see a new page where you will fin different tabs and sections as just like below diagram. this is the main page where we need to setup all the things like variables, device, network configuration, code and etc. `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/1fd770d1-3d82-40eb-8c59-947fbf6f7097.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `Above picture is marked with red boxes and I assigned the numbers to them and below is full explanation of each step which is marked by number. 
 1- Click on "Untitled" and select rename and assign the name to Thing. 
 
@@ -985,13 +815,13 @@ Adding Variables to Thing
 
 In this subsection, we will add the cloud variables to Thing. Click on the ADD button, which is available in the Cloud Variables section. and you will see the pop-up where you need to provide the name. Select the type of variable from the drop-down menu. Right now, I am not going to talk about other options due to time limitations. Finally, click on the "ADD VARIABLE" button and repeat the same procedure for the humidity variable, but select the relative humidity type from the drop-down menu as per below image. 
 `,
-      }, 
+      },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://i.imgur.com/dicxo6D.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `Adding Device to Thing
 
 Before adding a device you should have "Arduino Create Agent" Installed and running on your machine. Then click on Select Device button under Associated Device section. Popup will appear and list all of the devices if any device is associated in Arduino IoT Cloud else you have option to Add a new Device. 
@@ -1000,11 +830,11 @@ Click on "SET UP NEW DEVICE" and select the "Arduino" option. In the next step, 
 `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/05ec1b63-62b2-4291-865d-b2913f924809.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `Congrats your Device has been added and attached successfully to Thing. 
 
 Configure Network for Thing
@@ -1013,30 +843,30 @@ After adding the device it's time to configure the Wi-Fi Settings. Click on Conf
 `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/0fc35297-5efc-435f-901f-c858d7452bf5.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `After passing the first four steps, our Thing page looks like the below image. In these 4 steps, we assigned the name to the thing, created cloud variables, associated the device with the thing, and, at the end, added the Wi-Fi configuration. `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/5d5f5477-809e-42d9-84cd-701b533534b9.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `Playing with the Code
 
 Now it's time to play with the code. Just click on the Sketch tab and you will see the inline code editor. copy the code from the end of this page under code section and paste into the editor. and click on upload button which is marked by red rectangle in below image. it will take few seconds for code verification and uploading to development board. 
 `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/f1db379f-444e-46a7-94bd-5319e03c68af.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `Congrats now your devices is up and running and successfully sending the values to Arduino IoT Cloud. 
 
 Dashboard creation
@@ -1045,27 +875,27 @@ In the previous tutorial, we just created and set up the thing. Now it's time to
 `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://i.imgur.com/FFgR2Uv.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `Now you will see the Dashboard page just like below image and click on + CREATE DASHBOARD. `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/4cd7e377-a7d3-451b-9ecd-1cbef4297c7c.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `You will see the new tab where you can setup the control widgets to visualize your sensor values. But here I marked down some important icons and buttons with numbers. `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/ebe991fd-7885-43c2-9646-c80cd9a7e734.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `1- Click Untitled to rename and assign a name to your Dashboard 
 
 2-Eye icon is view mode while edit icon allows you to add/update the widgets and their settings. 
@@ -1080,27 +910,27 @@ Now it's time to add some widgets to visualize our Temperature and Humidity valu
 `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/c7be9925-ce5c-45a3-95cd-cf87f62500e8.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `After giving the Name to widget control and linking the cloud variable setup will look like below image. just click on "DONE" and you will be good to go. `,
-      },  
+      },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/280dde65-b44c-40d6-b004-eca0605b5706.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `Repeat the same procedure for Percentage Widget and also try to explore other display values widget controls like Values, Charts and etc widgets. Now the final Dashboard has been ready for your view just like below image which is showing both Temperature and Humidity values. `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         imageURL: "https://projects.arduinocontent.cc/b84f52b0-0581-4630-96d5-7e3c93579335.png",
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `Arduino IoT Cloud for Developers Book
 
 Download the Arduino IoT Cloud app on your Android/Apple via Play/App store and login with your account and see the dashboard on fingertips for latest update and alerts. 
@@ -1109,12 +939,12 @@ Now it's time to talk about my Arduino IoT Cloud for Developers book which is by
 `,
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `https://www.amazon.com/Arduino-Cloud-Developers-simple-complex/dp/1837637172
 https://www.packtpub.com/product/arduino-iot-cloud-for-developers/9781837637171`,
       },
       {
-        projectId: 20,
+        projectId: 11,
         instructionText: `The book has 14 chapters where you will learn about Internet of Things Architecture, Arduino IoT Cloud hierarchy as it's totally different from other cloud platforms such as ThingSpeak, Cayenne myDevices and etc. Next you will learn all the Cloud Platform options and dashboard widgets which is very mandatory to learn all the stuff before getting started with the Arduino IoT Cloud. 
 
 I have created 6 different projects in the book which are using different types of development boards which includes MKR Wi-Fi 1010, ESP8266, XIAO ESP32C3 and etc. You will learn Enviromental Monitoring, Smart Agriculture, Smart Health, IoT for assets tracking using GSM as well as with LoraWan, Smart Home where we integrated smart lamp with Amazon Alexa Dot Echo with in couple of minutes without any code to Arduino IoT Cloud. I Hope you will will enjoy my book just like this tutorial. 
@@ -1123,7 +953,7 @@ For developers and IoT engineers, I have written two special chapters that focus
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `The goal of this tutorial is to show you a way to easily add AI to a project , without any knowledge in this field, using the software NanoEdge AI Studio and its Arduino compatible libraries! 
 
 This tutorial guides you through building a cardboard touchpad that relies on vibration analysis and an Embedded AI algorithm running on an Arduino UNO R4 . The UNO emulates a USB keyboard device. 
@@ -1134,7 +964,7 @@ Based on the detected class, the touchpad triggers either a "PageUp" or "PageDow
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `NanoEdge AI Studio: 
         
 NanoEdge is a free machine learning software developed by STMicroelectronics which allow to easily create and integrate AI libraries to any cortex M microcontroller. Essentially, select a project type, import data locally, run a benchmark to find the best model automatically, test the model if you want and get an AI library. 
@@ -1151,7 +981,7 @@ Extrapolation (Ex): Regression in short. To predict a value instead of a class f
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `Open Arduino IDE and create a new project: 
 
 Copy data logger source code available below. Click on Sketch > Include Library > Adafruit_LiS3DH to install the library. 
@@ -1162,11 +992,11 @@ Open the serial in Arduino IDE to check that the accelerometer data is correctly
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         imageURL: `https://projects.arduinocontent.cc/aa31e081-1080-46bd-9b6e-084e16cdb658.png`,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `Now we will automatically create an AI model able to recognize classes of gestures using vibration patterns. 
 
 Open NanoEdge AI Studio and create a new " N-Class Classification " project. 
@@ -1176,11 +1006,11 @@ Set target to "UNO R4 Wifi" Sensor to 3-axes accelerometer
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         imageURL: `https://projects.arduinocontent.cc/036751c3-350c-47b5-be56-df2478d69917.png`,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `In the Signal step , collect one dataset per class ("Nothing","Swipe","Multitap" or any gesture that you want) using serial port. 
 Collect one kind of gesture per dataset! 
  
@@ -1196,11 +1026,11 @@ If everything is correct, you should see a new dataset added with plots and info
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         imageURL: `https://projects.arduinocontent.cc/73727b45-b30a-4b8a-940c-5be372c72dbf.png`,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `Create the AI model: 
 
 Once you have all the classses that you want to recognize, go to the Benchmark step. 
@@ -1215,11 +1045,11 @@ You should reach around 99% pretty fast if you collected good data. You can stop
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         imageURL: `https://projects.arduinocontent.cc/ae3a036a-2afe-4aee-9708-dbc2d1ae5447.png`,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `In the validation step, you can compare the libraries (model + preprocessing) if you want, look here for more info: 
 https://wiki.st.com/stm32mcu/wiki/AI:NanoEdge_AI_Studio#Validation
  
@@ -1233,11 +1063,11 @@ Test your model with new real time data
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         imageURL: `https://projects.arduinocontent.cc/934034b2-cf67-4208-9e4a-d68e9b15193e.png`,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `The last step in NanoEdge is to get the AI library that we will use in Arduino IDE: 
 Click COMPILE LIBRARY 
 
@@ -1247,11 +1077,11 @@ The library is the .zip file in the folder Arduin , we will use it below:
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         imageURL: `https://projects.arduinocontent.cc/cb1cadc0-a02d-4521-8e0d-d0ff4042e45b.png`,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `Create the demo: 
 Open a new project in Arduino IDE 
 
@@ -1263,11 +1093,11 @@ Add the Nanoedge AI Library (select the previously extracted zip):
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         imageURL: `https://projects.arduinocontent.cc/a36090e3-13ae-4859-9646-2c6c1d15da6a.png`,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `Compile the code. Flash the code. 
 
 It is finished, you can play with it. 
@@ -1276,7 +1106,7 @@ Through this example, this tutorial shows how to add AI to an Arduino project us
 `,
       },
       {
-        projectId: 21,
+        projectId: 12,
         instructionText: `PIR sensors are widely used for motion detection in various applications, from security systems to automatic lighting. In this guide, we will explore PIR sensor, its working principles, and interfacing it with Arduino. 
 
 In this project we will create a motion detection system using a PIR sensor and an Arduino board. The PIR sensor will detect motion within its detection range and trigger an action, such as turning on an LED or activating an alarm. 
@@ -1287,14 +1117,14 @@ Before we dive into the project implementation, let's first understand how a PIR
 
 HCSR04 Ultrasonic Sensor Pinout
 The Pinout is given as below: 
-`
+`,
       },
       {
-        projectId: 22,
-        imageURL: `https://projects.arduinocontent.cc/947a4793-1603-4d45-b9fa-e314f780e848.jpg`
+        projectId: 13,
+        imageURL: `https://projects.arduinocontent.cc/947a4793-1603-4d45-b9fa-e314f780e848.jpg`,
       },
       {
-        projectId: 22,
+        projectId: 13,
         instructionText: `VCC is the power pin of the module. 
 
 GND is the GND pin of the module. 
@@ -1304,20 +1134,20 @@ Out is the data output pin of the module.
 Interfacing PIR Sensor with Arduino
 
 Now that we have a basic understanding of how PIR sensors work, let's proceed to interface the PIR sensor with Arduino. Here's a step-by-step guide: 
-`
+`,
       },
       {
-        projectId: 22,
-        imageURL: `https://projects.arduinocontent.cc/f3b88737-328c-4ace-bd4c-76b95195d2a6.jpg`
+        projectId: 13,
+        imageURL: `https://projects.arduinocontent.cc/f3b88737-328c-4ace-bd4c-76b95195d2a6.jpg`,
       },
       {
-        projectId: 22,
+        projectId: 13,
         instructionText: `Connect the VCC pin of the PIR sensor to the 5V pin on the Arduino board. 
 Connect the GND pin of the PIR sensor to the GND pin on the Arduino board. 
-Connect the OUT pin of the PIR sensor to a digital pin e.g., pin 2 on the Arduino board. `
+Connect the OUT pin of the PIR sensor to a digital pin e.g., pin 2 on the Arduino board. `,
       },
       {
-        projectId: 22,
+        projectId: 13,
         instructionText: `Arduino code for interfacing PIR sensor with Arduino
 Here is the complete line by line code explanation for Interfacing Arduino with PIR Sensor. The complete code can be found at the absolute bottom of the project. 
 This line includes the LiquidCrystal library, which allows interfacing with LCD displays. 
@@ -1357,56 +1187,10 @@ void loop() {
 	   lcd.print("Motion Stops    ");      
 	 }      
 }      
-`
+`,
       },
       {
-        projectId: 23,
-        instructionText: `This project is made for Arduino beginners who are looking for learning how to interface the RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse width modulation (PWM) signals. 
-
-RGB LED Types and Structure 
-
-RGB LEDs have three LEDs inside them and usually, these three internal LEDs share either a common anode or a common cathode especially in a through-hole package. So basically, we can categorize RGB LEDs as either common anode or common cathode type just like in seven segment displays. 
-`
-      },
-      {
-        projectId: 23,
-        imageURL: `https://projects.arduinocontent.cc/6ce54a92-5d7b-4a79-9bb9-14646cee8d8d.png`
-      },
-      {
-        projectId: 23,
-        instructionText: `Common Anode 
-
-In a common anode RGB LED, the anode of the internal LEDs are all connected to the external anode lead. To control each color, you need to apply a LOW signal or ground to the red, green, and blue leads and connect the anode lead to the positive terminal of the power supply. 
-`
-      },
-      {
-        projectId: 23,
-        imageURL: `https://projects.arduinocontent.cc/50bfbc76-b401-44e6-8806-4c07057a4c63.png`
-      },
-      {
-        projectId: 23,
-        instructionText: `Common Cathode 
-
-In a common cathode RGB LED, the cathode of the internal LEDs are all connected to the external cathode lead. To control each color, you need to apply a HIGH signal or VCC to the red, green, and blue leads and connect the anode lead to the negative terminal of the power supply. 
-`
-      },
-      {
-        projectId: 23,
-        imageURL: `https://projects.arduinocontent.cc/a402677b-ba8b-4441-a052-cda5b140852b.png`
-      },
-      {
-        projectId: 23,
-        instructionText: `Basics of PWM (Pulse Width Modulation) 
-
-Pulse Width Modulation, or PWM, is a technique for getting analog results with digital means. Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board (e.g., 5 V on UNO, 3.3 V on a MKR board) and off (0 Volts) by changing the portion of the time the signal spends on versus the time that the signal spends off. The duration of "on time" is called the pulse width. To get varying analog values, you change, or modulate, that pulse width. If you repeat this on-off pattern fast enough with an LED for example, the result is as if the signal is a steady voltage between 0 and Vcc controlling the brightness of the LED.  In the graphic below, the green lines represent a regular time period. This duration or period is the inverse of the PWM frequency. In other words, with Arduino's PWM frequency at about 500Hz, the green lines would measure 2 milliseconds each. 
-`
-      },
-      {
-        projectId: 23,
-        imageURL: `https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif`
-      },
-      {
-        projectId: 24,
+        projectId: 15,
         instructionText: `Ever wanted to know the temperature and humidity around you? If yes, this project will be very helpful for you. If no, it'll be cool anyway. What I mean is, you can use this in anything from home automations to smart watches. 
 
 What is humidity?
@@ -1423,22 +1207,22 @@ The world's lowest recorded relative humidity value occurred at Coober Pedy in t
 Is your sensor different?
 
 My sensor is like this: 
-`
+`,
       },
       {
-        projectId: 24,
-        imageURL: `https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg`
+        projectId: 15,
+        imageURL: `https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg`,
       },
       {
-        projectId: 24,
-        instructionText: `My sensor has 3 pins and it's fitted on a board. If yours has 4 pins, then you need to build this circuit after the sensor: `
+        projectId: 15,
+        instructionText: `My sensor has 3 pins and it's fitted on a board. If yours has 4 pins, then you need to build this circuit after the sensor: `,
       },
       {
-        projectId: 24,
-        imageURL: `https://projects.arduinocontent.cc/8187f1a6-b715-4b52-8c11-1507c3e80da4.png`
+        projectId: 15,
+        imageURL: `https://projects.arduinocontent.cc/8187f1a6-b715-4b52-8c11-1507c3e80da4.png`,
       },
       {
-        projectId: 24,
+        projectId: 15,
         instructionText: `If it is same as mine, then just ignore the resistor. 
 
 Then, build the circuit! 
@@ -1451,22 +1235,22 @@ You need to follow these instructions to make it work:
 2. Upload the code. 
 3. When the code is uploaded, open the Serial Monitor and set the baud rate to 9600. 
 4. You will see the humidity and temperature. 
-`
+`,
       },
       {
-        projectId: 25,
-        instructionText: `The ultrasonic sensor is a device that can measure distances using sound waves . It works in a similar way than bats and dolphins - by emitting sound waves and listening them bound back `
+        projectId: 16,
+        instructionText: `The ultrasonic sensor is a device that can measure distances using sound waves . It works in a similar way than bats and dolphins - by emitting sound waves and listening them bound back `,
       },
       {
-        projectId: 25,
-        imageURL: "https://projects.arduinocontent.cc/cc7047f6-2bbf-43ed-87e9-76b07f4522e8.jpg"
+        projectId: 16,
+        imageURL: "https://projects.arduinocontent.cc/cc7047f6-2bbf-43ed-87e9-76b07f4522e8.jpg",
       },
       {
-        projectId: 25,
-        imageURL: "https://projects.arduinocontent.cc/8ab8bfd4-b0b9-42e1-9309-4f2a734ad439.jpg"
+        projectId: 16,
+        imageURL: "https://projects.arduinocontent.cc/8ab8bfd4-b0b9-42e1-9309-4f2a734ad439.jpg",
       },
       {
-        projectId: 25,
+        projectId: 16,
         instructionText: `The sensor consists of two primary components: a transmitter and a receiver . The transmitter is responsible for emitting a high-frequency sound. In essence, ultrasonic refers to frequencies beyond the range of the human hearing - so something higher than 20kHz. 
 
 When the sound wave hits an object, it bounces back like echo. This returning wave is detected by the receiver. The sensor will use the micro-controller (Arduino) internal clock to find out how much it took for the sound to bounce back. This small clock turns on when a high-frequency wave is emitted and turns off when its echo is detected. 
@@ -1483,22 +1267,22 @@ Distance = Velocity * Time
 But if we multiply this speed with the timing we found, we'll discover a value that's twice the real distance. That's happens because the sound hit the object and came back, in other words, it traveled the same path twice. Then to find the real distance, multiply the speed of sound with the timing and divide the result by two. 
 
 Distance = (Velocity * Time) / 2 
-`
+`,
       },
       {
-        projectId: 25,
-        imageURL: "https://projects.arduinocontent.cc/328c3323-cf29-434e-baf4-4c5b60eb5216.png"
+        projectId: 16,
+        imageURL: "https://projects.arduinocontent.cc/328c3323-cf29-434e-baf4-4c5b60eb5216.png",
       },
       {
-        projectId: 25,
-        imageURL: "https://projects.arduinocontent.cc/328c3323-cf29-434e-baf4-4c5b60eb5216.png"
+        projectId: 16,
+        imageURL: "https://projects.arduinocontent.cc/328c3323-cf29-434e-baf4-4c5b60eb5216.png",
       },
       {
-        projectId: 25,
-        imageURL: "https://projects.arduinocontent.cc/50ba2ab9-a2a5-4649-b4d1-553464059068.png"
+        projectId: 16,
+        imageURL: "https://projects.arduinocontent.cc/50ba2ab9-a2a5-4649-b4d1-553464059068.png",
       },
       {
-        projectId: 25,
+        projectId: 16,
         instructionText: `In this article, I will show you how to build an alarm system using Arduino and the ultrasonic sensor. If you don't have all components or would like to test before assembling anything, I created a simulation of this alarm system on Tinkercad . You can run it directly on your browser by clicking $ here $ . 
 
 Moving on, for this project, you'll need: an Arduino board, a breadboard, a bunch of jumper wires, a buzzer,and an ultrasonic sensor. 
@@ -1506,48 +1290,48 @@ Moving on, for this project, you'll need: an Arduino board, a breadboard, a bunc
 Assembly
 
 Firstly, attach the ultrasonic sensor and the buzzer on the breadboard. Then connect the VCC and GND pins on Arduino 5V and ground ports. 
-`
+`,
       },
       {
-        projectId: 25,
-        imageURL: "https://projects.arduinocontent.cc/5d9e9e7a-35dc-47be-91c5-7f2503be7949.jpg"
+        projectId: 16,
+        imageURL: "https://projects.arduinocontent.cc/5d9e9e7a-35dc-47be-91c5-7f2503be7949.jpg",
       },
       {
-        projectId: 25,
-        instructionText: `After that connect the trigger pin to port 9, the echo pin to port 10, and the buzzer to port 8. Also attach the buzzer GND to Arduino GND. `
+        projectId: 16,
+        instructionText: `After that connect the trigger pin to port 9, the echo pin to port 10, and the buzzer to port 8. Also attach the buzzer GND to Arduino GND. `,
       },
       {
-        projectId: 25,
-        imageURL: "https://projects.arduinocontent.cc/5d823b9b-7ca8-453f-846a-65d58515efce.jpg"
+        projectId: 16,
+        imageURL: "https://projects.arduinocontent.cc/5d823b9b-7ca8-453f-846a-65d58515efce.jpg",
       },
       {
-        projectId: 25,
+        projectId: 16,
         instructionText: `At the end, upload the alarm-system-arduino.ino file that I provided on this article, and now our alarm system is finished. 
         
 Code explanation
 
 At first, we defined the constants and variables we'll need. Then, at the setup function, we configured some important aspects of the code - like defining the echo pin as INPUT and the trigger and buzzer pins as OUTPUT. We also started the serial communication - and it'll be important to visualize the distances being measured. 
-`
+`,
       },
       {
-        projectId: 25,
-        imageURL: "https://projects.arduinocontent.cc/96e0a1f3-94ba-4045-a270-a0fb390afa0d.png"
+        projectId: 16,
+        imageURL: "https://projects.arduinocontent.cc/96e0a1f3-94ba-4045-a270-a0fb390afa0d.png",
       },
       {
-        projectId: 25,
+        projectId: 16,
         instructionText: `At the end, there's the loop function. It starts by turning off the emitter and then activating it for 10 milliseconds before turning it off again. This piece of code will generate the wave sound that will be bounced back by the near objects. 
 
 At line 28 we find how much time the sensor took to detect the echo. This information is crucial for calculating the distance at line 29. In this case, we found the distance in centimeters. After that, from lines 30 to 35 we print the distance. 
 
 The last part of the code is an if-statement that turns on the buzzer when the object is at 50 centimeters or closer from the sensor. In case this statement is false, the buzzer turns down. 
-`
+`,
       },
       {
-        projectId: 26,
-        instructionText: `This project is for a school code quest. I have seen many projects with soil moisture sensors, but all of them included expensive and complicated materials such as LCD screens or automatic watering systems. I took it as a challenge to create an incredibly cheap and simple Soil Moisture Sensor. The project is designed for people that might not know when to water their plants or water them too much or too little. The Soil Moisture Sensor distinguishes how wet the soil is, and identifies when the soil should be watered for you. `
+        projectId: 17,
+        instructionText: `This project is for a school code quest. I have seen many projects with soil moisture sensors, but all of them included expensive and complicated materials such as LCD screens or automatic watering systems. I took it as a challenge to create an incredibly cheap and simple Soil Moisture Sensor. The project is designed for people that might not know when to water their plants or water them too much or too little. The Soil Moisture Sensor distinguishes how wet the soil is, and identifies when the soil should be watered for you. `,
       },
       {
-        projectId: 26,
+        projectId: 17,
         instructionText: `This design only includes a soil moisture sensor, a couple of LEDs and a buzzer. The LEDs constantly show the moisture level (Red - 0-30%, Yellow - 30-60% and green 60%+ switch on at those levels of moisture), and when the moisture level falls below 10%, the buzzer starts beeping. I designed this for a Port Jackson Ficus Bonsai, and have tested this extensively. The percentages I'm using works perfectly for me but might change depending on your plant. If you feel like the red light switches on way too late, when the soil is already too dry, you can change the Red percentage to 0-50% and Yellow to 50-80%, because that seems to also be working well. 
 
 How it works: 
@@ -1558,52 +1342,52 @@ It works, when electrical currents are sent through the legs of the moisture sen
 The Soil Moisture Sensor needs to know the maximum moisture that the soil can reach, so we can calculate the percentages. This is called calibration. The sensor calibrates right when the circuit is switched on, in the Setup() function. Therefore, it should already be in freshly watered soil, when it is switched on. 
 
 Here are some photos of the circuit without the casing: 
-`
+`,
       },
       {
-        projectId: 26,
-        imageURL: "https://projects.arduinocontent.cc/bb269a1e-9020-4253-8e6d-a38f7fd4298d.JPG"
+        projectId: 17,
+        imageURL: "https://projects.arduinocontent.cc/bb269a1e-9020-4253-8e6d-a38f7fd4298d.JPG",
       },
       {
-        projectId: 26,
-        imageURL: "https://projects.arduinocontent.cc/353ed111-13e9-476c-9417-12ed55022db5.JPG"
+        projectId: 17,
+        imageURL: "https://projects.arduinocontent.cc/353ed111-13e9-476c-9417-12ed55022db5.JPG",
       },
       {
-        projectId: 26,
-        imageURL: "https://projects.arduinocontent.cc/82d28236-fed8-454e-af83-fc25fc94a1c5.JPG"
+        projectId: 17,
+        imageURL: "https://projects.arduinocontent.cc/82d28236-fed8-454e-af83-fc25fc94a1c5.JPG",
       },
       {
-        projectId: 26,
-        instructionText: `The soil moisture sensor I used has a screwable pin terminal, so no soldering is required. The most popular one sensor is the SparkFun moisture sensor and requires soldering. So I got one, that doesn't need soldering and can just have Male to Male wires screwed in, here . `
+        projectId: 17,
+        instructionText: `The soil moisture sensor I used has a screwable pin terminal, so no soldering is required. The most popular one sensor is the SparkFun moisture sensor and requires soldering. So I got one, that doesn't need soldering and can just have Male to Male wires screwed in, here . `,
       },
       {
-        projectId: 26,
+        projectId: 17,
         instructionText: `Casing: 
 
 The casing is a simple box, with the LEDs coming out of the top, and the buzzer on the side. The Soil Moisture Sensor comes out of the side with wires and is stuck into the soil, so it's relatively far from all the water-sensitive components. 
-`
+`,
       },
       {
-        projectId: 27,
+        projectId: 18,
         instructionText: `I needed to turn on and off some AC units located in a remote house, so that I can pre-cool (or pre-heat) the rooms in advance before I go. 
 
 Such units are very common appliances by Daikin, which provides WiFi capability on newer models but that's not something available on mine. The solution was easy: I just had to simulate an infrared remote controller with Arduino, place it close to the AC unit and control it remotely. 
-`
+`,
       },
       {
-        projectId: 27,
-        instructionText: `For this, I chose the ATOM Lite by M5Stack . It is very compact, comes with its little enclosure, and includes an IR emitter as well as a physical button  . The only drawback is that the emitter is not very powerful and the hole in the enclosure is very little, so it can't be placed much far away from the unit. In the end, I just used some bi-adhesive tape and a USB cable: `
+        projectId: 18,
+        instructionText: `For this, I chose the ATOM Lite by M5Stack . It is very compact, comes with its little enclosure, and includes an IR emitter as well as a physical button  . The only drawback is that the emitter is not very powerful and the hole in the enclosure is very little, so it can't be placed much far away from the unit. In the end, I just used some bi-adhesive tape and a USB cable: `,
       },
       {
-        projectId: 27,
-        imageURL: "https://projects.arduinocontent.cc/87de5418-a5e8-43f6-9b42-0e000329fd22.jpg"
+        projectId: 18,
+        imageURL: "https://projects.arduinocontent.cc/87de5418-a5e8-43f6-9b42-0e000329fd22.jpg",
       },
       {
-        projectId: 27,
-        instructionText: `As an alternative to using this M5Stack board, you can use any Arduino board (such as a Nano or a MKR) and connect an infrared LED to its pins. You'll find hundreds of tutorials out there. `
+        projectId: 18,
+        instructionText: `As an alternative to using this M5Stack board, you can use any Arduino board (such as a Nano or a MKR) and connect an infrared LED to its pins. You'll find hundreds of tutorials out there. `,
       },
       {
-        projectId: 27,
+        projectId: 18,
         instructionText: `Software
 On the software side, I used the fantastic $ arduino-heatpumpir $ library to generate the infrared signals. There are many libraries for that purpose, but this one worked great and it supports a large number of AC manufacturers with the same code instructions. 
 
@@ -1616,10 +1400,10 @@ So, if you have a Daikin AC like mine you can use my code below without changes.
 
 That's it! If you're lucky enough, you won't need to change other things. 
 
-The code I wrote supports heat/cool/dry modes as well as temperature configuration. It doesn't let you configure fan speed or other parameters, but it's very simple to tweak to expose more parameters. In addition, it detects the pressure of the physical button on the board so that you can use it to test easily if the IR signals are read by the AC unit. `
+The code I wrote supports heat/cool/dry modes as well as temperature configuration. It doesn't let you configure fan speed or other parameters, but it's very simple to tweak to expose more parameters. In addition, it detects the pressure of the physical button on the board so that you can use it to test easily if the IR signals are read by the AC unit. `,
       },
       {
-        projectId: 27,
+        projectId: 18,
         instructionText: `Remote control
 
 
@@ -1628,10 +1412,10 @@ Last but not least, I used the Arduino IoT Cloud to build a simple graphic inter
 1. Open Arduino IoT Cloud and create a free account if you don't have one. 
 
 2. Create a device and select "M5Stack-ATOM" as the model. Make sure you save the secret key returned at the end of the device creation procedure. The interface is pretty straightforward, but you might want to follow the more detailed steps explained in the official documentation. 
-https://docs.arduino.cc/arduino-cloud/getting-started/esp-32-cloud`
+https://docs.arduino.cc/arduino-cloud/getting-started/esp-32-cloud`,
       },
       {
-        projectId: 27,
+        projectId: 18,
         instructionText: `3. Create a thing and configure WiFi credentials for it. 
 
 4. Configure two variables in the thing: 
@@ -1639,14 +1423,14 @@ a string variable called mode an integer variable called temperature
 
 5. Copy the sketch code in the "Sketch" tab and upload it to the board. 
 
-6. Create a dashboard like this: `
+6. Create a dashboard like this: `,
       },
       {
-        projectId: 27,
-        imageURL: "https://projects.arduinocontent.cc/5d147029-cc54-4c89-8060-d6c4b3964cb4.png"
+        projectId: 18,
+        imageURL: "https://projects.arduinocontent.cc/5d147029-cc54-4c89-8060-d6c4b3964cb4.png",
       },
       {
-        projectId: 27,
+        projectId: 18,
         instructionText: `That's it. Enjoy! ❄️ 
 Over-the-air updates
 
@@ -1659,9 +1443,74 @@ When controlling remote things, it is always a good idea to put some sensors to 
 So I recommend adding a simple temperature/humidity sensor in the room to see if your AC unit is doing what expected. There are many solutions; a very simple one is described in this tutorial
 https://docs.arduino.cc/arduino-cloud/tutorials/cloud-environmental-data 
 and can be done with a MKR WiFi 1010 board, a MKR ENV Shield, and IoT Cloud. 
-`
+`,
       },
     ])
+
+    //Forks
+    await Instruction.query().insert(
+      {
+        projectId: 19,
+        instructionText: `This project is made for Arduino beginners who are looking for learning how to interface the RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse width modulation (PWM) signals. 
+
+RGB LED Types and Structure 
+
+RGB LEDs have three LEDs inside them and usually, these three internal LEDs share either a common anode or a common cathode especially in a through-hole package. So basically, we can categorize RGB LEDs as either common anode or common cathode type just like in seven segment displays. 
+`,
+      },
+      {
+        projectId: 19,
+        imageURL: `https://projects.arduinocontent.cc/6ce54a92-5d7b-4a79-9bb9-14646cee8d8d.png`,
+      },
+      {
+        projectId: 19,
+        instructionText: `Common Anode 
+
+In a common anode RGB LED, the anode of the internal LEDs are all connected to the external anode lead. To control each color, you need to apply a LOW signal or ground to the red, green, and blue leads and connect the anode lead to the positive terminal of the power supply. 
+`,
+      },
+      {
+        projectId: 19,
+        imageURL: `https://projects.arduinocontent.cc/50bfbc76-b401-44e6-8806-4c07057a4c63.png`,
+      },
+      {
+        projectId: 19,
+        instructionText: `Common Cathode 
+
+In a common cathode RGB LED, the cathode of the internal LEDs are all connected to the external cathode lead. To control each color, you need to apply a HIGH signal or VCC to the red, green, and blue leads and connect the anode lead to the negative terminal of the power supply. 
+`,
+      },
+      {
+        projectId: 19,
+        imageURL: `https://projects.arduinocontent.cc/a402677b-ba8b-4441-a052-cda5b140852b.png`,
+      },
+      {
+        projectId: 19,
+        instructionText: `Basics of PWM (Pulse Width Modulation) 
+
+Pulse Width Modulation, or PWM, is a technique for getting analog results with digital means. Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board (e.g., 5 V on UNO, 3.3 V on a MKR board) and off (0 Volts) by changing the portion of the time the signal spends on versus the time that the signal spends off. The duration of "on time" is called the pulse width. To get varying analog values, you change, or modulate, that pulse width. If you repeat this on-off pattern fast enough with an LED for example, the result is as if the signal is a steady voltage between 0 and Vcc controlling the brightness of the LED.  In the graphic below, the green lines represent a regular time period. This duration or period is the inverse of the PWM frequency. In other words, with Arduino's PWM frequency at about 500Hz, the green lines would measure 2 milliseconds each. 
+`,
+      },
+      {
+        projectId: 19,
+        imageURL: `https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif`,
+      },
+      {
+        projectId: 19,
+        instructionText: `Explanation of the Changes from the Original Version of this Project:
+
+Button Input:
+
+A button is connected to pin 2 of the Arduino, and it is configured with an internal pull-up resistor (INPUT_PULLUP mode). This means that when the button is not pressed, the pin reads HIGH, and when pressed, it reads LOW.
+Color Change Logic:
+
+Each time the button is pressed, the colorIndex variable is incremented, cycling through six different colors. After the last color, the index resets to zero.
+Debouncing:
+
+A small delay (delay(300)) is added after each button press to debounce the button, preventing multiple triggers from a single press.
+This modification allows the RGB LED to change colors each time the button is pressed, providing interactive control over the LED.`,
+      },
+    )
   }
 }
 
