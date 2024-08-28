@@ -11,7 +11,7 @@ const clientRoutes = [
   "/projects/:id",
   "/create-new-build",
   "/my-builds-list",
-  "/:id",
+  "/my-builds/:id",
   "/edit-my-build/:id",
   "/fork-project/:id",
   "/project-forks/:id",

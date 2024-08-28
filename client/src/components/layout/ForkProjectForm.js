@@ -36,6 +36,7 @@ const ForkProjectForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+
   const isInitialMount = useRef(true)
 
   useEffect(() => {
@@ -113,7 +114,7 @@ const ForkProjectForm = (props) => {
         throw error
       }
       const responseBody = await response.json()
-      let fork = responseBody.fork
+      const fork = responseBody.fork
       prepForFrontEnd(fork)
       setForkedProject(fork)
     } catch (error) {
@@ -157,8 +158,24 @@ const ForkProjectForm = (props) => {
     uploadThumbnailImage()
   }
 
-  const handleInstructionTextInput = (event) => {
-    setInstructionText(event.currentTarget.value)
+  const handleInputChange = (event) => {
+    setForkedProject({ ...forkedProject, [event.currentTarget.name]: event.currentTarget.value })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    postForkedProject({ ...forkedProject, githubFileURL: forkedProject.githubFileURL.trim() })
+  }
+
+  const handlePartInput = (event) => {
+    setPart(event.currentTarget.value)
+  }
+
+  const handlePartSubmit = () => {
+    if (part.length) {
+      setForkedProject({ ...forkedProject, parts: [...forkedProject.parts, { partName: part }] })
+    }
+    setPart("")
   }
 
   const handleInstructionTextSubmit = () => {
@@ -171,29 +188,13 @@ const ForkProjectForm = (props) => {
     setInstructionText("")
   }
 
+  const handleInstructionTextInput = (event) => {
+    setInstructionText(event.currentTarget.value)
+  }
+
   const handleInstructionDelete = (index) => {
     const instructionList = forkedProject.instructions.filter((instruction, i) => i !== index)
     setForkedProject({ ...forkedProject, instructions: instructionList })
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    postForkedProject({ ...forkedProject, githubFileURL: forkedProject.githubFileURL.trim() })
-  }
-
-  const handleInputChange = (event) => {
-    setForkedProject({ ...forkedProject, [event.currentTarget.name]: event.currentTarget.value })
-  }
-
-  const handlePartInput = (event) => {
-    setPart(event.currentTarget.value)
-  }
-
-  const handlePartSubmit = () => {
-    if (part.length) {
-      setForkedProject({ ...forkedProject, parts: [...forkedProject.parts, { partName: part }] })
-    }
-    setPart("")
   }
 
   const handlePartDelete = (index) => {

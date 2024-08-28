@@ -5,15 +5,14 @@ import descriptions from "../ProjectSeederData/descriptions.js"
 class ProjectSeeder {
   static async seed() {
     const parentProjects1 = [
-      {
+       {
         userId: 1,
-        title: "Big Brother is watching you",
-        description: descriptions[0],
+        title: "Interfacing RGB Led with Arduino",
+        description: descriptions[13],
         appsAndPlatforms: "Arduino IDE",
-        code: code[0],
-        githubFileURL: "",
+        code: code[13],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/70dad73c-8d46-4172-8ad9-def5688e6b19.jpg",
+          "https://projects.arduinocontent.cc/cover-images/36ab7d7a-100b-4350-8f17-0b0234582c0b.blob",
       },
       {
         userId: 1,
@@ -94,111 +93,11 @@ class ProjectSeeder {
           "https://projects.arduinocontent.cc/cover-images/5454a669-2c00-4c8e-8e56-90d863ab3315.blob",
       },
     ]
-
-    const forks1 = [
-      {
-        //id = 10
-        userId: 2,
-        title: "My version of Big Brother is watching you",
-        description: descriptions[0],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
-        code: code[0],
-        githubFileURL:
-          "https://github.com/dmdhrumilmistry/ArduinoPrograms/blob/main/ArduinoUno/Projects/ControlServoMotorUsingIRremote/ControlServoMotorUsingIRremote.cpp",
-        thumbnailImage:
-          "https://upload.wikimedia.org/wikipedia/en/c/ca/Big_Brother_US_2020_Logo.png",
-        parentProjectId: 1,
-      },
-      {
-        userId: 2,
-        title: "SmartPhone Controlled Arduino Based Bluetooth Car Remix!",
-        description: descriptions[1],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
-        code: code[1],
-        githubFileURL: "",
-        thumbnailImage:
-          "https://assets.newatlas.com/dims4/default/692e5c9/2147483647/strip/true/crop/3360x2240+0+0/resize/1200x800!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Fa8%2Fea%2F4bafa7a94a7cbc817052c3a82274%2Findi-09.jpg",
-        parentProjectId: 2,
-      },
-      {
-        userId: 1,
-        title: "Automated plants watering system",
-        description: descriptions[2],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
-        code: code[2],
-        githubFileURL: "",
-        thumbnailImage: "https://m.media-amazon.com/images/I/71HHUsbSsrL.jpg",
-        parentProjectId: 3,
-      },
-      {
-        userId: 1,
-        title: "Arduino FFT Audio Spectrum analyzer on 8x32 color matrix",
-        description: descriptions[3],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
-        code: code[3],
-        thumbnailImage: "https://www.siraudiotools.com/pics/spectrumAnalyzer_slide0.jpg",
-        parentProjectId: 4,
-      },
-      {
-        userId: 3,
-        title: "New Version of OLED Eyes Animation for Robotics Projects",
-        description: descriptions[4],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
-        code: code[4],
-        thumbnailImage: "https://i.ytimg.com/vi/n3Fj2zCOv98/sddefault.jpg",
-        parentProjectId: 5,
-      },
-      {
-        userId: 2,
-        title: "Modified Object Tracking 4-DOF Robotics Arm With Arduino",
-        description: descriptions[5],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
-        code: code[5],
-        thumbnailImage:
-          "https://wp.technologyreview.com/wp-content/uploads/2019/06/eva-main-imageedited-10.jpg",
-        parentProjectId: 6,
-      },
-      {
-        userId: 1,
-        title: "ARPoLAN: Network Monitoring and Security Tool",
-        description: descriptions[6],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
-        code: code[6],
-        githubFileURL:
-          "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
-        thumbnailImage: "https://hackaday.com/wp-content/uploads/2018/09/ducky_feat.jpg",
-        parentProjectId: 7,
-      },
-      {
-        userId: 2,
-        title: "Arduino UNO modified game system",
-        description: descriptions[7],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
-        code: code[7],
-        githubFileURL:
-          "https://github.com/Smashcat/UNO_Manic_Miner/blob/main/games/ManicMiner/ManicMiner.ino",
-        thumbnailImage:
-          "https://cdn.mobygames.com/screenshots/1971819-basketball-atari-2600-the-game-in-black-and-white-mode.png",
-        parentProjectId: 8,
-      },
-      {
-        // id = 18
-        userId: 2,
-        title: "To Boil Or Not To Boil? That Is The Question!",
-        description: descriptions[8],
-        appsAndPlatforms: "Arduino IDE or PlatformIO",
-        code: code[8],
-        thumbnailImage:
-          "https://www.smartmachine.com/wp-content/uploads/2018/05/Cooper-River-Brewery.jpg",
-        parentProjectId: 9,
-      },
-    ]
     await Project.query().insert(parentProjects1)
-    await Project.query().insert(forks1)
 
     const exampleUserProjects = [
       {
-        // id = 22
+        // id = 10
         userId: 4,
         title: "L298n Motor driver Arduino",
         description: descriptions[9],
@@ -236,12 +135,13 @@ class ProjectSeeder {
       },
       {
         userId: 4,
-        title: "Interfacing RGB Led with Arduino",
-        description: descriptions[13],
+        title: "Big Brother is watching you",
+        description: descriptions[0],
         appsAndPlatforms: "Arduino IDE",
-        code: code[13],
+        code: code[0],
+        githubFileURL: "",
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/36ab7d7a-100b-4350-8f17-0b0234582c0b.blob",
+          "https://projects.arduinocontent.cc/cover-images/70dad73c-8d46-4172-8ad9-def5688e6b19.jpg",
       },
       {
         userId: 4,
@@ -280,30 +180,20 @@ class ProjectSeeder {
           "https://projects.arduinocontent.cc/cover-images/876135e3-82cc-462f-83b5-e21ebacd87ea.jpg",
       },
     ]
-    const exampleUserProjectForks = [
+    const forks = [
       {
-        userId: 3,
-        title: "My version of L298n Motor driver Arduino",
-        description: descriptions[9],
-        appsAndPlatforms: "Arduino IDE and NanoEdge AI Studio",
-        code: code[9],
+        userId: 2,
+        title: "Interfacing RGB Led with Arduino",
+        description: descriptions[18],
+        appsAndPlatforms: "Arduino IDE",
+        code: code[18],
         thumbnailImage:
-          "https://i.ebayimg.com/images/g/Jb0AAOSwESNZ7v2s/s-l1200.jpg",
-        parentProjectId: 22
-      },
-      {
-        userId: 3,
-        title: "Temperature Monitoring with Arduino IoT Cloud using DHT22",
-        description: descriptions[10],
-        appsAndPlatforms: "Arduino IoT Cloud",
-        code: code[10],
-        thumbnailImage:
-          "https://lh6.googleusercontent.com/JsLZemW1wRz4n8uDI3qn3MXR-LbZ5ar9HGE0TiCUcMpM8ZlH91lj4r4RbEEDrJsAOZVX5YDhCFjp6pj5e2EwCMQOyd2nTzgKI5-0yibtaPkRyZmshc3dLSjzpYuUZksV8zlWV8E",
-        parentProjectId: 23
+          "https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG",
+        parentProjectId: 1
       },
     ]
     await Project.query().insert(exampleUserProjects)
-    await Project.query().insert(exampleUserProjectForks)
+    await Project.query().insert(forks)
   }
 }
 
