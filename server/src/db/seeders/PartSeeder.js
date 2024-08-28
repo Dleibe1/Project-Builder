@@ -11,14 +11,14 @@ class PartSeeder {
       { partName: "Resistor 220 ohm", projectId: 1 },
 
 
-      { partName: "Arduio UNO (SMT)", projectId: 2 },
-      { partName: "NeoPixel strip", projectId: 2 },
-      { partName: "Rubber/Plastic wheel", projectId: 2 },
-      { partName: "9V Battery Clip", projectId: 2 },
-      { partName: "Modulo Bluetooth HC05", projectId: 2 },
-      { partName: "9V Battery Supply", projectId: 2 },
-      { partName: "2100 RPM Dual Shaft BO Motor - Straight", projectId: 2 },
-      { partName: "laser sheet cutting machine", projectId: 2 },
+      { partName: "Arduio UNO (SMT)", projectId: 15 },
+      { partName: "NeoPixel strip", projectId: 15 },
+      { partName: "Rubber/Plastic wheel", projectId: 15 },
+      { partName: "9V Battery Clip", projectId: 15 },
+      { partName: "Modulo Bluetooth HC05", projectId: 15 },
+      { partName: "9V Battery Supply", projectId: 15 },
+      { partName: "2100 RPM Dual Shaft BO Motor - Straight", projectId: 15 },
+      { partName: "laser sheet cutting machine", projectId: 15 },
 
       { partName: "Resistors kit", projectId: 3 },
       { partName: "PN2222A Transistor", projectId: 3 },
@@ -89,10 +89,10 @@ class PartSeeder {
       { partName: "double sided tape", projectId: 14 },
       { partName: "SG90 Micro Servo", projectId: 14 },
 
-      { partName: "DHT22 Temperature Sensor", projectId: 15 },
-      { partName: "Jumper wires (generic)", projectId: 15 },
-      { partName: "Arduino UNO", projectId: 15 },
-      { partName: "Breadboard (generic)", projectId: 15 },
+      { partName: "DHT22 Temperature Sensor", projectId: 2 },
+      { partName: "Jumper wires (generic)", projectId: 2 },
+      { partName: "Arduino UNO", projectId: 2 },
+      { partName: "Breadboard (generic)", projectId: 2 },
 
       { partName: "Arduino uno Board", projectId: 16 },
       { partName: "Ultrasonic Sensor - HC-SR04", projectId: 16 },
@@ -118,6 +118,12 @@ class PartSeeder {
       { partName: "Breadboard (generic)", projectId: 19 },
       { partName: "Jumper wires (generic)", projectId: 19 },
       { partName: "Resistor 220 ohm", projectId: 19 },
+
+      { partName: "DHT22 Temperature Sensor", projectId: 20 },
+      { partName: "Jumper wires (generic)", projectId: 20 },
+      { partName: "Arduino UNO", projectId: 20 },
+      { partName: "Breadboard (generic)", projectId: 20 },
+      { partName: "0.96-inch OLED Display (128x64 pixels, I2C interface)", projectId: 20 },
     ]
     await Part.query().insert(forks)
   }

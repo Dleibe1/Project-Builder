@@ -47,6 +47,7 @@ forkRouter.get("/:id", async (req, res) => {
   try {
     const fork = await Project.query().findById(id)
     let serializedForkData = await ProjectSerializer.getProjectShowPageDetails(fork)
+    serializedForkData.githubFileURL = ""
     return res.status(200).json({ fork: serializedForkData })
   } catch (error) {
     console.log(error)
@@ -59,9 +60,9 @@ forkRouter.post("/:id", async (req, res) => {
   const originalProjectId = parseInt(req.params.id)
   const userId = parseInt(user.id)
   try {
-    const handleForkProjectFormInput = cleanUserInput(body)
-    await handleForkProject(originalProjectId, userId, handleForkProjectFormInput)
-    res.status(201).json({ project: handleForkProjectFormInput })
+    const forkedProjectData = cleanUserInput(body)
+    await handleForkProject(originalProjectId, userId, forkedProjectData)
+    res.status(201).json({ project: forkedProjectData })
   } catch (error) {
     console.log(error)
     if (error instanceof ValidationError) {
