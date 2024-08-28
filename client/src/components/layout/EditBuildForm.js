@@ -135,7 +135,7 @@ const EditBuildForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    updateProject({ ...editedProject, githubFileURL: editedProject.githubFileURL.trim() })
+    updateProject(editedProject)
   }
 
   const handleInputChange = (event) => {

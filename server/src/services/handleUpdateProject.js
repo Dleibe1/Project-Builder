@@ -16,7 +16,7 @@ const handleUpdateProject = async (
   projectId
 ) => {
   const projId = parseInt(projectId)
-  const githubFileURLField = githubFileURL ? githubFileURL : ""
+  const githubFileURLField = githubFileURL ? githubFileURL.trim() : ""
   const existingParts = await Part.query().where("projectId", projId)
   const existingInstructions = await Instruction.query().where("projectId", projId)
 

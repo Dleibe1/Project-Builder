@@ -8,7 +8,7 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
 
   const forkedProject = await Project.query().insert({
     userId: parseInt(userId),
-    githubFileURL: forkData.githubFileURL,
+    githubFileURL: forkData.githubFileURL.trim(),
     thumbnailImage: forkData.thumbnailImage,
     title: forkData.title,
     appsAndPlatforms: forkData.appsAndPlatforms,
@@ -23,12 +23,10 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
   const instructions = forkData.instructions
   const forkedProjectId = parseInt(forkedProject.id)
   await Promise.all(
-    parts.map((part) => {
+    ...parts.map((part) => {
       return Part.query().insert({ projectId: forkedProjectId, partName: part.partName })
     }),
-  )
-  await Promise.all(
-    instructions.map((instruction) => {
+    ...instructions.map((instruction) => {
       if (instruction.imageURL) {
         return Instruction.query().insert({
           projectId: forkedProjectId,

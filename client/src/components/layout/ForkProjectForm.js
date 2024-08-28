@@ -164,7 +164,7 @@ const ForkProjectForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    postForkedProject({ ...forkedProject, githubFileURL: forkedProject.githubFileURL.trim() })
+    postForkedProject(forkedProject)
   }
 
   const handlePartInput = (event) => {
