@@ -134,7 +134,7 @@ class ProjectSeeder {
           "https://projects.arduinocontent.cc/cover-images/e4de2c23-7118-4b3f-abf8-50cb8282cf62.jpg",
       },
       {
-        userId: 1,
+        userId: 4,
         title: "Big Brother is watching you",
         description: descriptions[0],
         appsAndPlatforms: "Arduino IDE",
