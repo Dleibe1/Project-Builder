@@ -9,13 +9,13 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
   const forkedProject = await Project.query().insert({
     userId: parseInt(userId),
     githubFileURL: forkData.githubFileURL,
-    thumbnailImage: forkData.thumbnailImage || originalProject.thumbnailImage,
+    thumbnailImage: forkData.thumbnailImage,
     title: forkData.title,
-    appsAndPlatforms: forkData.appsAndPlatforms || originalProject.appsAndPlatforms,
-    tags: forkData.tags || originalProject.tags,
+    appsAndPlatforms: forkData.appsAndPlatforms,
+    tags: forkData.tags,
     description: forkData.description,
-    documentation: forkData.documentation || originalProject.documentation,
-    code: forkData.code || originalProject.code,
+    documentation: forkData.documentation,
+    code: forkData.code,
     parentProjectId: originalProjectId,
   })
 
