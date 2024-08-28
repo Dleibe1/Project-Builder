@@ -2450,13 +2450,13 @@ void setup() {
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
-  pinMode(buttonPin, INPUT_PULLUP); // Set button pin as input with internal pull-up resistor
+  pinMode(buttonPin, INPUT); // Set button pin as input
 }
 
 void loop() {
   buttonState = digitalRead(buttonPin); // Read the state of the button
 
-  if (buttonState == LOW) { // Check if the button is pressed (LOW because of pull-up)
+  if (buttonState == LOW) { // Check if the button is pressed (LOW because of pull-up resistor)
     colorIndex++; // Increment color index
     if (colorIndex > 5) {
       colorIndex = 0; // Reset index if it exceeds the number of colors
@@ -2494,7 +2494,66 @@ void setColor(int redValue, int greenValue, int blueValue) {
   analogWrite(greenPin, greenValue);
   analogWrite(bluePin, blueValue);
 }
-`
+`,
+`#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include <dht11.h>
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET    -1
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+#define DHT11PIN 2
+dht11 DHT11;
+
+void setup() {
+  Serial.begin(9600);
+
+  // Initialize the OLED display
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    Serial.println(F("SSD1306 allocation failed"));
+    for (;;);
+  }
+  
+  display.display();
+  delay(2000);
+  display.clearDisplay();
+
+  // Initialize the DHT11 sensor
+  Serial.println("DHT11 sensor initialization");
+}
+
+void loop() {
+  display.clearDisplay();
+
+  int chk = DHT11.read(DHT11PIN);
+  
+  float humidity = DHT11.humidity;
+  float temperature = DHT11.temperature;
+
+  // Print to Serial Monitor
+  Serial.print("Humidity (%): ");
+  Serial.println(humidity);
+  Serial.print("Temperature (C): ");
+  Serial.println(temperature);
+
+  // Display on OLED
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0,0);
+  display.print("Humidity: ");
+  display.print(humidity);
+  display.println(" %");
+
+  display.print("Temperature: ");
+  display.print(temperature);
+  display.println(" C");
+
+  display.display();
+  delay(2000);
+}`
 ]
 
 

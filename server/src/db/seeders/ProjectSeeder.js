@@ -5,7 +5,7 @@ import descriptions from "../ProjectSeederData/descriptions.js"
 class ProjectSeeder {
   static async seed() {
     const parentProjects1 = [
-       {
+      {
         userId: 1,
         title: "Interfacing RGB Led with Arduino",
         description: descriptions[13],
@@ -16,13 +16,12 @@ class ProjectSeeder {
       },
       {
         userId: 1,
-        title: "SmartPhone Controlled Arduino Based Bluetooth Car",
-        description: descriptions[1],
-        appsAndPlatforms: "Arduino IDE, MIT App Inventor 2",
-        code: code[1],
-        githubFileURL: "",
+        title: "Using DHT11",
+        description: descriptions[14],
+        appsAndPlatforms: "Arduino IDE",
+        code: code[14],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/1f887c02-812e-411d-ad69-7be71e3715f5.jpg",
+          "https://projects.arduinocontent.cc/cover-images/70b80f40-3f40-4b90-84d2-a1a66301d7bc.blob",
       },
       {
         userId: 2,
@@ -30,7 +29,8 @@ class ProjectSeeder {
         description: descriptions[2],
         appsAndPlatforms: "Arduino IDE",
         code: code[2],
-        githubFileURL: "https://github.com/hibit-dev/plants-care/blob/master/src/station/station.ino",
+        githubFileURL:
+          "https://github.com/hibit-dev/plants-care/blob/master/src/station/station.ino",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/916c664e-bd6f-403a-a3f8-234147fc8501.jpg",
       },
@@ -78,8 +78,7 @@ class ProjectSeeder {
         description: descriptions[7],
         appsAndPlatforms: "Arduino IDE",
         code: code[7],
-        githubFileURL:
-          "",
+        githubFileURL: "",
         thumbnailImage:
           "https://projects.arduinocontent.cc/cover-images/bf79fd77-788d-4d92-bc5a-2a628633939a.jpg",
       },
@@ -145,12 +144,13 @@ class ProjectSeeder {
       },
       {
         userId: 4,
-        title: "Using DHT11",
-        description: descriptions[14],
-        appsAndPlatforms: "Arduino IDE",
-        code: code[14],
+        title: "SmartPhone Controlled Arduino Based Bluetooth Car",
+        description: descriptions[1],
+        appsAndPlatforms: "Arduino IDE, MIT App Inventor 2",
+        code: code[1],
+        githubFileURL: "",
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/70b80f40-3f40-4b90-84d2-a1a66301d7bc.blob",
+          "https://projects.arduinocontent.cc/cover-images/1f887c02-812e-411d-ad69-7be71e3715f5.jpg",
       },
       {
         userId: 2,
@@ -181,7 +181,7 @@ class ProjectSeeder {
       },
     ]
     const forks = [
-      {
+      {//id: 19
         userId: 2,
         title: "Interfacing RGB Led with Arduino",
         description: descriptions[18],
@@ -189,7 +189,17 @@ class ProjectSeeder {
         code: code[18],
         thumbnailImage:
           "https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG",
-        parentProjectId: 1
+        parentProjectId: 1,
+      },
+      {
+        userId: 1,
+        title: "Using DHT11 with I2C OLED display",
+        description: descriptions[19],
+        appsAndPlatforms: "Arduino IDE",
+        code: code[19],
+        thumbnailImage:
+          "https://hackster.imgix.net/uploads/attachments/1135529/weatherstation_schematic_6p6OZNIxEf.PNG?auto=compress%2Cformat&w=1280&h=960&fit=max",
+        parentProjectId: 2,
       },
     ]
     await Project.query().insert(exampleUserProjects)

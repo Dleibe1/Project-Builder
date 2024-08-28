@@ -94,7 +94,7 @@ The software is extremely simple, less than 70 lines. No library is required.
 Have fun. `,
       },
       {
-        projectId: 2,
+        projectId: 15,
         instructionText: `Gather your tools and troops (components, that is):
 The brains: An Arduino Uno, the mastermind behind the magic. 
 The translator: An HC05 Bluetooth module, your car's interpreter for smartphone commands. 
@@ -106,32 +106,32 @@ The fuel: A battery, to keep your robot rolling (safely, of course!).
 `,
       },
       {
-        projectId: 2,
+        projectId: 15,
         imageURL:
           "https://circuitdigest.com/sites/default/files/circuitdiagram_mic/Arduino-Robot-Circuit-Diagram.png",
       },
       {
-        projectId: 2,
+        projectId: 15,
         instructionText: `Craft the chassis, the car's core:
           Imagine your robot's frame. Sunboard is your friend here! Cut precise pieces based on the guide (remember, measuring twice cuts once!). Assemble them like a mini puzzle, creating a strong and stable base for your future masterpiece. `,
       },
       {
-        projectId: 2,
+        projectId: 15,
         instructionText: `Motor magic, let the wheels spin:
           Time to get those motors talking to the driver! Mount them securely on the chassis. Connect them to the L298N module using the jumper wires, following the wiring diagram like a treasure map. Remember, correct connections are key to smooth sailing (or should we say, driving?). `,
       },
       {
-        projectId: 2,
+        projectId: 15,
         instructionText: `Bling it up with dazzling LEDs:
           Let your creativity shine! Place the NeoPixel LEDs on the front, back, and bottom of your car. Connect them to the Arduino, following the color-coded guide. Soon, your robot will be a beacon of programmable light! `,
       },
       {
-        projectId: 2,
+        projectId: 15,
         instructionText: `Code the commands, unlock the moves:
           The Arduino code is the secret sauce that brings your car to life. It translates the Bluetooth commands from your phone into actions for the motors and LEDs. The provided code is a great starting point, but feel free to experiment and add your own personal touch! `,
       },
       {
-        projectId: 2,
+        projectId: 15,
         instructionText:
           "https://circuitdigest.com/sites/default/files/circuitdiagram_mic/Arduino-Robot-Circuit-Diagram.png",
       },
@@ -1237,7 +1237,7 @@ void loop() {
 `,
       },
       {
-        projectId: 15,
+        projectId: 2,
         instructionText: `Ever wanted to know the temperature and humidity around you? If yes, this project will be very helpful for you. If no, it'll be cool anyway. What I mean is, you can use this in anything from home automations to smart watches. 
 
 What is humidity?
@@ -1257,19 +1257,19 @@ My sensor is like this:
 `,
       },
       {
-        projectId: 15,
+        projectId: 2,
         imageURL: `https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg`,
       },
       {
-        projectId: 15,
+        projectId: 2,
         instructionText: `My sensor has 3 pins and it's fitted on a board. If yours has 4 pins, then you need to build this circuit after the sensor: `,
       },
       {
-        projectId: 15,
+        projectId: 2,
         imageURL: `https://projects.arduinocontent.cc/8187f1a6-b715-4b52-8c11-1507c3e80da4.png`,
       },
       {
-        projectId: 15,
+        projectId: 2,
         instructionText: `If it is same as mine, then just ignore the resistor. 
 
 Then, build the circuit! 
@@ -1330,7 +1330,7 @@ Distance = (Velocity * Time) / 2
       },
       {
         projectId: 16,
-        instructionText: `In this article, I will show you how to build an alarm system using Arduino and the ultrasonic sensor. If you don't have all components or would like to test before assembling anything, I created a simulation of this alarm system on Tinkercad . You can run it directly on your browser by clicking $ here $ . 
+        instructionText: `In this article, I will show you how to build an alarm system using Arduino and the ultrasonic sensor. If you don't have all components or would like to test before assembling anything, I created a simulation of this alarm system on Tinkercad. 
 
 Moving on, for this project, you'll need: an Arduino board, a breadboard, a bunch of jumper wires, a buzzer,and an ultrasonic sensor. 
 
@@ -1436,7 +1436,7 @@ Such units are very common appliances by Daikin, which provides WiFi capability 
       {
         projectId: 18,
         instructionText: `Software
-On the software side, I used the fantastic $ arduino-heatpumpir $ library to generate the infrared signals. There are many libraries for that purpose, but this one worked great and it supports a large number of AC manufacturers with the same code instructions. 
+On the software side, I used the fantastic arduino-heatpumpir library to generate the infrared signals. There are many libraries for that purpose, but this one worked great and it supports a large number of AC manufacturers with the same code instructions. 
 
 
 So, if you have a Daikin AC like mine you can use my code below without changes. If you have another brand, follow these steps: 
@@ -1555,7 +1555,71 @@ Each time the button is pressed, the colorIndex variable is incremented, cycling
 Debouncing:
 
 A small delay (delay(300)) is added after each button press to debounce the button, preventing multiple triggers from a single press.
-This modification allows the RGB LED to change colors each time the button is pressed, providing interactive control over the LED.`,
+This modification allows the RGB LED to change colors each time the button is pressed, providing interactive control over the LED.
+
+Below is the schematic for my version of the project`,
+      },
+      {
+        projectId: 20,
+        instructionText: `To modify the origional project created by dleibe1 and include an OLED display that shows the temperature and humidity, you can follow the steps below.`,
+      },
+      {
+        projectId: 19,
+        imageURL: `https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG`,
+      },
+      {
+        projectId: 20,
+        instructionText: `Ever wanted to know the temperature and humidity around you? If yes, this project will be very helpful for you. If no, it'll be cool anyway. What I mean is, you can use this in anything from home automations to smart watches. 
+
+What is humidity?
+
+Humidity is the water vapor around you mixed with air. It is measured in per cents. So, if the humidity is 60 per cent(which is the average humidity), then 60 per cent of the air around you is water vapor. If it is 100%, then it means either the sensor is not correct, the sensor is broken/damaged, the Arduino crashed, the Arduino can't receive any signal, there's an error in the code or you're underwater *. If it's 0%, it means all the reasons above except the last one, you're in space or you're in the middle of a desert**. 
+
+* Correction: it means the air cannot hold any more water. 
+
+**  The air in a desert does contain some water but it is a very little amount compared to a normal place. The Sahara Desert has a mean humidity of 25%. 
+
+
+The world's lowest recorded relative humidity value occurred at Coober Pedy in the South Australia desert when the temperature was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 percent. (source:  'www.chicagotribune.com') 
+
+Is your sensor different?
+
+My sensor is like this: 
+`,
+      },
+      {
+        projectId: 20,
+        imageURL: `https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg`,
+      },
+
+      {
+        projectId: 20,
+        instructionText: `
+You need to follow these instructions to make it work: 
+
+Connect the DHT22 Sensor:
+
+VCC to 5V on Arduino.
+GND to GND on Arduino.
+Data to pin 7 on Arduino.
+
+Connect the OLED Display:
+
+VCC to 5V on Arduino.
+GND to GND on Arduino.
+SCL to A5 (or SCL) on Arduino.
+SDA to A4 (or SDA) on Arduino.
+
+1. You need to add the librarys to the Arduino IDE. 
+2. Upload the code. 
+3. When the code is uploaded, you will see the temperature and humidity displayed on the OLED display. 
+
+Below is the schematic of the modified version of the project.
+`,
+      },
+      {
+        projectId: 20,
+        imageURL: `https://hackster.imgix.net/uploads/attachments/1135529/weatherstation_schematic_6p6OZNIxEf.PNG?auto=compress%2Cformat&w=1280&h=960&fit=max`,
       },
     ])
   }
