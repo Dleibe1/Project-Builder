@@ -117,7 +117,7 @@ class ProjectSeeder {
       },
       {
         userId: 4,
-        title: "Temperature Monitoring with Arduino IoT Cloud using DHT22",
+        title: "Cardboard Gesture Recognition with Embedded AI",
         description: descriptions[11],
         appsAndPlatforms: "NanoEdge AI Studio and Arduino IDE 1.8.19",
         code: code[11],
