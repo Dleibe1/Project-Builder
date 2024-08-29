@@ -25,17 +25,28 @@ projectsRouter.get("/", async (req, res) => {
     const serializedProjects = await Promise.all(
       projects.map((project) => {
         return ProjectSerializer.getProjectListDetails(project)
-      })
+      }),
     )
-    res.status(200).json({ projects: serializedProjects, projectCount })
+    return res.status(200).json({ projects: serializedProjects, projectCount })
   } catch (err) {
     console.log(err)
-    res.status(500).json({ errors: err })
+    return res.status(500).json({ errors: err })
+  }
+})
+
+projectsRouter.get("/check-for-forks/:id", async (req, res) => {
+  const { id } = req.params
+  try {
+    const aForkExists = (await Project.query().findOne({ parentProjectId: id })) ? true : false
+    res.status(200).json({ aForkExists })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ errors: error })
   }
 })
 
 projectsRouter.get("/:id", async (req, res) => {
-  const id = req.params.id
+  const { id } = req.params
   try {
     const project = await Project.query().findById(id)
     const serializedProject = await ProjectSerializer.getProjectShowPageDetails(project)

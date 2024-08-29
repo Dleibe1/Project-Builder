@@ -60,13 +60,13 @@ const ProjectShow = (props) => {
 
   const checkForForks = async () => {
     try {
-      const response = await fetch(`/api/v1/project-forks/${id}/fork-list`)
+      const response = await fetch(`/api/v1/projects/check-for-forks/${id}`)
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
         throw newError
       }
       const responseBody = await response.json()
-      if (responseBody.forks.length) {
+      if (responseBody.aForkExists) {
         setHasForks(true)
       }
     } catch (err) {
@@ -83,9 +83,11 @@ const ProjectShow = (props) => {
   }
 
   const forkProjectButton = [<ForkProjectButton key={"fork-project"} id={id} />]
-  const codeMessage = project.githubFileURL.length
-    ? [<h2>Code fetched from GitHub just now:</h2>, <p>project.githubFileURL</p>]
-    : <h2>Project Code</h2>
+  const codeMessage = project.githubFileURL.length ? (
+    [<h2>Code fetched from GitHub just now:</h2>, <p>project.githubFileURL</p>]
+  ) : (
+    <h2>Project Code</h2>
+  )
   const partsList = project.parts.map((part) => {
     return <p>{part.partName}</p>
   })
