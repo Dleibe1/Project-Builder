@@ -183,7 +183,7 @@ class ProjectSeeder {
     const forks = [
       {//id: 19
         userId: 2,
-        title: "Interfacing RGB Led with Arduino",
+        title: "Interfacing RGB Led with Push Button and Arduino",
         description: descriptions[18],
         appsAndPlatforms: "Arduino IDE",
         code: code[18],
