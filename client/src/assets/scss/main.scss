@@ -277,7 +277,7 @@ body.hide-background {
 }
 
 .project-tile .see-forked-versions-button {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .menu {
@@ -816,8 +816,8 @@ body.hide-background {
   white-space: pre-wrap;
 }
 
-.see-forked-versions-button {
-  margin: 0px;
+.see-forked-versions-button:focus {
+  color:white
 }
 
 .how-to-use-page-items-container.how-to-fork * {
