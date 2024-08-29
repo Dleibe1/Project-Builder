@@ -136,7 +136,7 @@ const NewProjectForm = (props) => {
     postProject({
       ...newProject,
       userId: props.user.id,
-      githubFileURL: newProject.githubFileURL.trim(),
+      githubFileURL: newProject.githubFileURL?.trim(),
     })
   }
 
