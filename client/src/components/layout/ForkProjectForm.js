@@ -37,6 +37,8 @@ const ForkProjectForm = (props) => {
     thumbnailImage: "",
   })
 
+  console.log(forkedProject)
+
   const isInitialMount = useRef(true)
 
   useEffect(() => {
