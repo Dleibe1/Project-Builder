@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import ProjectForksButton from "./ProjectForksButton"
 
-const MyBuildTile = ({ id, title, thumbnailImage }) => {
+const MyBuildTile = ({ id, title, thumbnailImage, createdBy }) => {
   const [hasForks, setHasForks] = useState(false)
   const history = useHistory()
 
@@ -31,11 +31,19 @@ const MyBuildTile = ({ id, title, thumbnailImage }) => {
   }, [])
 
   return (
-    <div className="project-tile my-builds-tile" onClick={handleTileClick}>
-      <img className="thumbnail-image" src={thumbnailImage} alt={`${title} thumbnail`} />
-      <h3>{title}</h3>
-      <div className="my-builds-forks-button">{hasForks ? <ProjectForksButton id={id} /> : null}</div>
+    <div className="project-tile" onClick={handleTileClick}>
+    <img className="thumbnail-image" src={thumbnailImage} alt={`${title} thumbnail`} />
+    <div className="project-tile-info-container">
+      <h3 className={hasForks ? `project-tile-title has-forks` : "" }>{title}</h3>
+      <div className="project-tile-username-info">
+        <h4>By:</h4>
+        <h5 className="username">{createdBy}</h5>
+      </div>
+      {hasForks ? (
+        <ProjectForksButton id={id} className="button-container see-forked-versions-button" />
+      ) : null}
     </div>
+  </div>
   )
 }
 
