@@ -8,13 +8,13 @@ const MyBuildTile = ({ id, title, thumbnailImage }) => {
 
   const checkForForks = async () => {
     try {
-      const response = await fetch(`/api/v1/project-forks/fork-list/${id}`)
+      const response = await fetch(`/api/v1/projects/check-for-forks/${id}`)
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
         throw newError
       }
       const responseBody = await response.json()
-      if (responseBody.forks.length) {
+      if (responseBody.aForkExists) {
         setHasForks(true)
       }
     } catch (err) {
@@ -31,19 +31,10 @@ const MyBuildTile = ({ id, title, thumbnailImage }) => {
   }, [])
 
   return (
-    <div className="project-tile" onClick={handleTileClick}>
-      <div className="thumbnail-image-container">
-        <img className="thumbnail-image" src={thumbnailImage} alt={`${title} thumbnail`} />
-      </div>
+    <div className="project-tile my-builds-tile" onClick={handleTileClick}>
+      <img className="thumbnail-image" src={thumbnailImage} alt={`${title} thumbnail`} />
       <h3>{title}</h3>
-      {hasForks ? (
-        <div
-          className="button-container see-forked-versions-button"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <ProjectForksButton id={id} />
-        </div>
-      ) : null}
+      <div className="my-builds-forks-button">{hasForks ? <ProjectForksButton id={id} /> : null}</div>
     </div>
   )
 }

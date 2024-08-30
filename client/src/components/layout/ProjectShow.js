@@ -30,6 +30,13 @@ const ProjectShow = (props) => {
   }, [])
 
   useEffect(() => {
+    document.body.classList.add("grey-background")
+    return () => {
+      document.body.classList.remove("grey-background")
+    }
+  }, [])
+
+  useEffect(() => {
     if (codeRef.current) {
       if (codeRef.current.dataset.highlighted) {
         delete codeRef.current.dataset.highlighted

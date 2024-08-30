@@ -37,6 +37,13 @@ const MyBuildShow = (props) => {
     }
   }, [myBuild])
 
+  useEffect(() => {
+    document.body.classList.add("grey-background")
+    return () => {
+      document.body.classList.remove("grey-background")
+    }
+  }, [])
+
   const getMyBuild = async () => {
     try {
       const response = await fetch(`/api/v1/my-builds/${id}`)
