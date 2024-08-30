@@ -62,7 +62,7 @@ const ProjectList = ({ projectsPerPage }) => {
 
   return (
     <div className="grid-container project-list-page-container">
-      {/* <Tags/> */}
+      <Tags/>
       <div className="project-list">{projectsArray}</div>
       <div className="project-list-pagination-container">
         <Pagination
