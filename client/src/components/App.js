@@ -24,6 +24,7 @@ import HowToUse from "./layout/HowToUse"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
+  const [selectedTags, setSelectedTags] = useState([])
   const [projectsPerPage, setProjectsPerPage] = useState(12)
   const fetchCurrentUser = async () => {
     try {
@@ -40,7 +41,7 @@ const App = (props) => {
 
   return (
     <Router>
-      <TopBar projectsPerPage={projectsPerPage} user={currentUser} />
+      <TopBar setSelectedTags={setSelectedTags} projectsPerPage={projectsPerPage} user={currentUser} />
       <Switch>
         <Route exact path={"/"}>
           <LandingPage />
@@ -49,7 +50,7 @@ const App = (props) => {
           <HowToUse user={currentUser} />
         </Route>
         <Route exact path={"/project-list"}>
-          <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
+          <ProjectList projectsPerPage={projectsPerPage} user={currentUser} selectedTags={selectedTags} />
         </Route>
         <Route exact path={"/my-builds-list"}>
           <MyBuildList projectsPerPage={projectsPerPage} user={currentUser} />

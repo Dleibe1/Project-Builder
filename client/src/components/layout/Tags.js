@@ -4,18 +4,14 @@ import { TextField, Stack } from "@mui/material"
 import Autocomplete from "@mui/material/Autocomplete"
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@mui/icons-material/CheckBox"
-import { all } from "axios"
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
 const checkedIcon = <CheckBoxIcon fontSize="small" />
 
-const Tags = (props) => {
-  const [selectedTags, setSelectedTags] = useState([])
+const Tags = ({setSelectedTags}) => {
   const location = useLocation()
-
   const handleTagsChange = (event, value) => {
     setSelectedTags(value)
-    console.log("Selected Tags: ", value)
   }
 
   const allowedPathNames = ["/project-list", "my-builds-list", "/project-forks"]
@@ -28,6 +24,7 @@ const Tags = (props) => {
       spacing={3}
       sx={{
         width: 250,
+		minWidth: "max-content",
         position: "absolute",
         top: "60px",
         marginLeft: "20px",

@@ -211,6 +211,11 @@ body.grey-background {
   box-shadow: none;
 }
 
+.tag-input .MuiAutocomplete-inputRoot{
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .project-list-pagination-container {
   margin-top: 30px;
   margin-bottom: 30px;
