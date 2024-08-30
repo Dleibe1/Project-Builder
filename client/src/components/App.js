@@ -40,47 +40,47 @@ const App = (props) => {
 
   return (
     <Router>
-        <TopBar projectsPerPage={projectsPerPage} user={currentUser} />
-        <Switch>
-          <Route exact path={"/"}>
-            <LandingPage />
-          </Route>
-          <Route exact path={"/how-to-use"}>
-            <HowToUse user={currentUser} />
-          </Route>
-          <Route exact path={"/project-list"}>
-            <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
-          </Route>
-          <Route exact path={"/my-builds-list"}>
-            <MyBuildList projectsPerPage={projectsPerPage} user={currentUser} />
-          </Route>
-          <Route exact path={"/project-forks/:id"}>
-            <ForkList projectsPerPage={projectsPerPage} user={currentUser} />
-          </Route>
-          <Route exact path={"/search"}>
-            <SearchList projectsPerPage={projectsPerPage} user={currentUser} />
-          </Route>
-          <Route exact path="/projects/:id">
-            <ProjectShow user={currentUser} />
-          </Route>
-          <Route exact path="/create-new-build">
-            <NewProjectForm user={currentUser} />
-          </Route>
-          <Route exact path={"/my-builds/:id"}>
-            <MyBuildShow user={currentUser} />
-          </Route>
-          <Route exact path="/edit-my-build/:id">
-            <EditBuildForm user={currentUser} />
-          </Route>
-          <Route exact path="/fork-project/:id">
-            <ForkProjectForm user={currentUser} />
-          </Route>
-          <Route exact path="/github-login">
-            <GithubLogin user={currentUser} />
-          </Route>
-          <Route exact path="/users/new" component={RegistrationForm} />
-          <Route exact path="/user-sessions/new" component={SignInForm} />
-        </Switch>
+      <TopBar projectsPerPage={projectsPerPage} user={currentUser} />
+      <Switch>
+        <Route exact path={"/"}>
+          <LandingPage />
+        </Route>
+        <Route exact path={"/how-to-use"}>
+          <HowToUse user={currentUser} />
+        </Route>
+        <Route exact path={"/project-list"}>
+          <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
+        </Route>
+        <Route exact path={"/my-builds-list"}>
+          <MyBuildList projectsPerPage={projectsPerPage} user={currentUser} />
+        </Route>
+        <Route exact path={"/project-forks/:id"}>
+          <ForkList projectsPerPage={projectsPerPage} user={currentUser} />
+        </Route>
+        <Route exact path={"/search"}>
+          <SearchList projectsPerPage={projectsPerPage} user={currentUser} />
+        </Route>
+        <Route exact path="/projects/:id">
+          <ProjectShow user={currentUser} />
+        </Route>
+        <Route exact path="/create-new-build">
+          <NewProjectForm user={currentUser} />
+        </Route>
+        <Route exact path={"/my-builds/:id"}>
+          <MyBuildShow user={currentUser} />
+        </Route>
+        <Route exact path="/edit-my-build/:id">
+          <EditBuildForm user={currentUser} />
+        </Route>
+        <Route exact path="/fork-project/:id">
+          <ForkProjectForm user={currentUser} />
+        </Route>
+        <Route exact path="/github-login">
+          <GithubLogin user={currentUser} />
+        </Route>
+        <Route exact path="/users/new" component={RegistrationForm} />
+        <Route exact path="/user-sessions/new" component={SignInForm} />
+      </Switch>
     </Router>
   )
 }

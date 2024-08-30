@@ -21,6 +21,7 @@ import MyBuildsButton from "./MyBuildsButton"
 import SignInButton from "../authentication/SignInButton"
 import SignUpButton from "../authentication/SignUpButton"
 import TopBarSearch from "./TobBarSearch"
+import Tags from "./Tags"
 
 const TopBar = ({ user, projectsPerPage }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -322,6 +323,7 @@ const TopBar = ({ user, projectsPerPage }) => {
           )}
         </Toolbar>
       </Container>
+      <Tags />
     </AppBar>
   )
 }
