@@ -418,14 +418,14 @@ const NewProjectForm = (props) => {
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
-            <textarea
+            <Textarea
               value={newProject.code}
-              rows="20"
+              minRows="20"
               cols="1"
               onChange={handleInputChange}
               type="text"
-              id="code"
               name="code"
+              sx={{ backgroundColor: "white" }}
             />
           </label>
         </div>

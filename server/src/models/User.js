@@ -29,7 +29,7 @@ class User extends uniqueFunc(Model) {
       properties: {
         email: { type: "string", pattern: "^\\S+@\\S+\\.\\S+$" },
         cryptedPassword: { type: "string" },
-        userName: { type: "string" },
+        userName: { type: "string", maxLength: 15 },
         githubUsername: { type: "string" },
         githubAvatarURL: { type: "string" },
         loginMethod: {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useHistory, useLocation } from "react-router-dom"
 import ProjectTile from "./ProjectTile"
+import Tags from "./Tags"
 import { Pagination } from "@mui/material"
 
 const ProjectList = ({ projectsPerPage }) => {
@@ -61,6 +62,7 @@ const ProjectList = ({ projectsPerPage }) => {
 
   return (
     <div className="grid-container project-list-page-container">
+      {/* <Tags/> */}
       <div className="project-list">{projectsArray}</div>
       <div className="project-list-pagination-container">
         <Pagination

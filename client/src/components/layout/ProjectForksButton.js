@@ -5,6 +5,7 @@ import Button from "@mui/material/Button"
 const ProjectForksButton = ({ id }) => {
   return (
     <Button
+      onClick={(e) => e.stopPropagation()}
       component={Link}
       to={`/project-forks/${id}`}
       key={`project-tile-forks-button${id}`}
@@ -20,7 +21,7 @@ const ProjectForksButton = ({ id }) => {
       }}
       className="see-forked-versions-button"
     >
-      See Forked Versions
+      See Forks
     </Button>
   )
 }

@@ -51,6 +51,7 @@ const MyBuildList = ({ projectsPerPage }) => {
         key={myBuild.id}
         id={myBuild.id}
         title={myBuild.title}
+        createdBy={myBuild.user}
         thumbnailImage={myBuild.thumbnailImage}
       />
     )

@@ -13,7 +13,6 @@
 
 body {
   margin: 0;
-  background-color: #ecf1f1;
 }
 
 body::before {
@@ -36,8 +35,8 @@ body.hide-background::before {
   content: none;
 }
 
-body.hide-background {
-  background-color: white;
+body.grey-background {
+  background-color: #ecf1f1;
 }
 
 @media (max-width: 1500px) {
@@ -208,54 +207,85 @@ body.hide-background {
 }
 
 .project-list-pagination-container {
-  margin-top:30px;
-  margin-bottom:30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .project-tile {
+  position: relative;
   border-radius: 10px;
-  background-color: white;
-  padding: .7rem;
+  padding: 0.7rem;
   padding-bottom: 0rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
   text-align: center;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: 0.25s;
   height: auto;
 }
 
-.project-tile.my-builds-tile {
-  height:100%;
+.project-tile:hover {
+  background-color: #ecf1f1;
 }
 
-.project-tile {
-  margin-top: 0;
+.project-tile .project-tile-info-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom:5px;
+}
+
+.project-tile .project-tile-info-container h4,
+.project-tile .project-tile-info-container h5{
+  font-size: 1.2rem;
+}
+.project-tile .username {
+  margin-bottom: 0px;
+  margin-left: 7px;
+  font-weight: 900;
+  color: rgb(0, 129, 132);
+}
+
+.project-tile .project-tile-username-info {
+  display: inline-flex;
+}
+
+.project-tile-title.has-forks {
+
+}
+
+.project-tile.my-builds-tile .my-builds-forks-button {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .project-tile img {
   max-height: 180px;
   object-fit: cover;
   width: 100%;
-  border-radius: 10px;
 }
 
 .project-tile h3,
 .project-tile h4,
 .project-tile h5 {
+  text-align: left;
   font-size: 1.3rem;
   color: #000000;
+}
+
+.project-tile h3 {
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .project-tile h4 {
   margin: 0rem;
   font-size: 1.2rem;
   color: #555;
-  font-family: "Montserrat", sans-serif;
+}
+
+.project-tile h4, h5 {
+  font-family: OpenSans-Bold;
 }
 
 .project-tile h5 {
@@ -265,11 +295,9 @@ body.hide-background {
   font-family: "Roboto", sans-serif;
 }
 
-.project-tile:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.project-tile .project-tile-title.has-forks{
+  margin-bottom: 20px;
 }
-
 .button-container {
   display: flex;
   justify-content: flex-end;
@@ -277,7 +305,9 @@ body.hide-background {
 }
 
 .project-tile .see-forked-versions-button {
-  margin-bottom: 5px;
+  position: absolute;
+  bottom:5px;
+  right:.7rem;
 }
 
 .menu {
@@ -389,8 +419,7 @@ body.hide-background {
 .fork-project-form-container .MuiTextarea-textarea,
 .new-build-form-container .MuiTextarea-textarea:focus,
 .edit-project-form-container .MuiTextarea-textarea:focus,
-.fork-project-form-container .MuiTextarea-textarea:focus
-{
+.fork-project-form-container .MuiTextarea-textarea:focus {
   border: none;
   box-shadow: none;
 }
@@ -411,10 +440,10 @@ body.hide-background {
   margin-bottom: 20px;
 }
 
-#github-url-explanation{
+#github-url-explanation {
   text-align: left;
   font-size: 2.3rem;
-  padding:0px;
+  padding: 0px;
 }
 
 .new-build-form-container form,
@@ -426,7 +455,7 @@ body.hide-background {
 }
 
 #submit-form {
-  width:fit-content;
+  width: fit-content;
   margin-top: 25px;
 }
 
@@ -444,7 +473,7 @@ body.hide-background {
   align-items: end;
 }
 
-.showpage-items-container.parts-section{
+.showpage-items-container.parts-section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -467,10 +496,10 @@ body.hide-background {
 }
 
 #parts-heading-form {
-  padding:0px;
-  margin-bottom:40px;
+  padding: 0px;
+  margin-bottom: 40px;
   border-bottom: 2px solid #c9d2d2;
-  width:80%;
+  width: 80%;
 }
 
 .parts-list p,
@@ -683,11 +712,11 @@ body.hide-background {
 }
 
 .form-items-container .large-button.change-thumbnail-image {
-  width:fit-content;
-  margin-bottom:60px;
+  width: fit-content;
+  margin-bottom: 60px;
 }
 
-.form-items-container.github-url-and-submit{
+.form-items-container.github-url-and-submit {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -702,18 +731,18 @@ body.hide-background {
   width: 100%;
 }
 
-.form-items-container.top-section{
+.form-items-container.top-section {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .instruction-text-container.form-items-container .large-button.delete-instruction {
-  width:fit-content;
+  width: fit-content;
 }
 
-#code-heading{
-  padding:0px;
+#code-heading {
+  padding: 0px;
 }
 
 #upload-project-image {
@@ -723,7 +752,6 @@ body.hide-background {
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
   margin-bottom: 20px;
 }
-
 
 .form-input.text-field {
   width: 100%;
@@ -803,7 +831,7 @@ body.hide-background {
   font-size: 1.5rem;
 }
 
-.form-items-container.apps-and-platforms{
+.form-items-container.apps-and-platforms {
   margin-bottom: 0px;
 }
 
@@ -817,7 +845,7 @@ body.hide-background {
 }
 
 .see-forked-versions-button:focus {
-  color:white
+  color: white;
 }
 
 .how-to-use-page-items-container.how-to-fork * {
@@ -854,10 +882,3 @@ body.hide-background {
   width: 100%;
   display: block;
 }
-
-// Color Pallet
-// #E67E23 Tangerine
-// #00979D Dark Cyan (green)
-// #BCAC99 khaki
-// #95A6A6 cadet gray
-// #028184 teal

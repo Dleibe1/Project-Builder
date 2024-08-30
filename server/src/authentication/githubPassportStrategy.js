@@ -11,8 +11,9 @@ const githubPassportStrategy = new OAuth2Strategy(
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: `${process.env.BASE_URL}/api/v1/github-user-sessions/handle-callback`,
+    passReqToCallback: true,
   },
-  async (accessToken, refreshToken, profile, cb) => {
+  async (req, accessToken, refreshToken, profile, cb) => {
     try {
       const response = await got.get("https://api.github.com/user", {
         headers: {
@@ -36,6 +37,7 @@ const githubPassportStrategy = new OAuth2Strategy(
       } else {
         user = await user.$query().patchAndFetch({ githubAvatarURL: avatar_url })
       }
+      req.session.githubAccessToken = accessToken
       return cb(null, user)
     } catch (error) {
       console.error("Error fetching user info:", error)
