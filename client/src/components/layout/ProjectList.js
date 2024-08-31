@@ -10,6 +10,7 @@ const ProjectList = ({ projectsPerPage, selectedTags }) => {
   const [projects, setProjects] = useState([])
   const [projectCount, setProjectCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(parseInt(pageNumberURLParam || 1))
+  console.log(selectedTags.join(","))
 
   const history = useHistory()
   const totalPages = Math.ceil(projectCount / projectsPerPage)
@@ -39,7 +40,7 @@ const ProjectList = ({ projectsPerPage, selectedTags }) => {
   useEffect(() => {
     getProjectsData()
     window.scrollTo({ top: 0 })
-  }, [currentPage])
+  }, [currentPage, selectedTags])
 
   const handlePaginationChange = (event, selectedPage) => {
     history.push(`/project-list?page=${selectedPage}`)

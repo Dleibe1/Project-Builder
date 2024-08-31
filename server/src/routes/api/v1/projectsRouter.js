@@ -10,6 +10,7 @@ const projectsRouter = new express.Router()
 
 projectsRouter.get("/", async (req, res) => {
   const { page = 1, limit = 10, selectedTags = "" } = req.query
+  const tags = selectedTags.split(",")
   const currentPage = parseInt(page)
   const projectsPerPage = parseInt(limit)
   if (isNaN(currentPage) || isNaN(projectsPerPage) || currentPage < 1 || projectsPerPage < 1) {

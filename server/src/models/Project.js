@@ -33,7 +33,7 @@ class Project extends Model {
   }
 
   static get relationMappings() {
-    const { User, Part, Instruction } = require("./index.js")
+    const { User, Part, Instruction, Tag } = require("./index.js")
     return {
       user: {
         relation: Model.HasOneRelation,
@@ -65,6 +65,18 @@ class Project extends Model {
         join: {
           from: "projects.id",
           to: "instructions.projectId",
+        },
+      },
+      tags: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Tag,
+        join: {
+          from: "projects.id",
+          through: {
+            from: "project_tags.projectId",
+            to: "project_tags.tagId",
+          },
+          to: "tags.id",
         },
       },
     }
