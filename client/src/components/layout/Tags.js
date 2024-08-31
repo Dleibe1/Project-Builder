@@ -13,12 +13,10 @@ const Tags = ({setSelectedTags}) => {
   const handleTagsChange = (event, value) => {
     setSelectedTags(value)
   }
-
-  const allowedPathNames = ["/project-list", "my-builds-list", "/project-forks"]
-  if (!allowedPathNames.includes(location.pathname)) {
-    return null
+  
+  if (!location.pathname.includes("/project-list")){
+	return null
   }
-
   return (
     <Stack
       spacing={3}

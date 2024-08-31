@@ -32,10 +32,10 @@ const githubPassportStrategy = new OAuth2Strategy(
         user = await User.query().insertAndFetch({
           loginMethod: "github",
           githubUserName: login,
-          githubAvatarURL: avatar_url,
+          githubAvatarURL: avatar_url || null
         })
       } else {
-        user = await user.$query().patchAndFetch({ githubAvatarURL: avatar_url })
+        user = await user.$query().patchAndFetch({ githubAvatarURL: avatar_url || null })
       }
       req.session.githubAccessToken = accessToken
       return cb(null, user)

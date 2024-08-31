@@ -32,23 +32,19 @@ const NewProjectForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
-
-  const isInitialMount = useRef(true)
+  useEffect(() => {
+    document.body.classList.add("grey-background")
+    return () => {
+      document.body.classList.remove("grey-background")
+    }
+  }, [])
 
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false
-    } else {
       uploadProjectImage()
-    }
   }, [imageFile])
 
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false
-    } else {
       uploadThumbnailImage()
-    }
   }, [thumbnailImageFile])
 
   const uploadProjectImage = async () => {

@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router-dom"
 import ProjectTile from "./ProjectTile"
 import { Pagination } from "@mui/material"
 
-const ProjectList = ({ projectsPerPage }) => {
+const ProjectList = ({ projectsPerPage, selectedTags }) => {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const pageNumberURLParam = searchParams.get("page")
@@ -16,7 +16,8 @@ const ProjectList = ({ projectsPerPage }) => {
 
   const getProjectsData = async () => {
     try {
-      const response = await fetch(`/api/v1/projects/?page=${currentPage}&limit=${projectsPerPage}`)
+      const selectedTagsString = selectedTags.join(",")
+      const response = await fetch(`/api/v1/projects/?page=${currentPage}&limit=${projectsPerPage}&selectedTags=${selectedTagsString}`)
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
         throw newError

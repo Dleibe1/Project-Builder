@@ -19,10 +19,12 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
     parentProjectId: originalProjectId,
   })
 
+  console.log(forkData)
+
   const parts = forkData.parts
   const instructions = forkData.instructions
   const forkedProjectId = parseInt(forkedProject.id)
-  await Promise.all(
+  await Promise.all([
     ...parts.map((part) => {
       return Part.query().insert({ projectId: forkedProjectId, partName: part.partName })
     }),
@@ -39,7 +41,7 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
         })
       }
     }),
-  )
+  ])
 }
 
 export default handleForkProject
