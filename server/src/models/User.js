@@ -31,7 +31,7 @@ class User extends uniqueFunc(Model) {
         cryptedPassword: { type: "string" },
         userName: { type: "string", maxLength: 15 },
         githubUsername: { type: "string" },
-        githubAvatarURL: { type: "string" },
+        githubAvatarURL: { oneOf: [{ type: "string" }, { type: "null" }] },
         loginMethod: {
           type: "string",
           default: "standard",

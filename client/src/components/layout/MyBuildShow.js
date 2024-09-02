@@ -20,6 +20,7 @@ const MyBuildShow = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+
   const params = useParams()
   const { id } = params
   const codeRef = useRef(null)

@@ -16,6 +16,7 @@ exports.up = async (knex) => {
       .index()
       .references("id")
       .inTable("projects")
+      .onDelete("CASCADE")
 
     table.string("partName").notNullable()
 

@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { TagContext } from "../../contexts/TagContext"
 import { Link } from "react-router-dom"
 import {
   AppBar,
@@ -21,11 +22,13 @@ import MyBuildsButton from "./MyBuildsButton"
 import SignInButton from "../authentication/SignInButton"
 import SignUpButton from "../authentication/SignUpButton"
 import TopBarSearch from "./TobBarSearch"
+import Tags from "./Tags"
 
-const TopBar = ({ user, projectsPerPage }) => {
+const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null)
+  const { selectedTag, setSelectedTag } = useContext(TagContext)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget)
@@ -39,6 +42,10 @@ const TopBar = ({ user, projectsPerPage }) => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
+  }
+//TODO: managing URL parameters reflecting what's displayed on page is getting messy. Consider useContext for keeping track of URL parameters.
+  const handleProjectsLinkClick = () => {
+    setSelectedTag("")
   }
 
   const signOut = async (event) => {
@@ -102,6 +109,7 @@ const TopBar = ({ user, projectsPerPage }) => {
             </Button>
             <Button
               component={Link}
+              onClick={handleProjectsLinkClick}
               to="/project-list?page=1"
               id="projects-button"
               key={"projects-button"}
@@ -322,6 +330,7 @@ const TopBar = ({ user, projectsPerPage }) => {
           )}
         </Toolbar>
       </Container>
+      <Tags setSelectedTags={setSelectedTags} />
     </AppBar>
   )
 }

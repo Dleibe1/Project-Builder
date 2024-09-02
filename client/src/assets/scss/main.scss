@@ -197,6 +197,7 @@ body.grey-background {
 }
 
 .project-list-page-container {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -204,6 +205,14 @@ body.grey-background {
   padding-left: 0;
   padding-right: 0;
   width: 100%;
+}
+
+.tag-input .MuiAutocomplete-input {
+  box-shadow: none;
+}
+
+.tag-input .MuiAutocomplete-inputRoot{
+  align-items: flex-start;
 }
 
 .project-list-pagination-container {
@@ -223,6 +232,10 @@ body.grey-background {
   justify-content: space-between;
   transition: 0.25s;
   height: auto;
+}
+
+.project-list .tags {
+  margin-top: 200px;
 }
 
 .project-tile:hover {

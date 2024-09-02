@@ -9,19 +9,21 @@ const { ValidationError } = objection
 const projectsRouter = new express.Router()
 
 projectsRouter.get("/", async (req, res) => {
-  const { page = 1, limit = 10 } = req.query
+  const { page = 1, limit = 10, tag = "" } = req.query
   const currentPage = parseInt(page)
   const projectsPerPage = parseInt(limit)
-  if (isNaN(currentPage) || isNaN(projectsPerPage) || currentPage < 1 || projectsPerPage < 1) {
+  if (isNaN(currentPage) || isNaN(projectsPerPage) || currentPage < 1 || projectsPerPage < 1 ) {
     return res.status(400).json({ error: "Invalid query parameters" })
   }
   try {
-    const projectCount = await Project.query().whereNull("parentProjectId").resultSize()
-    const projects = await Project.query()
-      .orderBy("id", "acs")
-      .limit(projectsPerPage)
-      .whereNull("parentProjectId")
-      .offset((currentPage - 1) * projectsPerPage)
+    let projectsQuery = Project.query().whereNull("parentProjectId").orderBy("projects.id", "asc")
+    let projectCount = await projectsQuery.resultSize()
+    if (tag.trim().length) {
+      projectsQuery = projectsQuery.joinRelated("tags").where("tags.tagName", tag)
+      projectCount = await projectsQuery.resultSize()
+    }
+    projectsQuery = projectsQuery.limit(projectsPerPage).offset((currentPage - 1) * projectsPerPage)
+    const projects = await projectsQuery
     const serializedProjects = await Promise.all(
       projects.map((project) => {
         return ProjectSerializer.getProjectListDetails(project)

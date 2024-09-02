@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { useHistory, useLocation } from "react-router-dom"
+import { TagContext } from "../../contexts/TagContext"
 import ProjectTile from "./ProjectTile"
 import { Pagination } from "@mui/material"
 
@@ -7,16 +8,19 @@ const ProjectList = ({ projectsPerPage }) => {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const pageNumberURLParam = searchParams.get("page")
+  const tagURLParam = searchParams.get("tag")
+
   const [projects, setProjects] = useState([])
   const [projectCount, setProjectCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(parseInt(pageNumberURLParam || 1))
+  const { selectedTag, setSelectedTag } = useContext(TagContext)
 
   const history = useHistory()
   const totalPages = Math.ceil(projectCount / projectsPerPage)
 
-  const getProjectsData = async () => {
+  const getProjectsData = async (queryParams) => {
     try {
-      const response = await fetch(`/api/v1/projects/?page=${currentPage}&limit=${projectsPerPage}`)
+      const response = await fetch(`/api/v1/projects/?limit=${projectsPerPage}&${queryParams}`)
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
         throw newError
@@ -33,15 +37,26 @@ const ProjectList = ({ projectsPerPage }) => {
     if (pageNumberURLParam && parseInt(pageNumberURLParam) !== currentPage) {
       setCurrentPage(parseInt(pageNumberURLParam))
     }
-  }, [pageNumberURLParam])
+    if (tagURLParam && tagURLParam.trim() !== selectedTag) {
+      setSelectedTag(tagURLParam.trim())
+    }
+  }, [pageNumberURLParam, tagURLParam])
 
   useEffect(() => {
-    getProjectsData()
+    if (currentPage >= 1) {
+      searchParams.set("page", currentPage)
+    }
+    if(selectedTag) {
+      searchParams.set("tag", selectedTag)
+    } else {
+      searchParams.delete("tag")
+    }
+    history.push(`project-list?${searchParams.toString()}`)
+    getProjectsData(searchParams.toString())
     window.scrollTo({ top: 0 })
-  }, [currentPage])
+  }, [currentPage, selectedTag])
 
   const handlePaginationChange = (event, selectedPage) => {
-    history.push(`/project-list?page=${selectedPage}`)
     setCurrentPage(selectedPage)
   }
 

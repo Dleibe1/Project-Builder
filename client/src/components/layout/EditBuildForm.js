@@ -36,6 +36,12 @@ const EditBuildForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+  useEffect(() => {
+    document.body.classList.add("grey-background")
+    return () => {
+      document.body.classList.remove("grey-background")
+    }
+  }, [])
 
   useEffect(() => {
     uploadProjectImage()
