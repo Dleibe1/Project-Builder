@@ -43,7 +43,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
-//TODO: managing URL parameters reflecting what's displayed on page is getting messy. Consider useContext for keeping track of URL parameters.
+//TODO: Create a context for URL search params?
   const handleProjectsLinkClick = () => {
     setSelectedTag("")
   }

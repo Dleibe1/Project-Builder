@@ -210,8 +210,11 @@ body.grey-background {
 .tag-input .MuiAutocomplete-input {
   box-shadow: none;
 }
+.tag-input .MuiAutocomplete-input:focus {
+  border: none;
+}
 
-.tag-input .MuiAutocomplete-inputRoot{
+.tag-input .MuiAutocomplete-inputRoot {
   align-items: flex-start;
 }
 
@@ -245,11 +248,11 @@ body.grey-background {
 .project-tile .project-tile-info-container {
   display: flex;
   flex-direction: column;
-  margin-bottom:5px;
+  margin-bottom: 5px;
 }
 
 .project-tile .project-tile-info-container h4,
-.project-tile .project-tile-info-container h5{
+.project-tile .project-tile-info-container h5 {
   font-size: 1.2rem;
 }
 .project-tile .username {
@@ -264,7 +267,6 @@ body.grey-background {
 }
 
 .project-tile-title.has-forks {
-
 }
 
 .project-tile.my-builds-tile .my-builds-forks-button {
@@ -297,7 +299,8 @@ body.grey-background {
   color: #555;
 }
 
-.project-tile h4, h5 {
+.project-tile h4,
+h5 {
   font-family: OpenSans-Bold;
 }
 
@@ -308,7 +311,7 @@ body.grey-background {
   font-family: "Roboto", sans-serif;
 }
 
-.project-tile .project-tile-title.has-forks{
+.project-tile .project-tile-title.has-forks {
   margin-bottom: 20px;
 }
 .button-container {
@@ -319,8 +322,8 @@ body.grey-background {
 
 .project-tile .see-forked-versions-button {
   position: absolute;
-  bottom:5px;
-  right:.7rem;
+  bottom: 5px;
+  right: 0.7rem;
 }
 
 .menu {

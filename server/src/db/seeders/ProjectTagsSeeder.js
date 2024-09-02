@@ -78,7 +78,6 @@ class ProjectTagsSeeder {
       { projectId: 20, tagId: 13 },
     ])
     const insertedTags = await connection("project_tags").select()
-    console.log(insertedTags)
   }
 }
 
