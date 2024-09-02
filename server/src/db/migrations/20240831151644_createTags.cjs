@@ -6,8 +6,8 @@
  * @param {Knex} knex
  */
 exports.up = async (knex) => {
-  const hasTable = await knex.schema.hasTable("tags")
-  if (!hasTable) {
+  const hasTagsTable = await knex.schema.hasTable("tags")
+  if (!hasTagsTable) {
     await knex.schema.createTable("tags", (table) => {
       table.bigIncrements("id").primary()
       table.string("tagName").notNullable().unique()
@@ -15,10 +15,22 @@ exports.up = async (knex) => {
       table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())
     })
   }
-  await knex.schema.createTable("project_tags", (table) => {
-    table.bigInteger("projectId").references("projects.id").notNullable().onDelete("CASCADE")
-    table.bigInteger("tagId").references("tags.id").notNullable().onDelete("CASCADE")
-  })
+
+  const hasProjectTagsTable = await knex.schema.hasTable("project_tags")
+  if (!hasProjectTagsTable) {
+    await knex.schema.createTable("project_tags", (table) => {
+      table
+        .bigInteger("projectId")
+        .notNullable()
+        .references("id")
+        .inTable("projects")
+        .onDelete("CASCADE")
+      table.bigInteger("tagId").notNullable().references("id").inTable("tags").onDelete("CASCADE")
+      table.primary(["projectId", "tagId"])
+      table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
+      table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())
+    })
+  }
 }
 
 /**

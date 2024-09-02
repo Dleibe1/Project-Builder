@@ -1,8 +1,8 @@
-import { connection } from "../../boot.js"
+import connection from "../../../src/boot/model.cjs"
 
 class ProjectTagsSeeder {
   static async seed() {
-    await connection("project_tags").insert([
+   const tags = await connection("project_tags").insert([
       { projectId: 1, tagId: 2 },
       { projectId: 1, tagId: 24 },
       { projectId: 1, tagId: 12 },
@@ -16,7 +16,7 @@ class ProjectTagsSeeder {
       { projectId: 3, tagId: 20 },
       { projectId: 3, tagId: 22 },
       { projectId: 3, tagId: 32 },
-	  
+
       { projectId: 4, tagId: 3 },
       { projectId: 4, tagId: 24 },
       { projectId: 4, tagId: 26 },
@@ -44,7 +44,7 @@ class ProjectTagsSeeder {
       { projectId: 11, tagId: 20 },
       { projectId: 11, tagId: 25 },
       { projectId: 11, tagId: 40 },
-	  
+
       { projectId: 12, tagId: 1 },
       { projectId: 12, tagId: 7 },
       { projectId: 12, tagId: 10 },
@@ -74,10 +74,11 @@ class ProjectTagsSeeder {
       { projectId: 19, tagId: 24 },
       { projectId: 19, tagId: 12 },
 
-	  { projectId: 20, tagId: 40 },
+      { projectId: 20, tagId: 40 },
       { projectId: 20, tagId: 13 },
-
     ])
+    const insertedTags = await connection("project_tags").select()
+    console.log(insertedTags)
   }
 }
 
