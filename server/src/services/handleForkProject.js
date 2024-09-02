@@ -18,7 +18,7 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
     code: forkData.code,
     parentProjectId: originalProjectId,
   })
-
+  
   const parts = forkData.parts
   const instructions = forkData.instructions
   const forkedProjectId = parseInt(forkedProject.id)
