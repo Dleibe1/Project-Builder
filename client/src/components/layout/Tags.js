@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext} from "react"
 import { useLocation } from "react-router-dom"
 import { TextField, Stack } from "@mui/material"
 import { TagContext } from "../../contexts/TagContext"
@@ -17,6 +17,7 @@ const Tags = () => {
   const handleTagsChange = (event, value) => {
     setSelectedTag(value)
   }
+
   if (!location.pathname.includes("/project-list")) {
     return null
   }
@@ -35,6 +36,7 @@ const Tags = () => {
       <Autocomplete
         onChange={handleTagsChange}
         className="tag-input"
+        value={selectedTag}
         id="tags-standard"
         options={tags.map((tag) => {
           return tag.tagName

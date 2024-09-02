@@ -43,17 +43,16 @@ const ProjectList = ({ projectsPerPage }) => {
   }, [pageNumberURLParam, tagURLParam])
 
   useEffect(() => {
-    const queryParams = new URLSearchParams(location.search)
-    if (currentPage > 1) {
-      queryParams.set("page", currentPage)
+    if (currentPage >= 1) {
+      searchParams.set("page", currentPage)
     }
     if(selectedTag) {
-      queryParams.set("tag", selectedTag)
+      searchParams.set("tag", selectedTag)
     } else {
-      queryParams.delete("tag")
+      searchParams.delete("tag")
     }
-    history.push(`project-list?${queryParams.toString()}`)
-    getProjectsData(queryParams.toString())
+    history.push(`project-list?${searchParams.toString()}`)
+    getProjectsData(searchParams.toString())
     window.scrollTo({ top: 0 })
   }, [currentPage, selectedTag])
 
