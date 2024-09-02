@@ -23,7 +23,7 @@ import SignUpButton from "../authentication/SignUpButton"
 import TopBarSearch from "./TobBarSearch"
 import Tags from "./Tags"
 
-const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
+const TopBar = ({ user, projectsPerPage, setSelectedTag }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null)
@@ -323,7 +323,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
           )}
         </Toolbar>
       </Container>
-      <Tags setSelectedTags={setSelectedTags} />
+      <Tags setSelectedTag={setSelectedTag} />
     </AppBar>
   )
 }
