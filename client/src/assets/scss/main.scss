@@ -211,6 +211,10 @@ body.grey-background {
   box-shadow: none;
 }
 
+.tag-input .MuiAutocomplete-input:focus {
+  border:none;
+}
+
 .tag-input .MuiAutocomplete-inputRoot{
   align-items: flex-start;
 }
