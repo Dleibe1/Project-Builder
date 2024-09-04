@@ -32,6 +32,28 @@ const ProjectList = ({ projectsPerPage }) => {
       console.log(err)
     }
   }
+  //TODO: Upgrade to react-router-dom 6 for useSearchParams to handle this in a simpler way with fewer re-renders
+  useEffect(() => {
+    const newSearchParams = new URLSearchParams(location.search)
+    let shouldPush = false
+    if (currentPage && currentPage >= 1 && newSearchParams.get("page") !== currentPage.toString()) {
+      newSearchParams.set("page", currentPage)
+      shouldPush = true
+    }
+    if (selectedTag && newSearchParams.get("tag") !== selectedTag) {
+      newSearchParams.set("tag", selectedTag)
+      newSearchParams.set("page", 1)
+      shouldPush = true
+    } else if (!selectedTag && newSearchParams.has("tag")) {
+      newSearchParams.delete("tag")
+      shouldPush = true
+    }
+    if (shouldPush) {
+      history.push(`?${newSearchParams.toString()}`)
+    }
+    getProjectsData(newSearchParams.toString())
+    window.scrollTo({ top: 0 })
+  }, [currentPage, selectedTag])
 
   useEffect(() => {
     if (pageNumberURLParam && parseInt(pageNumberURLParam) !== currentPage) {
@@ -40,21 +62,7 @@ const ProjectList = ({ projectsPerPage }) => {
     if (tagURLParam && tagURLParam.trim() !== selectedTag) {
       setSelectedTag(tagURLParam.trim())
     }
-  }, [pageNumberURLParam, tagURLParam])
-
-  useEffect(() => {
-    if (currentPage >= 1) {
-      searchParams.set("page", currentPage)
-    }
-    if(selectedTag) {
-      searchParams.set("tag", selectedTag)
-    } else {
-      searchParams.delete("tag")
-    }
-    history.push(`project-list?${searchParams.toString()}`)
-    getProjectsData(searchParams.toString())
-    window.scrollTo({ top: 0 })
-  }, [currentPage, selectedTag])
+  }, [location.search])
 
   const handlePaginationChange = (event, selectedPage) => {
     setCurrentPage(selectedPage)
