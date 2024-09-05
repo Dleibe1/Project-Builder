@@ -796,14 +796,73 @@ Note the codes on a paper or copy them in a document file on PC.
       },
       {
         projectId: 10,
-        instructionText: `Now You can Control your Motor Speed. 
+        instructionText: `Here, You can learn "How to Control Motors using L298n Motor Driver & Arduino Uno". 
+You can even control Speed & Direction of Motors using this tutorial. 
+ 
+Additionally, I am Attaching a Video for your proper guidance. 
+You can see Step by Step Process physically- 
+`,
+      },
+      {
+        projectId: 10,
+        imageURL: "https://projects.arduinocontent.cc/f50108d1-ac6d-4d5f-acb5-90ca5a093cd4.jpg",
+      },
+      {
+        projectId: 10,
+        instructionText: `Here, I am attached a L298n Motor Driver Pinout Diagram- `,
+      },
 
+      {
+        projectId: 10,
+        imageURL: "https://projects.arduinocontent.cc/918a766f-aeb8-4f94-aeda-57f183d1cf86.jpg",
+      },
+      {
+        projectId: 10,
+        instructionText: `Firstly, Connect your Motors with L298n Motor Driver `,
+      },
+      {
+        projectId: 10,
+        imageURL: "https://projects.arduinocontent.cc/e0fd14ab-6166-4870-ad6e-b73c47009d86.png",
+      },
+      {
+        projectId: 10,
+        instructionText: `Now, Connect your L298n Pins with Arduino Uno Pins `,
+      },
+      {
+        projectId: 10,
+        imageURL: "https://projects.arduinocontent.cc/7d20b0ad-496b-4a90-80ce-669ec9db1fd2.png",
+      },
+      {
+        projectId: 10,
+        instructionText: `Now, Connect following Pins- 
+
+L298n (+5V) =>Arduino (+5V) 
+L298n (Gnd) =>Arduino (Gnd) 
+ 
+Now Connect Battery- 
+
+L298n (+12V) =>Battery (+ve) 
+L298n (Gnd) =>Battery (-ve) 
+ 
+Above Pin System can Run your L298n Motor Driver module as well as Arduino. 
+ 
+But, If you want to Control Speed you have to do some simple extra work. 
+
+`,
+      },
+      {
+        projectId: 10,
+        imageURL: "https://projects.arduinocontent.cc/a73bfc9c-7c69-44fa-9d0f-321e034d6f4e.png",
+      },
+      {
+        projectId: 10,
+        instructionText: `Now You can Control your Motor Speed. 
 I am attached my Final Look of our Project. 
 `,
       },
       {
         projectId: 10,
-        imageURL: "https://projects.arduinocontent.cc/a5dae994-fc70-4093-91ce-37b2ed3f44af.jpg",
+        imageURL: "https://projects.arduinocontent.cc/601919da-0dc7-4158-9e4c-66e1192c1e0e.jpg",
       },
       {
         projectId: 11,
