@@ -387,9 +387,9 @@ const NewProjectForm = (props) => {
             Is this a work in progress? Pasting the URL of your main sketch file on Github will
             automatically keep the code you share up to date.
           </h2>
-          <Typography id="github-example-url" variant="h6" gutterBottom>
+          <p id="github-example-url">
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
-          </Typography>
+          </p>
           <TextField
             value={newProject.githubFileURL}
             fullWidth

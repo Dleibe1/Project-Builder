@@ -230,12 +230,6 @@ const EditBuildForm = (props) => {
             onClick={() => handleInstructionDelete(index)}
             className="large-button delete-image"
             variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
             startIcon={<DeleteIcon />}
           >
             Delete Image
@@ -253,12 +247,6 @@ const EditBuildForm = (props) => {
             onClick={() => handleInstructionDelete(index)}
             className="large-button delete-instruction"
             variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
             startIcon={<DeleteIcon />}
           >
             Delete Instruction
@@ -303,12 +291,6 @@ const EditBuildForm = (props) => {
           <Button
             className="large-button change-thumbnail-image"
             variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
             startIcon={<CloudUpload />}
           >
             <Dropzone onDrop={handleThumbnailImageUpload}>
@@ -322,17 +304,6 @@ const EditBuildForm = (props) => {
               )}
             </Dropzone>
           </Button>
-
-          {/* <label htmlFor="tags">
-          Tags:
-          <input
-            value={editedProject.tags}
-            onChange={handleInputChange}
-            type="text"
-            id="tags"
-            name="tags"
-          />
-         </label> */}
           <TextField
             value={editedProject.appsAndPlatforms}
             className="form-input text-field"
@@ -359,12 +330,6 @@ const EditBuildForm = (props) => {
             className="large-button"
             id="add-part"
             variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
           >
             Add Part
           </Button>
@@ -389,12 +354,6 @@ const EditBuildForm = (props) => {
               className="large-button "
               id="add-instruction-text"
               variant="contained"
-              sx={{
-                "&:hover": {
-                  textDecoration: "none",
-                  color: "white",
-                },
-              }}
             >
               Add Instruction
             </Button>
@@ -404,12 +363,6 @@ const EditBuildForm = (props) => {
             className="large-button"
             id="add-instruction-image"
             variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
             startIcon={<CloudUpload />}
           >
             <Dropzone onDrop={handleProjectImageUpload}>
@@ -444,9 +397,9 @@ const EditBuildForm = (props) => {
             Is this a work in progress? Pasting the URL of your main sketch file on Github will
             automatically keep the code you share up to date.
           </h2>
-          <Typography id="github-example-url" variant="h6" gutterBottom>
+          <p id="github-example-url">
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
-          </Typography>
+          </p>
           <TextField
             value={editedProject.githubFileURL}
             fullWidth
