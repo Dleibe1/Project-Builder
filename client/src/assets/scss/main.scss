@@ -752,7 +752,17 @@ h5 {
 }
 
 .instruction-text-container.form-items-container .large-button.delete-instruction {
-  width: fit-content;
+  width: max-content;
+}
+
+.instruction-text-container.form-items-container .large-button.delete-instruction:hover,
+.large-button.delete-image:hover,
+.large-button.change-thumbnail-image:hover,
+.large-button.add-part.project-tile:hover,
+#add-instruction-text,
+#add-instruction-image {
+  text-decoration: "none";
+  color: "white";
 }
 
 #code-heading {

@@ -191,13 +191,6 @@ const NewProjectForm = (props) => {
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"
           variant="contained"
-          sx={{
-            width: "max-content",
-            "&:hover": {
-              textDecoration: "none",
-              color: "white",
-            },
-          }}
           startIcon={<DeleteIcon />}
         >
           Delete Part
@@ -218,12 +211,6 @@ const NewProjectForm = (props) => {
             onClick={() => handleInstructionDelete(index)}
             className="large-button delete-image"
             variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
             startIcon={<DeleteIcon />}
           >
             Delete Image
@@ -238,12 +225,6 @@ const NewProjectForm = (props) => {
             onClick={() => handleInstructionDelete(index)}
             className="large-button delete-image"
             variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
             startIcon={<DeleteIcon />}
           >
             Delete Instruction
@@ -288,12 +269,6 @@ const NewProjectForm = (props) => {
           <Button
             className="large-button change-thumbnail-image"
             variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
             startIcon={<CloudUpload />}
           >
             <Dropzone onDrop={handleThumbnailImageUpload}>
@@ -343,15 +318,9 @@ const NewProjectForm = (props) => {
           />
           <Button
             onClick={handlePartSubmit}
-            className="large-button"
+            className="large-button add-part"
             id="add-part"
             variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
           >
             Add Part
           </Button>
@@ -376,12 +345,6 @@ const NewProjectForm = (props) => {
               className="large-button "
               id="add-instruction-text"
               variant="contained"
-              sx={{
-                "&:hover": {
-                  textDecoration: "none",
-                  color: "white",
-                },
-              }}
             >
               Add Instruction
             </Button>
@@ -391,12 +354,6 @@ const NewProjectForm = (props) => {
             className="large-button"
             id="add-instruction-image"
             variant="contained"
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-                color: "white",
-              },
-            }}
             startIcon={<CloudUpload />}
           >
             <Dropzone onDrop={handleProjectImageUpload}>
@@ -416,7 +373,7 @@ const NewProjectForm = (props) => {
           <label htmlFor="code" className="form-input" id="code-input">
             <Textarea
               value={newProject.code}
-              minRows="20"
+              minRows="10"
               cols="1"
               onChange={handleInputChange}
               type="text"
