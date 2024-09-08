@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react"
 import { Redirect } from "react-router-dom"
 import Dropzone from "react-dropzone"
-import { Button, TextField, Typography } from "@mui/material"
+import { Button, TextField } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
@@ -12,13 +12,17 @@ import ErrorList from "./ErrorList.js"
 const NewProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [part, setPart] = useState("")
   const [imageFile, setImageFile] = useState({
     image: {},
   })
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
-  const [editInstructionIndices, setEditInstructionIndices] = useState({})
+  const [instructionText, setInstructionText] = useState("")
+  const [editingInstructionIndex, setEditingInstructionIndex] = useState(null)
+  const [addingInstructionBelowIndex, setAddingInstructionBelowIndex] = useState(null)
+  const [newInstructionText, setNewInstructionText] = useState("")
   const [newProject, setNewProject] = useState({
     title: "",
     tags: "",
@@ -30,8 +34,6 @@ const NewProjectForm = (props) => {
     githubFileURL: "",
     userId: "",
     thumbnailImage: "",
-    newInstruction: "",
-    newPart: "",
   })
   useEffect(() => {
     document.body.classList.add("grey-background")
@@ -105,7 +107,6 @@ const NewProjectForm = (props) => {
       image: acceptedImage[0],
     })
   }
-
   const postProject = async (newProjectData) => {
     try {
       const response = await fetch(`/api/v1/projects/new-project`, {
@@ -141,14 +142,15 @@ const NewProjectForm = (props) => {
     setNewProject({ ...newProject, [event.currentTarget.name]: event.currentTarget.value })
   }
 
+  const handlePartInput = (event) => {
+    setPart(event.currentTarget.value)
+  }
+
   const handlePartSubmit = () => {
-    if (newProject.newPart.trim().length) {
-      setNewProject({
-        ...newProject,
-        parts: [...newProject.parts, newProject.newPart],
-        newPart: "",
-      })
+    if (part.length) {
+      setNewProject({ ...newProject, parts: [...newProject.parts, part] })
     }
+    setPart("")
   }
 
   const handlePartDelete = (index) => {
@@ -156,33 +158,14 @@ const NewProjectForm = (props) => {
     setNewProject({ ...newProject, parts: partsList })
   }
 
-  const handleEditInstructionTextSubmit = (index) => {
-    const instructions = [...newProject.instructions]
-    if (instructions[index] && instructions[index].instructionText.trim().length) {
-      instructions.splice(index, 1, { instructionText: instructions[index].instructionText })
-      setNewProject({ ...newProject, instructions: instructions })
-      setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
+  const handleInstructionTextInput = (event) => {
+    if (editingInstructionIndex && !addingInstructionBelowIndex) {
+      setInstructionText(event.currentTarget.value)
+    } else if (addingInstructionBelowIndex && !editingInstructionIndex) {
+      setInstructionText(event.currentTarget.value)
+    } else {
+      setNewInstructionText(event.currentTarget.value)
     }
-  }
-
-  const handleNewInstructionSubmit = (event) => {
-    if (newProject.newInstruction.trim().length) {
-      setNewProject({
-        ...newProject,
-        instructions: [...newProject.instructions, { instructionText: newProject.newInstruction }],
-        newInstruction: "",
-      })
-    }
-  }
-
-  const handleEditInstructionTextButton = (index) => {
-    setEditInstructionIndices({ ...editInstructionIndices, [index]: true })
-  }
-
-  const handleEditInstructionTextInput = (event, index) => {
-    const instructions = [...newProject.instructions]
-    instructions[index].instructionText = event.currentTarget.value
-    setNewProject({ ...newProject, instructions: instructions })
   }
 
   const handleInstructionDelete = (index) => {
@@ -190,6 +173,41 @@ const NewProjectForm = (props) => {
     setNewProject({ ...newProject, instructions: instructionList })
   }
 
+  const handleEditInstructionText = (index) => {
+    setEditingInstructionIndex(index)
+    setInstructionText(newProject.instructions[index].instructionText)
+  }
+
+  const handleSaveEditInstructionText = (index) => {
+    const updatedInstructions = newProject.instructions
+    updatedInstructions[index].instructionText = instructionText
+    setNewProject({ ...newProject, instructions: updatedInstructions })
+    setEditingInstructionIndex(null)
+    setInstructionText("")
+  }
+
+  const handleAddInstructionBelow = (index) => {
+    setAddingInstructionBelowIndex(index)
+    setEditingInstructionIndex(null)
+  }
+
+  const handleInstructionTextSubmit = () => {
+    if (instructionText.length) {
+      setNewProject({
+        ...newProject,
+        instructions: [...newProject.instructions, { instructionText: instructionText }],
+      })
+    }
+    setInstructionText("")
+    if (newInstructionText.length) {
+      setNewProject({
+        ...newProject,
+        instructions: [...newProject.instructions, { instructionText: newInstructionText }],
+      })
+    }
+    setNewInstructionText("")
+  }
+  console.log()
   let thumbNailImage = [
     <div className="project-image-container thumbnail-image-container ">
       <img className="project-image" src={newProject.thumbnailImage} />
@@ -218,7 +236,7 @@ const NewProjectForm = (props) => {
     if (instruction.imageURL) {
       return (
         <div
-          key={`${instruction.imageURL}${index}`}
+          key={`${instruction.imageURL || instruction.imageURL}${index}`}
           className="project-image-container form-items-container"
         >
           <img className="project-image" src={instruction.imageURL} />
@@ -233,15 +251,16 @@ const NewProjectForm = (props) => {
         </div>
       )
     } else if (instruction.instructionText) {
-      const isEditing = editInstructionIndices[index] === true
+      const isEditing = editingInstructionIndex === index
+      const isAddingInstruction = addingInstructionBelowIndex === index
       return (
         <div className="instruction-text-container form-items-container">
           {isEditing ? (
             <Textarea
               minRows={3}
-              value={newProject.instructions[index].instructionText}
+              value={instructionText}
               placeholder="Edit instruction"
-              onChange={(event) => handleEditInstructionTextInput(event, index)}
+              onChange={handleInstructionTextInput}
               name="instructionText"
               sx={{ minWidth: "100%", backgroundColor: "white" }}
             />
@@ -249,9 +268,9 @@ const NewProjectForm = (props) => {
             <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
           )}
           <div className="instruction-list-buttons-container">
-            {isEditing ? (
+            {isEditing || isAddingInstruction ? (
               <Button
-                onClick={() => handleEditInstructionTextSubmit(index)}
+                onClick={() => handleSaveEditInstructionText(index)}
                 className="large-button delete-image"
                 variant="contained"
               >
@@ -260,7 +279,7 @@ const NewProjectForm = (props) => {
             ) : (
               <>
                 <Button
-                  onClick={() => handleEditInstructionTextButton(index)}
+                  onClick={() => handleEditInstructionText(index)}
                   className="large-button delete-image"
                   variant="contained"
                   startIcon={<DeleteIcon />}
@@ -275,9 +294,29 @@ const NewProjectForm = (props) => {
                 >
                   Delete Instruction
                 </Button>
+                {index + 1 < newProject.instructions.length && !isEditing ? (
+                  <Button
+                    onClick={() => handleAddInstructionBelow(index)}
+                    className="large-button delete-image"
+                    variant="contained"
+                    startIcon={<DeleteIcon />}
+                  >
+                    Add Instruction Below
+                  </Button>
+                ) : null}
               </>
             )}
           </div>
+          {isAddingInstruction && !isEditing ? (
+            <Textarea
+              minRows={3}
+              value={instructionText}
+              placeholder="Enter new instruction"
+              onChange={handleInstructionTextInput}
+              name="instructionText"
+              sx={{ minWidth: "100%", backgroundColor: "white" }}
+            />
+          ) : null}
         </div>
       )
     }
@@ -349,10 +388,10 @@ const NewProjectForm = (props) => {
             sx={{ width: "100%" }}
             id="part"
             className="part"
-            value={newProject.newPart}
-            onChange={handleInputChange}
+            value={part}
+            onChange={handlePartInput}
             label="Enter new part"
-            name="newPart"
+            name="part"
           />
           <Button
             onClick={handlePartSubmit}
@@ -367,26 +406,30 @@ const NewProjectForm = (props) => {
           <h2 id="form-instructions-heading">Instructions and Images:</h2>
           <div>{instructionList}</div>
         </div>
-        <div className="form-items-container new-instruction">
-          <Textarea
-            minRows={3}
-            value={newProject.newInstruction}
-            placeholder="Enter new instruction"
-            onChange={handleInputChange}
-            name="newInstruction"
-            label="Enter new instruction"
-            sx={{ minWidth: "100%", backgroundColor: "white" }}
-          />
-          <div className="add-instruction-button-container">
-            <Button
-              onClick={handleNewInstructionSubmit}
-              className="large-button "
-              id="add-instruction-text"
-              variant="contained"
-            >
-              Add Instruction
-            </Button>
+        {editingInstructionIndex === null ? (
+          <div className="form-items-container new-instruction">
+            <Textarea
+              minRows={3}
+              value={newInstructionText}
+              placeholder="Enter new instruction"
+              onChange={handleInstructionTextInput}
+              name="instructionText"
+              label="Enter new instruction"
+              sx={{ minWidth: "100%", backgroundColor: "white" }}
+            />
+            <div className="add-instruction-button-container">
+              <Button
+                onClick={handleInstructionTextSubmit}
+                className="large-button "
+                id="add-instruction-text"
+                variant="contained"
+              >
+                Add Instruction
+              </Button>
+            </div>
           </div>
+        ) : null}
+        <div>
           <Button
             className="large-button"
             id="add-instruction-image"

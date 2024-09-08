@@ -652,6 +652,10 @@ h5 {
   padding-right: 20px;
 }
 
+#sign-up-button {
+  margin-left:10px;
+}
+
 #new-build-button {
   margin-left:10px;
 }
@@ -847,6 +851,13 @@ h5 {
   border-radius: 6px;
   width: 100%;
   padding: 16px;
+}
+
+.instruction-list-buttons-container {
+  display: flex;
+  width: 100%;
+  margin:10px;
+  justify-content: space-around;
 }
 
 .showpage-items-container p,
