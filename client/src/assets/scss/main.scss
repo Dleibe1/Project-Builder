@@ -530,12 +530,17 @@ h5 {
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
   overflow-wrap: anywhere;
   border-right: 2px solid #c9d2d2;
   border-bottom: 2px solid #c9d2d2;
   padding-right: 10px;
   padding-bottom: 10px;
+}
+
+.part-item-in-form .delete-part {
+  width: fit-content;
 }
 
 #part {

@@ -5,7 +5,7 @@ import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 const searchRouter = new express.Router()
 
 searchRouter.get("/", async (req, res) => {
-  const { q = "", page = 1, limit = 10 } = req.query
+  const { q = "", page = 1, limit = 12 } = req.query
   const searchQuery = q.trim()
   const currentPage = parseInt(page)
   const projectsPerPage = parseInt(limit)

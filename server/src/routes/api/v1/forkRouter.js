@@ -10,7 +10,7 @@ const forkRouter = new express.Router()
 
 forkRouter.get("/fork-list/:id", async (req, res) => {
   const { id } = req.params
-  const { page = 1, limit = 10 } = req.query
+  const { page = 1, limit = 12 } = req.query
   const currentPage = parseInt(page)
   const projectsPerPage = parseInt(limit)
   if (

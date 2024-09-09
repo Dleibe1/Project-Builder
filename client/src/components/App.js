@@ -26,7 +26,7 @@ import HowToUse from "./layout/HowToUse"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
-  const [projectsPerPage, setProjectsPerPage] = useState(5)
+  const [projectsPerPage, setProjectsPerPage] = useState(12)
   const fetchCurrentUser = async () => {
     try {
       const user = await getCurrentUser()

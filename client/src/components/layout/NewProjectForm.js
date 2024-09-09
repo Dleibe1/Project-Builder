@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState } from "react"
 import { Redirect } from "react-router-dom"
 import Dropzone from "react-dropzone"
-import { Button, TextField, Typography } from "@mui/material"
+import { Button, TextField } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
@@ -24,14 +24,14 @@ const NewProjectForm = (props) => {
     tags: "",
     appsAndPlatforms: "",
     instructions: [],
+    newInstruction: "",
     parts: [],
+    newPart: "",
     description: "",
     code: "",
     githubFileURL: "",
     userId: "",
     thumbnailImage: "",
-    newInstruction: "",
-    newPart: "",
   })
   useEffect(() => {
     document.body.classList.add("grey-background")
@@ -51,7 +51,6 @@ const NewProjectForm = (props) => {
   const uploadProjectImage = async () => {
     const newImageFileData = new FormData()
     newImageFileData.append("image", imageFile.image)
-
     try {
       const response = await fetch("/api/v1/image-uploading", {
         method: "POST",
@@ -108,7 +107,7 @@ const NewProjectForm = (props) => {
 
   const postProject = async (newProjectData) => {
     try {
-      const response = await fetch(`/api/v1/projects/new-project`, {
+      const response = await fetch('/api/v1/projects/new-project', {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -145,7 +144,7 @@ const NewProjectForm = (props) => {
     if (newProject.newPart.trim().length) {
       setNewProject({
         ...newProject,
-        parts: [...newProject.parts, newProject.newPart],
+        parts: [...newProject.parts, { partName: newProject.newPart }],
         newPart: "",
       })
     }
@@ -165,7 +164,7 @@ const NewProjectForm = (props) => {
     }
   }
 
-  const handleNewInstructionSubmit = (event) => {
+  const handleNewInstructionTextSubmit = (event) => {
     if (newProject.newInstruction.trim().length) {
       setNewProject({
         ...newProject,
@@ -199,9 +198,10 @@ const NewProjectForm = (props) => {
   thumbNailImage = newProject.thumbnailImage.length ? thumbNailImage : []
 
   const partsList = newProject.parts.map((part, index) => {
+    
     return (
       <div className="part-item-in-form">
-        <p key={`${part}${index}`}> {part}</p>
+        <p key={`${part.partName}${index}`}> {part.partName}</p>
         <Button
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"
@@ -379,7 +379,7 @@ const NewProjectForm = (props) => {
           />
           <div className="add-instruction-button-container">
             <Button
-              onClick={handleNewInstructionSubmit}
+              onClick={handleNewInstructionTextSubmit}
               className="large-button "
               id="add-instruction-text"
               variant="contained"

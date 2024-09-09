@@ -9,7 +9,7 @@ import cleanUserInput from "../../../services/cleanUserInput.js"
 const myBuildsRouter = new express.Router()
 
 myBuildsRouter.get("/", async (req, res) => {
-  const { page = 1, limit = 10 } = req.query
+  const { page = 1, limit = 12 } = req.query
   const currentPage = parseInt(page)
   const projectsPerPage = parseInt(limit)
   const currentUser = req.user ? req.user : null

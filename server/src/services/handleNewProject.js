@@ -27,7 +27,7 @@ const handleNewProject = async ({
 
   await Promise.all([
     ...parts.map((part) => {
-     return Part.query().insert({ projectId: newProjectId, partName: part })
+     return Part.query().insert({ projectId: newProjectId, partName: part.partName })
     }),
     ...instructions.map((instruction) => {
       if (instruction.imageURL) {

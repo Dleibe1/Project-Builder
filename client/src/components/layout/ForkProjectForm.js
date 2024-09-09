@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
-import { Button, TextField, Typography } from "@mui/material"
+import { Button, TextField } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
 import DeleteIcon from "@mui/icons-material/Delete"
 import CloudUpload from "@mui/icons-material/CloudUpload"
@@ -13,14 +13,13 @@ import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [part, setPart] = useState("")
+  const [editInstructionIndices, setEditInstructionIndices] = useState({})
   const [imageFile, setImageFile] = useState({
     image: {},
   })
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
-  const [instructionText, setInstructionText] = useState("")
   const params = useParams()
   const { id } = params
 
@@ -35,6 +34,8 @@ const ForkProjectForm = (props) => {
     githubFileURL: "",
     userId: "",
     thumbnailImage: "",
+    newInstruction: "",
+    newPart: "",
   })
   useEffect(() => {
     document.body.classList.add("grey-background")
@@ -111,8 +112,10 @@ const ForkProjectForm = (props) => {
       }
       const responseBody = await response.json()
       const fork = responseBody.fork
-      prepForFrontEnd(fork)
-      setForkedProject(fork)
+      setForkedProject((prevState) => ({
+        ...prevState,
+        ...fork,
+      }))
     } catch (error) {
       console.log(error)
     }
@@ -140,6 +143,62 @@ const ForkProjectForm = (props) => {
     }
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    postForkedProject(forkedProject)
+  }
+
+  const handleInputChange = (event) => {
+    setForkedProject({ ...forkedProject, [event.currentTarget.name]: event.currentTarget.value })
+  }
+
+  const handlePartSubmit = () => {
+    if (forkedProject.newPart.trim().length) {
+      setForkedProject({
+        ...forkedProject,
+        parts: [...forkedProject.parts, { partName: forkedProject.newPart }],
+        newPart: "",
+      })
+    }
+  }
+
+  const handlePartDelete = (index) => {
+    const partsList = forkedProject.parts.filter((part, i) => i !== index)
+    setForkedProject({ ...forkedProject, parts: partsList })
+  }
+
+  const handleEditInstructionTextSubmit = (index) => {
+    const instructions = [...forkedProject.instructions]
+    if (instructions[index] && instructions[index].instructionText.trim().length) {
+      instructions.splice(index, 1, { instructionText: instructions[index].instructionText })
+      setForkedProject({ ...forkedProject, instructions: instructions })
+      setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
+    }
+  }
+
+  const handleNewInstructionTextSubmit = (event) => {
+    if (forkedProject.newInstruction.trim().length) {
+      setForkedProject({
+        ...forkedProject,
+        instructions: [
+          ...forkedProject.instructions,
+          { instructionText: forkedProject.newInstruction },
+        ],
+        newInstruction: "",
+      })
+    }
+  }
+
+  const handleEditInstructionTextButton = (index) => {
+    setEditInstructionIndices({ ...editInstructionIndices, [index]: true })
+  }
+
+  const handleEditInstructionTextInput = (event, index) => {
+    const instructions = [...forkedProject.instructions]
+    instructions[index].instructionText = event.currentTarget.value
+    setForkedProject({ ...forkedProject, instructions: instructions })
+  }
+
   const handleProjectImageUpload = (acceptedImage) => {
     setImageFile({
       image: acceptedImage[0],
@@ -154,48 +213,9 @@ const ForkProjectForm = (props) => {
     uploadThumbnailImage()
   }
 
-  const handleInputChange = (event) => {
-    setForkedProject({ ...forkedProject, [event.currentTarget.name]: event.currentTarget.value })
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    postForkedProject(forkedProject)
-  }
-
-  const handlePartInput = (event) => {
-    setPart(event.currentTarget.value)
-  }
-
-  const handlePartSubmit = () => {
-    if (part.length) {
-      setForkedProject({ ...forkedProject, parts: [...forkedProject.parts, { partName: part }] })
-    }
-    setPart("")
-  }
-
-  const handleInstructionTextSubmit = () => {
-    if (instructionText.length) {
-      setForkedProject({
-        ...forkedProject,
-        instructions: [...forkedProject.instructions, { instructionText: instructionText }],
-      })
-    }
-    setInstructionText("")
-  }
-
-  const handleInstructionTextInput = (event) => {
-    setInstructionText(event.currentTarget.value)
-  }
-
   const handleInstructionDelete = (index) => {
     const instructionList = forkedProject.instructions.filter((instruction, i) => i !== index)
     setForkedProject({ ...forkedProject, instructions: instructionList })
-  }
-
-  const handlePartDelete = (index) => {
-    const partsList = forkedProject.parts.filter((part, i) => i !== index)
-    setForkedProject({ ...forkedProject, parts: partsList })
   }
 
   const partsList = forkedProject.parts.map((part, index) => {
@@ -232,21 +252,52 @@ const ForkProjectForm = (props) => {
           </Button>
         </div>
       )
-    } else {
+    } else if (instruction.instructionText) {
+      const isEditing = editInstructionIndices[index] === true
       return (
-        <div
-          key={`${instruction.instructionText}${index}`}
-          className="instruction-text-container form-items-container"
-        >
-          <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
-          <Button
-            onClick={() => handleInstructionDelete(index)}
-            className="large-button delete-instruction"
-            variant="contained"
-            startIcon={<DeleteIcon />}
-          >
-            Delete Instruction
-          </Button>
+        <div className="instruction-text-container form-items-container">
+          {isEditing ? (
+            <Textarea
+              minRows={3}
+              value={forkedProject.instructions[index].instructionText}
+              placeholder="Edit instruction"
+              onChange={(event) => handleEditInstructionTextInput(event, index)}
+              name="instructionText"
+              sx={{ minWidth: "100%", backgroundColor: "white" }}
+            />
+          ) : (
+            <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
+          )}
+          <div className="instruction-list-buttons-container">
+            {isEditing ? (
+              <Button
+                onClick={() => handleEditInstructionTextSubmit(index)}
+                className="large-button delete-image"
+                variant="contained"
+              >
+                Save Instruction
+              </Button>
+            ) : (
+              <>
+                <Button
+                  onClick={() => handleEditInstructionTextButton(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                >
+                  Edit Instruction
+                </Button>
+                <Button
+                  onClick={() => handleInstructionDelete(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete Instruction
+                </Button>
+              </>
+            )}
+          </div>
         </div>
       )
     }
@@ -316,14 +367,14 @@ const ForkProjectForm = (props) => {
             sx={{ width: "100%" }}
             id="part"
             className="part"
-            value={part}
-            onChange={handlePartInput}
+            value={forkedProject.newPart}
+            onChange={handleInputChange}
             label="Enter new part"
-            name="part"
+            name="newPart"
           />
           <Button
             onClick={handlePartSubmit}
-            className="large-button"
+            className="large-button add-part"
             id="add-part"
             variant="contained"
           >
@@ -337,16 +388,16 @@ const ForkProjectForm = (props) => {
         <div className="form-items-container new-instruction">
           <Textarea
             minRows={3}
-            value={instructionText}
+            value={forkedProject.newInstruction}
             placeholder="Enter new instruction"
-            onChange={handleInstructionTextInput}
-            name="instructionText"
+            onChange={handleInputChange}
+            name="newInstruction"
             label="Enter new instruction"
             sx={{ minWidth: "100%", backgroundColor: "white" }}
           />
           <div className="add-instruction-button-container">
             <Button
-              onClick={handleInstructionTextSubmit}
+              onClick={handleNewInstructionTextSubmit}
               className="large-button "
               id="add-instruction-text"
               variant="contained"
