@@ -284,7 +284,6 @@ const EditBuildForm = (props) => {
                   onClick={() => handleEditInstructionTextButton(index)}
                   className="large-button delete-image"
                   variant="contained"
-                  startIcon={<DeleteIcon />}
                 >
                   Edit Instruction
                 </Button>
