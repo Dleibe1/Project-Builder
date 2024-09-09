@@ -13,23 +13,23 @@ import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [part, setPart] = useState("")
   const [imageFile, setImageFile] = useState({
     image: {},
   })
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
-  const [instructionText, setInstructionText] = useState("")
   const params = useParams()
   const { id } = params
-
+  const [editInstructionIndices, setEditInstructionIndices] = useState({})
   const [editedProject, setEditedProject] = useState({
     title: "",
     tags: "",
     appsAndPlatforms: "",
     instructions: [],
+    newInstruction: "",
     parts: [],
+    newPart: "",
     description: "",
     code: "",
     githubFileURL: "",
@@ -148,20 +148,56 @@ const EditBuildForm = (props) => {
     setEditedProject({ ...editedProject, [event.currentTarget.name]: event.currentTarget.value })
   }
 
-  const handlePartInput = (event) => {
-    setPart(event.currentTarget.value)
-  }
-
   const handlePartSubmit = () => {
-    if (part.length) {
-      setEditedProject({ ...editedProject, parts: [...editedProject.parts, { partName: part }] })
+    if (editedProject.newPart.trim().length) {
+      setEditedProject({
+        ...editedProject,
+        parts: [...editedProject.parts, { partName: editedProject.newPart }],
+        newPart: "",
+      })
     }
-    setPart("")
   }
 
   const handlePartDelete = (index) => {
     const partsList = editedProject.parts.filter((part, i) => i !== index)
     setEditedProject({ ...editedProject, parts: partsList })
+  }
+
+  const handleEditInstructionTextSubmit = (index) => {
+    const instructions = [...editedProject.instructions]
+    if (instructions[index] && instructions[index].instructionText.trim().length) {
+      instructions.splice(index, 1, { instructionText: instructions[index].instructionText })
+      setEditedProject({ ...editedProject, instructions: instructions })
+      setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
+    }
+  }
+
+  const handleNewInstructionTextSubmit = (event) => {
+    if (editedProject.newInstruction.trim().length) {
+      setEditedProject({
+        ...editedProject,
+        instructions: [
+          ...editedProject.instructions,
+          { instructionText: editedProject.newInstruction },
+        ],
+        newInstruction: "",
+      })
+    }
+  }
+
+  const handleEditInstructionTextButton = (index) => {
+    setEditInstructionIndices({ ...editInstructionIndices, [index]: true })
+  }
+
+  const handleEditInstructionTextInput = (event, index) => {
+    const instructions = [...editedProject.instructions]
+    instructions[index].instructionText = event.currentTarget.value
+    setEditedProject({ ...editedProject, instructions: instructions })
+  }
+
+  const handleInstructionDelete = (index) => {
+    const instructionList = editedProject.instructions.filter((instruction, i) => i !== index)
+    setEditedProject({ ...editedProject, instructions: instructionList })
   }
 
   const handleProjectImageUpload = (acceptedImage) => {
@@ -174,25 +210,6 @@ const EditBuildForm = (props) => {
     setThumbnailImageFile({
       image: acceptedImage[0],
     })
-  }
-
-  const handleInstructionTextInput = (event) => {
-    setInstructionText(event.currentTarget.value)
-  }
-
-  const handleInstructionTextSubmit = () => {
-    if (instructionText.length) {
-      setEditedProject({
-        ...editedProject,
-        instructions: [...editedProject.instructions, { instructionText: instructionText }],
-      })
-    }
-    setInstructionText("")
-  }
-
-  const handleInstructionDelete = (index) => {
-    const instructionList = editedProject.instructions.filter((instruction, i) => i !== index)
-    setEditedProject({ ...editedProject, instructions: instructionList })
   }
 
   const partsList = editedProject.parts.map((part, index) => {
@@ -236,21 +253,52 @@ const EditBuildForm = (props) => {
           </Button>
         </div>
       )
-    } else {
+    } else if (instruction.instructionText) {
+      const isEditing = editInstructionIndices[index] === true
       return (
-        <div
-          key={`${instruction.instructionText}${index}`}
-          className="instruction-text-container form-items-container"
-        >
-          <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
-          <Button
-            onClick={() => handleInstructionDelete(index)}
-            className="large-button delete-instruction"
-            variant="contained"
-            startIcon={<DeleteIcon />}
-          >
-            Delete Instruction
-          </Button>
+        <div className="instruction-text-container form-items-container">
+          {isEditing ? (
+            <Textarea
+              minRows={3}
+              value={editedProject.instructions[index].instructionText}
+              placeholder="Edit instruction"
+              onChange={(event) => handleEditInstructionTextInput(event, index)}
+              name="instructionText"
+              sx={{ minWidth: "100%", backgroundColor: "white" }}
+            />
+          ) : (
+            <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
+          )}
+          <div className="instruction-list-buttons-container">
+            {isEditing ? (
+              <Button
+                onClick={() => handleEditInstructionTextSubmit(index)}
+                className="large-button delete-image"
+                variant="contained"
+              >
+                Save Instruction
+              </Button>
+            ) : (
+              <>
+                <Button
+                  onClick={() => handleEditInstructionTextButton(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                >
+                  Edit Instruction
+                </Button>
+                <Button
+                  onClick={() => handleInstructionDelete(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete Instruction
+                </Button>
+              </>
+            )}
+          </div>
         </div>
       )
     }
@@ -261,11 +309,11 @@ const EditBuildForm = (props) => {
   }
 
   return (
-    <div className="edit-project-form-container project-show">
+    <div className="fork-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="edit-project-form" id="edit-project-form" onSubmit={handleSubmit}>
+      <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
-          <h1>Edit Project</h1>
+          <h1>Fork This Project</h1>
           <TextField
             value={editedProject.title}
             className="form-input text-field"
@@ -320,14 +368,14 @@ const EditBuildForm = (props) => {
             sx={{ width: "100%" }}
             id="part"
             className="part"
-            value={part}
-            onChange={handlePartInput}
+            value={editedProject.newPart}
+            onChange={handleInputChange}
             label="Enter new part"
-            name="part"
+            name="newPart"
           />
           <Button
             onClick={handlePartSubmit}
-            className="large-button"
+            className="large-button add-part"
             id="add-part"
             variant="contained"
           >
@@ -341,16 +389,16 @@ const EditBuildForm = (props) => {
         <div className="form-items-container new-instruction">
           <Textarea
             minRows={3}
-            value={instructionText}
+            value={editedProject.newInstruction}
             placeholder="Enter new instruction"
-            onChange={handleInstructionTextInput}
-            name="instructionText"
+            onChange={handleInputChange}
+            name="newInstruction"
             label="Enter new instruction"
             sx={{ minWidth: "100%", backgroundColor: "white" }}
           />
           <div className="add-instruction-button-container">
             <Button
-              onClick={handleInstructionTextSubmit}
+              onClick={handleNewInstructionTextSubmit}
               className="large-button "
               id="add-instruction-text"
               variant="contained"
@@ -358,7 +406,6 @@ const EditBuildForm = (props) => {
               Add Instruction
             </Button>
           </div>
-
           <Button
             className="large-button"
             id="add-instruction-image"
@@ -386,7 +433,6 @@ const EditBuildForm = (props) => {
               cols="1"
               onChange={handleInputChange}
               type="text"
-              id="code"
               name="code"
               sx={{ backgroundColor: "white" }}
             />

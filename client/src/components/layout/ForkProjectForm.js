@@ -13,7 +13,6 @@ import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [editInstructionIndices, setEditInstructionIndices] = useState({})
   const [imageFile, setImageFile] = useState({
     image: {},
   })
@@ -22,7 +21,7 @@ const ForkProjectForm = (props) => {
   })
   const params = useParams()
   const { id } = params
-
+  const [editInstructionIndices, setEditInstructionIndices] = useState({})
   const [forkedProject, setForkedProject] = useState({
     title: "",
     tags: "",
@@ -199,23 +198,21 @@ const ForkProjectForm = (props) => {
     setForkedProject({ ...forkedProject, instructions: instructions })
   }
 
+  const handleInstructionDelete = (index) => {
+    const instructionList = forkedProject.instructions.filter((instruction, i) => i !== index)
+    setForkedProject({ ...forkedProject, instructions: instructionList })
+  }
+
   const handleProjectImageUpload = (acceptedImage) => {
     setImageFile({
       image: acceptedImage[0],
     })
-    uploadProjectImage()
   }
 
   const handleThumbnailImageUpload = (acceptedImage) => {
     setThumbnailImageFile({
       image: acceptedImage[0],
     })
-    uploadThumbnailImage()
-  }
-
-  const handleInstructionDelete = (index) => {
-    const instructionList = forkedProject.instructions.filter((instruction, i) => i !== index)
-    setForkedProject({ ...forkedProject, instructions: instructionList })
   }
 
   const partsList = forkedProject.parts.map((part, index) => {
