@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
-import { Button, TextField, Typography } from "@mui/material"
+import { Button, TextField } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
 import DeleteIcon from "@mui/icons-material/Delete"
 import CloudUpload from "@mui/icons-material/CloudUpload"
