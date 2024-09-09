@@ -212,7 +212,7 @@ body.grey-background {
 }
 
 .tag-input .MuiAutocomplete-input:focus {
-  border:none;
+  border: none;
 }
 
 .tag-input .MuiAutocomplete-inputRoot {
@@ -645,7 +645,8 @@ h5 {
 #sign-up-button,
 #new-build-button,
 #how-to-use-button,
-#projects-button {
+#projects-button,
+#my-builds-button {
   align-items: center;
   color: white;
   height: 52px;
@@ -657,15 +658,36 @@ h5 {
   padding-right: 20px;
 }
 
-#sign-up-button {
-  margin-left:10px;
+#how-to-use-button {
+  margin-right: 1rem;
 }
 
-#new-build-button {
-  margin-left:10px;
+#projects-button,
+#my-builds-button,
+#new-build-button,
+#burger-menu {
+  margin: 0px 4px;
 }
-#projects-button {
-  margin-right:10px;
+
+#how-to-use-button:hover,
+#projects-button:hover,
+#homepage-button:hover,
+#my-builds-button:hover,
+#new-build-button:hover {
+  background-color: #1665c0;
+  color: white;
+}
+
+.burger-menu-item {
+color: black;
+text-align: center;
+}
+.burger-menu-item:hover{
+  color:black;
+}
+
+#sign-up-button {
+  margin-left: 10px;
 }
 
 #homepage-button {
@@ -861,7 +883,7 @@ h5 {
 .instruction-list-buttons-container {
   display: flex;
   width: 100%;
-  margin:10px;
+  margin: 10px;
   justify-content: space-around;
 }
 

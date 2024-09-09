@@ -9,15 +9,7 @@ const NewBuildButton = () => {
       to="/create-new-build"
       id="new-build-button"
       key={"new-build-button"}
-      sx={{
-        my: 2,
-        color: "white",
-        display: { xs: "none", sm: "none", md: "none", lg: "block" },
-        "&:hover": {
-          backgroundColor: "#1665c0",
-          color: "white",
-        },
-      }}
+      sx={{ display: { xs: "none", sm: "none", md: "none", lg: "block" } }}
     >
       Create Build
     </Button>

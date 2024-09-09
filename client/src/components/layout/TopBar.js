@@ -43,7 +43,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
-//TODO: Create a context for URL search params?
+  //TODO: Create a context for URL search params?
   const handleProjectsLinkClick = () => {
     setSelectedTag("")
   }
@@ -94,16 +94,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
               to="/how-to-use"
               id="how-to-use-button"
               key={"how-to-use-button"}
-              sx={{
-                my: 2,
-                color: "white",
-                display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-                marginRight: "1rem",
-                "&:hover": {
-                  backgroundColor: "#1665c0",
-                  color: "white",
-                },
-              }}
+              sx={{ display: { xs: "none", sm: "none", md: "none", lg: "flex" } }}
             >
               How To Use
             </Button>
@@ -113,15 +104,6 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
               to="/project-list?page=1"
               id="projects-button"
               key={"projects-button"}
-              sx={{
-                my: 2,
-                color: "white",
-                display: "block",
-                "&:hover": {
-                  backgroundColor: "#1665c0",
-                  color: "white",
-                },
-              }}
             >
               Projects
             </Button>
@@ -130,15 +112,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
               to="/"
               id="homepage-button"
               key={"homepage-button"}
-              sx={{
-                my: 2,
-                color: "white",
-                display: "block",
-                "&:hover": {
-                  backgroundColor: "#1665c0",
-                  color: "white",
-                },
-              }}
+              sx={{ display: "block" }}
             >
               <img src="/images/project-builder-logo.png" id="logo" />
               Home
@@ -150,8 +124,9 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
               <MyBuildsButton />
               <NewBuildButton />
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex", lg: "none" } }}>
                 <IconButton
+                  id="burger-menu"
                   size="large"
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
@@ -176,48 +151,25 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
                   open={Boolean(anchorElNav)}
                   onClose={handleCloseNavMenu}
                   sx={{
-                    display: { xs: "block", md: "none" },
+                    display: { xs: "block", md: "flex", lg:"none" },
                   }}
                 >
-                  <MenuItem component={Link} to="/">
-                    <Typography
-                      sx={{
-                        color: "black",
-                        "&:hover": {
-                          color: "black",
-                        },
-                      }}
-                      textAlign="center"
-                    >
-                      How to use
-                    </Typography>
+                  <MenuItem sx={{display :{ xs: "flex", md: "none"}}} component={Link} to="/">
+                    <Typography  className="burger-menu-item">How to use</Typography>
                   </MenuItem>
-                  <MenuItem component={Link} to="/my-builds-list?page=1">
-                    <Typography
-                      sx={{
-                        color: "black",
-                        "&:hover": {
-                          color: "black",
-                        },
-                      }}
-                      textAlign="center"
-                    >
+                  <MenuItem sx={{display :{ xs: "flex", md: "none"}}}  component={Link} to="/my-builds-list?page=1">
+                    <Typography  className="burger-menu-item">
                       My Builds
                     </Typography>
                   </MenuItem>
-                  <MenuItem component={Link} to="/create-new-build">
-                    <Typography
-                      sx={{
-                        color: "black",
-                        "&:hover": {
-                          color: "black",
-                        },
-                      }}
-                      textAlign="center"
-                    >
+                  <MenuItem sx={{display :{ xs: "flex", md: "flex"}}} component={Link} to="/create-new-build">
+                    <Typography  className="burger-menu-item">
                       Create Build
                     </Typography>
                   </MenuItem>
+                  <MenuItem sx={{display :{ xs: "flex", md: "flex"}}} key={"burger-menu-logout"} onClick={signOut}>
+                  <Typography textAlign="center">Sign Out</Typography>
+                </MenuItem>
                 </Menu>
               </Box>
               <Tooltip>
@@ -254,6 +206,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
               <GithubLogin />
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton
+                  id="burger-menu"
                   size="large"
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
@@ -282,28 +235,12 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
                   }}
                 >
                   <MenuItem component={Link} to="/user-sessions/new">
-                    <Typography
-                      sx={{
-                        color: "black",
-                        "&:hover": {
-                          color: "black",
-                        },
-                      }}
-                      textAlign="center"
-                    >
+                    <Typography className="burger-menu-item">
                       Sign In
                     </Typography>
                   </MenuItem>
                   <MenuItem component={Link} to="/users/new">
-                    <Typography
-                      sx={{
-                        color: "black",
-                        "&:hover": {
-                          color: "black",
-                        },
-                      }}
-                      textAlign="center"
-                    >
+                    <Typography className="burger-menu-item">
                       Sign Up
                     </Typography>
                   </MenuItem>
@@ -311,16 +248,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
                     <Typography textAlign="center">Login With GitHub</Typography>
                   </MenuItem>
                   <MenuItem component={Link} to="/">
-                    <Typography
-                      sx={{
-                        color: "black",
-                        "&:hover": {
-                          color: "black",
-                        },
-                      }}
-                      to="/"
-                      textAlign="center"
-                    >
+                    <Typography className="burger-menu-item">
                       How to use
                     </Typography>
                   </MenuItem>
