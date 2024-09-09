@@ -7,17 +7,9 @@ const MyBuildsButton = () => {
     <Button
       component={Link}
       to="/my-builds-list?page=1"
-      id="new-build-button"
+      id="my-builds-button"
       key={"new-build-button"}
-      sx={{
-        my: 2,
-        color: "white",
-        display: { xs: "none", md: "block" },
-        "&:hover": {
-          backgroundColor: "#1665c0",
-          color: "white",
-        },
-      }}
+      sx={{display: { xs: "none", md: "block" }}}
     >
       My Builds
     </Button>
