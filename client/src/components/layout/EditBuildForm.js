@@ -170,7 +170,7 @@ const EditBuildForm = (props) => {
   const handleEditInstructionTextSubmit = (index) => {
     const instructions = [...editedProject.instructions]
     if (instructions[index] && instructions[index].instructionText.trim().length) {
-      instructions.splice(index, 1, { instructionText: instructions[index].instructionText })
+      instructions.splice(index, 0, { instructionText: instructions[index].instructionText })
       setEditedProject({ ...editedProject, instructions: instructions })
       setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
     }
@@ -205,7 +205,7 @@ const EditBuildForm = (props) => {
   }
 
   const handleAddInstructionBelowButton = (index) => {
-    setNewInstructionIndices({...newInstructionIndices, [index]: true})
+    setNewInstructionIndices({ ...newInstructionIndices, [index + 1]: true })
     const instructions = [...editedProject.instructions]
     instructions.splice(index + 1, 0, { instructionText: "" })
     setEditedProject({ ...editedProject, instructions: instructions })
@@ -213,7 +213,7 @@ const EditBuildForm = (props) => {
 
   const handleAddInstructionBelowInput = (event, index) => {
     const instructions = [...editedProject.instructions]
-    instructions[index + 1].instructionText = event.currentTarget.value
+    instructions[index].instructionText = event.currentTarget.value
     setEditedProject({ ...editedProject, instructions: instructions })
   }
 
@@ -274,10 +274,29 @@ const EditBuildForm = (props) => {
           </Button>
         </div>
       )
-    } else if (instruction.instructionText) {
+    }
+    if (newInstructionIndices[index] === true) {
+      return (
+        <div className="instruction-text-container form-items-container">
+          <Textarea
+            minRows={3}
+            value={editedProject.instructions[index].instructionText}
+            placeholder="Add New Instruction"
+            onChange={(event) => handleAddInstructionBelowInput(event, index)}
+            name="instructionBelow"
+            sx={{ minWidth: "100%", backgroundColor: "white" }}
+          />
+          <Button
+            onClick={() => handleAddInstructionBelowSubmit(index)}
+            className="large-button delete-image"
+            variant="contained"
+          >
+            Save Instruction
+          </Button>
+        </div>
+      )
+    } else {
       const isEditing = editInstructionIndices[index] === true
-      const instructionBelowIndex = index + 1
-      console.log(newInstructionIndices[index])
       return (
         <div className="instruction-text-container form-items-container">
           {isEditing && (
@@ -293,63 +312,42 @@ const EditBuildForm = (props) => {
           {!isEditing && newInstructionIndices[index - 1] !== true && (
             <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
           )}
-            <div className="instruction-list-buttons-container">
-              {isEditing ? (
-                <Button
-                  onClick={() => handleEditInstructionTextSubmit(index)}
-                  className="large-button delete-image"
-                  variant="contained"
-                >
-                  Save Instruction
-                </Button>
-              ) : (
-                <>
-                  <Button
-                    onClick={() => handleEditInstructionTextButton(index)}
-                    className="large-button delete-image"
-                    variant="contained"
-                  >
-                    Edit Instruction
-                  </Button>
-                  <Button
-                    onClick={() => handleInstructionDelete(index)}
-                    className="large-button delete-image"
-                    variant="contained"
-                    startIcon={<DeleteIcon />}
-                  >
-                    Delete Instruction
-                  </Button>
-                  {!newInstructionIndices[index] && (
-                    <Button
-                      onClick={() => handleAddInstructionBelowButton(index)}
-                      className="large-button delete-image"
-                      variant="contained"
-                    >
-                      Add Instruction Below
-                    </Button>
-                  )}
-                </>
-              )}
-            </div>
-          {newInstructionIndices && newInstructionIndices[index] === true && (
-            <>
-              <Textarea
-                minRows={3}
-                value={editedProject.instructions[index + 1].instructionText}
-                placeholder="Add New Instruction"
-                onChange={(event) => handleAddInstructionBelowInput(event, index)}
-                name="instructionBelow"
-                sx={{ minWidth: "100%", backgroundColor: "white" }}
-              />
+          <div className="instruction-list-buttons-container">
+            {isEditing ? (
               <Button
-                onClick={() => handleAddInstructionBelowSubmit(index)}
+                onClick={() => handleEditInstructionTextSubmit(index)}
                 className="large-button delete-image"
                 variant="contained"
               >
                 Save Instruction
               </Button>
-            </>
-          )}
+            ) : (
+              <>
+                <Button
+                  onClick={() => handleEditInstructionTextButton(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                >
+                  Edit Instruction
+                </Button>
+                <Button
+                  onClick={() => handleInstructionDelete(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete Instruction
+                </Button>
+                <Button
+                  onClick={() => handleAddInstructionBelowButton(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                >
+                  Add Instruction Below
+                </Button>
+              </>
+            )}
+          </div>
         </div>
       )
     }
