@@ -22,6 +22,7 @@ const EditBuildForm = (props) => {
   const params = useParams()
   const { id } = params
   const [editInstructionIndices, setEditInstructionIndices] = useState({})
+  const [newInstructionIndices, setNewInstructionIndices] = useState({})
   const [editedProject, setEditedProject] = useState({
     title: "",
     tags: "",
@@ -109,9 +110,12 @@ const EditBuildForm = (props) => {
         throw error
       }
       const responseBody = await response.json()
-      let build = responseBody.userBuild
+      const build = responseBody.userBuild
       prepForFrontEnd(build)
-      setEditedProject(build)
+      setEditedProject((prevState) => ({
+        ...prevState,
+        ...build,
+      }))
     } catch (error) {
       console.log(error)
     }
@@ -200,6 +204,23 @@ const EditBuildForm = (props) => {
     setEditedProject({ ...editedProject, instructions: instructionList })
   }
 
+  const handleAddInstructionBelowButton = (index) => {
+    setNewInstructionIndices({...newInstructionIndices, [index]: true})
+    const instructions = [...editedProject.instructions]
+    instructions.splice(index + 1, 0, { instructionText: "" })
+    setEditedProject({ ...editedProject, instructions: instructions })
+  }
+
+  const handleAddInstructionBelowInput = (event, index) => {
+    const instructions = [...editedProject.instructions]
+    instructions[index + 1].instructionText = event.currentTarget.value
+    setEditedProject({ ...editedProject, instructions: instructions })
+  }
+
+  const handleAddInstructionBelowSubmit = (index) => {
+    setNewInstructionIndices({ ...newInstructionIndices, [index]: false })
+  }
+
   const handleProjectImageUpload = (acceptedImage) => {
     setImageFile({
       image: acceptedImage[0],
@@ -255,9 +276,11 @@ const EditBuildForm = (props) => {
       )
     } else if (instruction.instructionText) {
       const isEditing = editInstructionIndices[index] === true
+      const instructionBelowIndex = index + 1
+      console.log(newInstructionIndices[index])
       return (
         <div className="instruction-text-container form-items-container">
-          {isEditing ? (
+          {isEditing && (
             <Textarea
               minRows={3}
               value={editedProject.instructions[index].instructionText}
@@ -266,38 +289,67 @@ const EditBuildForm = (props) => {
               name="instructionText"
               sx={{ minWidth: "100%", backgroundColor: "white" }}
             />
-          ) : (
+          )}
+          {!isEditing && newInstructionIndices[index - 1] !== true && (
             <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
           )}
-          <div className="instruction-list-buttons-container">
-            {isEditing ? (
+            <div className="instruction-list-buttons-container">
+              {isEditing ? (
+                <Button
+                  onClick={() => handleEditInstructionTextSubmit(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                >
+                  Save Instruction
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    onClick={() => handleEditInstructionTextButton(index)}
+                    className="large-button delete-image"
+                    variant="contained"
+                  >
+                    Edit Instruction
+                  </Button>
+                  <Button
+                    onClick={() => handleInstructionDelete(index)}
+                    className="large-button delete-image"
+                    variant="contained"
+                    startIcon={<DeleteIcon />}
+                  >
+                    Delete Instruction
+                  </Button>
+                  {!newInstructionIndices[index] && (
+                    <Button
+                      onClick={() => handleAddInstructionBelowButton(index)}
+                      className="large-button delete-image"
+                      variant="contained"
+                    >
+                      Add Instruction Below
+                    </Button>
+                  )}
+                </>
+              )}
+            </div>
+          {newInstructionIndices && newInstructionIndices[index] === true && (
+            <>
+              <Textarea
+                minRows={3}
+                value={editedProject.instructions[index + 1].instructionText}
+                placeholder="Add New Instruction"
+                onChange={(event) => handleAddInstructionBelowInput(event, index)}
+                name="instructionBelow"
+                sx={{ minWidth: "100%", backgroundColor: "white" }}
+              />
               <Button
-                onClick={() => handleEditInstructionTextSubmit(index)}
+                onClick={() => handleAddInstructionBelowSubmit(index)}
                 className="large-button delete-image"
                 variant="contained"
               >
                 Save Instruction
               </Button>
-            ) : (
-              <>
-                <Button
-                  onClick={() => handleEditInstructionTextButton(index)}
-                  className="large-button delete-image"
-                  variant="contained"
-                >
-                  Edit Instruction
-                </Button>
-                <Button
-                  onClick={() => handleInstructionDelete(index)}
-                  className="large-button delete-image"
-                  variant="contained"
-                  startIcon={<DeleteIcon />}
-                >
-                  Delete Instruction
-                </Button>
-              </>
-            )}
-          </div>
+            </>
+          )}
         </div>
       )
     }
@@ -312,7 +364,7 @@ const EditBuildForm = (props) => {
       <ErrorList errors={errors} />
       <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
-          <h1>Fork This Project</h1>
+          <h1>Edit Project</h1>
           <TextField
             value={editedProject.title}
             className="form-input text-field"
