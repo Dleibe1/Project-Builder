@@ -275,7 +275,7 @@ const EditBuildForm = (props) => {
         </div>
       )
     }
-    if (newInstructionIndices[index] === true) {
+    if (newInstructionIndices[index] === true ) {
       return (
         <div className="instruction-text-container form-items-container">
           <Textarea
@@ -338,13 +338,15 @@ const EditBuildForm = (props) => {
                 >
                   Delete Instruction
                 </Button>
-                <Button
-                  onClick={() => handleAddInstructionBelowButton(index)}
-                  className="large-button delete-image"
-                  variant="contained"
-                >
-                  Add Instruction Below
-                </Button>
+                {index !== editedProject.instructions.length - 1 && (
+                  <Button
+                    onClick={() => handleAddInstructionBelowButton(index)}
+                    className="large-button delete-image"
+                    variant="contained"
+                  >
+                    Add Instruction Below
+                  </Button>
+                )}
               </>
             )}
           </div>
@@ -478,7 +480,7 @@ const EditBuildForm = (props) => {
           <label htmlFor="code" className="form-input" id="code-input">
             <Textarea
               value={editedProject.code}
-              minRows="20"
+              minRows="10"
               cols="1"
               onChange={handleInputChange}
               type="text"
