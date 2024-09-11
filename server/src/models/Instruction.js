@@ -9,9 +9,9 @@ class Instruction extends Model {
       type: "object",
       required: ["projectId"],
       properties: {
-        imageURL: { type: "string" },
+        imageURL: { type: ["string", "null"] },
         projectId: { type: "integer" },
-        instructionText: { type: "string" },
+        instructionText: { type: ["string", "null"] },
       },
       anyOf: [
         { required: ["imageURL"] },
