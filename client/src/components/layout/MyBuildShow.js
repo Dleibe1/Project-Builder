@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import DeleteBuildButton from "./DeleteBuildButton"
 import EditBuildButton from "./EditBuildButton"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
-
+//TODO: remove all "prepForFrontEnd" and replace with functional state update as done in ForkedProjectForm
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -55,16 +55,17 @@ const MyBuildShow = (props) => {
       }
       const responseBody = await response.json()
       const build = responseBody.userBuild
-      prepForFrontEnd(build)
-      setMyBuild(build)
+      setMyBuild((prevState) => ({ ...prevState, ...build }))
     } catch (error) {
       console.log(error)
     }
   }
 
-  const codeMessage = myBuild.githubFileURL.length
-    ? [<h2>Code fetched from GitHub just now:</h2>, <p>({myBuild.githubFileURL})</p>]
-    : <h2>Project Code</h2>
+  const codeMessage = myBuild.githubFileURL?.length ? (
+    [<h2>Code fetched from GitHub just now:</h2>, <p>({myBuild.githubFileURL})</p>]
+  ) : (
+    <h2>Project Code</h2>
+  )
   const partsList = myBuild.parts.map((part) => {
     return <p>{part.partName}</p>
   })
@@ -84,7 +85,7 @@ const MyBuildShow = (props) => {
       )
     }
   })
-console.log(myBuild.instructions)
+
   return (
     <div className="project-show">
       <div className="edit-delete-build-button-container">

@@ -18,26 +18,20 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
     code: forkData.code,
     parentProjectId: originalProjectId,
   })
-
   const parts = forkData.parts
   const instructions = forkData.instructions
   const forkedProjectId = parseInt(forkedProject.id)
-  const partInsertions = parts.map(async (part) => {
-    return await Part.query().insert({ projectId: forkedProjectId, partName: part.partName })
+
+  const partInsertions = parts.map((part) => {
+    return Part.query().insert({ projectId: forkedProjectId, partName: part.partName })
   })
 
-  const instructionInsertions = instructions.map(async (instruction) => {
-    if (instruction.imageURL) {
-      return await Instruction.query().insert({
-        projectId: forkedProjectId,
-        imageURL: instruction.imageURL,
-      })
-    } else if (instruction.instructionText) {
-      return await Instruction.query().insert({
-        projectId: forkedProjectId,
-        instructionText: instruction.instructionText,
-      })
-    }
+  const instructionInsertions = instructions.map((instruction) => {
+    return Instruction.query().insert({
+      projectId: forkedProjectId,
+      instructionText: instruction.instructionText,
+      imageURL: instruction.imageURL,
+    })
   })
   await Promise.all([...partInsertions, ...instructionInsertions])
 }

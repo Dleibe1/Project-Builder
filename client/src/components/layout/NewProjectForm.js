@@ -19,6 +19,8 @@ const NewProjectForm = (props) => {
     image: {},
   })
   const [editInstructionIndices, setEditInstructionIndices] = useState({})
+  const [newInstructionIndices, setNewInstructionIndices] = useState({})
+  const [newProjectImageIndex, setNewProjectImageIndex] = useState(null)
   const [newProject, setNewProject] = useState({
     title: "",
     tags: "",
@@ -48,6 +50,28 @@ const NewProjectForm = (props) => {
     uploadThumbnailImage()
   }, [thumbnailImageFile])
 
+  const postProject = async (newProjectData) => {
+    try {
+      const response = await fetch("/api/v1/projects/new-project", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(newProjectData),
+      })
+      if (!response.ok) {
+        if (response.status === 422) {
+          const body = await response.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
+        }
+      }
+      setShouldRedirect(true)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const uploadProjectImage = async () => {
     const newImageFileData = new FormData()
     newImageFileData.append("image", imageFile.image)
@@ -63,9 +87,11 @@ const NewProjectForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
+      const instructions = [...newProject.instructions]
+      instructions.splice(newProjectImageIndex, 0, { imageURL: body.imageURL })
       setNewProject({
         ...newProject,
-        instructions: [...newProject.instructions, { imageURL: body.imageURL }],
+        instructions: instructions,
       })
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
@@ -93,7 +119,8 @@ const NewProjectForm = (props) => {
     }
   }
 
-  const handleProjectImageUpload = (acceptedImage) => {
+  const handleProjectImageUpload = (acceptedImage, index) => {
+    setNewProjectImageIndex(index + 1)
     setImageFile({
       image: acceptedImage[0],
     })
@@ -103,28 +130,6 @@ const NewProjectForm = (props) => {
     setThumbnailImageFile({
       image: acceptedImage[0],
     })
-  }
-
-  const postProject = async (newProjectData) => {
-    try {
-      const response = await fetch('/api/v1/projects/new-project', {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify(newProjectData),
-      })
-      if (!response.ok) {
-        if (response.status === 422) {
-          const body = await response.json()
-          const newErrors = translateServerErrors(body.errors)
-          return setErrors(newErrors)
-        }
-      }
-      setShouldRedirect(true)
-    } catch (error) {
-      console.log(error)
-    }
   }
 
   const handleSubmit = (event) => {
@@ -138,6 +143,15 @@ const NewProjectForm = (props) => {
 
   const handleInputChange = (event) => {
     setNewProject({ ...newProject, [event.currentTarget.name]: event.currentTarget.value })
+  }
+  const handleNewInstructionTextSubmit = (event) => {
+    if (newProject.newInstruction.trim().length) {
+      setNewProject({
+        ...newProject,
+        instructions: [...newProject.instructions, { instructionText: newProject.newInstruction }],
+        newInstruction: "",
+      })
+    }
   }
 
   const handlePartSubmit = () => {
@@ -156,21 +170,11 @@ const NewProjectForm = (props) => {
   }
 
   const handleEditInstructionTextSubmit = (index) => {
-    const instructions = [...newProject.instructions]
-    if (instructions[index] && instructions[index].instructionText.trim().length) {
-      instructions.splice(index, 1, { instructionText: instructions[index].instructionText })
-      setNewProject({ ...newProject, instructions: instructions })
+    if (
+      newProject.instructions[index].instructionText &&
+      newProject.instructions[index].instructionText.length
+    ) {
       setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
-    }
-  }
-
-  const handleNewInstructionTextSubmit = (event) => {
-    if (newProject.newInstruction.trim().length) {
-      setNewProject({
-        ...newProject,
-        instructions: [...newProject.instructions, { instructionText: newProject.newInstruction }],
-        newInstruction: "",
-      })
     }
   }
 
@@ -189,6 +193,28 @@ const NewProjectForm = (props) => {
     setNewProject({ ...newProject, instructions: instructionList })
   }
 
+  const handleAddInstructionBelowButton = (index) => {
+    setNewInstructionIndices({ ...newInstructionIndices, [index + 1]: true })
+    const instructions = [...newProject.instructions]
+    instructions.splice(index + 1, 0, { instructionText: "" })
+    setNewProject({ ...newProject, instructions: instructions })
+  }
+
+  const handleAddInstructionBelowInput = (event, index) => {
+    const instructions = [...newProject.instructions]
+    instructions[index].instructionText = event.currentTarget.value
+    setNewProject({ ...newProject, instructions: instructions })
+  }
+
+  const handleAddInstructionBelowSubmit = (index) => {
+    if (
+      newProject.instructions[index].instructionText &&
+      newProject.instructions[index].instructionText.length
+    ) {
+      setNewInstructionIndices({ ...newInstructionIndices, [index]: false })
+    }
+  }
+
   let thumbNailImage = [
     <div className="project-image-container thumbnail-image-container ">
       <img className="project-image" src={newProject.thumbnailImage} />
@@ -198,7 +224,6 @@ const NewProjectForm = (props) => {
   thumbNailImage = newProject.thumbnailImage.length ? thumbNailImage : []
 
   const partsList = newProject.parts.map((part, index) => {
-    
     return (
       <div className="part-item-in-form">
         <p key={`${part.partName}${index}`}> {part.partName}</p>
@@ -222,63 +247,144 @@ const NewProjectForm = (props) => {
           className="project-image-container form-items-container"
         >
           <img className="project-image" src={instruction.imageURL} />
-          <Button
-            onClick={() => handleInstructionDelete(index)}
-            className="large-button delete-image"
-            variant="contained"
-            startIcon={<DeleteIcon />}
-          >
-            Delete Image
-          </Button>
-        </div>
-      )
-    } else if (instruction.instructionText) {
-      const isEditing = editInstructionIndices[index] === true
-      return (
-        <div className="instruction-text-container form-items-container">
-          {isEditing ? (
-            <Textarea
-              minRows={3}
-              value={newProject.instructions[index].instructionText}
-              placeholder="Edit instruction"
-              onChange={(event) => handleEditInstructionTextInput(event, index)}
-              name="instructionText"
-              sx={{ minWidth: "100%", backgroundColor: "white" }}
-            />
-          ) : (
-            <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
-          )}
           <div className="instruction-list-buttons-container">
-            {isEditing ? (
-              <Button
-                onClick={() => handleEditInstructionTextSubmit(index)}
-                className="large-button delete-image"
-                variant="contained"
+            <Button
+              onClick={() => handleInstructionDelete(index)}
+              className="large-button delete-image"
+              variant="contained"
+              startIcon={<DeleteIcon />}
+            >
+              Delete Image
+            </Button>
+            <Button
+              onClick={() => handleAddInstructionBelowButton(index)}
+              className="large-button delete-image"
+              variant="contained"
+            >
+              Add Instruction Below
+            </Button>
+            <Button
+              className="large-button"
+              id="add-instruction-image"
+              variant="contained"
+              startIcon={<CloudUpload />}
+            >
+              <Dropzone
+                onDrop={(acceptedImage) => {
+                  handleProjectImageUpload(acceptedImage, index)
+                }}
               >
-                Save Instruction
-              </Button>
-            ) : (
-              <>
-                <Button
-                  onClick={() => handleEditInstructionTextButton(index)}
-                  className="large-button delete-image"
-                  variant="contained"
-                >
-                  Edit Instruction
-                </Button>
-                <Button
-                  onClick={() => handleInstructionDelete(index)}
-                  className="large-button delete-image"
-                  variant="contained"
-                  startIcon={<DeleteIcon />}
-                >
-                  Delete Instruction
-                </Button>
-              </>
-            )}
+                {({ getRootProps, getInputProps }) => (
+                  <section>
+                    <div {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      Add Image Below
+                    </div>
+                  </section>
+                )}
+              </Dropzone>
+            </Button>
           </div>
         </div>
       )
+    } else {
+      if (newInstructionIndices[index] === true) {
+        return (
+          <div className="instruction-text-container form-items-container">
+            <Textarea
+              minRows={3}
+              value={newProject.instructions[index].instructionText}
+              placeholder="Add New Instruction"
+              onChange={(event) => handleAddInstructionBelowInput(event, index)}
+              name="instructionBelow"
+              sx={{ minWidth: "100%", backgroundColor: "white" }}
+            />
+            <Button
+              onClick={() => handleAddInstructionBelowSubmit(index)}
+              className="large-button delete-image"
+              variant="contained"
+            >
+              Save Instruction
+            </Button>
+          </div>
+        )
+      } else {
+        const isEditing = editInstructionIndices[index] === true
+        return (
+          <div className="instruction-text-container form-items-container">
+            {isEditing && (
+              <Textarea
+                minRows={3}
+                value={newProject.instructions[index].instructionText}
+                placeholder="Edit instruction"
+                onChange={(event) => handleEditInstructionTextInput(event, index)}
+                name="instructionText"
+                sx={{ minWidth: "100%", backgroundColor: "white" }}
+              />
+            )}
+            {!isEditing && newInstructionIndices[index - 1] !== true && (
+              <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
+            )}
+            <div className="instruction-list-buttons-container">
+              {isEditing ? (
+                <Button
+                  onClick={() => handleEditInstructionTextSubmit(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                >
+                  Save Instruction
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    onClick={() => handleEditInstructionTextButton(index)}
+                    className="large-button delete-image"
+                    variant="contained"
+                  >
+                    Edit Instruction
+                  </Button>
+                  <Button
+                    onClick={() => handleInstructionDelete(index)}
+                    className="large-button delete-image"
+                    variant="contained"
+                    startIcon={<DeleteIcon />}
+                  >
+                    Delete Instruction
+                  </Button>
+                  <Button
+                    onClick={() => handleAddInstructionBelowButton(index)}
+                    className="large-button delete-image"
+                    variant="contained"
+                  >
+                    Add Instruction Below
+                  </Button>
+                  <Button
+                    className="large-button"
+                    id="add-instruction-image"
+                    variant="contained"
+                    startIcon={<CloudUpload />}
+                  >
+                    <Dropzone
+                      onDrop={(acceptedImage) => {
+                        handleProjectImageUpload(acceptedImage, index)
+                      }}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <section>
+                          <div {...getRootProps()}>
+                            <input {...getInputProps()} />
+                            Add Image Below
+                          </div>
+                        </section>
+                      )}
+                    </Dropzone>
+                  </Button>
+                </>
+              )}
+            </div>
+          </div>
+        )
+      }
     }
   })
 
@@ -287,11 +393,11 @@ const NewProjectForm = (props) => {
   }
 
   return (
-    <div className="new-build-form-container project-show">
+    <div className="fork-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="new-build-form" id="new-build-form" onSubmit={handleSubmit}>
+      <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
-          <h1>New Project</h1>
+          <h1>Edit Project</h1>
           <TextField
             value={newProject.title}
             className="form-input text-field"
@@ -324,9 +430,7 @@ const NewProjectForm = (props) => {
                 <section>
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
-                    {newProject.thumbnailImage.length
-                      ? "Change Thumbnail Image"
-                      : "Upload Thumbnail Image"}
+                    Change Thumbnail Image
                   </div>
                 </section>
               )}
@@ -366,44 +470,47 @@ const NewProjectForm = (props) => {
           <h2 id="form-instructions-heading">Instructions and Images:</h2>
           <div>{instructionList}</div>
         </div>
-        <div className="form-items-container new-instruction">
-          <Textarea
-            minRows={3}
-            value={newProject.newInstruction}
-            placeholder="Enter new instruction"
-            onChange={handleInputChange}
-            name="newInstruction"
-            label="Enter new instruction"
-            sx={{ minWidth: "100%", backgroundColor: "white" }}
-          />
-          <div className="add-instruction-button-container">
+        {!newProject.instructions.length && (
+          <div className="form-items-container new-instruction">
+            <Textarea
+              minRows={3}
+              value={newProject.newInstruction}
+              placeholder="Enter new instruction"
+              onChange={handleInputChange}
+              name="newInstruction"
+              label="Enter new instruction"
+              sx={{ minWidth: "100%", backgroundColor: "white" }}
+            />
+            <div className="add-instruction-button-container">
+              <Button
+                onClick={handleNewInstructionTextSubmit}
+                className="large-button "
+                id="add-instruction-text"
+                variant="contained"
+              >
+                Add New Instruction
+              </Button>
+            </div>
             <Button
-              onClick={handleNewInstructionTextSubmit}
-              className="large-button "
-              id="add-instruction-text"
+              className="large-button"
+              id="add-instruction-image"
               variant="contained"
+              startIcon={<CloudUpload />}
             >
-              Add Instruction
+              <Dropzone onDrop={handleProjectImageUpload}>
+                {({ getRootProps, getInputProps }) => (
+                  <section>
+                    <div {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      Add New Image
+                    </div>
+                  </section>
+                )}
+              </Dropzone>
             </Button>
           </div>
-          <Button
-            className="large-button"
-            id="add-instruction-image"
-            variant="contained"
-            startIcon={<CloudUpload />}
-          >
-            <Dropzone onDrop={handleProjectImageUpload}>
-              {({ getRootProps, getInputProps }) => (
-                <section>
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    Upload Image
-                  </div>
-                </section>
-              )}
-            </Dropzone>
-          </Button>
-        </div>
+        )}
+
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">

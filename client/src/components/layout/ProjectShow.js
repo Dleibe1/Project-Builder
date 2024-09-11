@@ -90,7 +90,7 @@ const ProjectShow = (props) => {
   }
 
   const forkProjectButton = [<ForkProjectButton key={"fork-project"} id={id} />]
-  const codeMessage = project.githubFileURL.length ? (
+  const codeMessage = project.githubFileURL?.length ? (
     [<h2>Code fetched from GitHub just now:</h2>, <p>project.githubFileURL</p>]
   ) : (
     <h2>Project Code</h2>
