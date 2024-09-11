@@ -19,7 +19,7 @@ const handleUpdateProject = async (
   const incomingIds = instructions.map((instruction) => {
     return instruction.id
   })
-
+  //TODO:  Find a more sophisticated way of updating the instructions.
   await Instruction.query().delete().where("projectId", projId)
 
   await Promise.all(
