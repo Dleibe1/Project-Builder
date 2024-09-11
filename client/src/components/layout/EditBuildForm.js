@@ -9,6 +9,7 @@ import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
+import { text } from "cheerio"
 
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -152,6 +153,19 @@ const EditBuildForm = (props) => {
     setEditedProject({ ...editedProject, [event.currentTarget.name]: event.currentTarget.value })
   }
 
+  const handleNewInstructionTextSubmit = (event) => {
+    if (editedProject.newInstruction.trim().length) {
+      setEditedProject({
+        ...editedProject,
+        instructions: [
+          ...editedProject.instructions,
+          { instructionText: editedProject.newInstruction },
+        ],
+        newInstruction: "",
+      })
+    }
+  }
+
   const handlePartSubmit = () => {
     if (editedProject.newPart.trim().length) {
       setEditedProject({
@@ -168,25 +182,7 @@ const EditBuildForm = (props) => {
   }
 
   const handleEditInstructionTextSubmit = (index) => {
-    const instructions = [...editedProject.instructions]
-    if (instructions[index] && instructions[index].instructionText.trim().length) {
-      instructions.splice(index, 0, { instructionText: instructions[index].instructionText })
-      setEditedProject({ ...editedProject, instructions: instructions })
-      setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
-    }
-  }
-
-  const handleNewInstructionTextSubmit = (event) => {
-    if (editedProject.newInstruction.trim().length) {
-      setEditedProject({
-        ...editedProject,
-        instructions: [
-          ...editedProject.instructions,
-          { instructionText: editedProject.newInstruction },
-        ],
-        newInstruction: "",
-      })
-    }
+    setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
   }
 
   const handleEditInstructionTextButton = (index) => {
@@ -274,84 +270,85 @@ const EditBuildForm = (props) => {
           </Button>
         </div>
       )
-    }
-    if (newInstructionIndices[index] === true ) {
-      return (
-        <div className="instruction-text-container form-items-container">
-          <Textarea
-            minRows={3}
-            value={editedProject.instructions[index].instructionText}
-            placeholder="Add New Instruction"
-            onChange={(event) => handleAddInstructionBelowInput(event, index)}
-            name="instructionBelow"
-            sx={{ minWidth: "100%", backgroundColor: "white" }}
-          />
-          <Button
-            onClick={() => handleAddInstructionBelowSubmit(index)}
-            className="large-button delete-image"
-            variant="contained"
-          >
-            Save Instruction
-          </Button>
-        </div>
-      )
     } else {
-      const isEditing = editInstructionIndices[index] === true
-      return (
-        <div className="instruction-text-container form-items-container">
-          {isEditing && (
+      if (newInstructionIndices[index] === true) {
+        return (
+          <div className="instruction-text-container form-items-container">
             <Textarea
               minRows={3}
               value={editedProject.instructions[index].instructionText}
-              placeholder="Edit instruction"
-              onChange={(event) => handleEditInstructionTextInput(event, index)}
-              name="instructionText"
+              placeholder="Add New Instruction"
+              onChange={(event) => handleAddInstructionBelowInput(event, index)}
+              name="instructionBelow"
               sx={{ minWidth: "100%", backgroundColor: "white" }}
             />
-          )}
-          {!isEditing && newInstructionIndices[index - 1] !== true && (
-            <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
-          )}
-          <div className="instruction-list-buttons-container">
-            {isEditing ? (
-              <Button
-                onClick={() => handleEditInstructionTextSubmit(index)}
-                className="large-button delete-image"
-                variant="contained"
-              >
-                Save Instruction
-              </Button>
-            ) : (
-              <>
+            <Button
+              onClick={() => handleAddInstructionBelowSubmit(index)}
+              className="large-button delete-image"
+              variant="contained"
+            >
+              Save Instruction
+            </Button>
+          </div>
+        )
+      } else {
+        const isEditing = editInstructionIndices[index] === true
+        return (
+          <div className="instruction-text-container form-items-container">
+            {isEditing && (
+              <Textarea
+                minRows={3}
+                value={editedProject.instructions[index].instructionText}
+                placeholder="Edit instruction"
+                onChange={(event) => handleEditInstructionTextInput(event, index)}
+                name="instructionText"
+                sx={{ minWidth: "100%", backgroundColor: "white" }}
+              />
+            )}
+            {!isEditing && newInstructionIndices[index - 1] !== true && (
+              <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
+            )}
+            <div className="instruction-list-buttons-container">
+              {isEditing ? (
                 <Button
-                  onClick={() => handleEditInstructionTextButton(index)}
+                  onClick={() => handleEditInstructionTextSubmit(index)}
                   className="large-button delete-image"
                   variant="contained"
                 >
-                  Edit Instruction
+                  Save Instruction
                 </Button>
-                <Button
-                  onClick={() => handleInstructionDelete(index)}
-                  className="large-button delete-image"
-                  variant="contained"
-                  startIcon={<DeleteIcon />}
-                >
-                  Delete Instruction
-                </Button>
-                {index !== editedProject.instructions.length - 1 && (
+              ) : (
+                <>
                   <Button
-                    onClick={() => handleAddInstructionBelowButton(index)}
+                    onClick={() => handleEditInstructionTextButton(index)}
                     className="large-button delete-image"
                     variant="contained"
                   >
-                    Add Instruction Below
+                    Edit Instruction
                   </Button>
-                )}
-              </>
-            )}
+                  <Button
+                    onClick={() => handleInstructionDelete(index)}
+                    className="large-button delete-image"
+                    variant="contained"
+                    startIcon={<DeleteIcon />}
+                  >
+                    Delete Instruction
+                  </Button>
+                  {index !== editedProject.instructions.length - 1 && (
+                    <Button
+                      onClick={() => handleAddInstructionBelowButton(index)}
+                      className="large-button delete-image"
+                      variant="contained"
+                    >
+                      Add Instruction Below
+                    </Button>
+                  )}
+                </>
+              )}
+            </div>
           </div>
-        </div>
-      )
+        )
+      }
     }
   })
 
