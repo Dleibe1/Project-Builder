@@ -84,7 +84,7 @@ const MyBuildShow = (props) => {
       )
     }
   })
-
+console.log(myBuild.instructions)
   return (
     <div className="project-show">
       <div className="edit-delete-build-button-container">
@@ -121,7 +121,7 @@ const MyBuildShow = (props) => {
       </div>
       <div>
         <div className="showpage-items-container">
-          <p className="github-url"> {codeMessage}</p>
+          {codeMessage}
           <pre>
             <code ref={codeRef} className="language-c">
               {myBuild.code}

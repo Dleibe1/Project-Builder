@@ -13,16 +13,31 @@ const handleUpdateProject = async (
     instructions,
     thumbnailImage,
   },
-  projectId
+  projectId,
 ) => {
   const projId = parseInt(projectId)
+  const incomingIds = instructions.map((instruction) => {
+    return instruction.id
+  })
+
+  await Instruction.query().delete().where("projectId", projId)
+
+  await Promise.all(
+    instructions.map((instruction) => {
+      return Instruction.query().insert({
+        projectId: projId,
+        instructionText: instruction.instructionText,
+        imageURL: instruction.imageURL,
+      })
+    }),
+  )
+
   const githubFileURLField = githubFileURL ? githubFileURL.trim() : ""
   const existingParts = await Part.query().where("projectId", projId)
-  const existingInstructions = await Instruction.query().where("projectId", projId)
-
   const incomingPartIds = parts.map((part) => part.id).filter(Boolean)
   const partsToDelete = existingParts.filter((part) => !incomingPartIds.includes(part.id))
   const partsToInsert = parts.filter((part) => !part.id)
+
   if (partsToDelete.length) {
     await Part.query()
       .delete()
@@ -34,28 +49,6 @@ const handleUpdateProject = async (
   if (partsToInsert.length) {
     await Part.query().insert(
       partsToInsert.map((part) => ({ projectId: projId, partName: part.partName })),
-    )
-  }
-  const incomingInstructionIds = instructions.map((instruction) => instruction.id).filter(Boolean)
-  const instructionsToDelete = existingInstructions.filter(
-    (instruction) => !incomingInstructionIds.includes(instruction.id),
-  )
-  if (instructionsToDelete.length) {
-    await Instruction.query()
-      .delete()
-      .whereIn(
-        "id",
-        instructionsToDelete.map((instruction) => instruction.id),
-      )
-  }
-  const instructionsToInsert = instructions.filter((instruction) => !instruction.id)
-  if (instructionsToInsert.length) {
-    await Instruction.query().insert(
-      instructionsToInsert.map((instruction) => ({
-        projectId: projId,
-        imageURL: instruction.imageURL || "",
-        instructionText: instruction.instructionText || "",
-      })),
     )
   }
 

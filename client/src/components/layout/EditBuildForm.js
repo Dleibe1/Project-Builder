@@ -9,7 +9,6 @@ import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
-import { text } from "cheerio"
 
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -24,6 +23,7 @@ const EditBuildForm = (props) => {
   const { id } = params
   const [editInstructionIndices, setEditInstructionIndices] = useState({})
   const [newInstructionIndices, setNewInstructionIndices] = useState({})
+  const [newProjectImageIndex, setNewProjectImageIndex] = useState(null)
   const [editedProject, setEditedProject] = useState({
     title: "",
     tags: "",
@@ -72,9 +72,11 @@ const EditBuildForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
+      const instructions = [...editedProject.instructions]
+      instructions.splice(newProjectImageIndex, 0, { imageURL: body.imageURL })
       setEditedProject({
         ...editedProject,
-        instructions: [...editedProject.instructions, { imageURL: body.imageURL }],
+        instructions: instructions,
       })
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
@@ -143,7 +145,6 @@ const EditBuildForm = (props) => {
       console.log(error)
     }
   }
-
   const handleSubmit = (event) => {
     event.preventDefault()
     updateProject(editedProject)
@@ -182,7 +183,12 @@ const EditBuildForm = (props) => {
   }
 
   const handleEditInstructionTextSubmit = (index) => {
-    setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
+    if (
+      editedProject.instructions[index].instructionText &&
+      editedProject.instructions[index].instructionText.length
+    ) {
+      setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
+    }
   }
 
   const handleEditInstructionTextButton = (index) => {
@@ -217,7 +223,8 @@ const EditBuildForm = (props) => {
     setNewInstructionIndices({ ...newInstructionIndices, [index]: false })
   }
 
-  const handleProjectImageUpload = (acceptedImage) => {
+  const handleProjectImageUpload = (acceptedImage, index) => {
+    setNewProjectImageIndex(index + 1)
     setImageFile({
       image: acceptedImage[0],
     })
@@ -343,6 +350,27 @@ const EditBuildForm = (props) => {
                       Add Instruction Below
                     </Button>
                   )}
+                  <Button
+                    className="large-button"
+                    id="add-instruction-image"
+                    variant="contained"
+                    startIcon={<CloudUpload />}
+                  >
+                    <Dropzone
+                      onDrop={(acceptedImage) => {
+                        handleProjectImageUpload(acceptedImage, index)
+                      }}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <section>
+                          <div {...getRootProps()}>
+                            <input {...getInputProps()} />
+                            Upload Image
+                          </div>
+                        </section>
+                      )}
+                    </Dropzone>
+                  </Button>
                 </>
               )}
             </div>
@@ -454,23 +482,6 @@ const EditBuildForm = (props) => {
               Add Instruction
             </Button>
           </div>
-          <Button
-            className="large-button"
-            id="add-instruction-image"
-            variant="contained"
-            startIcon={<CloudUpload />}
-          >
-            <Dropzone onDrop={handleProjectImageUpload}>
-              {({ getRootProps, getInputProps }) => (
-                <section>
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    Upload Image
-                  </div>
-                </section>
-              )}
-            </Dropzone>
-          </Button>
         </div>
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
