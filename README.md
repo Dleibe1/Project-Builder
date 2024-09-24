@@ -34,6 +34,7 @@ It is for this reason that I created the "Fork Project" feature, which allows a 
 - PostgreSQL
 - GitHub Apps
 - Cypress.js
+- Material UI
 
 ### Improvements coming soon:
 
