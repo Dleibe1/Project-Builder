@@ -151,25 +151,33 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
                   open={Boolean(anchorElNav)}
                   onClose={handleCloseNavMenu}
                   sx={{
-                    display: { xs: "block", md: "flex", lg:"none" },
+                    display: { xs: "block", md: "flex", lg: "none" },
                   }}
                 >
-                  <MenuItem sx={{display :{ xs: "flex", md: "none"}}} component={Link} to="/">
-                    <Typography  className="burger-menu-item">How to use</Typography>
+                  <MenuItem sx={{ display: { xs: "flex", md: "none" } }} component={Link} to="/">
+                    <Typography className="burger-menu-item">How to use</Typography>
                   </MenuItem>
-                  <MenuItem sx={{display :{ xs: "flex", md: "none"}}}  component={Link} to="/my-builds-list?page=1">
-                    <Typography  className="burger-menu-item">
-                      My Builds
-                    </Typography>
+                  <MenuItem
+                    sx={{ display: { xs: "flex", md: "none" } }}
+                    component={Link}
+                    to="/my-builds-list?page=1"
+                  >
+                    <Typography className="burger-menu-item">My Builds</Typography>
                   </MenuItem>
-                  <MenuItem sx={{display :{ xs: "flex", md: "flex"}}} component={Link} to="/create-new-build">
-                    <Typography  className="burger-menu-item">
-                      Create Build
-                    </Typography>
+                  <MenuItem
+                    sx={{ display: { xs: "flex", md: "flex" } }}
+                    component={Link}
+                    to="/create-new-build"
+                  >
+                    <Typography className="burger-menu-item">Create Build</Typography>
                   </MenuItem>
-                  <MenuItem sx={{display :{ xs: "flex", md: "flex"}}} key={"burger-menu-logout"} onClick={signOut}>
-                  <Typography textAlign="center">Sign Out</Typography>
-                </MenuItem>
+                  <MenuItem
+                    sx={{ display: { xs: "flex", md: "flex" } }}
+                    key={"burger-menu-logout"}
+                    onClick={signOut}
+                  >
+                    <Typography textAlign="center">Sign Out</Typography>
+                  </MenuItem>
                 </Menu>
               </Box>
               <Tooltip>
@@ -235,22 +243,16 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
                   }}
                 >
                   <MenuItem component={Link} to="/user-sessions/new">
-                    <Typography className="burger-menu-item">
-                      Sign In
-                    </Typography>
+                    <Typography className="burger-menu-item">Sign In</Typography>
                   </MenuItem>
                   <MenuItem component={Link} to="/users/new">
-                    <Typography className="burger-menu-item">
-                      Sign Up
-                    </Typography>
+                    <Typography className="burger-menu-item">Sign Up</Typography>
                   </MenuItem>
                   <MenuItem onClick={handleGithubLogin}>
                     <Typography textAlign="center">Login With GitHub</Typography>
                   </MenuItem>
                   <MenuItem component={Link} to="/">
-                    <Typography className="burger-menu-item">
-                      How to use
-                    </Typography>
+                    <Typography className="burger-menu-item">How to use</Typography>
                   </MenuItem>
                 </Menu>
               </Box>
