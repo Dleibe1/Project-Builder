@@ -119,7 +119,7 @@ It is for this reason that I created the "Fork Project" feature, which allows a 
 
 7. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
 
-8. A user has been seeded for use on the site
+8. A user has been seeded for use on the site.
 
 ```
 Username: example@example.com
