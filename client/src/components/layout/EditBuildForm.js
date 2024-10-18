@@ -219,6 +219,15 @@ const EditBuildForm = (props) => {
     setEditedProject({ ...editedProject, instructions: instructions })
   }
 
+  const handleCancelEditInstruction = (event, index) => {
+    const instructions = [...editedProject.instructions]
+    if(instructions[index].instructionText.trim().length === 0 ){
+      instructions.splice(index, 1)
+    }
+    setEditedProject({...editedProject, instructions: instructions})
+    setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
+  }
+
   const handleInstructionDelete = (index) => {
     const instructionList = editedProject.instructions.filter((instruction, i) => i !== index)
     setEditedProject({ ...editedProject, instructions: instructionList })

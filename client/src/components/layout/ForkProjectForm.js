@@ -229,6 +229,15 @@ const ForkProjectForm = (props) => {
     setForkedProject({ ...forkedProject, instructions: instructions })
   }
 
+  const handleCancelEditInstruction = (event, index) => {
+    const instructions = [...forkedProject.instructions]
+    if(instructions[index].instructionText.trim().length === 0 ){
+      instructions.splice(index, 1)
+    }
+    setForkedProject({...forkedProject, instructions: instructions})
+    setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
+  }
+
   const handleInstructionDelete = (index) => {
     const instructionList = forkedProject.instructions.filter((instruction, i) => i !== index)
     setForkedProject({ ...forkedProject, instructions: instructionList })

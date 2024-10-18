@@ -199,6 +199,11 @@ const NewProjectForm = (props) => {
   }
 
   const handleCancelEditInstruction = (event, index) => {
+    const instructions = [...newProject.instructions]
+    if(instructions[index].instructionText.trim().length === 0 ){
+      instructions.splice(index, 1)
+    }
+    setNewProject({...newProject, instructions: instructions})
     setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
   }
 
