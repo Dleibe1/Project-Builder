@@ -40,7 +40,6 @@ It is for this reason that I created the "Fork Project" feature, which allows a 
 
 1. More Material UI integration.
 2. Option to add a link to purchase parts from the parts list.
-3. Add a search feature for projects.
 
 ### Dream features:
 
