@@ -10,18 +10,7 @@ const HowToUse = () => {
         <h1>Create and Fork Micro Controller Projects</h1>
       </div>
       <div className="announcement how-to-use-page-items-container banner">
-        <p>🚧 This site is a work in progress and is primarily for portfolio building. 🚧</p>
-        <p>More features and improvements coming soon! </p>
-        <p>
-          Connect with me on{" "}
-          <a
-            href="https://www.linkedin.com/in/daniel-patrick-leibensperger/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-        </p>
+        <p>🚧   This site is a work in progress   🚧</p>
       </div>
         <div className="how-to-use-page-items-container top">
           <h1>Login with these credentials in order to see a built out user experience:</h1>
