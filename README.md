@@ -121,5 +121,7 @@ It is for this reason that I created the "Fork Project" feature, which allows a 
 
 8. A user has been seeded for use on the site
 
-``` Username: example@example.com
-Password: cat ```
+```
+Username: example@example.com
+Password: cat
+```
