@@ -35,7 +35,6 @@ When users visit your project's page on this app, the code section is automatica
 
 1. More Material UI integration.
 2. Option to add a link to purchase parts from the parts list.
-3. Add a search feature for projects.
 
 ### Dream features:
 
@@ -114,3 +113,10 @@ When users visit your project's page on this app, the code section is automatica
    ```
 
 7. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
+
+8. A user has been seeded for use on the site.
+
+```
+Username: example@example.com
+Password: cat
+```
