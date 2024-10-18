@@ -21,7 +21,7 @@ const NewProjectForm = (props) => {
   const [newPart, setNewPart] = useState("")
   const [firstInstruction, setFirstInstruction] = useState("")
   const [editInstructionIndices, setEditInstructionIndices] = useState({})
-  const [newProjectImageIndex, setNewProjectImageIndex] = useState(null)
+  const [addProjectImageIndex, setAddProjectImageIndex] = useState(null)
   const [newProject, setNewProject] = useState({
     title: "",
     tags: "",
@@ -87,7 +87,7 @@ const NewProjectForm = (props) => {
       }
       const body = await response.json()
       const instructions = [...newProject.instructions]
-      instructions.splice(newProjectImageIndex, 0, { imageURL: body.imageURL })
+      instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
       setNewProject({
         ...newProject,
         instructions: instructions,
@@ -119,7 +119,7 @@ const NewProjectForm = (props) => {
   }
 
   const handleProjectImageUpload = (acceptedImage, index) => {
-    setNewProjectImageIndex(index + 1)
+    setAddProjectImageIndex(index + 1)
     setImageFile({
       image: acceptedImage[0],
     })
@@ -157,7 +157,7 @@ const NewProjectForm = (props) => {
       setNewPart("")
     }
   }
-  console.log(newProject)
+
   const handlePartDelete = (index) => {
     const partsList = newProject.parts.filter((part, i) => i !== index)
     setNewProject({ ...newProject, parts: partsList })
