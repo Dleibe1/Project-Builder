@@ -94,10 +94,10 @@ const EditBuildForm = (props) => {
       const body = await response.json()
       const instructions = [...editedProject.instructions]
       instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
-      setEditedProject({
-        ...editedProject,
-        instructions: instructions,
-      })
+      setEditedProject((prevState) => ({
+        ...prevState,
+        instructions: instructions
+      }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
@@ -118,7 +118,10 @@ const EditBuildForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setEditedProject({ ...editedProject, thumbnailImage: body.imageURL })
+      setEditedProject((prevState) => ({
+        ...prevState,
+        thumbnailImage: body.imageURL
+      }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }

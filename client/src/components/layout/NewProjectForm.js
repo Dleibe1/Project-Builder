@@ -88,10 +88,10 @@ const NewProjectForm = (props) => {
       const body = await response.json()
       const instructions = [...newProject.instructions]
       instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
-      setNewProject({
-        ...newProject,
-        instructions: instructions,
-      })
+      setNewProject((prevState) => ({
+        ...prevState,
+        instructions: instructions
+      }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
@@ -112,7 +112,10 @@ const NewProjectForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setNewProject({ ...newProject, thumbnailImage: body.imageURL })
+      setNewProject((prevState) => ({
+        ...prevState,
+        thumbnailImage: body.imageURL
+      }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
@@ -147,7 +150,7 @@ const NewProjectForm = (props) => {
   const handlePartInput = (event) => {
     setNewPart(event.currentTarget.value)
   }
-
+  console.log(newProject)
   const handlePartSubmit = () => {
     if (newPart.trim().length) {
       setNewProject({
@@ -200,10 +203,10 @@ const NewProjectForm = (props) => {
 
   const handleCancelEditInstruction = (event, index) => {
     const instructions = [...newProject.instructions]
-    if(instructions[index].instructionText.trim().length === 0 ){
+    if (instructions[index].instructionText.trim().length === 0) {
       instructions.splice(index, 1)
     }
-    setNewProject({...newProject, instructions: instructions})
+    setNewProject({ ...newProject, instructions: instructions })
     setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
   }
 

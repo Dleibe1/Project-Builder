@@ -24,25 +24,23 @@ const handleNewProject = async ({
     thumbnailImage,
   })
   const newProjectId = parseInt(newProject.id)
-
-  await Promise.all([
-    ...parts.map((part) => {
-     return Part.query().insert({ projectId: newProjectId, partName: part.partName })
-    }),
-    ...instructions.map((instruction) => {
-      if (instruction.imageURL) {
-       return Instruction.query().insert({
-          projectId: newProjectId,
-          imageURL: instruction.imageURL,
-        })
-      } else if (instruction.instructionText) {
-       return Instruction.query().insert({
-          projectId: newProjectId,
-          instructionText: instruction.instructionText,
-        })
-      }
-    }),
-  ])
+  const partInsertions = parts.map((part) => {
+    return Part.query().insert({ projectId: newProjectId, partName: part.partName })
+  })
+  const instructionInsertions = await instructions.map((instruction) => {
+    if (instruction.imageURL) {
+      return Instruction.query().insert({
+        projectId: newProjectId,
+        imageURL: instruction.imageURL,
+      })
+    } else if (instruction.instructionText) {
+      return Instruction.query().insert({
+        projectId: newProjectId,
+        instructionText: instruction.instructionText,
+      })
+    }
+  })
+  await Promise.all([...partInsertions, ...instructionInsertions])
 }
 
 export default handleNewProject

@@ -94,10 +94,10 @@ const ForkProjectForm = (props) => {
       const body = await response.json()
       const instructions = [...forkedProject.instructions]
       instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
-      setForkedProject({
-        ...forkedProject,
-        instructions: instructions,
-      })
+      setForkedProject((prevState) => ({
+        ...prevState,
+        instructions: instructions
+      }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
@@ -118,7 +118,10 @@ const ForkProjectForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setForkedProject({ ...forkedProject, thumbnailImage: body.imageURL })
+      setForkedProject((prevState) => ({
+        ...prevState,
+        thumbnailImage: body.imageURL
+      }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
