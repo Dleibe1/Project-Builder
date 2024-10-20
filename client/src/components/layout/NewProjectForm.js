@@ -90,7 +90,7 @@ const NewProjectForm = (props) => {
       instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
       setNewProject((prevState) => ({
         ...prevState,
-        instructions: instructions
+        instructions: instructions,
       }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
@@ -114,7 +114,7 @@ const NewProjectForm = (props) => {
       const body = await response.json()
       setNewProject((prevState) => ({
         ...prevState,
-        thumbnailImage: body.imageURL
+        thumbnailImage: body.imageURL,
       }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
@@ -314,20 +314,23 @@ const NewProjectForm = (props) => {
           )}
           {isEditing ? (
             <div className="instruction-list-buttons-container">
-              <Button
-                onClick={() => handleEditInstructionTextSubmit(index)}
-                className="large-button delete-image"
-                variant="contained"
-              >
-                Save Instruction
-              </Button>
-              <Button
-                onClick={(event) => handleCancelEditInstruction(event, index)}
-                className="large-button delete-image"
-                variant="contained"
-              >
-                Cancel
-              </Button>
+              {instruction.instructionText.length > 0 ? (
+                <Button
+                  onClick={() => handleEditInstructionTextSubmit(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                >
+                  Save Instruction
+                </Button>
+              ) : (
+                <Button
+                  onClick={(event) => handleCancelEditInstruction(event, index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                >
+                  Cancel
+                </Button>
+              )}
             </div>
           ) : (
             <div className="instruction-list-buttons-container">

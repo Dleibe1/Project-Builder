@@ -96,7 +96,7 @@ const ForkProjectForm = (props) => {
       instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
       setForkedProject((prevState) => ({
         ...prevState,
-        instructions: instructions
+        instructions: instructions,
       }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
@@ -120,7 +120,7 @@ const ForkProjectForm = (props) => {
       const body = await response.json()
       setForkedProject((prevState) => ({
         ...prevState,
-        thumbnailImage: body.imageURL
+        thumbnailImage: body.imageURL,
       }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
@@ -234,10 +234,10 @@ const ForkProjectForm = (props) => {
 
   const handleCancelEditInstruction = (event, index) => {
     const instructions = [...forkedProject.instructions]
-    if(instructions[index].instructionText.trim().length === 0 ){
+    if (instructions[index].instructionText.trim().length === 0) {
       instructions.splice(index, 1)
     }
-    setForkedProject({...forkedProject, instructions: instructions})
+    setForkedProject({ ...forkedProject, instructions: instructions })
     setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
   }
 
@@ -338,20 +338,23 @@ const ForkProjectForm = (props) => {
           )}
           {isEditing ? (
             <div className="instruction-list-buttons-container">
-              <Button
-                onClick={() => handleEditInstructionTextSubmit(index)}
-                className="large-button delete-image"
-                variant="contained"
-              >
-                Save Instruction
-              </Button>
-              <Button
-                onClick={(event) => handleCancelEditInstruction(event, index)}
-                className="large-button delete-image"
-                variant="contained"
-              >
-                Cancel
-              </Button>
+              {instruction.instructionText.length > 0 ? (
+                <Button
+                  onClick={() => handleEditInstructionTextSubmit(index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                >
+                  Save Instruction
+                </Button>
+              ) : (
+                <Button
+                  onClick={(event) => handleCancelEditInstruction(event, index)}
+                  className="large-button delete-image"
+                  variant="contained"
+                >
+                  Cancel
+                </Button>
+              )}
             </div>
           ) : (
             <div className="instruction-list-buttons-container">
