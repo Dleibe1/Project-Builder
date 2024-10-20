@@ -19,18 +19,16 @@ const handleUpdateProject = async (
   const incomingIds = instructions.map((instruction) => {
     return instruction.id
   })
-  //TODO:  Find a more sophisticated way of updating the instructions.
+  //TODO:  Find a more sophisticated way of updating the instructions as with parts.
   await Instruction.query().delete().where("projectId", projId)
 
-  await Promise.all(
-    instructions.map((instruction) => {
-      return Instruction.query().insert({
-        projectId: projId,
-        instructionText: instruction.instructionText,
-        imageURL: instruction.imageURL,
-      })
-    }),
-  )
+  for (const instruction of instructions) {
+    await Instruction.query().insert({
+      projectId: projId,
+      instructionText: instruction.instructionText,
+      imageURL: instruction.imageURL,
+    })
+  }
 
   const githubFileURLField = githubFileURL ? githubFileURL.trim() : ""
   const existingParts = await Part.query().where("projectId", projId)

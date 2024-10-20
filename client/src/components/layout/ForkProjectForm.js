@@ -414,7 +414,7 @@ const ForkProjectForm = (props) => {
       <ErrorList errors={errors} />
       <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
-          <h1>New Project</h1>
+          <h1>Fork Project</h1>
           <TextField
             value={forkedProject.title}
             className="form-input text-field"
