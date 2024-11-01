@@ -21,6 +21,7 @@ import EditBuildForm from "./layout/EditBuildForm"
 import ForkList from "./layout/ForkList"
 import ForkProjectForm from "./layout/ForkProjectForm"
 import GithubLogin from "./authentication/GithubLogin"
+import TinyMCETest from "./layout/TinyMCE"
 
 import HowToUse from "./layout/HowToUse"
 
@@ -46,7 +47,8 @@ const App = (props) => {
         <TopBar projectsPerPage={projectsPerPage} user={currentUser} />
         <Switch>
           <Route exact path={"/"}>
-            <LandingPage />
+            {/* <LandingPage /> */}
+            {<TinyMCETest />}
           </Route>
           <Route exact path={"/how-to-use"}>
             <HowToUse user={currentUser} />

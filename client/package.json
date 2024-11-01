@@ -31,6 +31,7 @@
     "@mui/icons-material": "^5.15.20",
     "@mui/joy": "^5.0.0-beta.48",
     "@mui/material": "^5.0.0",
+    "@tinymce/tinymce-react": "^5.1.1",
     "@types/react-router-dom": "^5.3.3",
     "babel-loader": "~8.1",
     "css-loader": "^5.0.0",
