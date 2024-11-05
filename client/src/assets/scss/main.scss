@@ -729,10 +729,6 @@ text-align: center;
   overflow: hidden;
 }
 
-.tox.tox-tinymce {
-  margin-top:100px;
-}
-
 .project-image-container.thumbnail-image-container {
   margin-bottom: 0px;
 }
@@ -777,6 +773,12 @@ text-align: center;
 .large-button.save-instruction {
   position: absolute;
   bottom: 3px;
+  z-index: 10;
+}
+
+.tox.tox-tinymce {
+  margin-top:100px;
+  z-index: 1 !important;
 }
 
 .tox .tox-statusbar__branding a {
@@ -784,7 +786,8 @@ text-align: center;
 }
 
 .tox-statusbar {
-  height: 40px !important;
+  position: relative !important;
+  height: 39px !important;
 }
 
 .form-items-container .large-button.change-thumbnail-image {
