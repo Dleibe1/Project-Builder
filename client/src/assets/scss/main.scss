@@ -767,6 +767,26 @@ text-align: center;
   align-items: center;
 }
 
+.tinymce-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.large-button.save-instruction {
+  position: absolute;
+  bottom: 3px;
+}
+
+.tox .tox-statusbar__branding a {
+  display: none !important;
+}
+
+.tox-statusbar {
+  height: 40px !important;
+}
+
 .form-items-container .large-button.change-thumbnail-image {
   width: fit-content;
   margin-bottom: 60px;
