@@ -2,10 +2,12 @@ import React, { useState } from "react"
 import { Editor } from "@tinymce/tinymce-react"
 import { Button } from "@mui/material"
 
-const TinyMCEwysiwyg = (props) => {
+const TinyMCEWYSIWYG = (props) => {
   const [value, setValue] = useState("")
 
-  const handleSave = () => {}
+  const handleSave = () => {
+    
+  }
 
   return (
     <div className="tinymce-container">
@@ -79,4 +81,4 @@ const TinyMCEwysiwyg = (props) => {
   )
 }
 
-export default TinyMCEwysiwyg
+export default TinyMCEWYSIWYG
