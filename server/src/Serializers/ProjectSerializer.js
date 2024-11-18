@@ -1,6 +1,7 @@
-import { User } from "../models/index.js"
+import { Tag, User } from "../models/index.js"
 import PartsSerializer from "./PartsSerializer.js"
 import InstructionSerializer from "./InstructionSerializer.js"
+import TagSerializer from "./TagSerializer.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
 class ProjectSerializer {
@@ -10,55 +11,67 @@ class ProjectSerializer {
       "userId",
       "title",
       "appsAndPlatforms",
-      "tags",
       "thumbnailImage",
-      "parentProjectId"
+      "parentProjectId",
     ]
     let serializedProject = {}
     for (const attribute of allowedAttributes) {
       serializedProject[attribute] = project[attribute]
     }
-    const relatedUserData = await User.query().findOne({ id: project.userId })
+    const [relatedUserData, relatedTagsData] = await Promise.all([
+      User.query().findOne({ id: project.userId }),
+      project.$relatedQuery("tags"),
+    ])
+    const tagsData = relatedTagsData.map((tag) => {
+      return TagSerializer.getTagDetails(tag)
+    })
     const userName = relatedUserData.userName || relatedUserData.githubUserName
     serializedProject.user = userName
+    serializedProject.tags = tagsData
     return serializedProject
   }
 
-  static async getProjectShowPageDetails(project){
+  static async getProjectShowPageDetails(project) {
     const allowedAttributes = [
       "id",
       "userId",
       "title",
       "appsAndPlatforms",
-      "tags",
       "description",
       "documentation",
       "code",
       "githubFileURL",
       "thumbnailImage",
-      "parentProjectId"
+      "parentProjectId",
     ]
     let serializedProject = {}
     for (const attribute of allowedAttributes) {
       serializedProject[attribute] = project[attribute]
     }
-    const relatedUserData = await User.query().findOne({ id: project.userId })
-    const relatedPartsData = await project.$relatedQuery("parts")
-    const instructionsData = await project.$relatedQuery("instructions")
+    const [relatedUserData, relatedPartsData, relatedInstructionsData, relatedTagsData] =
+      await Promise.all([
+        User.query().findOne({ id: project.userId }),
+        project.$relatedQuery("parts"),
+        project.$relatedQuery("instructions"),
+        project.$relatedQuery("tags"),
+      ])
     const userName = relatedUserData.userName || relatedUserData.githubUserName
     serializedProject.user = userName
     const relatedParts = relatedPartsData.map((part) => {
       return PartsSerializer.getPartDetails(part)
     })
     serializedProject.parts = relatedParts
-    const relatedInstructions = instructionsData.map((instruction) => {
+    const relatedInstructions = relatedInstructionsData.map((instruction) => {
       return InstructionSerializer.getInstructionDetails(instruction)
     })
     serializedProject.instructions = relatedInstructions
-    serializedProject.code =
-      project.githubFileURL
-        ? await GithubClient.getProjectCode(project.githubFileURL)
-        : project.code
+    const relatedTags = relatedTagsData.map((tag) => {
+      return TagSerializer.getTagDetails(tag)
+    })
+    serializedProject.tags = relatedTags
+    serializedProject.code = project.githubFileURL
+      ? await GithubClient.getProjectCode(project.githubFileURL)
+      : project.code
     return serializedProject
   }
 }

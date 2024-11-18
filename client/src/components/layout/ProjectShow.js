@@ -13,6 +13,7 @@ const ProjectShow = (props) => {
     appsAndPlatforms: "",
     instructions: [],
     parts: [],
+    tags: [],
     description: "",
     code: "",
     githubFileURL: "",

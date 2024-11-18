@@ -5,13 +5,14 @@ import CloudUpload from "@mui/icons-material/CloudUpload"
 import Dropzone from "react-dropzone"
 import DeleteIcon from "@mui/icons-material/Delete"
 
-const InstructionsSubForm = ({ forkedProject, setForkedProject }) => {
+const InstructionsSubForm = ({ project, setProject }) => {
   const [editInstructionIndices, setEditInstructionIndices] = useState({})
   const [firstInstruction, setFirstInstruction] = useState("")
   const [addProjectImageIndex, setAddProjectImageIndex] = useState(null)
   const [imageFile, setImageFile] = useState({
     image: {},
   })
+
   const uploadProjectImage = async () => {
     const newImageFileData = new FormData()
     newImageFileData.append("image", imageFile.image)
@@ -27,9 +28,9 @@ const InstructionsSubForm = ({ forkedProject, setForkedProject }) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      const instructions = [...forkedProject.instructions]
+      const instructions = [...project.instructions]
       instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
-      setForkedProject((prevState) => ({
+      setProject((prevState) => ({
         ...prevState,
         instructions: instructions,
       }))
@@ -48,10 +49,10 @@ const InstructionsSubForm = ({ forkedProject, setForkedProject }) => {
 
   const handleFirstInstructionTextSubmit = (event) => {
     if (firstInstruction.trim().length) {
-      const instructions = [...forkedProject.instructions]
+      const instructions = [...project.instructions]
       instructions.unshift({ instructionText: firstInstruction })
-      setForkedProject({
-        ...forkedProject,
+      setProject({
+        ...project,
         instructions: instructions,
       })
       setFirstInstruction("")
@@ -59,18 +60,18 @@ const InstructionsSubForm = ({ forkedProject, setForkedProject }) => {
   }
 
   const handleAddInstructionBelowButton = (index) => {
-    const instructions = [...forkedProject.instructions]
+    const instructions = [...project.instructions]
     setEditInstructionIndices({ ...editInstructionIndices, [index + 1]: true })
     if (editInstructionIndices[index + 1] !== true) {
       instructions.splice(index + 1, 0, { instructionText: "" })
-      setForkedProject({ ...forkedProject, instructions: instructions })
+      setProject({ ...project, instructions: instructions })
     }
   }
 
   const handleEditInstructionTextSubmit = (index) => {
     if (
-      forkedProject.instructions[index].instructionText &&
-      forkedProject.instructions[index].instructionText.length
+      project.instructions[index].instructionText &&
+      project.instructions[index].instructionText.length
     ) {
       setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
     }
@@ -81,23 +82,23 @@ const InstructionsSubForm = ({ forkedProject, setForkedProject }) => {
   }
 
   const handleEditInstructionTextInput = (event, index) => {
-    const instructions = [...forkedProject.instructions]
+    const instructions = [...project.instructions]
     instructions[index].instructionText = event.currentTarget.value
-    setForkedProject({ ...forkedProject, instructions: instructions })
+    setProject({ ...project, instructions: instructions })
   }
 
   const handleCancelEditInstruction = (event, index) => {
-    const instructions = [...forkedProject.instructions]
+    const instructions = [...project.instructions]
     if (instructions[index].instructionText.trim().length === 0) {
       instructions.splice(index, 1)
     }
-    setForkedProject({ ...forkedProject, instructions: instructions })
+    setProject({ ...project, instructions: instructions })
     setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
   }
 
   const handleInstructionDelete = (index) => {
-    const instructionList = forkedProject.instructions.filter((instruction, i) => i !== index)
-    setForkedProject({ ...forkedProject, instructions: instructionList })
+    const instructionList = project.instructions.filter((instruction, i) => i !== index)
+    setProject({ ...project, instructions: instructionList })
   }
 
   const handleProjectImageUpload = (acceptedImage, index) => {
@@ -107,7 +108,7 @@ const InstructionsSubForm = ({ forkedProject, setForkedProject }) => {
     })
   }
 
-  const instructionList = forkedProject.instructions.map((instruction, index) => {
+  const instructionList = project.instructions.map((instruction, index) => {
     if (instruction.imageURL) {
       return (
         <div
@@ -166,7 +167,7 @@ const InstructionsSubForm = ({ forkedProject, setForkedProject }) => {
             />
             // <Textarea
             //   minRows={3}
-            //   value={forkedProject.instructions[index].instructionText}
+            //   value={project.instructions[index].instructionText}
             //   placeholder="Edit instruction"
             //   onChange={(event) => handleEditInstructionTextInput(event, index)}
             //   name="instructionText"

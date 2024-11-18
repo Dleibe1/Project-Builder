@@ -24,7 +24,7 @@ const EditBuildForm = (props) => {
   const [firstInstruction, setFirstInstruction] = useState("")
   const [editInstructionIndices, setEditInstructionIndices] = useState({})
   const [addProjectImageIndex, setAddProjectImageIndex] = useState(null)
-  const [editedProject, setEditedProject] = useState({
+  const [project, setProject] = useState({
     title: "",
     tags: "",
     appsAndPlatforms: "",
@@ -55,14 +55,14 @@ const EditBuildForm = (props) => {
     getProject()
   }, [])
 
-  const updateProject = async (editedProjectData) => {
+  const updateProject = async (projectData) => {
     try {
       const response = await fetch(`/api/v1/my-builds/${id}`, {
         method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
-        body: JSON.stringify(editedProjectData),
+        body: JSON.stringify(projectData),
       })
       if (!response.ok) {
         if (response.status === 422) {
@@ -92,9 +92,9 @@ const EditBuildForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      const instructions = [...editedProject.instructions]
+      const instructions = [...project.instructions]
       instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
-      setEditedProject((prevState) => ({
+      setProject((prevState) => ({
         ...prevState,
         instructions: instructions,
       }))
@@ -118,7 +118,7 @@ const EditBuildForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setEditedProject((prevState) => ({
+      setProject((prevState) => ({
         ...prevState,
         thumbnailImage: body.imageURL,
       }))
@@ -137,7 +137,7 @@ const EditBuildForm = (props) => {
       }
       const responseBody = await response.json()
       const build = responseBody.userBuild
-      setEditedProject((prevState) => ({
+      setProject((prevState) => ({
         ...prevState,
         ...build,
       }))
@@ -161,11 +161,11 @@ const EditBuildForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    updateProject(editedProject)
+    updateProject(project)
   }
 
   const handleInputChange = (event) => {
-    setEditedProject({ ...editedProject, [event.currentTarget.name]: event.currentTarget.value })
+    setProject({ ...project, [event.currentTarget.name]: event.currentTarget.value })
   }
 
   const handlePartInput = (event) => {
@@ -174,17 +174,17 @@ const EditBuildForm = (props) => {
 
   const handlePartSubmit = () => {
     if (newPart.trim().length) {
-      setEditedProject({
-        ...editedProject,
-        parts: [...editedProject.parts, { partName: newPart }],
+      setProject({
+        ...project,
+        parts: [...project.parts, { partName: newPart }],
       })
       setNewPart("")
     }
   }
 
   const handlePartDelete = (index) => {
-    const partsList = editedProject.parts.filter((part, i) => i !== index)
-    setEditedProject({ ...editedProject, parts: partsList })
+    const partsList = project.parts.filter((part, i) => i !== index)
+    setProject({ ...project, parts: partsList })
   }
 
   const handleFirstInstructionTextInput = (event) => {
@@ -193,10 +193,10 @@ const EditBuildForm = (props) => {
 
   const handleFirstInstructionTextSubmit = (event) => {
     if (firstInstruction.trim().length) {
-      const instructions = [...editedProject.instructions]
+      const instructions = [...project.instructions]
       instructions.unshift({ instructionText: firstInstruction })
-      setEditedProject({
-        ...editedProject,
+      setProject({
+        ...project,
         instructions: instructions,
       })
       setFirstInstruction("")
@@ -205,8 +205,8 @@ const EditBuildForm = (props) => {
 
   const handleEditInstructionTextSubmit = (index) => {
     if (
-      editedProject.instructions[index].instructionText &&
-      editedProject.instructions[index].instructionText.length
+      project.instructions[index].instructionText &&
+      project.instructions[index].instructionText.length
     ) {
       setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
     }
@@ -217,35 +217,35 @@ const EditBuildForm = (props) => {
   }
 
   const handleEditInstructionTextInput = (event, index) => {
-    const instructions = [...editedProject.instructions]
+    const instructions = [...project.instructions]
     instructions[index].instructionText = event.currentTarget.value
-    setEditedProject({ ...editedProject, instructions: instructions })
+    setProject({ ...project, instructions: instructions })
   }
 
   const handleCancelEditInstruction = (event, index) => {
-    const instructions = [...editedProject.instructions]
+    const instructions = [...project.instructions]
     if (instructions[index].instructionText.trim().length === 0) {
       instructions.splice(index, 1)
     }
-    setEditedProject({ ...editedProject, instructions: instructions })
+    setProject({ ...project, instructions: instructions })
     setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
   }
 
   const handleInstructionDelete = (index) => {
-    const instructionList = editedProject.instructions.filter((instruction, i) => i !== index)
-    setEditedProject({ ...editedProject, instructions: instructionList })
+    const instructionList = project.instructions.filter((instruction, i) => i !== index)
+    setProject({ ...project, instructions: instructionList })
   }
 
   const handleAddInstructionBelowButton = (index) => {
-    const instructions = [...editedProject.instructions]
+    const instructions = [...project.instructions]
     setEditInstructionIndices({ ...editInstructionIndices, [index + 1]: true })
     if (editInstructionIndices[index + 1] !== true) {
       instructions.splice(index + 1, 0, { instructionText: "" })
-      setEditedProject({ ...editedProject, instructions: instructions })
+      setProject({ ...project, instructions: instructions })
     }
   }
 
-  const partsList = editedProject.parts.map((part, index) => {
+  const partsList = project.parts.map((part, index) => {
     return (
       <div className="part-item-in-form">
         <p key={`${part.partName}${index}`}> {part.partName}</p>
@@ -261,7 +261,7 @@ const EditBuildForm = (props) => {
     )
   })
 
-  const instructionList = editedProject.instructions.map((instruction, index) => {
+  const instructionList = project.instructions.map((instruction, index) => {
     if (instruction.imageURL) {
       return (
         <div
@@ -316,7 +316,7 @@ const EditBuildForm = (props) => {
           {isEditing && (
             <Textarea
               minRows={3}
-              value={editedProject.instructions[index].instructionText}
+              value={project.instructions[index].instructionText}
               placeholder="Edit instruction"
               onChange={(event) => handleEditInstructionTextInput(event, index)}
               name="instructionText"
@@ -409,7 +409,7 @@ const EditBuildForm = (props) => {
         <div className="form-items-container top-section">
           <h1>Edit Project</h1>
           <TextField
-            value={editedProject.title}
+            value={project.title}
             className="form-input text-field"
             fullWidth
             id="form-title"
@@ -420,7 +420,7 @@ const EditBuildForm = (props) => {
           <h2>Description:</h2>
           <Textarea
             minRows={3}
-            value={editedProject.description}
+            value={project.description}
             placeholder="Enter description"
             onChange={handleInputChange}
             name="description"
@@ -428,7 +428,7 @@ const EditBuildForm = (props) => {
             sx={{ minWidth: "100%", backgroundColor: "white" }}
           />
           <div className="project-image-container thumbnail-image-container">
-            <img className="project-image" src={editedProject.thumbnailImage} />
+            <img className="project-image" src={project.thumbnailImage} />
           </div>
           <Button
             className="large-button change-thumbnail-image"
@@ -440,7 +440,7 @@ const EditBuildForm = (props) => {
                 <section>
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
-                    {editedProject.thumbnailImage.length > 0
+                    {project.thumbnailImage.length > 0
                       ? "Change Thumbnail Image"
                       : "Upload Thumbnail Image"}
                   </div>
@@ -449,7 +449,7 @@ const EditBuildForm = (props) => {
             </Dropzone>
           </Button>
           <TextField
-            value={editedProject.appsAndPlatforms}
+            value={project.appsAndPlatforms}
             className="form-input text-field"
             fullWidth
             onChange={handleInputChange}
@@ -524,7 +524,7 @@ const EditBuildForm = (props) => {
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
             <Textarea
-              value={editedProject.code}
+              value={project.code}
               minRows="10"
               cols="1"
               onChange={handleInputChange}
@@ -543,7 +543,7 @@ const EditBuildForm = (props) => {
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
           <TextField
-            value={editedProject.githubFileURL}
+            value={project.githubFileURL}
             fullWidth
             onChange={handleInputChange}
             label="GitHub main sketch file URL"

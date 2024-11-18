@@ -19,7 +19,7 @@ const ForkProjectForm = (props) => {
   const params = useParams()
   const { id } = params
   const [newPart, setNewPart] = useState("")
-  const [forkedProject, setForkedProject] = useState({
+  const [project, setProject] = useState({
     title: "",
     tags: "",
     appsAndPlatforms: "",
@@ -83,7 +83,7 @@ const ForkProjectForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setForkedProject((prevState) => ({
+      setProject((prevState) => ({
         ...prevState,
         thumbnailImage: body.imageURL,
       }))
@@ -102,7 +102,7 @@ const ForkProjectForm = (props) => {
       }
       const responseBody = await response.json()
       const fork = responseBody.fork
-      setForkedProject((prevState) => ({ ...prevState, ...fork }))
+      setProject((prevState) => ({ ...prevState, ...fork }))
     } catch (error) {
       console.log(error)
     }
@@ -116,11 +116,11 @@ const ForkProjectForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    postForkedProject(forkedProject)
+    postForkedProject(project)
   }
 
   const handleInputChange = (event) => {
-    setForkedProject({ ...forkedProject, [event.currentTarget.name]: event.currentTarget.value })
+    setProject({ ...project, [event.currentTarget.name]: event.currentTarget.value })
   }
 
   const handlePartInput = (event) => {
@@ -129,20 +129,20 @@ const ForkProjectForm = (props) => {
 
   const handlePartSubmit = () => {
     if (newPart.trim().length) {
-      setForkedProject({
-        ...forkedProject,
-        parts: [...forkedProject.parts, { partName: newPart }],
+      setProject({
+        ...project,
+        parts: [...project.parts, { partName: newPart }],
       })
       setNewPart("")
     }
   }
 
   const handlePartDelete = (index) => {
-    const partsList = forkedProject.parts.filter((part, i) => i !== index)
-    setForkedProject({ ...forkedProject, parts: partsList })
+    const partsList = project.parts.filter((part, i) => i !== index)
+    setProject({ ...project, parts: partsList })
   }
 
-  const partsList = forkedProject.parts.map((part, index) => {
+  const partsList = project.parts.map((part, index) => {
     return (
       <div className="part-item-in-form">
         <p key={`${part.partName}${index}`}> {part.partName}</p>
@@ -169,7 +169,7 @@ const ForkProjectForm = (props) => {
         <div className="form-items-container top-section">
           <h1>Fork Project</h1>
           <TextField
-            value={forkedProject.title}
+            value={project.title}
             className="form-input text-field"
             fullWidth
             id="form-title"
@@ -180,7 +180,7 @@ const ForkProjectForm = (props) => {
           <h2>Description:</h2>
           <Textarea
             minRows={3}
-            value={forkedProject.description}
+            value={project.description}
             placeholder="Enter description"
             onChange={handleInputChange}
             name="description"
@@ -188,7 +188,7 @@ const ForkProjectForm = (props) => {
             sx={{ minWidth: "100%", backgroundColor: "white" }}
           />
           <div className="project-image-container thumbnail-image-container">
-            <img className="project-image" src={forkedProject.thumbnailImage} />
+            <img className="project-image" src={project.thumbnailImage} />
           </div>
           <Button
             className="large-button change-thumbnail-image"
@@ -200,7 +200,7 @@ const ForkProjectForm = (props) => {
                 <section>
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
-                    {forkedProject.thumbnailImage.length > 0
+                    {project.thumbnailImage.length > 0
                       ? "Change Thumbnail Image"
                       : "Upload Thumbnail Image"}
                   </div>
@@ -209,7 +209,7 @@ const ForkProjectForm = (props) => {
             </Dropzone>
           </Button>
           <TextField
-            value={forkedProject.appsAndPlatforms}
+            value={project.appsAndPlatforms}
             className="form-input text-field"
             fullWidth
             onChange={handleInputChange}
@@ -238,12 +238,12 @@ const ForkProjectForm = (props) => {
             Add Part
           </Button>
         </div>
-          <InstructionsSubForm forkedProject={forkedProject} setForkedProject={setForkedProject} />
+          <InstructionsSubForm project={project} setProject={setProject} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
             <Textarea
-              value={forkedProject.code}
+              value={project.code}
               minRows="10"
               cols="1"
               onChange={handleInputChange}
@@ -262,7 +262,7 @@ const ForkProjectForm = (props) => {
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
           <TextField
-            value={forkedProject.githubFileURL}
+            value={project.githubFileURL}
             fullWidth
             onChange={handleInputChange}
             label="GitHub main sketch file URL"
