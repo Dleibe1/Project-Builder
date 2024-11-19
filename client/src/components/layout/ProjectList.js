@@ -13,10 +13,7 @@ const ProjectList = ({ projectsPerPage }) => {
   const [projects, setProjects] = useState([])
   const [projectCount, setProjectCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(parseInt(pageNumberURLParam || 1))
-<<<<<<< Updated upstream
   const { selectedTag, setSelectedTag } = useContext(TagContext)
-=======
->>>>>>> Stashed changes
 
   const history = useHistory()
   const totalPages = Math.ceil(projectCount / projectsPerPage)
