@@ -4,6 +4,8 @@ import { Button } from "@mui/material"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Dropzone from "react-dropzone"
 import DeleteIcon from "@mui/icons-material/Delete"
+import TinyMCE from "./TinyMCE"
+import DOMPurify from "dompurify"
 
 const InstructionsSubForm = ({ project, setProject }) => {
   const [editInstructionIndices, setEditInstructionIndices] = useState({})
@@ -81,12 +83,6 @@ const InstructionsSubForm = ({ project, setProject }) => {
     setEditInstructionIndices({ ...editInstructionIndices, [index]: true })
   }
 
-  const handleEditInstructionTextInput = (event, index) => {
-    const instructions = [...project.instructions]
-    instructions[index].instructionText = event.currentTarget.value
-    setProject({ ...project, instructions: instructions })
-  }
-
   const handleCancelEditInstruction = (event, index) => {
     const instructions = [...project.instructions]
     if (instructions[index].instructionText.trim().length === 0) {
@@ -160,22 +156,9 @@ const InstructionsSubForm = ({ project, setProject }) => {
       const isEditing = editInstructionIndices[index] === true
       return (
         <div className="instruction-text-container form-items-container">
-          {isEditing && (
-            <TinyMCEwysiwyg
-              handleEditInstructionTextInput={handleEditInstructionTextInput}
-              handleEditInstructionTextButton={handleEditInstructionTextButton}
-            />
-            // <Textarea
-            //   minRows={3}
-            //   value={project.instructions[index].instructionText}
-            //   placeholder="Edit instruction"
-            //   onChange={(event) => handleEditInstructionTextInput(event, index)}
-            //   name="instructionText"
-            //   sx={{ minWidth: "100%", backgroundColor: "white" }}
-            // />
-          )}
+          {isEditing && <TinyMCE project={project} setProject={setProject} index={index} />}
           {!isEditing && instruction.instructionText.length > 0 && (
-            <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
+            <div className="preserve-white-space instruction-text" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instruction.instructionText) }}></div>
           )}
           {isEditing ? (
             <div className="instruction-list-buttons-container">

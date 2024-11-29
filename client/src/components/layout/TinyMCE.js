@@ -1,12 +1,15 @@
-import React, { useState } from "react"
+import React from "react"
 import { Editor } from "@tinymce/tinymce-react"
-import { Button } from "@mui/material"
 
-const TinyMCEWYSIWYG = (props) => {
-  const [value, setValue] = useState("")
+const TinyMCE = ({ project, setProject, index }) => {
 
-  const handleSave = () => {
-    
+  const handleEditorChange = (value) => {
+    const instructions = [...project.instructions]
+    instructions[index].instructionText = value
+    setProject((prevState) => ({
+      ...prevState,
+      instructions: instructions
+    }))
   }
 
   return (
@@ -71,14 +74,11 @@ const TinyMCEWYSIWYG = (props) => {
           //   formatting: { styles: "inline", resets: "inline", defaults: "inline" },
           // },
         }}
-        value={value}
-        onEditorChange={(newValue, editor) => setValue(newValue)}
+        value={project.instructions[index].instructionText}
+        onEditorChange={(newValue, editor) => handleEditorChange(newValue)}
       />
-      <Button className="large-button save-instruction" variant="contained">
-        Save Instruction
-      </Button>
     </div>
   )
 }
 
-export default TinyMCEWYSIWYG
+export default TinyMCE

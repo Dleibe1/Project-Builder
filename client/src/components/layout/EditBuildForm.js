@@ -331,7 +331,7 @@ const EditBuildForm = (props) => {
               {instruction.instructionText.length > 0 ? (
                 <Button
                   onClick={() => handleEditInstructionTextSubmit(index)}
-                  className="large-button delete-image"
+                  className="large-button"
                   variant="contained"
                 >
                   Save Instruction
@@ -339,7 +339,7 @@ const EditBuildForm = (props) => {
               ) : (
                 <Button
                   onClick={(event) => handleCancelEditInstruction(event, index)}
-                  className="large-button delete-image"
+                  className="large-button"
                   variant="contained"
                 >
                   Cancel
@@ -350,7 +350,7 @@ const EditBuildForm = (props) => {
             <div className="instruction-list-buttons-container">
               <Button
                 onClick={() => handleEditInstructionTextButton(index)}
-                className="large-button delete-image"
+                className="large-button"
                 variant="contained"
               >
                 Edit Instruction
