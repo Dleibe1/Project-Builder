@@ -1,4 +1,4 @@
-import { Tag, User } from "../models/index.js"
+import { User } from "../models/index.js"
 import PartsSerializer from "./PartsSerializer.js"
 import InstructionSerializer from "./InstructionSerializer.js"
 import TagSerializer from "./TagSerializer.js"

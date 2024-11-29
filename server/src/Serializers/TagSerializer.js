@@ -1,11 +1,11 @@
 class TagSerializer {
 	static getTagDetails(tag) {
 	  const allowedAttributes = ["tagName"]
-	  let serializedPart = {}
+	  let serializedTag = {}
 	  for (const attribute of allowedAttributes) {
-		serializedPart[attribute] = part[attribute]
+		serializedTag[attribute] = tag[attribute]
 	  }
-	  return serializedPart
+	  return serializedTag
 	}
   }
   

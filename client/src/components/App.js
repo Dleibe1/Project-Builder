@@ -20,13 +20,13 @@ import EditBuildForm from "./layout/EditBuildForm"
 import ForkList from "./layout/ForkList"
 import ForkProjectForm from "./layout/ForkProjectForm"
 import GithubLogin from "./authentication/GithubLogin"
-import TinyMCETest from "./layout/TinyMCEwysiwyg"
+import LandingPage from "./layout/LandingPage"
 
 import HowToUse from "./layout/HowToUse"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
-  const [projectsPerPage, setProjectsPerPage] = useState(12)
+  const [projectsPerPage, setProjectsPerPage] = useState(6)
   const fetchCurrentUser = async () => {
     try {
       const user = await getCurrentUser()
@@ -46,8 +46,7 @@ const App = (props) => {
         <TopBar projectsPerPage={projectsPerPage} user={currentUser} />
         <Switch>
           <Route exact path={"/"}>
-            {/* <LandingPage /> */}
-            {<TinyMCETest />}
+            <LandingPage />
           </Route>
           <Route exact path={"/how-to-use"}>
             <HowToUse user={currentUser} />
