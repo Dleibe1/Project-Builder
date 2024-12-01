@@ -49,10 +49,20 @@ const InstructionsSubForm = ({ project, setProject }) => {
     uploadProjectImage()
   }, [imageFile])
 
+  const handleAddNewFirstInstruction = () => {
+    if (editInstructionIndices[0] !== true) {
+      const instructions = [...project.instructions]
+      instructions.unshift({ instructionText: "" })
+      setProject({ ...project, instructions: instructions })
+      setEditInstructionIndices({ ...editInstructionIndices, [0]: true })
+      console.log(editInstructionIndices)
+    }
+  }
+
   const handleAddInstructionBelowButton = (index) => {
-    const instructions = [...project.instructions]
-    setEditInstructionIndices({ ...editInstructionIndices, [index + 1]: true })
     if (editInstructionIndices[index + 1] !== true) {
+      const instructions = [...project.instructions]
+      setEditInstructionIndices({ ...editInstructionIndices, [index + 1]: true })
       instructions.splice(index + 1, 0, { instructionText: "" })
       setProject({ ...project, instructions: instructions })
     }
@@ -226,8 +236,12 @@ const InstructionsSubForm = ({ project, setProject }) => {
       <h2 id="form-instructions-heading">Instructions and Images:</h2>
       <div className="form-items-container new-instruction">
         <div className="add-instruction-button-container">
-          <Button className="large-button instruction-list-button" variant="contained">
-            Add Instruction Above
+          <Button
+            className="large-button instruction-list-button"
+            variant="contained"
+            onClick={handleAddNewFirstInstruction}
+          >
+            Add New First Instruction
           </Button>
         </div>
         <Button
@@ -235,7 +249,11 @@ const InstructionsSubForm = ({ project, setProject }) => {
           variant="contained"
           startIcon={<CloudUpload />}
         >
-          <Dropzone onDrop={handleProjectImageUpload}>
+          <Dropzone
+            onDrop={(acceptedImage) => {
+              handleProjectImageUpload(acceptedImage, -1)
+            }}
+          >
             {({ getRootProps, getInputProps }) => (
               <section>
                 <div {...getRootProps()}>
