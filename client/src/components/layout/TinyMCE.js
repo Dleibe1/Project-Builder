@@ -2,13 +2,12 @@ import React from "react"
 import { Editor } from "@tinymce/tinymce-react"
 
 const TinyMCE = ({ project, setProject, index }) => {
-
   const handleEditorChange = (value) => {
     const instructions = [...project.instructions]
     instructions[index].instructionText = value
     setProject((prevState) => ({
       ...prevState,
-      instructions: instructions
+      instructions: instructions,
     }))
   }
 
@@ -74,7 +73,7 @@ const TinyMCE = ({ project, setProject, index }) => {
           //   formatting: { styles: "inline", resets: "inline", defaults: "inline" },
           // },
         }}
-        value={project.instructions[index].instructionText}
+        value={project?.instructions[index].instructionText}
         onEditorChange={(newValue, editor) => handleEditorChange(newValue)}
       />
     </div>

@@ -23,7 +23,7 @@ const ForkProjectForm = (props) => {
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    instructions: [],
+    instructions: [{ instructionText: "" }],
     parts: [],
     description: "",
     code: "",
@@ -238,7 +238,7 @@ const ForkProjectForm = (props) => {
             Add Part
           </Button>
         </div>
-          <InstructionsSubForm project={project} setProject={setProject} />
+        <InstructionsSubForm project={project} setProject={setProject} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">

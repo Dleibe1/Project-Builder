@@ -23,19 +23,18 @@ const MyBuildShow = (props) => {
 
   const params = useParams()
   const { id } = params
-  const codeRef = useRef(null)
 
   useEffect(() => {
     getMyBuild()
   }, [])
 
   useEffect(() => {
-    if (codeRef.current) {
-      if (codeRef.current.dataset.highlighted) {
-        delete codeRef.current.dataset.highlighted
-      }
-      hljs.highlightElement(codeRef.current)
-    }
+    //Apply highlighting after default css has been applied
+    const codeTags = document.querySelectorAll('code');
+    codeTags.forEach(tag => {
+      delete tag.dataset.highlighted
+    })
+    hljs.highlightAll()
   }, [myBuild])
 
   useEffect(() => {
@@ -124,9 +123,7 @@ const MyBuildShow = (props) => {
         <div className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code ref={codeRef} className="language-c">
-              {myBuild.code}
-            </code>
+            <code className="language-cpp">{myBuild.code}</code>
           </pre>
         </div>
       </div>

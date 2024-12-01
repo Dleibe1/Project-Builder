@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react"
-import Textarea from "@mui/joy/Textarea"
 import { Button } from "@mui/material"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Dropzone from "react-dropzone"
 import DeleteIcon from "@mui/icons-material/Delete"
 import TinyMCE from "./TinyMCE"
 import DOMPurify from "dompurify"
+import hljs from "highlight.js"
+import "highlight.js/styles/github.css"
 
 const InstructionsSubForm = ({ project, setProject }) => {
   const [editInstructionIndices, setEditInstructionIndices] = useState({})
-  const [firstInstruction, setFirstInstruction] = useState("")
   const [addProjectImageIndex, setAddProjectImageIndex] = useState(null)
   const [imageFile, setImageFile] = useState({
     image: {},
   })
+
+  useEffect(() => {
+    hljs.highlightAll()
+  }, [editInstructionIndices])
 
   const uploadProjectImage = async () => {
     const newImageFileData = new FormData()
@@ -44,22 +48,6 @@ const InstructionsSubForm = ({ project, setProject }) => {
   useEffect(() => {
     uploadProjectImage()
   }, [imageFile])
-
-  const handleFirstInstructionTextInput = (event) => {
-    setFirstInstruction(event.currentTarget.value)
-  }
-
-  const handleFirstInstructionTextSubmit = (event) => {
-    if (firstInstruction.trim().length) {
-      const instructions = [...project.instructions]
-      instructions.unshift({ instructionText: firstInstruction })
-      setProject({
-        ...project,
-        instructions: instructions,
-      })
-      setFirstInstruction("")
-    }
-  }
 
   const handleAddInstructionBelowButton = (index) => {
     const instructions = [...project.instructions]
@@ -115,7 +103,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
           <div className="instruction-list-buttons-container">
             <Button
               onClick={() => handleInstructionDelete(index)}
-              className="large-button delete-image"
+              className="large-button instruction-list-button"
               variant="contained"
               startIcon={<DeleteIcon />}
             >
@@ -123,14 +111,13 @@ const InstructionsSubForm = ({ project, setProject }) => {
             </Button>
             <Button
               onClick={() => handleAddInstructionBelowButton(index)}
-              className="large-button delete-image"
+              className="large-button instruction-list-button"
               variant="contained"
             >
               Add Instruction Below
             </Button>
             <Button
-              className="large-button"
-              id="add-instruction-image"
+              className="large-button instruction-list-button"
               variant="contained"
               startIcon={<CloudUpload />}
             >
@@ -158,14 +145,17 @@ const InstructionsSubForm = ({ project, setProject }) => {
         <div className="instruction-text-container form-items-container">
           {isEditing && <TinyMCE project={project} setProject={setProject} index={index} />}
           {!isEditing && instruction.instructionText.length > 0 && (
-            <div className="preserve-white-space instruction-text" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instruction.instructionText) }}></div>
+            <div
+              className="preserve-white-space instruction-text"
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instruction.instructionText) }}
+            ></div>
           )}
           {isEditing ? (
             <div className="instruction-list-buttons-container">
               {instruction.instructionText.length > 0 ? (
                 <Button
                   onClick={() => handleEditInstructionTextSubmit(index)}
-                  className="large-button delete-image"
+                  className="large-button instruction-list-button"
                   variant="contained"
                 >
                   Save Instruction
@@ -173,7 +163,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
               ) : (
                 <Button
                   onClick={(event) => handleCancelEditInstruction(event, index)}
-                  className="large-button delete-image"
+                  className="large-button instruction-list-button"
                   variant="contained"
                 >
                   Cancel
@@ -184,14 +174,14 @@ const InstructionsSubForm = ({ project, setProject }) => {
             <div className="instruction-list-buttons-container">
               <Button
                 onClick={() => handleEditInstructionTextButton(index)}
-                className="large-button delete-image"
+                className="large-button instruction-list-button"
                 variant="contained"
               >
                 Edit Instruction
               </Button>
               <Button
                 onClick={() => handleInstructionDelete(index)}
-                className="large-button delete-image"
+                className="large-button instruction-list-button"
                 variant="contained"
                 startIcon={<DeleteIcon />}
               >
@@ -199,14 +189,13 @@ const InstructionsSubForm = ({ project, setProject }) => {
               </Button>
               <Button
                 onClick={() => handleAddInstructionBelowButton(index)}
-                className="large-button delete-image"
+                className="large-button instruction-list-button"
                 variant="contained"
               >
                 Add Instruction Below
               </Button>
               <Button
-                className="large-button"
-                id="add-instruction-image"
+                className="large-button instruction-list-button"
                 variant="contained"
                 startIcon={<CloudUpload />}
               >
@@ -236,28 +225,13 @@ const InstructionsSubForm = ({ project, setProject }) => {
     <div className="instructions-and-images">
       <h2 id="form-instructions-heading">Instructions and Images:</h2>
       <div className="form-items-container new-instruction">
-        <Textarea
-          minRows={3}
-          value={firstInstruction}
-          placeholder="Enter first instruction"
-          onChange={handleFirstInstructionTextInput}
-          name="firstInstruction"
-          label="Enter first instruction"
-          sx={{ minWidth: "100%", backgroundColor: "white" }}
-        />
         <div className="add-instruction-button-container">
-          <Button
-            onClick={handleFirstInstructionTextSubmit}
-            className="large-button "
-            id="add-instruction-text"
-            variant="contained"
-          >
-            Add New Instruction
+          <Button className="large-button instruction-list-button" variant="contained">
+            Add Instruction Above
           </Button>
         </div>
         <Button
-          className="large-button"
-          id="add-instruction-image"
+          className="large-button instruction-list-button"
           variant="contained"
           startIcon={<CloudUpload />}
         >
@@ -266,7 +240,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
               <section>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                  Add New Image
+                  Add Image Above
                 </div>
               </section>
             )}

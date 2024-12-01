@@ -152,7 +152,7 @@ const ProjectShow = (props) => {
         <div className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code ref={codeRef} className="language-c">
+            <code ref={codeRef} className="language-cpp">
               {project.code}
             </code>
           </pre>
