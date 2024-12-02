@@ -9,7 +9,7 @@ import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
 const InstructionsSubForm = ({ project, setProject }) => {
-  const [editInstructionIndices, setEditInstructionIndices] = useState({})
+  const [editInstructionIndices, setEditInstructionIndices] = useState({ 0: true })
   const [addProjectImageIndex, setAddProjectImageIndex] = useState(null)
   const [imageFile, setImageFile] = useState({
     image: {},
@@ -55,7 +55,6 @@ const InstructionsSubForm = ({ project, setProject }) => {
       instructions.unshift({ instructionText: "" })
       setProject({ ...project, instructions: instructions })
       setEditInstructionIndices({ ...editInstructionIndices, [0]: true })
-      console.log(editInstructionIndices)
     }
   }
 
@@ -71,7 +70,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
   const handleEditInstructionTextSubmit = (index) => {
     if (
       project.instructions[index].instructionText &&
-      project.instructions[index].instructionText.length
+      project.instructions[index].instructionText.trim().length
     ) {
       setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
     }
@@ -83,11 +82,11 @@ const InstructionsSubForm = ({ project, setProject }) => {
 
   const handleCancelEditInstruction = (event, index) => {
     const instructions = [...project.instructions]
-    if (instructions[index].instructionText.trim().length === 0) {
+    if (instructions[index].instructionText.trim().length === 0 && instructions.length > 1) {
       instructions.splice(index, 1)
+      setProject({ ...project, instructions: instructions })
+      setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
     }
-    setProject({ ...project, instructions: instructions })
-    setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
   }
 
   const handleInstructionDelete = (index) => {
@@ -96,6 +95,11 @@ const InstructionsSubForm = ({ project, setProject }) => {
   }
 
   const handleProjectImageUpload = (acceptedImage, index) => {
+    const instructions = [...project.instructions]
+    if (instructions.length === 1 && instructions[0].instructionText.trim().length === 0) {
+      instructions.splice(0, 1)
+      setProject({ ...project, instructions: [] })
+    }
     setAddProjectImageIndex(index + 1)
     setImageFile({
       image: acceptedImage[0],
@@ -162,7 +166,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
           )}
           {isEditing ? (
             <div className="instruction-list-buttons-container">
-              {instruction.instructionText.length > 0 ? (
+              {instruction.instructionText.length > 0 || project.instructions.length === 1 ? (
                 <Button
                   onClick={() => handleEditInstructionTextSubmit(index)}
                   className="large-button instruction-list-button"
@@ -235,15 +239,17 @@ const InstructionsSubForm = ({ project, setProject }) => {
     <div className="instructions-and-images">
       <h2 id="form-instructions-heading">Instructions and Images:</h2>
       <div className="form-items-container new-instruction">
-        <div className="add-instruction-button-container">
-          <Button
-            className="large-button instruction-list-button"
-            variant="contained"
-            onClick={handleAddNewFirstInstruction}
-          >
-            Add New First Instruction
-          </Button>
-        </div>
+        {project.instructions.length > 1 && (
+          <div className="add-instruction-button-container">
+            <Button
+              className="large-button instruction-list-button"
+              variant="contained"
+              onClick={handleAddNewFirstInstruction}
+            >
+              Add New First Instruction
+            </Button>
+          </div>
+        )}
         <Button
           className="large-button instruction-list-button"
           variant="contained"
