@@ -91,6 +91,10 @@ const InstructionsSubForm = ({ project, setProject }) => {
 
   const handleInstructionDelete = (index) => {
     const instructionList = project.instructions.filter((instruction, i) => i !== index)
+    if (instructionList.length === 0) {
+      instructionList.splice(0, 0, { instructionText: "" })
+      setEditInstructionIndices({ 0: true })
+    }
     setProject({ ...project, instructions: instructionList })
   }
 
