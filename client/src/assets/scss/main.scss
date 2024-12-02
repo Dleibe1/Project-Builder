@@ -373,9 +373,10 @@ h5 {
   width: 500px;
 }
 
+.project-show h1,
 .project-show h2,
-.project-show h1 {
-  font-size: 3rem;
+.project-show h3 {
+  font-size: 4rem;
   font-family: OpenSans-Regular;
   margin-bottom: 0;
   color: #374146;
@@ -385,6 +386,10 @@ h5 {
   background-color: white;
   text-align: center;
   padding: 30px;
+}
+
+.project-show h2 {
+  text-decoration: underline;
 }
 
 .project-show h1 {
@@ -399,6 +404,10 @@ h5 {
 
 .project-show .description-title {
   padding-top: 10px;
+}
+
+.showpage-items-container{
+  margin-bottom: 30px;
 }
 
 .project-show code {
@@ -722,7 +731,6 @@ text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
   margin-bottom: 40px;
   padding: 16px;
   max-width: 100%;
@@ -757,10 +765,38 @@ text-align: center;
 #new-build-form .instruction-text-container,
 #edit-project-form .instruction-text-container,
 #fork-project-form .instruction-text-container {
+  margin-bottom: 40px;
   min-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.tinymce-container {
+  min-width: 100%;
+}
+
+.large-button.save-instruction {
+  position: absolute;
+  bottom: 3px;
+  z-index: 10;
+}
+
+.tox.tox-tinymce {
+  z-index: 1 !important;
+}
+
+.tox .tox-statusbar__branding a {
+  display: none !important;
+}
+
+.tox-statusbar {
+  position: relative !important;
+  height: 39px !important;
+}
+
+.tox .tox-throbber__busy-spinner {
+  display: none !important;
 }
 
 .form-items-container .large-button.change-thumbnail-image {
@@ -795,6 +831,7 @@ text-align: center;
 
 .instruction-text-container.form-items-container .large-button.delete-instruction:hover,
 .large-button.delete-image:hover,
+.large-button.instruction-list-button:hover,
 .large-button.change-thumbnail-image:hover,
 .large-button.add-part.project-tile:hover,
 #add-instruction-text,
@@ -828,9 +865,8 @@ text-align: center;
   width: 100%;
 }
 
-#add-instruction-text,
-#add-instruction-image {
-  margin: 10px 0px;
+.large-button.instruction-list-button {
+  margin: 5px 0px;
 }
 
 #code-input {
@@ -850,6 +886,7 @@ text-align: center;
 
 #part-input-container {
   width: 100%;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -874,7 +911,6 @@ text-align: center;
 .form-items-container,
 .how-to-use-page-items-container {
   background-color: white;
-  margin-bottom: 30px;
   border-radius: 6px;
   width: 100%;
   padding: 16px;
@@ -886,10 +922,12 @@ text-align: center;
   margin: 10px;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .showpage-items-container p,
-.form-items-container p {
+.form-items-container p,
+.project-show .preserve-white-space {
   width: 100%;
   font-family: OpenSans-Regular;
   overflow-wrap: anywhere;

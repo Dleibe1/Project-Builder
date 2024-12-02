@@ -11,6 +11,9 @@ Project Builder allows users to take advantage of the similarities between their
 
 A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 
+The boilerplate code used for the app can be found here:
+[https://github.com/LaunchAcademy/engage-boilerplate](https://github.com/LaunchAcademy/engage-boilerplate)
+
 #### Login with GitHub (OAuth 2.0)
 
 #### GitHub API:

@@ -8,6 +8,7 @@ import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
+import InstructionsSubForm from "./InstructionsSubForm.js"
 
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -24,11 +25,11 @@ const EditBuildForm = (props) => {
   const [firstInstruction, setFirstInstruction] = useState("")
   const [editInstructionIndices, setEditInstructionIndices] = useState({})
   const [addProjectImageIndex, setAddProjectImageIndex] = useState(null)
-  const [editedProject, setEditedProject] = useState({
+  const [project, setProject] = useState({
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    instructions: [],
+    instructions: [{ instructionText: "" }],
     parts: [],
     description: "",
     code: "",
@@ -55,14 +56,14 @@ const EditBuildForm = (props) => {
     getProject()
   }, [])
 
-  const updateProject = async (editedProjectData) => {
+  const updateProject = async (projectData) => {
     try {
       const response = await fetch(`/api/v1/my-builds/${id}`, {
         method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
-        body: JSON.stringify(editedProjectData),
+        body: JSON.stringify(projectData),
       })
       if (!response.ok) {
         if (response.status === 422) {
@@ -92,9 +93,9 @@ const EditBuildForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      const instructions = [...editedProject.instructions]
+      const instructions = [...project.instructions]
       instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
-      setEditedProject((prevState) => ({
+      setProject((prevState) => ({
         ...prevState,
         instructions: instructions,
       }))
@@ -118,7 +119,7 @@ const EditBuildForm = (props) => {
         throw new Error(`${response.status} (${response.statusText})`)
       }
       const body = await response.json()
-      setEditedProject((prevState) => ({
+      setProject((prevState) => ({
         ...prevState,
         thumbnailImage: body.imageURL,
       }))
@@ -137,7 +138,7 @@ const EditBuildForm = (props) => {
       }
       const responseBody = await response.json()
       const build = responseBody.userBuild
-      setEditedProject((prevState) => ({
+      setProject((prevState) => ({
         ...prevState,
         ...build,
       }))
@@ -161,11 +162,11 @@ const EditBuildForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    updateProject(editedProject)
+    updateProject(project)
   }
 
   const handleInputChange = (event) => {
-    setEditedProject({ ...editedProject, [event.currentTarget.name]: event.currentTarget.value })
+    setProject({ ...project, [event.currentTarget.name]: event.currentTarget.value })
   }
 
   const handlePartInput = (event) => {
@@ -174,78 +175,20 @@ const EditBuildForm = (props) => {
 
   const handlePartSubmit = () => {
     if (newPart.trim().length) {
-      setEditedProject({
-        ...editedProject,
-        parts: [...editedProject.parts, { partName: newPart }],
+      setProject({
+        ...project,
+        parts: [...project.parts, { partName: newPart }],
       })
       setNewPart("")
     }
   }
 
   const handlePartDelete = (index) => {
-    const partsList = editedProject.parts.filter((part, i) => i !== index)
-    setEditedProject({ ...editedProject, parts: partsList })
+    const partsList = project.parts.filter((part, i) => i !== index)
+    setProject({ ...project, parts: partsList })
   }
 
-  const handleFirstInstructionTextInput = (event) => {
-    setFirstInstruction(event.currentTarget.value)
-  }
-
-  const handleFirstInstructionTextSubmit = (event) => {
-    if (firstInstruction.trim().length) {
-      const instructions = [...editedProject.instructions]
-      instructions.unshift({ instructionText: firstInstruction })
-      setEditedProject({
-        ...editedProject,
-        instructions: instructions,
-      })
-      setFirstInstruction("")
-    }
-  }
-
-  const handleEditInstructionTextSubmit = (index) => {
-    if (
-      editedProject.instructions[index].instructionText &&
-      editedProject.instructions[index].instructionText.length
-    ) {
-      setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
-    }
-  }
-
-  const handleEditInstructionTextButton = (index) => {
-    setEditInstructionIndices({ ...editInstructionIndices, [index]: true })
-  }
-
-  const handleEditInstructionTextInput = (event, index) => {
-    const instructions = [...editedProject.instructions]
-    instructions[index].instructionText = event.currentTarget.value
-    setEditedProject({ ...editedProject, instructions: instructions })
-  }
-
-  const handleCancelEditInstruction = (event, index) => {
-    const instructions = [...editedProject.instructions]
-    if (instructions[index].instructionText.trim().length === 0) {
-      instructions.splice(index, 1)
-    }
-    setEditedProject({ ...editedProject, instructions: instructions })
-    setEditInstructionIndices({ ...editInstructionIndices, [index]: false })
-  }
-
-  const handleInstructionDelete = (index) => {
-    const instructionList = editedProject.instructions.filter((instruction, i) => i !== index)
-    setEditedProject({ ...editedProject, instructions: instructionList })
-  }
-
-  const handleAddInstructionBelowButton = (index) => {
-    const instructions = [...editedProject.instructions]
-    setEditInstructionIndices({ ...editInstructionIndices, [index + 1]: true })
-    if (editInstructionIndices[index + 1] !== true) {
-      instructions.splice(index + 1, 0, { instructionText: "" })
-      setEditedProject({ ...editedProject, instructions: instructions })
-    }
-  }
-
-  const partsList = editedProject.parts.map((part, index) => {
+  const partsList = project.parts.map((part, index) => {
     return (
       <div className="part-item-in-form">
         <p key={`${part.partName}${index}`}> {part.partName}</p>
@@ -261,155 +204,18 @@ const EditBuildForm = (props) => {
     )
   })
 
-  const instructionList = editedProject.instructions.map((instruction, index) => {
-    if (instruction.imageURL) {
-      return (
-        <div
-          key={`${instruction.imageURL}${index}`}
-          className="project-image-container form-items-container"
-        >
-          <img className="project-image" src={instruction.imageURL} />
-          <div className="instruction-list-buttons-container">
-            <Button
-              onClick={() => handleInstructionDelete(index)}
-              className="large-button delete-image"
-              variant="contained"
-              startIcon={<DeleteIcon />}
-            >
-              Delete Image
-            </Button>
-            <Button
-              onClick={() => handleAddInstructionBelowButton(index)}
-              className="large-button delete-image"
-              variant="contained"
-            >
-              Add Instruction Below
-            </Button>
-            <Button
-              className="large-button"
-              id="add-instruction-image"
-              variant="contained"
-              startIcon={<CloudUpload />}
-            >
-              <Dropzone
-                onDrop={(acceptedImage) => {
-                  handleProjectImageUpload(acceptedImage, index)
-                }}
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <section>
-                    <div {...getRootProps()}>
-                      <input {...getInputProps()} />
-                      Add Image Below
-                    </div>
-                  </section>
-                )}
-              </Dropzone>
-            </Button>
-          </div>
-        </div>
-      )
-    } else {
-      const isEditing = editInstructionIndices[index] === true
-      return (
-        <div className="instruction-text-container form-items-container">
-          {isEditing && (
-            <Textarea
-              minRows={3}
-              value={editedProject.instructions[index].instructionText}
-              placeholder="Edit instruction"
-              onChange={(event) => handleEditInstructionTextInput(event, index)}
-              name="instructionText"
-              sx={{ minWidth: "100%", backgroundColor: "white" }}
-            />
-          )}
-          {!isEditing && instruction.instructionText.length > 0 && (
-            <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
-          )}
-          {isEditing ? (
-            <div className="instruction-list-buttons-container">
-              {instruction.instructionText.length > 0 ? (
-                <Button
-                  onClick={() => handleEditInstructionTextSubmit(index)}
-                  className="large-button delete-image"
-                  variant="contained"
-                >
-                  Save Instruction
-                </Button>
-              ) : (
-                <Button
-                  onClick={(event) => handleCancelEditInstruction(event, index)}
-                  className="large-button delete-image"
-                  variant="contained"
-                >
-                  Cancel
-                </Button>
-              )}
-            </div>
-          ) : (
-            <div className="instruction-list-buttons-container">
-              <Button
-                onClick={() => handleEditInstructionTextButton(index)}
-                className="large-button delete-image"
-                variant="contained"
-              >
-                Edit Instruction
-              </Button>
-              <Button
-                onClick={() => handleInstructionDelete(index)}
-                className="large-button delete-image"
-                variant="contained"
-                startIcon={<DeleteIcon />}
-              >
-                Delete Instruction
-              </Button>
-              <Button
-                onClick={() => handleAddInstructionBelowButton(index)}
-                className="large-button delete-image"
-                variant="contained"
-              >
-                Add Instruction Below
-              </Button>
-              <Button
-                className="large-button"
-                id="add-instruction-image"
-                variant="contained"
-                startIcon={<CloudUpload />}
-              >
-                <Dropzone
-                  onDrop={(acceptedImage) => {
-                    handleProjectImageUpload(acceptedImage, index)
-                  }}
-                >
-                  {({ getRootProps, getInputProps }) => (
-                    <section>
-                      <div {...getRootProps()}>
-                        <input {...getInputProps()} />
-                        Add Image Below
-                      </div>
-                    </section>
-                  )}
-                </Dropzone>
-              </Button>
-            </div>
-          )}
-        </div>
-      )
-    }
-  })
-
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
   }
 
   return (
-    <div className="fork-project-form-container project-show">
+    <div className="edit-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
+      <form key="edit-build-form" id="edit-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
           <h1>Edit Project</h1>
           <TextField
-            value={editedProject.title}
+            value={project.title}
             className="form-input text-field"
             fullWidth
             id="form-title"
@@ -420,7 +226,7 @@ const EditBuildForm = (props) => {
           <h2>Description:</h2>
           <Textarea
             minRows={3}
-            value={editedProject.description}
+            value={project.description}
             placeholder="Enter description"
             onChange={handleInputChange}
             name="description"
@@ -428,7 +234,7 @@ const EditBuildForm = (props) => {
             sx={{ minWidth: "100%", backgroundColor: "white" }}
           />
           <div className="project-image-container thumbnail-image-container">
-            <img className="project-image" src={editedProject.thumbnailImage} />
+            <img className="project-image" src={project.thumbnailImage} />
           </div>
           <Button
             className="large-button change-thumbnail-image"
@@ -440,7 +246,7 @@ const EditBuildForm = (props) => {
                 <section>
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
-                    {editedProject.thumbnailImage.length > 0
+                    {project.thumbnailImage.length > 0
                       ? "Change Thumbnail Image"
                       : "Upload Thumbnail Image"}
                   </div>
@@ -449,7 +255,7 @@ const EditBuildForm = (props) => {
             </Dropzone>
           </Button>
           <TextField
-            value={editedProject.appsAndPlatforms}
+            value={project.appsAndPlatforms}
             className="form-input text-field"
             fullWidth
             onChange={handleInputChange}
@@ -478,53 +284,12 @@ const EditBuildForm = (props) => {
             Add Part
           </Button>
         </div>
-        <div className="instructions-and-images">
-          <h2 id="form-instructions-heading">Instructions and Images:</h2>
-          <div className="form-items-container new-instruction">
-            <Textarea
-              minRows={3}
-              value={firstInstruction}
-              placeholder="Enter first instruction"
-              onChange={handleFirstInstructionTextInput}
-              name="firstInstruction"
-              label="Enter first instruction"
-              sx={{ minWidth: "100%", backgroundColor: "white" }}
-            />
-            <div className="add-instruction-button-container">
-              <Button
-                onClick={handleFirstInstructionTextSubmit}
-                className="large-button "
-                id="add-instruction-text"
-                variant="contained"
-              >
-                Add New Instruction
-              </Button>
-            </div>
-            <Button
-              className="large-button"
-              id="add-instruction-image"
-              variant="contained"
-              startIcon={<CloudUpload />}
-            >
-              <Dropzone onDrop={handleProjectImageUpload}>
-                {({ getRootProps, getInputProps }) => (
-                  <section>
-                    <div {...getRootProps()}>
-                      <input {...getInputProps()} />
-                      Add New Image
-                    </div>
-                  </section>
-                )}
-              </Dropzone>
-            </Button>
-          </div>
-          <div>{instructionList}</div>
-        </div>
+        <InstructionsSubForm project={project} setProject={setProject} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
             <Textarea
-              value={editedProject.code}
+              value={project.code}
               minRows="10"
               cols="1"
               onChange={handleInputChange}
@@ -535,15 +300,15 @@ const EditBuildForm = (props) => {
           </label>
         </div>
         <div className="form-items-container github-url-and-submit">
-          <h2 id="github-url-explanation">
+          <h3 id="github-url-explanation">
             Is this a work in progress? Pasting the URL of your main sketch file on Github will
             automatically keep the code you share up to date.
-          </h2>
+          </h3>
           <p id="github-example-url">
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
           <TextField
-            value={editedProject.githubFileURL}
+            value={project.githubFileURL}
             fullWidth
             onChange={handleInputChange}
             label="GitHub main sketch file URL"

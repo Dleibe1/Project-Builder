@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { TagProvider } from "../contexts/TagContext"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { hot } from "react-hot-loader/root"
-import LandingPage from "./layout/LandingPage"
 
 import "../assets/scss/main.scss"
 
@@ -21,12 +20,13 @@ import EditBuildForm from "./layout/EditBuildForm"
 import ForkList from "./layout/ForkList"
 import ForkProjectForm from "./layout/ForkProjectForm"
 import GithubLogin from "./authentication/GithubLogin"
+import LandingPage from "./layout/LandingPage"
 
 import HowToUse from "./layout/HowToUse"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
-  const [projectsPerPage, setProjectsPerPage] = useState(12)
+  const [projectsPerPage, setProjectsPerPage] = useState(9)
   const fetchCurrentUser = async () => {
     try {
       const user = await getCurrentUser()
