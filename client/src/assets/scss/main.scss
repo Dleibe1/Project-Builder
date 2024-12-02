@@ -375,7 +375,7 @@ h5 {
 
 .project-show h2,
 .project-show h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   font-family: OpenSans-Regular;
   margin-bottom: 0;
   color: #374146;
@@ -385,6 +385,10 @@ h5 {
   background-color: white;
   text-align: center;
   padding: 30px;
+}
+
+.project-show h2 {
+  text-decoration: underline;
 }
 
 .project-show h1 {
@@ -399,6 +403,10 @@ h5 {
 
 .project-show .description-title {
   padding-top: 10px;
+}
+
+.showpage-items-container{
+  margin-bottom: 30px;
 }
 
 .project-show code {

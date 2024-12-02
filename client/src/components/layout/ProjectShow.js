@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect} from "react"
 import { useParams, Redirect } from "react-router-dom"
 import ForkProjectButton from "./ForkProjectButton.js"
 import ProjectForksButton from "./ProjectForksButton.js"
+import DOMPurify from "dompurify"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
@@ -24,7 +25,6 @@ const ProjectShow = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const params = useParams()
   const { id } = params
-  const codeRef = useRef(null)
 
   useEffect(() => {
     getProject()
@@ -38,12 +38,12 @@ const ProjectShow = (props) => {
   }, [])
 
   useEffect(() => {
-    if (codeRef.current) {
-      if (codeRef.current.dataset.highlighted) {
-        delete codeRef.current.dataset.highlighted
-      }
-      hljs.highlightElement(codeRef.current)
-    }
+    //Apply highlighting after default css has been applied
+    const codeTags = document.querySelectorAll("code")
+    codeTags.forEach((tag) => {
+      delete tag.dataset.highlighted
+    })
+    hljs.highlightAll()
   }, [project])
 
   const getProject = async () => {
@@ -108,9 +108,10 @@ const ProjectShow = (props) => {
       )
     } else if (instruction.instructionText) {
       return (
-        <div className="showpage-items-container">
-          <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
-        </div>
+        <div
+          className="preserve-white-space instruction-text showpage-items-container"
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instruction.instructionText) }}
+        ></div>
       )
     }
   })
@@ -123,7 +124,6 @@ const ProjectShow = (props) => {
       </div>
       <div id="thumbnail-and-title">
         <h2 className="showpage-title">{project.title}</h2>
-
         <img
           className="project-image show-page-thumbnail"
           src={project.thumbnailImage}
@@ -146,13 +146,13 @@ const ProjectShow = (props) => {
           <p>{project.appsAndPlatforms}</p>
         </div>
       </div>
-      <h2>Instructions</h2>
+      <h2 className="instructions-heading">Instructions</h2>
       {instructionList}
       <div>
         <div className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code ref={codeRef} className="language-cpp">
+            <code className="language-cpp">
               {project.code}
             </code>
           </pre>

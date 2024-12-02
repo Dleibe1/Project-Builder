@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
 import DeleteBuildButton from "./DeleteBuildButton"
 import EditBuildButton from "./EditBuildButton"
-import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 //TODO: remove all "prepForFrontEnd" and replace with functional state update as done in ForkedProjectForm
+import DOMPurify from "dompurify"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -30,8 +30,8 @@ const MyBuildShow = (props) => {
 
   useEffect(() => {
     //Apply highlighting after default css has been applied
-    const codeTags = document.querySelectorAll('code');
-    codeTags.forEach(tag => {
+    const codeTags = document.querySelectorAll("code")
+    codeTags.forEach((tag) => {
       delete tag.dataset.highlighted
     })
     hljs.highlightAll()
@@ -78,9 +78,10 @@ const MyBuildShow = (props) => {
       )
     } else if (instruction.instructionText) {
       return (
-        <div className="showpage-items-container">
-          <p className="preserve-white-space instruction-text">{instruction.instructionText}</p>
-        </div>
+        <div
+          className="preserve-white-space instruction-text showpage-items-container"
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instruction.instructionText) }}
+        ></div>
       )
     }
   })
@@ -92,12 +93,12 @@ const MyBuildShow = (props) => {
         <DeleteBuildButton id={id} />
       </div>
       <div id="thumbnail-and-title">
+      <h2 className="showpage-title">{myBuild.title}</h2>
         <img
           className="project-image show-page-thumbnail"
           src={myBuild.thumbnailImage}
           alt="thumbnail"
         />
-        <h2>{myBuild.title}</h2>
       </div>
       <div className="showpage-items-container description">
         <h2 className="description-title">Description</h2>
@@ -116,7 +117,7 @@ const MyBuildShow = (props) => {
         </div>
       </div>
       <div>
-        <h2>Instructions</h2>
+        <h2 className="instructions-heading">Instructions</h2>
         {instructionList}
       </div>
       <div>
