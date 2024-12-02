@@ -254,10 +254,10 @@ const ForkProjectForm = (props) => {
           </label>
         </div>
         <div className="form-items-container github-url-and-submit">
-          <h2 id="github-url-explanation">
+          <h3 id="github-url-explanation">
             Is this a work in progress? Pasting the URL of your main sketch file on Github will
             automatically keep the code you share up to date.
-          </h2>
+          </h3>
           <p id="github-example-url">
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
