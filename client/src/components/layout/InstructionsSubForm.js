@@ -35,6 +35,10 @@ const InstructionsSubForm = ({ project, setProject }) => {
       }
       const body = await response.json()
       const instructions = [...project.instructions]
+      if (instructions.length === 1 && instructions[0].instructionText.trim().length === 0) {
+        instructions.splice(0, 1)
+        setProject({ ...project, instructions: [] })
+      }
       instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
       setProject((prevState) => ({
         ...prevState,
@@ -50,8 +54,12 @@ const InstructionsSubForm = ({ project, setProject }) => {
   }, [imageFile])
 
   const handleAddNewFirstInstruction = () => {
+    const instructions = [...project.instructions]
     if (editInstructionIndices[0] !== true) {
-      const instructions = [...project.instructions]
+      instructions.unshift({ instructionText: "" })
+      setProject({ ...project, instructions: instructions })
+      setEditInstructionIndices({ ...editInstructionIndices, [0]: true })
+    } else if (instructions[0].imageURL) {
       instructions.unshift({ instructionText: "" })
       setProject({ ...project, instructions: instructions })
       setEditInstructionIndices({ ...editInstructionIndices, [0]: true })
@@ -99,11 +107,6 @@ const InstructionsSubForm = ({ project, setProject }) => {
   }
 
   const handleProjectImageUpload = (acceptedImage, index) => {
-    const instructions = [...project.instructions]
-    if (instructions.length === 1 && instructions[0].instructionText.trim().length === 0) {
-      instructions.splice(0, 1)
-      setProject({ ...project, instructions: [] })
-    }
     setAddProjectImageIndex(index + 1)
     setImageFile({
       image: acceptedImage[0],
@@ -243,7 +246,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
     <div className="instructions-and-images">
       <h2 id="form-instructions-heading">Instructions and Images:</h2>
       <div className="form-items-container new-instruction">
-        {project.instructions.length > 1 && (
+        {project.instructions.length > 1 || project.instructions[0]?.imageURL && (
           <div className="add-instruction-button-container">
             <Button
               className="large-button instruction-list-button"
