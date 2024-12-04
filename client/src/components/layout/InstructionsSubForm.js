@@ -246,7 +246,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
     <div className="instructions-and-images">
       <h2 id="form-instructions-heading">Instructions and Images:</h2>
       <div className="form-items-container new-instruction">
-        {project.instructions.length > 1  && (
+        {project.instructions.length > 1 || project.instructions[0]?.imageURL && (
           <div className="add-instruction-button-container">
             <Button
               className="large-button instruction-list-button"
