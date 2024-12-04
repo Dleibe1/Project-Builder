@@ -13,18 +13,12 @@ import InstructionsSubForm from "./InstructionsSubForm.js"
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [imageFile, setImageFile] = useState({
-    image: {},
-  })
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
   const params = useParams()
   const { id } = params
   const [newPart, setNewPart] = useState("")
-  const [firstInstruction, setFirstInstruction] = useState("")
-  const [editInstructionIndices, setEditInstructionIndices] = useState({})
-  const [addProjectImageIndex, setAddProjectImageIndex] = useState(null)
   const [project, setProject] = useState({
     title: "",
     tags: "",
@@ -37,16 +31,13 @@ const EditBuildForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+  
   useEffect(() => {
     document.body.classList.add("grey-background")
     return () => {
       document.body.classList.remove("grey-background")
     }
   }, [])
-
-  useEffect(() => {
-    uploadProjectImage()
-  }, [imageFile])
 
   useEffect(() => {
     uploadThumbnailImage()
@@ -75,32 +66,6 @@ const EditBuildForm = (props) => {
       setShouldRedirect(true)
     } catch (error) {
       console.log(error)
-    }
-  }
-
-  const uploadProjectImage = async () => {
-    const newImageFileData = new FormData()
-    newImageFileData.append("image", imageFile.image)
-    try {
-      const response = await fetch("/api/v1/image-uploading", {
-        method: "POST",
-        headers: {
-          Accept: "image/jpeg",
-        },
-        body: newImageFileData,
-      })
-      if (!response.ok) {
-        throw new Error(`${response.status} (${response.statusText})`)
-      }
-      const body = await response.json()
-      const instructions = [...project.instructions]
-      instructions.splice(addProjectImageIndex, 0, { imageURL: body.imageURL })
-      setProject((prevState) => ({
-        ...prevState,
-        instructions: instructions,
-      }))
-    } catch (error) {
-      console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
   }
 
@@ -145,13 +110,6 @@ const EditBuildForm = (props) => {
     } catch (error) {
       console.log(error)
     }
-  }
-
-  const handleProjectImageUpload = (acceptedImage, index) => {
-    setAddProjectImageIndex(index + 1)
-    setImageFile({
-      image: acceptedImage[0],
-    })
   }
 
   const handleThumbnailImageUpload = (acceptedImage) => {

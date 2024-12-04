@@ -9,7 +9,6 @@ exports.up = async (knex) => {
   return knex.schema.createTable("parts", (table) => {
     table.bigIncrements("id")
 
-
     table.bigInteger("projectId")
       .unsigned()
       .notNullable()
