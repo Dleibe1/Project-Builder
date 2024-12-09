@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { TagProvider } from "../contexts/TagContext"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import { hot } from "react-hot-loader/root"
 
 import "../assets/scss/main.scss"
@@ -21,6 +21,7 @@ import ForkList from "./layout/ForkList"
 import ForkProjectForm from "./layout/ForkProjectForm"
 import GithubLogin from "./authentication/GithubLogin"
 import LandingPage from "./layout/LandingPage"
+import NotFound404 from "./layout/404NotFound"
 
 import HowToUse from "./layout/HowToUse"
 
@@ -81,8 +82,11 @@ const App = (props) => {
           <Route exact path="/github-login">
             <GithubLogin user={currentUser} />
           </Route>
+          <Route exact path="/404" component={NotFound404} />
           <Route exact path="/users/new" component={RegistrationForm} />
           <Route exact path="/user-sessions/new" component={SignInForm} />
+          <Redirect to="/404" />
+
         </Switch>
       </Router>
     </TagProvider>

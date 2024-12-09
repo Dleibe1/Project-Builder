@@ -8,6 +8,7 @@ import imageUploadRouter from "./api/v1/imageUploadRouter.js"
 import forkRouter from "./api/v1/forkRouter.js"
 import githubUserSessionsRouter from "./api/v1/githubUserSessionsRouter.js"
 import searchRouter from "./api/v1/searchRouter.js"
+import getClientIndexPath from "../config/getClientIndexPath.js"
 
 const rootRouter = new express.Router()
 

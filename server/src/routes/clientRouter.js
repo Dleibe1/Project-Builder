@@ -19,6 +19,7 @@ const clientRoutes = [
   "/project-list",
   "/search",
   "/how-to-use",
+  "/404",
 ]
 const authedClientRoutes = ["/profile"]
 
@@ -33,5 +34,7 @@ router.get(authedClientRoutes, (req, res) => {
     res.redirect("/user-sessions/new")
   }
 })
+
+export { clientRoutes }
 
 export default router
