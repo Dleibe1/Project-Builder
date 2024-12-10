@@ -85,8 +85,6 @@ const App = (props) => {
           <Route exact path="/404" component={NotFound404} />
           <Route exact path="/users/new" component={RegistrationForm} />
           <Route exact path="/user-sessions/new" component={SignInForm} />
-          <Redirect to="/404" />
-
         </Switch>
       </Router>
     </TagProvider>

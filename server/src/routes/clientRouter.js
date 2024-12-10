@@ -35,6 +35,4 @@ router.get(authedClientRoutes, (req, res) => {
   }
 })
 
-export { clientRoutes }
-
 export default router

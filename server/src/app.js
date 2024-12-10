@@ -30,15 +30,8 @@ app.use(
   }),
 )
 app.use(bodyParser.json())
-addMiddlewares(app)
+await addMiddlewares(app)
 app.use(rootRouter)
-app.use((req, res, next) => {
-  if(req.url.includes("/dist/bundle.js") || req.url === "/__webpack_hmr"){
-    next()
-  } else {
-    res.redirect("/404")
-  }
-})
 app.listen(configuration.web.port, configuration.web.host, () => {
   console.log("Server is listening...")
 })
