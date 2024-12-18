@@ -5,9 +5,9 @@
 
 Arduino projects require a lot of tedious boilerplate, such as the code to control motors with analog joysticks, the setup for an ultrasonic distance sensor, or an algorithm for object avoidance with a car project.  
 
-Unlike desktop applications, however, Arduino projects have boilerplate in terms of the parts list, schematics, and instructions for building a physical device that may be similar to a device someone else has created.
+Unlike desktop applications, however, Arduino projects have a sort of physical boilerplate in the form of the parts list, schematics, and assembly instructions for each project.
 
-Project Builder allows users to take advantage of the similarities between their project and projects created by other users.  Project creators can fork the code, parts, schematics, and instructions of other projects.  
+Project Builder allows users to take advantage of the similarities between their project and projects created by other users.  Project creators can fork the code, parts, schematics, and instructions of other projects.
 
 A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 

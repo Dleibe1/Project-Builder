@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react"
 import { Redirect } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
-import DeleteIcon from "@mui/icons-material/Delete"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import Textarea from "@mui/joy/Textarea"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import InstructionsSubForm from "./InstructionsSubForm.js"
+import PartsSubForm from "./PartsSubForm.js"
 
 const NewProjectForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -16,12 +16,11 @@ const NewProjectForm = (props) => {
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
-  const [newPart, setNewPart] = useState("")
   const [project, setProject] = useState({
     title: "",
     tags: "",
     appsAndPlatforms: "",
-    instructions: [{instructionText: ""}],
+    instructions: [{ instructionText: "" }],
     parts: [],
     description: "",
     code: "",
@@ -105,25 +104,6 @@ const NewProjectForm = (props) => {
     setProject({ ...project, [event.currentTarget.name]: event.currentTarget.value })
   }
 
-  const handlePartInput = (event) => {
-    setNewPart(event.currentTarget.value)
-  }
-
-  const handlePartSubmit = () => {
-    if (newPart.trim().length) {
-      setProject({
-        ...project,
-        parts: [...project.parts, { partName: newPart }],
-      })
-      setNewPart("")
-    }
-  }
-
-  const handlePartDelete = (index) => {
-    const partsList = project.parts.filter((part, i) => i !== index)
-    setProject({ ...project, parts: partsList })
-  }
-
   let thumbNailImage = [
     <div className="project-image-container thumbnail-image-container ">
       <img className="project-image" src={project.thumbnailImage} />
@@ -131,22 +111,6 @@ const NewProjectForm = (props) => {
   ]
 
   thumbNailImage = project.thumbnailImage.length ? thumbNailImage : []
-
-  const partsList = project.parts.map((part, index) => {
-    return (
-      <div className="part-item-in-form">
-        <p key={`${part.partName}${index}`}> {part.partName}</p>
-        <Button
-          onClick={() => handlePartDelete(index)}
-          className="large-button delete-part"
-          variant="contained"
-          startIcon={<DeleteIcon />}
-        >
-          Delete Part
-        </Button>
-      </div>
-    )
-  })
 
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
@@ -206,28 +170,8 @@ const NewProjectForm = (props) => {
             label="Apps and platforms"
             name="appsAndPlatforms"
           />
-          <h2 id="parts-heading-form">Parts:</h2>
-          <div className="form-parts-list">{partsList}</div>
         </div>
-        <div id="part-input-container" className="form-items-container">
-          <TextField
-            sx={{ width: "100%" }}
-            id="part"
-            className="part"
-            value={newPart}
-            onChange={handlePartInput}
-            label="Enter new part"
-            name="newPart"
-          />
-          <Button
-            onClick={handlePartSubmit}
-            className="large-button add-part"
-            id="add-part"
-            variant="contained"
-          >
-            Add Part
-          </Button>
-        </div>
+        <PartsSubForm project={project} setProject={setProject} />
         <InstructionsSubForm project={project} setProject={setProject} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>

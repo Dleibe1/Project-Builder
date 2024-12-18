@@ -131,6 +131,9 @@ body.grey-background {
   font-size: 1.5rem;
   white-space: break-spaces;
 }
+.how-to-use .announcement p {
+  margin-bottom: 0px;
+}
 
 .how-to-use-page-items-container.third h1 {
   text-align: center;
@@ -488,18 +491,10 @@ h5 {
   margin-bottom: 10px;
 }
 
-.form-parts-list {
-  align-items: end;
-}
-
 .showpage-items-container.parts-section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-
-.form-parts-list {
-  gap: 80px;
 }
 
 .parts-list.form-parts-list p {
@@ -507,7 +502,6 @@ h5 {
 }
 
 @media (max-width: 600px) {
-  /* Adjust the max-width as needed */
   .form-parts-list {
     display: flex;
     flex-wrap: wrap;
@@ -515,10 +509,10 @@ h5 {
 }
 
 #parts-heading-form {
+  border-radius: 6px 6px 0px 0px;
+  margin-top: 30px;
+  width: 100%;
   padding: 0px;
-  margin-bottom: 40px;
-  border-bottom: 2px solid #c9d2d2;
-  width: 80%;
 }
 
 .parts-list p,
@@ -881,6 +875,7 @@ text-align: center;
 }
 
 #part-input-container {
+  border-radius: 0px 0px 6px 6px;
   width: 100%;
   margin-bottom: 30px;
   display: flex;
@@ -944,6 +939,13 @@ text-align: center;
   font-weight: 700;
 }
 
+.form-parts-list {
+  gap: 80px;
+  align-items: end;
+  margin-bottom:0px;
+  border-radius: 0px;
+}
+
 .project-show .preserve-white-space {
   white-space: pre-wrap;
 }
@@ -966,6 +968,7 @@ text-align: center;
 
 .how-to-use .announcement {
   background-color: yellow;
+  margin-top: 30px;
 }
 
 .how-to-fork h1 {

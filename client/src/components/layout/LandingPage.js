@@ -21,11 +21,11 @@ const LandingPage = (props) => {
       </div>
       <div className="banner third-banner landing-page-section-container-left">
         <img className="banner-image" src="https://i.imgur.com/n8C2mDO.png" />
-        <h1>Keep another project's code but fork the set of parts</h1>
+        <h1>Keep another project's code but fork the set of parts and instructions</h1>
       </div>
       <div className="banner fourth-banner landing-page-section-container-right">
         <img className="banner-image" src="https://i.imgur.com/zNVBrY3.png" />
-        <h1>With Project Builder you can fork a project's parts AND code </h1>
+        <h1>With Project Builder you can fork a project's parts, instructions, and code </h1>
       </div>
       <div className="banner fifth-banner landing-page-section-container-left">
         <img className="banner-image" src="https://i.imgur.com/dOywizt.png" />
