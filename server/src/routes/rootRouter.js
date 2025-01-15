@@ -21,8 +21,4 @@ rootRouter.use("/api/v1/image-uploading", imageUploadRouter)
 rootRouter.use("/api/v1/github-user-sessions", githubUserSessionsRouter)
 rootRouter.use("/api/v1/search", searchRouter)
 
-rootRouter.use((req, res, next) => {
-    res.status(404).redirect("/404")
-})
-
 export default rootRouter

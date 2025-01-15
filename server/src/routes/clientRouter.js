@@ -2,7 +2,7 @@ import express from "express"
 
 import getClientIndexPath from "../config/getClientIndexPath.js"
 
-const router = new express.Router()
+const clientRouter = new express.Router()
 
 const clientRoutes = [
   "/",
@@ -23,11 +23,11 @@ const clientRoutes = [
 ]
 const authedClientRoutes = ["/profile"]
 
-router.get(clientRoutes, (req, res) => {
+clientRouter.get(clientRoutes, (req, res) => {
   res.sendFile(getClientIndexPath())
 })
 
-router.get(authedClientRoutes, (req, res) => {
+clientRouter.get(authedClientRoutes, (req, res) => {
   if (req.user) {
     res.sendFile(getClientIndexPath())
   } else {
@@ -35,4 +35,4 @@ router.get(authedClientRoutes, (req, res) => {
   }
 })
 
-export default router
+export default clientRouter

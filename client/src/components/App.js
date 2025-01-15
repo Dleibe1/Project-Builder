@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { TagProvider } from "../contexts/TagContext"
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { hot } from "react-hot-loader/root"
 
 import "../assets/scss/main.scss"
