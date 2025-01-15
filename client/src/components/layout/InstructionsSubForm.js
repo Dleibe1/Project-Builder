@@ -23,7 +23,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
     const newImageFileData = new FormData()
     newImageFileData.append("image", imageFile.image)
     try {
-      const response = await fetch("/api/v1/image-uploading", {
+      const response = await fetch("/api/v1/image-upload", {
         method: "POST",
         headers: {
           Accept: "image/jpeg",

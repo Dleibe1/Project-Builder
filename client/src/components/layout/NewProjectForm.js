@@ -66,7 +66,7 @@ const NewProjectForm = (props) => {
     const thumbnailImageFileData = new FormData()
     thumbnailImageFileData.append("image", thumbnailImageFile.image)
     try {
-      const response = await fetch("/api/v1/image-uploading", {
+      const response = await fetch("/api/v1/image-upload", {
         method: "POST",
         headers: {
           Accept: "image/jpeg",

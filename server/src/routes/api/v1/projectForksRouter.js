@@ -6,9 +6,9 @@ import cleanUserInput from "../../../services/cleanUserInput.js"
 import objection from "objection"
 const { ValidationError } = objection
 
-const forkRouter = new express.Router()
+const projectForksRouter = new express.Router()
 
-forkRouter.get("/fork-list/:id", async (req, res) => {
+projectForksRouter.get("/fork-list/:id", async (req, res) => {
   const { id } = req.params
   const { page = 1, limit = 12 } = req.query
   const currentPage = parseInt(page)
@@ -42,7 +42,7 @@ forkRouter.get("/fork-list/:id", async (req, res) => {
   }
 })
 
-forkRouter.get("/:id", async (req, res) => {
+projectForksRouter.get("/:id", async (req, res) => {
   const id = req.params.id
   try {
     const fork = await Project.query().findById(id)
@@ -55,7 +55,7 @@ forkRouter.get("/:id", async (req, res) => {
   }
 })
 
-forkRouter.post("/:id", async (req, res) => {
+projectForksRouter.post("/:id", async (req, res) => {
   const { body, user } = req
   const originalProjectId = parseInt(req.params.id)
   const userId = parseInt(user.id)
@@ -73,4 +73,4 @@ forkRouter.post("/:id", async (req, res) => {
   }
 })
 
-export default forkRouter
+export default projectForksRouter
