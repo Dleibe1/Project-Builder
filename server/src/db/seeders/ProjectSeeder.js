@@ -12,7 +12,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[13],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/36ab7d7a-100b-4350-8f17-0b0234582c0b.blob",
+          "/images/projectSeeder/project001/thumbnail.blob",
       },
       {
         userId: 1,
@@ -21,7 +21,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[14],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/70b80f40-3f40-4b90-84d2-a1a66301d7bc.blob",
+          "/images/projectSeeder/project002/thumbnail.blob",
       },
       {
         userId: 2,
@@ -32,7 +32,7 @@ class ProjectSeeder {
         githubFileURL:
           "https://github.com/hibit-dev/plants-care/blob/master/src/station/station.ino",
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/916c664e-bd6f-403a-a3f8-234147fc8501.jpg",
+          "/images/projectSeeder/project003/thumbnail.jpg",
       },
       {
         userId: 2,
@@ -41,7 +41,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[3],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/f27de0e3-aa87-4c5f-966a-37b14891dadd.jpg",
+          "/images/projectSeeder/project004/thumbnail.jpg",
       },
       {
         userId: 2,
@@ -50,7 +50,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[4],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/0633ba80-aeb9-426a-89fc-ab9197b6191f.jpg",
+          "/images/projectSeeder/project005/thumbnail.jpg",
       },
       {
         userId: 1,
@@ -59,7 +59,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[5],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/d3d28934-f6b8-4626-9fc2-f06fe058b398.png",
+          "/images/projectSeeder/project006/thumbnail.png",
       },
       {
         userId: 2,
@@ -70,7 +70,7 @@ class ProjectSeeder {
         githubFileURL:
           "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/bd1eaad5-6738-4bbb-bf71-be3028fa1032.jpg",
+          "/images/projectSeeder/project007/thumbnail.jpg",
       },
       {
         userId: 1,
@@ -80,7 +80,7 @@ class ProjectSeeder {
         code: code[7],
         githubFileURL: "",
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/bf79fd77-788d-4d92-bc5a-2a628633939a.jpg",
+          "/images/projectSeeder/project008/thumbnail.jpg",
       },
       {
         userId: 3,
@@ -89,7 +89,7 @@ class ProjectSeeder {
         appsAndPlatforms: "rogerbit.",
         code: code[8],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/5454a669-2c00-4c8e-8e56-90d863ab3315.blob",
+          "/images/projectSeeder/project009/thumbnail.blob",
       },
     ]
     await Project.query().insert(parentProjects1)
@@ -103,7 +103,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE and NanoEdge AI Studio",
         code: code[9],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/8b4f6361-dff4-4900-851d-7983e78e338a.blob",
+          "/images/projectSeeder/project010/thumbnail.blob",
       },
       {
         userId: 4,
@@ -112,7 +112,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IoT Cloud",
         code: code[10],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/91fa89b7-2009-4a9c-b8de-aec71f62ee82.png",
+          "/images/projectSeeder/project011/thumbnail.png",
       },
       {
         userId: 4,
@@ -121,7 +121,7 @@ class ProjectSeeder {
         appsAndPlatforms: "NanoEdge AI Studio and Arduino IDE 1.8.19",
         code: code[11],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/4a43b1e1-7bb2-4e8b-8abf-1a805760311b.gif",
+          "/images/projectSeeder/project012/thumbnail.gif",
       },
       {
         userId: 4,
@@ -130,7 +130,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[12],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/e4de2c23-7118-4b3f-abf8-50cb8282cf62.jpg",
+          "/images/projectSeeder/project013/thumbnail.jpg",
       },
       {
         userId: 4,
@@ -140,7 +140,7 @@ class ProjectSeeder {
         code: code[0],
         githubFileURL: "",
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/70dad73c-8d46-4172-8ad9-def5688e6b19.jpg",
+          "/images/projectSeeder/project014/thumbnail.jpg",
       },
       {
         userId: 4,
@@ -150,7 +150,7 @@ class ProjectSeeder {
         code: code[1],
         githubFileURL: "",
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/1f887c02-812e-411d-ad69-7be71e3715f5.jpg",
+          "/images/projectSeeder/project015/thumbnail.jpg",
       },
       {
         userId: 2,
@@ -159,7 +159,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[15],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/9cf024c7-0b54-4a19-adbf-15ba0889cb32.png",
+          "/images/projectSeeder/project016/thumbnail.png",
       },
       {
         userId: 2,
@@ -168,7 +168,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[16],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/d06d87dd-8c15-43c1-b987-de6567c72f37.blob",
+          "/images/projectSeeder/project017/thumbnail.blob",
       },
       {
         userId: 2,
@@ -177,7 +177,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IoT Cloud",
         code: code[17],
         thumbnailImage:
-          "https://projects.arduinocontent.cc/cover-images/876135e3-82cc-462f-83b5-e21ebacd87ea.jpg",
+          "/images/projectSeeder/project018/thumbnail.jpg",
       },
     ]
     const forks = [
@@ -188,7 +188,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[18],
         thumbnailImage:
-          "https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG",
+          "/images/projectSeeder/project001fork001/thumbnail.JPG",
         parentProjectId: 1,
       },
       {
@@ -198,7 +198,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[19],
         thumbnailImage:
-          "https://hackster.imgix.net/uploads/attachments/1135529/weatherstation_schematic_6p6OZNIxEf.PNG?auto=compress%2Cformat&w=1280&h=960&fit=max",
+          "/images/projectSeeder/project002fork001/thumbnail.avif",
         parentProjectId: 2,
       },
     ]
