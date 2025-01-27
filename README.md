@@ -30,7 +30,7 @@ When users visit your project's page on this app, the code section is automatica
 - Express.js
 - Objection.js
 - PostgreSQL
-- GitHub Apps
+- OAuth 2.0 (GitHub Apps)
 - Cypress.js
 - Material UI
 
