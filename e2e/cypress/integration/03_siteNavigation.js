@@ -20,7 +20,7 @@ describe("As a user visiting the website's baseUrl", () => {
     cy.contains("LinkedIn").should("have.attr", "href").and("include", "linkedin.com")
   })
 
-  it("Clicking 'HOME' on the top bar brings the user to the landing page", () => {
+  it("Clicking 'HOME' on the top bar brings the user to the about page", () => {
     cy.get("#homepage-button").click()
     cy.url().should("eq", `${Cypress.config().baseUrl}/`)
   })

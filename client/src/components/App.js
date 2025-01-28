@@ -20,7 +20,7 @@ import EditBuildForm from "./layout/EditBuildForm"
 import ForkList from "./layout/ForkList"
 import ForkProjectForm from "./layout/ForkProjectForm"
 import GithubLogin from "./authentication/GithubLogin"
-import LandingPage from "./layout/LandingPage"
+import About from "./layout/About"
 import NotFound404 from "./layout/404NotFound"
 
 import HowToUse from "./layout/HowToUse"
@@ -53,7 +53,7 @@ const App = (props) => {
             <HowToUse user={currentUser} />
           </Route>
           <Route exact path={"/about"}>
-            <LandingPage />
+            <About />
           </Route>
           <Route exact path={"/my-builds-list"}>
             <MyBuildList projectsPerPage={projectsPerPage} user={currentUser} />

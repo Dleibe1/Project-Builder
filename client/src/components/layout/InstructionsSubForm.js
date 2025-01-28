@@ -271,7 +271,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
               <section>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                  Add Image Here
+                  Add Image
                 </div>
               </section>
             )}

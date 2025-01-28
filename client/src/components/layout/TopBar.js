@@ -109,7 +109,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
             </Button>
             <Button
               component={Link}
-              to="/"
+              to="/?page=1"
               id="homepage-button"
               key={"homepage-button"}
               sx={{ display: "block" }}

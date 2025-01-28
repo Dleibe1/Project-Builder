@@ -63,7 +63,7 @@ body.grey-background {
   box-sizing: unset;
 }
 
-.banner.landing-page-section-container-right {
+.banner.about-page-section-container-right {
   flex-direction: row-reverse;
 }
 
@@ -99,7 +99,7 @@ body.grey-background {
 
 .banner.third-banner img {
   padding-right: 50px;
-  height: 450px;
+  height: 600px;
   object-fit: contain;
 }
 
@@ -205,6 +205,20 @@ body.grey-background {
   padding-left: 0;
   padding-right: 0;
   width: 100%;
+}
+
+.project-list-page-container .banner-image {
+  height: 490px;
+}
+
+.project-list-page-container .banner{
+  margin-top: 100px;
+  background-color: white;
+  padding: 0px;
+}
+
+.project-list-page-container .homepage-heading {
+  color: black;
 }
 
 .tag-input .MuiAutocomplete-input {
@@ -965,6 +979,7 @@ text-align: center;
 }
 
 .how-to-use .announcement {
+  margin-top: 30px;
   background-color: yellow;
 }
 

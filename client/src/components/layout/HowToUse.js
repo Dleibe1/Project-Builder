@@ -1,13 +1,12 @@
 import React from "react"
-import { useEffect } from "react"
 
 const HowToUse = () => {
 
   return (
     <div className="how-to-use">
-      <div className="banner how-to-use-page-items-container landing-page-section-container-left top-banner">
+      <div className="banner how-to-use-page-items-container about-page-section-container-left top-banner">
         <img className="banner-image logo" src="https://i.imgur.com/dOywizt.png" />
-        <h1>Create and Fork Micro Controller Projects</h1>
+        <h1>Create and Fork Arduino Projects</h1>
       </div>
       <div className="announcement how-to-use-page-items-container banner">
         <p>🚧   This site is a work in progress   🚧</p>
@@ -66,8 +65,7 @@ const HowToUse = () => {
             two places (your GitHub and this app).
           </p>
           <p>
-            Code highlighting is applied using the Highlight.js library to keep your code looking
-            pretty on the project's display page.
+            Code highlighting is applied using the Highlight.js
           </p>
         </div>
     </div>
