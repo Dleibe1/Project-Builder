@@ -6,6 +6,7 @@ const clientRouter = new express.Router()
 
 const clientRoutes = [
   "/",
+  "/about",
   "/user-sessions/new",
   "/users/new",
   "/projects/:id",
@@ -16,7 +17,6 @@ const clientRoutes = [
   "/fork-project/:id",
   "/project-forks/:id",
   "/github-login",
-  "/project-list",
   "/search",
   "/how-to-use",
   "/404",

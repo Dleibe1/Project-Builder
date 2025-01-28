@@ -60,7 +60,7 @@ const TopBarSearch = () => {
       history.push(`/search?q=${query}&page=1`)
     }else if (event.key === "Enter" && query.trim().length === 0) {
       event.preventDefault()
-      history.push(`/project-list?page=1`)
+      history.push(`/?page=1`)
     }
   }
 

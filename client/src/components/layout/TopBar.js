@@ -71,7 +71,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
   }
 
   if (shouldRedirect) {
-    location.href = "/project-list?page=1"
+    location.href = "/?page=1"
   }
 
   const handleGithubLogin = () => {
@@ -101,11 +101,11 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
             <Button
               component={Link}
               onClick={handleProjectsLinkClick}
-              to="/project-list?page=1"
+              to="/about"
               id="projects-button"
               key={"projects-button"}
             >
-              Projects
+              About
             </Button>
             <Button
               component={Link}

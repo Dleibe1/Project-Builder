@@ -19,7 +19,7 @@ describe("As a user visiting the registration page", () => {
 
       cy.root().submit()
 
-      cy.url().should("eq", `${Cypress.config().baseUrl}/project-list?page=1`)
+      cy.url().should("eq", `${Cypress.config().baseUrl}/?page=1`)
     })
     cy.contains("Sign Out")
   })

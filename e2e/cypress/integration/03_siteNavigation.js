@@ -10,9 +10,9 @@ describe("As a user visiting the website's baseUrl", () => {
     cy.url().should("eq", `${Cypress.config().baseUrl}/how-to-use`)
   })
 
-  it("Clicking 'PROJECTS' brings the user to the projects-list page", () => {
+  it("Clicking 'HOME' brings the user to the projects-list page", () => {
     cy.get("#projects-button").click()
-    cy.url().should("eq", `${Cypress.config().baseUrl}/project-list?page=1`)
+    cy.url().should("eq", `${Cypress.config().baseUrl}/?page=1`)
   })
 
   it("How to use site has the creator's LinkedIn", () => {

@@ -18,7 +18,7 @@ const Tags = () => {
     setSelectedTag(value)
   }
 
-  if (!location.pathname.includes("/project-list")) {
+  if (location.pathname !== "/") {
     return null
   }
   return (

@@ -47,13 +47,13 @@ const App = (props) => {
         <TopBar projectsPerPage={projectsPerPage} user={currentUser} />
         <Switch>
           <Route exact path={"/"}>
-            <LandingPage />
+            <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
           </Route>
           <Route exact path={"/how-to-use"}>
             <HowToUse user={currentUser} />
           </Route>
-          <Route exact path={"/project-list"}>
-            <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
+          <Route exact path={"/about"}>
+            <LandingPage />
           </Route>
           <Route exact path={"/my-builds-list"}>
             <MyBuildList projectsPerPage={projectsPerPage} user={currentUser} />
