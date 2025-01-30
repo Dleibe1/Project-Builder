@@ -53,7 +53,7 @@ When users visit your project's page on this app, the code section is automatica
    ```
 
 2. In the root of the server folder, create a `.env` file to hold the environment variables listed below.  These environment variables are used for:
-```
+```env
  SESSION_SECRET ...........This is for Passport.  Allows Passport to keep track of the currently signed-in user in session.
  GITHUB_API_KEY ...........You will need a GitHub API key to fetch code from a user's main project (.ino or main.cpp) file.
  CLIENT_SECRET,
