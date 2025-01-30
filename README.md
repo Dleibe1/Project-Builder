@@ -54,25 +54,25 @@ When users visit your project's page on this app, the code section is automatica
 
 2. In the root of the server folder, create a `.env` file to hold the environment variables listed below.  These environment variables are used for:
 `.env`:
-```env
- SESSION_SECRET ...........This is for Passport.  Allows Passport to keep track of the currently signed-in user in session.
- GITHUB_API_KEY ...........You will need a GitHub API key to fetch code from a user's main project (.ino or main.cpp) file.
- CLIENT_SECRET,
- CLIENT_ID ................CLIENT_SECRET and CLIENT_ID are obtained when registering this app with GitHub Apps.  
+   ```env
+   SESSION_SECRET ...........This is for Passport.  Allows Passport to keep track of the currently signed-in user in session.
+   GITHUB_API_KEY ...........You will need a GitHub API key to fetch code from a user's main project (.ino or main.cpp) file.
+   CLIENT_SECRET,
+    CLIENT_ID ................CLIENT_SECRET and CLIENT_ID are obtained when registering this app with GitHub Apps.  
                            They are necessary for generating a user access token, which allows the app to perform actions with GitHub on the user's behalf.
                            See GitHub apps documentation for more information:
                            https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps 
- AWS_ACCESS_KEY_ID,
- AWS_SECRET_ACCESS_KEY,
- S3_BUCKET_PRODUCTION,
- S3_BUCKET_DEVELOPMENT ....These are necessary for image uploading.  For more information, visit
+   AWS_ACCESS_KEY_ID,
+   AWS_SECRET_ACCESS_KEY,
+   S3_BUCKET_PRODUCTION,
+   S3_BUCKET_DEVELOPMENT ....These are necessary for image uploading.  For more information, visit
                            https://aws.amazon.com/s3/
                            
- BASE_URL .................This is necessary for the GitHub callback address (used with GitHub apps) where a full URL path is required.
+   BASE_URL .................This is necessary for the GitHub callback address (used with GitHub apps) where a full URL path is required.
                            If hosting this app on the web, be sure to replace http://localhost:3000 with the
                            base URL of your hosting site. 
                            For example, https://project-builder-e7439342976b.herokuapp.com
-```
+   ```
 
  `.env`:
    ```env
