@@ -55,10 +55,10 @@ When users visit your project's page on this app, the code section is automatica
 2. In the root of the server folder, create a `.env` file to hold the environment variables listed below.  These environment variables are used for:
 
    ```env
-   SESSION_SECRET ...........This is for Passport.  Allows Passport to keep track of the currently signed-in user in session.
-   GITHUB_API_KEY ...........You will need a GitHub API key to fetch code from a user's main project (.ino or main.cpp) file.
+   SESSION_SECRET .........This is for Passport.  Allows Passport to keep track of the currently signed-in user in session.
+   GITHUB_API_KEY .........You will need a GitHub API key to fetch code from a user's main project (.ino or main.cpp) file.
    CLIENT_SECRET,
-    CLIENT_ID ................CLIENT_SECRET and CLIENT_ID are obtained when registering this app with GitHub Apps.  
+    CLIENT_ID .............CLIENT_SECRET and CLIENT_ID are obtained when registering this app with GitHub Apps.  
                            They are necessary for generating a user access token, which allows the app to perform actions with GitHub on the user's behalf.
                            See GitHub apps documentation for more information:
                            https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps 
