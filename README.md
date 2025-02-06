@@ -31,8 +31,9 @@ When users visit your project's page on this app, the code section is automatica
 - Objection.js
 - PostgreSQL
 - OAuth 2.0 (GitHub Apps)
-- Cypress.js (Tests are a work in progress)
+- Cypress.js (Tests suite is a work in progress)
 - Material UI
+- TinyMCE WYSIWYG Editor
 
 ### Improvements coming soon:
 
