@@ -77,12 +77,12 @@ Go to [server/src/routes/rootRouter.js](server/src/routes/rootRouter.js) and loc
 [rootRouter.use("/api/v1/projects", projectsRouter)](server/src/routes/rootRouter.js#L16)
 
 	
-Which indicates the Express router named projectsRouter is being used to handle the request. 
+Which indicates the Express router named projectsRouter is being used to handle the request.
 
 In rootRouter.js, check the imports to find which file defines projectsRouter.  You will find the import:
 
 
-[import projectsRouter from "./api/v1/projectsRouter.js"]
+[import projectsRouter from "./api/v1/projectsRouter.js"](server/src/routes/rootRouter.js)
 
 
 Open the file that’s handling the request.  in this case: server/src/routes/api/v1/projectsRouter.js
