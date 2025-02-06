@@ -1,7 +1,7 @@
-import React, { useContext} from "react"
+import React, { useContext } from "react"
 import { useLocation } from "react-router-dom"
 import { TextField, Stack } from "@mui/material"
-import { TagContext } from "../../contexts/TagContext"
+import { TagContext } from "../../contexts/TagContext.js"
 import Autocomplete from "@mui/material/Autocomplete"
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@mui/icons-material/CheckBox"
@@ -10,7 +10,7 @@ import tags from "../../../../shared/tags.js"
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
 const checkedIcon = <CheckBoxIcon fontSize="small" />
 
-const Tags = () => {
+const FilterByTag = () => {
   const location = useLocation()
   const { selectedTag, setSelectedTag } = useContext(TagContext)
 
@@ -46,4 +46,4 @@ const Tags = () => {
     </Stack>
   )
 }
-export default Tags
+export default FilterByTag
