@@ -248,7 +248,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
       <div className="form-items-container new-instruction">
       <p className="preserve-white-space">
         Each instruction should be a single step in constructing your Arduino project.
-        If a user forks your project, they may add, edit, or delete individual instructions for their forked version
+        If a user forks your project, they may add, edit, or delete individual instructions for their forked version.
         </p>
         {project.instructions.length > 1 || project.instructions[0]?.imageURL && (
           <div className="add-instruction-button-container">

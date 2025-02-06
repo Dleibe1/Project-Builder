@@ -7,7 +7,7 @@ Arduino projects require a lot of tedious boilerplate, such as the code to contr
 
 Unlike desktop applications, however, Arduino projects have boilerplate in terms of the parts list, schematics, and instructions for building a physical device that may be similar to a device someone else has created.
 
-Project Builder allows users to take advantage of the similarities between their project and projects created by other users.  Project creators can fork the code, parts, schematics, and instructions of other projects.  
+Project Builder allows users to take advantage of the similarities between their project and projects created by other users.  Project creators can fork the code, parts, schematics, and list of instructions of other projects. 
 
 A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 
@@ -31,7 +31,7 @@ When users visit your project's page on this app, the code section is automatica
 - Objection.js
 - PostgreSQL
 - OAuth 2.0 (GitHub Apps)
-- Cypress.js
+- Cypress.js (Tests are a work in progress)
 - Material UI
 
 ### Improvements coming soon:
