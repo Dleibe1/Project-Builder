@@ -87,7 +87,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
   const handleEditInstructionTextButton = (index) => {
     setEditInstructionIndices({ ...editInstructionIndices, [index]: true })
   }
-  console.log(project.instructions.length)
+
   const handleCancelEditInstruction = (event, index) => {
     const instructions = [...project.instructions]
     if (instructions[index].instructionText.trim().length === 0 && instructions.length > 1) {
@@ -247,8 +247,8 @@ const InstructionsSubForm = ({ project, setProject }) => {
       <h2 id="form-instructions-heading">Instruction Steps and Images:</h2>
       <div className="form-items-container new-instruction">
         <p className="preserve-white-space">
-          Each instruction should be a single step in constructing your Arduino project. If a user
-          forks your project, they may add, edit, or delete individual instructions for their forked
+          Each instruction should be a single step in constructing your Arduino project.  When a user
+          forks your project they may add, edit, or delete individual instructions for their forked
           version.
         </p>
         {project.instructions.length > 1 ||

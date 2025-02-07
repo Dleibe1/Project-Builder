@@ -6,17 +6,17 @@ import cleanUserInput from "../../../services/cleanUserInput.js"
 import objection from "objection"
 const { ValidationError } = objection
 
-const projectForksRouter = new express.Router()
+const projectForksRouter = new express.Router({ mergeParams: true })
 
-projectForksRouter.get("/fork-list/:id", async (req, res) => {
-  const { id } = req.params
+projectForksRouter.get("/fork-list", async (req, res) => {
+  const { parentProjectId } = req.params
   const { page = 1, limit = 12 } = req.query
   const currentPage = parseInt(page)
   const projectsPerPage = parseInt(limit)
   if (
     isNaN(currentPage) ||
     isNaN(projectsPerPage) ||
-    isNaN(id) ||
+    isNaN(parentProjectId) ||
     currentPage < 1 ||
     projectsPerPage < 1
   ) {
@@ -24,12 +24,12 @@ projectForksRouter.get("/fork-list/:id", async (req, res) => {
   }
   try {
     const forkedProjectCount = await Project.query()
-      .where("parentProjectId", parseInt(id))
+      .where("parentProjectId", parseInt(parentProjectId))
       .resultSize()
     const forkedProjects = await Project.query()
       .orderBy("id", "acs")
       .limit(projectsPerPage)
-      .where("parentProjectId", parseInt(id))
+      .where("parentProjectId", parseInt(parentProjectId))
     const serializedForks = await Promise.all(
       forkedProjects.map((fork) => {
         return ProjectSerializer.getProjectListDetails(fork)
@@ -42,26 +42,13 @@ projectForksRouter.get("/fork-list/:id", async (req, res) => {
   }
 })
 
-projectForksRouter.get("/:id", async (req, res) => {
-  const id = req.params.id
-  try {
-    const fork = await Project.query().findById(id)
-    let serializedForkData = await ProjectSerializer.getProjectShowPageDetails(fork)
-    serializedForkData.githubFileURL = ""
-    return res.status(200).json({ fork: serializedForkData })
-  } catch (error) {
-    console.log(error)
-    return res.status(500).json({ errors: error })
-  }
-})
-
-projectForksRouter.post("/:id", async (req, res) => {
+projectForksRouter.post("/", async (req, res) => {
   const { body, user } = req
-  const originalProjectId = parseInt(req.params.id)
   const userId = parseInt(user.id)
+  const parentProjectId = parseInt(req.params.parentProjectId)
   try {
     const forkedProjectData = cleanUserInput(body)
-    await handleForkProject(originalProjectId, userId, forkedProjectData)
+    await handleForkProject(parentProjectId, userId, forkedProjectData)
     res.status(201).json({ project: forkedProjectData })
   } catch (error) {
     console.log(error)

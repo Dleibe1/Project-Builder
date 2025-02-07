@@ -1,9 +1,9 @@
-import { Project, Part, Instruction } from "../models/index.js"
+import { Project, Part, Instruction,  } from "../models/index.js"
+import connection from "../../src/boot/model.cjs"
 import GithubClient from "../apiClient/GithubClient.js"
 
 const handleNewProject = async ({
   title,
-  tags,
   appsAndPlatforms,
   description,
   code,
@@ -16,7 +16,6 @@ const handleNewProject = async ({
   const projectCode = githubFileURL ? await GithubClient.getProjectCode(githubFileURL.trim()) : code
   const newProject = await Project.query().insert({
     title,
-    tags,
     appsAndPlatforms,
     description,
     code: projectCode,

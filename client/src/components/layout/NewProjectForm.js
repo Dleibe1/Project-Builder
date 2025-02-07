@@ -9,6 +9,7 @@ import Textarea from "@mui/joy/Textarea"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import InstructionsSubForm from "./InstructionsSubForm.js"
+import AddTagsToProjectForm from "./AddTagsToProjectForm.js"
 
 const NewProjectForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -19,9 +20,9 @@ const NewProjectForm = (props) => {
   const [newPart, setNewPart] = useState("")
   const [project, setProject] = useState({
     title: "",
-    tags: "",
+    tags: [],
     appsAndPlatforms: "",
-    instructions: [{instructionText: ""}],
+    instructions: [{ instructionText: "" }],
     parts: [],
     description: "",
     code: "",
@@ -167,6 +168,9 @@ const NewProjectForm = (props) => {
             label="Project Title *"
             name="title"
           />
+          <section className="add-tags">
+            <AddTagsToProjectForm project={project} setProject={setProject} />
+          </section>
           <h2>Description:</h2>
           <Textarea
             minRows={3}

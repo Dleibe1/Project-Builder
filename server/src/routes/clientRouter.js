@@ -15,7 +15,7 @@ const clientRoutes = [
   "/my-builds/:id",
   "/edit-my-build/:id",
   "/fork-project/:id",
-  "/project-forks/:id",
+  "/project-forks/:parentProjectId",
   "/github-login",
   "/search",
   "/how-to-use",

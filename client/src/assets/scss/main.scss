@@ -211,7 +211,7 @@ body.grey-background {
   height: 490px;
 }
 
-.project-list-page-container .banner{
+.project-list-page-container .banner {
   margin-top: 100px;
   background-color: white;
   padding: 0px;
@@ -231,6 +231,10 @@ body.grey-background {
 
 .tag-input .MuiAutocomplete-inputRoot {
   align-items: flex-start;
+}
+
+.add-tags {
+  width: 100%;
 }
 
 .project-list-pagination-container {
@@ -416,7 +420,7 @@ h5 {
   padding-top: 10px;
 }
 
-.showpage-items-container{
+.showpage-items-container {
   margin-bottom: 30px;
 }
 
@@ -698,11 +702,11 @@ h5 {
 }
 
 .burger-menu-item {
-color: black;
-text-align: center;
+  color: black;
+  text-align: center;
 }
-.burger-menu-item:hover{
-  color:black;
+.burger-menu-item:hover {
+  color: black;
 }
 
 #sign-up-button {
@@ -879,9 +883,8 @@ text-align: center;
 .large-button.instruction-list-button {
   margin: 5px 0px;
 }
-.instruction-list-button.first-image{
-  margin-top:30px;
-
+.instruction-list-button.first-image {
+  margin-top: 30px;
 }
 
 #code-input {

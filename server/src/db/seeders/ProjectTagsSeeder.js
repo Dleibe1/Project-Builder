@@ -2,7 +2,7 @@ import connection from "../../../src/boot/model.cjs"
 
 class ProjectTagsSeeder {
   static async seed() {
-   const tags = await connection("project_tags").insert([
+   await connection("project_tags").insert([
       { projectId: 1, tagId: 2 },
       { projectId: 1, tagId: 24 },
       { projectId: 1, tagId: 12 },
@@ -77,7 +77,6 @@ class ProjectTagsSeeder {
       { projectId: 20, tagId: 40 },
       { projectId: 20, tagId: 13 },
     ])
-    const insertedTags = await connection("project_tags").select()
   }
 }
 

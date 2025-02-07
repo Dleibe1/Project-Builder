@@ -21,7 +21,7 @@ const ForkProjectForm = (props) => {
   const [newPart, setNewPart] = useState("")
   const [project, setProject] = useState({
     title: "",
-    tags: "",
+    tags: [],
     appsAndPlatforms: "",
     instructions: [{ instructionText: "" }],
     parts: [],
@@ -48,7 +48,8 @@ const ForkProjectForm = (props) => {
 
   const postForkedProject = async (forkedProjectData) => {
     try {
-      const response = await fetch(`/api/v1/project-forks/${id}`, {
+      const parentProjectId = id
+      const response = await fetch(`/api/v1/projects/${parentProjectId}/forks`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -94,15 +95,15 @@ const ForkProjectForm = (props) => {
 
   const getProject = async () => {
     try {
-      const response = await fetch(`/api/v1/project-forks/${id}`)
+      const response = await fetch(`/api/v1/projects/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
         throw error
       }
       const responseBody = await response.json()
-      const fork = responseBody.fork
-      setProject((prevState) => ({ ...prevState, ...fork }))
+      const project = responseBody.project
+      setProject((prevState) => ({ ...prevState, ...project, githubFileURL: "" }))
     } catch (error) {
       console.log(error)
     }

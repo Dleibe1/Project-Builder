@@ -4,9 +4,12 @@ import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 import objection from "objection"
 import handleNewProject from "../../../services/handleNewProject.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
+import projectForksRouter from "./projectForksRouter.js"
 const { ValidationError } = objection
 
 const projectsRouter = new express.Router()
+
+projectsRouter.use("/:parentProjectId/forks", projectForksRouter)
 
 projectsRouter.get("/", async (req, res) => {
   const { page = 1, limit = 12, tag = "" } = req.query
@@ -87,7 +90,6 @@ projectsRouter.delete("/:id", async (req, res) => {
 projectsRouter.post("/new-project", async (req, res) => {
   const { body } = req
   try {
-    console.log(body)
     const formInput = cleanUserInput(body)
     await handleNewProject(formInput)
     res.status(201).json({ project: formInput })

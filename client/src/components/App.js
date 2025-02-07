@@ -58,7 +58,7 @@ const App = (props) => {
           <Route exact path={"/my-builds-list"}>
             <MyBuildList projectsPerPage={projectsPerPage} user={currentUser} />
           </Route>
-          <Route exact path={"/project-forks/:id"}>
+          <Route exact path={"/project-forks/:parentProjectId"}>
             <ForkList projectsPerPage={projectsPerPage} user={currentUser} />
           </Route>
           <Route exact path={"/search"}>
