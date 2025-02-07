@@ -1,4 +1,4 @@
-import { Project, Part, Instruction,  } from "../models/index.js"
+import { Project, Part, Instruction, Tag } from "../models/index.js"
 import connection from "../../src/boot/model.cjs"
 import GithubClient from "../apiClient/GithubClient.js"
 
@@ -7,6 +7,7 @@ const handleNewProject = async ({
   appsAndPlatforms,
   description,
   code,
+  tags,
   githubFileURL,
   userId,
   parts,
@@ -27,6 +28,12 @@ const handleNewProject = async ({
     parts.map((part) => {
       return Part.query().insert({ projectId: newProjectId, partName: part.partName })
     }),
+  )
+  await Promise.all(
+    tags.map(async (tag) => {
+     const tagId = await Tag.query().where("tagName", tag).select('id')
+     console.log(tagId)
+    })
   )
   for (const instruction of instructions) {
     await Instruction.query().insert({

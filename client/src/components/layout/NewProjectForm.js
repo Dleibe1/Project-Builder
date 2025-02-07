@@ -9,7 +9,7 @@ import Textarea from "@mui/joy/Textarea"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import InstructionsSubForm from "./InstructionsSubForm.js"
-import AddTagsToProjectForm from "./AddTagsToProjectForm.js"
+import AddTags from "./AddTags.js"
 
 const NewProjectForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -169,7 +169,7 @@ const NewProjectForm = (props) => {
             name="title"
           />
           <section className="add-tags">
-            <AddTagsToProjectForm project={project} setProject={setProject} />
+            <AddTags project={project} setProject={setProject} />
           </section>
           <h2>Description:</h2>
           <Textarea

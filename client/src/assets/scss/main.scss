@@ -221,6 +221,12 @@ body.grey-background {
   color: #374146;
 }
 
+.tag-input{
+  min-width: 200px;
+  max-width: fit-content;
+  margin-bottom: 70px;
+}
+
 .tag-input .MuiAutocomplete-input {
   box-shadow: none;
 }
@@ -481,6 +487,10 @@ h5 {
   text-align: left;
   font-size: 2.3rem;
   padding: 0px;
+}
+
+.project-show .code-fetched-heading{
+  font-size: 3rem;
 }
 
 .new-build-form-container form,

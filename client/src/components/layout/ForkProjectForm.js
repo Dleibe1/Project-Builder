@@ -9,6 +9,7 @@ import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import InstructionsSubForm from "./InstructionsSubForm.js"
+import AddTags from "./AddTags.js"
 
 const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -169,6 +170,9 @@ const ForkProjectForm = (props) => {
       <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
           <h1>Fork Project</h1>
+          <section className="add-tags">
+            <AddTags project={project} setProject={setProject} />
+          </section>
           <TextField
             value={project.title}
             className="form-input text-field"

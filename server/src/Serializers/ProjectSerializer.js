@@ -57,18 +57,18 @@ class ProjectSerializer {
       ])
     const userName = relatedUserData.userName || relatedUserData.githubUserName
     serializedProject.user = userName
-    const relatedParts = relatedPartsData.map((part) => {
+    const serializedParts = relatedPartsData.map((part) => {
       return PartsSerializer.getPartDetails(part)
     })
-    serializedProject.parts = relatedParts
-    const relatedInstructions = relatedInstructionsData.map((instruction) => {
+    serializedProject.parts = serializedParts
+    const serializedInstructions = relatedInstructionsData.map((instruction) => {
       return InstructionSerializer.getInstructionDetails(instruction)
     })
-    serializedProject.instructions = relatedInstructions
-    const relatedTags = relatedTagsData.map((tag) => {
+    serializedProject.instructions = serializedInstructions
+    const serializedTagsData = relatedTagsData.map((tag) => {
       return TagSerializer.getTagDetails(tag)
     })
-    serializedProject.tags = relatedTags
+    serializedProject.tags = serializedTagsData
     serializedProject.code = project.githubFileURL
       ? await GithubClient.getProjectCode(project.githubFileURL)
       : project.code

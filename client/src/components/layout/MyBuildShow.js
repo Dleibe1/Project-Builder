@@ -61,7 +61,7 @@ const MyBuildShow = (props) => {
   }
 
   const codeMessage = myBuild.githubFileURL?.length ? (
-    [<h2>Code fetched from GitHub just now:</h2>, <p>({myBuild.githubFileURL})</p>]
+    [<h2 className="code-fetched-heading">Code fetched from GitHub just now:</h2>, <p>{myBuild.githubFileURL}</p>]
   ) : (
     <h2>Project Code</h2>
   )
@@ -93,7 +93,7 @@ const MyBuildShow = (props) => {
         <DeleteBuildButton id={id} />
       </div>
       <div id="thumbnail-and-title">
-      <h2 className="showpage-title">{myBuild.title}</h2>
+        <h2 className="showpage-title">{myBuild.title}</h2>
         <img
           className="project-image show-page-thumbnail"
           src={myBuild.thumbnailImage}

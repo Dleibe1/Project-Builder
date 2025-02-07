@@ -32,9 +32,6 @@ app.use(
 app.use(bodyParser.json())
 await addMiddlewares(app)
 app.use(rootRouter)
-app.use((req, res) => {
-  res.status(404).redirect("/404")
-})
 app.listen(configuration.web.port, configuration.web.host, () => {
   console.log("Server is listening...")
 })

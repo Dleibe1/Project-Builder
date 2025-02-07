@@ -19,4 +19,9 @@ rootRouter.use("/api/v1/image-upload", imageUploadRouter)
 rootRouter.use("/api/v1/github-user-sessions", githubUserSessionsRouter)
 rootRouter.use("/api/v1/search", searchRouter)
 
+//If route does not match any above, display 404 page
+rootRouter.use((req, res) => {
+  res.status(404).redirect("/404")
+})
+
 export default rootRouter
