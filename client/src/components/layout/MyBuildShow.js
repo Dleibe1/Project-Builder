@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
 import DeleteBuildButton from "./DeleteBuildButton"
 import EditBuildButton from "./EditBuildButton"
+import TagList from "./TagList"
 //TODO: remove all "prepForFrontEnd" and replace with functional state update as done in ForkedProjectForm
 import DOMPurify from "dompurify"
 import hljs from "highlight.js"
@@ -10,7 +11,7 @@ import "highlight.js/styles/github.css"
 const MyBuildShow = (props) => {
   const [myBuild, setMyBuild] = useState({
     title: "",
-    tags: "",
+    tags: [],
     appsAndPlatforms: "",
     instructions: [],
     parts: [],
@@ -61,7 +62,10 @@ const MyBuildShow = (props) => {
   }
 
   const codeMessage = myBuild.githubFileURL?.length ? (
-    [<h2 className="code-fetched-heading">Code fetched from GitHub just now:</h2>, <p>{myBuild.githubFileURL}</p>]
+    [
+      <h2 className="code-fetched-heading">Code fetched from GitHub just now:</h2>,
+      <p>{myBuild.githubFileURL}</p>,
+    ]
   ) : (
     <h2>Project Code</h2>
   )
@@ -92,6 +96,14 @@ const MyBuildShow = (props) => {
         <EditBuildButton id={id} />
         <DeleteBuildButton id={id} />
       </div>
+      {myBuild.tags.length > 0 && (
+        <div className="showpage-items-container tag-list">
+          <section className="tag-section">
+            <p>Tags:</p>
+            <TagList tags={myBuild.tags} />
+          </section>
+        </div>
+      )}
       <div id="thumbnail-and-title">
         <h2 className="showpage-title">{myBuild.title}</h2>
         <img

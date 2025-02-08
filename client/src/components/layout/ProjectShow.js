@@ -1,7 +1,8 @@
-import React, { useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import { useParams, Redirect } from "react-router-dom"
 import ForkProjectButton from "./ForkProjectButton.js"
 import ProjectForksButton from "./ProjectForksButton.js"
+import TagList from "./TagList.js"
 import DOMPurify from "dompurify"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
@@ -92,7 +93,10 @@ const ProjectShow = (props) => {
 
   const forkProjectButton = [<ForkProjectButton key={"fork-project"} id={id} />]
   const codeMessage = project.githubFileURL?.length ? (
-    [<h2 className="code-fetched-heading">Code fetched from GitHub just now:</h2>, <p>{project.githubFileURL}</p>]
+    [
+      <h2 className="code-fetched-heading">Code fetched from GitHub just now:</h2>,
+      <p>{project.githubFileURL}</p>,
+    ]
   ) : (
     <h2>Project Code</h2>
   )
@@ -122,41 +126,45 @@ const ProjectShow = (props) => {
         {props.user ? forkProjectButton : []}
         {hasForks ? <ProjectForksButton id={id} /> : []}
       </div>
-      <div id="thumbnail-and-title">
+      {project.tags.length > 0 && (
+        <div className="showpage-items-container tag-list">
+          <section className="tag-section">
+            <p>Tags:</p>
+            <TagList tags={project.tags} />
+          </section>
+        </div>
+      )}
+      <section id="thumbnail-and-title">
         <h2 className="showpage-title">{project.title}</h2>
         <img
           className="project-image show-page-thumbnail"
           src={project.thumbnailImage}
           alt="thumbnail"
         />
-      </div>
+      </section>
       <div className="showpage-items-container description">
         <h2 className="description-title">Description</h2>
         <p className="preserve-white-space">{project.description}</p>
       </div>
-      <div>
-        <h2>Parts</h2>
-      </div>
+      <h2>Parts</h2>
       <div className="showpage-items-container parts-section">
-        <div className="parts-list">{partsList}</div>
+        <section className="parts-list">{partsList}</section>
       </div>
       <div className="showpage-items-container">
         <h4>Apps and Platforms:</h4>
-        <div className="apps-and-platforms">
+        <section className="apps-and-platforms">
           <p>{project.appsAndPlatforms}</p>
-        </div>
+        </section>
       </div>
       <h2 className="instructions-heading">Instructions</h2>
       {instructionList}
       <div>
-        <div className="showpage-items-container">
+        <section className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code className="language-cpp">
-              {project.code}
-            </code>
+            <code className="language-cpp">{project.code}</code>
           </pre>
-        </div>
+        </section>
       </div>
     </div>
   )
