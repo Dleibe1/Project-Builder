@@ -10,26 +10,23 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />
 
 const AddTags = ({ project, setProject }) => {
   const handleTagsChange = (event, value) => {
+    const chosenTagNames = value
+    const tags = chosenTagNames.map((tagName) => {
+      return { tagName }
+    })
     setProject((prevState) => ({
       ...prevState,
-      tags: value,
+      tags: tags,
     }))
   }
 
   return (
-    <Stack
-      spacing={3}
-      className="tag-input"
-    >
+    <Stack spacing={3} className="tag-input">
       <Autocomplete
         multiple
         onChange={handleTagsChange}
-        value={project.tags}
-        options={tags}
-        getOptionLabel={(option) => option.tagName}
-        isOptionEqualToValue={(option, value) =>
-          option.tagName === value.tagName
-        }
+        value={project.tags.map((tag) => tag.tagName)}
+        options={tags.map((tag) => tag.tagName)}
         renderInput={(params) => <TextField {...params} variant="standard" label="Add Tags" />}
       />
     </Stack>

@@ -1,4 +1,5 @@
-import { Project, Part, Instruction } from "../models/index.js"
+import { Project, Part, Instruction, Tag } from "../models/index.js"
+import connection from "../boot/model.cjs"
 
 const handleUpdateProject = async (
   {
@@ -16,12 +17,7 @@ const handleUpdateProject = async (
   projectId,
 ) => {
   const projId = parseInt(projectId)
-  const incomingIds = instructions.map((instruction) => {
-    return instruction.id
-  })
-  //TODO:  Find a more sophisticated way of updating the instructions as with parts.
   await Instruction.query().delete().where("projectId", projId)
-
   for (const instruction of instructions) {
     await Instruction.query().insert({
       projectId: projId,
@@ -29,13 +25,15 @@ const handleUpdateProject = async (
       imageURL: instruction.imageURL,
     })
   }
-
   const githubFileURLField = githubFileURL ? githubFileURL.trim() : ""
   const existingParts = await Part.query().where("projectId", projId)
   const incomingPartIds = parts.map((part) => part.id).filter(Boolean)
   const partsToDelete = existingParts.filter((part) => !incomingPartIds.includes(part.id))
   const partsToInsert = parts.filter((part) => !part.id)
-
+  const projectTagsAll = await connection("project_tags").select()
+  console.log(projectTagsAll)
+  const existingTags = await connection("project_tags").where("projectId", projId )
+  const incomingTagIds = tags.filter((tag) => !tag)
   if (partsToDelete.length) {
     await Part.query()
       .delete()
@@ -50,10 +48,11 @@ const handleUpdateProject = async (
     )
   }
 
+  await 
+
   await Project.query()
     .update({
       title,
-      tags,
       appsAndPlatforms,
       description,
       code,
