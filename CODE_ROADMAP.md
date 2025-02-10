@@ -89,7 +89,7 @@ Open the file that’s handling the request.  in this case: server/src/routes/ap
 
 In projectsRouter.js locate the endpoint which takes a parameter of “id” as the Fetch request would indicate:
 
-
+```javascript
 projectsRouter.get("/:id", async (req, res) => {
  const { id } = req.params
  try {
@@ -101,7 +101,7 @@ projectsRouter.get("/:id", async (req, res) => {
    return res.status(500).json({ errors: error })
  }
 })
-
+```
 
 Transferring Backend State to the React Front End:
 
