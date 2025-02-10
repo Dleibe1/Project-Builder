@@ -8,7 +8,7 @@ const ForkList = ({ projectsPerPage }) => {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const pageNumberURLParam = searchParams.get("page")
-  const { id } = params
+  const { parentProjectId } = params
 
   const [forkedProjects, setForkedProjects] = useState([])
   const [projectCount, setProjectCount] = useState(0)
@@ -20,7 +20,7 @@ const ForkList = ({ projectsPerPage }) => {
   const getForks = async () => {
     try {
       const response = await fetch(
-        `/api/v1/project-forks/fork-list/${id}?page=${currentPage}&limit=${projectsPerPage}`,
+        `/api/v1/projects/${parentProjectId}/forks/fork-list?page=${currentPage}&limit=${projectsPerPage}`,
       )
       if (!response.ok) {
         const newError = new Error("Error in the fetch!")
@@ -36,7 +36,7 @@ const ForkList = ({ projectsPerPage }) => {
 
   useEffect(() => {
     getForks()
-  }, [currentPage, id])
+  }, [currentPage, parentProjectId])
 
   useEffect(() => {
     if (pageNumberURLParam && parseInt(pageNumberURLParam) !== currentPage) {
@@ -46,10 +46,10 @@ const ForkList = ({ projectsPerPage }) => {
 
   const handlePaginationChange = (event, selectedPage) => {
     setCurrentPage(selectedPage)
-    history.push(`/project-forks/${id}?page=${selectedPage}&limit=${projectsPerPage}`)
+    history.push(`/project-forks/${parentProjectId}?page=${selectedPage}&limit=${projectsPerPage}`)
   }
 
-  const forksArray = forkedProjects.map((fork) => {
+  const forkList = forkedProjects.map((fork) => {
     return (
       <ProjectTile
         key={fork.id}
@@ -63,7 +63,7 @@ const ForkList = ({ projectsPerPage }) => {
 
   return (
     <div className="grid-container project-list-page-container">
-      <div className="project-list">{forksArray}</div>
+      <div className="project-list">{forkList}</div>
       <div className="project-list-pagination-container">
         <Pagination
           page={currentPage}

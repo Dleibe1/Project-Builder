@@ -1,12 +1,12 @@
-import { Project, Part, Instruction } from "../models/index.js"
+import { Project, Part, Instruction, Tag } from "../models/index.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
 const handleNewProject = async ({
   title,
-  tags,
   appsAndPlatforms,
   description,
   code,
+  tags,
   githubFileURL,
   userId,
   parts,
@@ -16,7 +16,6 @@ const handleNewProject = async ({
   const projectCode = githubFileURL ? await GithubClient.getProjectCode(githubFileURL.trim()) : code
   const newProject = await Project.query().insert({
     title,
-    tags,
     appsAndPlatforms,
     description,
     code: projectCode,
@@ -36,6 +35,13 @@ const handleNewProject = async ({
       imageURL: instruction.imageURL,
     })
   }
+  const tagsToRelate = await Tag.query()
+    .select("id")
+    .whereIn(
+      "tagName",
+      tags.map((tag) => tag.tagName),
+    )
+  await newProject.$relatedQuery("tags").relate(tagsToRelate.map((tag) => tag.id))
 }
 
 export default handleNewProject

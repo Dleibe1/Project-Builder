@@ -1,7 +1,7 @@
-import { Project, Part, Instruction } from "../models/index.js"
+import { Project, Part, Instruction, Tag } from "../models/index.js"
 
-const handleForkProject = async (originalProjectId, userId, forkData) => {
-  const originalProject = await Project.query().findById(originalProjectId)
+const handleForkProject = async (parentProjectId, userId, forkData) => {
+  const originalProject = await Project.query().findById(parentProjectId)
   if (!originalProject) {
     throw new Error("Original project not found")
   }
@@ -16,7 +16,7 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
     description: forkData.description,
     documentation: forkData.documentation,
     code: forkData.code,
-    parentProjectId: originalProjectId,
+    parentProjectId,
   })
   const parts = forkData.parts
   const instructions = forkData.instructions
@@ -25,7 +25,7 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
   await Promise.all(
     parts.map((part) => {
       return Part.query().insert({ projectId: forkedProjectId, partName: part.partName })
-    })
+    }),
   )
 
   for (const instruction of instructions) {
@@ -35,6 +35,13 @@ const handleForkProject = async (originalProjectId, userId, forkData) => {
       imageURL: instruction.imageURL,
     })
   }
+  const tagsToRelate = await Tag.query()
+    .select("id")
+    .whereIn(
+      "tagName",
+      forkedProject.tags.map((tag) => tag.tagName),
+    )
+  await forkedProject.$relatedQuery("tags").relate(tagsToRelate.map((tag) => tag.id))
 }
 
 export default handleForkProject

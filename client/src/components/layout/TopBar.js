@@ -24,7 +24,7 @@ import SignUpButton from "../authentication/SignUpButton"
 import TopBarSearch from "./TobBarSearch"
 import FilterByTag from "./FilterByTag"
 
-const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
+const TopBar = ({ user, projectsPerPage }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null)
@@ -109,6 +109,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
             </Button>
             <Button
               component={Link}
+              onClick={() => setSelectedTag("")}
               to="/?page=1"
               id="homepage-button"
               key={"homepage-button"}
@@ -260,7 +261,7 @@ const TopBar = ({ user, projectsPerPage, setSelectedTags }) => {
           )}
         </Toolbar>
       </Container>
-      <FilterByTag setSelectedTags={setSelectedTags} />
+      <FilterByTag />
     </AppBar>
   )
 }

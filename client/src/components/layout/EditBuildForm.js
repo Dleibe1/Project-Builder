@@ -9,6 +9,7 @@ import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import InstructionsSubForm from "./InstructionsSubForm.js"
+import AddTags from "./AddTags.js"
 
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -21,7 +22,7 @@ const EditBuildForm = (props) => {
   const [newPart, setNewPart] = useState("")
   const [project, setProject] = useState({
     title: "",
-    tags: "",
+    tags: [],
     appsAndPlatforms: "",
     instructions: [{ instructionText: "" }],
     parts: [],
@@ -31,7 +32,7 @@ const EditBuildForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
-  
+
   useEffect(() => {
     document.body.classList.add("grey-background")
     return () => {
@@ -172,6 +173,9 @@ const EditBuildForm = (props) => {
       <form key="edit-build-form" id="edit-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
           <h1>Edit Project</h1>
+          <section className="add-tags">
+            <AddTags project={project} setProject={setProject} />
+          </section>
           <TextField
             value={project.title}
             className="form-input text-field"

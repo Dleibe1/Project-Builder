@@ -211,7 +211,7 @@ body.grey-background {
   height: 490px;
 }
 
-.project-list-page-container .banner{
+.project-list-page-container .banner {
   margin-top: 100px;
   background-color: white;
   padding: 0px;
@@ -219,6 +219,12 @@ body.grey-background {
 
 .project-list-page-container .homepage-heading {
   color: #374146;
+}
+
+.tag-input {
+  min-width: 200px;
+  max-width: fit-content;
+  margin-bottom: 70px;
 }
 
 .tag-input .MuiAutocomplete-input {
@@ -231,6 +237,10 @@ body.grey-background {
 
 .tag-input .MuiAutocomplete-inputRoot {
   align-items: flex-start;
+}
+
+.add-tags {
+  width: 100%;
 }
 
 .project-list-pagination-container {
@@ -416,8 +426,49 @@ h5 {
   padding-top: 10px;
 }
 
-.showpage-items-container{
+.showpage-items-container {
   margin-bottom: 30px;
+}
+
+.showpage-items-container.tag-list {
+  border-radius: 0px;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
+}
+
+.showpage-items-container.tag-list p {
+  color: #374146;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  font-size: 2rem;
+}
+
+.tag-list .tag-section {
+  border-top: 2px solid #c9d2d2;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #c9d2d2;
+  border-radius: 6px;
+  width: fit-content;
+  max-width: 60%;
+}
+
+.showpage-items-container .tag-stack {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tag-stack .tag-chip {
+  padding: 20px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.tag-stack .tag-chip span {
+  font-size: 1rem;
 }
 
 .project-show code {
@@ -477,6 +528,10 @@ h5 {
   text-align: left;
   font-size: 2.3rem;
   padding: 0px;
+}
+
+.project-show .code-fetched-heading {
+  font-size: 3rem;
 }
 
 .new-build-form-container form,
@@ -698,11 +753,11 @@ h5 {
 }
 
 .burger-menu-item {
-color: black;
-text-align: center;
+  color: black;
+  text-align: center;
 }
-.burger-menu-item:hover{
-  color:black;
+.burger-menu-item:hover {
+  color: black;
 }
 
 #sign-up-button {
@@ -879,9 +934,8 @@ text-align: center;
 .large-button.instruction-list-button {
   margin: 5px 0px;
 }
-.instruction-list-button.first-image{
-  margin-top:30px;
-
+.instruction-list-button.first-image {
+  margin-top: 30px;
 }
 
 #code-input {

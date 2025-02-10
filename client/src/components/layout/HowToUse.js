@@ -42,7 +42,7 @@ const HowToUse = () => {
               Login with the sample user credentials above.  As an alternative, you may also
               create an account or login with GitHub.
             </li>
-            <li>Click the "PROJECTS" link on the top bar.</li>
+            <li>Click the "HOME" link on the top bar.</li>
             <li>Click on a project's thumbnail to view the project.</li>
             <li>
               From the project's display page, click the "Fork Project" button to create your own

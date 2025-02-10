@@ -30,7 +30,7 @@ When users visit your project's page on this app, the code section is automatica
 - Express.js
 - Objection.js
 - PostgreSQL
-- OAuth 2.0 (GitHub Apps)
+- OAuth 2.0
 - Cypress.js (Tests suite is a work in progress)
 - Material UI
 - TinyMCE WYSIWYG Editor
@@ -39,11 +39,6 @@ When users visit your project's page on this app, the code section is automatica
 
 1. More Material UI integration.
 2. Option to add a link to purchase parts from the parts list.
-
-### Dream features:
-
-1. Generative AI API integration for code suggestions.
-2. More usage of GitHub apps. Currently, it's just there to log in with GitHub.
 
 ## Usage
 
@@ -59,7 +54,7 @@ When users visit your project's page on this app, the code section is automatica
    SESSION_SECRET .........This is for Passport.  Allows Passport to keep track of the currently signed-in user in session.
    GITHUB_API_KEY .........You will need a GitHub API key to fetch code from a user's main project (.ino or main.cpp) file.
    CLIENT_SECRET,
-    CLIENT_ID .............CLIENT_SECRET and CLIENT_ID are obtained when registering this app with GitHub Apps.  
+   CLIENT_ID .............CLIENT_SECRET and CLIENT_ID are obtained when registering this app with GitHub Apps.  
                            They are necessary for generating a user access token, which allows the app to perform actions with GitHub on the user's behalf.
                            See GitHub apps documentation for more information:
                            https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps 
@@ -71,8 +66,8 @@ When users visit your project's page on this app, the code section is automatica
                            
    BASE_URL .................This is necessary for the GitHub callback address (used with GitHub apps) where a full URL path is required.
                            If hosting this app on the web, be sure to replace http://localhost:3000 with the
-                           base URL of your hosting site. 
-                           For example, https://project-builder-e7439342976b.herokuapp.com
+                           base URL of your hosting site if you're not running the project locally. 
+                           For example: "https://project-builder-e7439342976b.herokuapp.com"
    ```
 
  `.env`:
@@ -88,20 +83,24 @@ When users visit your project's page on this app, the code section is automatica
    BASE_URL="http://localhost:3000"
    ```
 
-3. Create the base PostgreSQL database, project-builder_development
+3. If running the project locally, go to [getDatabaseUrl.cjs"](client/config/getDatabaseUrl.cjs) 
+   and make sure the database URL is the same as your PostgresSQL database.
+
+
+4. Create the base PostgreSQL database, project-builder_development
 
    ```sh
    createdb project-builder_development
    ```
 
-4. Run the included table migrations:
+5. Run the included table migrations:
 
    ```sh
    cd server
    yarn migrate:latest
    ```
 
-5. Run the seeder file to populate the app with example data:
+6. Run the seeder file to populate the app with example data:
 
    ```sh
    cd server
@@ -109,7 +108,7 @@ When users visit your project's page on this app, the code section is automatica
    
    ```
 
-6. Start up the application, from the root folder:
+7. Start up the application, from the root folder:
 
    ```sh
    cd .. # if in the server folder
@@ -117,9 +116,9 @@ When users visit your project's page on this app, the code section is automatica
    yarn run dev
    ```
 
-7. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
+8. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
 
-8. A user has been seeded for use on the site.
+9. A user has been seeded for use on the site.
 
 ```
 Username: example@example.com

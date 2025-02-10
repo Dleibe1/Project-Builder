@@ -14,9 +14,6 @@ class Project extends Model {
         title: { type: "string", maxLength: 70 },
         appsAndPlatforms: { oneOf: [{ type: "string" }, { type: "null" }] },
         thumbnailImage: { type: "string" },
-        // tags: {
-        //   oneOf: [{ type: "string" }, { type: "null" }],
-        // },
         documentation: {
           oneOf: [{ type: "string" }, { type: "null" }],
         },
