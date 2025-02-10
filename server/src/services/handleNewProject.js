@@ -1,5 +1,4 @@
 import { Project, Part, Instruction, Tag } from "../models/index.js"
-import connection from "../../src/boot/model.cjs"
 import GithubClient from "../apiClient/GithubClient.js"
 
 const handleNewProject = async ({
@@ -29,12 +28,6 @@ const handleNewProject = async ({
       return Part.query().insert({ projectId: newProjectId, partName: part.partName })
     }),
   )
-  await Promise.all(
-    tags.map(async (tag) => {
-     const tagId = await Tag.query().where("tagName", tag).select('id')
-     console.log(tagId)
-    })
-  )
   for (const instruction of instructions) {
     await Instruction.query().insert({
       projectId: newProjectId,
@@ -42,6 +35,13 @@ const handleNewProject = async ({
       imageURL: instruction.imageURL,
     })
   }
+  const tagsToRelate = await Tag.query()
+    .select("id")
+    .whereIn(
+      "tagName",
+      tags.map((tag) => tag.tagName),
+    )
+  await newProject.$relatedQuery("tags").relate(tagsToRelate.map((tag) => tag.id))
 }
 
 export default handleNewProject

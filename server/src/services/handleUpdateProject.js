@@ -1,5 +1,4 @@
 import { Project, Part, Instruction, Tag } from "../models/index.js"
-import connection from "../boot/model.cjs"
 
 const handleUpdateProject = async (
   {
@@ -26,14 +25,13 @@ const handleUpdateProject = async (
     })
   }
   const githubFileURLField = githubFileURL ? githubFileURL.trim() : ""
-  const existingParts = await Part.query().where("projectId", projId)
-  const incomingPartIds = parts.map((part) => part.id).filter(Boolean)
-  const partsToDelete = existingParts.filter((part) => !incomingPartIds.includes(part.id))
+  const project = await Project.query().findOne({ id: projId })
   const partsToInsert = parts.filter((part) => !part.id)
-  const projectTagsAll = await connection("project_tags").select()
-  console.log(projectTagsAll)
-  const existingTags = await connection("project_tags").where("projectId", projId )
-  const incomingTagIds = tags.filter((tag) => !tag)
+  const existingPartsData = await project.$relatedQuery("parts")
+  const partsToDelete = existingPartsData.filter(
+    (existingPartData) => !parts.map((part) => part.id).includes(existingPartData.id),
+  )
+
   if (partsToDelete.length) {
     await Part.query()
       .delete()
@@ -48,7 +46,34 @@ const handleUpdateProject = async (
     )
   }
 
-  await 
+  const relatedTagsData = await project.$relatedQuery("tags")
+  const relatedTagNames = relatedTagsData.map((existingTagData) => existingTagData.tagName)
+  const incomingTagNames = tags.map((tag) => tag.tagName)
+  const tagNamesToRelate = incomingTagNames.filter(
+    (incomingTagName) => !relatedTagNames.includes(incomingTagName),
+  )
+  const tagNamesToUnRelate = relatedTagNames.filter(
+    (relatedTagName) => !incomingTagNames.includes(relatedTagName),
+  )
+
+  const tagsToRelate = await Tag.query().select("id").whereIn("tagName", tagNamesToRelate)
+  const tagsToUnRelate = await Tag.query().select("id").whereIn("tagName", tagNamesToUnRelate)
+
+  if (tagsToRelate.length) {
+    await project
+    .$relatedQuery("tags")
+    .relate(tagsToRelate.map((tag) => tag.id))
+  }
+
+  if (tagsToUnRelate.length) {
+    await project
+      .$relatedQuery("tags")
+      .unrelate()
+      .whereIn(
+        "id",
+        tagsToUnRelate.map((tag) => tag.id),
+      )
+  }
 
   await Project.query()
     .update({
