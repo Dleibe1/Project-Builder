@@ -84,10 +84,6 @@ const ProjectList = ({ projectsPerPage }) => {
 
   return (
     <div className="grid-container project-list-page-container">
-     {currentPage === 1 && <div className="banner">
-        <img className="banner-image" src="https://i.imgur.com/dOywizt.png" />
-        <h1 className="homepage-heading">Create and Fork Arduino Projects</h1>
-      </div>}
       <div className="project-list">{projectsArray}</div>
       <div className="project-list-pagination-container">
         <Pagination

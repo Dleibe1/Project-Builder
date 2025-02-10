@@ -1,7 +1,7 @@
 import React from "react"
 
 const HowToUse = () => {
-
+  window.scrollTo(0, 0)
   return (
     <div className="how-to-use">
       <div className="banner how-to-use-page-items-container about-page-section-container-left top-banner">

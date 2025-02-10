@@ -33,6 +33,7 @@ const ForkProjectForm = (props) => {
     thumbnailImage: "",
   })
   useEffect(() => {
+    window.scrollTo(0, 0)
     document.body.classList.add("grey-background")
     return () => {
       document.body.classList.remove("grey-background")
