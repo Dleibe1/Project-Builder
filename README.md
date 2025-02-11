@@ -1,13 +1,12 @@
-# 🚧 This is a work in progress 🚧
-## A Project Building Assistant for Arduino Micro Controller Apps
+# A Project Building Assistant for Arduino Micro Controller Apps
 
 #### Create, Edit, and Fork projects:
 
 Arduino projects require a lot of tedious boilerplate, such as the code to control motors with analog joysticks, the setup for an ultrasonic distance sensor, or an algorithm for object avoidance with a car project.  
 
-Unlike desktop applications, however, Arduino projects have boilerplate in terms of the parts list, schematics, and instructions for building a physical device that may be similar to a device someone else has created.
+Unlike desktop applications, however, Arduino projects have physical boilerplate in terms of the parts list, schematics, and instructions for assembling and coding a device that may be similar to a device someone else has created.
 
-Project Builder allows users to take advantage of the similarities between their project and projects created by other users.  Project creators can fork the code, parts, schematics, and list of instructions of other projects. 
+Project Builder allows users to take advantage of the similarities between their project and projects created by other users.  Project creators can fork the code, parts, and instructions of other projects.
 
 A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 
@@ -31,14 +30,17 @@ When users visit your project's page on this app, the code section is automatica
 - Objection.js
 - PostgreSQL
 - OAuth 2.0
+- GitHub API
 - Cypress.js (Tests suite is a work in progress)
 - Material UI
 - TinyMCE WYSIWYG Editor
+- AWS S3 Bucket
 
 ### Improvements coming soon:
 
 1. More Material UI integration.
 2. Option to add a link to purchase parts from the parts list.
+3. Ability to create, edit, or fork a project as a single markdown file.
 
 ## Usage
 
@@ -49,7 +51,7 @@ When users visit your project's page on this app, the code section is automatica
    ```
 
 2. In the root of the server folder, create a `.env` file to hold the environment variables listed below.  These environment variables are used for:
-
+`.env`:
    ```env
    SESSION_SECRET .........This is for Passport.  Allows Passport to keep track of the currently signed-in user in session.
    GITHUB_API_KEY .........You will need a GitHub API key to fetch code from a user's main project (.ino or main.cpp) file.
