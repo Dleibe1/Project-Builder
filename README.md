@@ -15,10 +15,10 @@ The boilerplate code used for the app can be found here:
 
 ### GitHub API for retrieving a project's code:
 
-Often, code written for Arduino projects by casual hobbyists exists in a single file, usually a .ino or .cpp file.  If a user uploads that file to GitHub, project builder can retrieve that code and display it on the site.  That way a user doesn't have to keep their project's code up to date in two places (GitHub and Project Builder).  To achieve this:
+Often, code written for Arduino projects by casual hobbyists exists in a single file, usually a .ino or .cpp file.  If this file is hosted on GitHub, users can have Project Builder retrieve that file's code rather than entering the project's code in two places (GitHub and Project Builder).
 
-When creating, editing, or forking a project, Paste the URL of your project's code file into the "Github main sketch file URL" section at   the bottom of the form.
-Example URL: https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
+When creating, editing, or forking a project, Paste the URL of your project's main code file on GitHub into the "Github main sketch file URL" section at the bottom of the form.
+#### Example URL: https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
 
 When users visit your project's page on this app, the code section is automatically populated with your main project file's code from GitHub. This way you don't have to paste your code into this app every time you update your code on GitHub. This feature does that automatically!
 
@@ -27,20 +27,20 @@ When users visit your project's page on this app, the code section is automatica
 
 - React.js
 - Express.js
+- Knex.js
 - Objection.js
 - PostgreSQL
-- OAuth 2.0
+- OAuth 2.0 (login with GitHub)
 - GitHub API
-- Cypress.js (Tests suite is a work in progress)
 - Material UI
-- TinyMCE WYSIWYG Editor
+- TinyMCE
 - AWS S3 Bucket
+- Cypress.js (Tests suite is a work in progress)
 
 ### Improvements coming soon:
 
-1. More Material UI integration.
-2. Option to add a link to purchase parts from the parts list.
-3. Ability to create, edit, or fork a project as a single markdown file.
+1. Option to add a link to purchase parts from the parts list.
+2. Ability to create, edit, or fork a project as a single markdown file for greater convenience for more complicated projects.
 
 ## Usage
 
