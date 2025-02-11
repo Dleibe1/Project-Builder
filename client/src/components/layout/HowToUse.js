@@ -8,9 +8,6 @@ const HowToUse = () => {
         <img className="banner-image logo" src="https://i.imgur.com/dOywizt.png" />
         <h1>Create and Fork Arduino Projects</h1>
       </div>
-      <div className="announcement how-to-use-page-items-container banner">
-        <p>🚧   This site is a work in progress   🚧</p>
-      </div>
         <div className="how-to-use-page-items-container top">
           <h1>Login with these credentials in order to see a built out user experience:</h1>
           <div className="example-user-credentials">
@@ -25,7 +22,7 @@ const HowToUse = () => {
           </div>
           <p>
             As an alternative, you can login in with GitHub or create an account.  Once logged in,
-            click “New Build” to post your Microcontroller project to the site.  Click “My Builds” to
+            click “CREATE BUILD” to post your Arduino micro controller project to the site.  Click “MY BUILDS” to
             view and edit the list of projects you've created.
           </p>
         </div>
@@ -45,7 +42,7 @@ const HowToUse = () => {
             <li>Click the "HOME" link on the top bar.</li>
             <li>Click on a project's thumbnail to view the project.</li>
             <li>
-              From the project's display page, click the "Fork Project" button to create your own
+              From the project's display page, click the "FORK PROJECT" button to create your own
               version of the project.
             </li>
           </ol>

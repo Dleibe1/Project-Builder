@@ -1,11 +1,11 @@
-# Code Roadmap (Work in progress)
+# Code Roadmap
 
 ## General design pattern (Model View Controller):
 
 Project Builder is a React.js/ Express.js/ PostgreSQL monolith application.  The PostgreSQL database is connected to Knex.js query builder.  Objection.js is an ORM, built on top of Knex.js, used to build relational queries in Javascript and Model-level schema validations for database insertions.
 
 ### Models:
-Objection Models are located at:  
+Objection Models are located in:  
 [/server/src/models](/server/src/models)
 
 
@@ -15,7 +15,7 @@ Views (React components) are located at:
 
 
 ### Controllers:
-RESTful API Express.js Routes are located in:  
+RESTful API Routes using Express.js are located in:  
 [/server/src/routes/api/v1](/server/src/routes/api/v1)
 
 
@@ -29,22 +29,23 @@ URL paths which render React components are defined inside React Routes, located
 
 
 ### Server Side Fallback for Client Views:  
-URL paths to React components that are defined in App.js should also be defined in the array named [clientRoutes](/server/src/routes/clientRouter.js#L7) in the file  
+URL paths defined in App.js should also be defined in the array named [clientRoutes](/server/src/routes/clientRouter.js#L7) in the file  
 [/server/src/routes/clientRouter.js](/server/src/routes/clientRouter.js).
+
 
 ### Routing for RESTful API Endpoints:
 
-React components in Project Builder use the Fetch API to handle client-side HTTP requests to the Express.js backend.  
+React components in Project Builder use the Fetch API to handle client-side HTTP requests to the Express.js server.  
 [rootRouter](server/src/routes/rootRouter.js#L12) defined in  
 [server/src/routes/rootRouter.js](server/src/routes/rootRouter.js)
 
-is the parent Express.js router for all other Express.js routers.  It is used to organize and separate http routing concerns.
+is the parent express.Router() for all other Express.js routers.  It is used to organize and separate http routing concerns.
 
 in [rootRouter.js](server/src/routes/rootRouter.js), the HTTP request path is first matched against the [clientRoutes](/server/src/routes/clientRouter.js#L7) see [Server Side Fallback for Client Views](#server-side-fallback-for-client-views) above.
 
-Once the React components are rendered in the browser, HTTP requests made from Fetch requests within the React components may be executed.  
+## REST is achieved through the Fetch API making HTTP requests to Express.js API routes
 
-A Fetch request within a React component should always be made to an API endpoint defined within an Express router located in the directory:
+REST 
 [/server/src/routes/api/v1](/server/src/routes/api/v1)
 
 There is a process to find which API endpoint is being triggered by a given Fetch request. As an example, let’s consider the Fetch request used by the [getProject()](client/src/components/layout/ProjectShow.js#L49) function in the React component located in [client/src/components/layout/ProjectShow.js](client/src/components/layout/ProjectShow.js#L49):
