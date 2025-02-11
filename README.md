@@ -1,6 +1,6 @@
 # A Project Building Assistant for Arduino Micro Controller Apps
 
-#### Create, Edit, and Fork projects:
+## Create, Edit, and Fork projects:
 
 Arduino projects require a lot of tedious boilerplate, such as the code to control motors with analog joysticks, the setup for an ultrasonic distance sensor, or an algorithm for object avoidance with a car project.  
 
@@ -13,7 +13,7 @@ A demo of the app is currently hosted at [https://project-builder-e7439342976b.h
 The boilerplate code used for the app can be found here:
 [https://github.com/LaunchAcademy/engage-boilerplate](https://github.com/LaunchAcademy/engage-boilerplate)
 
-#### GitHub API for retrieving a project's code:
+### GitHub API for retrieving a project's code:
 
 Often, code written for Arduino projects by casual hobbyists exists in a single file, usually a .ino or .cpp file.  If a user uploads that file to GitHub, project builder can retrieve that code and display it on the site.  That way a user doesn't have to keep their project's code up to date in two places (GitHub and Project Builder).  To achieve this:
 
