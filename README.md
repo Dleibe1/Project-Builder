@@ -13,11 +13,11 @@ A demo of the app is currently hosted at [https://project-builder-e7439342976b.h
 The boilerplate code used for the app can be found here:
 [https://github.com/LaunchAcademy/engage-boilerplate](https://github.com/LaunchAcademy/engage-boilerplate)
 
-#### Login with GitHub (OAuth 2.0)
+#### GitHub API for retrieving a project's code:
 
-#### GitHub API:
+Often, code written for Arduino projects by casual hobbyists exists in a single file, usually a .ino or .cpp file.  If a user uploads that file to GitHub, project builder can retrieve that code and display it on the site.  That way a user doesn't have to keep their project's code up to date in two places (GitHub and Project Builder).  To achieve this:
 
-Generally, Arduino/ESP32 projects have all of the creator's code in a single file (usually a .ino file or main.cpp). After logging into to this app, Click "New Build." Paste the URL of your Arduino/ESP32 main program file into the "Github main sketch file URL" section at the bottom of the form.
+When creating, editing, or forking a project, Paste the URL of your project's code file into the "Github main sketch file URL" section at   the bottom of the form.
 Example URL: https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
 
 When users visit your project's page on this app, the code section is automatically populated with your main project file's code from GitHub. This way you don't have to paste your code into this app every time you update your code on GitHub. This feature does that automatically!
