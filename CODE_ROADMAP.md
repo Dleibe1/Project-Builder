@@ -1,6 +1,6 @@
 # Code Roadmap
 
-This roadmap has some links that highlight multiple lines of code.  This feature may not work if viewing this file in your code editor.  Be sure to view this file on github.com where this feature will work properly.
+This roadmap has some links that highlight multiple lines of code.  This feature may not work if viewing this file locally in your code editor.  Be sure to view this file on github.com where this feature will work properly.
 
 ## General design pattern (Model View Controller):
 
@@ -23,11 +23,11 @@ RESTful API Routes using Express Routers are located in:
 
 ### Routing for view navigation:
 
-Client-Side Views Navigation with React Router:
-Routing for browser navigation within the React app is handled by a [React Router component](client/src/components/App.js#L46).
+#### Client-Side Views Navigation with React Router:
+Routing for browser navigation within the React app is handled by a [React Router component](client/src/components/App.js#L46-L89) in [App.js](client/src/components/App.js).
 
 URL paths for top-level React components are defined within React Route components.
-For example [this code found in App.js](client/src/components/App.js#L49-L51) will cause the ProjectList component to be rendered at the base URL.
+For example [lines 49-51 in App.js](client/src/components/App.js#L49-L51) will cause the ProjectList component to be rendered at the base URL.
 
 ### Server Side Fallback for Client Views:
 
