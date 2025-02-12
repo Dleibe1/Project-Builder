@@ -2,7 +2,7 @@
 
 This roadmap has some links that highlight multiple lines of code. This feature may not work if viewing this file locally in your code editor. Be sure to view this file on github.com where this feature will work properly.
 
-## General design pattern (Model View Controller):
+## General Design Pattern (Model View Controller):
 
 Project Builder is a React.js/ Express.js/ PostgreSQL monolith application. The PostgreSQL database is connected to Knex.js query builder. Objection.js is an ORM, built on top of Knex.js, used to build relational queries in Javascript and Model-level schema validations for database insertions.
 
@@ -21,7 +21,7 @@ Views (React components) are located in:
 RESTful API Routes using Express Routers are located in:  
 [/server/src/routes/api/v1](/server/src/routes/api/v1)
 
-### Routing for view navigation:
+### Routing for View Navigation:
 
 #### Client-Side Views Navigation with React Router:
 
@@ -36,14 +36,13 @@ For example [lines 49-51 in App.js](client/src/components/App.js#L49-L51) will c
 </Route>
 ```
 
-### HTTP Routing with the Express.js server
+## HTTP Routing within the Express.js Server
 
-[All routing concerns for the Express.js app](server/src/app.js#L34) are handled in the file [rootRouter.js](server/src/routes/rootRouter.js).  
+All routing concerns within the Express.js [app](server/src/app.js) are handled in the file [rootRouter.js](server/src/routes/rootRouter.js).  [the express.Router() named rootRouter](server/src/routes/rootRouter.js#L11) is the parent Express.Router() for all other express.Router()s.
 
 ### Server Side Fallback for Client Views:
 
-URL paths defined in App.js should also be defined in the array named [clientRoutes](/server/src/routes/clientRouter.js#L7) in the file:  
-[/server/src/routes/clientRouter.js](/server/src/routes/clientRouter.js). If an HTTP request is made to any of these paths, the [index.html](client/public/index.html) file containing the React app [will be served to the client](server/src/routes/clientRouter.js#L26-L28).
+rootRouter uses [clientRouter](server/src/routes/clientRouter.js) to handle serving the [React app contained in index.html](client/public/index.html#L15) to the user.  All HTTP requests are first matched against paths defined in [the clientRoutes array](server/src/routes/clientRouter.js#L7).  If the URL path in the request matches one of the [clientRoutes](server/src/routes/clientRouter.js#L7), [index.html is served to the client](server/src/routes/clientRouter.js#L26-28).
 
 ```javascript
 clientRouter.get(clientRoutes, (req, res) => {
@@ -53,14 +52,10 @@ clientRouter.get(clientRoutes, (req, res) => {
 
 ### Routing for RESTful API Endpoints:
 
-React components in Project Builder use the Fetch API to handle client-side HTTP requests to the Express.js server.
-[rootRouter](server/src/routes/rootRouter.js#L11), defined in [server/src/routes/rootRouter.js](server/src/routes/rootRouter.js) is the parent express.Router() for all other Express.js routers. It is used to organize and separate http routing concerns.
-
-
+In addition to handling when to serve the [index.html](client/public/index.html) file, [rootRouter](server/src/routes/rootRouter.js#L11) also [uses express.Router()'s that handle serving data from API endpoints](server/src/routes/rootRouter.js#L14-20).  
 
 ## REST is achieved through the Fetch API making HTTP requests to Express.js API routes
 
-REST
 [/server/src/routes/api/v1](/server/src/routes/api/v1)
 
 There is a process to find which API endpoint is being triggered by a given Fetch request. As an example, let’s consider the Fetch request used by the [getProject()](client/src/components/layout/ProjectShow.js#L49) function in the React component located in [client/src/components/layout/ProjectShow.js](client/src/components/layout/ProjectShow.js#L49):
