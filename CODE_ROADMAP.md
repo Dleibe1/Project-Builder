@@ -38,7 +38,7 @@ For example [lines 49-51 in App.js](client/src/components/App.js#L49-L51) will c
 
 ## HTTP Routing within the Express.js Server
 
-All routing concerns within the Express.js [app](server/src/app.js) are handled in the file [rootRouter.js](server/src/routes/rootRouter.js).  [the express.Router() named rootRouter](server/src/routes/rootRouter.js#L11) is the parent Express.Router() for all other express.Router()s.
+All routing concerns within the Express.js app are handled by an[express.Router() named rootRouter](server/src/routes/rootRouter.js#L11) is the parent Express.Router() for all other express.Router()s.
 
 ### Server Side Fallback for Client Views:
 
