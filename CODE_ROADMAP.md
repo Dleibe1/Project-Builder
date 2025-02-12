@@ -1,6 +1,6 @@
 # Code Roadmap
 
-This roadmap has some links that highlight multiple lines of code.  This feature may not work if viewing this file locally in your code editor.  Be sure to view this file on github.com where this feature will work properly.
+This roadmap has some links that highlight multiple lines of code. This feature may not work if viewing this file locally in your code editor. Be sure to view this file on github.com where this feature will work properly.
 
 ## General design pattern (Model View Controller):
 
@@ -24,6 +24,7 @@ RESTful API Routes using Express Routers are located in:
 ### Routing for view navigation:
 
 #### Client-Side Views Navigation with React Router:
+
 Routing for browser navigation within the React app is handled by a [React Router component](client/src/components/App.js#L46-L89) in [App.js](client/src/components/App.js).
 
 URL paths for top-level React components are defined within React Route components.
@@ -32,7 +33,13 @@ For example [lines 49-51 in App.js](client/src/components/App.js#L49-L51) will c
 ### Server Side Fallback for Client Views:
 
 URL paths defined in App.js should also be defined in the array named [clientRoutes](/server/src/routes/clientRouter.js#L7) in the file:  
-[/server/src/routes/clientRouter.js](/server/src/routes/clientRouter.js).  If an HTTP request is made to any of these paths, the [index.html](client/public/index.html) file containing the React app [will be served to the client](server/src/routes/clientRouter.js#L26-L28)
+[/server/src/routes/clientRouter.js](/server/src/routes/clientRouter.js). If an HTTP request is made to any of these paths, the [index.html](client/public/index.html) file containing the React app [will be served to the client](server/src/routes/clientRouter.js#L26-L28).
+
+```javascript
+clientRouter.get(clientRoutes, (req, res) => {
+  res.sendFile(getClientIndexPath())
+})
+```
 
 ### Routing for RESTful API Endpoints:
 
