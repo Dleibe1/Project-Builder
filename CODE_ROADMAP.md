@@ -108,12 +108,3 @@ projectsRouter.get("/:id", async (req, res) => {
   }
 })
 ```
-
-Transferring Backend State to the React Front End:
-
-The purpose of the endpoint above which was triggered by the Fetch Request in ProjectShow.js is to
-Query the database for the project whose id was in the Fetch Request
-Gather relevant information from other tables and external API’s
-Respond to the Fetch request with the serializedProject as JSON with a key of “project.”
-
-React State:
