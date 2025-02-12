@@ -38,17 +38,18 @@ For example [lines 49-51 in App.js](client/src/components/App.js#L49-L51) will c
 
 ## HTTP Routing within the Express.js Server
 
-All routing concerns within the Express.js app are handled by an[express.Router() named rootRouter](server/src/routes/rootRouter.js#L11) is the parent Express.Router() for all other express.Router()s.
+All routing concerns within the Express.js app are handled by an [express.Router() named rootRouter](server/src/routes/rootRouter.js#L11), which is the parent Express.Router() for all other express.Router()s.
 
 ### Server Side Fallback for Client Views:
 
-rootRouter uses [clientRouter](server/src/routes/clientRouter.js) to handle serving the [React app contained in index.html](client/public/index.html#L15) to the user.  All HTTP requests are first matched against paths defined in [the clientRoutes array](server/src/routes/clientRouter.js#L7).  If the URL path in the request matches one of the [clientRoutes](server/src/routes/clientRouter.js#L7), [index.html is served to the client](server/src/routes/clientRouter.js#L26-L28).
+rootRouter uses [clientRouter](server/src/routes/clientRouter.js) to handle serving the [React app contained in index.html](client/public/index.html#L15) to the user.  All HTTP requests are first matched against paths defined in [the clientRoutes array](server/src/routes/clientRouter.js#L7).  If the URL path in a request matches one of the [clientRoutes](server/src/routes/clientRouter.js#L7), [index.html is served to the client](server/src/routes/clientRouter.js#L26-L28).  
 
 ```javascript
 clientRouter.get(clientRoutes, (req, res) => {
   res.sendFile(getClientIndexPath())
 })
 ```
+Therefore, it is important to add all paths defined in your React Route components in App.js to the [clientRoutes array](server/src/routes/clientRouter.js#L7) so that the React app is served if the user makes an HTTP request to a path defined in a Route component.
 
 ### Routing for RESTful API Endpoints:
 
