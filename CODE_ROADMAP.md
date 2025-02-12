@@ -1,5 +1,7 @@
 # Code Roadmap
 
+This roadmap has some links that highlight multiple lines of code.  This feature may not work if viewing this file in your code editor.  Be sure to view this file on github.com where this feature will work properly.
+
 ## General design pattern (Model View Controller):
 
 Project Builder is a React.js/ Express.js/ PostgreSQL monolith application. The PostgreSQL database is connected to Knex.js query builder. Objection.js is an ORM, built on top of Knex.js, used to build relational queries in Javascript and Model-level schema validations for database insertions.
@@ -24,13 +26,8 @@ RESTful API Routes using Express Routers are located in:
 Client-Side Views Navigation with React Router:
 Routing for browser navigation within the React app is handled by a [React Router component](client/src/components/App.js#L46).
 
-URL paths for top-level components are defined within React Route components.
+URL paths for top-level React components are defined within React Route components.
 For example [this code found in App.js](client/src/components/App.js#L49-L51) will cause the ProjectList component to be rendered at the base URL.
-```javascript
-<Route exact path={"/"}>
-  <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
-</Route>
-```
 
 ### Server Side Fallback for Client Views:
 
