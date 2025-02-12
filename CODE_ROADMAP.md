@@ -30,6 +30,8 @@ Routing for browser navigation within the React app is handled by a [React Route
 URL paths for top-level React components are defined within React Route components.
 For example [lines 49-51 in App.js](client/src/components/App.js#L49-L51) will cause the ProjectList component to be rendered at the base URL.
 
+
+
 ### Server Side Fallback for Client Views:
 
 URL paths defined in App.js should also be defined in the array named [clientRoutes](/server/src/routes/clientRouter.js#L7) in the file:  
@@ -44,12 +46,12 @@ clientRouter.get(clientRoutes, (req, res) => {
 ### Routing for RESTful API Endpoints:
 
 React components in Project Builder use the Fetch API to handle client-side HTTP requests to the Express.js server.
-[rootRouter](server/src/routes/rootRouter.js#L12) defined in  
+[rootRouter](server/src/routes/rootRouter.js#L12), defined in  
 [server/src/routes/rootRouter.js](server/src/routes/rootRouter.js)
 
 is the parent express.Router() for all other Express.js routers. It is used to organize and separate http routing concerns.
 
-in [rootRouter.js](server/src/routes/rootRouter.js), the HTTP request path is first matched against the [clientRoutes](/server/src/routes/clientRouter.js#L7) see [Server Side Fallback for Client Views](#server-side-fallback-for-client-views) above.
+in [rootRouter.js](server/src/routes/rootRouter.js), the HTTP request path is first matched against the [clientRoutes](/server/src/routes/clientRouter.js#L7) see [Server Side Fallback for Client Views](#server-side-fallback-for-client-views) above.  If a request is made to one of these paths, the React 
 
 ## REST is achieved through the Fetch API making HTTP requests to Express.js API routes
 
