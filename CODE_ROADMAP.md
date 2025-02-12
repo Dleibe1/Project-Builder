@@ -42,7 +42,7 @@ All routing concerns within the Express.js [app](server/src/app.js) are handled 
 
 ### Server Side Fallback for Client Views:
 
-rootRouter uses [clientRouter](server/src/routes/clientRouter.js) to handle serving the [React app contained in index.html](client/public/index.html#L15) to the user.  All HTTP requests are first matched against paths defined in [the clientRoutes array](server/src/routes/clientRouter.js#L7).  If the URL path in the request matches one of the [clientRoutes](server/src/routes/clientRouter.js#L7), [index.html is served to the client](server/src/routes/clientRouter.js#L26-28).
+rootRouter uses [clientRouter](server/src/routes/clientRouter.js) to handle serving the [React app contained in index.html](client/public/index.html#L15) to the user.  All HTTP requests are first matched against paths defined in [the clientRoutes array](server/src/routes/clientRouter.js#L7).  If the URL path in the request matches one of the [clientRoutes](server/src/routes/clientRouter.js#L7), [index.html is served to the client](server/src/routes/clientRouter.js#L26-L28).
 
 ```javascript
 clientRouter.get(clientRoutes, (req, res) => {
@@ -52,7 +52,7 @@ clientRouter.get(clientRoutes, (req, res) => {
 
 ### Routing for RESTful API Endpoints:
 
-In addition to handling when to serve the [index.html](client/public/index.html) file, [rootRouter](server/src/routes/rootRouter.js#L11) also [uses express.Router()'s that handle serving data from API endpoints](server/src/routes/rootRouter.js#L14-20).  
+In addition to handling when to serve the [index.html](client/public/index.html) file, [rootRouter](server/src/routes/rootRouter.js#L11) also [uses express.Router()'s that handle serving data from API endpoints](server/src/routes/rootRouter.js#L14-L20).  
 
 ## REST is achieved through the Fetch API making HTTP requests to Express.js API routes
 
