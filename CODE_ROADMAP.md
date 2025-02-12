@@ -38,11 +38,11 @@ For example [lines 49-51 in App.js](client/src/components/App.js#L49-L51) will c
 
 ## HTTP Routing within the Express.js Server
 
-All routing concerns within the Express.js app are handled by an [express.Router() named rootRouter](server/src/routes/rootRouter.js#L11), which is the parent Express.Router() for all other express.Router()s.
+All routing concerns within the Express.js app are handled in the file [rootRouter.js](server/src/routes/rootRouter.js) by an [express.Router() named rootRouter](server/src/routes/rootRouter.js#L11), which is the parent express.Router() for all other express.Router()'s.
 
 ### Server Side Fallback for Client Views:
 
-rootRouter uses [clientRouter](server/src/routes/clientRouter.js) to handle serving the [React app contained in index.html](client/public/index.html#L15) to the user.  All HTTP requests are first matched against paths defined in [the clientRoutes array](server/src/routes/clientRouter.js#L7).  If the URL path in a request matches one of the [clientRoutes](server/src/routes/clientRouter.js#L7), [index.html is served to the client](server/src/routes/clientRouter.js#L26-L28).  
+[rootRouter](server/src/routes/rootRouter.js) uses [clientRouter](server/src/routes/clientRouter.js) to handle serving the [React app contained in index.html](client/public/index.html#L15) to the user.  All HTTP requests are first matched against paths defined in the [clientRoutes array](server/src/routes/clientRouter.js#L7).  If the URL path in a request matches one of the [clientRoutes](server/src/routes/clientRouter.js#L7), [index.html is served to the client](server/src/routes/clientRouter.js#L26-L28).  
 
 ```javascript
 clientRouter.get(clientRoutes, (req, res) => {
@@ -53,13 +53,11 @@ Therefore, it is important to add all paths defined in your React Route componen
 
 ### Routing for RESTful API Endpoints:
 
-In addition to handling when to serve the [index.html](client/public/index.html) file, [rootRouter](server/src/routes/rootRouter.js#L11) also [uses express.Router()'s that handle serving data from API endpoints](server/src/routes/rootRouter.js#L14-L20).  
+In addition to handling when to serve the [index.html](client/public/index.html) file, [rootRouter](server/src/routes/rootRouter.js#L11) also [uses set of express.Router()'s that handle serving data from API endpoints](server/src/routes/rootRouter.js#L14-L20).  express.Router()'s used for RESTful API endpoints are defined in the files contained within the folder [/server/src/routes/api/v1](/server/src/routes/api/v1).
 
-## REST is achieved through the Fetch API making HTTP requests to Express.js API routes
+## REST is achieved through the Fetch API
 
-[/server/src/routes/api/v1](/server/src/routes/api/v1)
-
-There is a process to find which API endpoint is being triggered by a given Fetch request. As an example, let’s consider the Fetch request used by the [getProject()](client/src/components/layout/ProjectShow.js#L49) function in the React component located in [client/src/components/layout/ProjectShow.js](client/src/components/layout/ProjectShow.js#L49):
+When navigating the code within a component, There is a process to find which API endpoint is being triggered by a given Fetch request. As an example, consider the Fetch request used by the [getProject()](client/src/components/layout/ProjectShow.js#L49) function in the React component located in [client/src/components/layout/ProjectShow.js](client/src/components/layout/ProjectShow.js#L49-L68):
 
 ```javascript
 const getProject = async () => {
@@ -83,19 +81,19 @@ const getProject = async () => {
 }
 ```
 
-Go to [server/src/routes/rootRouter.js](server/src/routes/rootRouter.js) and locate the Express router being used for the path in the request. In this case [/api/v1/projects](/api/v1/projects/) and a parameter of id (the project's id number in the database). in [rootRouter.js](server/src/routes/rootRouter.js), you will find the following line:
+To find the endpoint that handles this request, navigate to [server/src/routes/rootRouter.js](server/src/routes/rootRouter.js) and locate the Express.router() being used for the path in the request. In this case [/api/v1/projects](/api/v1/projects/) and a parameter of id (the project's id number in the database).  This is a GET request (when no method is provided, Fetch requests default to GET).  In [rootRouter.js](server/src/routes/rootRouter.js), you will find the following line:
 
 [rootRouter.use("/api/v1/projects", projectsRouter)](server/src/routes/rootRouter.js#L16)
 
-Which indicates the Express router named projectsRouter is being used to handle the request.
+Which indicates the express.Router() named [projectsRouter](server/src/routes/api/v1/projectsRouter.js#L10) is being used to handle requests to "/api/v1/projects".
 
-In rootRouter.js, check the imports to find which file defines projectsRouter. You will find the import:
+In rootRouter.js, check the imports to find which file defines the express.Router() named projectsRouter. You will find the import:
 
-[import projectsRouter from "./api/v1/projectsRouter.js"](server/src/routes/rootRouter.js)
+[import projectsRouter from "./api/v1/projectsRouter.js"](server/src/routes/rootRouter.js#L5)
 
-Open the file that’s handling the request. in this case: server/src/routes/api/v1/projectsRouter.js
+Open the file that’s handling the request, in this case [server/src/routes/api/v1/projectsRouter.js](server/src/routes/api/v1/projectsRouter.js).
 
-In projectsRouter.js locate the endpoint which takes a parameter of “id” as the Fetch request would indicate:
+In projectsRouter.js locate the [endpoint which handles GET requests that take a parameter of “id](server/src/routes/api/v1/projectsRouter.js#L53-L63) as the [Fetch request would indicate](client/src/components/layout/ProjectShow.js#L52):
 
 ```javascript
 projectsRouter.get("/:id", async (req, res) => {
