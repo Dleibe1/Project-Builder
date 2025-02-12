@@ -32,7 +32,7 @@ For example [lines 49-51 in App.js](client/src/components/App.js#L49-L51) will c
 ### Server Side Fallback for Client Views:
 
 URL paths defined in App.js should also be defined in the array named [clientRoutes](/server/src/routes/clientRouter.js#L7) in the file:  
-[/server/src/routes/clientRouter.js](/server/src/routes/clientRouter.js).
+[/server/src/routes/clientRouter.js](/server/src/routes/clientRouter.js).  If an HTTP request is made to any of these paths, the [index.html](client/public/index.html) file containing the React app [will be served to the client](server/src/routes/clientRouter.js#L26-L28)
 
 ### Routing for RESTful API Endpoints:
 
