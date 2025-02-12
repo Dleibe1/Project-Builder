@@ -38,7 +38,7 @@ For example [lines 49-51 in App.js](client/src/components/App.js#L49-L51) will c
 
 ### HTTP Routing with the Express.js server
 
-[All routing concerns for the Express.js app](server/src/app.js#L43) are handled in the file [rootRouter.js](server/src/routes/rootRouter.js).  
+[All routing concerns for the Express.js app](server/src/app.js#L34) are handled in the file [rootRouter.js](server/src/routes/rootRouter.js).  
 
 ### Server Side Fallback for Client Views:
 
