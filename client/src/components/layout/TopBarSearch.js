@@ -58,7 +58,7 @@ const TopBarSearch = () => {
     if (event.key === "Enter" && query.trim().length) {
       event.preventDefault()
       history.push(`/search?q=${query}&page=1`)
-    }else if (event.key === "Enter" && query.trim().length === 0) {
+    } else if (event.key === "Enter" && query.trim().length === 0) {
       event.preventDefault()
       history.push(`/?page=1`)
     }
@@ -74,9 +74,7 @@ const TopBarSearch = () => {
         onKeyDown={handleKeyDown}
         onChange={handleInputChange}
         value={query}
-        inputProps={{ "aria-label": "search",
-          className: "top-bar-search"
-         }}
+        inputProps={{ "aria-label": "search", className: "top-bar-search" }}
       />
     </Search>
   )

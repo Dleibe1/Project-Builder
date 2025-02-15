@@ -22,7 +22,7 @@ import ForkProjectForm from "./layout/ForkProjectForm"
 import GithubLogin from "./authentication/GithubLogin"
 import About from "./layout/About"
 import NotFound404 from "./layout/404NotFound"
-
+import FilterByTag from "./layout/FilterByTag"
 import HowToUse from "./layout/HowToUse"
 
 const App = (props) => {
@@ -45,6 +45,7 @@ const App = (props) => {
     <TagProvider>
       <Router>
         <TopBar projectsPerPage={projectsPerPage} user={currentUser} />
+        <FilterByTag />
         <Switch>
           <Route exact path={"/"}>
             <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />

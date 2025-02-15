@@ -21,8 +21,7 @@ import NewBuildButton from "./NewBuildButton"
 import MyBuildsButton from "./MyBuildsButton"
 import SignInButton from "../authentication/SignInButton"
 import SignUpButton from "../authentication/SignUpButton"
-import TopBarSearch from "./TobBarSearch"
-import FilterByTag from "./FilterByTag"
+import TopBarSearch from "./TopBarSearch"
 
 const TopBar = ({ user, projectsPerPage }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -261,7 +260,6 @@ const TopBar = ({ user, projectsPerPage }) => {
           )}
         </Toolbar>
       </Container>
-      <FilterByTag />
     </AppBar>
   )
 }
