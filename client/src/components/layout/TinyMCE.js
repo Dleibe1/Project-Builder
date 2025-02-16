@@ -1,14 +1,28 @@
-import React from "react"
+import React, { useState } from "react"
 import { Editor } from "@tinymce/tinymce-react"
 
-const TinyMCE = ({ project, setProject, index }) => {
-  const handleEditorChange = (value) => {
-    const instructions = [...project.instructions]
-    instructions[index].instructionText = value
-    setProject((prevState) => ({
-      ...prevState,
-      instructions: instructions,
-    }))
+const TinyMCE = ({ project, setProject }) => {
+  const [editorContent, setEditorContent] = useState("")
+  const handleEditorChange = (newValue) => {
+    setEditorContent(newValue)
+  }
+
+  const handleImageUpload = async (blobInfo, success, failure, progress) => {
+    const imageFileData = new FormData()
+    imageFileData.append("image", blobInfo.blob(), blobInfo.filename())
+    try {
+      const response = await fetch("/api/v1/image-upload", {
+        method: "POST",
+        body: imageFileData,
+      })
+      if (!response.ok) {
+        throw new Error(`${response.status} (${response.statusText})`)
+      }
+      const body = await response.json()
+      return body.imageURL
+    } catch (error) {
+      failure(`Image upload failed: ${error.message}`)
+    }
   }
 
   return (
@@ -72,8 +86,9 @@ const TinyMCE = ({ project, setProject, index }) => {
           // importword_converter_options: {
           //   formatting: { styles: "inline", resets: "inline", defaults: "inline" },
           // },
+          images_upload_handler: handleImageUpload,
         }}
-        value={project?.instructions[index].instructionText}
+        value={editorContent}
         onEditorChange={(newValue, editor) => handleEditorChange(newValue)}
       />
     </div>

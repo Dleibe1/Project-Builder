@@ -14,7 +14,6 @@ const AddTags = ({ project, setProject }) => {
     const tags = chosenTagNames.map((tagName) => {
       return { tagName }
     })
-    console.log(tags)
     setProject((prevState) => ({
       ...prevState,
       tags: tags,
