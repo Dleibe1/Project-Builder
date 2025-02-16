@@ -1,10 +1,14 @@
 import React, { useState } from "react"
 import { Editor } from "@tinymce/tinymce-react"
 
-const TinyMCE = ({ project, setProject }) => {
-  const [editorContent, setEditorContent] = useState("")
-  const handleEditorChange = (newValue) => {
-    setEditorContent(newValue)
+const TinyMCE = ({ project, setProject, index }) => {
+  const handleEditorChange = (value) => {
+    const instructions = [...project.instructions]
+    instructions[index].instructionText = value
+    setProject((prevState) => ({
+      ...prevState,
+      instructions: instructions,
+    }))
   }
 
   const handleImageUpload = async (blobInfo, success, failure, progress) => {
@@ -32,6 +36,7 @@ const TinyMCE = ({ project, setProject }) => {
         init={{
           plugins: [
             // Core editing features
+            "autoresize",
             "anchor",
             "autolink",
             "charmap",
@@ -88,7 +93,7 @@ const TinyMCE = ({ project, setProject }) => {
           // },
           images_upload_handler: handleImageUpload,
         }}
-        value={editorContent}
+        value={project?.instructions[index].instructionText}
         onEditorChange={(newValue, editor) => handleEditorChange(newValue)}
       />
     </div>
