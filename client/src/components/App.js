@@ -66,16 +66,16 @@ const App = (props) => {
         <Route exact path={"/search"}>
           <SearchList projectsPerPage={projectsPerPage} user={currentUser} />
         </Route>
-        <Route exact path="/projects/:id">
-          <ProjectShow user={currentUser} />
-        </Route>
-        <Route exact path={"/my-builds/:id"}>
-          <MyBuildShow user={currentUser} />
-        </Route>
-        <Route exact path="/github-login">
-          <GithubLogin user={currentUser} />
-        </Route>
         <EditingInstructionsProvider>
+          <Route exact path="/projects/:id">
+            <ProjectShow user={currentUser} />
+          </Route>
+          <Route exact path={"/my-builds/:id"}>
+            <MyBuildShow user={currentUser} />
+          </Route>
+          <Route exact path="/github-login">
+            <GithubLogin user={currentUser} />
+          </Route>
           <Route exact path="/create-new-build">
             <NewProjectForm user={currentUser} />
           </Route>
