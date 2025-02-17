@@ -833,8 +833,29 @@ h5 {
   align-items: center;
 }
 
+.instruction-text-container .instruction-text h2 {
+  font-size: 3rem;
+}
+
+.instruction-text-container .instruction-text h1 {
+  border-bottom: none;
+}
+
+.instruction-text-container .instruction-text img {
+  width: 100%;
+}
+
 .tinymce-container {
   min-width: 100%;
+}
+
+.tinymce-container .save-instructions-button-container {
+  translate: -10px 50px;
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  z-index: 3;
+  top: 4px;
 }
 
 .large-button.save-instruction {

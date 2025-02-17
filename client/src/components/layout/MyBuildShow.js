@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import DeleteBuildButton from "./DeleteBuildButton"
 import EditBuildButton from "./EditBuildButton"
@@ -74,20 +74,12 @@ const MyBuildShow = (props) => {
   })
 
   const instructionList = myBuild.instructions.map((instruction) => {
-    if (instruction.imageURL) {
-      return (
-        <div className="showpage-items-container">
-          <img className="project-image" src={`${instruction.imageURL}`} />
-        </div>
-      )
-    } else if (instruction.instructionText) {
-      return (
-        <div
-          className="preserve-white-space instruction-text showpage-items-container"
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instruction.instructionText) }}
-        ></div>
-      )
-    }
+    return (
+      <div
+        className="preserve-white-space instruction-text showpage-items-container"
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instruction.instructionText) }}
+      ></div>
+    )
   })
 
   return (

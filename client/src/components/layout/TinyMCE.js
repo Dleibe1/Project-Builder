@@ -1,10 +1,15 @@
-import React, { useState } from "react"
+import React, { useContext } from "react"
+import { EditingInstructionsContext } from "../../contexts/EditingInstructionsContext"
 import { Editor } from "@tinymce/tinymce-react"
+import { Button } from "@mui/material"
 
-const TinyMCE = ({ project, setProject, index }) => {
-  const handleEditorChange = (value) => {
+const TinyMCE = ({ project, setProject }) => {
+
+  const { editing, setEditing } = useContext(EditingInstructionsContext)
+
+  const handleEditorChange = (newValue, editor) => {
     const instructions = [...project.instructions]
-    instructions[index].instructionText = value
+    instructions[0].instructionText = newValue
     setProject((prevState) => ({
       ...prevState,
       instructions: instructions,
@@ -31,9 +36,19 @@ const TinyMCE = ({ project, setProject, index }) => {
 
   return (
     <div className="tinymce-container">
+      <div className="save-instructions-button-container">
+        <Button
+          onClick={()=> setEditing(false)}
+          className="large-button instruction-list-button"
+          variant="contained"
+        >
+          Save instructions
+        </Button>
+      </div>
       <Editor
         apiKey="u5yk5um3x19v3fpfdrr4x22dad2uxqsp3hn1olscskjmo84y"
         init={{
+          content_style: "img { width: 50%; }",
           plugins: [
             // Core editing features
             "autoresize",
@@ -76,8 +91,9 @@ const TinyMCE = ({ project, setProject, index }) => {
             // "exportpdf",
           ],
           toolbar:
-            "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | codesample link image table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
-
+            "undo redo | blocks | bold italic underline strikethrough | codesample link image table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+          toolbar_sticky: true,
+          toolbar_sticky_offset: 50,
           // ai_request: (request, respondWith) =>
           //   respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
           // exportpdf_converter_options: {
@@ -91,10 +107,12 @@ const TinyMCE = ({ project, setProject, index }) => {
           // importword_converter_options: {
           //   formatting: { styles: "inline", resets: "inline", defaults: "inline" },
           // },
+          selector: "textarea",
           images_upload_handler: handleImageUpload,
+          promotion: false,
         }}
-        value={project?.instructions[index].instructionText}
-        onEditorChange={(newValue, editor) => handleEditorChange(newValue)}
+        value={project?.instructions[0].instructionText}
+        onEditorChange={(newValue, editor) => handleEditorChange(newValue, editor)}
       />
     </div>
   )

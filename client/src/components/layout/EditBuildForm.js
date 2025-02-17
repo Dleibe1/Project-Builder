@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext, useRef } from "react"
+import { EditingInstructionsContext } from "../../contexts/EditingInstructionsContext.js"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
@@ -8,7 +9,7 @@ import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
-import InstructionsSubForm from "./InstructionsSubForm.js"
+import InstructionsSubForm2 from "./InstructionsSubForm2.js"
 import AddTags from "./AddTags.js"
 
 const EditBuildForm = (props) => {
@@ -17,8 +18,6 @@ const EditBuildForm = (props) => {
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
-  const params = useParams()
-  const { id } = params
   const [newPart, setNewPart] = useState("")
   const [project, setProject] = useState({
     title: "",
@@ -32,6 +31,9 @@ const EditBuildForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+
+  const params = useParams()
+  const { id } = params
 
   useEffect(() => {
     document.body.classList.add("grey-background")
@@ -47,6 +49,14 @@ const EditBuildForm = (props) => {
 
   useEffect(() => {
     getProject()
+  }, [])
+
+  useEffect(() => {
+    document.body.classList.add("grey-background")
+    window.scrollTo(0, 0)
+    return () => {
+      document.body.classList.remove("grey-background")
+    }
   }, [])
 
   const updateProject = async (projectData) => {
@@ -247,7 +257,7 @@ const EditBuildForm = (props) => {
             Add Part
           </Button>
         </div>
-        <InstructionsSubForm project={project} setProject={setProject} />
+        <InstructionsSubForm2 project={project} setProject={setProject} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
