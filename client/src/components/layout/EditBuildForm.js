@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react"
-import { EditingInstructionsContext } from "../../contexts/EditingInstructionsContext.js"
+import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
@@ -9,7 +8,7 @@ import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
-import InstructionsSubForm2 from "./InstructionsSubForm2.js"
+import InstructionsSubForm2 from "./InstructionsSubForm.js"
 import AddTags from "./AddTags.js"
 
 const EditBuildForm = (props) => {
