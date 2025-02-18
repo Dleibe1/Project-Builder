@@ -42,7 +42,10 @@ const TinyMCE = ({ project, setProject, setEditingInstructions }) => {
       <Editor
         apiKey="u5yk5um3x19v3fpfdrr4x22dad2uxqsp3hn1olscskjmo84y"
         init={{
-          content_style: "img { width: 50%; } ",
+          min_height: 1000,
+          init_instance_callback: (editor) => {
+            editor.focus(); // This sets the focus to the editor on load
+          },
           plugins: [
             "autoresize",
             "anchor",
@@ -63,18 +66,19 @@ const TinyMCE = ({ project, setProject, setEditingInstructions }) => {
             "save undo redo | blocks | bold italic underline strikethrough | codesample link image table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
           toolbar_sticky: true,
           selector: "textarea",
+          
           setup: (editor) => {
-            editor.on('PreInit', () => {
-              editor.ui.registry.addButton('save', {
-                text: 'SAVE INSTRUCTIONS',
+            editor.on("PreInit", () => {
+              editor.ui.registry.addButton("save", {
+                text: "SAVE INSTRUCTIONS",
                 onAction: () => {
-                  setEditingInstructions(false);
-                }
-              });
-            });
+                  setEditingInstructions(false)
+                },
+              })
+            })
           },
           images_upload_handler: handleImageUpload,
-          promotion: false,
+          height: 300,
         }}
         value={project?.instructions[0].instructionText}
         onEditorChange={(newValue, editor) => handleEditorChange(newValue, editor)}

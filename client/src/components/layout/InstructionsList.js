@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo } from "react"
-import { Button } from "@mui/material"
 import DOMPurify from "dompurify"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
@@ -12,7 +11,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
       delete tag.dataset.highlighted
     })
     hljs.highlightAll()
-  }, [project])
+  }, [project.instructions])
 
   const wrapImagesAndNonImages = (htmlString) => {
     const parser = new DOMParser()
@@ -20,7 +19,6 @@ const Instructions = ({ project, setEditingInstructions }) => {
     const body = doc.body
     const fragment = doc.createDocumentFragment()
     let nonImageGroup = [] // To temporarily store nodes that are not images
-
     // Convert the live NodeList into an array for safe iteration
     const children = Array.from(body.childNodes)
     children.forEach((child) => {
@@ -70,22 +68,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
   }, [project.instructions])
 
   return (
-    <>
-      <div className="instruction-list-buttons-container edit-instructions-button-container">
-        <Button
-          className="large-button instruction-list-button edit-instructions-button"
-          variant="contained"
-          onClick={() => setEditingInstructions(true)}
-        >
-          Edit Instructions
-        </Button>
-      </div>
-      <div className="form-items-container top-sectinon">
-        <h2 id="form-instructions-heading">Instructions:</h2>
-      </div>
-
-      <div dangerouslySetInnerHTML={{ __html: processedInstructions }}></div>
-    </>
+      <div className="instructions-list" dangerouslySetInnerHTML={{ __html: processedInstructions }}></div>
   )
 }
 

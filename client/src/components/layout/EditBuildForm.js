@@ -258,10 +258,19 @@ const EditBuildForm = (props) => {
               Add Part
             </Button>
           </div>
-          <InstructionsList
-            project={project}
-            setEditingInstructions={setEditingInstructions}
-          />
+          <div className="instruction-list-buttons-container edit-instructions-button-container">
+            <Button
+              className="large-button instruction-list-button edit-instructions-button"
+              variant="contained"
+              onClick={() => setEditingInstructions(true)}
+            >
+              Edit Instructions
+            </Button>
+          </div>
+          <div className="form-items-container top-sectinon">
+            <h2 id="form-instructions-heading">Instructions:</h2>
+          </div>
+          <InstructionsList project={project} />
           <div className="form-items-container">
             <h2 className="code-heading">Code:</h2>
             <label htmlFor="code" className="form-input" id="code-input">
@@ -307,7 +316,13 @@ const EditBuildForm = (props) => {
       </div>
     )
   } else {
-    return <TinyMCE project={project} setProject={setProject} setEditingInstructions={setEditingInstructions} />
+    return (
+      <TinyMCE
+        project={project}
+        setProject={setProject}
+        setEditingInstructions={setEditingInstructions}
+      />
+    )
   }
 }
 

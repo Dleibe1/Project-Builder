@@ -669,6 +669,10 @@ h5 {
   background-color: #ecf1f1;
 }
 
+.instructions-list img {
+  width: 100%;
+}
+
 .project-image {
   width: 100%;
   height: auto;
@@ -864,9 +868,8 @@ button[data-mce-name="save"].tox-tbtn {
 button[data-mce-name="save"].tox-tbtn:hover,
 button[data-mce-name="save"] .tox-tbtn__select-label:hover {
   cursor: pointer;
-  color:white;
+  color: white;
   background: #1665c0;
-
 }
 
 button[data-mce-name="save"] .tox-tbtn__select-label {
@@ -975,19 +978,23 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   margin-top: 30px;
 }
 
-.instruction-list-buttons-container.edit-instructions-button-container{
+.instruction-list-buttons-container.edit-instructions-button-container {
   display: flex;
   justify-content: flex-start;
-  position:sticky;
+  position: sticky;
   top: -20px;
   z-index: 1;
-  translate:0px 80px;
+  translate: 0px 80px;
 }
 
 .instruction-list-button.edit-instructions-button {
   margin-left: 10px;
   font-size: 17px;
   height: 45px;
+}
+
+.instructions-list {
+  width: 100%;
 }
 
 #code-input {
@@ -1007,7 +1014,6 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 
 #part-input-container {
   width: 100%;
-  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: baseline;
