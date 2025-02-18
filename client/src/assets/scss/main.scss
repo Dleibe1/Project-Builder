@@ -851,12 +851,13 @@ h5 {
 
 button[data-mce-name="save"].tox-tbtn {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  translate: 0px -10px;
   transition: 0.25s;
   font-size: 0.875rem;
   color: white;
   background: #1976d2;
   font-size: 20px;
-  padding: 20px 20px;
+  padding: 19px 20px;
   border-radius: 6px;
 }
 
@@ -966,6 +967,11 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 
 .instruction-list-button.first-image {
   margin-top: 30px;
+}
+
+.instruction-list-buttons-container.edit-instructions-button-container{
+  position:sticky;
+  top: 50px;
 }
 
 .instruction-list-button.edit-instructions-button {

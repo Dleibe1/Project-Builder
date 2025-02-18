@@ -17,7 +17,8 @@ const Instructions = ({ project, setEditingInstructions }) => {
   return (
     <div className="instructions-and-images">
       <div className="instruction-text-container form-items-container">
-        <div className="instruction-list-buttons-container ">
+        <h2 id="form-instructions-heading">Instructions:</h2>
+        <div className="instruction-list-buttons-container edit-instructions-button-container">
           <Button
             className="large-button instruction-list-button edit-instructions-button"
             variant="contained"
@@ -26,7 +27,6 @@ const Instructions = ({ project, setEditingInstructions }) => {
             Edit Instructions
           </Button>
         </div>
-        <h2 id="form-instructions-heading">Instructions:</h2>
         <div
           className="preserve-white-space instruction-text"
           dangerouslySetInnerHTML={{
