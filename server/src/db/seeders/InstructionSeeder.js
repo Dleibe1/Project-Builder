@@ -1,5 +1,5 @@
 import { Instruction } from "../../models/index.js"
-import newInstructionsTableData from "../InstructionsSeederData/instructions.js"
+import newInstructionsTableData from "../InstructionsSeederData/instructionsMigrationService.js"
 
 class InstructionSeeder {
   static async seed() {

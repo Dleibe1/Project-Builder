@@ -1,5 +1,5 @@
-import React, { useEffect } from "react"
 import { Editor } from "@tinymce/tinymce-react"
+import React, { useEffect } from "react"
 
 const TinyMCE = ({ project, setProject, setEditingInstructions }) => {
   useEffect(() => {
@@ -39,14 +39,6 @@ const TinyMCE = ({ project, setProject, setEditingInstructions }) => {
 
   return (
     <div className="tinymce-container">
-      {/* <div className="save-instructions-button-container">
-        <Button
-          className="large-button instruction-list-button save-instructions-button"
-          variant="contained"
-        >
-          Save instructions
-        </Button>
-      </div> */}
       <Editor
         apiKey="u5yk5um3x19v3fpfdrr4x22dad2uxqsp3hn1olscskjmo84y"
         init={{

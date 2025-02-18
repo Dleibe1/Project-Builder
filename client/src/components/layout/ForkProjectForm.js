@@ -8,7 +8,7 @@ import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
-import Instructions from "./Instructions.js"
+import InstructionsList from "./InstructionsList.js"
 import AddTags from "./AddTags.js"
 
 const ForkProjectForm = (props) => {
@@ -244,7 +244,7 @@ const ForkProjectForm = (props) => {
             Add Part
           </Button>
         </div>
-        <Instructions project={project} setProject={setProject} />
+        <InstructionsList project={project} setProject={setProject} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">

@@ -8,7 +8,7 @@ import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
-import Instructions from "./Instructions.js"
+import InstructionsList from "./InstructionsList.js"
 import AddTags from "./AddTags.js"
 import TinyMCE from "./TinyMCE.js"
 
@@ -258,7 +258,7 @@ const EditBuildForm = (props) => {
               Add Part
             </Button>
           </div>
-          <Instructions
+          <InstructionsList
             project={project}
             setEditingInstructions={setEditingInstructions}
           />
