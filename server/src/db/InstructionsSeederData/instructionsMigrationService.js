@@ -962,7 +962,7 @@ oldInstructionsTableData.forEach((instruction) => {
 	if (instruction.instructionText) {
 		currentInstruction += `${instruction.instructionText}`
 	} else if (instruction.imageURL) {
-		currentInstruction += `<img src="${instruction.imageURL}"></img>`
+		currentInstruction += `<br><img src="${instruction.imageURL}"></img><br>`
 	}
 })
 
