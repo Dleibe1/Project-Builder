@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { TagProvider } from "../contexts/TagContext"
-import { EditingInstructionsProvider } from "../contexts/EditingInstructionsContext"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import { hot } from "react-hot-loader/root"
 
 import "../assets/scss/main.scss"
@@ -47,7 +46,6 @@ const App = (props) => {
       <Router>
         <TopBar projectsPerPage={projectsPerPage} user={currentUser} />
         <FilterByTag />
-
         <Route exact path={"/"}>
           <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
         </Route>
@@ -66,7 +64,6 @@ const App = (props) => {
         <Route exact path={"/search"}>
           <SearchList projectsPerPage={projectsPerPage} user={currentUser} />
         </Route>
-        <EditingInstructionsProvider>
           <Route exact path="/projects/:id">
             <ProjectShow user={currentUser} />
           </Route>
@@ -85,7 +82,6 @@ const App = (props) => {
           <Route exact path="/fork-project/:id">
             <ForkProjectForm user={currentUser} />
           </Route>
-        </EditingInstructionsProvider>
         <Route exact path="/404" component={NotFound404} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

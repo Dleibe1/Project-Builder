@@ -849,19 +849,27 @@ h5 {
   min-width: 100%;
 }
 
-.tinymce-container .save-instructions-button-container {
-  translate: -10px 50px;
-  display: flex;
-  justify-content: flex-end;
-  position: sticky;
-  z-index: 3;
-  top: 4px;
+button[data-mce-name="save"].tox-tbtn {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  transition: 0.25s;
+  font-size: 0.875rem;
+  color: white;
+  background: #1976d2;
+  font-size: 20px;
+  padding: 20px 20px;
+  border-radius: 6px;
 }
 
-.large-button.save-instruction {
-  position: absolute;
-  bottom: 3px;
-  z-index: 10;
+button[data-mce-name="save"].tox-tbtn:hover,
+button[data-mce-name="save"] .tox-tbtn__select-label:hover {
+  cursor: pointer;
+  color:white;
+  background: #1665c0;
+
+}
+
+button[data-mce-name="save"] .tox-tbtn__select-label {
+  font-weight: 500;
 }
 
 .tox.tox-tinymce {
@@ -879,6 +887,10 @@ h5 {
 
 .tox .tox-throbber__busy-spinner {
   display: none !important;
+}
+
+.tox .tox-toolbar__primary {
+  margin-top: 15px;
 }
 
 .form-items-container .large-button.change-thumbnail-image {
@@ -951,8 +963,15 @@ h5 {
 .large-button.instruction-list-button {
   margin: 5px 0px;
 }
+
 .instruction-list-button.first-image {
   margin-top: 30px;
+}
+
+.instruction-list-button.edit-instructions-button {
+  font-size: 25px;
+  height: 60px;
+  width: 300px;
 }
 
 #code-input {

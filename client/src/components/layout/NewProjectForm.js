@@ -8,7 +8,7 @@ import Send from "@mui/icons-material/Send"
 import Textarea from "@mui/joy/Textarea"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
-import InstructionsSubForm from "./InstructionsSubForm.js"
+import Instructions from "./Instructions.js"
 import AddTags from "./AddTags.js"
 
 const NewProjectForm = (props) => {
@@ -233,7 +233,7 @@ const NewProjectForm = (props) => {
             Add Part
           </Button>
         </div>
-        <InstructionsSubForm project={project} setProject={setProject} />
+        <Instructions project={project} setProject={setProject} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
