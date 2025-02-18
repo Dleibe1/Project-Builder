@@ -242,7 +242,7 @@ const NewProjectForm = (props) => {
               variant="contained"
               onClick={() => setEditingInstructions(true)}
             >
-              Add Instructions
+             {project.instructions[0].instructionText.length ? "Edit Instructions" : "Add Instructions" }
             </Button>
           </div>
           <div className="form-items-container top-sectinon">
