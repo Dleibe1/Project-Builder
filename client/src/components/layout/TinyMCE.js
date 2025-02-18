@@ -43,7 +43,7 @@ const TinyMCE = ({ project, setProject, setEditingInstructions }) => {
         apiKey="u5yk5um3x19v3fpfdrr4x22dad2uxqsp3hn1olscskjmo84y"
         init={{
           min_height: 1000,
-          content_style: "img { width:50%; height: auto; } ",
+          content_style: "img { max-width:50%; height: auto; } ",
           init_instance_callback: (editor) => {
             editor.focus(); // This sets the focus to the editor on load
           },
