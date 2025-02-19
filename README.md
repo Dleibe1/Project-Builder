@@ -33,7 +33,7 @@ When users visit your project's page on this app, the code section is automatica
 - OAuth 2.0 (login with GitHub)
 - GitHub API
 - Material UI
-- TinyMCE
+- InstructionsSubForm
 - AWS S3 Bucket
 - Cypress.js (Tests suite is a work in progress)
 
@@ -70,6 +70,8 @@ When users visit your project's page on this app, the code section is automatica
                            If hosting this app on the web, be sure to replace http://localhost:3000 with the
                            base URL of your hosting site if you're not running the project locally. 
                            For example: "https://project-builder-e7439342976b.herokuapp.com"
+
+   REACT_APP_TINYMCE_API_KEY This is necessary for the TinyMCE editor [instructionsSubForm.js](client/src/components/layout/InstructionsSubForm.js) to work properly
    ```
 
  `.env`:
@@ -83,6 +85,7 @@ When users visit your project's page on this app, the code section is automatica
    S3_BUCKET_PRODUCTION="your-AWS-S3-bucket"
    S3_BUCKET_DEVELOPMENT="your-AWS-S3-bucket"
    BASE_URL="http://localhost:3000"
+   REACT_APP_TINYMCE_API_KEY="your-tinymce-api-key"
    ```
 
 3. If running the project locally, go to [getDatabaseUrl.cjs"](client/config/getDatabaseUrl.cjs) 

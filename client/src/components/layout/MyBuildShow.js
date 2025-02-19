@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import DeleteBuildButton from "./DeleteBuildButton"
 import EditBuildButton from "./EditBuildButton"
 import TagList from "./TagList"
 //TODO: remove all "prepForFrontEnd" and replace with functional state update as done in ForkedProjectForm
-import DOMPurify from "dompurify"
+import InstructionsList from "./InstructionsList"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -73,23 +73,6 @@ const MyBuildShow = (props) => {
     return <p>{part.partName}</p>
   })
 
-  const instructionList = myBuild.instructions.map((instruction) => {
-    if (instruction.imageURL) {
-      return (
-        <div className="showpage-items-container">
-          <img className="project-image" src={`${instruction.imageURL}`} />
-        </div>
-      )
-    } else if (instruction.instructionText) {
-      return (
-        <div
-          className="preserve-white-space instruction-text showpage-items-container"
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instruction.instructionText) }}
-        ></div>
-      )
-    }
-  })
-
   return (
     <div className="project-show">
       <div className="edit-delete-build-button-container">
@@ -130,7 +113,7 @@ const MyBuildShow = (props) => {
       </div>
       <div>
         <h2 className="instructions-heading">Instructions</h2>
-        {instructionList}
+        <InstructionsList project={myBuild} />
       </div>
       <div>
         <div className="showpage-items-container">

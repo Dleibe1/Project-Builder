@@ -669,6 +669,10 @@ h5 {
   background-color: #ecf1f1;
 }
 
+.instructions-list img {
+  width: 100%;
+}
+
 .project-image {
   width: 100%;
   height: auto;
@@ -833,14 +837,45 @@ h5 {
   align-items: center;
 }
 
+.instruction-text-container .instruction-text h2 {
+  font-size: 3rem;
+}
+
+.instruction-text-container .instruction-text h1 {
+  border-bottom: none;
+}
+
+.instruction-text-container .instruction-text img {
+  width: 100%;
+}
+
 .tinymce-container {
   min-width: 100%;
 }
 
-.large-button.save-instruction {
-  position: absolute;
-  bottom: 3px;
-  z-index: 10;
+//Custom save instructions button in TinyMCE
+button[data-mce-name="save"].tox-tbtn {
+  margin-right: 20px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  translate: 0px -10px;
+  transition: 0.25s;
+  font-size: 0.875rem;
+  color: white;
+  background: #1976d2;
+  font-size: 20px;
+  padding: 19px 20px;
+  border-radius: 6px;
+}
+
+button[data-mce-name="save"].tox-tbtn:hover,
+button[data-mce-name="save"] .tox-tbtn__select-label:hover {
+  cursor: pointer;
+  color: white;
+  background: #1665c0;
+}
+
+button[data-mce-name="save"] .tox-tbtn__select-label {
+  font-weight: 500;
 }
 
 .tox.tox-tinymce {
@@ -858,6 +893,10 @@ h5 {
 
 .tox .tox-throbber__busy-spinner {
   display: none !important;
+}
+
+.tox .tox-toolbar__primary {
+  margin-top: 15px;
 }
 
 .form-items-container .large-button.change-thumbnail-image {
@@ -879,6 +918,11 @@ h5 {
 
 .instructions-and-images {
   width: 100%;
+}
+
+.instruction-text img {
+  padding: 5%;
+  border-radius: 4px;
 }
 
 .form-items-container.top-section {
@@ -930,8 +974,28 @@ h5 {
 .large-button.instruction-list-button {
   margin: 5px 0px;
 }
+
 .instruction-list-button.first-image {
   margin-top: 30px;
+}
+
+.instruction-list-buttons-container.edit-instructions-button-container {
+  display: flex;
+  justify-content: flex-start;
+  position: sticky;
+  top: -20px;
+  z-index: 1;
+  translate: 0px 80px;
+}
+
+.instruction-list-button.edit-instructions-button {
+  margin-left: 10px;
+  font-size: 17px;
+  height: 45px;
+}
+
+.instruction-text img {
+  width: 100%;
 }
 
 #code-input {
@@ -951,7 +1015,6 @@ h5 {
 
 #part-input-container {
   width: 100%;
-  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: baseline;

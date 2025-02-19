@@ -84,7 +84,7 @@ const TopBar = ({ user, projectsPerPage }) => {
   const avatarJustALetter = [<Avatar alt={loggedInUserName}>{avatarLetter}</Avatar>]
 
   return (
-    <AppBar position="fixed">
+    <AppBar id="app-bar" position="fixed">
       <Container maxWidth="xl">
         <Toolbar id="top-bar-items" disableGutters>
           <div className="top-left-app-bar">

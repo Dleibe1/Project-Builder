@@ -8,12 +8,13 @@ class Project extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["title", "description", "userId", "thumbnailImage"],
+      required: ["title", "description", "userId", "thumbnailImage", "instructions"],
       properties: {
         userId: { type: "integer" },
         title: { type: "string", maxLength: 70 },
         appsAndPlatforms: { oneOf: [{ type: "string" }, { type: "null" }] },
         thumbnailImage: { type: "string" },
+        instructions: { type: "string" },
         documentation: {
           oneOf: [{ type: "string" }, { type: "null" }],
         },
@@ -30,7 +31,7 @@ class Project extends Model {
   }
 
   static get relationMappings() {
-    const { User, Part, Instruction, Tag } = require("./index.js")
+    const { User, Part, Tag } = require("./index.js")
     return {
       user: {
         relation: Model.HasOneRelation,
@@ -54,14 +55,6 @@ class Project extends Model {
         join: {
           from: "projects.id",
           to: "parts.projectId",
-        },
-      },
-      instructions: {
-        relation: Model.HasManyRelation,
-        modelClass: Instruction,
-        join: {
-          from: "projects.id",
-          to: "instructions.projectId",
         },
       },
       tags: {

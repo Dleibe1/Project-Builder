@@ -1,5 +1,5 @@
 import express from "express"
-import { Project, Part, Instruction } from "../../../models/index.js"
+import { Project, Part } from "../../../models/index.js"
 import ProjectSerializer from "../../../Serializers/ProjectSerializer.js"
 import objection from "objection"
 import handleNewProject from "../../../services/handleNewProject.js"
@@ -74,7 +74,6 @@ projectsRouter.delete("/:id", async (req, res) => {
           return Project.query().patch({ parentProjectId: null }).where("id", parseInt(fork.id))
         }),
         Part.query().delete().where("projectId", projectId),
-        Instruction.query().delete().where("projectId", projectId),
         Project.query().deleteById(projectId),
       ])
       return res.status(200).json({})
