@@ -76,7 +76,7 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
           },
           images_upload_handler: handleImageUpload,
           selector: "textarea",
-          min_height: 800,
+          min_height: 900,
         }}
         value={project?.instructions}
         onEditorChange={(newValue, editor) => handleEditorChange(newValue, editor)}
