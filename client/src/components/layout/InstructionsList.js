@@ -13,14 +13,14 @@ const InstructionsList = ({ project }) => {
     hljs.highlightAll()
   }, [project.instructions])
 
-    return (
-      <div
-        className="instructions-list preserve-white-space instruction-text showpage-items-container"
-        dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(project.instructions),
-        }}
-      ></div>
-    )
+  return (
+    <div
+      className="instructions-list preserve-white-space instruction-text showpage-items-container"
+      dangerouslySetInnerHTML={{
+        __html: DOMPurify.sanitize(project.instructions),
+      }}
+    ></div>
+  )
 }
 
 export default InstructionsList
