@@ -37,15 +37,14 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
     }
   }
 
+
   return (
     <div className="tinymce-container">
       <Editor
         apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
         init={{
-          content_style: "img { max-width:50%; height: auto; } ",
-          init_instance_callback: (editor) => {
-            editor.focus() // This sets the focus to the editor on load
-          },
+          content_style: `
+            img { max-width:50%; height: auto; } `,
           plugins: [
             "autoresize",
             "anchor",
@@ -77,7 +76,7 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
           },
           images_upload_handler: handleImageUpload,
           selector: "textarea",
-          height: 1000,
+          min_height: 800,
         }}
         value={project?.instructions}
         onEditorChange={(newValue, editor) => handleEditorChange(newValue, editor)}
