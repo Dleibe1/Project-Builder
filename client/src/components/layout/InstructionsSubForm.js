@@ -36,7 +36,7 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
       failure(`Image upload failed: ${error.message}`)
     }
   }
-
+console.log(process.env.REACT_APP_TINYMCE_API_KEY)
   return (
     <div className="tinymce-container">
       <Editor

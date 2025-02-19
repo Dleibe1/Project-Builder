@@ -70,6 +70,8 @@ When users visit your project's page on this app, the code section is automatica
                            If hosting this app on the web, be sure to replace http://localhost:3000 with the
                            base URL of your hosting site if you're not running the project locally. 
                            For example: "https://project-builder-e7439342976b.herokuapp.com"
+
+   REACT_APP_TINYMCE_API_KEY This is necessary for the TinyMCE editor [instructionsSubForm.js](client/src/components/layout/InstructionsSubForm.js) to work properly
    ```
 
  `.env`:
@@ -83,33 +85,27 @@ When users visit your project's page on this app, the code section is automatica
    S3_BUCKET_PRODUCTION="your-AWS-S3-bucket"
    S3_BUCKET_DEVELOPMENT="your-AWS-S3-bucket"
    BASE_URL="http://localhost:3000"
+   REACT_APP_TINYMCE_API_KEY="your-tinymce-api-key"
    ```
 
-3. In the root of the client folder, create a `.env` file to hold the environment variables listed below:
-
-`.env.`:
-```env
-REACT_APP_TINYMCE_API_KEY="your-tinymce-api-key"
-```
-
-4. If running the project locally, go to [getDatabaseUrl.cjs"](client/config/getDatabaseUrl.cjs) 
+3. If running the project locally, go to [getDatabaseUrl.cjs"](client/config/getDatabaseUrl.cjs) 
    and make sure the database URL is the same as your PostgresSQL database.
 
 
-5. Create the base PostgreSQL database, project-builder_development
+4. Create the base PostgreSQL database, project-builder_development
 
    ```sh
    createdb project-builder_development
    ```
 
-6. Run the included table migrations:
+5. Run the included table migrations:
 
    ```sh
    cd server
    yarn migrate:latest
    ```
 
-7. Run the seeder file to populate the app with example data:
+6. Run the seeder file to populate the app with example data:
 
    ```sh
    cd server
@@ -117,7 +113,7 @@ REACT_APP_TINYMCE_API_KEY="your-tinymce-api-key"
    
    ```
 
-8. Start up the application, from the root folder:
+7. Start up the application, from the root folder:
 
    ```sh
    cd .. # if in the server folder
@@ -125,9 +121,9 @@ REACT_APP_TINYMCE_API_KEY="your-tinymce-api-key"
    yarn run dev
    ```
 
-9. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
+8. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
 
-10. A user has been seeded for use on the site.
+9. A user has been seeded for use on the site.
 
 ```
 Username: example@example.com
