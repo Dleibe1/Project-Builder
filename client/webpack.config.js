@@ -4,11 +4,17 @@ const dotenv = require('dotenv');
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const env = dotenv.config().parsed || {};
+
+
+const dotenvConfig = dotenv.config().parsed || {};
+const env = { ...dotenvConfig, ...process.env };
+
 const envKeys = Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next]);
   return prev;
 }, {});
+
+
 const isDevelopment = ["development", "test", "e2e"].includes(
   process.env.NODE_ENV || "development"
 );
