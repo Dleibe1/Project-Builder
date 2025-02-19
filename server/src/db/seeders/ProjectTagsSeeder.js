@@ -37,6 +37,8 @@ class ProjectTagsSeeder {
       { projectId: 8, tagId: 35 },
       { projectId: 8, tagId: 13 },
 
+      { projectId: 10, tagId: 4 },
+
       { projectId: 11, tagId: 22 },
       { projectId: 11, tagId: 13 },
       { projectId: 11, tagId: 6 },
