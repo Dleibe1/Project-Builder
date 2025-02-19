@@ -36,7 +36,7 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
       failure(`Image upload failed: ${error.message}`)
     }
   }
-console.log(process.env.REACT_APP_TINYMCE_API_KEY)
+
   return (
     <div className="tinymce-container">
       <Editor
@@ -44,7 +44,7 @@ console.log(process.env.REACT_APP_TINYMCE_API_KEY)
         init={{
           content_style: "img { max-width:50%; height: auto; } ",
           init_instance_callback: (editor) => {
-            editor.focus(); // This sets the focus to the editor on load
+            editor.focus() // This sets the focus to the editor on load
           },
           plugins: [
             "autoresize",
