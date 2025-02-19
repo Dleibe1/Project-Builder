@@ -1,9 +1,14 @@
 const path = require("path");
 const webpack = require("webpack");
+const dotenv = require('dotenv');
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const env = dotenv.config().parsed || {};
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
 const isDevelopment = ["development", "test", "e2e"].includes(
   process.env.NODE_ENV || "development"
 );
@@ -23,6 +28,10 @@ module.exports = {
   devtool: isDevelopment ? "source-map" : false,
   mode: isDevelopment ? "development" : "production",
   plugins: [
+    new webpack.DefinePlugin(envKeys),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: isDevelopment ? "[name].css" : "[name].[hash].css",
@@ -95,7 +104,10 @@ module.exports = {
       "@Components": path.resolve(__dirname, "src/components/"),
       "@Providers": path.resolve(__dirname, "src/providers/")
     },
-    extensions: ["*", ".js", ".scss", ".css"]
+    extensions: ["*", ".js", ".scss", ".css"],
+    fallback: {
+      process: require.resolve('process/browser'),
+    },
   },
   output: {
     path: path.resolve(__dirname, "../server/public/dist"),

@@ -1,7 +1,7 @@
 import { Editor } from "@tinymce/tinymce-react"
 import React, { useEffect } from "react"
 
-const TinyMCE = ({ project, setProject, setEditingInstructions }) => {
+const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) => {
   useEffect(() => {
     const appBar = document.getElementById("app-bar")
     appBar.style.display = "none"
@@ -40,7 +40,7 @@ const TinyMCE = ({ project, setProject, setEditingInstructions }) => {
   return (
     <div className="tinymce-container">
       <Editor
-        apiKey="u5yk5um3x19v3fpfdrr4x22dad2uxqsp3hn1olscskjmo84y"
+        apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
         init={{
           content_style: "img { max-width:50%; height: auto; } ",
           init_instance_callback: (editor) => {
@@ -66,7 +66,6 @@ const TinyMCE = ({ project, setProject, setEditingInstructions }) => {
             "save undo redo | blocks | bold italic underline strikethrough | codesample link image table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
           toolbar_sticky: true,
           selector: "textarea",
-          
           setup: (editor) => {
             editor.on("PreInit", () => {
               editor.ui.registry.addButton("save", {
@@ -87,4 +86,4 @@ const TinyMCE = ({ project, setProject, setEditingInstructions }) => {
   )
 }
 
-export default TinyMCE
+export default InstructionsSubForm

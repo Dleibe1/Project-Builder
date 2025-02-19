@@ -33,7 +33,7 @@ When users visit your project's page on this app, the code section is automatica
 - OAuth 2.0 (login with GitHub)
 - GitHub API
 - Material UI
-- TinyMCE
+- InstructionsSubForm
 - AWS S3 Bucket
 - Cypress.js (Tests suite is a work in progress)
 
@@ -85,24 +85,31 @@ When users visit your project's page on this app, the code section is automatica
    BASE_URL="http://localhost:3000"
    ```
 
-3. If running the project locally, go to [getDatabaseUrl.cjs"](client/config/getDatabaseUrl.cjs) 
+3. In the root of the client folder, create a `.env` file to hold the environment variables listed below:
+
+`.env.`:
+```env
+REACT_APP_TINYMCE_API_KEY="your-tinymce-api-key"
+```
+
+4. If running the project locally, go to [getDatabaseUrl.cjs"](client/config/getDatabaseUrl.cjs) 
    and make sure the database URL is the same as your PostgresSQL database.
 
 
-4. Create the base PostgreSQL database, project-builder_development
+5. Create the base PostgreSQL database, project-builder_development
 
    ```sh
    createdb project-builder_development
    ```
 
-5. Run the included table migrations:
+6. Run the included table migrations:
 
    ```sh
    cd server
    yarn migrate:latest
    ```
 
-6. Run the seeder file to populate the app with example data:
+7. Run the seeder file to populate the app with example data:
 
    ```sh
    cd server
@@ -110,7 +117,7 @@ When users visit your project's page on this app, the code section is automatica
    
    ```
 
-7. Start up the application, from the root folder:
+8. Start up the application, from the root folder:
 
    ```sh
    cd .. # if in the server folder
@@ -118,9 +125,9 @@ When users visit your project's page on this app, the code section is automatica
    yarn run dev
    ```
 
-8. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
+9. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
 
-9. A user has been seeded for use on the site.
+10. A user has been seeded for use on the site.
 
 ```
 Username: example@example.com

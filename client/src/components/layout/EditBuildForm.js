@@ -10,7 +10,7 @@ import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import InstructionsList from "./InstructionsList.js"
 import AddTags from "./AddTags.js"
-import TinyMCE from "./TinyMCE.js"
+import InstructionsSubForm from "./InstructionsSubForm.js"
 
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -317,7 +317,7 @@ const EditBuildForm = (props) => {
     )
   } else {
     return (
-      <TinyMCE
+      <InstructionsSubForm
         project={project}
         setProject={setProject}
         setEditingInstructions={setEditingInstructions}
