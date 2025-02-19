@@ -1,6 +1,5 @@
 import { User } from "../models/index.js"
 import PartsSerializer from "./PartsSerializer.js"
-import InstructionSerializer from "./InstructionSerializer.js"
 import TagSerializer from "./TagSerializer.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
@@ -42,17 +41,17 @@ class ProjectSerializer {
       "code",
       "githubFileURL",
       "thumbnailImage",
+      "instructions",
       "parentProjectId",
     ]
     let serializedProject = {}
     for (const attribute of allowedAttributes) {
       serializedProject[attribute] = project[attribute]
     }
-    const [relatedUserData, relatedPartsData, relatedInstructionsData, relatedTagsData] =
+    const [relatedUserData, relatedPartsData, relatedTagsData] =
       await Promise.all([
         User.query().findOne({ id: project.userId }),
         project.$relatedQuery("parts"),
-        project.$relatedQuery("instructions"),
         project.$relatedQuery("tags"),
       ])
     const userName = relatedUserData.userName || relatedUserData.githubUserName
@@ -61,10 +60,6 @@ class ProjectSerializer {
       return PartsSerializer.getPartDetails(part)
     })
     serializedProject.parts = serializedParts
-    const serializedInstructions = relatedInstructionsData.map((instruction) => {
-      return InstructionSerializer.getInstructionDetails(instruction)
-    })
-    serializedProject.instructions = serializedInstructions
     const serializedTagsData = relatedTagsData.map((tag) => {
       return TagSerializer.getTagDetails(tag)
     })

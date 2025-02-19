@@ -1,4 +1,4 @@
-import { Project, Part, Instruction, Tag } from "../models/index.js"
+import { Project, Part, Tag } from "../models/index.js"
 
 const handleForkProject = async (parentProjectId, userId, forkData) => {
   const originalProject = await Project.query().findById(parentProjectId)
@@ -16,10 +16,10 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
     description: forkData.description,
     documentation: forkData.documentation,
     code: forkData.code,
+    instructions: forkData.instructions,
     parentProjectId,
   })
   const parts = forkData.parts
-  const instructions = forkData.instructions
   const forkedProjectId = parseInt(forkedProject.id)
 
   await Promise.all(
@@ -28,13 +28,6 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
     }),
   )
 
-  for (const instruction of instructions) {
-    await Instruction.query().insert({
-      projectId: forkedProjectId,
-      instructionText: instruction.instructionText,
-      imageURL: instruction.imageURL,
-    })
-  }
   const tagsToRelate = await Tag.query()
     .select("id")
     .whereIn(

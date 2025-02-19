@@ -1,4 +1,4 @@
-import { Project, Part, Instruction, Tag } from "../models/index.js"
+import { Project, Part, Tag } from "../models/index.js"
 import GithubClient from "../apiClient/GithubClient.js"
 
 const handleNewProject = async ({
@@ -21,6 +21,7 @@ const handleNewProject = async ({
     code: projectCode,
     userId,
     thumbnailImage,
+    instructions
   })
   const newProjectId = parseInt(newProject.id)
   await Promise.all(
@@ -28,13 +29,7 @@ const handleNewProject = async ({
       return Part.query().insert({ projectId: newProjectId, partName: part.partName })
     }),
   )
-  for (const instruction of instructions) {
-    await Instruction.query().insert({
-      projectId: newProjectId,
-      instructionText: instruction.instructionText,
-      imageURL: instruction.imageURL,
-    })
-  }
+
   const tagsToRelate = await Tag.query()
     .select("id")
     .whereIn(

@@ -17,7 +17,7 @@ const InstructionsList = ({ project }) => {
       <div
         className="instructions-list preserve-white-space instruction-text showpage-items-container"
         dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(project.instructions[0].instructionText),
+          __html: DOMPurify.sanitize(project.instructions),
         }}
       ></div>
     )

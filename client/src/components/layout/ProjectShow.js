@@ -3,7 +3,7 @@ import { useParams, Redirect } from "react-router-dom"
 import ForkProjectButton from "./ForkProjectButton.js"
 import ProjectForksButton from "./ProjectForksButton.js"
 import TagList from "./TagList.js"
-import DOMPurify from "dompurify"
+import InstructionsList from "./InstructionsList.js"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
@@ -103,22 +103,6 @@ const ProjectShow = (props) => {
   const partsList = project.parts.map((part) => {
     return <p>{part.partName}</p>
   })
-  const instructionList = project.instructions.map((instruction) => {
-    if (instruction.imageURL) {
-      return (
-        <div className="showpage-items-container">
-          <img className="project-image" src={`${instruction.imageURL}`} />
-        </div>
-      )
-    } else if (instruction.instructionText) {
-      return (
-        <div
-          className="preserve-white-space instruction-text showpage-items-container"
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instruction.instructionText) }}
-        ></div>
-      )
-    }
-  })
 
   return (
     <div className="project-show">
@@ -157,7 +141,7 @@ const ProjectShow = (props) => {
         </section>
       </div>
       <h2 className="instructions-heading">Instructions</h2>
-      {instructionList}
+      <InstructionsList project={project} />
       <div>
         <section className="showpage-items-container">
           {codeMessage}
