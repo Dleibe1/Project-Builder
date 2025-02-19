@@ -11,8 +11,8 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
   }, [])
 
   const handleEditorChange = (newValue, editor) => {
-    const instructions = [...project.instructions]
-    instructions[0].instructionText = newValue
+    let instructions = project.instructions
+    instructions = newValue
     setProject((prevState) => ({
       ...prevState,
       instructions: instructions,
@@ -65,7 +65,6 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
           toolbar:
             "save undo redo | blocks | bold italic underline strikethrough | codesample link image table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
           toolbar_sticky: true,
-          selector: "textarea",
           setup: (editor) => {
             editor.on("PreInit", () => {
               editor.ui.registry.addButton("save", {
@@ -77,9 +76,10 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
             })
           },
           images_upload_handler: handleImageUpload,
-          height: 300,
+          selector: "textarea",
+          height: 1000,
         }}
-        value={project?.instructions[0].instructionText}
+        value={project?.instructions}
         onEditorChange={(newValue, editor) => handleEditorChange(newValue, editor)}
       />
     </div>

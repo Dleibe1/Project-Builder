@@ -23,7 +23,7 @@ const EditBuildForm = (props) => {
     title: "",
     tags: [],
     appsAndPlatforms: "",
-    instructions: [{ instructionText: "" }],
+    instructions: "",
     parts: [],
     description: "",
     code: "",
@@ -270,7 +270,7 @@ const EditBuildForm = (props) => {
           <div className="form-items-container top-sectinon">
             <h2 id="form-instructions-heading">Instructions:</h2>
           </div>
-          <InstructionsList editingInstructions={editingInstructions} project={project} />
+          <InstructionsList project={project} />
           <div className="form-items-container">
             <h2 className="code-heading">Code:</h2>
             <label htmlFor="code" className="form-input" id="code-input">

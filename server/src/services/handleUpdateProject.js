@@ -1,4 +1,4 @@
-import { Project, Part, Instruction, Tag } from "../models/index.js"
+import { Project, Part, Tag } from "../models/index.js"
 
 const handleUpdateProject = async (
   {
@@ -16,14 +16,7 @@ const handleUpdateProject = async (
   projectId,
 ) => {
   const projId = parseInt(projectId)
-  await Instruction.query().delete().where("projectId", projId)
-  for (const instruction of instructions) {
-    await Instruction.query().insert({
-      projectId: projId,
-      instructionText: instruction.instructionText,
-      imageURL: instruction.imageURL,
-    })
-  }
+
   const githubFileURLField = githubFileURL ? githubFileURL.trim() : ""
   const project = await Project.query().findOne({ id: projId })
   const partsToInsert = parts.filter((part) => !part.id)
@@ -84,6 +77,7 @@ const handleUpdateProject = async (
       githubFileURL: githubFileURLField,
       thumbnailImage,
       userId,
+      instructions
     })
     .where("id", projId)
 }
