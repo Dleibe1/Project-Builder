@@ -1,6 +1,6 @@
 import { Editor } from "@tinymce/tinymce-react"
 import React, { useEffect, useRef } from "react"
-import TurnDownService from "turndown"
+import { downloadHtmlAsMarkdown } from "../../services/markdownService"
 
 const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) => {
   const editorRef = useRef(null)
@@ -39,26 +39,6 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
     } catch (error) {
       failure(`Image upload failed: ${error.message}`)
     }
-  }
-
-  const handleDownload = () => {
-    // Replace this with your rich text in Markdown format
-    const turnDownService = new TurnDownService()
-    const markdownContent = turnDownService.turndown(project.instructions)
-    // Create a Blob with the Markdown content
-    const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" })
-    const url = URL.createObjectURL(blob)
-
-    // Create a temporary anchor element and trigger a download
-    const link = document.createElement("a")
-    link.href = url
-    link.download = "instructions.md" // The name of the downloaded file
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-
-    // Clean up the object URL
-    URL.revokeObjectURL(url)
   }
 
   return (
@@ -101,8 +81,7 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
             editor.ui.registry.addButton("download-as-markdown", {
               text: "Download Markdown",
               onAction: () => {
-                handleDownload()
-                // Add your custom action code here
+                downloadHtmlAsMarkdown(project.instructions)
               },
             })
             editor.on("keydown", (event) => {

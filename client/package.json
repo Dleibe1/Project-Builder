@@ -52,6 +52,7 @@
     "redbox-react": "~1.6",
     "sass": "^1.22.10",
     "sass-loader": "^7.0.2",
+    "showdown": "^2.1.0",
     "style-loader": "^1.2.1",
     "turndown": "^7.2.0",
     "webpack": "^5.3.2",

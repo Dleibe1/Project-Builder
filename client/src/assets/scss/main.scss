@@ -673,6 +673,11 @@ h5 {
   width: 100%;
 }
 
+.instructions-list.showpage-items-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .project-image {
   width: 100%;
   height: auto;
@@ -880,7 +885,7 @@ button[data-mce-name="download-as-markdown"].tox-tbtn {
 button[data-mce-name="save"].tox-tbtn:hover,
 button[data-mce-name="save"] .tox-tbtn__select-label:hover,
 button[data-mce-name="download-as-markdown"].tox-tbtn:hover,
-button[data-mce-name="download-as-markdown"] .tox-tbtn__select-label:hover  {
+button[data-mce-name="download-as-markdown"] .tox-tbtn__select-label:hover {
   cursor: pointer;
   color: white;
   background: #1665c0;
@@ -943,6 +948,11 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   align-items: center;
 }
 
+.instruction-list .instructions-top-section {
+  display: flex;
+  flex-direction: column;
+}
+
 .instruction-text-container.form-items-container .large-button.delete-instruction {
   width: max-content;
 }
@@ -985,29 +995,29 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 
 .large-button.instruction-list-button {
   margin: 5px 0px;
+  width: fit-content;
+}
+
+.large-button.download-markdown-button {
+  margin: 0px;
+  font-size: 17px;
+  height: 45px;
+  align-self: end;
 }
 
 .instruction-list-button.first-image {
   margin-top: 30px;
 }
 
-.instruction-list-buttons-container.edit-instructions-button-container {
-  display: flex;
-  justify-content: flex-start;
-  position: sticky;
-  top: -20px;
-  z-index: 1;
-  translate: 0px 80px;
-}
-
-.instruction-list-buttons-container.edit-instructions-button-container.not-sticky {
-
-}
-
-.instruction-list-button.edit-instructions-button {
+.large-button.edit-instructions-button {
   margin-left: 10px;
   font-size: 17px;
   height: 45px;
+  z-index: 1;
+  position: sticky;
+  top: 20px;
+  translate: 0px 60px;
+  align-self: flex-start;
 }
 
 .instruction-text img {
