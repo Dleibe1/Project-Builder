@@ -1,31 +1,27 @@
-const path = require("path");
-const webpack = require("webpack");
-const dotenv = require('dotenv');
+const path = require("path")
+const webpack = require("webpack")
+const dotenv = require("dotenv")
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
-
-const dotenvConfig = dotenv.config().parsed || {};
-const env = { ...dotenvConfig, ...process.env };
+const dotenvConfig = dotenv.config().parsed || {}
+const env = { ...dotenvConfig, ...process.env }
 
 const envKeys = Object.keys(env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next]);
-  return prev;
-}, {});
+  prev[`process.env.${next}`] = JSON.stringify(env[next])
+  return prev
+}, {})
 
+const isDevelopment = ["development", "test", "e2e"].includes(process.env.NODE_ENV || "development")
 
-const isDevelopment = ["development", "test", "e2e"].includes(
-  process.env.NODE_ENV || "development"
-);
+const initialEntryPoints = isDevelopment ? ["webpack-hot-middleware/client?reload=true"] : []
 
-const initialEntryPoints = isDevelopment ? ["webpack-hot-middleware/client?reload=true"] : [];
-
-let reactDomAlias = {};
+let reactDomAlias = {}
 if (isDevelopment) {
   reactDomAlias = {
-    "react-dom": "@hot-loader/react-dom"
-  };
+    "react-dom": "@hot-loader/react-dom",
+  }
 }
 
 module.exports = {
@@ -36,17 +32,17 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin(envKeys),
     new webpack.ProvidePlugin({
-      process: 'process/browser',
+      process: "process/browser",
     }),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: isDevelopment ? "[name].css" : "[name].[hash].css",
-      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
+      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css",
     }),
     new HtmlWebpackPlugin({
       title: "Engage",
-      template: path.join(__dirname, "public/index.template.html")
-    })
+      template: path.join(__dirname, "public/index.template.html"),
+    }),
   ],
   module: {
     rules: [
@@ -54,11 +50,11 @@ module.exports = {
         test: /\.(js)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
-        options: { presets: ["@babel/env"], cwd: path.resolve(__dirname) }
+        options: { presets: ["@babel/env"], cwd: path.resolve(__dirname) },
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        loader: "file-loader"
+        loader: "file-loader",
       },
       {
         test: /\.module\.s(a|c)ss$/,
@@ -70,16 +66,16 @@ module.exports = {
               modules: true,
               sourceMap: isDevelopment,
               esModule: true,
-              hmr: isDevelopment
-            }
+              hmr: isDevelopment,
+            },
           },
           {
             loader: "sass-loader",
             options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
+              sourceMap: isDevelopment,
+            },
+          },
+        ],
       },
       {
         test: /\.s(a|c)ss$/,
@@ -90,35 +86,32 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
+              sourceMap: isDevelopment,
+            },
+          },
+        ],
       },
       {
         test: /\.css$/i,
-        use: [
-          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader"
-        ]
-      }
-    ]
+        use: [isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
   },
   resolve: {
     alias: {
       ...reactDomAlias,
       "@Components": path.resolve(__dirname, "src/components/"),
-      "@Providers": path.resolve(__dirname, "src/providers/")
+      "@Providers": path.resolve(__dirname, "src/providers/"),
     },
     extensions: ["*", ".js", ".scss", ".css"],
     fallback: {
-      process: require.resolve('process/browser'),
+      process: require.resolve("process/browser"),
     },
   },
   output: {
     path: path.resolve(__dirname, "../server/public/dist"),
     publicPath: "/dist/",
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   devServer: {
     contentBase: path.join(__dirname, "public/"),
@@ -129,8 +122,8 @@ module.exports = {
     proxy: [
       {
         context: ["/auth", "/api"],
-        target: "http://localhost:4000"
-      }
-    ]
-  }
-};
+        target: "http://localhost:4000",
+      },
+    ],
+  },
+}

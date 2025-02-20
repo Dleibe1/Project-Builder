@@ -1,12 +1,16 @@
 import { Editor } from "@tinymce/tinymce-react"
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
+import TurnDownService from "turndown"
 
 const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) => {
+  const editorRef = useRef(null)
   useEffect(() => {
     const appBar = document.getElementById("app-bar")
     appBar.style.display = "none"
+    document.body.classList.remove("grey-background")
     return () => {
       appBar.style.display = "flex"
+      document.body.classList.add("grey-background")
     }
   }, [])
 
@@ -37,14 +41,35 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
     }
   }
 
+  const handleDownload = () => {
+    // Replace this with your rich text in Markdown format
+    const turnDownService = new TurnDownService()
+    const markdownContent = turnDownService.turndown(project.instructions)
+    // Create a Blob with the Markdown content
+    const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" })
+    const url = URL.createObjectURL(blob)
+
+    // Create a temporary anchor element and trigger a download
+    const link = document.createElement("a")
+    link.href = url
+    link.download = "instructions.md" // The name of the downloaded file
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+
+    // Clean up the object URL
+    URL.revokeObjectURL(url)
+  }
 
   return (
     <div className="tinymce-container">
       <Editor
+        ref={editorRef}
         apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
         init={{
           content_style: `
-            img { max-width:50%; height: auto; } `,
+            img { max-width: 50%; height: auto; padding-top: 40px; padding-bottom: 40px; } 
+            p {font-size: 1.5rem;}`,
           plugins: [
             "autoresize",
             "anchor",
@@ -62,7 +87,7 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
             "wordcount",
           ],
           toolbar:
-            "save undo redo | blocks | bold italic underline strikethrough | codesample link image table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+            "save download-as-markdown undo redo | blocks codesample link image | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
           toolbar_sticky: true,
           setup: (editor) => {
             editor.on("PreInit", () => {
@@ -73,10 +98,24 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
                 },
               })
             })
+            editor.ui.registry.addButton("download-as-markdown", {
+              text: "Download Markdown",
+              onAction: () => {
+                handleDownload()
+                // Add your custom action code here
+              },
+            })
+            editor.on("keydown", (event) => {
+              if (event.key === "Tab") {
+                event.preventDefault()
+                editor.execCommand("mceInsertContent", false, "&emsp;")
+              }
+            })
           },
           images_upload_handler: handleImageUpload,
           selector: "textarea",
           min_height: 900,
+          width: "90vw",
         }}
         value={project?.instructions}
         onEditorChange={(newValue, editor) => handleEditorChange(newValue, editor)}

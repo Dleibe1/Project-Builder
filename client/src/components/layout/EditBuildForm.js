@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
@@ -32,6 +32,7 @@ const EditBuildForm = (props) => {
     thumbnailImage: "",
   })
   const [editingInstructions, setEditingInstructions] = useState(false)
+  const editInstructionsButtonRef = useRef(null)
   const params = useParams()
   const { id } = params
 
@@ -258,7 +259,7 @@ const EditBuildForm = (props) => {
               Add Part
             </Button>
           </div>
-          <div className="instruction-list-buttons-container edit-instructions-button-container">
+          <div ref={editInstructionsButtonRef} className="instruction-list-buttons-container edit-instructions-button-container">
             <Button
               className="large-button instruction-list-button edit-instructions-button"
               variant="contained"

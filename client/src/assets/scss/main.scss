@@ -850,11 +850,14 @@ h5 {
 }
 
 .tinymce-container {
+  display: flex;
   min-width: 100%;
+  justify-content: center;
 }
 
 //Custom save instructions button in TinyMCE
-button[data-mce-name="save"].tox-tbtn {
+button[data-mce-name="save"].tox-tbtn,
+button[data-mce-name="download-as-markdown"].tox-tbtn {
   margin-right: 20px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   translate: 0px -10px;
@@ -867,8 +870,17 @@ button[data-mce-name="save"].tox-tbtn {
   border-radius: 6px;
 }
 
+button[data-mce-name="download-as-markdown"].tox-tbtn {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 1.1rem;
+  width: fit-content;
+}
+
 button[data-mce-name="save"].tox-tbtn:hover,
-button[data-mce-name="save"] .tox-tbtn__select-label:hover {
+button[data-mce-name="save"] .tox-tbtn__select-label:hover,
+button[data-mce-name="download-as-markdown"].tox-tbtn:hover,
+button[data-mce-name="download-as-markdown"] .tox-tbtn__select-label:hover  {
   cursor: pointer;
   color: white;
   background: #1665c0;
@@ -986,6 +998,10 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   top: -20px;
   z-index: 1;
   translate: 0px 80px;
+}
+
+.instruction-list-buttons-container.edit-instructions-button-container.not-sticky {
+
 }
 
 .instruction-list-button.edit-instructions-button {
