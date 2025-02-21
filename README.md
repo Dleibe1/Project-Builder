@@ -35,12 +35,16 @@ When users visit your project's page on this app, the code section is automatica
 - Material UI
 - InstructionsSubForm
 - AWS S3 Bucket
+- TinyMCE
 - Cypress.js (Tests suite is a work in progress)
+
+### New features:
+- Download project instructions as a markdown file
+- Upload project instructions as a markdown file
 
 ### Improvements coming soon:
 
 1. Option to add a link to purchase parts from the parts list.
-2. Ability to create, edit, or fork a project as a single markdown file for greater convenience for more complicated projects.
 
 ## Usage
 
