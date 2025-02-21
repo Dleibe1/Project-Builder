@@ -39,8 +39,8 @@ When users visit your project's page on this app, the code section is automatica
 - Cypress.js (Tests suite is a work in progress)
 
 ### New features:
-- Download project instructions as a markdown file
-- Upload project instructions as a markdown file
+- Download a project's instructions as a markdown file
+- Upload a project's instructions as a markdown file
 
 ### Improvements coming soon:
 
