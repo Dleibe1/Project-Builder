@@ -1,17 +1,12 @@
 import { Editor } from "@tinymce/tinymce-react"
 import React from "react"
-import { downloadHtmlAsMarkdown } from "../../services/markdownService"
+import {
+  downloadHtmlAsMarkdown,
+  convertMarkdownToHTML,
+  getMarkdownFileContent,
+} from "../../services/markdownService"
 
 const InstructionsSubForm = ({ project, setProject }) => {
-  // useEffect(() => {
-  //   const appBar = document.getElementById("app-bar")
-  //   appBar.style.display = "none"
-  //   document.body.classList.remove("grey-background")
-  //   return () => {
-  //     appBar.style.display = "flex"
-  //     document.body.classList.add("grey-background")
-  //   }
-  // }, [])
 
   const handleImageUpload = async (blobInfo, success, failure, progress) => {
     const imageFileData = new FormData()
@@ -30,7 +25,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
       failure(`Image upload failed: ${error.message}`)
     }
   }
-console.log(project)
+  console.log(project)
   const handleEditorChange = (newValue, editor) => {
     setProject((prevState) => ({
       ...prevState,
@@ -63,22 +58,28 @@ console.log(project)
             "wordcount",
           ],
           toolbar:
-            "download-as-markdown undo redo | blocks codesample link image | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+            "download-as-markdown upload-markdown undo redo | blocks codesample link image | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
           toolbar_sticky: true,
           toolbar_sticky_offset: 52,
           setup: (editor) => {
             editor.on("PreInit", () => {
-              // editor.ui.registry.addButton("save", {
-              //   text: "SAVE INSTRUCTIONS",
-              //   onAction: () => {
-              //     handleSaveInstructions(editor.getContent())
-              //   },
-              // })
+              editor.ui.registry.addButton("upload-markdown", {
+                text: "UPLOAD MARKDOWN",
+                onAction: async () => {
+                  try {
+                    const markdownContent = await getMarkdownFileContent()
+                    const html = convertMarkdownToHTML(markdownContent)
+                    editor.setContent(html)
+                  } catch (error) {
+                    console.error("Markdown upload failed:", error)
+                  }
+                },
+              })
             })
             editor.ui.registry.addButton("download-as-markdown", {
-              text: "Download Instructions As Markdown",
+              text: "DOWNLOAD INSTRUCTIONS AS MARKDOWN",
               onAction: () => {
-                downloadHtmlAsMarkdown(project.instructions)
+                downloadHtmlAsMarkdown(editor.getContent())
               },
             })
             editor.on("keydown", (event) => {

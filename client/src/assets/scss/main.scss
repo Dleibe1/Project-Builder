@@ -863,7 +863,7 @@ h5 {
 }
 
 //Custom save instructions button in TinyMCE
-button[data-mce-name="save"].tox-tbtn,
+button[data-mce-name="upload-markdown"].tox-tbtn,
 button[data-mce-name="download-as-markdown"].tox-tbtn {
   margin-right: 20px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -875,17 +875,13 @@ button[data-mce-name="download-as-markdown"].tox-tbtn {
   font-size: 20px;
   padding: 19px 20px;
   border-radius: 6px;
-}
-
-button[data-mce-name="download-as-markdown"].tox-tbtn {
-  padding-left: 10px;
-  padding-right: 10px;
   font-size: 1.1rem;
   width: fit-content;
+
 }
 
-button[data-mce-name="save"].tox-tbtn:hover,
-button[data-mce-name="save"] .tox-tbtn__select-label:hover,
+button[data-mce-name="upload-markdown"].tox-tbtn:hover,
+button[data-mce-name="upload-markdown"] .tox-tbtn__select-label:hover,
 button[data-mce-name="download-as-markdown"].tox-tbtn:hover,
 button[data-mce-name="download-as-markdown"] .tox-tbtn__select-label:hover {
   cursor: pointer;
