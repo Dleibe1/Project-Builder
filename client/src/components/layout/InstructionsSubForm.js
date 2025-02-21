@@ -37,6 +37,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
       <BundledEditor
         // apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
         init={{
+          promotion: false,
           content_style: `
             img { max-width: 50%; height: auto; padding-top: 40px; padding-bottom: 40px; } 
             p {font-size: 1.5rem;}`,
