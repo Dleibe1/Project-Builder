@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Redirect, useHistory } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
@@ -42,7 +42,7 @@ const NewProjectForm = (props) => {
   useEffect(() => {
     uploadThumbnailImage()
   }, [thumbnailImageFile])
-const history = useHistory()
+
   const postProject = async (newProjectData) => {
     try {
       const response = await fetch("/api/v1/projects/new-project", {

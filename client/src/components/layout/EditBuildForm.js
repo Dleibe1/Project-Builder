@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react"
-import { Redirect, useHistory, useParams } from "react-router-dom"
+import React, { useState, useEffect} from "react"
+import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
@@ -32,7 +32,6 @@ const EditBuildForm = (props) => {
   })
   const params = useParams()
   const { id } = params
-  const history = useHistory()
   useEffect(() => {
     document.body.classList.add("grey-background")
     window.scrollTo(0, 0)
