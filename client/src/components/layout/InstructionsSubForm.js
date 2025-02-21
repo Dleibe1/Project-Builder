@@ -1,13 +1,12 @@
-import { Editor } from "@tinymce/tinymce-react"
 import React from "react"
 import {
   downloadHtmlAsMarkdown,
   convertMarkdownToHTML,
   getMarkdownFileContent,
 } from "../../services/markdownService"
+import BundledEditor from "../../services/TinyMCEBundler"
 
 const InstructionsSubForm = ({ project, setProject }) => {
-
   const handleImageUpload = async (blobInfo, success, failure, progress) => {
     const imageFileData = new FormData()
     imageFileData.append("image", blobInfo.blob(), blobInfo.filename())
@@ -35,12 +34,13 @@ const InstructionsSubForm = ({ project, setProject }) => {
 
   return (
     <div className="tinymce-container">
-      <Editor
-        apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
+      <BundledEditor
+        // apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
         init={{
           content_style: `
             img { max-width: 50%; height: auto; padding-top: 40px; padding-bottom: 40px; } 
             p {font-size: 1.5rem;}`,
+          content_css: ["https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"],
           plugins: [
             "autoresize",
             "anchor",
