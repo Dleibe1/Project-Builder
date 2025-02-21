@@ -65,7 +65,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
           setup: (editor) => {
             editor.on("PreInit", () => {
               editor.ui.registry.addButton("upload-markdown", {
-                text: "UPLOAD MARKDOWN",
+                text: "UPLOAD MARKDOWN FILE",
                 onAction: async () => {
                   try {
                     const markdownContent = await getMarkdownFileContent()
