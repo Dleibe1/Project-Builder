@@ -1,27 +1,17 @@
 import { Editor } from "@tinymce/tinymce-react"
-import React, { useEffect, useRef } from "react"
+import React from "react"
 import { downloadHtmlAsMarkdown } from "../../services/markdownService"
 
-const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) => {
-  const editorRef = useRef(null)
-  useEffect(() => {
-    const appBar = document.getElementById("app-bar")
-    appBar.style.display = "none"
-    document.body.classList.remove("grey-background")
-    return () => {
-      appBar.style.display = "flex"
-      document.body.classList.add("grey-background")
-    }
-  }, [])
-
-  const handleEditorChange = (newValue, editor) => {
-    let instructions = project.instructions
-    instructions = newValue
-    setProject((prevState) => ({
-      ...prevState,
-      instructions: instructions,
-    }))
-  }
+const InstructionsSubForm = ({ project, setProject }) => {
+  // useEffect(() => {
+  //   const appBar = document.getElementById("app-bar")
+  //   appBar.style.display = "none"
+  //   document.body.classList.remove("grey-background")
+  //   return () => {
+  //     appBar.style.display = "flex"
+  //     document.body.classList.add("grey-background")
+  //   }
+  // }, [])
 
   const handleImageUpload = async (blobInfo, success, failure, progress) => {
     const imageFileData = new FormData()
@@ -40,11 +30,17 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
       failure(`Image upload failed: ${error.message}`)
     }
   }
+console.log(project)
+  const handleEditorChange = (newValue, editor) => {
+    setProject((prevState) => ({
+      ...prevState,
+      instructions: newValue,
+    }))
+  }
 
   return (
     <div className="tinymce-container">
       <Editor
-        ref={editorRef}
         apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
         init={{
           content_style: `
@@ -67,19 +63,20 @@ const InstructionsSubForm = ({ project, setProject, setEditingInstructions }) =>
             "wordcount",
           ],
           toolbar:
-            "save download-as-markdown undo redo | blocks codesample link image | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+            "download-as-markdown undo redo | blocks codesample link image | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
           toolbar_sticky: true,
+          toolbar_sticky_offset: 52,
           setup: (editor) => {
             editor.on("PreInit", () => {
-              editor.ui.registry.addButton("save", {
-                text: "SAVE INSTRUCTIONS",
-                onAction: () => {
-                  setEditingInstructions(false)
-                },
-              })
+              // editor.ui.registry.addButton("save", {
+              //   text: "SAVE INSTRUCTIONS",
+              //   onAction: () => {
+              //     handleSaveInstructions(editor.getContent())
+              //   },
+              // })
             })
             editor.ui.registry.addButton("download-as-markdown", {
-              text: "Download Markdown",
+              text: "Download Instructions As Markdown",
               onAction: () => {
                 downloadHtmlAsMarkdown(project.instructions)
               },

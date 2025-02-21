@@ -17,13 +17,15 @@ const InstructionsList = ({ project }) => {
 
   return (
     <section className="instructions-list showpage-items-container">
-      <Button
-        className="large-button instruction-list-button download-markdown-button"
-        variant="contained"
-        onClick={() => downloadHtmlAsMarkdown(project.instructions)}
-      >
-        Download Instructions as Markdown
-      </Button>
+      {project.instructions?.length > 0 && (
+        <Button
+          className="large-button instruction-list-button download-markdown-button"
+          variant="contained"
+          onClick={() => downloadHtmlAsMarkdown(project.instructions)}
+        >
+          Download Instructions as Markdown
+        </Button>
+      )}
       <h2 id="form-instructions-heading">Instructions:</h2>
       <div
         className="preserve-white-space instruction-text showpage-items-container"

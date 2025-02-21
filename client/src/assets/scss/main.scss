@@ -858,6 +858,8 @@ h5 {
   display: flex;
   min-width: 100%;
   justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 //Custom save instructions button in TinyMCE
@@ -911,6 +913,15 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 .tox .tox-throbber__busy-spinner {
   display: none !important;
 }
+
+.tox .tox-mbtn__select-label {
+  font-size: 17px;
+ }
+
+ .tox .tox-menubar {
+  gap: 5px;
+  margin-top: 10px;
+ }
 
 .tox .tox-toolbar__primary {
   margin-top: 15px;
@@ -999,25 +1010,14 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 }
 
 .large-button.download-markdown-button {
+  align-self: end;
   margin: 0px;
   font-size: 17px;
   height: 45px;
-  align-self: end;
 }
 
 .instruction-list-button.first-image {
   margin-top: 30px;
-}
-
-.large-button.edit-instructions-button {
-  margin-left: 10px;
-  font-size: 17px;
-  height: 45px;
-  z-index: 1;
-  position: sticky;
-  top: 20px;
-  translate: 0px 60px;
-  align-self: flex-start;
 }
 
 .instruction-text img {
