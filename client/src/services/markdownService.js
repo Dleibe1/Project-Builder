@@ -1,4 +1,5 @@
 import TurnDownService from "turndown"
+import showdown from "showdown"
 
  const downloadHtmlAsMarkdown = (htmlContent) => {
 	const turnDownService = new TurnDownService()
