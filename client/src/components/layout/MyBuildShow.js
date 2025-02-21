@@ -112,14 +112,14 @@ const MyBuildShow = (props) => {
         </div>
       </div>
       <div>
-        <h2 className="instructions-heading">Instructions</h2>
         <InstructionsList project={myBuild} />
       </div>
       <div>
         <div className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code className="language-cpp">{myBuild.code}</code>
+            <code>
+            </code>
           </pre>
         </div>
       </div>

@@ -673,6 +673,11 @@ h5 {
   width: 100%;
 }
 
+.instructions-list.showpage-items-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .project-image {
   width: 100%;
   height: auto;
@@ -850,11 +855,16 @@ h5 {
 }
 
 .tinymce-container {
+  display: flex;
   min-width: 100%;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 //Custom save instructions button in TinyMCE
-button[data-mce-name="save"].tox-tbtn {
+button[data-mce-name="save"].tox-tbtn,
+button[data-mce-name="download-as-markdown"].tox-tbtn {
   margin-right: 20px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   translate: 0px -10px;
@@ -867,8 +877,17 @@ button[data-mce-name="save"].tox-tbtn {
   border-radius: 6px;
 }
 
+button[data-mce-name="download-as-markdown"].tox-tbtn {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 1.1rem;
+  width: fit-content;
+}
+
 button[data-mce-name="save"].tox-tbtn:hover,
-button[data-mce-name="save"] .tox-tbtn__select-label:hover {
+button[data-mce-name="save"] .tox-tbtn__select-label:hover,
+button[data-mce-name="download-as-markdown"].tox-tbtn:hover,
+button[data-mce-name="download-as-markdown"] .tox-tbtn__select-label:hover {
   cursor: pointer;
   color: white;
   background: #1665c0;
@@ -894,6 +913,15 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 .tox .tox-throbber__busy-spinner {
   display: none !important;
 }
+
+.tox .tox-mbtn__select-label {
+  font-size: 17px;
+ }
+
+ .tox .tox-menubar {
+  gap: 5px;
+  margin-top: 10px;
+ }
 
 .tox .tox-toolbar__primary {
   margin-top: 15px;
@@ -929,6 +957,11 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.instruction-list .instructions-top-section {
+  display: flex;
+  flex-direction: column;
 }
 
 .instruction-text-container.form-items-container .large-button.delete-instruction {
@@ -973,25 +1006,18 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 
 .large-button.instruction-list-button {
   margin: 5px 0px;
+  width: fit-content;
+}
+
+.large-button.download-markdown-button {
+  align-self: end;
+  margin: 0px;
+  font-size: 17px;
+  height: 45px;
 }
 
 .instruction-list-button.first-image {
   margin-top: 30px;
-}
-
-.instruction-list-buttons-container.edit-instructions-button-container {
-  display: flex;
-  justify-content: flex-start;
-  position: sticky;
-  top: -20px;
-  z-index: 1;
-  translate: 0px 80px;
-}
-
-.instruction-list-button.edit-instructions-button {
-  margin-left: 10px;
-  font-size: 17px;
-  height: 45px;
 }
 
 .instruction-text img {

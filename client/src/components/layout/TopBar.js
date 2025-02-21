@@ -17,7 +17,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu"
 import SignOutButton from "../authentication/SignOutButton"
 import GithubLogin from "../authentication/GithubLogin"
-import NewBuildButton from "./NewBuildButton"
+import CreateBuildButton from "./CreateBuildButton"
 import MyBuildsButton from "./MyBuildsButton"
 import SignInButton from "../authentication/SignInButton"
 import SignUpButton from "../authentication/SignUpButton"
@@ -122,7 +122,7 @@ const TopBar = ({ user, projectsPerPage }) => {
             <Box id="authenticated-items" sx={{ flexGrow: 0 }}>
               <TopBarSearch projectsPerPage={projectsPerPage} />
               <MyBuildsButton />
-              <NewBuildButton />
+              <CreateBuildButton />
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex", lg: "none" } }}>
                 <IconButton

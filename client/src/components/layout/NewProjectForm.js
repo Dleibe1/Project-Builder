@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Redirect } from "react-router-dom"
+import { Redirect, useHistory } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
@@ -8,7 +8,6 @@ import Send from "@mui/icons-material/Send"
 import Textarea from "@mui/joy/Textarea"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
-import InstructionsList from "./InstructionsList.js"
 import AddTags from "./AddTags.js"
 import InstructionsSubForm from "./InstructionsSubForm.js"
 
@@ -31,7 +30,6 @@ const NewProjectForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
-  const [editingInstructions, setEditingInstructions] = useState(false)
 
   useEffect(() => {
     document.body.classList.add("grey-background")
@@ -44,7 +42,7 @@ const NewProjectForm = (props) => {
   useEffect(() => {
     uploadThumbnailImage()
   }, [thumbnailImageFile])
-
+const history = useHistory()
   const postProject = async (newProjectData) => {
     try {
       const response = await fetch("/api/v1/projects/new-project", {
@@ -156,7 +154,6 @@ const NewProjectForm = (props) => {
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
   }
-  if (!editingInstructions) {
     return (
       <div className="fork-project-form-container project-show">
         <ErrorList errors={errors} />
@@ -236,19 +233,10 @@ const NewProjectForm = (props) => {
               Add Part
             </Button>
           </div>
-          <div className="instruction-list-buttons-container edit-instructions-button-container">
-            <Button
-              className="large-button instruction-list-button edit-instructions-button"
-              variant="contained"
-              onClick={() => setEditingInstructions(true)}
-            >
-             {project.instructions.length ? "Edit Instructions" : "Add Instructions" }
-            </Button>
-          </div>
-          <div className="form-items-container top-sectinon">
-            <h2 id="form-instructions-heading">Instructions:</h2>
-          </div>
-          <InstructionsList project={project} editingInstructions={editingInstructions} />
+          <InstructionsSubForm
+          project={project}
+          setProject={setProject}
+        />
           <div className="form-items-container">
             <h2 className="code-heading">Code:</h2>
             <label htmlFor="code" className="form-input" id="code-input">
@@ -293,15 +281,7 @@ const NewProjectForm = (props) => {
         </form>
       </div>
     )
-  } else {
-    return (
-      <InstructionsSubForm
-        project={project}
-        setProject={setProject}
-        setEditingInstructions={setEditingInstructions}
-      />
-    )
   }
-}
+
 
 export default NewProjectForm

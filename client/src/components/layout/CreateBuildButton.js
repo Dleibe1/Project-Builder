@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import Button from "@mui/material/Button"
 
-const NewBuildButton = () => {
+const CreateBuildButton = () => {
   return (
     <Button
       component={Link}
@@ -16,4 +16,4 @@ const NewBuildButton = () => {
   )
 }
 
-export default NewBuildButton
+export default CreateBuildButton

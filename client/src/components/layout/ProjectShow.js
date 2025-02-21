@@ -140,7 +140,6 @@ const ProjectShow = (props) => {
           <p>{project.appsAndPlatforms}</p>
         </section>
       </div>
-      <h2 className="instructions-heading">Instructions</h2>
       <InstructionsList project={project} />
       <div>
         <section className="showpage-items-container">
