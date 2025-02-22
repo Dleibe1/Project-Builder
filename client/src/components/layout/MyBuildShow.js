@@ -118,7 +118,8 @@ const MyBuildShow = (props) => {
         <div className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code>
+            <code className="language-cpp">
+              {myBuild.code}
             </code>
           </pre>
         </div>
