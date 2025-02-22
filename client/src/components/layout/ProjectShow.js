@@ -101,7 +101,7 @@ const ProjectShow = (props) => {
     <h2>Project Code</h2>
   )
   const partsList = project.parts.map((part) => {
-    return <p>{part.partName}</p>
+    return <p key={`${part.partName}${index}`}>{part.partName}</p>
   })
 
   return (

@@ -80,8 +80,8 @@ const TopBar = ({ user, projectsPerPage }) => {
   const loggedInUserName = user ? user.userName || user.githubUserName : ""
   const avatarLetter = loggedInUserName[0]?.toUpperCase()
   const avatarImageURL = user?.githubAvatarURL
-  const avatarWithImage = [<Avatar alt={loggedInUserName} src={avatarImageURL} />]
-  const avatarJustALetter = [<Avatar alt={loggedInUserName}>{avatarLetter}</Avatar>]
+  const avatarWithImage = [<Avatar key={"github-avatar-image"} alt={loggedInUserName} src={avatarImageURL} />]
+  const avatarJustALetter = [<Avatar key={"username-first-letter"}  alt={loggedInUserName}>{avatarLetter}</Avatar>]
 
   return (
     <AppBar id="app-bar" position="fixed">

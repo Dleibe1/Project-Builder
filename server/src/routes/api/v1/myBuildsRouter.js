@@ -29,7 +29,7 @@ myBuildsRouter.get("/", async (req, res) => {
       const serializedUserBuilds = await Promise.all(
         userBuildsList.map((userBuild) => {
           return ProjectSerializer.getProjectListDetails(userBuild)
-        })
+        }),
       )
       res.status(200).json({ userBuilds: serializedUserBuilds, userBuildCount })
     } catch (error) {
@@ -43,11 +43,19 @@ myBuildsRouter.get("/", async (req, res) => {
 
 myBuildsRouter.get("/:id", async (req, res) => {
   const id = req.params.id
+  const user = req.user
   try {
     const userBuild = await Project.query().findById(id)
+    if (!user) {
+      console.log("hitting this spot")
+      return res.status(401).json({error: "Unauthorized"})
+    } else if (user.id !== userBuild.userId) {
+      return res.status(401).json({error: "Unauthorized"})
+    }
     const serializedUserBuild = await ProjectSerializer.getProjectShowPageDetails(userBuild)
     return res.status(200).json({ userBuild: serializedUserBuild })
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ errors: error })
   }
 })

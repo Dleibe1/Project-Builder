@@ -69,8 +69,8 @@ const MyBuildShow = (props) => {
   ) : (
     <h2>Project Code</h2>
   )
-  const partsList = myBuild.parts.map((part) => {
-    return <p>{part.partName}</p>
+  const partsList = myBuild.parts.map((part, index) => {
+    return <p key={`${part.partName}${index}`} >{part.partName}</p>
   })
 
   return (

@@ -148,8 +148,8 @@ const ForkProjectForm = (props) => {
 
   const partsList = project.parts.map((part, index) => {
     return (
-      <div className="part-item-in-form">
-        <p key={`${part.partName}${index}`}> {part.partName}</p>
+      <div key={`${part.partName}${index}`} className="part-item-in-form">
+        <p> {part.partName}</p>
         <Button
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react"
+import React, { useState, useEffect, useMem } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
@@ -157,8 +157,8 @@ const EditBuildForm = (props) => {
 
   const partsList = project.parts.map((part, index) => {
     return (
-      <div className="part-item-in-form">
-        <p key={`${part.partName}${index}`}> {part.partName}</p>
+      <div key={`${part.partName}${index}`} className="part-item-in-form">
+        <p>{part.partName}</p>
         <Button
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"
@@ -254,10 +254,7 @@ const EditBuildForm = (props) => {
             Add Part
           </Button>
         </div>
-        <InstructionsSubForm
-          project={project}
-          setProject={setProject}
-        />
+        <InstructionsSubForm project={project} setProject={setProject} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">

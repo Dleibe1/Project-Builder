@@ -2,13 +2,13 @@
 
 ## Create, Edit, and Fork projects:
 
+### A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
+
 Arduino projects require a lot of tedious boilerplate, such as the code to control motors with analog joysticks, the setup for an ultrasonic distance sensor, or an algorithm for object avoidance with a car project.  
 
 Unlike desktop applications, however, Arduino projects have physical boilerplate in terms of the parts list, schematics, and instructions for assembling and coding a device that may be similar to a device someone else has created.
 
 Project Builder allows users to take advantage of the similarities between their project and projects created by other users.  Project creators can fork the code, parts, and instructions of other projects.
-
-A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 
 The boilerplate code used for the app can be found here:
 [https://github.com/LaunchAcademy/engage-boilerplate](https://github.com/LaunchAcademy/engage-boilerplate)

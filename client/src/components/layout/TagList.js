@@ -14,6 +14,7 @@ const TagList = ({ tags }) => {
   const tagChips = tags.map((tag) => {
     return (
       <Chip
+        key={`${tag.tagName}${tag.id}`}
         className="tag-chip"
         size="large"
         label={tag.tagName}
