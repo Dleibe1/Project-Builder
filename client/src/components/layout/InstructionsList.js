@@ -3,7 +3,7 @@ import DOMPurify from "dompurify"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 import { Button } from "@mui/material"
-import { downloadHtmlAsMarkdown } from "../../services/markdownService"
+import MarkdownService from "../../services/markdownService"
 
 const InstructionsList = ({ project }) => {
   useEffect(() => {
@@ -21,7 +21,7 @@ const InstructionsList = ({ project }) => {
         <Button
           className="large-button instruction-list-button download-markdown-button"
           variant="contained"
-          onClick={() => downloadHtmlAsMarkdown(project.instructions)}
+          onClick={() => MarkdownService.downloadHtmlAsMarkdown(project.instructions)}
         >
           Download Instructions as Markdown
         </Button>

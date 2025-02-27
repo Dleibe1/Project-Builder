@@ -1,9 +1,5 @@
 import React from "react"
-import {
-  downloadHtmlAsMarkdown,
-  convertMarkdownToHTML,
-  getMarkdownFileContent,
-} from "../../services/markdownService"
+import MarkdownService from "../../services/markdownService"
 import BundledEditor from "../../services/TinyMCEBundler"
 
 const InstructionsSubForm = ({ project, setProject }) => {
@@ -24,7 +20,6 @@ const InstructionsSubForm = ({ project, setProject }) => {
       failure(`Image upload failed: ${error.message}`)
     }
   }
-  console.log(project)
   const handleEditorChange = (newValue, editor) => {
     setProject((prevState) => ({
       ...prevState,
@@ -68,8 +63,8 @@ const InstructionsSubForm = ({ project, setProject }) => {
                 text: "UPLOAD MARKDOWN FILE",
                 onAction: async () => {
                   try {
-                    const markdownContent = await getMarkdownFileContent()
-                    const html = convertMarkdownToHTML(markdownContent)
+                    const markdownContent = await MarkdownService.getMarkdownFileContent()
+                    const html = MarkdownService.convertMarkdownToHTML(markdownContent)
                     editor.setContent(html)
                   } catch (error) {
                     console.error("Markdown upload failed:", error)

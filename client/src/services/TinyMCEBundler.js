@@ -1,5 +1,6 @@
 import { Editor } from '@tinymce/tinymce-react';
 import React from 'react';
+//Bundled TinyMCE so there's no reliance on an API key with request limits.
 // TinyMCE so the global var exists
 import 'tinymce/tinymce';
 // DOM model
