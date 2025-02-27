@@ -2,6 +2,7 @@ import TurnDownService from "turndown"
 import showdown from "showdown"
 
 class MarkdownService {
+  
   static downloadHtmlAsMarkdown = (htmlContent) => {
     const turnDownService = new TurnDownService()
     const markdownContent = turnDownService.turndown(htmlContent)

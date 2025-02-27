@@ -1,5 +1,5 @@
 import React from "react"
-import MarkdownService from "../../services/markdownService"
+import MarkdownService from "../../services/MarkdownService"
 import BundledEditor from "../../services/TinyMCEBundler"
 
 const InstructionsSubForm = ({ project, setProject }) => {
@@ -75,7 +75,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
             editor.ui.registry.addButton("download-as-markdown", {
               text: "DOWNLOAD INSTRUCTIONS AS MARKDOWN",
               onAction: () => {
-                downloadHtmlAsMarkdown(editor.getContent())
+                MarkdownService.downloadHtmlAsMarkdown(editor.getContent())
               },
             })
             editor.on("keydown", (event) => {
