@@ -33,7 +33,6 @@ When users visit your project's page on this app, the code section is automatica
 - OAuth 2.0 (login with GitHub)
 - GitHub API
 - Material UI
-- InstructionsSubForm
 - AWS S3 Bucket
 - TinyMCE
 - Cypress.js (Tests suite is a work in progress)
