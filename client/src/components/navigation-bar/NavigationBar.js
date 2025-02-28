@@ -15,15 +15,15 @@ import {
   MenuItem,
 } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
-import SignOutButton from "../authentication/SignOutButton"
-import GithubLogin from "../authentication/GithubLogin"
+import SignOutButton from "./authentication/SignOutButton"
+import GithubLogin from "./authentication/GithubLogin"
 import CreateBuildButton from "./CreateBuildButton"
-import MyBuildsButton from "./MyBuildsButton"
-import SignInButton from "../authentication/SignInButton"
-import SignUpButton from "../authentication/SignUpButton"
-import TopBarSearch from "./TopBarSearch"
+import MyBuildsButton from "../show-pages/MyBuildsButton"
+import SignInButton from "./authentication/SignInButton"
+import SignUpButton from "./authentication/SignUpButton"
+import NavBarSearch from "./NavBarSearch"
 
-const TopBar = ({ user, projectsPerPage }) => {
+const NavigationBar = ({ user, projectsPerPage }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null)
@@ -120,7 +120,7 @@ const TopBar = ({ user, projectsPerPage }) => {
           </div>
           {user ? (
             <Box id="authenticated-items" sx={{ flexGrow: 0 }}>
-              <TopBarSearch projectsPerPage={projectsPerPage} />
+              <NavBarSearch projectsPerPage={projectsPerPage} />
               <MyBuildsButton />
               <CreateBuildButton />
               <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
@@ -208,7 +208,7 @@ const TopBar = ({ user, projectsPerPage }) => {
             </Box>
           ) : (
             <Box id="unauthenticated-items" sx={{ flexGrow: 0 }}>
-              <TopBarSearch projectsPerPage={projectsPerPage} />
+              <NavBarSearch projectsPerPage={projectsPerPage} />
               <SignUpButton />
               <SignInButton />
               <GithubLogin />
@@ -264,4 +264,4 @@ const TopBar = ({ user, projectsPerPage }) => {
   )
 }
 
-export default TopBar
+export default NavigationBar

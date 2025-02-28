@@ -613,9 +613,6 @@ h5 {
   width: fit-content;
 }
 
-#part {
-  text-align: left;
-}
 #logo {
   height: 52px;
 }
@@ -877,7 +874,6 @@ button[data-mce-name="download-as-markdown"].tox-tbtn {
   border-radius: 6px;
   font-size: 1.1rem;
   width: fit-content;
-
 }
 
 button[data-mce-name="upload-markdown"].tox-tbtn:hover,
@@ -912,12 +908,12 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 
 .tox .tox-mbtn__select-label {
   font-size: 17px;
- }
+}
 
- .tox .tox-menubar {
+.tox .tox-menubar {
   gap: 5px;
   margin-top: 10px;
- }
+}
 
 .tox .tox-toolbar__primary {
   margin-top: 15px;
@@ -1047,8 +1043,10 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   margin-top: 5px;
 }
 
-#part {
+#part,
+#part-purchase-url {
   width: 100%;
+  text-align: left;
 }
 
 #github-example-url {

@@ -6,18 +6,19 @@ import Textarea from "@mui/joy/Textarea"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
-import ErrorList from "./ErrorList.js"
-import AddTags from "./AddTags.js"
-import InstructionsSubForm from "./InstructionsSubForm.js"
-import PartsSubForm from "./PartsSubForm.js"
+import ErrorList from "./project-forms-shared/ErrorList.js"
+import AddTags from "./project-forms-shared/AddTags.js"
+import InstructionsSubForm from "./project-forms-shared/InstructionsSubForm.js"
+import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 
-const EditBuildForm = (props) => {
+const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
-
+  const params = useParams()
+  const { id } = params
   const [project, setProject] = useState({
     title: "",
     tags: [],
@@ -30,11 +31,10 @@ const EditBuildForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
-  const params = useParams()
-  const { id } = params
+
   useEffect(() => {
-    document.body.classList.add("grey-background")
     window.scrollTo(0, 0)
+    document.body.classList.add("grey-background")
     return () => {
       document.body.classList.remove("grey-background")
     }
@@ -48,22 +48,15 @@ const EditBuildForm = (props) => {
     getProject()
   }, [])
 
-  useEffect(() => {
-    document.body.classList.add("grey-background")
-    window.scrollTo(0, 0)
-    return () => {
-      document.body.classList.remove("grey-background")
-    }
-  }, [])
-
-  const updateProject = async (projectData) => {
+  const postForkedProject = async (forkedProjectData) => {
     try {
-      const response = await fetch(`/api/v1/my-builds/${id}`, {
-        method: "PATCH",
+      const parentProjectId = id
+      const response = await fetch(`/api/v1/projects/${parentProjectId}/forks`, {
+        method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
-        body: JSON.stringify(projectData),
+        body: JSON.stringify(forkedProjectData),
       })
       if (!response.ok) {
         if (response.status === 422) {
@@ -104,18 +97,15 @@ const EditBuildForm = (props) => {
 
   const getProject = async () => {
     try {
-      const response = await fetch(`/api/v1/my-builds/${id}`)
+      const response = await fetch(`/api/v1/projects/${id}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
         throw error
       }
       const responseBody = await response.json()
-      const build = responseBody.userBuild
-      setProject((prevState) => ({
-        ...prevState,
-        ...build,
-      }))
+      const project = responseBody.project
+      setProject((prevState) => ({ ...prevState, ...project, githubFileURL: "" }))
     } catch (error) {
       console.log(error)
     }
@@ -129,7 +119,7 @@ const EditBuildForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    updateProject(project)
+    postForkedProject(project)
   }
 
   const handleInputChange = (event) => {
@@ -141,11 +131,11 @@ const EditBuildForm = (props) => {
   }
 
   return (
-    <div className="edit-project-form-container project-show">
+    <div className="fork-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="edit-build-form" id="edit-project-form" onSubmit={handleSubmit}>
+      <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
-          <h1>Edit Project</h1>
+          <h1>Fork Project</h1>
           <section className="add-tags">
             <AddTags project={project} setProject={setProject} />
           </section>
@@ -223,7 +213,7 @@ const EditBuildForm = (props) => {
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
           <TextField
-            value={project.githubFileURL || undefined}
+            value={project.githubFileURL}
             fullWidth
             onChange={handleInputChange}
             label="GitHub main sketch file URL"
@@ -246,4 +236,4 @@ const EditBuildForm = (props) => {
   )
 }
 
-export default EditBuildForm
+export default ForkProjectForm

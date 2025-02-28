@@ -3,7 +3,7 @@ import { TextField, Stack } from "@mui/material"
 import Autocomplete from "@mui/material/Autocomplete"
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@mui/icons-material/CheckBox"
-import tags from "../../../../shared/tags"
+import tags from "../../../../../shared/tags"
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
 const checkedIcon = <CheckBoxIcon fontSize="small" />

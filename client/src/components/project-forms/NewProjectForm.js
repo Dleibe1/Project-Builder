@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from "react"
-import { Redirect, useParams } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { Redirect } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
-import Textarea from "@mui/joy/Textarea"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
+import Textarea from "@mui/joy/Textarea"
 import translateServerErrors from "../../services/translateServerErrors.js"
-import ErrorList from "./ErrorList.js"
-import AddTags from "./AddTags.js"
-import InstructionsSubForm from "./InstructionsSubForm.js"
-import PartsSubForm from "./PartsSubForm.js"
+import ErrorList from "./project-forms-shared/ErrorList.js"
+import AddTags from "./project-forms-shared/AddTags.js"
+import InstructionsSubForm from "./project-forms-shared/InstructionsSubForm.js"
+import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 
-const ForkProjectForm = (props) => {
+const NewProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
-  const params = useParams()
-  const { id } = params
   const [project, setProject] = useState({
     title: "",
     tags: [],
@@ -33,8 +31,8 @@ const ForkProjectForm = (props) => {
   })
 
   useEffect(() => {
-    window.scrollTo(0, 0)
     document.body.classList.add("grey-background")
+    window.scrollTo(0, 0)
     return () => {
       document.body.classList.remove("grey-background")
     }
@@ -44,19 +42,14 @@ const ForkProjectForm = (props) => {
     uploadThumbnailImage()
   }, [thumbnailImageFile])
 
-  useEffect(() => {
-    getProject()
-  }, [])
-
-  const postForkedProject = async (forkedProjectData) => {
+  const postProject = async (newProjectData) => {
     try {
-      const parentProjectId = id
-      const response = await fetch(`/api/v1/projects/${parentProjectId}/forks`, {
+      const response = await fetch("/api/v1/projects/new-project", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
-        body: JSON.stringify(forkedProjectData),
+        body: JSON.stringify(newProjectData),
       })
       if (!response.ok) {
         if (response.status === 422) {
@@ -95,22 +88,6 @@ const ForkProjectForm = (props) => {
     }
   }
 
-  const getProject = async () => {
-    try {
-      const response = await fetch(`/api/v1/projects/${id}`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
-      }
-      const responseBody = await response.json()
-      const project = responseBody.project
-      setProject((prevState) => ({ ...prevState, ...project, githubFileURL: "" }))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   const handleThumbnailImageUpload = (acceptedImage) => {
     setThumbnailImageFile({
       image: acceptedImage[0],
@@ -119,26 +96,34 @@ const ForkProjectForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    postForkedProject(project)
+    postProject({
+      ...project,
+      userId: props.user.id,
+      githubFileURL: project.githubFileURL?.trim(),
+    })
   }
 
   const handleInputChange = (event) => {
     setProject({ ...project, [event.currentTarget.name]: event.currentTarget.value })
   }
 
+  let thumbNailImage = [
+    <div className="project-image-container thumbnail-image-container ">
+      <img className="project-image" src={project.thumbnailImage} />
+    </div>,
+  ]
+
+  thumbNailImage = project.thumbnailImage.length ? thumbNailImage : []
+
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
   }
-
   return (
     <div className="fork-project-form-container project-show">
       <ErrorList errors={errors} />
       <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
-          <h1>Fork Project</h1>
-          <section className="add-tags">
-            <AddTags project={project} setProject={setProject} />
-          </section>
+          <h1>New Project</h1>
           <TextField
             value={project.title}
             className="form-input text-field"
@@ -148,6 +133,9 @@ const ForkProjectForm = (props) => {
             label="Project Title *"
             name="title"
           />
+          <section className="add-tags">
+            <AddTags project={project} setProject={setProject} />
+          </section>
           <h2>Description:</h2>
           <Textarea
             minRows={3}
@@ -236,4 +224,4 @@ const ForkProjectForm = (props) => {
   )
 }
 
-export default ForkProjectForm
+export default NewProjectForm

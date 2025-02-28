@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { useParams, Redirect } from "react-router-dom"
 import ForkProjectButton from "./ForkProjectButton.js"
-import ProjectForksButton from "./ProjectForksButton.js"
+import ProjectForksButton from "../shared/ProjectForksButton.js"
 import TagList from "./TagList.js"
-import InstructionsList from "./InstructionsList.js"
+import Instructions from "./Instructions.js"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
@@ -140,7 +140,7 @@ const ProjectShow = (props) => {
           <p>{project.appsAndPlatforms}</p>
         </section>
       </div>
-      <InstructionsList project={project} />
+      <Instructions project={project} />
       <div>
         <section className="showpage-items-container">
           {codeMessage}

@@ -5,7 +5,7 @@ import "highlight.js/styles/github.css"
 import { Button } from "@mui/material"
 import MarkdownService from "../../services/MarkdownService"
 
-const InstructionsList = ({ project }) => {
+const Instructions = ({ project }) => {
   useEffect(() => {
     //Apply highlighting after default css has been applied
     const codeTags = document.querySelectorAll("code")
@@ -37,4 +37,4 @@ const InstructionsList = ({ project }) => {
   )
 }
 
-export default InstructionsList
+export default Instructions

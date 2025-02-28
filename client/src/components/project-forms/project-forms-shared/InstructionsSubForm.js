@@ -1,6 +1,6 @@
 import React from "react"
-import MarkdownService from "../../services/MarkdownService"
-import BundledEditor from "../../services/TinyMCEBundler"
+import MarkdownService from "../../../services/MarkdownService"
+import BundledEditor from "../../../services/TinyMCEBundler"
 
 const InstructionsSubForm = ({ project, setProject }) => {
   const handleImageUpload = async (blobInfo, success, failure, progress) => {
