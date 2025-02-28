@@ -4,7 +4,7 @@ class Part extends Model {
   static get tableName() {
     return "parts"
   }
-  
+
   static get jsonSchema() {
     return {
       type: "object",
@@ -12,10 +12,11 @@ class Part extends Model {
       properties: {
         projectId: { type: "integer" },
         partName: { type: "string", maxLength: 100 },
+        partPurchaseURL: { type: "string" },
       },
     }
   }
-  
+
   static get relationMappings() {
     const { Project } = require("./index.js")
     return {

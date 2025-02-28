@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 
 import config from "../../config"
 
-import FormError from "../layout/FormError"
+import FormError from "../project-forms/project-forms-shared/FormError"
 
 const SignInForm = () => {
   const [userPayload, setUserPayload] = useState({ email: "", password: "" })

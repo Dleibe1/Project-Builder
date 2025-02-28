@@ -4,7 +4,7 @@ import DeleteBuildButton from "./DeleteBuildButton"
 import EditBuildButton from "./EditBuildButton"
 import TagList from "./TagList"
 //TODO: remove all "prepForFrontEnd" and replace with functional state update as done in ForkedProjectForm
-import InstructionsList from "./InstructionsList"
+import Instructions from "./Instructions"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -112,7 +112,7 @@ const MyBuildShow = (props) => {
         </div>
       </div>
       <div>
-        <InstructionsList project={myBuild} />
+        <Instructions project={myBuild} />
       </div>
       <div>
         <div className="showpage-items-container">

@@ -47,7 +47,6 @@ myBuildsRouter.get("/:id", async (req, res) => {
   try {
     const userBuild = await Project.query().findById(id)
     if (!user) {
-      console.log("hitting this spot")
       return res.status(401).json({error: "Unauthorized"})
     } else if (user.id !== userBuild.userId) {
       return res.status(401).json({error: "Unauthorized"})

@@ -3,19 +3,33 @@ import { Button, TextField } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 
 const PartsSubForm = ({ project, setProject }) => {
-  const [partName, setPartName] = useState("")
+  const [part, setPart] = useState({ partName: "", partPurchaseURL: "" })
+
+  const isValidHttpUrl = (string) => {
+    let url
+    try {
+      url = new URL(string)
+      console.log(url)
+    } catch (_) {
+      return false
+    }
+    return url.protocol === "http:" || url.protocol === "https:"
+  }
 
   const handleInputChange = (event) => {
-    setPartName(event.currentTarget.value)
+    setPart({ ...part, [event.currentTarget.name]: event.currentTarget.value })
   }
 
   const handlePartSubmit = () => {
     if (partName.trim().length) {
       setProject({
         ...project,
-        parts: [...project.parts, { partName }],
+        parts: [
+          ...project.parts,
+          { partName: part.partName, partPurchaseURL: part.partPurchaseURL },
+        ],
       })
-      setPartName("")
+      setPart({ partName: "", partPurchaseURL: "" })
     }
   }
 
@@ -49,10 +63,19 @@ const PartsSubForm = ({ project, setProject }) => {
           sx={{ width: "100%" }}
           id="part"
           className="part"
-          value={partName}
+          value={part.partName}
           onChange={handleInputChange}
           label="Enter new part"
           name="partName"
+        />
+        <TextField
+          sx={{ width: "100%" }}
+          id="part-purchase-url"
+          className="part-purchase-url"
+          value={part.partPurchaseURL}
+          onChange={handleInputChange}
+          label="Enter new part"
+          name="partPurchaseURL"
         />
         <Button
           onClick={handlePartSubmit}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
-import ProjectForksButton from "./ProjectForksButton"
+import ProjectForksButton from "../shared/ProjectForksButton"
 
 const ProjectTile = ({ title, createdBy, thumbnailImage, id }) => {
   const [hasForks, setHasForks] = useState(false)

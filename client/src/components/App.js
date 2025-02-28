@@ -6,21 +6,24 @@ import "../assets/scss/main.scss"
 import getCurrentUser from "../services/getCurrentUser"
 import RegistrationForm from "./registration/RegistrationForm"
 import SignInForm from "./authentication/SignInForm"
-import TopBar from "./layout/TopBar"
-import ProjectList from "./layout/ProjectList"
-import SearchList from "./layout/SearchList"
-import ProjectShow from "./layout/ProjectShow"
-import NewProjectForm from "./layout/NewProjectForm"
-import MyBuildList from "./layout/MyBuildList"
-import MyBuildShow from "./layout/MyBuildShow"
-import EditBuildForm from "./layout/EditBuildForm"
-import ForkList from "./layout/ForkList"
-import ForkProjectForm from "./layout/ForkProjectForm"
-import GithubLogin from "./authentication/GithubLogin"
-import About from "./layout/About"
-import NotFound404 from "./layout/404NotFound"
-import FilterByTag from "./layout/FilterByTag"
-import HowToUse from "./layout/HowToUse"
+import NavigationBar from "./navigation-bar/NavigationBar"
+import ProjectList from "./project-list-pages/ProjectList"
+import ForkList from "./project-list-pages/ForkList"
+import SearchList from "./project-list-pages/SearchList"
+import ProjectShow from "./show-pages/ProjectShow"
+import MyBuildShow from "./show-pages/MyBuildShow"
+import NewProjectForm from "./project-forms/NewProjectForm"
+import MyBuildList from "./project-list-pages/MyBuildsList"
+
+import EditBuildForm from "./project-forms/EditBuildForm"
+
+import ForkProjectForm from "./project-forms/ForkProjectForm"
+import GithubLogin from "./navigation-bar/authentication/GithubLogin"
+import About from "./information-pages/About"
+import NotFound404 from "./information-pages/404NotFound"
+import FilterByTag from "./navigation-bar/FilterByTag"
+import HowToUse from "./information-pages/HowToUse"
+import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -41,7 +44,7 @@ const App = (props) => {
   return (
     <TagProvider>
       <Router>
-        <TopBar projectsPerPage={projectsPerPage} user={currentUser} />
+        <NavigationBar projectsPerPage={projectsPerPage} user={currentUser} />
         <FilterByTag />
         <Route exact path={"/"}>
           <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react"
 
 import config from "../../config"
 
-import ErrorList from "../layout/ErrorList"
-import FormError from "../layout/FormError"
+import ErrorList from "../project-forms/project-forms-shared/ErrorList"
+import FormError from "../project-forms/project-forms-shared/FormError"
 import translateServerErrors from "../../services/translateServerErrors"
 
 const RegistrationForm = () => {

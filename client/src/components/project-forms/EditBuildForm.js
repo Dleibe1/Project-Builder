@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react"
-import { Redirect } from "react-router-dom"
+import React, { useState, useEffect } from "react"
+import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
+import Textarea from "@mui/joy/Textarea"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
-import Textarea from "@mui/joy/Textarea"
 import translateServerErrors from "../../services/translateServerErrors.js"
-import ErrorList from "./ErrorList.js"
-import AddTags from "./AddTags.js"
-import InstructionsSubForm from "./InstructionsSubForm.js"
-import PartsSubForm from "./PartsSubForm.js"
+import ErrorList from "./project-forms-shared/ErrorList.js"
+import AddTags from "./project-forms-shared/AddTags.js"
+import InstructionsSubForm from "./project-forms-shared/InstructionsSubForm.js"
+import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 
-const NewProjectForm = (props) => {
+const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [thumbnailImageFile, setThumbnailImageFile] = useState({
     image: {},
   })
+
   const [project, setProject] = useState({
     title: "",
     tags: [],
@@ -29,7 +30,8 @@ const NewProjectForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
-
+  const params = useParams()
+  const { id } = params
   useEffect(() => {
     document.body.classList.add("grey-background")
     window.scrollTo(0, 0)
@@ -42,14 +44,26 @@ const NewProjectForm = (props) => {
     uploadThumbnailImage()
   }, [thumbnailImageFile])
 
-  const postProject = async (newProjectData) => {
+  useEffect(() => {
+    getProject()
+  }, [])
+
+  useEffect(() => {
+    document.body.classList.add("grey-background")
+    window.scrollTo(0, 0)
+    return () => {
+      document.body.classList.remove("grey-background")
+    }
+  }, [])
+
+  const updateProject = async (projectData) => {
     try {
-      const response = await fetch("/api/v1/projects/new-project", {
-        method: "POST",
+      const response = await fetch(`/api/v1/my-builds/${id}`, {
+        method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
-        body: JSON.stringify(newProjectData),
+        body: JSON.stringify(projectData),
       })
       if (!response.ok) {
         if (response.status === 422) {
@@ -88,6 +102,25 @@ const NewProjectForm = (props) => {
     }
   }
 
+  const getProject = async () => {
+    try {
+      const response = await fetch(`/api/v1/my-builds/${id}`)
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw error
+      }
+      const responseBody = await response.json()
+      const build = responseBody.userBuild
+      setProject((prevState) => ({
+        ...prevState,
+        ...build,
+      }))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleThumbnailImageUpload = (acceptedImage) => {
     setThumbnailImageFile({
       image: acceptedImage[0],
@@ -96,34 +129,26 @@ const NewProjectForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    postProject({
-      ...project,
-      userId: props.user.id,
-      githubFileURL: project.githubFileURL?.trim(),
-    })
+    updateProject(project)
   }
 
   const handleInputChange = (event) => {
     setProject({ ...project, [event.currentTarget.name]: event.currentTarget.value })
   }
 
-  let thumbNailImage = [
-    <div className="project-image-container thumbnail-image-container ">
-      <img className="project-image" src={project.thumbnailImage} />
-    </div>,
-  ]
-
-  thumbNailImage = project.thumbnailImage.length ? thumbNailImage : []
-
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
   }
+
   return (
-    <div className="fork-project-form-container project-show">
+    <div className="edit-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
+      <form key="edit-build-form" id="edit-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
-          <h1>New Project</h1>
+          <h1>Edit Project</h1>
+          <section className="add-tags">
+            <AddTags project={project} setProject={setProject} />
+          </section>
           <TextField
             value={project.title}
             className="form-input text-field"
@@ -133,9 +158,6 @@ const NewProjectForm = (props) => {
             label="Project Title *"
             name="title"
           />
-          <section className="add-tags">
-            <AddTags project={project} setProject={setProject} />
-          </section>
           <h2>Description:</h2>
           <Textarea
             minRows={3}
@@ -201,7 +223,7 @@ const NewProjectForm = (props) => {
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
           <TextField
-            value={project.githubFileURL}
+            value={project.githubFileURL || undefined}
             fullWidth
             onChange={handleInputChange}
             label="GitHub main sketch file URL"
@@ -224,4 +246,4 @@ const NewProjectForm = (props) => {
   )
 }
 
-export default NewProjectForm
+export default EditBuildForm
