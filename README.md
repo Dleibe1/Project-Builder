@@ -34,9 +34,10 @@ When users visit your project's page on this app, the code section is automatica
 - GitHub API
 - Material UI
 - AWS S3 Bucket
-- TinyMCE
-- turndown.js
-- showdown.js
+- [TinyMCE](https://www.tiny.cloud/)
+- [turndown.js](https://www.npmjs.com/package/turndown/v/4.0.0-rc.1)
+- [showdown.js](https://showdownjs.com/)
+- [highlight.js](https://highlightjs.org/)
 - Cypress.js (Tests suite is a work in progress)
 
 ### New features:
