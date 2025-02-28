@@ -62,7 +62,7 @@ const HowToUse = () => {
             two places (your GitHub and this app).
           </p>
           <p>
-            Code highlighting is applied using the Highlight.js
+            Code highlighting is applied using the Highlight.js library
           </p>
         </div>
     </div>
