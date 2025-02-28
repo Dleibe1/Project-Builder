@@ -1,18 +1,21 @@
-import React from "react"
 import React, { useState } from "react"
+import { Button, TextField } from "@mui/material"
+import DeleteIcon from "@mui/icons-material/Delete"
 
-const PartsSubForm = (props) => {
-  const handlePartInput = (event) => {
-    setNewPart(event.currentTarget.value)
+const PartsSubForm = ({ project, setProject }) => {
+  const [partName, setPartName] = useState("")
+
+  const handleInputChange = (event) => {
+    setPartName(event.currentTarget.value)
   }
 
   const handlePartSubmit = () => {
-    if (newPart.trim().length) {
+    if (partName.trim().length) {
       setProject({
         ...project,
-        parts: [...project.parts, { partName: newPart }],
+        parts: [...project.parts, { partName }],
       })
-      setNewPart("")
+      setPartName("")
     }
   }
 
@@ -46,10 +49,10 @@ const PartsSubForm = (props) => {
           sx={{ width: "100%" }}
           id="part"
           className="part"
-          value={newPart}
-          onChange={handlePartInput}
+          value={partName}
+          onChange={handleInputChange}
           label="Enter new part"
-          name="newPart"
+          name="partName"
         />
         <Button
           onClick={handlePartSubmit}

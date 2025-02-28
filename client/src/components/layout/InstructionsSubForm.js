@@ -81,7 +81,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
             editor.on("keydown", (event) => {
               if (event.key === "Tab") {
                 event.preventDefault()
-                editor.execCommand("mceInsertContent", false, "&emsp;")
+                editor.execCommand("mceInsertContent", false)
               }
             })
           },
