@@ -35,6 +35,8 @@ When users visit your project's page on this app, the code section is automatica
 - Material UI
 - AWS S3 Bucket
 - TinyMCE
+- turndown.js
+- showdown.js
 - Cypress.js (Tests suite is a work in progress)
 
 ### New features:
