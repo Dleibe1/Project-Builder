@@ -3,13 +3,13 @@ import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
-import DeleteIcon from "@mui/icons-material/Delete"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import AddTags from "./AddTags.js"
 import InstructionsSubForm from "./InstructionsSubForm.js"
+import PartsSubForm from "./PartsSubForm.js"
 
 const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -19,7 +19,6 @@ const ForkProjectForm = (props) => {
   })
   const params = useParams()
   const { id } = params
-  const [newPart, setNewPart] = useState("")
   const [project, setProject] = useState({
     title: "",
     tags: [],
@@ -127,41 +126,6 @@ const ForkProjectForm = (props) => {
     setProject({ ...project, [event.currentTarget.name]: event.currentTarget.value })
   }
 
-  const handlePartInput = (event) => {
-    setNewPart(event.currentTarget.value)
-  }
-
-  const handlePartSubmit = () => {
-    if (newPart.trim().length) {
-      setProject({
-        ...project,
-        parts: [...project.parts, { partName: newPart }],
-      })
-      setNewPart("")
-    }
-  }
-
-  const handlePartDelete = (index) => {
-    const partsList = project.parts.filter((part, i) => i !== index)
-    setProject({ ...project, parts: partsList })
-  }
-
-  const partsList = project.parts.map((part, index) => {
-    return (
-      <div key={`${part.partName}${index}`} className="part-item-in-form">
-        <p> {part.partName}</p>
-        <Button
-          onClick={() => handlePartDelete(index)}
-          className="large-button delete-part"
-          variant="contained"
-          startIcon={<DeleteIcon />}
-        >
-          Delete Part
-        </Button>
-      </div>
-    )
-  })
-
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
   }
@@ -223,28 +187,8 @@ const ForkProjectForm = (props) => {
             label="Apps and platforms"
             name="appsAndPlatforms"
           />
-          <h2 id="parts-heading-form">Parts:</h2>
-          <div className="form-parts-list">{partsList}</div>
         </div>
-        <div id="part-input-container" className="form-items-container">
-          <TextField
-            sx={{ width: "100%" }}
-            id="part"
-            className="part"
-            value={newPart}
-            onChange={handlePartInput}
-            label="Enter new part"
-            name="newPart"
-          />
-          <Button
-            onClick={handlePartSubmit}
-            className="large-button add-part"
-            id="add-part"
-            variant="contained"
-          >
-            Add Part
-          </Button>
-        </div>
+        <PartsSubForm project={project} setProject={setProject} />
         <InstructionsSubForm project={project} setProject={setProject} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
