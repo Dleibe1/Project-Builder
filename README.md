@@ -74,7 +74,6 @@ When users visit your project's page on this app, the code section is automatica
                            base URL of your hosting site if you're not running the project locally. 
                            For example: "https://project-builder-e7439342976b.herokuapp.com"
 
-   REACT_APP_TINYMCE_API_KEY This is necessary for the TinyMCE editor [instructionsSubForm.js](client/src/components/layout/InstructionsSubForm.js) to work properly
    ```
 
  `.env`:
@@ -88,7 +87,6 @@ When users visit your project's page on this app, the code section is automatica
    S3_BUCKET_PRODUCTION="your-AWS-S3-bucket"
    S3_BUCKET_DEVELOPMENT="your-AWS-S3-bucket"
    BASE_URL="http://localhost:3000"
-   REACT_APP_TINYMCE_API_KEY="your-tinymce-api-key"
    ```
 
 3. If running the project locally, go to [getDatabaseUrl.cjs"](client/config/getDatabaseUrl.cjs) 
