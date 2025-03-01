@@ -45,7 +45,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }))
 
-const TopBarSearch = () => {
+const NavBarSearch = () => {
   const [query, setQuery] = useState("")
   const history = useHistory()
 
@@ -80,4 +80,4 @@ const TopBarSearch = () => {
   )
 }
 
-export default TopBarSearch
+export default NavBarSearch

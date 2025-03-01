@@ -1,7 +1,7 @@
 import React from "react"
 import { Button } from "@mui/material"
 
-const GithubLogin = (props) => {
+const GithubLoginButton = (props) => {
   const handleGithubLogin = () => {
     window.location.href = "/api/v1/github-user-sessions/login"
   }
@@ -28,4 +28,4 @@ const GithubLogin = (props) => {
   )
 }
 
-export default GithubLogin
+export default GithubLoginButton

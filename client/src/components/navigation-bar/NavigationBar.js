@@ -15,13 +15,13 @@ import {
   MenuItem,
 } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
-import SignOutButton from "./authentication/SignOutButton"
-import GithubLogin from "./authentication/GithubLogin"
-import CreateBuildButton from "./CreateBuildButton"
-import MyBuildsButton from "../show-pages/MyBuildsButton"
-import SignInButton from "./authentication/SignInButton"
-import SignUpButton from "./authentication/SignUpButton"
 import NavBarSearch from "./NavBarSearch"
+import SignInButton from "./nav-bar-authentication/SignInButton"
+import SignUpButton from "./nav-bar-authentication/SignUpButton"
+import GithubLoginButton from "./nav-bar-authentication/GithubLoginButton"
+import SignOutButton from "./nav-bar-authed-UI/SignOutButton"
+import CreateBuildButton from "./nav-bar-authed-UI/CreateBuildButton"
+import MyBuildsButton from "./nav-bar-authed-UI/MyBuildsButton"
 
 const NavigationBar = ({ user, projectsPerPage }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -80,8 +80,14 @@ const NavigationBar = ({ user, projectsPerPage }) => {
   const loggedInUserName = user ? user.userName || user.githubUserName : ""
   const avatarLetter = loggedInUserName[0]?.toUpperCase()
   const avatarImageURL = user?.githubAvatarURL
-  const avatarWithImage = [<Avatar key={"github-avatar-image"} alt={loggedInUserName} src={avatarImageURL} />]
-  const avatarJustALetter = [<Avatar key={"username-first-letter"}  alt={loggedInUserName}>{avatarLetter}</Avatar>]
+  const avatarWithImage = [
+    <Avatar key={"github-avatar-image"} alt={loggedInUserName} src={avatarImageURL} />,
+  ]
+  const avatarJustALetter = [
+    <Avatar key={"username-first-letter"} alt={loggedInUserName}>
+      {avatarLetter}
+    </Avatar>,
+  ]
 
   return (
     <AppBar id="app-bar" position="fixed">
@@ -211,7 +217,7 @@ const NavigationBar = ({ user, projectsPerPage }) => {
               <NavBarSearch projectsPerPage={projectsPerPage} />
               <SignUpButton />
               <SignInButton />
-              <GithubLogin />
+              <GithubLoginButton />
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton
                   id="burger-menu"

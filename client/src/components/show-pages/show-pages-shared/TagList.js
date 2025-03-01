@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useHistory } from "react-router-dom"
-import { TagContext } from "../../contexts/TagContext"
+import { TagContext } from "../../../contexts/TagContext"
 import Chip from "@mui/material/Chip"
 import Stack from "@mui/material/Stack"
 

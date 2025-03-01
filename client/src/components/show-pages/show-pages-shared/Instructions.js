@@ -3,7 +3,7 @@ import DOMPurify from "dompurify"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 import { Button } from "@mui/material"
-import MarkdownService from "../../services/MarkdownService"
+import MarkdownService from "../../../services/MarkdownService"
 
 const Instructions = ({ project }) => {
   useEffect(() => {

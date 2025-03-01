@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import Button from "@mui/material/Button"
 
-const ProjectForksButton = ({ id }) => {
+const SeeForkedVersionsButton = ({ id }) => {
   return (
     <Button
       onClick={(e) => e.stopPropagation()}
@@ -26,4 +26,4 @@ const ProjectForksButton = ({ id }) => {
   )
 }
 
-export default ProjectForksButton
+export default SeeForkedVersionsButton
