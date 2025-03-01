@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 import { hot } from "react-hot-loader/root"
 import "../assets/scss/main.scss"
 import getCurrentUser from "../services/getCurrentUser"
+import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
 import RegistrationForm from "./registration/RegistrationForm"
 import SignInForm from "./authentication/SignInForm"
 import NavigationBar from "./navigation-bar/NavigationBar"
@@ -14,16 +15,12 @@ import ProjectShow from "./show-pages/ProjectShow"
 import MyBuildShow from "./show-pages/MyBuildShow"
 import NewProjectForm from "./project-forms/NewProjectForm"
 import MyBuildList from "./project-list-pages/MyBuildsList"
-
 import EditBuildForm from "./project-forms/EditBuildForm"
-
 import ForkProjectForm from "./project-forms/ForkProjectForm"
-import GithubLogin from "./navigation-bar/authentication/GithubLogin"
 import About from "./information-pages/About"
 import NotFound404 from "./information-pages/404NotFound"
-import FilterByTag from "./navigation-bar/FilterByTag"
+import FilterByTag from "./shared/FilterByTag"
 import HowToUse from "./information-pages/HowToUse"
-import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -55,33 +52,41 @@ const App = (props) => {
         <Route exact path={"/about"}>
           <About />
         </Route>
-        <Route exact path={"/my-builds-list"}>
-          <MyBuildList projectsPerPage={projectsPerPage} user={currentUser} />
-        </Route>
         <Route exact path={"/project-forks/:parentProjectId"}>
           <ForkList projectsPerPage={projectsPerPage} user={currentUser} />
         </Route>
         <Route exact path={"/search"}>
           <SearchList projectsPerPage={projectsPerPage} user={currentUser} />
         </Route>
-          <Route exact path="/projects/:id">
-            <ProjectShow user={currentUser} />
-          </Route>
-          <Route exact path={"/my-builds/:id"}>
-            <MyBuildShow user={currentUser} />
-          </Route>
-          <Route exact path="/github-login">
-            <GithubLogin user={currentUser} />
-          </Route>
-          <Route exact path="/create-new-build">
-            <NewProjectForm user={currentUser} />
-          </Route>
-          <Route exact path="/edit-my-build/:id">
-            <EditBuildForm user={currentUser} />
-          </Route>
-          <Route exact path="/fork-project/:id">
-            <ForkProjectForm user={currentUser} />
-          </Route>
+        <Route exact path="/projects/:id">
+          <ProjectShow user={currentUser} />
+        </Route>
+        <AuthenticatedRoute
+          path="/my-builds-list"
+          component={MyBuildList}
+          projectsPerPage={projectsPerPage}
+          user={currentUser}
+        />
+        <AuthenticatedRoute
+          path="/my-builds/:id"
+          component={MyBuildShow}
+          user={currentUser}
+        />
+        <AuthenticatedRoute
+          path="/create-new-build"
+          component={NewProjectForm}
+          user={currentUser}
+        />
+        <AuthenticatedRoute
+          path="/edit-my-build/:id"
+          component={EditBuildForm}
+          user={currentUser}
+        />
+        <AuthenticatedRoute
+          path="/fork-project/:id"
+          component={ForkProjectForm}
+          user={currentUser}
+        />
         <Route exact path="/404" component={NotFound404} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

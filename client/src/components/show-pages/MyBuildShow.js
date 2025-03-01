@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import DeleteBuildButton from "./DeleteBuildButton"
-import EditBuildButton from "./EditBuildButton"
-import TagList from "./TagList"
+import DeleteBuildButton from "./show-page-authed-UI/DeleteBuildButton"
+import EditBuildButton from "./show-page-authed-UI/EditBuildButton"
+import TagList from "./show-pages-shared/TagList"
 //TODO: remove all "prepForFrontEnd" and replace with functional state update as done in ForkedProjectForm
-import Instructions from "./Instructions"
+import Instructions from "./show-pages-shared/Instructions"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
