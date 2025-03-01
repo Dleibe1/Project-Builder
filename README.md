@@ -42,7 +42,8 @@ When users visit your project's page on this app, the code section is automatica
 
 ### New features:
 - Download a project's instructions as a markdown file
-- Upload a project's instructions as a markdown file
+- Upload a project's instructions as a markdown file.  
+  After uploading, the markdown file's contents are converted to html and rendered on the project's display page.
 
 ### Improvements coming soon:
 
