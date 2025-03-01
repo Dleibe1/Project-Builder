@@ -1,6 +1,6 @@
 # A Project Building Assistant for Arduino Micro Controller Apps
 
-## Create, Edit, and Fork projects:
+## Create, Edit, and Fork Arduino Projects
 
 ### A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 
