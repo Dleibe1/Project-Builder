@@ -21,7 +21,7 @@ const PartsSubForm = ({ project, setProject }) => {
   }
 
   const handlePartSubmit = () => {
-    if (partName.trim().length) {
+    if (part.partName.trim().length) {
       setProject({
         ...project,
         parts: [
@@ -68,7 +68,7 @@ const PartsSubForm = ({ project, setProject }) => {
           label="Enter new part"
           name="partName"
         />
-        <TextField
+        {/* <TextField
           sx={{ width: "100%" }}
           id="part-purchase-url"
           className="part-purchase-url"
@@ -76,7 +76,7 @@ const PartsSubForm = ({ project, setProject }) => {
           onChange={handleInputChange}
           label="Enter new part"
           name="partPurchaseURL"
-        />
+        /> */}
         <Button
           onClick={handlePartSubmit}
           className="large-button add-part"

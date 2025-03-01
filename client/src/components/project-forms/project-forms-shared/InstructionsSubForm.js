@@ -1,5 +1,5 @@
 import React from "react"
-import MarkdownService from "../../../services/MarkdownService"
+import MarkdownService from "../../../services/MarkdownService.js"
 import BundledEditor from "../../../services/TinyMCEBundler"
 
 const InstructionsSubForm = ({ project, setProject }) => {
