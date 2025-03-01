@@ -1,6 +1,6 @@
 # A Project Building Assistant for Arduino Micro Controller Apps
 
-## Create, Edit, and Fork projects:
+## Create, Edit, and Fork Arduino Projects
 
 ### A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 
@@ -42,7 +42,8 @@ When users visit your project's page on this app, the code section is automatica
 
 ### New features:
 - Download a project's instructions as a markdown file
-- Upload a project's instructions as a markdown file
+- Upload a project's instructions as a markdown file.  
+  After uploading, the markdown file's contents are converted to html and rendered on the project's display page.
 
 ### Improvements coming soon:
 
