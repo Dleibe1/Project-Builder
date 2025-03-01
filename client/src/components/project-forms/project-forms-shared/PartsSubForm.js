@@ -9,7 +9,6 @@ const PartsSubForm = ({ project, setProject }) => {
     let url
     try {
       url = new URL(string)
-      console.log(url)
     } catch (_) {
       return false
     }
@@ -21,7 +20,13 @@ const PartsSubForm = ({ project, setProject }) => {
   }
 
   const handlePartSubmit = () => {
-    if (part.partName.trim().length) {
+    const urlProvided = part.partPurchaseURL.trim().length > 0
+    const partNameProvided = part.partName.trim().length > 0
+    const urlIsValid = isValidHttpUrl(part.partPurchaseURL.trim())
+    if (
+      (urlProvided && urlIsValid && partNameProvided) ||
+      (!urlProvided && partNameProvided)
+    ) {
       setProject({
         ...project,
         parts: [
@@ -61,30 +66,29 @@ const PartsSubForm = ({ project, setProject }) => {
       <div id="part-input-container" className="form-items-container">
         <TextField
           sx={{ width: "100%" }}
-          id="part"
-          className="part"
+          className="part-name-input"
           value={part.partName}
           onChange={handleInputChange}
-          label="Enter new part"
+          label="Enter new part (required)"
           name="partName"
         />
-        {/* <TextField
+        <TextField
           sx={{ width: "100%" }}
-          id="part-purchase-url"
-          className="part-purchase-url"
+          className="part-purchase-url-input"
           value={part.partPurchaseURL}
           onChange={handleInputChange}
-          label="Enter new part"
+          label="Purchase URL for Part (optional)"
           name="partPurchaseURL"
-        /> */}
-        <Button
-          onClick={handlePartSubmit}
-          className="large-button add-part"
-          id="add-part"
-          variant="contained"
-        >
-          Add Part
-        </Button>
+        />
+        <section className="part-submit">
+          <Button onClick={handlePartSubmit} id="add-part-button" variant="contained">
+            Add Part
+          </Button>
+          {isValidHttpUrl(part.partPurchaseURL.trim()) === false &&
+            part.partPurchaseURL.trim().length > 0 && (
+              <p className="url-invalid">Not a valid URL.</p>
+            )}
+        </section>
       </div>
     </div>
   )

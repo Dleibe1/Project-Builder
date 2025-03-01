@@ -1039,14 +1039,32 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   justify-content: flex-start;
 }
 
-#add-part {
+#add-part-button {
+  min-width: max-content;
+  text-wrap-mode: nowrap;
   margin-top: 5px;
+  height: fit-content;
 }
 
-#part,
-#part-purchase-url {
-  width: 100%;
-  text-align: left;
+#part-input-container .part-name-input,
+#part-input-container .part-purchase-url-input {
+  margin: 5px 0px;
+}
+
+#part-input-container .part-submit {
+  text-wrap-mode: nowrap;
+  display: flex;
+  flex-direction: row;
+}
+
+.part-submit p {
+  margin: 0px 10px;
+}
+
+.part-submit .url-invalid {
+  margin-left: 170px;
+  color: #b70000;
+
 }
 
 #github-example-url {
@@ -1085,6 +1103,10 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   color: #374146;
   font-weight: 400;
   font-size: 1.5rem;
+}
+
+.form-items-container p {
+  width: fit-content
 }
 
 .form-items-container.apps-and-platforms {
