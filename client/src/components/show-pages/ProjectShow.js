@@ -57,9 +57,6 @@ const ProjectShow = (props) => {
       }
       const responseBody = await response.json()
       const project = responseBody.project
-      if (project.userId === props.user?.id) {
-        setShouldRedirect(true)
-      }
       prepForFrontEnd(project)
       setProject(project)
     } catch (error) {
@@ -86,10 +83,6 @@ const ProjectShow = (props) => {
   useEffect(() => {
     checkForForks()
   }, [])
-
-  if (shouldRedirect) {
-    return <Redirect push to={`/my-builds/${id}`} />
-  }
 
   const forkProjectButton = [<ForkProjectButton key={"fork-project"} id={id} />]
   const codeMessage = project.githubFileURL?.length ? (
