@@ -9,7 +9,7 @@ const { KnexTimeoutError } = require("knex");
  */
 exports.up = async (knex) => {
 	await knex.schema.alterTable("parts", (table) => {
-		table.text("partPurchaseURL")
+		table.text("partPurchaseURL").defaultTo("")
 	  })
 };
 

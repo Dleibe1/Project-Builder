@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Button, TextField } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 
 const PartsSubForm = ({ project, setProject }) => {
   const [part, setPart] = useState({ partName: "", partPurchaseURL: "" })
@@ -23,10 +24,7 @@ const PartsSubForm = ({ project, setProject }) => {
     const urlProvided = part.partPurchaseURL.trim().length > 0
     const partNameProvided = part.partName.trim().length > 0
     const urlIsValid = isValidHttpUrl(part.partPurchaseURL.trim())
-    if (
-      (urlProvided && urlIsValid && partNameProvided) ||
-      (!urlProvided && partNameProvided)
-    ) {
+    if ((urlProvided && urlIsValid && partNameProvided) || (!urlProvided && partNameProvided)) {
       setProject({
         ...project,
         parts: [
@@ -45,8 +43,16 @@ const PartsSubForm = ({ project, setProject }) => {
 
   const partsList = project.parts.map((part, index) => {
     return (
-      <div key={`${part.partName}${index}`} className="part-item-in-form">
-        <p> {part.partName}</p>
+      <div key={`${(part.partName, part.partPurchaseURL)}${index}`} className="part-item-in-form">
+        {part.partPurchaseURL.length === 0 && <p>{part.partName}</p>}
+        {part.partPurchaseURL.length > 0 && (
+          <a href={part.partPurchaseURL}>
+            <div className="part-with-purchase-link">
+              <p>{part.partName} </p>
+              <ShoppingCartIcon  fontSize="large" />
+            </div>
+          </a>
+        )}
         <Button
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"

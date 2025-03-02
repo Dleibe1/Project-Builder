@@ -1,6 +1,6 @@
 class PartsSerializer {
   static getPartDetails(part) {
-    const allowedAttributes = ["id", "partName"]
+    const allowedAttributes = ["id", "partName", "partPurchaseURL"]
     let serializedPart = {}
     for (const attribute of allowedAttributes) {
       serializedPart[attribute] = part[attribute]

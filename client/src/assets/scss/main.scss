@@ -613,6 +613,14 @@ h5 {
   width: fit-content;
 }
 
+.part-item-in-form .part-with-purchase-link {
+  display: flex;
+}
+
+.part-with-purchase-link p {
+  margin-right: 10px;
+}
+
 #logo {
   height: 52px;
 }
@@ -1093,6 +1101,7 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 
 .showpage-items-container p,
 .form-items-container p,
+.form-items-container a,
 .project-show .preserve-white-space {
   width: 100%;
   font-family: OpenSans-Regular;
@@ -1105,8 +1114,13 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   font-size: 1.5rem;
 }
 
-.form-items-container p {
+.form-items-container p,
+.form-items-container a {
   width: fit-content
+}
+
+.form-items-container a {
+  margin-bottom: 1rem;
 }
 
 .form-items-container.apps-and-platforms {
