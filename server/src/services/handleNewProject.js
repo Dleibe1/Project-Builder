@@ -26,7 +26,7 @@ const handleNewProject = async ({
   const newProjectId = parseInt(newProject.id)
   await Promise.all(
     parts.map((part) => {
-      return Part.query().insert({ projectId: newProjectId, partName: part.partName })
+      return Part.query().insert({ projectId: newProjectId, partName: part.partName, partPurchaseURL: part.partPurchaseURL })
     }),
   )
 

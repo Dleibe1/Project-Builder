@@ -66,7 +66,7 @@ const PartsSubForm = ({ project, setProject }) => {
   })
 
   return (
-    <div className="form-items-container top-section">
+    <div className="form-items-container parts-sub-form">
       <h2 id="parts-heading-form">Parts:</h2>
       <div className="form-parts-list">{partsList}</div>
       <div id="part-input-container" className="form-items-container">
@@ -75,7 +75,7 @@ const PartsSubForm = ({ project, setProject }) => {
           className="part-name-input"
           value={part.partName}
           onChange={handleInputChange}
-          label="Enter new part (required)"
+          label="Enter new part"
           name="partName"
         />
         <TextField
@@ -92,7 +92,7 @@ const PartsSubForm = ({ project, setProject }) => {
           </Button>
           {isValidHttpUrl(part.partPurchaseURL.trim()) === false &&
             part.partPurchaseURL.trim().length > 0 && (
-              <p className="url-invalid">Not a valid URL.</p>
+              <p className="url-invalid">Not a valid URL, make sure to include <strong>http://</strong> or <strong>https://</strong></p>
             )}
         </section>
       </div>

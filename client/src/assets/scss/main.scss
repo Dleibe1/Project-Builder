@@ -546,6 +546,7 @@ h5 {
 .parts-list,
 .apps-and-platforms,
 .form-parts-list {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 40px;
@@ -553,18 +554,21 @@ h5 {
   margin-bottom: 10px;
 }
 
+.parts-list,
 .form-parts-list {
   align-items: end;
+  padding: 20px;
+}
+
+#parts-heading {
+  border-radius: 6px 6px 0px 0px;
 }
 
 .showpage-items-container.parts-section {
+  border-radius: 0px 0px 6px 6px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-
-.form-parts-list {
-  gap: 80px;
 }
 
 .parts-list.form-parts-list p {
@@ -580,6 +584,7 @@ h5 {
 }
 
 #parts-heading-form {
+  justify-self: center;
   padding: 0px;
   margin-bottom: 40px;
   border-bottom: 2px solid #c9d2d2;
@@ -592,10 +597,13 @@ h5 {
   overflow-wrap: anywhere;
   padding: 5px;
   box-sizing: border-box;
+}
+.apps-and-platforms p {
   border-bottom: 2px solid #c9d2d2;
 }
 
-.part-item-in-form {
+.part-item-in-form,
+.part-item-in-showpage {
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -603,10 +611,13 @@ h5 {
   align-items: center;
   width: 100%;
   overflow-wrap: anywhere;
-  border-right: 2px solid #c9d2d2;
-  border-bottom: 2px solid #c9d2d2;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  padding: 10px 20px;
+  border: 2px solid #c9d2d2;
+  border-radius: 10px;
+}
+
+.part-item-in-showpage {
+  justify-content: center;
 }
 
 .part-item-in-form .delete-part {
@@ -619,6 +630,16 @@ h5 {
 
 .part-with-purchase-link p {
   margin-right: 10px;
+}
+
+.part-with-purchase-link svg {
+  color: #374146;
+}
+
+.part-item-in-showpage .part-with-purchase-link,
+.part-item-in-showpage .part-without-purchase-link {
+  display: flex;
+  justify-content: center;
 }
 
 #logo {
@@ -932,6 +953,10 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   margin-bottom: 60px;
 }
 
+.form-items-container.parts-sub-form {
+  border-radius: 0px 0px 6px 6px;
+}
+
 .form-items-container.github-url-and-submit,
 .form-items-container.new-instruction {
   display: flex;
@@ -957,6 +982,7 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 6px 6px 0px 0px;
 }
 
 .instruction-list .instructions-top-section {
@@ -1048,8 +1074,7 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 }
 
 #add-part-button {
-  min-width: max-content;
-  text-wrap-mode: nowrap;
+  max-width: fit-content;
   margin-top: 5px;
   height: fit-content;
 }
@@ -1060,19 +1085,13 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 }
 
 #part-input-container .part-submit {
-  text-wrap-mode: nowrap;
   display: flex;
-  flex-direction: row;
-}
-
-.part-submit p {
-  margin: 0px 10px;
+  flex-direction: column;
 }
 
 .part-submit .url-invalid {
-  margin-left: 170px;
   color: #b70000;
-
+  margin: 0px;
 }
 
 #github-example-url {
@@ -1116,7 +1135,7 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 
 .form-items-container p,
 .form-items-container a {
-  width: fit-content
+  width: fit-content;
 }
 
 .form-items-container a {

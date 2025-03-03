@@ -24,7 +24,7 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
 
   await Promise.all(
     parts.map((part) => {
-      return Part.query().insert({ projectId: forkedProjectId, partName: part.partName })
+      return Part.query().insert({ projectId: forkedProjectId, partName: part.partName, partPurchaseURL: part.partPurchaseURL })
     }),
   )
 

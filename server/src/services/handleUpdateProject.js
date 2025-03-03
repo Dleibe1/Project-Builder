@@ -35,7 +35,7 @@ const handleUpdateProject = async (
   }
   if (partsToInsert.length) {
     await Part.query().insert(
-      partsToInsert.map((part) => ({ projectId: projId, partName: part.partName })),
+      partsToInsert.map((part) => ({ projectId: projId, partName: part.partName, partPurchaseURL: part.partPurchaseURL })),
     )
   }
 

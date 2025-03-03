@@ -111,7 +111,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
             })
             editor.ui.registry.addButton("add-image", {
               text: "Add Image",
-              icon: "image", // Uses the built-in image icon
+              icon: "image", 
               tooltip: "Add Image",
               onAction: () => {
                 handleAddImage()
@@ -119,7 +119,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
             })
             editor.ui.registry.addMenuItem("addImageItem", {
               text: "Add Image",
-              icon: "image", // built-in image icon
+              icon: "image", 
               onAction: () => {
                 handleAddImage()
               },
