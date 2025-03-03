@@ -1,25 +1,47 @@
-import React from "react"
+import React, { useRef } from "react"
+import { useDropzone } from "react-dropzone"
 import MarkdownService from "../../../services/MarkdownService.js"
 import BundledEditor from "../../../services/TinyMCEBundler"
 
 const InstructionsSubForm = ({ project, setProject }) => {
-  const handleImageUpload = async (blobInfo, success, failure, progress) => {
-    const imageFileData = new FormData()
-    imageFileData.append("image", blobInfo.blob(), blobInfo.filename())
-    try {
-      const response = await fetch("/api/v1/image-upload", {
-        method: "POST",
-        body: imageFileData,
-      })
-      if (!response.ok) {
-        throw new Error(`${response.status} (${response.statusText})`)
+  const editorRef = useRef(null)
+  const dropzoneOpenRef = useRef(null)
+
+  const { getInputProps, getRootProps, open } = useDropzone({
+    onDrop: async (acceptedFiles) => {
+      const file = acceptedFiles[0]
+      const formData = new FormData()
+      formData.append("image", file)
+      try {
+        const response = await fetch("/api/v1/image-upload", {
+          method: "POST",
+          body: formData,
+        })
+        if (!response.ok) {
+          throw new Error("Image upload failed")
+        }
+        const body = await response.json()
+        const imageUrl = body.imageURL
+        console.log(imageUrl)
+        if (editorRef.current) {
+          editorRef.current.insertContent(`<img src="${imageUrl}" alt="uploaded" />`)
+        }
+      } catch (error) {
+        console.error(error)
       }
-      const body = await response.json()
-      return body.imageURL
-    } catch (error) {
-      failure(`Image upload failed: ${error.message}`)
+    },
+    noClick: true,
+    noKeyboard: true,
+  })
+
+  dropzoneOpenRef.current = open
+
+  const handleAddImage = () => {
+    if (dropzoneOpenRef.current) {
+      dropzoneOpenRef.current()
     }
   }
+
   const handleEditorChange = (newValue, editor) => {
     setProject((prevState) => ({
       ...prevState,
@@ -29,9 +51,19 @@ const InstructionsSubForm = ({ project, setProject }) => {
 
   return (
     <div className="tinymce-container">
+      <div {...getRootProps()} style={{ display: "none" }}>
+        <input {...getInputProps()} />
+      </div>
       <BundledEditor
         // apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
+        onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
+          menu: {
+            insert: {
+              title: "Insert",
+              items: "link addImageItem codesample table charmap emoticons hr anchor",
+            }
+          },
           promotion: false,
           content_style: `
             img { max-width: 50%; height: auto; padding-top: 40px; padding-bottom: 40px; } 
@@ -45,7 +77,6 @@ const InstructionsSubForm = ({ project, setProject }) => {
             "codesample",
             "save",
             "emoticons",
-            "image",
             "link",
             "lists",
             "searchreplace",
@@ -54,7 +85,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
             "wordcount",
           ],
           toolbar:
-            "download-as-markdown upload-markdown undo redo | blocks codesample link image | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+            "download-as-markdown upload-markdown add-image undo redo | blocks codesample link | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
           toolbar_sticky: true,
           toolbar_sticky_offset: 52,
           setup: (editor) => {
@@ -78,6 +109,21 @@ const InstructionsSubForm = ({ project, setProject }) => {
                 MarkdownService.downloadHtmlAsMarkdown(editor.getContent())
               },
             })
+            editor.ui.registry.addButton("add-image", {
+              text: "Add Image",
+              icon: "image", // Uses the built-in image icon
+              tooltip: "Add Image",
+              onAction: () => {
+                handleAddImage()
+              },
+            })
+            editor.ui.registry.addMenuItem("addImageItem", {
+              text: "Add Image",
+              icon: "image", // built-in image icon
+              onAction: () => {
+                handleAddImage()
+              },
+            })
             editor.on("keydown", (event) => {
               if (event.key === "Tab") {
                 event.preventDefault()
@@ -85,7 +131,6 @@ const InstructionsSubForm = ({ project, setProject }) => {
               }
             })
           },
-          images_upload_handler: handleImageUpload,
           selector: "textarea",
           min_height: 900,
           width: "90vw",
