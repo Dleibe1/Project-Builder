@@ -45,6 +45,7 @@
     "motion-ui": "^2.0.5",
     "prop-types": "~15.7",
     "react": "^17.0.0",
+    "react-diff-viewer-continued": "^3.4.0",
     "react-dom": "^17.0.0",
     "react-dropzone": "^11.3.1",
     "react-hot-loader": "^4.12.21",

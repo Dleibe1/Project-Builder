@@ -39,59 +39,44 @@ const App = (props) => {
   }, [])
 
   return (
-    <TagProvider>
-      <Router>
+    <Router>
+      <TagProvider>
         <NavigationBar projectsPerPage={projectsPerPage} user={currentUser} />
         <FilterByTag />
         <Route exact path={"/"}>
           <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
         </Route>
-        <Route exact path={"/how-to-use"}>
-          <HowToUse user={currentUser} />
-        </Route>
-        <Route exact path={"/about"}>
-          <About />
-        </Route>
-        <Route exact path={"/project-forks/:parentProjectId"}>
-          <ForkList projectsPerPage={projectsPerPage} user={currentUser} />
-        </Route>
-        <Route exact path={"/search"}>
-          <SearchList projectsPerPage={projectsPerPage} user={currentUser} />
-        </Route>
         <Route exact path="/projects/:id">
           <ProjectShow user={currentUser} />
         </Route>
-        <AuthenticatedRoute
-          path="/my-builds-list"
-          component={MyBuildList}
-          projectsPerPage={projectsPerPage}
-          user={currentUser}
-        />
-        <AuthenticatedRoute
-          path="/my-builds/:id"
-          component={MyBuildShow}
-          user={currentUser}
-        />
-        <AuthenticatedRoute
-          path="/create-new-build"
-          component={NewProjectForm}
-          user={currentUser}
-        />
-        <AuthenticatedRoute
-          path="/edit-my-build/:id"
-          component={EditBuildForm}
-          user={currentUser}
-        />
-        <AuthenticatedRoute
-          path="/fork-project/:id"
-          component={ForkProjectForm}
-          user={currentUser}
-        />
-        <Route exact path="/404" component={NotFound404} />
-        <Route exact path="/users/new" component={RegistrationForm} />
-        <Route exact path="/user-sessions/new" component={SignInForm} />
-      </Router>
-    </TagProvider>
+        <AuthenticatedRoute path="/my-builds/:id" component={MyBuildShow} user={currentUser} />
+      </TagProvider>
+      <Route exact path={"/how-to-use"}>
+        <HowToUse user={currentUser} />
+      </Route>
+      <Route exact path={"/about"}>
+        <About />
+      </Route>
+      <Route exact path={"/project-forks/:parentProjectId"}>
+        <ForkList projectsPerPage={projectsPerPage} user={currentUser} />
+      </Route>
+      <Route exact path={"/search"}>
+        <SearchList projectsPerPage={projectsPerPage} user={currentUser} />
+      </Route>
+      <AuthenticatedRoute
+        path="/my-builds-list"
+        component={MyBuildList}
+        projectsPerPage={projectsPerPage}
+        user={currentUser}
+      />
+
+      <AuthenticatedRoute path="/create-new-build" component={NewProjectForm} user={currentUser} />
+      <AuthenticatedRoute path="/edit-my-build/:id" component={EditBuildForm} user={currentUser} />
+      <AuthenticatedRoute path="/fork-project/:id" component={ForkProjectForm} user={currentUser} />
+      <Route exact path="/404" component={NotFound404} />
+      <Route exact path="/users/new" component={RegistrationForm} />
+      <Route exact path="/user-sessions/new" component={SignInForm} />
+    </Router>
   )
 }
 
