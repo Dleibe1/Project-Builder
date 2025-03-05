@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { useParams, Redirect } from "react-router-dom"
+import { useParams } from "react-router-dom"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import ForkProjectButton from "./show-page-authed-UI/ForkProjectButton.js"
 import ProjectForksButton from "../shared/SeeForkedVersionsButton.js"
 import TagList from "./show-pages-shared/TagList.js"
-import Instructions from "./show-pages-shared/Instructions.js"
+import Instructions from "../shared/Instructions.js"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
@@ -23,7 +24,6 @@ const ProjectShow = (props) => {
     thumbnailImage: "",
   })
   const [hasForks, setHasForks] = useState(false)
-  const [shouldRedirect, setShouldRedirect] = useState(false)
   const params = useParams()
   const { id } = params
 
@@ -94,7 +94,19 @@ const ProjectShow = (props) => {
     <h2>Project Code</h2>
   )
   const partsList = project.parts.map((part, index) => {
-    return <p key={`${part.partName}${index}`}>{part.partName}</p>
+    return (
+      <div className="part-item-in-showpage" key={`${(part.partName, part.partPurchaseURL)}${index}`}>
+        {part.partPurchaseURL.length === 0 && <p className="part-without-purchase-link">{part.partName}</p>}
+        {part.partPurchaseURL.length > 0 && (
+          <a href={part.partPurchaseURL}>
+            <div className="part-with-purchase-link">
+              <p>{part.partName} </p>
+              <ShoppingCartIcon fontSize="large" />
+            </div>
+          </a>
+        )}
+      </div>
+    )
   })
 
   return (
@@ -123,7 +135,7 @@ const ProjectShow = (props) => {
         <h2 className="description-title">Description</h2>
         <p className="preserve-white-space">{project.description}</p>
       </div>
-      <h2>Parts</h2>
+      <h2 id="parts-heading">Parts</h2>
       <div className="showpage-items-container parts-section">
         <section className="parts-list">{partsList}</section>
       </div>

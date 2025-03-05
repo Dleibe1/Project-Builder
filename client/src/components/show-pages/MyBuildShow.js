@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import DeleteBuildButton from "./show-page-authed-UI/DeleteBuildButton"
 import EditBuildButton from "./show-page-authed-UI/EditBuildButton"
 import TagList from "./show-pages-shared/TagList"
 //TODO: remove all "prepForFrontEnd" and replace with functional state update as done in ForkedProjectForm
-import Instructions from "./show-pages-shared/Instructions"
+import Instructions from "../shared/Instructions"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -70,7 +71,19 @@ const MyBuildShow = (props) => {
     <h2>Project Code</h2>
   )
   const partsList = myBuild.parts.map((part, index) => {
-    return <p key={`${part.partName}${index}`} >{part.partName}</p>
+    return (
+      <div className="part-item-in-showpage" key={`${(part.partName, part.partPurchaseURL)}${index}`}>
+        {part.partPurchaseURL.length === 0 && <p className="part-without-purchase-link">{part.partName}</p>}
+        {part.partPurchaseURL.length > 0 && (
+          <a href={part.partPurchaseURL}>
+            <div className="part-with-purchase-link">
+              <p>{part.partName} </p>
+              <ShoppingCartIcon fontSize="large" />
+            </div>
+          </a>
+        )}
+      </div>
+    )
   })
 
   return (
@@ -100,7 +113,7 @@ const MyBuildShow = (props) => {
         <p className="preserve-white-space">{myBuild.description}</p>
       </div>
       <div>
-        <h2>Parts</h2>
+        <h2 id="parts-heading">Parts</h2>
       </div>
       <div className="showpage-items-container parts-section">
         <div className="parts-list">{partsList}</div>
@@ -111,16 +124,12 @@ const MyBuildShow = (props) => {
           <p>{myBuild.appsAndPlatforms}</p>
         </div>
       </div>
-      <div>
         <Instructions project={myBuild} />
-      </div>
       <div>
         <div className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code className="language-cpp">
-              {myBuild.code}
-            </code>
+            <code className="language-cpp">{myBuild.code}</code>
           </pre>
         </div>
       </div>

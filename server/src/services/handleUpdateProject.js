@@ -21,9 +21,9 @@ const handleUpdateProject = async (
   const project = await Project.query().findOne({ id: projId })
   const partsToInsert = parts.filter((part) => !part.id)
   const existingPartsData = await project.$relatedQuery("parts")
-  const partsToDelete = existingPartsData.filter(
-    (existingPartData) => !parts.map((part) => part.id).includes(existingPartData.id),
-  )
+  const partsToDelete = existingPartsData.filter((existingPartData) => {
+    return !parts.map((part) => part.id).includes(existingPartData.id)
+  })
 
   if (partsToDelete.length) {
     await Part.query()
@@ -35,7 +35,7 @@ const handleUpdateProject = async (
   }
   if (partsToInsert.length) {
     await Part.query().insert(
-      partsToInsert.map((part) => ({ projectId: projId, partName: part.partName })),
+      partsToInsert.map((part) => ({ projectId: projId, partName: part.partName, partPurchaseURL: part.partPurchaseURL })),
     )
   }
 
@@ -53,9 +53,7 @@ const handleUpdateProject = async (
   const tagsToUnRelate = await Tag.query().select("id").whereIn("tagName", tagNamesToUnRelate)
 
   if (tagsToRelate.length) {
-    await project
-    .$relatedQuery("tags")
-    .relate(tagsToRelate.map((tag) => tag.id))
+    await project.$relatedQuery("tags").relate(tagsToRelate.map((tag) => tag.id))
   }
 
   if (tagsToUnRelate.length) {
@@ -77,7 +75,7 @@ const handleUpdateProject = async (
       githubFileURL: githubFileURLField,
       thumbnailImage,
       userId,
-      instructions
+      instructions,
     })
     .where("id", projId)
 }

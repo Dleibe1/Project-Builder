@@ -1,11 +1,13 @@
 import React, { useEffect } from "react"
+import { useHistory } from "react-router-dom"
 import DOMPurify from "dompurify"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 import { Button } from "@mui/material"
-import MarkdownService from "../../../services/MarkdownService"
+import MarkdownService from "../../services/MarkdownService"
 
-const Instructions = ({ project }) => {
+const Instructions = ({ project, setEditingInstructions }) => {
+  const history = useHistory()
   useEffect(() => {
     //Apply highlighting after default css has been applied
     const codeTags = document.querySelectorAll("code")
@@ -14,19 +16,32 @@ const Instructions = ({ project }) => {
     })
     hljs.highlightAll()
   }, [project.instructions])
-
   return (
     <section className="instructions-list showpage-items-container">
+      {["/edit-my-build/", "/fork-project/","/create-new-build"].some((allowedPathname) =>
+        history.location.pathname.includes(allowedPathname),
+      ) && (
+        <div className="edit-instructions-button-container">
+          <Button
+            onClick={() => setEditingInstructions(true)}
+            className="large-button instructions-list-button edit-instructions"
+            variant="contained"
+          >
+            {project.instructions?.length > 0 && "Edit Instructions"}
+            {project.instructions?.length === 0 && "Add Instructions"}
+          </Button>
+        </div>
+      )}
       {project.instructions?.length > 0 && (
         <Button
-          className="large-button instruction-list-button download-markdown-button"
+          className="large-button instructions-list-button download-markdown-button-instructions-list"
           variant="contained"
           onClick={() => MarkdownService.downloadHtmlAsMarkdown(project.instructions)}
         >
           Download Instructions as Markdown
         </Button>
       )}
-      <h2 id="form-instructions-heading">Instructions:</h2>
+      {project.instructions?.length > 0 && <h2 id="form-instructions-heading">Instructions:</h2>}
       <div
         className="preserve-white-space instruction-text showpage-items-container"
         dangerouslySetInnerHTML={{

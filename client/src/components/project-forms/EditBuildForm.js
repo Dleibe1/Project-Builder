@@ -3,12 +3,13 @@ import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
-import CloudUpload from "@mui/icons-material/CloudUpload"
+import { CloudUpload } from "@mui/icons-material"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
-import InstructionsSubForm from "./project-forms-shared/InstructionsSubForm.js"
+import Instructions from "../shared/Instructions.js"
+import InstructionsTinyMCEForm from "./InstructionsTinyMCEForm.js"
 import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 
 const EditBuildForm = (props) => {
@@ -30,6 +31,7 @@ const EditBuildForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+  const [editingInstructions, setEditingInstructions] = useState(false)
   const params = useParams()
   const { id } = params
   useEffect(() => {
@@ -39,6 +41,14 @@ const EditBuildForm = (props) => {
       document.body.classList.remove("grey-background")
     }
   }, [])
+
+  useEffect(() => {
+    if (editingInstructions) {
+      document.body.classList.remove("grey-background")
+    } else if (editingInstructions === false) {
+      document.body.classList.add("grey-background")
+    }
+  }, [editingInstructions])
 
   useEffect(() => {
     uploadThumbnailImage()
@@ -140,7 +150,7 @@ const EditBuildForm = (props) => {
     return <Redirect push to={"/my-builds-list?page=1"} />
   }
 
-  return (
+  return !editingInstructions ? (
     <div className="edit-project-form-container project-show">
       <ErrorList errors={errors} />
       <form key="edit-build-form" id="edit-project-form" onSubmit={handleSubmit}>
@@ -199,7 +209,7 @@ const EditBuildForm = (props) => {
           />
         </div>
         <PartsSubForm project={project} setProject={setProject} />
-        <InstructionsSubForm project={project} setProject={setProject} />
+        <Instructions project={project} setEditingInstructions={setEditingInstructions} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
@@ -243,6 +253,12 @@ const EditBuildForm = (props) => {
         </div>
       </form>
     </div>
+  ) : (
+    <InstructionsTinyMCEForm
+      project={project}
+      setProject={setProject}
+      setEditingInstructions={setEditingInstructions}
+    />
   )
 }
 

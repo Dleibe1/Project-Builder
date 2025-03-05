@@ -546,6 +546,7 @@ h5 {
 .parts-list,
 .apps-and-platforms,
 .form-parts-list {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 40px;
@@ -553,18 +554,21 @@ h5 {
   margin-bottom: 10px;
 }
 
+.parts-list,
 .form-parts-list {
   align-items: end;
+  padding: 20px;
+}
+
+#parts-heading {
+  border-radius: 6px 6px 0px 0px;
 }
 
 .showpage-items-container.parts-section {
+  border-radius: 0px 0px 6px 6px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-
-.form-parts-list {
-  gap: 80px;
 }
 
 .parts-list.form-parts-list p {
@@ -580,6 +584,7 @@ h5 {
 }
 
 #parts-heading-form {
+  justify-self: center;
   padding: 0px;
   margin-bottom: 40px;
   border-bottom: 2px solid #c9d2d2;
@@ -592,10 +597,13 @@ h5 {
   overflow-wrap: anywhere;
   padding: 5px;
   box-sizing: border-box;
+}
+.apps-and-platforms p {
   border-bottom: 2px solid #c9d2d2;
 }
 
-.part-item-in-form {
+.part-item-in-form,
+.part-item-in-showpage {
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -603,14 +611,35 @@ h5 {
   align-items: center;
   width: 100%;
   overflow-wrap: anywhere;
-  border-right: 2px solid #c9d2d2;
-  border-bottom: 2px solid #c9d2d2;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  padding: 10px 20px;
+  border: 2px solid #c9d2d2;
+  border-radius: 10px;
+}
+
+.part-item-in-showpage {
+  justify-content: center;
 }
 
 .part-item-in-form .delete-part {
   width: fit-content;
+}
+
+.part-item-in-form .part-with-purchase-link {
+  display: flex;
+}
+
+.part-with-purchase-link p {
+  margin-right: 10px;
+}
+
+.part-with-purchase-link svg {
+  color: #374146;
+}
+
+.part-item-in-showpage .part-with-purchase-link,
+.part-item-in-showpage .part-without-purchase-link {
+  display: flex;
+  justify-content: center;
 }
 
 #logo {
@@ -671,8 +700,24 @@ h5 {
 }
 
 .instructions-list.showpage-items-container {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.instructions-list .instructions-list-buttons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.instructions-list .edit-instructions-button-container {
+  position: sticky;
+  top: 60px;
+  z-index: 1;
+}
+
+.instructions-list-button.edit-instructions {
+  position: absolute;
 }
 
 .project-image {
@@ -855,25 +900,24 @@ h5 {
   display: flex;
   min-width: 100%;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 30px;
 }
 
 //Custom save instructions button in TinyMCE
 button[data-mce-name="upload-markdown"].tox-tbtn,
 button[data-mce-name="download-as-markdown"].tox-tbtn {
-  margin-right: 20px;
+  margin: 0px 20px 0px 0px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   translate: 0px -10px;
   transition: 0.25s;
-  font-size: 0.875rem;
   color: white;
   background: #1976d2;
   font-size: 20px;
-  padding: 19px 20px;
+  padding: 15px 10px;
   border-radius: 6px;
-  font-size: 1.1rem;
-  width: fit-content;
+  font-size: 1rem;
+  width: fit-content !important;
 }
 
 button[data-mce-name="upload-markdown"].tox-tbtn:hover,
@@ -884,8 +928,8 @@ button[data-mce-name="download-as-markdown"] .tox-tbtn__select-label:hover {
   color: white;
   background: #1665c0;
 }
-
-button[data-mce-name="save"] .tox-tbtn__select-label {
+button[data-mce-name="upload-markdown"].tox-tbtn .tox-tbtn__select-label ,
+button[data-mce-name="download-as-markdown"].tox-tbtn .tox-tbtn__select-label {
   font-weight: 500;
 }
 
@@ -915,13 +959,17 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   margin-top: 10px;
 }
 
-.tox .tox-toolbar__primary {
-  margin-top: 15px;
+.tox .tox-toolbar__group {
+  align-items: flex-end !important;
 }
 
 .form-items-container .large-button.change-thumbnail-image {
   width: fit-content;
   margin-bottom: 60px;
+}
+
+.form-items-container.parts-sub-form {
+  border-radius: 0px 0px 6px 6px;
 }
 
 .form-items-container.github-url-and-submit,
@@ -949,11 +997,7 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.instruction-list .instructions-top-section {
-  display: flex;
-  flex-direction: column;
+  border-radius: 6px 6px 0px 0px;
 }
 
 .instruction-text-container.form-items-container .large-button.delete-instruction {
@@ -1001,15 +1045,16 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   width: fit-content;
 }
 
-.large-button.download-markdown-button {
-  align-self: end;
+.large-button.instructions-list-button {
   margin: 0px;
   font-size: 17px;
   height: 45px;
 }
 
-.instruction-list-button.first-image {
-  margin-top: 30px;
+.instructions-list .download-markdown-button-instructions-list {
+  align-self: flex-end;
+  width: fit-content;
+  z-index: 1;
 }
 
 .instruction-text img {
@@ -1039,14 +1084,25 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   justify-content: flex-start;
 }
 
-#add-part {
+#add-part-button {
+  max-width: fit-content;
   margin-top: 5px;
+  height: fit-content;
 }
 
-#part,
-#part-purchase-url {
-  width: 100%;
-  text-align: left;
+#part-input-container .part-name-input,
+#part-input-container .part-purchase-url-input {
+  margin: 5px 0px;
+}
+
+#part-input-container .part-submit {
+  display: flex;
+  flex-direction: column;
+}
+
+.part-submit .url-invalid {
+  color: #b70000;
+  margin: 0px;
 }
 
 #github-example-url {
@@ -1058,6 +1114,7 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 .showpage-items-container,
 .form-items-container,
 .how-to-use-page-items-container {
+  margin-bottom: 30px;
   background-color: white;
   border-radius: 6px;
   width: 100%;
@@ -1075,6 +1132,7 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 
 .showpage-items-container p,
 .form-items-container p,
+.form-items-container a,
 .project-show .preserve-white-space {
   width: 100%;
   font-family: OpenSans-Regular;
@@ -1085,6 +1143,15 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   color: #374146;
   font-weight: 400;
   font-size: 1.5rem;
+}
+
+.form-items-container p,
+.form-items-container a {
+  width: fit-content;
+}
+
+.form-items-container a {
+  margin-bottom: 1rem;
 }
 
 .form-items-container.apps-and-platforms {

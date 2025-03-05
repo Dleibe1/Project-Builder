@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Button, TextField } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 
 const PartsSubForm = ({ project, setProject }) => {
   const [part, setPart] = useState({ partName: "", partPurchaseURL: "" })
@@ -9,7 +10,6 @@ const PartsSubForm = ({ project, setProject }) => {
     let url
     try {
       url = new URL(string)
-      console.log(url)
     } catch (_) {
       return false
     }
@@ -21,7 +21,10 @@ const PartsSubForm = ({ project, setProject }) => {
   }
 
   const handlePartSubmit = () => {
-    if (part.partName.trim().length) {
+    const urlProvided = part.partPurchaseURL.trim().length > 0
+    const partNameProvided = part.partName.trim().length > 0
+    const urlIsValid = isValidHttpUrl(part.partPurchaseURL.trim())
+    if ((urlProvided && urlIsValid && partNameProvided) || (!urlProvided && partNameProvided)) {
       setProject({
         ...project,
         parts: [
@@ -40,8 +43,16 @@ const PartsSubForm = ({ project, setProject }) => {
 
   const partsList = project.parts.map((part, index) => {
     return (
-      <div key={`${part.partName}${index}`} className="part-item-in-form">
-        <p> {part.partName}</p>
+      <div key={`${(part.partName, part.partPurchaseURL)}${index}`} className="part-item-in-form">
+        {part.partPurchaseURL.length === 0 && <p>{part.partName}</p>}
+        {part.partPurchaseURL.length > 0 && (
+          <a href={part.partPurchaseURL}>
+            <div className="part-with-purchase-link">
+              <p>{part.partName} </p>
+              <ShoppingCartIcon  fontSize="large" />
+            </div>
+          </a>
+        )}
         <Button
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"
@@ -55,36 +66,35 @@ const PartsSubForm = ({ project, setProject }) => {
   })
 
   return (
-    <div className="form-items-container top-section">
+    <div className="form-items-container parts-sub-form">
       <h2 id="parts-heading-form">Parts:</h2>
       <div className="form-parts-list">{partsList}</div>
       <div id="part-input-container" className="form-items-container">
         <TextField
           sx={{ width: "100%" }}
-          id="part"
-          className="part"
+          className="part-name-input"
           value={part.partName}
           onChange={handleInputChange}
           label="Enter new part"
           name="partName"
         />
-        {/* <TextField
+        <TextField
           sx={{ width: "100%" }}
-          id="part-purchase-url"
-          className="part-purchase-url"
+          className="part-purchase-url-input"
           value={part.partPurchaseURL}
           onChange={handleInputChange}
-          label="Enter new part"
+          label="Purchase URL for Part (optional)"
           name="partPurchaseURL"
-        /> */}
-        <Button
-          onClick={handlePartSubmit}
-          className="large-button add-part"
-          id="add-part"
-          variant="contained"
-        >
-          Add Part
-        </Button>
+        />
+        <section className="part-submit">
+          <Button onClick={handlePartSubmit} id="add-part-button" variant="contained">
+            Add Part
+          </Button>
+          {isValidHttpUrl(part.partPurchaseURL.trim()) === false &&
+            part.partPurchaseURL.trim().length > 0 && (
+              <p className="url-invalid">Not a valid URL, make sure to include <strong>http://</strong> or <strong>https://</strong></p>
+            )}
+        </section>
       </div>
     </div>
   )
