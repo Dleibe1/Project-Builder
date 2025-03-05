@@ -25,7 +25,7 @@ const About = (props) => {
       </div>
       <div className="banner fourth-banner about-page-section-container-right">
         <img className="banner-image" src="https://i.imgur.com/zNVBrY3.png" />
-        <h1>With Project Builder you can fork a project's list of parts, the instructions to build it, and the programming that makes it do its thing</h1>
+        <h1>With Project Builder you can fork a project's list of parts, the instructions to build it, and the Arduino code.</h1>
       </div>
       <div className="banner fifth-banner about-page-section-container-left">
         <img className="banner-image" src="https://i.imgur.com/dOywizt.png" />

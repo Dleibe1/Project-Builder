@@ -5,7 +5,7 @@ import DeleteBuildButton from "./show-page-authed-UI/DeleteBuildButton"
 import EditBuildButton from "./show-page-authed-UI/EditBuildButton"
 import TagList from "./show-pages-shared/TagList"
 //TODO: remove all "prepForFrontEnd" and replace with functional state update as done in ForkedProjectForm
-import Instructions from "./show-pages-shared/Instructions"
+import Instructions from "../shared/Instructions"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 
@@ -124,9 +124,7 @@ const MyBuildShow = (props) => {
           <p>{myBuild.appsAndPlatforms}</p>
         </div>
       </div>
-      <div>
         <Instructions project={myBuild} />
-      </div>
       <div>
         <div className="showpage-items-container">
           {codeMessage}

@@ -8,7 +8,8 @@ import Textarea from "@mui/joy/Textarea"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
-import InstructionsSubForm from "./project-forms-shared/InstructionsSubForm.js"
+import InstructionsTinyMCEForm from "./InstructionsTinyMCEForm.js"
+import Instructions from "../shared/Instructions.js"
 import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 
 const NewProjectForm = (props) => {
@@ -29,6 +30,7 @@ const NewProjectForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+  const [editingInstructions, setEditingInstructions] = useState(false)
 
   useEffect(() => {
     document.body.classList.add("grey-background")
@@ -118,7 +120,7 @@ const NewProjectForm = (props) => {
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
   }
-  return (
+  return !editingInstructions ? (
     <div className="fork-project-form-container project-show">
       <ErrorList errors={errors} />
       <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
@@ -177,7 +179,7 @@ const NewProjectForm = (props) => {
           />
         </div>
         <PartsSubForm project={project} setProject={setProject} />
-        <InstructionsSubForm project={project} setProject={setProject} />
+        <Instructions project={project} setEditingInstructions={setEditingInstructions} />
         <div className="form-items-container">
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
@@ -221,6 +223,12 @@ const NewProjectForm = (props) => {
         </div>
       </form>
     </div>
+  ) : (
+    <InstructionsTinyMCEForm
+      project={project}
+      setProject={setProject}
+      setEditingInstructions={setEditingInstructions}
+    />
   )
 }
 

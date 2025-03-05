@@ -700,8 +700,24 @@ h5 {
 }
 
 .instructions-list.showpage-items-container {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.instructions-list .instructions-list-buttons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.instructions-list .edit-instructions-button-container {
+  position: sticky;
+  top: 60px;
+  z-index: 1;
+}
+
+.instructions-list-button.edit-instructions {
+  position: absolute;
 }
 
 .project-image {
@@ -884,25 +900,24 @@ h5 {
   display: flex;
   min-width: 100%;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 30px;
 }
 
 //Custom save instructions button in TinyMCE
 button[data-mce-name="upload-markdown"].tox-tbtn,
 button[data-mce-name="download-as-markdown"].tox-tbtn {
-  margin-right: 20px;
+  margin: 0px 20px 0px 0px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   translate: 0px -10px;
   transition: 0.25s;
-  font-size: 0.875rem;
   color: white;
   background: #1976d2;
   font-size: 20px;
-  padding: 19px 20px;
+  padding: 15px 10px;
   border-radius: 6px;
-  font-size: 1.1rem;
-  width: fit-content;
+  font-size: 1rem;
+  width: fit-content !important;
 }
 
 button[data-mce-name="upload-markdown"].tox-tbtn:hover,
@@ -913,8 +928,8 @@ button[data-mce-name="download-as-markdown"] .tox-tbtn__select-label:hover {
   color: white;
   background: #1665c0;
 }
-
-button[data-mce-name="save"] .tox-tbtn__select-label {
+button[data-mce-name="upload-markdown"].tox-tbtn .tox-tbtn__select-label ,
+button[data-mce-name="download-as-markdown"].tox-tbtn .tox-tbtn__select-label {
   font-weight: 500;
 }
 
@@ -944,8 +959,8 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   margin-top: 10px;
 }
 
-.tox .tox-toolbar__primary {
-  margin-top: 15px;
+.tox .tox-toolbar__group {
+  align-items: flex-end !important;
 }
 
 .form-items-container .large-button.change-thumbnail-image {
@@ -983,11 +998,6 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   flex-direction: column;
   align-items: center;
   border-radius: 6px 6px 0px 0px;
-}
-
-.instruction-list .instructions-top-section {
-  display: flex;
-  flex-direction: column;
 }
 
 .instruction-text-container.form-items-container .large-button.delete-instruction {
@@ -1035,15 +1045,16 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
   width: fit-content;
 }
 
-.large-button.download-markdown-button {
-  align-self: end;
+.large-button.instructions-list-button {
   margin: 0px;
   font-size: 17px;
   height: 45px;
 }
 
-.instruction-list-button.first-image {
-  margin-top: 30px;
+.instructions-list .download-markdown-button-instructions-list {
+  align-self: flex-end;
+  width: fit-content;
+  z-index: 1;
 }
 
 .instruction-text img {
@@ -1103,6 +1114,7 @@ button[data-mce-name="save"] .tox-tbtn__select-label {
 .showpage-items-container,
 .form-items-container,
 .how-to-use-page-items-container {
+  margin-bottom: 30px;
   background-color: white;
   border-radius: 6px;
   width: 100%;

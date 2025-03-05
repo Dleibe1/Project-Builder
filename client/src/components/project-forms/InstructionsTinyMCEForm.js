@@ -1,9 +1,9 @@
 import React, { useRef } from "react"
 import { useDropzone } from "react-dropzone"
-import MarkdownService from "../../../services/MarkdownService.js"
-import BundledEditor from "../../../services/TinyMCEBundler"
+import MarkdownService from "../../services/MarkdownService.js"
+import BundledEditor from "../../services/TinyMCEBundler.js"
 
-const InstructionsSubForm = ({ project, setProject }) => {
+const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }) => {
   const editorRef = useRef(null)
   const dropzoneOpenRef = useRef(null)
 
@@ -33,7 +33,7 @@ const InstructionsSubForm = ({ project, setProject }) => {
     noClick: true,
     noKeyboard: true,
   })
-
+console.log(project)
   dropzoneOpenRef.current = open
 
   const handleAddImage = () => {
@@ -85,13 +85,14 @@ const InstructionsSubForm = ({ project, setProject }) => {
             "wordcount",
           ],
           toolbar:
-            "download-as-markdown upload-markdown add-image undo redo | blocks codesample link | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+            "download-as-markdown upload-markdown add-image save-and-return-to-project-form undo redo | blocks codesample link | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
           toolbar_sticky: true,
           toolbar_sticky_offset: 52,
           setup: (editor) => {
             editor.on("PreInit", () => {
               editor.ui.registry.addButton("upload-markdown", {
                 text: "UPLOAD MARKDOWN FILE",
+                tooltip: "Replace contents with a .md file",
                 onAction: async () => {
                   try {
                     const markdownContent = await MarkdownService.getMarkdownFileContent()
@@ -104,17 +105,26 @@ const InstructionsSubForm = ({ project, setProject }) => {
               })
             })
             editor.ui.registry.addButton("download-as-markdown", {
-              text: "DOWNLOAD INSTRUCTIONS AS MARKDOWN",
+              text: "DOWNLOAD AS MARKDOWN",
+              tooltip: "Download contents as a .md file",
               onAction: () => {
                 MarkdownService.downloadHtmlAsMarkdown(editor.getContent())
               },
             })
             editor.ui.registry.addButton("add-image", {
-              text: "Add Image",
+              text: "Upload Image",
               icon: "image", 
-              tooltip: "Add Image",
+              tooltip: "Upload Image",
               onAction: () => {
                 handleAddImage()
+              },
+            })
+            editor.ui.registry.addButton("save-and-return-to-project-form", {
+              text: "Save Progress",
+              icon: "save", 
+              tooltip: "Save Progress",
+              onAction: () => {
+                setEditingInstructions(false)
               },
             })
             editor.ui.registry.addMenuItem("addImageItem", {
@@ -132,8 +142,8 @@ const InstructionsSubForm = ({ project, setProject }) => {
             })
           },
           selector: "textarea",
-          min_height: 900,
-          width: "90vw",
+          min_height: 1000,
+          width: "95vw",
         }}
         value={project?.instructions}
         onEditorChange={(newValue, editor) => handleEditorChange(newValue, editor)}
@@ -142,4 +152,4 @@ const InstructionsSubForm = ({ project, setProject }) => {
   )
 }
 
-export default InstructionsSubForm
+export default InstructionsTinyMCEForm
