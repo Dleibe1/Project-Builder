@@ -47,7 +47,7 @@ When users visit your project's page on this app, the code section is automatica
 
 ### Improvements coming soon:
 
-1. Option to add a link to purchase parts from the parts list.
+1. Diff view for forked projects
 
 ## Usage
 
