@@ -86,7 +86,7 @@ const DiffView = (props) => {
   const forkedProjectInstructionsAsMarkdown = MarkdownService.convertHTMLToMarkdown(
     forkedProjectData.instructions,
   )
-
+console.log(parentProjectData.user)
   return (
     <div className="project-diff-view">
       <h1 className="diff-view-title">Changes From Parent Project</h1>
@@ -99,6 +99,14 @@ const DiffView = (props) => {
         splitView={true}
       />
       <h2>Tags:</h2>
+      <h2>Description:</h2>
+      <ReactDiffViewer
+        oldValue={parentProjectData.description}
+        newValue={forkedProjectData.description}
+        compareMethod="diffWords"
+        // disableWordDiff
+        splitView={true}
+      />
       <ReactDiffViewer
         oldValue={parentProjectTags}
         newValue={forkedProjectTags}
@@ -116,11 +124,10 @@ const DiffView = (props) => {
       />
       <h2>Instructions:</h2>
       <ReactDiffViewer
+      
         oldValue={parentProjectInstructionsAsMarkdown}
         newValue={forkedProjectInstructionsAsMarkdown}
         compareMethod="diffSentences"
-        
-        
         // disableWordDiff
         splitView={true}
       />
