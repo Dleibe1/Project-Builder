@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import ForkProjectButton from "./show-page-authed-UI/ForkProjectButton.js"
-import ProjectForksButton from "../shared/SeeForkedVersionsButton.js"
+import SeeForkedVersionsButton from "../shared/SeeForkedVersionsButton.js"
+import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
 import TagList from "./show-pages-shared/TagList.js"
 import Instructions from "../shared/Instructions.js"
 import hljs from "highlight.js"
@@ -22,6 +23,7 @@ const ProjectShow = (props) => {
     githubFileURL: "",
     userId: "",
     thumbnailImage: "",
+    parentProjectId: "",
   })
   const [hasForks, setHasForks] = useState(false)
   const params = useParams()
@@ -84,7 +86,7 @@ const ProjectShow = (props) => {
     checkForForks()
   }, [])
 
-  const forkProjectButton = [<ForkProjectButton key={"fork-project"} id={id} />]
+  const forkProjectButton = [<ForkProjectButton id={id} />]
   const codeMessage = project.githubFileURL?.length ? (
     [
       <h2 className="code-fetched-heading">Code fetched from GitHub just now:</h2>,
@@ -95,8 +97,13 @@ const ProjectShow = (props) => {
   )
   const partsList = project.parts.map((part, index) => {
     return (
-      <div className="part-item-in-showpage" key={`${(part.partName, part.partPurchaseURL)}${index}`}>
-        {part.partPurchaseURL.length === 0 && <p className="part-without-purchase-link">{part.partName}</p>}
+      <div
+        className="part-item-in-showpage"
+        key={`${(part.partName, part.partPurchaseURL)}${index}`}
+      >
+        {part.partPurchaseURL.length === 0 && (
+          <p className="part-without-purchase-link">{part.partName}</p>
+        )}
         {part.partPurchaseURL.length > 0 && (
           <a href={part.partPurchaseURL}>
             <div className="part-with-purchase-link">
@@ -111,9 +118,12 @@ const ProjectShow = (props) => {
 
   return (
     <div className="project-show">
-      <div className="fork-project-button-container">
+      <div className="project-show-top-buttons">
         {props.user ? forkProjectButton : []}
-        {hasForks ? <ProjectForksButton id={id} /> : []}
+        {hasForks ? <SeeForkedVersionsButton id={id} /> : []}
+        {project.parentProjectId.length > 0 && (
+          <DiffViewButton parentProjectId={project.parentProjectId} forkedProjectId={project.id} />
+        )}
       </div>
       {project.tags.length > 0 && (
         <div className="showpage-items-container tag-list">

@@ -1,9 +1,9 @@
 import { Project, Part, Tag } from "../models/index.js"
 
 const handleForkProject = async (parentProjectId, userId, forkData) => {
-  const originalProject = await Project.query().findById(parentProjectId)
-  if (!originalProject) {
-    throw new Error("Original project not found")
+  const parentProject = await Project.query().findById(parentProjectId)
+  if (!parentProject) {
+    throw new Error("Parent project not found")
   }
 
   const forkedProject = await Project.query().insert({
@@ -22,11 +22,13 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
   const parts = forkData.parts
   const forkedProjectId = parseInt(forkedProject.id)
 
-  await Promise.all(
-    parts.map((part) => {
-      return Part.query().insert({ projectId: forkedProjectId, partName: part.partName, partPurchaseURL: part.partPurchaseURL })
-    }),
-  )
+  for (const part of parts) {
+    await Part.query().insert({
+      projectId: forkedProjectId,
+      partName: part.partName,
+      partPurchaseURL: part.partPurchaseURL,
+    })
+  }
 
   const tagsToRelate = await Tag.query()
     .select("id")

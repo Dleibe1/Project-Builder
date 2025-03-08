@@ -1,9 +1,9 @@
 import { Tag } from "../../models/index.js"
-import tags from "../../../../shared/tags.js"
+import allowedTags from "../../../../shared/allowedTags.js"
 
 class TagSeeder {
   static async seed() {
-    await Tag.query().insert(tags)
+    await Tag.query().insert(allowedTags)
   }
 }
 

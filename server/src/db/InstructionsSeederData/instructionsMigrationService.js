@@ -34,6 +34,10 @@ const oldInstructionsTableData = [
 		imageURL: `https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif`,
 	},
 	{
+		projectId: 1,
+		instructionText: "The code below will cycle the LED through different colors, enjoy!",
+	},
+	{
 		projectId: 14,
 		instructionText: `The two eyes are painted on two ping-pong balls which are sticked on two servo motors. Two ultrasonic sensors measure the object's position. An Arduino Nano Every board reads the measurements from the ultrasonic sensors and controls the sevo motors accordingly.<br><br>The servo motors are SG90 micro servos and the ultrasonic sensors are HC-SR04. These are very common and very inexpensive devices. The Arduino board may be of another model than the nano Every, provided that 5V is available to power the servo motors and the ultrasonic sensors. `,
 	},
@@ -731,7 +735,7 @@ const oldInstructionsTableData = [
 	},
 	{
 		projectId: 2,
-		instructionText: `Ever wanted to know the temperature and humidity around you? If yes, this project will be very helpful for you. If no, it'll be cool anyway. What I mean is, you can use this in anything from home automations to smart watches.<br><br>What is humidity?<br><br>Humidity is the water vapor around you mixed with air. It is measured in per cents. So, if the humidity is 60 per cent(which is the average humidity), then 60 per cent of the air around you is water vapor. If it is 100%, then it means either the sensor is not correct, the sensor is broken/damaged, the Arduino crashed, the Arduino can't receive any signal, there's an error in the code or you're underwater *. If it's 0%, it means all the reasons above except the last one, you're in space or you're in the middle of a desert**.<br><br>* Correction: it means the air cannot hold any more water.<br><br>**  The air in a desert does contain some water but it is a very little amount compared to a normal place. The Sahara Desert has a mean humidity of 25%.<br><br>The world's lowest recorded relative humidity value occurred at Coober Pedy in the South Australia desert when the temperature was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 percent. (source:  'www.chicagotribune.com')<br><br>Is your sensor different?<br><br>My sensor is like this: `,
+		instructionText: `  Ever wanted to know the temperature and humidity around you? If yes, this project will be very helpful for you. If no, it'll be cool anyway. What I mean is, you can use this in anything from home automations to smart watches.<br><br>What is humidity?<br><br>Humidity is the water vapor around you mixed with air. It is measured in per cents. So, if the humidity is 60 per cent(which is the average humidity), then 60 per cent of the air around you is water vapor. If it is 100%, then it means either the sensor is not correct, the sensor is broken/damaged, the Arduino crashed, the Arduino can't receive any signal, there's an error in the code or you're underwater *. If it's 0%, it means all the reasons above except the last one, you're in space or you're in the middle of a desert**.<br><br>* Correction: it means the air cannot hold any more water.<br><br>**  The air in a desert does contain some water but it is a very little amount compared to a normal place. The Sahara Desert has a mean humidity of 25%.<br><br>The world's lowest recorded relative humidity value occurred at Coober Pedy in the South Australia desert when the temperature was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 percent. (source:  'www.chicagotribune.com')<br><br>Is your sensor different?<br><br>My sensor is like this: `,
 	},
 	{
 		projectId: 2,
@@ -884,7 +888,7 @@ const oldInstructionsTableData = [
 	},
 	{
 		projectId: 19,
-		instructionText: `This project is made for Arduino beginners who are looking for learning how to interface the RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse width modulation (PWM) signals. <br><br>RGB LED Types and Structure <br><br>RGB LEDs have three LEDs inside them and usually, these three internal LEDs share either a common anode or a common cathode especially in a through-hole package. So basically, we can categorize RGB LEDs as either common anode or common cathode type just like in seven segment displays. `,
+		instructionText: `This project is made for Arduino beginners who are looking for learning how to interface the RGB led with the Arduino Uno and use a push button to control the LED. Also, we will understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse width modulation (PWM) signals. <br><br>RGB LED Types and Structure <br><br>RGB LEDs have three LEDs inside them and usually, these three internal LEDs share either a common anode or a common cathode especially in a through-hole package. So basically, we can categorize RGB LEDs as either common anode or common cathode type just like in seven segment displays. `,
 	},
 	{
 		projectId: 19,
@@ -916,11 +920,15 @@ const oldInstructionsTableData = [
 	},
 	{
 		projectId: 19,
-		instructionText: `Explanation of the Changes from the Original Version of this Project:<br><br>Button Input:<br><br>A button is connected to pin 2 of the Arduino, and it is configured with an internal pull-up resistor (INPUT_PULLUP mode). This means that when the button is not pressed, the pin reads HIGH, and when pressed, it reads LOW.<br>Color Change Logic:<br><br>Each time the button is pressed, the colorIndex variable is incremented, cycling through six different colors. After the last color, the index resets to zero.<br>Debouncing:<br><br>A small delay (delay(300)) is added after each button press to debounce the button, preventing multiple triggers from a single press.<br><br>This modification allows the RGB LED to change colors each time the button is pressed, providing interactive control over the LED.<br><br>Below is the schematic for my version of the project`,
+		instructionText: ` Explanation of the Changes from the Original Version of this Project:<br><br>Button Input:<br><br>A button is connected to pin 2 of the Arduino, and it is configured with an internal pull-up resistor (INPUT_PULLUP mode). This means that when the button is not pressed, the pin reads HIGH, and when pressed, it reads LOW.<br>Color Change Logic:<br><br>Each time the button is pressed, the colorIndex variable is incremented, cycling through six different colors. After the last color, the index resets to zero.<br>Debouncing:<br><br>A small delay (delay(300)) is added after each button press to debounce the button, preventing multiple triggers from a single press.<br><br>This modification allows the RGB LED to change colors each time the button is pressed, providing interactive control over the LED.<br><br>Below is the schematic for my version of the project`,
 	},
 	{
 		projectId: 19,
 		imageURL: `https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG`,
+	},
+	{
+		projectId: 19,
+		instructionText: `The code below will allow you to cycle the LED through different colors by pushing a button, enjoy!`,
 	},
 	{
 		projectId: 20,
@@ -928,7 +936,7 @@ const oldInstructionsTableData = [
 	},
 	{
 		projectId: 20,
-		instructionText: `Ever wanted to know the temperature and humidity around you? If yes, this project will be very helpful for you. If no, it'll be cool anyway. What I mean is, you can use this in anything from home automations to smart watches. <br><br>What is humidity?<br><br>Humidity is the water vapor around you mixed with air. It is measured in per cents. So, if the humidity is 60 per cent(which is the average humidity), then 60 per cent of the air around you is water vapor. If it is 100%, then it means either the sensor is not correct, the sensor is broken/damaged, the Arduino crashed, the Arduino can't receive any signal, there's an error in the code or you're underwater *. If it's 0%, it means all the reasons above except the last one, you're in space or you're in the middle of a desert**. <br><br>* Correction: it means the air cannot hold any more water. <br><br>**  The air in a desert does contain some water but it is a very little amount compared to a normal place. The Sahara Desert has a mean humidity of 25%. <br><br>The world's lowest recorded relative humidity value occurred at Coober Pedy in the South Australia desert when the temperature was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 percent. (source:  'www.chicagotribune.com') <br><br>Is your sensor different?<br><br>My sensor is like this: `,
+		instructionText: `  Ever wanted to know the temperature and humidity around you? If yes, this project will be very helpful for you. If no, it'll be cool anyway. What I mean is, you can use this in anything from home automations to smart watches. <br><br>What is humidity?<br><br>Humidity is the water vapor around you mixed with air. It is measured in per cents. So, if the humidity is 60 per cent(which is the average humidity), then 60 per cent of the air around you is water vapor. If it is 100%, then it means either the sensor is not correct, the sensor is broken/damaged, the Arduino crashed, the Arduino can't receive any signal, there's an error in the code or you're underwater *. If it's 0%, it means all the reasons above except the last one, you're in space or you're in the middle of a desert**. <br><br>* Correction: it means the air cannot hold any more water. <br><br>**  The air in a desert does contain some water but it is a very little amount compared to a normal place. The Sahara Desert has a mean humidity of 25%. <br><br>The world's lowest recorded relative humidity value occurred at Coober Pedy in the South Australia desert when the temperature was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 percent. (source:  'www.chicagotribune.com') <br><br>Is your sensor different?<br><br>My sensor is like this: `,
 	},
 	{
 		projectId: 20,

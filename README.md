@@ -128,7 +128,7 @@ When users visit your project's page on this app, the code section is automatica
 
 8. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
 
-9. A user has been seeded for use on the site.
+9. A user has been seeded for use on the site.  Login as the example user and click "MY BUILDS" to view and edit your projects.  View another user's project and click "FORK THIS PROJECT" to create your own version of their project.
 
 ```
 Username: example@example.com

@@ -344,6 +344,10 @@ h5 {
   right: 0.7rem;
 }
 
+.project-show .see-forked-versions-button {
+  padding: 6px 16px 6px 16px;
+}
+
 .menu {
   display: flex;
   list-style: none;
@@ -732,6 +736,46 @@ h5 {
   background: white;
 }
 
+.project-diff-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-diff-view h1,
+.project-diff-view h2 {
+  width: fit-content;
+  font-family: OpenSans-Regular;
+  color: #374146;
+  line-height: 170%;
+  letter-spacing: 0.01em;
+  margin-bottom: 0px;
+  border-bottom: 2px solid #c9d2d2;
+}
+
+.project-diff-view h1 {
+  margin-bottom: 50px;
+  margin-top: 80px;
+  font-size: 4rem;
+  align-self: center;
+}
+
+.project-diff-view {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.project-diff-view .react-diff-42iver-word-diff{
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.project-diff-view h2 {
+  width: 50%;
+  margin-left: 50px;
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+}
+
 #github-logo {
   height: 25px;
   margin-right: 8px;
@@ -750,8 +794,7 @@ h5 {
   padding-right: 15px;
 }
 
-#fork-project,
-#edit-project {
+#fork-project {
   margin-right: 1rem;
 }
 
@@ -928,7 +971,7 @@ button[data-mce-name="download-as-markdown"] .tox-tbtn__select-label:hover {
   color: white;
   background: #1665c0;
 }
-button[data-mce-name="upload-markdown"].tox-tbtn .tox-tbtn__select-label ,
+button[data-mce-name="upload-markdown"].tox-tbtn .tox-tbtn__select-label,
 button[data-mce-name="download-as-markdown"].tox-tbtn .tox-tbtn__select-label {
   font-weight: 500;
 }
@@ -1193,11 +1236,22 @@ button[data-mce-name="download-as-markdown"].tox-tbtn .tox-tbtn__select-label {
   padding: 30px 0px;
 }
 
-.fork-project-button-container,
-.edit-delete-build-button-container {
+.project-show-top-buttons,
+.edit-build-top-buttons-container {
+  display: flex;
   background-color: white;
   padding: 10px;
   border-radius: 6px 6px 0px 0px;
+}
+
+.edit-build-top-buttons-container .delete-build-button {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.project-show-top-buttons{
+  display: flex;
+  justify-content: space-between;
 }
 
 .github-url {

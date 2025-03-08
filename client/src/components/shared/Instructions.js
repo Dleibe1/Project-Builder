@@ -41,7 +41,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
           Download Instructions as Markdown
         </Button>
       )}
-      {project.instructions?.length > 0 && <h2 id="form-instructions-heading">Instructions:</h2>}
+      {project.instructions?.length > 0 && <h2 id="form-instructions-heading">Instructions</h2>}
       <div
         className="preserve-white-space instruction-text showpage-items-container"
         dangerouslySetInnerHTML={{

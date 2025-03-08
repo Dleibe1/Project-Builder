@@ -17,6 +17,7 @@ const clientRoutes = [
   "/fork-project/:id",
   "/edit-instructions/:id",
   "/project-forks/:parentProjectId",
+  "/diff-view/:parentProjectId/:forkedProjectId",
   "/github-login",
   "/search",
   "/how-to-use",

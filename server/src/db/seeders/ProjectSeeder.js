@@ -9,7 +9,7 @@ class ProjectSeeder {
       {
         userId: 1,
         title: "Interfacing RGB Led with Arduino",
-        description: descriptions[13],
+        description: descriptions[0],
         appsAndPlatforms: "Arduino IDE",
         code: code[13],
         thumbnailImage: "/images/projectSeeder/project001/thumbnail.blob",

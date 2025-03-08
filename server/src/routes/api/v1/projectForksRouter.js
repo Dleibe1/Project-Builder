@@ -42,6 +42,22 @@ projectForksRouter.get("/fork-list", async (req, res) => {
   }
 })
 
+projectForksRouter.get("/diff-view/:forkedProjectId", async (req, res) => {
+  const { parentProjectId, forkedProjectId } = req.params
+  try {
+    const parentProject = await Project.query().findOne({ id: parseInt(parentProjectId) })
+    const forkedProject = await Project.query().findOne({ id: parseInt(forkedProjectId) })
+    const serializedParentProject = await ProjectSerializer.getProjectShowPageDetails(parentProject)
+    const serializedForkedProject = await ProjectSerializer.getProjectShowPageDetails(forkedProject)
+    res
+      .status(200)
+      .json({ parentProjectData: serializedParentProject, forkedProjectData: serializedForkedProject })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ errors: error })
+  }
+})
+
 projectForksRouter.post("/", async (req, res) => {
   const { body, user } = req
   const userId = parseInt(user.id)
