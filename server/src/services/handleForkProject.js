@@ -1,9 +1,9 @@
 import { Project, Part, Tag } from "../models/index.js"
 
 const handleForkProject = async (parentProjectId, userId, forkData) => {
-  const originalProject = await Project.query().findById(parentProjectId)
-  if (!originalProject) {
-    throw new Error("Original project not found")
+  const parentProject = await Project.query().findById(parentProjectId)
+  if (!parentProject) {
+    throw new Error("Parent project not found")
   }
 
   const forkedProject = await Project.query().insert({

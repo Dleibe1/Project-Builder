@@ -1,4 +1,4 @@
-const tags = [
+const allowedTags = [
   { tagName: "Arduino User Group" },
   { tagName: "Art" },
   { tagName: "Audio" },
@@ -42,4 +42,4 @@ const tags = [
   { tagName: "Animals" },
 ]
 
-export default tags
+export default allowedTags

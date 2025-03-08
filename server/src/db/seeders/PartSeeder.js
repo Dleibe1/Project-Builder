@@ -10,7 +10,6 @@ class PartSeeder {
       { partName: "Jumper wires (generic)", projectId: 1 },
       { partName: "Resistor 220 ohm", projectId: 1 },
 
-
       { partName: "Arduio UNO (SMT)", projectId: 15 },
       { partName: "NeoPixel strip", projectId: 15 },
       { partName: "Rubber/Plastic wheel", projectId: 15 },
@@ -112,8 +111,9 @@ class PartSeeder {
       { partName: "M5Stack ATOM Lite", projectId: 18 },
     ])
     const forks = [
-      { partName: "Push Button", projectId: 19 },
+      { partName: "RGB Diffused Common Anode", projectId: 19 },
       { partName: "RGB Diffused Common Cathode", projectId: 19 },
+      { partName: "Push Button", projectId: 19 },
       { partName: "Arduino UNO", projectId: 19 },
       { partName: "Breadboard (generic)", projectId: 19 },
       { partName: "Jumper wires (generic)", projectId: 19 },

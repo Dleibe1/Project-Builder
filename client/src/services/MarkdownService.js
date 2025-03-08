@@ -2,7 +2,16 @@ import TurnDownService from "turndown"
 import showdown from "showdown"
 
 class MarkdownService {
-  
+  static convertMarkdownToHTML = (markdownContent) => {
+    const converter = new showdown.Converter()
+    return converter.makeHtml(markdownContent)
+  }
+
+  static convertHTMLToMarkdown = (HTMLContent) => {
+    const turnDownService = new TurnDownService()
+    return turnDownService.turndown(HTMLContent)
+  }
+
   static downloadHtmlAsMarkdown = (htmlContent) => {
     const turnDownService = new TurnDownService()
     const markdownContent = turnDownService.turndown(htmlContent)
@@ -15,11 +24,6 @@ class MarkdownService {
     link.click()
     document.body.removeChild(link)
     URL.revokeObjectURL(url)
-  }
-
-  static convertMarkdownToHTML = (markdownContent) => {
-    const converter = new showdown.Converter()
-    return converter.makeHtml(markdownContent)
   }
 
   static getMarkdownFileContent = async () => {

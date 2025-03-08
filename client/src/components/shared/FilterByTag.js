@@ -5,7 +5,7 @@ import { TagContext } from "../../contexts/TagContext.js"
 import Autocomplete from "@mui/material/Autocomplete"
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@mui/icons-material/CheckBox"
-import tags from "../../../../shared/tags.js"
+import allowedTags from "../../../../shared/allowedTags.js"
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
 const checkedIcon = <CheckBoxIcon fontSize="small" />
@@ -38,7 +38,7 @@ const FilterByTag = () => {
         className="tag-input"
         value={selectedTag}
         id="tags-standard"
-        options={tags.map((tag) => {
+        options={allowedTags.map((tag) => {
           return tag.tagName
         })}
         renderInput={(params) => <TextField {...params} variant="standard" label="Filter By Tag" />}
