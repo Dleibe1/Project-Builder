@@ -45,7 +45,9 @@ const App = (props) => {
         <NavigationBar projectsPerPage={projectsPerPage} user={currentUser} />
         <FilterByTag />
         <AuthenticatedRoute path="/my-builds/:id" component={MyBuildShow} user={currentUser} />
-        <Route path="/projects/:id" component={ProjectShow} user={currentUser} />
+        <Route path="/projects/:id">
+        <ProjectShow user={currentUser}  />
+        </Route>
         <Route exact path="/">
           <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
         </Route>

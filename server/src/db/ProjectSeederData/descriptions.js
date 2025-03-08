@@ -45,7 +45,7 @@ And if you're reading this, you clicked. This is great for my goal and I thank y
 //fork of projectId: 1
 `In this modified version of dleibe1's project, we will learn how to interface an RGB LED with an Arduino Uno, but in this version I have added a push button to control the light. Each time the button is pressed, the color of the RGB LED will change. This project is suitable for Arduino beginners who want to understand how to use a button to control outputs like an RGB LED, and it will also reinforce the concepts of Common Anode (CA) and Common Cathode (CC) LEDs, as well as Pulse Width Modulation (PWM) signals.  The background knowledge in how RGB LED's operate has been included from the original project.`,
 //fork of projectId: 2
-`Portions of this project, including the code to read temperature and humidity from the DHT11 sensor, were inspired by dleibe1 from their project titled "Using DHT11 with Arduino."`
+`This tutorial will show you how to use DHT11 with Arduino and print the sensor's data to an OLED display.`
 
 ]
 

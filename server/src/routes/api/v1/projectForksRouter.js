@@ -52,7 +52,7 @@ projectForksRouter.get("/diff-view/:forkedProjectId", async (req, res) => {
     res
       .status(200)
       .json({ parentProjectData: serializedParentProject, forkedProjectData: serializedForkedProject })
-  } catch {
+  } catch (error) {
     console.log(error)
     res.status(500).json({ errors: error })
   }

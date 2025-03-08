@@ -79,6 +79,9 @@ const DiffView = (props) => {
     forkedProjectParts += `${part.partName}\n`
   }
 
+  const compareGithubMainInoFileURL =
+    parentProjectData.githubFileURL?.length > 0 || forkedProjectData.githubFileURL?.length > 0
+
   const parentProjectInstructionsAsMarkdown = MarkdownService.convertHTMLToMarkdown(
     parentProjectData.instructions,
   )
@@ -86,49 +89,71 @@ const DiffView = (props) => {
   const forkedProjectInstructionsAsMarkdown = MarkdownService.convertHTMLToMarkdown(
     forkedProjectData.instructions,
   )
-console.log(parentProjectData.user)
+
   return (
     <div className="project-diff-view">
-      <h1 className="diff-view-title">Changes From Parent Project</h1>
+      <h1 className="diff-view-title">Differences From Original Project</h1>
       <h2>Title:</h2>
       <ReactDiffViewer
-        oldValue={parentProjectData.title}
-        newValue={forkedProjectData.title}
+        oldValue={parentProjectData.title || ""}
+        newValue={forkedProjectData.title || ""}
         compareMethod="diffWords"
-        // disableWordDiff
+        splitView={true}
+      />
+      <h2>Thumbnail URL:</h2>
+      <ReactDiffViewer
+        oldValue={parentProjectData.thumbnailImage || ""}
+        newValue={forkedProjectData.thumbnailImage || ""}
+        compareMethod="diffWords"
         splitView={true}
       />
       <h2>Tags:</h2>
-      <h2>Description:</h2>
       <ReactDiffViewer
-        oldValue={parentProjectData.description}
-        newValue={forkedProjectData.description}
+        oldValue={parentProjectTags || ""}
+        newValue={forkedProjectTags || ""}
         compareMethod="diffWords"
-        // disableWordDiff
         splitView={true}
       />
+      <h2>Description:</h2>
       <ReactDiffViewer
-        oldValue={parentProjectTags}
-        newValue={forkedProjectTags}
-        compareMethod="diffWords"
-        // disableWordDiff
+        oldValue={parentProjectData.description || ""}
+        newValue={forkedProjectData.description || ""}
+        compareMethod="diffSentences"
         splitView={true}
       />
       <h2>Parts:</h2>
       <ReactDiffViewer
-        oldValue={parentProjectParts}
-        newValue={forkedProjectParts}
+        oldValue={parentProjectParts || ""}
+        newValue={forkedProjectParts || ""}
         compareMethod="diffWords"
-        // disableWordDiff
+        splitView={true}
+      />
+      <h2>Apps and Platforms:</h2>
+      <ReactDiffViewer
+        oldValue={parentProjectData.appsAndPlatforms || ""}
+        newValue={forkedProjectData.appsAndPlatforms || ""}
+        compareMethod="diffWords"
         splitView={true}
       />
       <h2>Instructions:</h2>
       <ReactDiffViewer
-      
-        oldValue={parentProjectInstructionsAsMarkdown}
-        newValue={forkedProjectInstructionsAsMarkdown}
+        oldValue={parentProjectInstructionsAsMarkdown || ""}
+        newValue={forkedProjectInstructionsAsMarkdown || ""}
         compareMethod="diffSentences"
-        // disableWordDiff
+        splitView={true}
+      />
+      {compareGithubMainInoFileURL && <h2>Main file URL:</h2>}
+      {compareGithubMainInoFileURL && <ReactDiffViewer
+        oldValue={parentProjectData.githubFileURL || ""}
+        newValue={forkedProjectData.githubFileURL || ""}
+        compareMethod="diffWords"
+        splitView={true}
+      />}
+      <h2>Code:</h2>
+      <ReactDiffViewer
+        oldValue={parentProjectData.code || ""}
+        newValue={forkedProjectData.code || ""}
+        compareMethod="diffLines"
         splitView={true}
       />
     </div>

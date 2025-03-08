@@ -22,11 +22,13 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
   const parts = forkData.parts
   const forkedProjectId = parseInt(forkedProject.id)
 
-  await Promise.all(
-    parts.map((part) => {
-      return Part.query().insert({ projectId: forkedProjectId, partName: part.partName, partPurchaseURL: part.partPurchaseURL })
-    }),
-  )
+  for (const part of parts) {
+    await Part.query().insert({
+      projectId: forkedProjectId,
+      partName: part.partName,
+      partPurchaseURL: part.partPurchaseURL,
+    })
+  }
 
   const tagsToRelate = await Tag.query()
     .select("id")

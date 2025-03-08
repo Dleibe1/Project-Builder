@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import DeleteBuildButton from "./show-page-authed-UI/DeleteBuildButton"
 import EditBuildButton from "./show-page-authed-UI/EditBuildButton"
+import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
 import TagList from "./show-pages-shared/TagList"
-//TODO: remove all "prepForFrontEnd" and replace with functional state update as done in ForkedProjectForm
+import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import Instructions from "../shared/Instructions"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
@@ -21,6 +22,7 @@ const MyBuildShow = (props) => {
     githubFileURL: "",
     userId: "",
     thumbnailImage: "",
+    parentProjectId: "",
   })
 
   const params = useParams()
@@ -56,6 +58,7 @@ const MyBuildShow = (props) => {
       }
       const responseBody = await response.json()
       const build = responseBody.userBuild
+      prepForFrontEnd(build)
       setMyBuild((prevState) => ({ ...prevState, ...build }))
     } catch (error) {
       console.log(error)
@@ -88,9 +91,12 @@ const MyBuildShow = (props) => {
 
   return (
     <div className="project-show">
-      <div className="edit-delete-build-button-container">
+      <div className="edit-build-top-buttons-container">
         <EditBuildButton id={id} />
         <DeleteBuildButton id={id} />
+        {myBuild.parentProjectId.length > 0 && (
+          <DiffViewButton parentProjectId={myBuild.parentProjectId} forkedProjectId={myBuild.id} />
+        )}
       </div>
       {myBuild.tags.length > 0 && (
         <div className="showpage-items-container tag-list">

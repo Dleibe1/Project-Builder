@@ -927,6 +927,10 @@ const oldInstructionsTableData = [
 		imageURL: `https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG`,
 	},
 	{
+		projectId: 19,
+		instructionText: `The code below will allow you to cycle the LED through different colors by pushing a button, enjoy!`,
+	},
+	{
 		projectId: 20,
 		instructionText: `To modify the origional project created by dleibe1 and include an OLED display that shows the temperature and humidity, you can follow the steps below.`,
 	},
