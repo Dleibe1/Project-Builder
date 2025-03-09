@@ -2208,16 +2208,16 @@ void loop() {
     lcd.print("Motion Stops    ");
   }
 }`,
-`// *Interfacing RGB LED with Arduino 
-// * Author: Osama Ahmed 
+`//Interfacing RGB LED with Arduino 
+//Author: Osama Ahmed 
 
 //Defining  variable and the GPIO pin on Arduino
 int redPin= 5;
 int greenPin = 6;
-int  bluePin = 7;
+int bluePin = 7;
 
 void setup() {
-  //Defining the pins as OUTPUT
+  //Defining the LED pins as OUTPUT
   pinMode(redPin,  OUTPUT);              
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
@@ -2236,9 +2236,9 @@ void  loop() {
   setColor(127, 127,  127); // Light Blue
   delay(1000);
 }
-void setColor(int redValue, int greenValue,  int blueValue) {
+void setColor(int redValue, int greenValue, int blueValue) {
   analogWrite(redPin, redValue);
-  analogWrite(greenPin,  greenValue);
+  analogWrite(greenPin, greenValue);
   analogWrite(bluePin, blueValue);
 }
 `,
@@ -2434,29 +2434,27 @@ void onTemperatureChange()  {
 }`,
 
 //Below is a fork of projectId: 1
-`// Interfacing RGB LED with Arduino and Button Control
-// Author: Osama Ahmed (Modified by Luke Alberts)
+`//Interfacing RGB LED with Arduino 
+//Author: Osama Ahmed  (Modified by Luke Alberts)
 
-// Defining variables and GPIO pins on Arduino
-int redPin = 11;
+//Defining  variable and the GPIO pin on Arduino
+int redPin= 11;
 int greenPin = 10;
 int bluePin = 9;
-int buttonPin = 3; // Button pin
-int buttonState = 0; // Variable to store the state of the button
+int buttonPin = 3; //Button pin
+int buttonState = 0; //Variable to store the state of the button
 int colorIndex = 0; // Variable to cycle through colors
 
 void setup() {
-  // Defining the pins as OUTPUT
-  pinMode(redPin, OUTPUT);
+  //Defining the LED pins as OUTPUT
+  pinMode(redPin,  OUTPUT);              
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
   pinMode(buttonPin, INPUT); // Set button pin as input
 }
-
-void loop() {
+void  loop() {
   buttonState = digitalRead(buttonPin); // Read the state of the button
-
-  if (buttonState == LOW) { // Check if the button is pressed (LOW because of pull-up resistor)
+   if (buttonState == LOW) { // Check if the button is pressed (LOW because of pull-up resistor)
     colorIndex++; // Increment color index
     if (colorIndex > 5) {
       colorIndex = 0; // Reset index if it exceeds the number of colors

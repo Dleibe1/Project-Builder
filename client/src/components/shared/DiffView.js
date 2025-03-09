@@ -98,6 +98,7 @@ const DiffView = (props) => {
         oldValue={parentProjectData.title || ""}
         newValue={forkedProjectData.title || ""}
         compareMethod="diffWords"
+        showDiffOnly={false}
         splitView={true}
       />
       <h2>Thumbnail URL:</h2>
@@ -105,6 +106,7 @@ const DiffView = (props) => {
         oldValue={parentProjectData.thumbnailImage || ""}
         newValue={forkedProjectData.thumbnailImage || ""}
         compareMethod="diffWords"
+        showDiffOnly={false}
         splitView={true}
       />
       <h2>Tags:</h2>
@@ -112,6 +114,7 @@ const DiffView = (props) => {
         oldValue={parentProjectTags || ""}
         newValue={forkedProjectTags || ""}
         compareMethod="diffWords"
+        showDiffOnly={false}
         splitView={true}
       />
       <h2>Description:</h2>
@@ -119,6 +122,7 @@ const DiffView = (props) => {
         oldValue={parentProjectData.description || ""}
         newValue={forkedProjectData.description || ""}
         compareMethod="diffSentences"
+        showDiffOnly={false}
         splitView={true}
       />
       <h2>Parts:</h2>
@@ -126,6 +130,7 @@ const DiffView = (props) => {
         oldValue={parentProjectParts || ""}
         newValue={forkedProjectParts || ""}
         compareMethod="diffWords"
+        showDiffOnly={false}
         splitView={true}
       />
       <h2>Apps and Platforms:</h2>
@@ -133,6 +138,7 @@ const DiffView = (props) => {
         oldValue={parentProjectData.appsAndPlatforms || ""}
         newValue={forkedProjectData.appsAndPlatforms || ""}
         compareMethod="diffWords"
+        showDiffOnly={false}
         splitView={true}
       />
       <h2>Instructions:</h2>
@@ -140,6 +146,7 @@ const DiffView = (props) => {
         oldValue={parentProjectInstructionsAsMarkdown || ""}
         newValue={forkedProjectInstructionsAsMarkdown || ""}
         compareMethod="diffSentences"
+        showDiffOnly={false}
         splitView={true}
       />
       {compareGithubMainInoFileURL && <h2>Main file URL:</h2>}
@@ -147,12 +154,14 @@ const DiffView = (props) => {
         oldValue={parentProjectData.githubFileURL || ""}
         newValue={forkedProjectData.githubFileURL || ""}
         compareMethod="diffWords"
+        showDiffOnly={false}
         splitView={true}
       />}
       <h2>Code:</h2>
       <ReactDiffViewer
         oldValue={parentProjectData.code || ""}
         newValue={forkedProjectData.code || ""}
+        showDiffOnly={false}
         compareMethod="diffWords"
         splitView={true}
       />

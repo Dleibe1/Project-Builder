@@ -91,7 +91,7 @@ console.log(project)
           setup: (editor) => {
             editor.on("PreInit", () => {
               editor.ui.registry.addButton("upload-markdown", {
-                text: "UPLOAD MARKDOWN FILE",
+                text: "REPLACE CONTENTS WITH MARKDOWN FILE",
                 tooltip: "Replace contents with a .md file",
                 onAction: async () => {
                   try {
