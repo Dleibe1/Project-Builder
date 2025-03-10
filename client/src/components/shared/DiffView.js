@@ -121,7 +121,7 @@ const DiffView = (props) => {
       <ReactDiffViewer
         oldValue={parentProjectData.description || ""}
         newValue={forkedProjectData.description || ""}
-        compareMethod="diffSentences"
+        compareMethod="diffWords"
         showDiffOnly={false}
         splitView={true}
       />
