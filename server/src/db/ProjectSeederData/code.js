@@ -2243,30 +2243,24 @@ void setColor(int redValue, int greenValue, int blueValue) {
 }
 `,
 `#include <dht11.h>
-#define DHT11PIN 4
+#define DHT11PIN 2
 
 dht11 DHT11;
 
-void  setup()
-{
+void setup(){
   Serial.begin(9600);
- 
 }
 
-void loop()
-{
+void loop(){ 
   Serial.println();
-
   int chk = DHT11.read(DHT11PIN);
-
+  float humidity = DHT11.humidity;
+  float temperature = DHT11.temperature;
   Serial.print("Humidity (%): ");
-  Serial.println((float)DHT11.humidity, 2);
-
-  Serial.print("Temperature  (C): ");
-  Serial.println((float)DHT11.temperature, 2);
-
+  Serial.println(humidity);
+  Serial.print("Temperature (C): ");
+  Serial.println(temperature);
   delay(2000);
-
 }`,
 `const int buzzer = 8;
 const int trig_pin = 9;
@@ -2498,15 +2492,15 @@ void setColor(int redValue, int greenValue, int blueValue) {
 #include <Adafruit_SSD1306.h>
 #include <dht11.h>
 
+#define DHT11PIN 2
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 #define OLED_RESET    -1
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-#define DHT11PIN 2
 dht11 DHT11;
 
-void setup() {
+void setup(){
   Serial.begin(9600);
 
   // Initialize the OLED display
@@ -2523,19 +2517,13 @@ void setup() {
   Serial.println("DHT11 sensor initialization");
 }
 
-void loop() {
+void loop(){
   display.clearDisplay();
 
   int chk = DHT11.read(DHT11PIN);
   
   float humidity = DHT11.humidity;
   float temperature = DHT11.temperature;
-
-  // Print to Serial Monitor
-  Serial.print("Humidity (%): ");
-  Serial.println(humidity);
-  Serial.print("Temperature (C): ");
-  Serial.println(temperature);
 
   // Display on OLED
   display.setTextSize(1);
