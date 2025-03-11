@@ -919,7 +919,9 @@ h5 {
 
 #new-build-form input,
 #edit-project-form input,
-#fork-project-form input {
+#fork-project-form input,
+#sign-in-form input,
+#registration-form input {
   border: none;
   box-shadow: none;
 }
@@ -932,6 +934,11 @@ h5 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#sign-in-form .email-input,
+#registration-form .email-input {
+  margin-top: 20px;
 }
 
 .instruction-text-container .instruction-text h2 {
