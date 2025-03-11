@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Button } from "@mui/material"
 
 import config from "../../config"
 
@@ -162,7 +163,9 @@ const RegistrationForm = () => {
           </label>
         </div>
         <div>
-          <input type="submit" className="button" value="Register" />
+          <Button type="submit" className="large-button register-button">
+            Register
+          </Button>
         </div>
       </form>
     </div>

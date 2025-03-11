@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Button } from "@mui/material"
 
 import config from "../../config"
 
@@ -89,7 +90,6 @@ const SignInForm = () => {
       <h1>Sign In</h1>
 
       {credentialsErrors ? <p className="callout alert">{credentialsErrors}</p> : null}
-
       <form id="sign-in-form">
         <div>
           <label>
@@ -111,7 +111,9 @@ const SignInForm = () => {
           </label>
         </div>
         <div>
-          <input type="submit" className="button authentication-button" value="Sign In" />
+          <Button type="submit" className="large-button sign-in-button">
+            Sign In
+          </Button>
         </div>
       </form>
     </div>

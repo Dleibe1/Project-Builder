@@ -764,7 +764,7 @@ h5 {
   word-break: break-word;
 }
 
-.project-diff-view .react-diff-42iver-word-diff{
+.project-diff-view .react-diff-42iver-word-diff {
   white-space: pre-wrap;
   word-break: break-word;
 }
@@ -833,6 +833,8 @@ h5 {
   margin: 0px 4px;
 }
 
+#sign-in-form .sign-in-button:hover,
+.registration .register-button:hover,
 #how-to-use-button:hover,
 #projects-button:hover,
 #homepage-button:hover,
@@ -842,6 +844,11 @@ h5 {
   color: white;
 }
 
+#sign-in-form .sign-in-button,
+.registration .register-button {
+  color: white;
+  background-color: #1976d2;
+}
 .burger-menu-item {
   color: black;
   text-align: center;
@@ -1249,7 +1256,7 @@ button[data-mce-name="download-as-markdown"].tox-tbtn .tox-tbtn__select-label {
   margin-left: 1rem;
 }
 
-.project-show-top-buttons{
+.project-show-top-buttons {
   display: flex;
   justify-content: space-between;
 }
