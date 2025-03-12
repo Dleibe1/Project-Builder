@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Button, TextField } from "@mui/material"
 
 import config from "../../config"
 
@@ -87,31 +88,35 @@ const SignInForm = () => {
   return (
     <div className="sign-in standard-sign-in" onSubmit={onSubmit}>
       <h1>Sign In</h1>
-
       {credentialsErrors ? <p className="callout alert">{credentialsErrors}</p> : null}
-
       <form id="sign-in-form">
         <div>
-          <label>
-            Email
-            <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
-            <FormError error={errors.email} />
-          </label>
+          <TextField
+            value={userPayload.email}
+            onChange={onInputChange}
+            fullWidth
+            className="sign-in email-input"
+            label="Email"
+            name="email"
+          />
+          <FormError error={errors.email} />
         </div>
         <div>
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              value={userPayload.password}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.password} />
-          </label>
+          <TextField
+            value={userPayload.password}
+            onChange={onInputChange}
+            fullWidth
+            type="password"
+            className="sign-in password-input"
+            label="Password"
+            name="password"
+          />
+          <FormError error={errors.password} />
         </div>
         <div>
-          <input type="submit" className="button authentication-button" value="Sign In" />
+          <Button type="submit" className="large-button sign-in-button">
+            Sign In
+          </Button>
         </div>
       </form>
     </div>

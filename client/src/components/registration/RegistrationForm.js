@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Button, TextField } from "@mui/material"
 
 import config from "../../config"
 
@@ -117,52 +118,56 @@ const RegistrationForm = () => {
     <div className="grid-container sign-in registration">
       <h1>Register</h1>
       <ErrorList errors={serverErrors} />
-      <form onSubmit={onSubmit}>
+      <form id="registration-form" onSubmit={onSubmit}>
         <div>
-          <label>
-            Email
-            <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
-            <FormError error={errors.email} />
-          </label>
+          <TextField
+            value={userPayload.email}
+            onChange={onInputChange}
+            fullWidth
+            className="registration email-input"
+            label="Email"
+            name="email"
+          />
+          <FormError error={errors.email} />
         </div>
         <div>
-          <label>
-            Enter Desired Username
-            <input
-              type="text"
-              name="userName"
-              value={userPayload.userName}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.userName} />
-          </label>
+          <TextField
+            value={userPayload.userName}
+            onChange={onInputChange}
+            fullWidth
+            className="registration"
+            label="Username"
+            name="userName"
+          />
+          <FormError error={errors.userName} />
         </div>
         <div>
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              value={userPayload.password}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.password} />
-          </label>
+          <TextField
+            value={userPayload.password}
+            onChange={onInputChange}
+            fullWidth
+            className="registration"
+            label="Password"
+            type="password"
+            name="password"
+          />
+          <FormError error={errors.password} />
         </div>
         <div>
-          <label>
-            Password Confirmation
-            <input
-              type="password"
-              name="passwordConfirmation"
-              value={userPayload.passwordConfirmation}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.passwordConfirmation} />
-          </label>
+          <TextField
+            value={userPayload.passwordConfirmation}
+            onChange={onInputChange}
+            fullWidth
+            className="registration"
+            label="Password Confirmation"
+            type="password"
+            name="passwordConfirmation"
+          />
         </div>
         <div>
-          <input type="submit" className="button" value="Register" />
+          <Button type="submit" className="large-button register-button">
+            Register
+          </Button>
         </div>
       </form>
     </div>

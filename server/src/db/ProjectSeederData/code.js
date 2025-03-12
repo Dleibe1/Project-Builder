@@ -2243,7 +2243,7 @@ void setColor(int redValue, int greenValue, int blueValue) {
 }
 `,
 `#include <dht11.h>
-#define DHT11PIN 2
+#define DHT11PIN 4
 
 dht11 DHT11;
 
@@ -2251,7 +2251,7 @@ void setup(){
   Serial.begin(9600);
 }
 
-void loop(){ 
+void loop(){
   Serial.println();
   int chk = DHT11.read(DHT11PIN);
   float humidity = DHT11.humidity;
@@ -2492,7 +2492,7 @@ void setColor(int redValue, int greenValue, int blueValue) {
 #include <Adafruit_SSD1306.h>
 #include <dht11.h>
 
-#define DHT11PIN 2
+#define DHT11PIN 4
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 #define OLED_RESET    -1
@@ -2512,9 +2512,6 @@ void setup(){
   display.display();
   delay(2000);
   display.clearDisplay();
-
-  // Initialize the DHT11 sensor
-  Serial.println("DHT11 sensor initialization");
 }
 
 void loop(){
@@ -2525,7 +2522,6 @@ void loop(){
   float humidity = DHT11.humidity;
   float temperature = DHT11.temperature;
 
-  // Display on OLED
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0,0);

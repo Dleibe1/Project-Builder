@@ -55,7 +55,6 @@ console.log(project)
         <input {...getInputProps()} />
       </div>
       <BundledEditor
-        // apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
         onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
           menu: {

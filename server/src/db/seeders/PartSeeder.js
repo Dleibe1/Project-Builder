@@ -88,7 +88,7 @@ class PartSeeder {
       { partName: "double sided tape", projectId: 14 },
       { partName: "SG90 Micro Servo", projectId: 14 },
 
-      { partName: "DHT22 Temperature Sensor", projectId: 2 },
+      { partName: "DHT11 Temperature Sensor", projectId: 2 },
       { partName: "Jumper wires (generic)", projectId: 2 },
       { partName: "Arduino UNO", projectId: 2 },
       { partName: "Breadboard (generic)", projectId: 2 },
@@ -119,7 +119,7 @@ class PartSeeder {
       { partName: "Jumper wires (generic)", projectId: 19 },
       { partName: "Resistor 220 ohm", projectId: 19 },
 
-      { partName: "DHT22 Temperature Sensor", projectId: 20 },
+      { partName: "DHT11 Temperature Sensor", projectId: 20 },
       { partName: "Jumper wires (generic)", projectId: 20 },
       { partName: "Arduino UNO", projectId: 20 },
       { partName: "Breadboard (generic)", projectId: 20 },
