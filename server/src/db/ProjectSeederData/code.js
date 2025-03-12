@@ -2209,12 +2209,11 @@ void loop() {
   }
 }`,
 `//Interfacing RGB LED with Arduino 
-//Author: Osama Ahmed 
-
+//Author: Osama Ahmed Modified by lukeTheMan
 //Defining  variable and the GPIO pin on Arduino
-int redPin= 5;
-int greenPin = 6;
-int bluePin = 7;
+int redPin= 11;
+int greenPin = 10;
+int bluePin = 9;
 
 void setup() {
   //Defining the LED pins as OUTPUT
@@ -2428,8 +2427,8 @@ void onTemperatureChange()  {
 }`,
 
 //Below is a fork of projectId: 1
-`//Interfacing RGB LED with Arduino 
-//Author: Osama Ahmed  (Modified by Luke Alberts)
+`//Interfacing RGB LED with Arduino and Push Button
+//Author: Osama Ahmed
 
 //Defining  variable and the GPIO pin on Arduino
 int redPin= 11;
@@ -2447,13 +2446,13 @@ void setup() {
   pinMode(buttonPin, INPUT); // Set button pin as input
 }
 void  loop() {
-  buttonState = digitalRead(buttonPin); // Read the state of the button
-   if (buttonState == LOW) { // Check if the button is pressed (LOW because of pull-up resistor)
-    colorIndex++; // Increment color index
+  buttonState = digitalRead(buttonPin);
+   if (buttonState == LOW) { // Check if the button is pressed
+    colorIndex++;
     if (colorIndex > 5) {
-      colorIndex = 0; // Reset index if it exceeds the number of colors
+      colorIndex = 0;
     }
-    changeColor(colorIndex); // Change color based on the index
+    changeColor(colorIndex);
     delay(300); // Debounce delay to avoid multiple triggers
   }
 }
