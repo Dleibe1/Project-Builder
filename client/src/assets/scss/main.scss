@@ -753,15 +753,33 @@ h5 {
 }
 
 .project-diff-view h1 {
-  margin-bottom: 50px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
   margin-top: 80px;
   font-size: 4rem;
   align-self: center;
 }
 
+.diff-view-top-section {
+  align-self: center;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.project-diff-view .back-to-project-button {
+  width: fit-content;
+}
 .project-diff-view {
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.project-diff-view .project-diff-view {
+  align-self: center;
+  width: 80%;
 }
 
 .project-diff-view .react-diff-42iver-word-diff {
@@ -839,16 +857,19 @@ h5 {
 #projects-button:hover,
 #homepage-button:hover,
 #my-builds-button:hover,
-#new-build-button:hover {
+#new-build-button:hover,
+.project-diff-view .back-to-project-button:hover {
   background-color: #1665c0;
   color: white;
 }
 
 #sign-in-form .sign-in-button,
-.registration .register-button {
+.registration .register-button,
+.project-diff-view .back-to-project-button {
   color: white;
   background-color: #1976d2;
 }
+
 .burger-menu-item {
   color: black;
   text-align: center;

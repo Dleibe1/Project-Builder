@@ -1,7 +1,7 @@
 import { Project } from "../../models/index.js"
 import code from "../ProjectSeederData/code.js"
 import descriptions from "../ProjectSeederData/descriptions.js"
-import richTextInstructions from "../InstructionsSeederData/instructionsMigrationService.js"
+import instructions from "../ProjectSeederData/instructions.js"
 
 class ProjectSeeder {
   static async seed() {
@@ -13,7 +13,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[13],
         thumbnailImage: "/images/projectSeeder/project001/thumbnail.blob",
-        instructions: richTextInstructions[0],
+        instructions: instructions[0],
       },
       {
         userId: 1,
@@ -22,7 +22,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[14],
         thumbnailImage: "/images/projectSeeder/project002/thumbnail.blob",
-        instructions: richTextInstructions[1],
+        instructions: instructions[1],
       },
       {
         userId: 2,
@@ -33,7 +33,7 @@ class ProjectSeeder {
         githubFileURL:
           "https://github.com/hibit-dev/plants-care/blob/master/src/station/station.ino",
         thumbnailImage: "/images/projectSeeder/project003/thumbnail.jpg",
-        instructions: richTextInstructions[2],
+        instructions: instructions[2],
       },
       {
         userId: 2,
@@ -42,7 +42,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[3],
         thumbnailImage: "/images/projectSeeder/project004/thumbnail.jpg",
-        instructions: richTextInstructions[3],
+        instructions: instructions[3],
       },
       {
         userId: 2,
@@ -51,7 +51,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: code[4],
         thumbnailImage: "/images/projectSeeder/project005/thumbnail.jpg",
-        instructions: richTextInstructions[4],
+        instructions: instructions[4],
       },
       {
         userId: 1,
@@ -60,7 +60,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[5],
         thumbnailImage: "/images/projectSeeder/project006/thumbnail.png",
-        instructions: richTextInstructions[5],
+        instructions: instructions[5],
       },
       {
         userId: 2,
@@ -71,7 +71,7 @@ class ProjectSeeder {
         githubFileURL:
           "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
         thumbnailImage: "/images/projectSeeder/project007/thumbnail.jpg",
-        instructions: richTextInstructions[6],
+        instructions: instructions[6],
       },
       {
         userId: 1,
@@ -81,7 +81,7 @@ class ProjectSeeder {
         code: code[7],
         githubFileURL: "",
         thumbnailImage: "/images/projectSeeder/project008/thumbnail.jpg",
-        instructions: richTextInstructions[7],
+        instructions: instructions[7],
       },
       {
         userId: 3,
@@ -90,7 +90,7 @@ class ProjectSeeder {
         appsAndPlatforms: "rogerbit.",
         code: code[8],
         thumbnailImage: "/images/projectSeeder/project009/thumbnail.blob",
-        instructions: richTextInstructions[8],
+        instructions: instructions[8],
       },
     ]
     await Project.query().insert(parentProjects1)
@@ -104,7 +104,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE and NanoEdge AI Studio",
         code: code[9],
         thumbnailImage: "/images/projectSeeder/project010/thumbnail.blob",
-        instructions: richTextInstructions[9],
+        instructions: instructions[9],
       },
       {
         userId: 4,
@@ -113,7 +113,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IoT Cloud",
         code: code[10],
         thumbnailImage: "/images/projectSeeder/project011/thumbnail.png",
-        instructions: richTextInstructions[10],
+        instructions: instructions[10],
       },
       {
         userId: 4,
@@ -122,7 +122,7 @@ class ProjectSeeder {
         appsAndPlatforms: "NanoEdge AI Studio and Arduino IDE 1.8.19",
         code: code[11],
         thumbnailImage: "/images/projectSeeder/project012/thumbnail.gif",
-        instructions: richTextInstructions[11],
+        instructions: instructions[11],
       },
       {
         userId: 4,
@@ -131,7 +131,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[12],
         thumbnailImage: "/images/projectSeeder/project013/thumbnail.jpg",
-        instructions: richTextInstructions[12],
+        instructions: instructions[12],
       },
       {
         userId: 4,
@@ -141,7 +141,7 @@ class ProjectSeeder {
         code: code[0],
         githubFileURL: "",
         thumbnailImage: "/images/projectSeeder/project014/thumbnail.jpg",
-        instructions: richTextInstructions[13],
+        instructions: instructions[13],
       },
       {
         userId: 4,
@@ -151,7 +151,7 @@ class ProjectSeeder {
         code: code[1],
         githubFileURL: "",
         thumbnailImage: "/images/projectSeeder/project015/thumbnail.jpg",
-        instructions: richTextInstructions[14],
+        instructions: instructions[14],
       },
       {
         userId: 2,
@@ -160,7 +160,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[15],
         thumbnailImage: "/images/projectSeeder/project016/thumbnail.png",
-        instructions: richTextInstructions[15],
+        instructions: instructions[15],
       },
       {
         userId: 2,
@@ -169,7 +169,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[16],
         thumbnailImage: "/images/projectSeeder/project017/thumbnail.blob",
-        instructions: richTextInstructions[16],
+        instructions: instructions[16],
       },
       {
         userId: 2,
@@ -178,7 +178,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IoT Cloud",
         code: code[17],
         thumbnailImage: "/images/projectSeeder/project018/thumbnail.jpg",
-        instructions: richTextInstructions[17],
+        instructions: instructions[17],
       },
     ]
     const forks = [
@@ -190,7 +190,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[18],
         thumbnailImage: "/images/projectSeeder/project001fork001/thumbnail.JPG",
-        instructions: richTextInstructions[18],
+        instructions: instructions[18],
         parentProjectId: 1,
       },
       {
@@ -200,7 +200,7 @@ class ProjectSeeder {
         appsAndPlatforms: "Arduino IDE",
         code: code[19],
         thumbnailImage: "/images/projectSeeder/project002fork001/thumbnail.avif",
-        instructions: richTextInstructions[19],
+        instructions: instructions[19],
         parentProjectId: 2,
       },
     ]

@@ -2251,7 +2251,7 @@ void setup(){
   Serial.begin(9600);
 }
 
-void loop(){ 
+void loop(){
   Serial.println();
   int chk = DHT11.read(DHT11PIN);
   float humidity = DHT11.humidity;

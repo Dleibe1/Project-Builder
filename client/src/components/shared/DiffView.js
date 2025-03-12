@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react"
+import { Button } from "@mui/material"
+import { Link } from "react-router-dom"
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { useParams } from "react-router-dom"
 import ReactDiffViewer from "react-diff-viewer-continued"
 import MarkdownService from "../../services/MarkdownService"
@@ -92,7 +95,12 @@ const DiffView = (props) => {
 
   return (
     <div className="project-diff-view">
-      <h1 className="diff-view-title">Differences From Original Project</h1>
+      <div className="diff-view-top-section">
+        <h1 className="diff-view-title">Differences From Original Project</h1>
+        <Button component={Link} to={`/projects/${forkedProjectId}`} startIcon={<ArrowBackIcon />} className="back-to-project-button">
+          Back To Project Page
+        </Button>
+      </div>
       <h2>Title:</h2>
       <ReactDiffViewer
         oldValue={parentProjectData.title || ""}
@@ -150,13 +158,15 @@ const DiffView = (props) => {
         splitView={true}
       />
       {compareGithubMainInoFileURL && <h2>Main file URL:</h2>}
-      {compareGithubMainInoFileURL && <ReactDiffViewer
-        oldValue={parentProjectData.githubFileURL || ""}
-        newValue={forkedProjectData.githubFileURL || ""}
-        compareMethod="diffWords"
-        showDiffOnly={false}
-        splitView={true}
-      />}
+      {compareGithubMainInoFileURL && (
+        <ReactDiffViewer
+          oldValue={parentProjectData.githubFileURL || ""}
+          newValue={forkedProjectData.githubFileURL || ""}
+          compareMethod="diffWords"
+          showDiffOnly={false}
+          splitView={true}
+        />
+      )}
       <h2>Code:</h2>
       <ReactDiffViewer
         oldValue={parentProjectData.code || ""}
