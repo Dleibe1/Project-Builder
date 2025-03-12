@@ -50,13 +50,14 @@ percent. (source:  'www.chicagotribune.com')<br><br>Is your sensor different?<br
 sensor is like this: <br><img \
 src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><br>My \
 sensor has 3 pins and it's fitted on a board. If yours has 4 pins, then you need to build \
-this circuit after the sensor: <br><img \
-src="https://projects.arduinocontent.cc/8187f1a6-b715-4b52-8c11-1507c3e80da4.png"></img><br>If \
-it is same as mine, then just ignore the resistor.<br><br>Then, build the \
-circuit!<br><br>Details about the code<br><br>You need to follow these instructions to \
-make it work: <br>1. You need to add the library to the Arduino IDE. <br>2. Upload the \
-code. <br>3. When the code is uploaded, open the Serial Monitor and set the baud rate to \
-9600. <br>4. You will see the humidity and temperature. `,
+this circuit: <br><img \
+src="https://i.imgur.com/mPlhTTK.png"></img><br>If \
+it is same as mine, then follow this diagram instead, you will no longer need the resistor:<br><img \
+src="https://i.imgur.com/UW1R9mh.png"></img><br>\
+<br><br>Details about the code<br><br>You need to follow these instructions to \
+make it work: <br>1. You need to add the dht11 library to the Arduino IDE and include it in \
+your sketch. <br>2. Upload the code. <br>3. When the code is uploaded, open the Serial Monitor \
+and set the baud rate to 9600. <br>4. You will see the humidity and temperature. `,
 
 `Water deposit<br><br>For our watering system, we will need a water container. Any common \
 and standard items suitable for water storage can be used as a deposit. The larger the \
@@ -992,15 +993,16 @@ humidity value occurred at Coober Pedy in the South Australia desert when the te
 was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 \
 percent. (source:  'www.chicagotribune.com') <br><br>Is your sensor different?<br><br>My \
 sensor is like this: <br><img \
-src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><br>You \
-need to follow these instructions to make it work: <br><br>Connect the DHT22 \
-Sensor:<br><br>VCC to 5V on Arduino.<br>GND to GND on Arduino.<br>Data to pin 7 on \
-Arduino.<br><br>Connect the OLED Display:<br><br>VCC to 5V on Arduino.<br>GND to GND on \
-Arduino.<br>SCL to A5 (or SCL) on Arduino.<br>SDA to A4 (or SDA) on Arduino.<br><br>1. You \
-need to add the librarys to the Arduino IDE. <br>2. Upload the code. <br>3. When the code \
-is uploaded, you will see the temperature and humidity displayed on the OLED display. \
-<br><br>Below is the schematic of the modified version of the project.<br><img \
-src="https://hackster.imgix.net/uploads/attachments/1135529/weatherstation_schematic_6p6OZNIxEf.PNG?auto=compress%2Cformat&w=1280&h=960&fit=max"></img><br>`,
+src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><br>My \
+sensor has 3 pins and it's fitted on a board. If yours has 4 pins, then you need to build \
+this circuit: <br><img \
+src="https://i.imgur.com/6sNtuUL.png"></img><br>If \
+it is same as mine, then follow this diagram instead, you will no longer need the resistor:<br><img \
+src="https://i.imgur.com/xdSSgkL.png"></img><br>\
+<br><br>Details about the code<br><br>You need to follow these instructions to \
+make it work: <br>1. You need to add the dht11, Adafruit_GFX, and Adafruit_SSD1306 libraries \
+to the Arduino IDE and include them in your sketch. <br>2. Upload the \
+code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.`
 ]
 
 export default instructions

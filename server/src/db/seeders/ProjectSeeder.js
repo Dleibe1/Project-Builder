@@ -199,7 +199,7 @@ class ProjectSeeder {
         description: descriptions[19],
         appsAndPlatforms: "Arduino IDE",
         code: code[19],
-        thumbnailImage: "/images/projectSeeder/project002fork001/thumbnail.avif",
+        thumbnailImage: "/images/projectSeeder/project002fork001/thumbnail.png",
         instructions: instructions[19],
         parentProjectId: 2,
       },
