@@ -149,7 +149,7 @@ const DiffView = (props) => {
         showDiffOnly={false}
         splitView={true}
       />
-      <h2>Instructions:</h2>
+      <h2>Instructions (Markdown Version):</h2>
       <ReactDiffViewer
         oldValue={parentProjectInstructionsAsMarkdown || ""}
         newValue={forkedProjectInstructionsAsMarkdown || ""}
