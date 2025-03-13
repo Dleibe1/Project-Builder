@@ -740,7 +740,7 @@ h5 {
   display: flex;
   flex-direction: column;
 }
-
+    
 .project-diff-view h1,
 .project-diff-view h2 {
   width: fit-content;
@@ -868,6 +868,15 @@ h5 {
 .project-diff-view .back-to-project-button {
   color: white;
   background-color: #1976d2;
+}
+
+#sign-in-form .password-input-container,
+#sign-in-form .submit-button-container,
+#registration-form .username-input-container,
+#registration-form .password-input-container,
+#registration-form .password-confirmation-input-container,
+#registration-form .submit-button-container {
+ margin-top:20px;
 }
 
 .burger-menu-item {

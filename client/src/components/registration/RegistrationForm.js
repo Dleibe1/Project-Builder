@@ -130,7 +130,7 @@ const RegistrationForm = () => {
           />
           <FormError error={errors.email} />
         </div>
-        <div>
+        <div className="username-input-container">
           <TextField
             value={userPayload.userName}
             onChange={onInputChange}
@@ -141,7 +141,7 @@ const RegistrationForm = () => {
           />
           <FormError error={errors.userName} />
         </div>
-        <div>
+        <div className="password-input-container">
           <TextField
             value={userPayload.password}
             onChange={onInputChange}
@@ -153,7 +153,7 @@ const RegistrationForm = () => {
           />
           <FormError error={errors.password} />
         </div>
-        <div>
+        <div className="password-confirmation-input-container">
           <TextField
             value={userPayload.passwordConfirmation}
             onChange={onInputChange}
@@ -164,7 +164,7 @@ const RegistrationForm = () => {
             name="passwordConfirmation"
           />
         </div>
-        <div>
+        <div className="submit-button-container">
           <Button type="submit" className="large-button register-button">
             Register
           </Button>

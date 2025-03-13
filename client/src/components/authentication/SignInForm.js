@@ -90,7 +90,7 @@ const SignInForm = () => {
       <h1>Sign In</h1>
       {credentialsErrors ? <p className="callout alert">{credentialsErrors}</p> : null}
       <form id="sign-in-form">
-        <div>
+        <div className="email-input-container">
           <TextField
             value={userPayload.email}
             onChange={onInputChange}
@@ -101,7 +101,7 @@ const SignInForm = () => {
           />
           <FormError error={errors.email} />
         </div>
-        <div>
+        <div className="password-input-container">
           <TextField
             value={userPayload.password}
             onChange={onInputChange}
@@ -113,7 +113,7 @@ const SignInForm = () => {
           />
           <FormError error={errors.password} />
         </div>
-        <div>
+        <div className="submit-button-container">
           <Button type="submit" className="large-button sign-in-button">
             Sign In
           </Button>
