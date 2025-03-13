@@ -1,4 +1,4 @@
-const descriptions = [
+const projectDescriptionsSeedData = [
   `In this project, we will learn how to interface RGB LED with Arduino Uno. The RGB LED is controlled by PWM signals.`,
 
   `Calling all tinkerers, tech enthusiasts, and robot aficionados! Are you ready to unleash your inner inventor and build a robot car that dances to your smartphone's commands? This guide will be your roadmap to crafting a mini marvel that zips and zooms under your wireless control. Buckle up, because we're about to dive into the exciting world of Bluetooth-controlled robotics! `,
@@ -49,4 +49,4 @@ And if you're reading this, you clicked. This is great for my goal and I thank y
 
 ]
 
-export default descriptions
+export default projectDescriptionsSeedData

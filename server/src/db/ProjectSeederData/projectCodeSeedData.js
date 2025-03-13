@@ -1,4 +1,4 @@
-const code = [
+const projectCodeSeedData = [
   `/********** Big Brother **********/
 /******** is watching you ********/
 
@@ -2538,4 +2538,4 @@ void loop(){
 ]
 
 
-export default code
+export default projectCodeSeedData

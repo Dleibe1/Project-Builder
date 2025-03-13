@@ -8,7 +8,7 @@ import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
-import InstructionsTinyMCEForm from "./InstructionsTinyMCEForm.js"
+import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
 import Instructions from "../shared/Instructions.js"
 import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 
