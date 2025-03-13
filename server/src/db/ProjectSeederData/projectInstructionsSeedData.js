@@ -1,4 +1,4 @@
-const instructions = [
+const projectInstructionsSeedData = [
 `This project is made for Arduino beginners who are looking for learning how to interface \
 the RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and \
 Common Cathode (CC) concept as well as the pulse width modulation (PWM) \
@@ -1005,4 +1005,19 @@ to the Arduino IDE and include them in your sketch. <br>2. Upload the \
 code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.`
 ]
 
-export default instructions
+const addPTags = (instruction) => {
+let modifiedInstruction = ""
+modifiedInstruction = instruction.replaceAll("<br><br>", "</p><br><br><p>")
+modifiedInstruction = modifiedInstruction.replaceAll("<br><img", "</p><br><img")
+modifiedInstruction = modifiedInstruction.replaceAll("</img><br>", "</img><br><p>")
+return modifiedInstruction
+}
+
+const modifiedInstructions = []
+for (const instruction of projectInstructionsSeedData) {
+modifiedInstructions.push(addPTags(instruction))
+}
+
+console.log(modifiedInstructions)
+
+export default projectInstructionsSeedData
