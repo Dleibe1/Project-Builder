@@ -86,7 +86,7 @@ console.log(project)
           toolbar:
             "download-as-markdown upload-markdown add-image save-and-return-to-project-form undo redo | blocks codesample link | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
           toolbar_sticky: true,
-          // toolbar_sticky_offset: 52,
+          toolbar_sticky_offset: 52,
           setup: (editor) => {
             editor.on("PreInit", () => {
               editor.ui.registry.addButton("upload-markdown", {
