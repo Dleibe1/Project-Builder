@@ -1009,7 +1009,7 @@ const projectInstructionsSeedData = [
 	
 	const addPTags = (instruction) => {
 	let modifiedInstruction = ""
-	modifiedInstruction = instruction.replaceAll("<br><br>", "</p><br><br><p>")
+	modifiedInstruction = instruction.replaceAll("<br><br>", "</p><br><p>")
 	modifiedInstruction = modifiedInstruction.replaceAll("<br><img", "</p><br><img")
 	modifiedInstruction = modifiedInstruction.replaceAll("</img><br>", "</img><br><p>")
 	return modifiedInstruction
@@ -1017,7 +1017,7 @@ const projectInstructionsSeedData = [
 	
 	const modifiedInstructions = projectInstructionsSeedData.map(addPTags);
 	
-	fs.writeFileSync('output.txt', modifiedInstructions.join('`,\n\n`'), 'utf8');
+	fs.writeFileSync('output.txt', modifiedInstructions.join('</p>`,\n\n`<p>'));
 	
 	export default projectInstructionsSeedData
 	
