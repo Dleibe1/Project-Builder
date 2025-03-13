@@ -7,13 +7,15 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
   const editorRef = useRef(null)
   const dropzoneOpenRef = useRef(null)
 
-  useEffect(()=> {
+  useEffect(() => {
+    document.body.classList.remove("grey-background")
     const appBar = document.querySelector("#app-bar")
     appBar.style.display = "none"
     return () => {
-      appBar.style.display= "flex"
+      appBar.style.display = "flex"
+      document.body.classList.add("grey-background")
     }
-  },[])
+  }, [])
 
   const { getInputProps, getRootProps, open } = useDropzone({
     onDrop: async (acceptedFiles) => {
@@ -68,7 +70,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             insert: {
               title: "Insert",
               items: "link add-image-item codesample table charmap emoticons hr anchor",
-            }
+            },
           },
           promotion: false,
           content_style: `
@@ -118,7 +120,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             })
             editor.ui.registry.addButton("add-image", {
               text: "Upload Image",
-              icon: "image", 
+              icon: "image",
               tooltip: "Upload Image",
               onAction: () => {
                 handleAddImage()
@@ -133,7 +135,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             })
             editor.ui.registry.addMenuItem("add-image-item", {
               text: "Add Image",
-              icon: "image", 
+              icon: "image",
               onAction: () => {
                 handleAddImage()
               },

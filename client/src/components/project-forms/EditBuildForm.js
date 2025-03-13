@@ -34,6 +34,7 @@ const EditBuildForm = (props) => {
   const [editingInstructions, setEditingInstructions] = useState(false)
   const params = useParams()
   const { id } = params
+  
   useEffect(() => {
     document.body.classList.add("grey-background")
     window.scrollTo(0, 0)
@@ -41,14 +42,6 @@ const EditBuildForm = (props) => {
       document.body.classList.remove("grey-background")
     }
   }, [])
-
-  useEffect(() => {
-    if (editingInstructions) {
-      document.body.classList.remove("grey-background")
-    } else if (editingInstructions === false) {
-      document.body.classList.add("grey-background")
-    }
-  }, [editingInstructions])
 
   useEffect(() => {
     uploadThumbnailImage()
@@ -56,14 +49,6 @@ const EditBuildForm = (props) => {
 
   useEffect(() => {
     getProject()
-  }, [])
-
-  useEffect(() => {
-    document.body.classList.add("grey-background")
-    window.scrollTo(0, 0)
-    return () => {
-      document.body.classList.remove("grey-background")
-    }
   }, [])
 
   const updateProject = async (projectData) => {
