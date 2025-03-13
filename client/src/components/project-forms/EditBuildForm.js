@@ -9,7 +9,7 @@ import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
 import Instructions from "../shared/Instructions.js"
-import InstructionsTinyMCEForm from "./InstructionsTinyMCEForm.js"
+import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
 import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 
 const EditBuildForm = (props) => {

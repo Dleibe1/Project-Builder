@@ -1,11 +1,19 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { useDropzone } from "react-dropzone"
-import MarkdownService from "../../services/MarkdownService.js"
-import BundledEditor from "../../services/TinyMCEBundler.js"
+import MarkdownService from "../../../services/MarkdownService.js"
+import BundledEditor from "../../../services/TinyMCEBundler.js"
 
 const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }) => {
   const editorRef = useRef(null)
   const dropzoneOpenRef = useRef(null)
+
+  useEffect(()=> {
+    const appBar = document.querySelector("#app-bar")
+    appBar.style.display = "none"
+    return () => {
+      appBar.style.display= "flex"
+    }
+  },[])
 
   const { getInputProps, getRootProps, open } = useDropzone({
     onDrop: async (acceptedFiles) => {
@@ -22,7 +30,6 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
         }
         const body = await response.json()
         const imageUrl = body.imageURL
-        console.log(imageUrl)
         if (editorRef.current) {
           editorRef.current.insertContent(`<img src="${imageUrl}" alt="uploaded" />`)
         }
@@ -33,7 +40,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
     noClick: true,
     noKeyboard: true,
   })
-console.log(project)
+
   dropzoneOpenRef.current = open
 
   const handleAddImage = () => {
@@ -57,10 +64,11 @@ console.log(project)
       <BundledEditor
         onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
+          forced_root_block: 'div',
           menu: {
             insert: {
               title: "Insert",
-              items: "link addImageItem codesample table charmap emoticons hr anchor",
+              items: "link add-image-item codesample table charmap emoticons hr anchor",
             }
           },
           promotion: false,
@@ -84,13 +92,12 @@ console.log(project)
             "wordcount",
           ],
           toolbar:
-            "download-as-markdown upload-markdown add-image save-and-return-to-project-form undo redo | blocks codesample link | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+            "download-as-markdown upload-markdown close-editor add-image undo redo | blocks codesample link | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
           toolbar_sticky: true,
-          toolbar_sticky_offset: 52,
           setup: (editor) => {
             editor.on("PreInit", () => {
               editor.ui.registry.addButton("upload-markdown", {
-                text: "REPLACE CONTENTS WITH MARKDOWN FILE",
+                text: "REPLACE CONTENTS WITH .md FILE",
                 tooltip: "Replace contents with a .md file",
                 onAction: async () => {
                   try {
@@ -118,15 +125,14 @@ console.log(project)
                 handleAddImage()
               },
             })
-            editor.ui.registry.addButton("save-and-return-to-project-form", {
-              text: "Save Progress",
-              icon: "save", 
-              tooltip: "Save Progress",
+            editor.ui.registry.addButton("close-editor", {
+              text: "CLOSE EDITOR",
+              tooltip: "Close and return to project form",
               onAction: () => {
                 setEditingInstructions(false)
               },
             })
-            editor.ui.registry.addMenuItem("addImageItem", {
+            editor.ui.registry.addMenuItem("add-image-item", {
               text: "Add Image",
               icon: "image", 
               onAction: () => {

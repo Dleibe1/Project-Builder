@@ -13,6 +13,7 @@ import ForkList from "./project-list-pages/ForkList"
 import SearchList from "./project-list-pages/SearchList"
 import ProjectShow from "./show-pages/ProjectShow"
 import MyBuildShow from "./show-pages/MyBuildShow"
+import DiffView from "./show-pages/show-pages-shared/DiffView"
 import NewProjectForm from "./project-forms/NewProjectForm"
 import MyBuildList from "./project-list-pages/MyBuildsList"
 import EditBuildForm from "./project-forms/EditBuildForm"
@@ -21,7 +22,6 @@ import About from "./information-pages/About"
 import NotFound404 from "./information-pages/404NotFound"
 import FilterByTag from "./shared/FilterByTag"
 import HowToUse from "./information-pages/HowToUse"
-import DiffView from "./shared/DiffView"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)

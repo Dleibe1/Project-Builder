@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { useParams } from "react-router-dom"
 import ReactDiffViewer from "react-diff-viewer-continued"
-import MarkdownService from "../../services/MarkdownService"
+import MarkdownService from "../../../services/MarkdownService"
 
 const DiffView = (props) => {
   const params = useParams()
