@@ -17,8 +17,8 @@ const Instructions = ({ project, setEditingInstructions }) => {
     hljs.highlightAll()
   }, [project.instructions])
   return (
-    <section className="instructions-list showpage-items-container">
-      {["/edit-my-build/", "/fork-project/","/create-new-build"].some((allowedPathname) =>
+    <section className={`instructions-list showpage-items-container ${project.instructions.length === 0 && "empty"}`}>
+      {["/edit-my-build/", "/fork-project/", "/create-new-build"].some((allowedPathname) =>
         history.location.pathname.includes(allowedPathname),
       ) && (
         <div className="edit-instructions-button-container">
@@ -28,7 +28,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
             variant="contained"
           >
             {project.instructions?.length > 0 && "Edit Instructions"}
-            {project.instructions?.length === 0 && "Add Instructions"}
+            {project.instructions?.length === 0 && "Add Instructions Section"}
           </Button>
         </div>
       )}
@@ -41,13 +41,17 @@ const Instructions = ({ project, setEditingInstructions }) => {
           Download Instructions as Markdown
         </Button>
       )}
-      {project.instructions?.length > 0 && <h2 id="form-instructions-heading">Instructions</h2>}
-      <div
-        className="preserve-white-space instruction-text showpage-items-container"
-        dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(project.instructions),
-        }}
-      ></div>
+      {project.instructions?.length > 0 && (
+        <>
+          <h2 id="form-instructions-heading">Instructions</h2>
+          <div
+            className="preserve-white-space instruction-text showpage-items-container"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(project.instructions),
+            }}
+          ></div>
+        </>
+      )}
     </section>
   )
 }

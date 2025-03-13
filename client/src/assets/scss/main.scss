@@ -740,7 +740,7 @@ h5 {
   display: flex;
   flex-direction: column;
 }
-    
+
 .project-diff-view h1,
 .project-diff-view h2 {
   width: fit-content;
@@ -876,7 +876,7 @@ h5 {
 #registration-form .password-input-container,
 #registration-form .password-confirmation-input-container,
 #registration-form .submit-button-container {
- margin-top:20px;
+  margin-top: 20px;
 }
 
 .burger-menu-item {
@@ -971,7 +971,7 @@ h5 {
   margin-top: 20px;
 }
 
-.form-error{
+.form-error {
   margin-top: 2px;
 }
 
@@ -997,7 +997,7 @@ h5 {
 //Custom save instructions button in TinyMCE
 button[data-mce-name="upload-markdown"].tox-tbtn,
 button[data-mce-name="download-as-markdown"].tox-tbtn,
-button[data-mce-name="close-editor"].tox-tbtn  {
+button[data-mce-name="close-editor"].tox-tbtn {
   margin: 0px 20px 0px 0px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   translate: 0px -10px;
@@ -1135,7 +1135,7 @@ button[data-mce-name="close-editor"].tox-tbtn .tox-tbtn__select-label {
 
 .large-button.instruction-list-button {
   margin: 5px 0px;
-  width: fit-content;
+  min-width: max-content;
 }
 
 .large-button.instructions-list-button {
@@ -1221,6 +1221,21 @@ button[data-mce-name="close-editor"].tox-tbtn .tox-tbtn__select-label {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.instructions-list.empty {
+  background-color: transparent;
+  margin-bottom: 90px;
+}
+
+.empty .instructions-list-button {
+  font-size: 25px;
+  height: unset;
+}
+
+.empty .edit-instructions-button-container {
+  display: flex;
+  justify-content: center;
 }
 
 .showpage-items-container p,
