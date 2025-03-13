@@ -740,7 +740,7 @@ h5 {
   display: flex;
   flex-direction: column;
 }
-    
+
 .project-diff-view h1,
 .project-diff-view h2 {
   width: fit-content;
@@ -876,7 +876,7 @@ h5 {
 #registration-form .password-input-container,
 #registration-form .password-confirmation-input-container,
 #registration-form .submit-button-container {
- margin-top:20px;
+  margin-top: 20px;
 }
 
 .burger-menu-item {
@@ -969,6 +969,10 @@ h5 {
 #sign-in-form .email-input,
 #registration-form .email-input {
   margin-top: 20px;
+}
+
+.form-error {
+  margin-top: 2px;
 }
 
 .instruction-text-container .instruction-text h2 {
