@@ -1109,6 +1109,8 @@ button[data-mce-name="codesample-with-text"].tox-tbtn {
 
 .tox .tox-toolbar__group {
   align-items: flex-end !important;
+  position: relative;
+  bottom: 5px;
 }
 
 .form-items-container .large-button.change-thumbnail-image {
