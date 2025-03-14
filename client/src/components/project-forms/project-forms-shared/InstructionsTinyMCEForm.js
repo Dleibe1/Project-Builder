@@ -93,7 +93,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             "wordcount",
           ],
           toolbar:
-            "download-as-markdown upload-markdown close-editor add-image undo redo | blocks codesample link | bold italic underline strikethrough | table | addcomment showcomments | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+            "h2-button add-image codesample-with-text  | download-as-markdown | upload-markdown | close-editor | bullist link bold italic emoticons charmap | removeformat",
           toolbar_sticky: true,
           setup: (editor) => {
             editor.on("PreInit", () => {
@@ -119,9 +119,9 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
               },
             })
             editor.ui.registry.addButton("add-image", {
-              text: "Upload Image",
+              text: "Add Image",
               icon: "image",
-              tooltip: "Upload Image",
+              tooltip: "Upload an Image",
               onAction: () => {
                 handleAddImage()
               },
@@ -133,6 +133,21 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
                 setEditingInstructions(false)
               },
             })
+            editor.ui.registry.addButton('codesample-with-text', {
+              icon: 'code-sample', 
+              text: 'Code Sample',
+              tooltip: 'Insert Code Sample',
+              onAction: function () {
+                editor.execCommand('codesample');
+              }
+            });
+            editor.ui.registry.addButton('h2-button', {
+              text: 'Heading',
+              tooltip: 'Add heading',
+              onAction: function () {
+                editor.execCommand('FormatBlock', false, 'h2');
+              }
+            });
             editor.ui.registry.addMenuItem("add-image-item", {
               text: "Add Image",
               icon: "image",
