@@ -3,7 +3,7 @@ import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
-import { CloudUpload } from "@mui/icons-material"
+import { CloudUpload, EditRoad } from "@mui/icons-material"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
@@ -34,7 +34,7 @@ const EditBuildForm = (props) => {
   const [editingInstructions, setEditingInstructions] = useState(false)
   const params = useParams()
   const { id } = params
-  
+
   useEffect(() => {
     document.body.classList.add("grey-background")
     window.scrollTo(0, 0)
@@ -42,6 +42,11 @@ const EditBuildForm = (props) => {
       document.body.classList.remove("grey-background")
     }
   }, [])
+
+  useEffect(() => {
+    const editInstructionsButton = document.querySelector(".edit-instructions")
+    editInstructionsButton?.scrollIntoView()
+  }, [editingInstructions])
 
   useEffect(() => {
     uploadThumbnailImage()
