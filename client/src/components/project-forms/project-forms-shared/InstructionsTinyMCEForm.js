@@ -93,7 +93,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             "wordcount",
           ],
           toolbar:
-            "h2-button add-image codesample-with-text  | download-as-markdown | upload-markdown | close-editor | bullist link bold italic emoticons charmap | removeformat",
+            "h2-button add-image codesample-with-text | close-editor | download-as-markdown | upload-markdown | bullist link bold italic emoticons charmap | removeformat",
           toolbar_sticky: true,
           setup: (editor) => {
             editor.on("PreInit", () => {
