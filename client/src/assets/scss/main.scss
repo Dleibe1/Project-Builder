@@ -1026,7 +1026,9 @@ button[data-mce-name="close-editor"].tox-tbtn .tox-tbtn__select-label {
   font-weight: 500;
 }
 
-button[data-mce-name="download-as-markdown"].tox-tbtn:focus {
+button[data-mce-name="download-as-markdown"].tox-tbtn:focus,
+button[data-mce-name="upload-markdown"].tox-tbtn:focus,
+button[data-mce-name="close-editor"].tox-tbtn:focus  {
   bottom: 1.5px !important;
   height: 25px !important;
   border-radius: 0px;
@@ -1081,6 +1083,10 @@ button[data-mce-name="codesample-with-text"].tox-tbtn {
 
 .tox .tox-statusbar__branding a {
   display: none !important;
+}
+
+.tox .tox-toolbar__primary {
+  margin-top:20px;
 }
 
 .tox-statusbar {

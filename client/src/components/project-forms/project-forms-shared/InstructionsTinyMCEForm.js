@@ -66,12 +66,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
       <BundledEditor
         onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
-          menu: {
-            insert: {
-              title: "Insert",
-              items: "link add-image-item codesample table charmap emoticons hr anchor",
-            },
-          },
+          menubar: false,
           promotion: false,
           content_style: `
             img { max-width: 50%; height: auto; padding-top: 40px; padding-bottom: 40px; } 
