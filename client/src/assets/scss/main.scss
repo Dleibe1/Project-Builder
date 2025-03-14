@@ -994,11 +994,11 @@ h5 {
   margin-bottom: 30px;
 }
 
-//Custom save instructions button in TinyMCE
+//Custom buttons in TinyMCE instructions editor component (InstructionsTinyMCEForm.js)
 button[data-mce-name="upload-markdown"].tox-tbtn,
 button[data-mce-name="download-as-markdown"].tox-tbtn,
 button[data-mce-name="close-editor"].tox-tbtn {
-  margin: 0px 20px 0px 0px;
+  margin: 0px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   translate: 0px -10px;
   transition: 0.25s;
@@ -1024,6 +1024,51 @@ button[data-mce-name="upload-markdown"].tox-tbtn .tox-tbtn__select-label,
 button[data-mce-name="download-as-markdown"].tox-tbtn .tox-tbtn__select-label,
 button[data-mce-name="close-editor"].tox-tbtn .tox-tbtn__select-label {
   font-weight: 500;
+}
+
+button[data-mce-name="download-as-markdown"].tox-tbtn:focus{
+  bottom: 1.5px !important;
+  height: 25px !important;
+  border-radius: 0px;
+  color: white !important;
+  background: #1976d2;
+}
+
+button[data-mce-name="h2-button"].tox-tbtn .tox-tbtn__select-label{
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 6px;
+    bottom: 5px;
+    position: relative;
+    padding: 5px 10px;
+    min-width: fit-content;
+    border: 2px solid lightgray;
+}
+button[data-mce-name=h2-button].tox-tbtn .tox-tbtn__select-label:hover {
+  cursor: pointer;
+  background: #f0f0f0;
+}
+
+button[data-mce-name="h2-button"].tox-tbtn:hover,
+button[data-mce-name="add-image"].tox-tbtn:hover,
+button[data-mce-name="h2-button"] .tox-tbtn__select-label:hover,
+button[data-mce-name="add-image"] .tox-tbtn__select-label:hover {
+cursor: pointer;
+}
+
+button[data-mce-name="h2-button"].tox-tbtn:hover {
+  background: white;
+}
+
+button[data-mce-name="add-image"].tox-tbtn .tox-tbtn__select-label {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+button[data-mce-name="add-image"].tox-tbtn {
+  position: relative;
+  bottom: 5px;
+  min-width: fit-content;
 }
 
 .tox.tox-tinymce {
