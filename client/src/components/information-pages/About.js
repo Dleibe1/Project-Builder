@@ -13,7 +13,7 @@ const About = (props) => {
     <>
       <div className="banner about-page-section-container-left top-banner">
         <img className="banner-image" src="https://i.imgur.com/dOywizt.png" />
-        <h1>Create and Fork Arduino Projects</h1>
+        <h1>Create and Fork Micro Controller Projects</h1>
       </div>
       <div className="banner second-banner about-page-section-container-right">
         <img className="banner-image" src="https://i.imgur.com/n8C2mDO.png" />
@@ -25,7 +25,7 @@ const About = (props) => {
       </div>
       <div className="banner fourth-banner about-page-section-container-right">
         <img className="banner-image" src="https://i.imgur.com/zNVBrY3.png" />
-        <h1>With Project Builder you can fork a project's list of parts, the instructions to build it, and the Arduino code.</h1>
+        <h1>With Project Builder you can fork a project's code, parts, and instructions to build it</h1>
       </div>
       <div className="banner fifth-banner about-page-section-container-left">
         <img className="banner-image" src="https://i.imgur.com/dOywizt.png" />
