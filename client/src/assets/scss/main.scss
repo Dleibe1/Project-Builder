@@ -1034,7 +1034,6 @@ h5 {
 }
 
 .tox .tox-toolbar__group {
-  
   margin-left:20px !important;
   margin-right:20px !important;
   padding:0px !important;
@@ -1045,7 +1044,6 @@ h5 {
 
 .tox .tox-tbtn {
   height: fit-content !important;
-  transition: .25s !important;
   cursor: pointer !important;
 }
 
@@ -1062,7 +1060,7 @@ h5 {
   padding: 7px !important;
   margin: 0px !important;
   width: fit-content !important;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .tox button[data-mce-name="codesample-with-text"] .tox-tbtn__select-label,
