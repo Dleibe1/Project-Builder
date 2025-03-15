@@ -71,7 +71,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
           promotion: false,
           content_style: `
             img { max-width: 50%; height: auto; padding-top: 40px; padding-bottom: 40px; } 
-            p {font-size: 1.5rem;}`,
+            p {font-size: 1.5rem; color: #374146; line-height: 130%;}`,
           content_css: ["https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"],
           plugins: [
             "autoresize",
