@@ -66,6 +66,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
       <BundledEditor
         onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
+          toolbar_mode: 'wrap',
           menubar: false,
           promotion: false,
           content_style: `
@@ -88,13 +89,14 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             "wordcount",
           ],
           toolbar:
-            "h2-button add-image codesample-with-text close-editor | download-as-markdown | upload-markdown | bullist link bold italic emoticons charmap removeformat",
+            "h2-button bold link add-image codesample-with-text italic emoticons charmap bullist removeformat  | download-as-markdown upload-markdown close-editor ",
           toolbar_sticky: true,
           setup: (editor) => {
             editor.on("PreInit", () => {
               editor.ui.registry.addButton("upload-markdown", {
-                text: "REPLACE CONTENTS WITH .md FILE",
-                tooltip: "Replace contents with a .md file",
+                text: "Replace Contents With .md File",
+                icon: "upload",
+                tooltip: "The editor will render the contents of a markdown file",
                 onAction: async () => {
                   try {
                     const markdownContent = await MarkdownService.getMarkdownFileContent()
@@ -106,15 +108,16 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
                 },
               })
             })
+            editor.ui.registry.addIcon('heading-icon', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21" width="22" height="21" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.086 4.45c0-.478.387-.865.864-.865h3.458a.864.864 0 0 1 0 1.729h-.865v4.322h6.915V5.314h-.864a.864.864 0 0 1 0-1.729h3.457a.864.864 0 1 1 0 1.729h-.864v10.372h.864a.864.864 0 1 1 0 1.729h-3.457a.864.864 0 0 1 0-1.729h.864v-4.322H7.543v4.322h.865a.864.864 0 0 1 0 1.729H4.95a.864.864 0 0 1 0-1.729h.865V5.314H4.95a.864.864 0 0 1-.864-.865Z" fill="currentColor"></path></svg>');
             editor.ui.registry.addButton("download-as-markdown", {
-              text: "DOWNLOAD AS MARKDOWN",
-              tooltip: "Download contents as a .md file",
+              text: "Download as Markdown",
+              icon: "save",
+              tooltip: "Download contents in markdown format",
               onAction: () => {
                 MarkdownService.downloadHtmlAsMarkdown(editor.getContent())
               },
             })
             editor.ui.registry.addButton("add-image", {
-              text: "Add Image",
               icon: "image",
               tooltip: "Upload an Image",
               onAction: () => {
@@ -122,7 +125,8 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
               },
             })
             editor.ui.registry.addButton("close-editor", {
-              text: "CLOSE EDITOR",
+              text: "Close Editor",
+              icon: "close",
               tooltip: "Close and return to project form",
               onAction: () => {
                 setEditingInstructions(false)
@@ -130,14 +134,13 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             })
             editor.ui.registry.addButton('codesample-with-text', {
               icon: 'code-sample', 
-              text: 'Code Sample',
               tooltip: 'Insert Code Sample',
               onAction: function () {
                 editor.execCommand('codesample');
               }
             });
             editor.ui.registry.addButton('h2-button', {
-              text: 'Heading',
+              icon: "heading-icon",
               tooltip: 'Add heading',
               onAction: function () {
                 editor.execCommand('FormatBlock', false, 'h2');
@@ -149,7 +152,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
               onAction: () => {
                 handleAddImage()
               },
-            })
+            }),
             editor.on("keydown", (event) => {
               if (event.key === "Tab") {
                 event.preventDefault()
