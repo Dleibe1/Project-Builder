@@ -995,85 +995,8 @@ h5 {
 }
 
 //Custom buttons in TinyMCE instructions editor component (InstructionsTinyMCEForm.js)
-button[data-mce-name="upload-markdown"].tox-tbtn,
-button[data-mce-name="download-as-markdown"].tox-tbtn,
-button[data-mce-name="close-editor"].tox-tbtn {
-  margin: 0px;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  translate: 0px -10px;
-  transition: 0.25s;
-  color: white;
-  background: #1976d2;
-  font-size: 20px;
-  border-radius: 6px;
-  font-size: 1rem;
-  width: fit-content !important;
-}
 
-button[data-mce-name="upload-markdown"].tox-tbtn:hover,
-button[data-mce-name="upload-markdown"] .tox-tbtn__select-label:hover,
-button[data-mce-name="download-as-markdown"].tox-tbtn:hover,
-button[data-mce-name="download-as-markdown"] .tox-tbtn__select-label:hover,
-button[data-mce-name="close-editor"].tox-tbtn:hover,
-button[data-mce-name="close-editor"] .tox-tbtn__select-label:hover {
-  cursor: pointer;
-  color: white;
-  background: #1665c0;
-}
-button[data-mce-name="upload-markdown"].tox-tbtn .tox-tbtn__select-label,
-button[data-mce-name="download-as-markdown"].tox-tbtn .tox-tbtn__select-label,
-button[data-mce-name="close-editor"].tox-tbtn .tox-tbtn__select-label {
-  font-weight: 500;
-}
-
-button[data-mce-name="download-as-markdown"].tox-tbtn:focus,
-button[data-mce-name="upload-markdown"].tox-tbtn:focus,
-button[data-mce-name="close-editor"].tox-tbtn:focus  {
-  bottom: 1.5px !important;
-  height: 25px !important;
-  border-radius: 0px;
-  color: white !important;
-  background: #1976d2;
-}
-
-button[data-mce-name="h2-button"].tox-tbtn .tox-tbtn__select-label {
-  font-weight: 600;
-  font-size: 15px;
-  border-radius: 6px;
-  bottom: 5px;
-  position: relative;
-  padding: 5px 10px;
-  min-width: fit-content;
-  border: 2px solid lightgray;
-}
-button[data-mce-name="h2-button"].tox-tbtn .tox-tbtn__select-label:hover {
-  cursor: pointer;
-  background: #f0f0f0;
-}
-
-button[data-mce-name="h2-button"].tox-tbtn:hover,
-button[data-mce-name="add-image"].tox-tbtn:hover,
-button[data-mce-name="codesample-with-text"].tox-tbtn:hover,
-button[data-mce-name="add-image"].tox-tbtn__select-label:hover,
-button[data-mce-name="h2-button"].tox-tbtn__select-label:hover,
-button[data-mce-name="codesample-with-text"].tox-tbtn .tox-tbtn__select-label:hover {
-  cursor: pointer;
-}
-
-button[data-mce-name="h2-button"].tox-tbtn:hover {
-  background: white;
-}
-
-button[data-mce-name="add-image"].tox-tbtn .tox-tbtn__select-label,
-button[data-mce-name="codesample-with-text"].tox-tbtn .tox-tbtn__select-label {
-  font-weight: 600;
-  font-size: 15px;
-}
-
-button[data-mce-name="add-image"].tox-tbtn,
-button[data-mce-name="codesample-with-text"].tox-tbtn {
-  position: relative;
-  bottom: 5px;
+.tox-tbtn {
   min-width: fit-content;
 }
 
@@ -1085,8 +1008,14 @@ button[data-mce-name="codesample-with-text"].tox-tbtn {
   display: none !important;
 }
 
+.tox .tox-toolbar {
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
 .tox .tox-toolbar__primary {
-  margin-top:20px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .tox-statusbar {
@@ -1098,17 +1027,51 @@ button[data-mce-name="codesample-with-text"].tox-tbtn {
   display: none !important;
 }
 
-.tox .tox-mbtn__select-label {
-  font-size: 17px;
-}
-
 .tox .tox-menubar {
   gap: 5px;
   margin-top: 10px;
 }
 
 .tox .tox-toolbar__group {
+  
+  margin-left:20px !important;
+  margin-right:20px !important;
+  padding:0px !important;
   align-items: flex-end !important;
+  position: relative;
+  bottom: 5px;
+}
+
+.tox .tox-tbtn {
+  height: fit-content !important;
+  transition: .25s !important;
+  cursor: pointer !important;
+}
+
+.tox-tbtn .tox-tbtn__select-label{
+  cursor: pointer !important;
+  font-weight: 600 !important;
+  font-size: 17px;
+  position: relative;
+  min-width: fit-content;
+}
+
+.tox .tox-tbtn--select{
+  border-radius: 8px;
+  padding: 7px !important;
+  margin: 0px !important;
+  width: fit-content !important;
+  cursor: pointer;
+}
+
+.tox button[data-mce-name="codesample-with-text"] .tox-tbtn__select-label,
+.tox button[data-mce-name="add-image"] .tox-tbtn__select-label,
+.tox button[data-mce-name="upload-markdown"] .tox-tbtn__select-label {
+  padding-left: 0px;
+}
+
+.tox button[data-mce-name="h2-button"] {
+  margin-bottom: 6px;
 }
 
 .form-items-container .large-button.change-thumbnail-image {
