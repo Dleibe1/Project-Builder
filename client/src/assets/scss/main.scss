@@ -378,16 +378,18 @@ h5 {
 .project-show,
 .how-to-use {
   padding: 2rem;
-  max-width: 1200px;
   margin: 100px auto;
   font-family: "Roboto", sans-serif;
 }
 
 .project-show {
+  max-width: 1200px;
   background-color: #ecf1f1;
+  margin-top: 50px;
 }
 
 .how-to-use {
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1034,9 +1036,9 @@ h5 {
 }
 
 .tox .tox-toolbar__group {
-  margin-left:20px !important;
-  margin-right:20px !important;
-  padding:0px !important;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+  padding: 0px !important;
   align-items: flex-end !important;
   position: relative;
   bottom: 5px;
@@ -1047,7 +1049,7 @@ h5 {
   cursor: pointer !important;
 }
 
-.tox-tbtn .tox-tbtn__select-label{
+.tox-tbtn .tox-tbtn__select-label {
   cursor: pointer !important;
   font-weight: 600 !important;
   font-size: 17px;
@@ -1055,7 +1057,7 @@ h5 {
   min-width: fit-content;
 }
 
-.tox .tox-tbtn--select{
+.tox .tox-tbtn--select {
   border-radius: 8px;
   padding: 7px !important;
   margin: 0px !important;
@@ -1163,8 +1165,6 @@ h5 {
 
 .large-button.instructions-list-button {
   margin: 0px;
-  font-size: 17px;
-  height: 45px;
 }
 
 .instructions-list .download-markdown-button-instructions-list {
@@ -1178,7 +1178,16 @@ h5 {
 }
 
 .instructions-list .instruction-text h2 {
+  text-align: unset;
+  padding: unset;
+  line-height: normal;
+  font-weight: 700;
+  font-size: 30px;
+  color: #374146;
+}
 
+.instructions-list .instruction-text p {
+  font-size: 21px;
 }
 
 #code-input {
