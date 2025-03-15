@@ -44,11 +44,6 @@ const EditBuildForm = (props) => {
   }, [])
 
   useEffect(() => {
-    const editInstructionsButton = document.querySelector(".edit-instructions")
-    editInstructionsButton?.scrollIntoView()
-  }, [editingInstructions])
-
-  useEffect(() => {
     uploadThumbnailImage()
   }, [thumbnailImageFile])
 
