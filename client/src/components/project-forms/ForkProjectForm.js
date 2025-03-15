@@ -46,11 +46,6 @@ const ForkProjectForm = (props) => {
   }, [thumbnailImageFile])
 
   useEffect(() => {
-    const editInstructionsButton = document.querySelector(".edit-instructions")
-    editInstructionsButton?.scrollIntoView()
-  }, [editingInstructions])
-
-  useEffect(() => {
     getProject()
   }, [])
 
