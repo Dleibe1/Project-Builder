@@ -582,7 +582,6 @@ h5 {
 }
 
 @media (max-width: 600px) {
-  /* Adjust the max-width as needed */
   .form-parts-list {
     display: flex;
     flex-wrap: wrap;
@@ -604,6 +603,10 @@ h5 {
   padding: 5px;
   box-sizing: border-box;
 }
+.parts-list p {
+  margin-bottom: 0px;
+}
+
 .apps-and-platforms p {
   border-bottom: 2px solid #c9d2d2;
 }
@@ -632,6 +635,10 @@ h5 {
 
 .part-item-in-form .part-with-purchase-link {
   display: flex;
+}
+
+.part-with-purchase-link {
+  align-items: center;
 }
 
 .part-with-purchase-link p {
