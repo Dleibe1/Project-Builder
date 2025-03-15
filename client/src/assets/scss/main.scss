@@ -618,6 +618,7 @@ h5 {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   overflow-wrap: anywhere;
   padding: 10px 20px;
@@ -635,6 +636,7 @@ h5 {
 
 .part-item-in-form .part-with-purchase-link {
   display: flex;
+  align-items: flex-start;
 }
 
 .part-with-purchase-link {
