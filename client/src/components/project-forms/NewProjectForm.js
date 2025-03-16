@@ -15,9 +15,6 @@ import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 const NewProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [thumbnailImageFile, setThumbnailImageFile] = useState({
-    image: {},
-  })
   const [project, setProject] = useState({
     title: "",
     tags: [],
@@ -39,10 +36,6 @@ const NewProjectForm = (props) => {
       document.body.classList.remove("grey-background")
     }
   }, [])
-
-  useEffect(() => {
-    uploadThumbnailImage()
-  }, [thumbnailImageFile])
 
   const postProject = async (newProjectData) => {
     try {
@@ -66,9 +59,10 @@ const NewProjectForm = (props) => {
     }
   }
 
-  const uploadThumbnailImage = async () => {
+  const handleThumbnailImageUpload = async (acceptedImage) => {
+    const image = acceptedImage[0]
     const thumbnailImageFileData = new FormData()
-    thumbnailImageFileData.append("image", thumbnailImageFile.image)
+    thumbnailImageFileData.append("image", image)
     try {
       const response = await fetch("/api/v1/image-upload", {
         method: "POST",
@@ -88,12 +82,6 @@ const NewProjectForm = (props) => {
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
-  }
-
-  const handleThumbnailImageUpload = (acceptedImage) => {
-    setThumbnailImageFile({
-      image: acceptedImage[0],
-    })
   }
 
   const handleSubmit = (event) => {
