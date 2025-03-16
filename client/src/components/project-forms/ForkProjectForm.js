@@ -6,6 +6,7 @@ import Textarea from "@mui/joy/Textarea"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
+import uploadImageFile from "../../api/uploadImageFile.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
 import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
@@ -64,7 +65,7 @@ const ForkProjectForm = (props) => {
       console.log(error)
     }
   }
-  
+
   const getProject = async () => {
     try {
       const response = await fetch(`/api/v1/projects/${id}`)
@@ -82,24 +83,11 @@ const ForkProjectForm = (props) => {
   }
 
   const handleThumbnailImageUpload = async (acceptedImage) => {
-    const image = acceptedImage[0]
-    const thumbnailImageFileData = new FormData()
-    thumbnailImageFileData.append("image", image)
     try {
-      const response = await fetch("/api/v1/image-upload", {
-        method: "POST",
-        headers: {
-          Accept: "image/jpeg",
-        },
-        body: thumbnailImageFileData,
-      })
-      if (!response.ok) {
-        throw new Error(`${response.status} (${response.statusText})`)
-      }
-      const body = await response.json()
+      const imageURL = await uploadImageFile(acceptedImage)
       setProject((prevState) => ({
         ...prevState,
-        thumbnailImage: body.imageURL,
+        thumbnailImage: imageURL,
       }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)

@@ -3,9 +3,10 @@ import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
-import { CloudUpload, EditRoad } from "@mui/icons-material"
+import { CloudUpload } from "@mui/icons-material"
 import Send from "@mui/icons-material/Send"
 import translateServerErrors from "../../services/translateServerErrors.js"
+import uploadImageFile from "../../api/uploadImageFile.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
 import Instructions from "../shared/Instructions.js"
@@ -67,24 +68,11 @@ const EditBuildForm = (props) => {
   }
 
   const handleThumbnailImageUpload = async (acceptedImage) => {
-    const image = acceptedImage[0]
-    const thumbnailImageFileData = new FormData()
-    thumbnailImageFileData.append("image", image)
     try {
-      const response = await fetch("/api/v1/image-upload", {
-        method: "POST",
-        headers: {
-          Accept: "image/jpeg",
-        },
-        body: thumbnailImageFileData,
-      })
-      if (!response.ok) {
-        throw new Error(`${response.status} (${response.statusText})`)
-      }
-      const body = await response.json()
+      const imageURL = await uploadImageFile(acceptedImage)
       setProject((prevState) => ({
         ...prevState,
-        thumbnailImage: body.imageURL,
+        thumbnailImage: imageURL,
       }))
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
