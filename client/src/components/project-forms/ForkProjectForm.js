@@ -15,9 +15,6 @@ import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [thumbnailImageFile, setThumbnailImageFile] = useState({
-    image: {},
-  })
   const params = useParams()
   const { id } = params
   const [project, setProject] = useState({
@@ -40,10 +37,6 @@ const ForkProjectForm = (props) => {
       document.body.classList.remove("grey-background")
     }
   }, [])
-
-  useEffect(() => {
-    uploadThumbnailImage()
-  }, [thumbnailImageFile])
 
   useEffect(() => {
     getProject()
@@ -72,9 +65,50 @@ const ForkProjectForm = (props) => {
     }
   }
 
-  const uploadThumbnailImage = async () => {
+  // const uploadThumbnailImage = async () => {
+  //   const thumbnailImageFileData = new FormData()
+  //   thumbnailImageFileData.append("image", thumbnailImageFile.image)
+  //   try {
+  //     const response = await fetch("/api/v1/image-upload", {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "image/jpeg",
+  //       },
+  //       body: thumbnailImageFileData,
+  //     })
+  //     if (!response.ok) {
+  //       throw new Error(`${response.status} (${response.statusText})`)
+  //     }
+  //     const body = await response.json()
+  //     setProject((prevState) => ({
+  //       ...prevState,
+  //       thumbnailImage: body.imageURL,
+  //     }))
+  //   } catch (error) {
+  //     console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
+  //   }
+  // }
+
+  const getProject = async () => {
+    try {
+      const response = await fetch(`/api/v1/projects/${id}`)
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw error
+      }
+      const responseBody = await response.json()
+      const project = responseBody.project
+      setProject((prevState) => ({ ...prevState, ...project, githubFileURL: "" }))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleThumbnailImageUpload = async (acceptedImage) => {
+    const image = acceptedImage[0]
     const thumbnailImageFileData = new FormData()
-    thumbnailImageFileData.append("image", thumbnailImageFile.image)
+    thumbnailImageFileData.append("image", image)
     try {
       const response = await fetch("/api/v1/image-upload", {
         method: "POST",
@@ -94,28 +128,6 @@ const ForkProjectForm = (props) => {
     } catch (error) {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
-  }
-
-  const getProject = async () => {
-    try {
-      const response = await fetch(`/api/v1/projects/${id}`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
-      }
-      const responseBody = await response.json()
-      const project = responseBody.project
-      setProject((prevState) => ({ ...prevState, ...project, githubFileURL: "" }))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const handleThumbnailImageUpload = (acceptedImage) => {
-    setThumbnailImageFile({
-      image: acceptedImage[0],
-    })
   }
 
   const handleSubmit = (event) => {
