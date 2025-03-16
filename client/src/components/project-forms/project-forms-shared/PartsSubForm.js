@@ -44,7 +44,7 @@ const PartsSubForm = ({ project, setProject }) => {
   const partsList = project.parts.map((part, index) => {
     return (
       <div key={`${(part.partName, part.partPurchaseURL)}${index}`} className="part-item-in-form">
-        {part.partPurchaseURL.length === 0 && <p>{part.partName}</p>}
+        {part.partPurchaseURL.length === 0 && <p className="part-without-purchase-link" >{part.partName}</p>}
         {part.partPurchaseURL.length > 0 && (
           <a href={part.partPurchaseURL}>
             <div className="part-with-purchase-link">
