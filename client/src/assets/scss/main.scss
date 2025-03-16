@@ -1032,8 +1032,8 @@ h5 {
 }
 
 .tox .tox-toolbar {
-  margin-top: 10px;
   justify-content: space-between;
+  background-image: none !important;
 }
 
 .tox .tox-toolbar__primary {
@@ -1056,6 +1056,7 @@ h5 {
 }
 
 .tox .tox-toolbar__group {
+  margin-top: 15px !important;
   margin-left: 20px !important;
   margin-right: 20px !important;
   padding: 0px !important;

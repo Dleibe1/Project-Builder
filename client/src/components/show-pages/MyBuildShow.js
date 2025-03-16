@@ -7,7 +7,7 @@ import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
 import TagList from "./show-pages-shared/TagList"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import Instructions from "../shared/Instructions"
-import hljs from "highlight.js"
+import DOMPurify from "dompurify"
 import "highlight.js/styles/github.css"
 
 const MyBuildShow = (props) => {
@@ -31,15 +31,6 @@ const MyBuildShow = (props) => {
   useEffect(() => {
     getMyBuild()
   }, [])
-
-  useEffect(() => {
-    //Apply highlighting after default css has been applied
-    const codeTags = document.querySelectorAll("code")
-    codeTags.forEach((tag) => {
-      delete tag.dataset.highlighted
-    })
-    hljs.highlightAll()
-  }, [myBuild])
 
   useEffect(() => {
     document.body.classList.add("grey-background")
@@ -75,8 +66,13 @@ const MyBuildShow = (props) => {
   )
   const partsList = myBuild.parts.map((part, index) => {
     return (
-      <div className="part-item-in-showpage" key={`${(part.partName, part.partPurchaseURL)}${index}`}>
-        {part.partPurchaseURL.length === 0 && <p className="part-without-purchase-link">{part.partName}</p>}
+      <div
+        className="part-item-in-showpage"
+        key={`${(part.partName, part.partPurchaseURL)}${index}`}
+      >
+        {part.partPurchaseURL.length === 0 && (
+          <p className="part-without-purchase-link">{part.partName}</p>
+        )}
         {part.partPurchaseURL.length > 0 && (
           <a href={part.partPurchaseURL}>
             <div className="part-with-purchase-link">
@@ -130,12 +126,16 @@ const MyBuildShow = (props) => {
           <p>{myBuild.appsAndPlatforms}</p>
         </div>
       </div>
-        <Instructions project={myBuild} />
+      <Instructions project={myBuild} />
       <div>
         <div className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code className="language-cpp">{myBuild.code}</code>
+            <code 
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(myBuild.code),
+              }}
+            ></code>
           </pre>
         </div>
       </div>

@@ -6,9 +6,9 @@ import SeeForkedVersionsButton from "../shared/SeeForkedVersionsButton.js"
 import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
 import TagList from "./show-pages-shared/TagList.js"
 import Instructions from "../shared/Instructions.js"
-import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
+import DOMPurify from "dompurify"
 
 const ProjectShow = (props) => {
   const [project, setProject] = useState({
@@ -39,15 +39,6 @@ const ProjectShow = (props) => {
       document.body.classList.remove("grey-background")
     }
   }, [])
-
-  useEffect(() => {
-    //Apply highlighting after default css has been applied
-    const codeTags = document.querySelectorAll("code")
-    codeTags.forEach((tag) => {
-      delete tag.dataset.highlighted
-    })
-    hljs.highlightAll()
-  }, [project])
 
   const getProject = async () => {
     try {
@@ -160,7 +151,12 @@ const ProjectShow = (props) => {
         <section className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code className="language-cpp">{project.code}</code>
+            <code
+              className="language-cpp"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(project.code),
+              }}
+            ></code>
           </pre>
         </section>
       </div>

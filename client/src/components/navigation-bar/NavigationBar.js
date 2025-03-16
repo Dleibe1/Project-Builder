@@ -43,7 +43,6 @@ const NavigationBar = ({ user, projectsPerPage }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
-  //TODO: Create a context for URL search params?
   const handleProjectsLinkClick = () => {
     setSelectedTag("")
   }
