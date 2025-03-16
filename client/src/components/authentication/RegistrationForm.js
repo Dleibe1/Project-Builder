@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react"
 import { Button, TextField } from "@mui/material"
 
 import config from "../../config"
-
+import registerUser from "../../api/registerUser"
 import ErrorList from "../project-forms/project-forms-shared/ErrorList"
 import FormError from "../project-forms/project-forms-shared/FormError"
-import translateServerErrors from "../../services/translateServerErrors"
 
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
@@ -78,27 +77,15 @@ const RegistrationForm = () => {
     event.preventDefault()
     try {
       if (validateInput(userPayload)) {
-        const response = await fetch("/api/v1/users", {
-          method: "POST",
-          body: JSON.stringify(userPayload),
-          headers: new Headers({
-            "Content-Type": "application/json",
-          }),
-        })
-        if (!response.ok) {
-          if (response.status === 422) {
-            const body = await response.json()
-            const newServerErrors = translateServerErrors(body.errors)
-            return setServerErrors(newServerErrors)
-          }
-          const errorMessage = `${response.status} (${response.statusText})`
-          const error = new Error(errorMessage)
-          throw error
-        }
+        const response = await registerUser(userPayload)
         return setShouldRedirect(true)
       }
-    } catch (err) {
-      console.error(`Error in fetch: ${err.message}`)
+    } catch (error) {
+      if (error.serverErrors) {
+        setServerErrors(error.serverErrors)
+      } else {
+        console.error(`Error in fetch: ${error.message}`)
+      }
     }
   }
 
@@ -116,8 +103,8 @@ const RegistrationForm = () => {
   return (
     <div className="grid-container sign-in registration">
       <h1>Register</h1>
-      <ErrorList errors={serverErrors} />
       <form id="registration-form" onSubmit={onSubmit}>
+        <ErrorList errors={serverErrors} />
         <div>
           <TextField
             value={userPayload.email}
