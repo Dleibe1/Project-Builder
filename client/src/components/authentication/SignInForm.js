@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Button, TextField } from "@mui/material"
 
 import config from "../../config"
-
+import signInUser from "../../api/signInUser"
 import FormError from "../project-forms/project-forms-shared/FormError"
 
 const SignInForm = () => {
@@ -50,26 +50,14 @@ const SignInForm = () => {
     event.preventDefault()
     if (validateInput(userPayload)) {
       try {
-        const response = await fetch("/api/v1/user-sessions", {
-          method: "POST",
-          body: JSON.stringify(userPayload),
-          headers: new Headers({
-            "Content-Type": "application/json",
-          }),
-        })
-        if (!response.ok) {
-          if (response.status === 401) {
-            const body = await response.json()
-            return setCredentialsErrors(body.message)
-          }
-          const errorMessage = `${response.status} (${response.statusText})`
-          const error = new Error(errorMessage)
-          throw error
-        }
-        const userData = await response.json()
+        const response = await signInUser(userPayload)
         setShouldRedirect(true)
-      } catch (err) {
-        console.error(`Error in fetch: ${err.message}`)
+      } catch (error) {
+        if (error.credentialsErrors) {
+          return setCredentialsErrors(error.credentialsErrors)
+        } else {
+          console.error(`Error in fetch: ${error.message}`)
+        }
       }
     }
   }
@@ -88,8 +76,8 @@ const SignInForm = () => {
   return (
     <div className="sign-in standard-sign-in" onSubmit={onSubmit}>
       <h1>Sign In</h1>
-      {credentialsErrors ? <p className="callout alert">{credentialsErrors}</p> : null}
       <form id="sign-in-form">
+        {credentialsErrors ? <p className="callout alert">{credentialsErrors}</p> : null}
         <div className="email-input-container">
           <TextField
             value={userPayload.email}

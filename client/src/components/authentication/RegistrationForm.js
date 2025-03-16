@@ -76,7 +76,6 @@ const RegistrationForm = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault()
-
     try {
       if (validateInput(userPayload)) {
         const response = await fetch("/api/v1/users", {
