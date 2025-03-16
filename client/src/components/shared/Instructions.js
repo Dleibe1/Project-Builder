@@ -9,13 +9,13 @@ import MarkdownService from "../../services/MarkdownService"
 const Instructions = ({ project, setEditingInstructions }) => {
   const history = useHistory()
   useEffect(() => {
-    //Apply highlighting after default css has been applied
     const codeTags = document.querySelectorAll("code")
     codeTags.forEach((tag) => {
       delete tag.dataset.highlighted
     })
     hljs.highlightAll()
   }, [project.instructions])
+
   return (
     <section className={`instructions-list showpage-items-container ${project.instructions.length === 0 && "empty"}`}>
       {["/edit-my-build/", "/fork-project/", "/create-new-build"].some((allowedPathname) =>
@@ -47,7 +47,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
           <div
             className="preserve-white-space instruction-text showpage-items-container"
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(project.instructions),
+              __html: DOMPurify.sanitize(project.instructions)
             }}
           ></div>
         </>

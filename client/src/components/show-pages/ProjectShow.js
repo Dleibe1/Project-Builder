@@ -6,7 +6,6 @@ import SeeForkedVersionsButton from "../shared/SeeForkedVersionsButton.js"
 import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
 import TagList from "./show-pages-shared/TagList.js"
 import Instructions from "../shared/Instructions.js"
-import "highlight.js/styles/github.css"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import DOMPurify from "dompurify"
 

@@ -8,7 +8,6 @@ import TagList from "./show-pages-shared/TagList"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import Instructions from "../shared/Instructions"
 import DOMPurify from "dompurify"
-import "highlight.js/styles/github.css"
 
 const MyBuildShow = (props) => {
   const [myBuild, setMyBuild] = useState({
@@ -131,7 +130,7 @@ const MyBuildShow = (props) => {
         <div className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code 
+            <code className="language-cpp"
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(myBuild.code),
               }}
