@@ -22,6 +22,7 @@ import GithubLoginButton from "./nav-bar-authentication/GithubLoginButton"
 import SignOutButton from "./nav-bar-authed-UI/SignOutButton"
 import CreateBuildButton from "./nav-bar-authed-UI/CreateBuildButton"
 import MyBuildsButton from "./nav-bar-authed-UI/MyBuildsButton"
+import signOutUser from "../../api/signOutUser"
 
 const NavigationBar = ({ user, projectsPerPage }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -50,18 +51,7 @@ const NavigationBar = ({ user, projectsPerPage }) => {
   const signOut = async (event) => {
     event.preventDefault()
     try {
-      const response = await fetch("/api/v1/user-sessions", {
-        method: "delete",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-      })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
-      }
-      const respBody = await response.json()
+      const response = await signOutUser()
       setShouldRedirect(true)
       return { status: "ok" }
     } catch (err) {
