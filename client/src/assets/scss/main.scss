@@ -581,6 +581,11 @@ h5 {
   border-bottom: none;
 }
 
+.parts-list a,
+.form-parts-list a {
+  width: 100%;
+}
+
 @media (max-width: 600px) {
   .form-parts-list {
     display: flex;
@@ -614,16 +619,18 @@ h5 {
 .part-item-in-form,
 .part-item-in-showpage {
   display: flex;
-  height: 100%;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
   overflow-wrap: anywhere;
   padding: 10px 20px;
-  border: 2px solid #c9d2d2;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border-radius: 10px;
+}
+
+.part-item-in-showpage:hover,
+.part-item-in-form:hover{
+  background-color: #f7f9f9;
 }
 
 .part-item-in-showpage {
@@ -632,12 +639,15 @@ h5 {
 
 .part-item-in-form .delete-part {
   width: fit-content;
+  align-self: start;
 }
 
 .part-item-in-form .part-with-purchase-link {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
+  justify-content: space-between;
 }
+
 
 .part-with-purchase-link {
   align-items: center;
@@ -654,7 +664,8 @@ h5 {
 .part-item-in-showpage .part-with-purchase-link,
 .part-item-in-showpage .part-without-purchase-link {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 #logo {
@@ -1298,13 +1309,8 @@ h5 {
   font-size: 1.5rem;
 }
 
-.form-items-container p,
-.form-items-container a {
+.form-items-container p{
   width: fit-content;
-}
-
-.form-items-container a {
-  margin-bottom: 1rem;
 }
 
 .form-items-container.apps-and-platforms {
