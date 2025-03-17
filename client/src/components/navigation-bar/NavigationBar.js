@@ -52,9 +52,8 @@ const NavigationBar = ({ user, projectsPerPage }) => {
     try {
       await signOutUser()
       setShouldRedirect(true)
-      return { status: "ok" }
-    } catch (err) {
-      console.error(`Error in fetch: ${err.message}`)
+    } catch (error) {
+      console.error("Error in signOutUser(): ", error)
     }
   }
 

@@ -77,14 +77,14 @@ const RegistrationForm = () => {
     event.preventDefault()
     try {
       if (validateInput(userPayload)) {
-        const response = await registerUser(userPayload)
+        await registerUser(userPayload)
         return setShouldRedirect(true)
       }
     } catch (error) {
       if (error.serverErrors) {
         setServerErrors(error.serverErrors)
       } else {
-        console.error(`Error in fetch: ${error.message}`)
+        console.error('Error in registerUser():', error)
       }
     }
   }

@@ -50,7 +50,7 @@ const SignInForm = () => {
     event.preventDefault()
     if (validateInput(userPayload)) {
       try {
-        const response = await signInUser(userPayload)
+        await signInUser(userPayload)
         setShouldRedirect(true)
       } catch (error) {
         if (error.credentialsErrors) {

@@ -26,7 +26,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
           editorRef.current.insertContent(`<img src="${imageURL}" alt="uploaded" />`)
         }
       } catch (error) {
-        console.error("Error in uploadImageFile ", error)
+        console.error("Error in uploadImageFile() ", error)
       }
     },
     noClick: true,
