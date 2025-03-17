@@ -12,6 +12,7 @@ import AddTags from "./project-forms-shared/AddTags.js"
 import Instructions from "../shared/Instructions.js"
 import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
 import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
+import getUserProject from "../../api/getUserProject.js"
 
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -42,7 +43,9 @@ const EditBuildForm = (props) => {
   }, [])
 
   useEffect(() => {
-    getProject()
+    getUserProject(id).then((projectData) => {
+      setProject(projectData)
+    })
   }, [])
 
   const handleThumbnailImageUpload = async (acceptedImage) => {
@@ -57,24 +60,6 @@ const EditBuildForm = (props) => {
     }
   }
 
-  const getProject = async () => {
-    try {
-      const response = await fetch(`/api/v1/my-builds/${id}`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
-      }
-      const responseBody = await response.json()
-      const build = responseBody.userBuild
-      setProject((prevState) => ({
-        ...prevState,
-        ...build,
-      }))
-    } catch (error) {
-      console.log(error)
-    }
-  }
   const handleSubmit = (event) => {
     event.preventDefault()
     updateProject(project, id)
