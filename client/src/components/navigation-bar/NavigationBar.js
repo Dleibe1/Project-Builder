@@ -50,7 +50,7 @@ const NavigationBar = ({ user, projectsPerPage }) => {
   const signOut = async (event) => {
     event.preventDefault()
     try {
-      const response = await signOutUser()
+      await signOutUser()
       setShouldRedirect(true)
       return { status: "ok" }
     } catch (err) {

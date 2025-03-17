@@ -60,19 +60,18 @@ const EditBuildForm = (props) => {
     }
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    updateProject(project, id)
-      .then(() => {
-        setShouldRedirect(true)
-      })
-      .catch((error) => {
-        if (error.serverErrors) {
-          setErrors(error.serverErrors)
-        } else {
-          console.error(`Error in updateProject: ${error.message}`)
-        }
-      })
+    try {
+      await updateProject(project, id)
+      setShouldRedirect(true)
+    } catch (error) {
+      if (error.serverErrors) {
+        setErrors(error.serverErrors)
+      } else {
+        console.error("Error in updateProject: ", error)
+      }
+    }
   }
 
   const handleInputChange = (event) => {

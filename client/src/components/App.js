@@ -67,7 +67,7 @@ const App = (props) => {
       />
       <AuthenticatedRoute path="/create-new-build" component={NewProjectForm} user={currentUser} />
       <AuthenticatedRoute path="/edit-my-build/:id" component={EditBuildForm} user={currentUser} />
-      <AuthenticatedRoute path="/fork-project/:id" component={ForkProjectForm} user={currentUser} />
+      <AuthenticatedRoute path="/fork-project/:parentProjectId" component={ForkProjectForm} user={currentUser} />
       <Route exact path="/users/new" component={RegistrationForm} />
       <Route exact path="/user-sessions/new" component={SignInForm} />
       <Route path="/how-to-use" component={HowToUse} user={currentUser} />

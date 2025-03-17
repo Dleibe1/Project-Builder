@@ -1,5 +1,5 @@
 const projectInstructionsSeedData = 
-[`<p>This project is made for Arduino beginners who are looking for learning how to interface \
+[`<div><p>This project is made for Arduino beginners who are looking for learning how to interface \
 the RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and \
 Common Cathode (CC) concept as well as the pulse width modulation (PWM) \
 signals.</p><br><p>RGB LED Types and Structure</p><br><p>RGB LEDs have three LEDs inside them \
@@ -30,9 +30,9 @@ the green lines represent a regular time period. This duration or period is the 
 the PWM frequency. In other words, with Arduino's PWM frequency at about 500Hz, the green \
 lines would measure 2 milliseconds each. </p><br><img \
 src="https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif"></img><br><p>The \
-code below will cycle the LED through different colors, enjoy!</p>`,
+code below will cycle the LED through different colors, enjoy!</p></div>`,
 
-`<p>Ever wanted to know the temperature and humidity around you? If yes, this project will \
+`<div><p>Ever wanted to know the temperature and humidity around you? If yes, this project will \
 be very helpful for you. If no, it'll be cool anyway. What I mean is, you can use this in \
 anything from home automations to smart watches.</p><br><p>What is humidity?</p><br><p>Humidity \
 is the water vapor around you mixed with air. It is measured in per cents. So, if the \
@@ -56,9 +56,9 @@ it is same as mine, then follow this diagram instead, you will no longer need th
 src="https://i.imgur.com/UW1R9mh.png"></img><br><p></p><br><p>Details about the code</p><br><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11 library to the Arduino IDE and include it in \
 your sketch. <br>2. Upload the code. <br>3. When the code is uploaded, open the Serial Monitor \
-and set the baud rate to 9600. <br>4. You will see the humidity and temperature. </p>`,
+and set the baud rate to 9600. <br>4. You will see the humidity and temperature. </p></div>`,
 
-`<p>Water deposit</p><br><p>For our watering system, we will need a water container. Any common \
+`<div><p>Water deposit</p><br><p>For our watering system, we will need a water container. Any common \
 and standard items suitable for water storage can be used as a deposit. The larger the \
 storage container, the less frequent the need for recharging. </p><br><img \
 src="https://www.hibit.dev/images/posts/2024/watering_bottle.png"></img><br><p>We've selected \
@@ -201,9 +201,9 @@ plants, wherever they may be.</p><br><p>In wrapping up our journey through the p
 implementation of an Arduino-powered automatic watering system, you've navigated the \
 intricacies of physical mounting, sensor integration, and module connections. What started \
 as abstract concepts has materialized into a self-built, technology-infused plant care \
-solution.</p>`,
+solution.</p></div>`,
 
-`<p>The spectrum analyzer displays the amplitude of signals as a function of frequency, \
+`<div><p>The spectrum analyzer displays the amplitude of signals as a function of frequency, \
 allowing engineers and technicians to visualize and analyze signal characteristics. In \
 particular, the audio analyzer performs a visual presentation of an acoustic signal in the \
 frequency domain, where the frequency of the signal is displayed on the x-axis, while the \
@@ -244,9 +244,9 @@ version made of PVC board and glass with a thickness of 4 mm.</p><br><p>And fina
 conclusion.</p><br><p>This is an extremely simple project intended for beginners, but still \
 visually very effective and can serve as a gadget on your desktop, or as an addition to an \
 audio device. It can also be used as a simple school FFT spectrum analyzer instrument \
-intended for educational purposes </p>`,
+intended for educational purposes </p></div>`,
 
-`<p>In the vast realm of robotics, enthusiasts are venturing into the exciting world of OLED \
+`<div><p>In the vast realm of robotics, enthusiasts are venturing into the exciting world of OLED \
 eye animations for Arduino robots. If you've found yourself lost in the maze of online \
 searches, fear not! We've done the legwork and distilled the top five methods for creating \
 captivating eye animations into a clear and fun comparison.</p><br><p>Introducing our \
@@ -275,9 +275,9 @@ be challenging for beginners due to its complexity.</p><br><p>Whether you're a s
 hobbyist or just starting out, these methods provide a gateway to bringing your robot's \
 personality to life! Get ready to dive in, experiment, and unleash your \
 creativity.</p><br><p>Let's animate those robotic eyes and inject some fun into your Arduino \
-projects! 🤖👀</p>`,
+projects! 🤖👀</p></div>`,
 
-`<p>Greetings everyone, and welcome to my Instructables tutorial. Today, I'll guide you \
+`<div><p>Greetings everyone, and welcome to my Instructables tutorial. Today, I'll guide you \
 through the process of creating an Object Tracking 4-DOF Robotics Arm.<br>Project \
 Overview:</p><br><p>In this project, the robotic arm will execute actions corresponding to \
 the commands received from the sensors. For example, if the object moves to the left, the \
@@ -308,9 +308,9 @@ the Circuit Diagram:</p><br><p>Ultrasonic Sensor -> Arduino Uno<br>GND -> GND EC
 VIN</p><br><p>IR Sensor -> Arduino Uno (left)<br>GND -> GND OUT -> A0 VCC -> VIN</p><br><p>Step \
 6: Time to Upload the Sketch</p><br><img \
 src="https://projects.arduinocontent.cc/efbbe392-9df2-476e-8470-157bd5dd834d.jpg"></img><br><p>- \
-Now connect the USB cable to the Arduino Uno.<br>Next, upload the following code:</p>`,
+Now connect the USB cable to the Arduino Uno.<br>Next, upload the following code:</p></div>`,
 
-`<p>About the Project</p><br><p>Welcome back, tech enthusiasts! Today, I'm excited to introduce \
+`<div><p>About the Project</p><br><p>Welcome back, tech enthusiasts! Today, I'm excited to introduce \
 ARPoLan, a project that started as an experiment to explore the potential of combining the \
 Arduino Pro Micro and the W5500 Ethernet module. This powerful device can perform network \
 scanning, ARP spoofing, and even act as a local Rubber Ducky. Let me take you through \
@@ -364,9 +364,9 @@ PCB</p><br><p>If you're interested in building this project, the code and schema
 available on GitHub. Simply visit the GitHub repository to download the necessary files. \
 If the project gains attention, I’ll open-source the PCB files as well. Feel free to test \
 the code and share your feedback or improvements.</p><br><p>GitHub repository: \
-github.com/cifertech/arpolan </p>`,
+github.com/cifertech/arpolan </p></div>`,
 
-`<p>Ultrasonic sonar is devices that use sound waves with frequencies higher than the upper \
+`<div><p>Ultrasonic sonar is devices that use sound waves with frequencies higher than the upper \
 audible limit of human hearing (typically above 20 kHz) to measure distances to objects. \
 They work on the principle of sending out a sound wave, and then measuring the time it \
 takes for the sound wave to bounce back after hitting an object. By calculating the time \
@@ -410,9 +410,9 @@ Most such devices show the scan result on a PC monitor which requires an additio
 application and code. This is a very simple, easy to make, visually effective, and \
 self-contained device intended for both beginners and more advanced DIYers. I've used \
 cases from previous projects, but it's desirable to have it all in one case with a slanted \
-front display to visually simulate a real radar system. </p>`,
+front display to visually simulate a real radar system. </p></div>`,
 
-`<p>In this exciting tutorial, we will show you how to build your own security camera using an \
+`<div><p>In this exciting tutorial, we will show you how to build your own security camera using an \
 ESP32-CAM and an AM312 PIR sensor to detect motion. Best of all, photos will be saved \
 directly to an SD card!</p><br><p>       Throughout this video, we will guide you through the \
 following steps:</p><br><p>Link projects and update in \
@@ -481,9 +481,9 @@ library.</p><br><p>Copy or download the code attached with the project.</p><br><
 open serial monitor.</p><br><p>Take any remote you want to use or you want the codes off it \
 and press any button.</p><br><p>Now, see in the serial monitor. You will see a code of the \
 corresponding button you pressed.</p><br><p>Note the codes on a paper or copy them in a \
-document file on PC. </p>`,
+document file on PC. </p></div>`,
 
-`<p>Here, You can learn "How to Control Motors using L298n Motor Driver & Arduino Uno".<br>You \
+`<div><p>Here, You can learn "How to Control Motors using L298n Motor Driver & Arduino Uno".<br>You \
 can even control Speed & Direction of Motors using this tutorial.</p><br><p>Additionally, I \
 am Attaching a Video for your proper guidance.<br>You can see Step by Step Process \
 physically- </p><br><img \
@@ -501,9 +501,9 @@ Arduino.</p><br><p>But, If you want to Control Speed you have to do some simple 
 </p><br><img \
 src="https://projects.arduinocontent.cc/a73bfc9c-7c69-44fa-9d0f-321e034d6f4e.png"></img><br><p>Now \
 You can Control your Motor Speed.<br>I am attached my Final Look of our Project. </p><br><img \
-src="https://projects.arduinocontent.cc/601919da-0dc7-4158-9e4c-66e1192c1e0e.jpg"></img><br><p></p>`,
+src="https://projects.arduinocontent.cc/601919da-0dc7-4158-9e4c-66e1192c1e0e.jpg"></img><br><p></p></div>`,
 
-`<p>Hello everyone,</p><br><p>       Welcome back to another interesting and easy tutorial after \
+`<div><p>Hello everyone,</p><br><p>       Welcome back to another interesting and easy tutorial after \
 a long time. Sorry guys I was busy in writing very fantastic book regarding Arduino IoT \
 Cloud and I will share the details at the end of this tutorial. so this book writing \
 approx took 1 year and 2 months.</p><br><p>       Well back to the point, many years ago I \
@@ -618,9 +618,9 @@ tutorial.</p><br><p>For developers and IoT engineers, I have written two special
 that focus on how to use the Arduino IoT Cloud API and Arduino Cloud CLI to integrate \
 their solution with other 3rd party clouds and services, and Arduino Cloud CLI helps \
 engineers and administrators to automate and manage bulk deployments using the \
-command-line tool. </p>`,
+command-line tool. </p></div>`,
 
-`<p>The goal of this tutorial is to show you a way to easily add AI to a project , without any \
+`<div><p>The goal of this tutorial is to show you a way to easily add AI to a project , without any \
 knowledge in this field, using the software NanoEdge AI Studio and its Arduino compatible \
 libraries!</p><br><p>This tutorial guides you through building a cardboard touchpad that \
 relies on vibration analysis and an Embedded AI algorithm running on an Arduino UNO R4 . \
@@ -697,9 +697,9 @@ emitted by all objects with a temperature above absolute zero, including humans 
 animals. The sensor consists of a pyroelectric sensor, which generates an electrical \
 signal in response to changes in infrared radiation, and a circuit that processes and \
 amplifies this signal to detect motion.</p><br><p>HCSR04 Ultrasonic Sensor Pinout<br>The \
-Pinout is given as below: </p>`,
+Pinout is given as below: </p></div>`,
 
-`<p></p><br><img \
+`<div><p></p><br><img \
 src="https://projects.arduinocontent.cc/947a4793-1603-4d45-b9fa-e314f780e848.jpg"></img><br><p>VCC \
 is the power pin of the module.</p><br><p>GND is the GND pin of the module.</p><br><p>Out is the \
 data output pin of the module.</p><br><p>Interfacing PIR Sensor with Arduino</p><br><p>Now that \
@@ -713,10 +713,10 @@ sensor with Arduino<br>Here is the complete line by line code explanation for In
 Arduino with PIR Sensor. The complete code can be found at the absolute bottom of the \
 project.<br>This line includes the LiquidCrystal library, which allows interfacing with \
 LCD displays.</p><br><p>#include <LiquidCrystal.h> // Include the LiquidCrystal library for \
-LCD display<br>      This line initializes an instance of the LiquidCrystal class named \
+LCD display<br>This line initializes an instance of the LiquidCrystal class named \
 lcd, specifying the pin numbers to which the LCD display is connected. The parameters \
 represent (RS, EN, D4, D5, D6, D7) pins respectively.</p><br><p>LiquidCrystal lcd(12, 11, 6, \
-7, 8, 9); // Initialize the LCD object with pin numbers<br>      These lines declare two \
+7, 8, 9); // Initialize the LCD object with pin numbers<br>These lines declare two \
 integer variables: sensorInput, which represents the pin number connected to the PIR \
 sensor, and sensorReturn, which will store the output of the PIR sensor.</p><br><p>int \
 sensorInput = 2;   // PIR sensor input pin<br>int sensorReturn = 0;  // Variable to store \
@@ -738,9 +738,9 @@ motion is detected      <br> if (sensorReturn == HIGH) {      <br>   // Set curs
 the second row and print motion detection message      <br>   lcd.setCursor(0, 1);      \
 <br>   lcd.print("Motion Occurs   ");       } else {      <br>   // Set cursor to the \
 second row and print motion stopped message      <br>   lcd.setCursor(0, 1);      <br>   \
-lcd.print("Motion Stops    ");      <br> }      <br>}      </p>`,
+lcd.print("Motion Stops    ");      <br> }      <br>}      </p></div>`,
 
-`<p>The two eyes are painted on two ping-pong balls which are sticked on two servo motors. Two \
+`<div><p>The two eyes are painted on two ping-pong balls which are sticked on two servo motors. Two \
 ultrasonic sensors measure the object's position. An Arduino Nano Every board reads the \
 measurements from the ultrasonic sensors and controls the sevo motors \
 accordingly.</p><br><p>The servo motors are SG90 micro servos and the ultrasonic sensors are \
@@ -763,9 +763,9 @@ input/output 5 and its echo output to digital input/output 6.</p><br><p>The left
 servomotors controls are connected to digital inputs/outputs 8 and 10 respectively. Left \
 and right refer to Big Brother's eyes, his left eye is on your own right.</p><br><p>The \
 following diagram shows the connections to be made:Software</p><br><p>The software is \
-extremely simple, less than 70 lines. No library is required.</p><br><p>Have fun. </p>`,
+extremely simple, less than 70 lines. No library is required.</p><br><p>Have fun. </p></div>`,
 
-`<p>Gather your tools and troops (components, that is)</p><br><p>The brains: An Arduino Uno, the \
+`<div><p>Gather your tools and troops (components, that is)</p><br><p>The brains: An Arduino Uno, the \
 mastermind behind the magic.<br>The translator: An HC05 Bluetooth module, your car's \
 interpreter for smartphone commands.<br>The muscle: L298N motor driver, the beefy guy \
 controlling those zippy wheels.<br>The bling: NeoPixel LEDs, because who doesn't love a \
@@ -788,9 +788,9 @@ commands, unlock the moves:</p><br><p>       The Arduino code is the secret sauc
 your car to life. It translates the Bluetooth commands from your phone into actions for \
 the motors and LEDs. The provided code is a great starting point, but feel free to \
 experiment and add your own personal touch! \
-https://circuitdigest.com/sites/default/files/circuitdiagram_mic/Arduino-Robot-Circuit-Diagram.png</p>`,
+https://circuitdigest.com/sites/default/files/circuitdiagram_mic/Arduino-Robot-Circuit-Diagram.png</p></div>`,
 
-`<p>The ultrasonic sensor is a device that can measure distances using sound waves . It works \
+`<div><p>The ultrasonic sensor is a device that can measure distances using sound waves . It works \
 in a similar way than bats and dolphins - by emitting sound waves and listening them bound \
 back </p><br><img \
 src="https://projects.arduinocontent.cc/cc7047f6-2bbf-43ed-87e9-76b07f4522e8.jpg"></img></p><br><p><img \
@@ -842,9 +842,9 @@ we find how much time the sensor took to detect the echo. This information is cr
 calculating the distance at line 29. In this case, we found the distance in centimeters. \
 After that, from lines 30 to 35 we print the distance. </p><br><p>The last part of the code \
 is an if-statement that turns on the buzzer when the object is at 50 centimeters or closer \
-from the sensor. In case this statement is false, the buzzer turns down. </p>`,
+from the sensor. In case this statement is false, the buzzer turns down. </p></div>`,
 
-`<p>This project is for a school code quest. I have seen many projects with soil moisture \
+`<div><p>This project is for a school code quest. I have seen many projects with soil moisture \
 sensors, but all of them included expensive and complicated materials such as LCD screens \
 or automatic watering systems. I took it as a challenge to create an incredibly cheap and \
 simple Soil Moisture Sensor. The project is designed for people that might not know when \
@@ -874,9 +874,9 @@ most popular one sensor is the SparkFun moisture sensor and requires soldering. 
 one, that doesn't need soldering and can just have Male to Male wires screwed in, here . \
 Casing: </p><br><p>The casing is a simple box, with the LEDs coming out of the top, and the \
 buzzer on the side. The Soil Moisture Sensor comes out of the side with wires and is stuck \
-into the soil, so it's relatively far from all the water-sensitive components. </p>`,
+into the soil, so it's relatively far from all the water-sensitive components. </p></div>`,
 
-`<p>I needed to turn on and off some AC units located in a remote house, so that I can \
+`<div><p>I needed to turn on and off some AC units located in a remote house, so that I can \
 pre-cool (or pre-heat) the rooms in advance before I go. </p><br><p>Such units are very \
 common appliances by Daikin, which provides WiFi capability on newer models but that's not \
 something available on mine. The solution was easy: I just had to simulate an infrared \
@@ -925,9 +925,9 @@ worse, you can't turn off) your AC unit anymore. <br>So I recommend adding a sim
 temperature/humidity sensor in the room to see if your AC unit is doing what expected. \
 There are many solutions; a very simple one is described in this \
 tutorial<br>https://docs.arduino.cc/arduino-cloud/tutorials/cloud-environmental-data \
-<br>and can be done with a MKR WiFi 1010 board, a MKR ENV Shield, and IoT Cloud. </p>`,
+<br>and can be done with a MKR WiFi 1010 board, a MKR ENV Shield, and IoT Cloud. </p></div>`,
 
-`<p>This project is made for Arduino beginners who are looking for learning how to interface \
+`<div><p>This project is made for Arduino beginners who are looking for learning how to interface \
 the RGB led with the Arduino Uno and use a push button to control the LED. Also, we will \
 understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse \
 width modulation (PWM) signals. </p><br><p>RGB LED Types and Structure </p><br><p>RGB LEDs have \
@@ -972,9 +972,9 @@ providing interactive control over the LED.</p><br><p>Below is the schematic for
 of the project</p><br><img \
 src="https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG"></img><br><p>The \
 code below will allow you to cycle the LED through different colors by pushing a button, \
-enjoy!</p>`,
+enjoy!</p></div>`,
 
-`<p>To modify the origional project created by dleibe1 and include an OLED display that shows \
+`<div><p>To modify the origional project created by dleibe1 and include an OLED display that shows \
 the temperature and humidity, you can follow the steps below.  Ever wanted to know the \
 temperature and humidity around you? If yes, this project will be very helpful for you. If \
 no, it'll be cool anyway. What I mean is, you can use this in anything from home \
@@ -1000,6 +1000,6 @@ it is same as mine, then follow this diagram instead, you will no longer need th
 src="https://i.imgur.com/xdSSgkL.png"></img><br><p></p><br><p>Details about the code</p><br><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11, Adafruit_GFX, and Adafruit_SSD1306 libraries \
 to the Arduino IDE and include them in your sketch. <br>2. Upload the \
-code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.`]
+code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.</div>`]
 
 export default projectInstructionsSeedData

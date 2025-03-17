@@ -26,7 +26,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
           editorRef.current.insertContent(`<img src="${imageURL}" alt="uploaded" />`)
         }
       } catch (error) {
-        console.error(error)
+        console.error("Error in uploadImageFile ", error)
       }
     },
     noClick: true,
@@ -56,6 +56,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
       <BundledEditor
         onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
+          forced_root_block: 'div',
           toolbar_mode: "wrap",
           menubar: false,
           promotion: false,

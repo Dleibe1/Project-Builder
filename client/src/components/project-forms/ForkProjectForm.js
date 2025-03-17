@@ -5,8 +5,8 @@ import { Button, TextField } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
-import translateServerErrors from "../../services/translateServerErrors.js"
 import uploadImageFile from "../../api/uploadImageFile.js"
+import postForkedProject from "../../api/postForkedProject.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
 import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
@@ -17,7 +17,7 @@ const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const params = useParams()
-  const { id } = params
+  const { parentProjectId } = params
   const [project, setProject] = useState({
     title: "",
     tags: [],
@@ -43,32 +43,9 @@ const ForkProjectForm = (props) => {
     getProject()
   }, [])
 
-  const postForkedProject = async (forkedProjectData) => {
-    try {
-      const parentProjectId = id
-      const response = await fetch(`/api/v1/projects/${parentProjectId}/forks`, {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify(forkedProjectData),
-      })
-      if (!response.ok) {
-        if (response.status === 422) {
-          const body = await response.json()
-          const newErrors = translateServerErrors(body.errors)
-          return setErrors(newErrors)
-        }
-      }
-      setShouldRedirect(true)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   const getProject = async () => {
     try {
-      const response = await fetch(`/api/v1/projects/${id}`)
+      const response = await fetch(`/api/v1/projects/${parentProjectId}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
@@ -94,9 +71,18 @@ const ForkProjectForm = (props) => {
     }
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    postForkedProject(project)
+    try {
+      await postForkedProject(project, parentProjectId)
+      setShouldRedirect(true)
+    } catch (error) {
+      if (error.serverErrors) {
+        setErrors(error.serverErrors)
+      } else {
+        console.error("error in postForkedProject ", error)
+      }
+    }
   }
 
   const handleInputChange = (event) => {
