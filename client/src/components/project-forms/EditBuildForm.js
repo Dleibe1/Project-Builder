@@ -5,7 +5,7 @@ import { Button, TextField } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
 import { CloudUpload } from "@mui/icons-material"
 import Send from "@mui/icons-material/Send"
-import translateServerErrors from "../../services/translateServerErrors.js"
+import updateProject from "../../api/updateProject.js"
 import uploadImageFile from "../../api/uploadImageFile.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
@@ -45,28 +45,6 @@ const EditBuildForm = (props) => {
     getProject()
   }, [])
 
-  const updateProject = async (projectData) => {
-    try {
-      const response = await fetch(`/api/v1/my-builds/${id}`, {
-        method: "PATCH",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify(projectData),
-      })
-      if (!response.ok) {
-        if (response.status === 422) {
-          const body = await response.json()
-          const newErrors = translateServerErrors(body.errors)
-          return setErrors(newErrors)
-        }
-      }
-      setShouldRedirect(true)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   const handleThumbnailImageUpload = async (acceptedImage) => {
     try {
       const imageURL = await uploadImageFile(acceptedImage)
@@ -97,10 +75,19 @@ const EditBuildForm = (props) => {
       console.log(error)
     }
   }
-
   const handleSubmit = (event) => {
     event.preventDefault()
-    updateProject(project)
+    updateProject(project, id)
+      .then(() => {
+        setShouldRedirect(true)
+      })
+      .catch((error) => {
+        if (error.serverErrors) {
+          setErrors(error.serverErrors)
+        } else {
+          console.error(`Error in updateProject: ${error.message}`)
+        }
+      })
   }
 
   const handleInputChange = (event) => {
