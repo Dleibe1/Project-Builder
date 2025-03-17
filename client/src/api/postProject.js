@@ -1,12 +1,11 @@
 import translateServerErrors from "../services/translateServerErrors"
-
-const postForkedProject = async (forkedProjectData, parentProjectId) => {
-  const response = await fetch(`/api/v1/projects/${parentProjectId}/forks`, {
+const postProject = async (newProjectData) => {
+  const response = await fetch("/api/v1/projects/new-project", {
     method: "POST",
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify(forkedProjectData),
+    body: JSON.stringify(newProjectData),
   })
   if (!response.ok) {
     if (response.status === 422) {
@@ -21,4 +20,4 @@ const postForkedProject = async (forkedProjectData, parentProjectId) => {
   }
 }
 
-export default postForkedProject
+export default postProject

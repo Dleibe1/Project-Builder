@@ -157,7 +157,7 @@ const DiffView = (props) => {
         showDiffOnly={false}
         splitView={true}
       />
-      {compareGithubMainInoFileURL && <h2>Main file URL:</h2>}
+      {compareGithubMainInoFileURL && <h2>Main file URL on GitHub:</h2>}
       {compareGithubMainInoFileURL && (
         <ReactDiffViewer
           oldValue={parentProjectData.githubFileURL || ""}

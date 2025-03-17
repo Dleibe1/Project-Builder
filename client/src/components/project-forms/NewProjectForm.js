@@ -5,9 +5,9 @@ import { Button, TextField } from "@mui/material"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import Textarea from "@mui/joy/Textarea"
-import translateServerErrors from "../../services/translateServerErrors.js"
 import uploadImageFile from "../../api/uploadImageFile.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
+import postProject from "../../api/postProject.js"
 import AddTags from "./project-forms-shared/AddTags.js"
 import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
 import Instructions from "../shared/Instructions.js"
@@ -38,28 +38,6 @@ const NewProjectForm = (props) => {
     }
   }, [])
 
-  const postProject = async (newProjectData) => {
-    try {
-      const response = await fetch("/api/v1/projects/new-project", {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify(newProjectData),
-      })
-      if (!response.ok) {
-        if (response.status === 422) {
-          const body = await response.json()
-          const newErrors = translateServerErrors(body.errors)
-          return setErrors(newErrors)
-        }
-      }
-      setShouldRedirect(true)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   const handleThumbnailImageUpload = async (acceptedImage) => {
     try {
       const imageURL = await uploadImageFile(acceptedImage)
@@ -71,14 +49,21 @@ const NewProjectForm = (props) => {
       console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
   }
-
-  const handleSubmit = (event) => {
+  
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    postProject({
-      ...project,
-      userId: props.user.id,
-      githubFileURL: project.githubFileURL?.trim(),
-    })
+    try {
+      await postProject({
+        ...project,
+        userId: props.user.id,
+        githubFileURL: project.githubFileURL?.trim(),
+      })
+      setShouldRedirect(true)
+    } catch (error) {
+      if (error.serverErrors) {
+        setErrors(error.serverErrors)
+      }
+    }
   }
 
   const handleInputChange = (event) => {

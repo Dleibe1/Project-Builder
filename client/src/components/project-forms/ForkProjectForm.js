@@ -6,7 +6,7 @@ import Textarea from "@mui/joy/Textarea"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import uploadImageFile from "../../api/uploadImageFile.js"
-import postForkedProject from "../../api/postForkedProject.js"
+import postProjectFork from "../../api/postProjectFork.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
 import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
@@ -74,13 +74,13 @@ const ForkProjectForm = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      await postForkedProject(project, parentProjectId)
+      await postProjectFork(project, parentProjectId)
       setShouldRedirect(true)
     } catch (error) {
       if (error.serverErrors) {
         setErrors(error.serverErrors)
       } else {
-        console.error("error in postForkedProject ", error)
+        console.error("error in postProjectFork ", error)
       }
     }
   }

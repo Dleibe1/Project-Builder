@@ -1,4 +1,4 @@
-const getUserProject = async (projectId) => {
+const getMyBuild = async (projectId) => {
   const response = await fetch(`/api/v1/my-builds/${projectId}`)
   if (!response.ok) {
     const errorMessage = `${response.status} (${response.statusText})`
@@ -10,4 +10,4 @@ const getUserProject = async (projectId) => {
   return userProject
 }
 
-export default getUserProject
+export default getMyBuild

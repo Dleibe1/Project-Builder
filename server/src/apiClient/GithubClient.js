@@ -20,10 +20,10 @@ class GithubClient {
           return responseBody
         } catch (error) {
           console.log(error)
-          return `Could not fetch github code from the URL '${url}' Check the main project URL and try again.`
+          return `Could not fetch code from GitHub from the URL:  "${url}"`
         }
       } else {
-        return `Could not fetch github code from the URL '${url}' Check the main project URL and try again.`
+        return `Could not fetch code from GitHub at the URL:  "${url}"`
       }
     }
   }

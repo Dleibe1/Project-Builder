@@ -12,7 +12,7 @@ import AddTags from "./project-forms-shared/AddTags.js"
 import Instructions from "../shared/Instructions.js"
 import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
 import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
-import getUserProject from "../../api/getUserProject.js"
+import getMyBuild from "../../api/getMyBuild.js"
 
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
@@ -43,9 +43,15 @@ const EditBuildForm = (props) => {
   }, [])
 
   useEffect(() => {
-    getUserProject(id).then((projectData) => {
-      setProject(projectData)
-    })
+    const fetchMyBuild = async () => {
+      try {
+        const myBuild = await getMyBuild(id)
+        setProject(myBuild)
+      } catch (error) {
+        console.error("error in getMyBuild ", error)
+      }
+    }
+    fetchMyBuild()
   }, [])
 
   const handleThumbnailImageUpload = async (acceptedImage) => {
@@ -56,7 +62,7 @@ const EditBuildForm = (props) => {
         thumbnailImage: imageURL,
       }))
     } catch (error) {
-      console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
+      console.error("Error in uploadProjectImage Fetch:", error)
     }
   }
 
