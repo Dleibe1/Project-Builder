@@ -66,6 +66,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
       <BundledEditor
         onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
+          forced_root_block: 'div',
           toolbar_mode: 'wrap',
           menubar: false,
           promotion: false,
