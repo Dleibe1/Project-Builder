@@ -18,7 +18,7 @@ The boilerplate code used for the app can be found here:
 Often, code written for Arduino projects by casual hobbyists exists in a single file, usually a .ino or .cpp file.  If this file is hosted on GitHub, users can have Project Builder retrieve that file's code rather than entering the project's code in two places (GitHub and Project Builder).
 
 When creating, editing, or forking a project, Paste the URL of your project's main code file on GitHub into the "Github main sketch file URL" section at the bottom of the form.
-#### Example URL: https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
+Example URL: https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.ino
 
 When users visit your project's page on this app, the code section is automatically populated with your main project file's code from GitHub. This way you don't have to paste your code into this app every time you update your code on GitHub. This feature does that automatically!
 
