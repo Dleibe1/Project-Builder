@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import DeleteBuildButton from "./show-page-authed-UI/DeleteBuildButton"
 import EditBuildButton from "./show-page-authed-UI/EditBuildButton"
+import SeeForkedVersionsButton from "./show-pages-shared/SeeForkedVersionsButton.js"
 import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
 import TagList from "./show-pages-shared/TagList"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
+import getMyBuild from "../../api/getMyBuild.js"
+import doesProjectHaveForks from "../../api/doesProjectHaveForks.js"
 import Instructions from "../shared/Instructions"
-import hljs from "highlight.js"
-import "highlight.js/styles/github.css"
+import DOMPurify from "dompurify"
 
 const MyBuildShow = (props) => {
   const [myBuild, setMyBuild] = useState({
@@ -24,22 +26,35 @@ const MyBuildShow = (props) => {
     thumbnailImage: "",
     parentProjectId: "",
   })
+  const [hasForks, setHasForks] = useState(false)
 
   const params = useParams()
   const { id } = params
 
   useEffect(() => {
-    getMyBuild()
+    const fetchHasForks = async () => {
+      try {
+        const forkExists = await doesProjectHaveForks(id)
+        setHasForks(forkExists)
+      } catch (error) {
+        console.error("Error in doesProjectHaveForks() Fetch: ", error)
+      }
+    }
+    fetchHasForks()
   }, [])
 
   useEffect(() => {
-    //Apply highlighting after default css has been applied
-    const codeTags = document.querySelectorAll("code")
-    codeTags.forEach((tag) => {
-      delete tag.dataset.highlighted
-    })
-    hljs.highlightAll()
-  }, [myBuild])
+    const fetchMyBuild = async () => {
+      try {
+        const myBuild = await getMyBuild(id)
+        prepForFrontEnd(myBuild)
+        setMyBuild(myBuild)
+      } catch (error) {
+        console.error("error in getMyBuild() Fetch: ", error)
+      }
+    }
+    fetchMyBuild()
+  }, [])
 
   useEffect(() => {
     document.body.classList.add("grey-background")
@@ -47,23 +62,6 @@ const MyBuildShow = (props) => {
       document.body.classList.remove("grey-background")
     }
   }, [])
-
-  const getMyBuild = async () => {
-    try {
-      const response = await fetch(`/api/v1/my-builds/${id}`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
-      }
-      const responseBody = await response.json()
-      const build = responseBody.userBuild
-      prepForFrontEnd(build)
-      setMyBuild((prevState) => ({ ...prevState, ...build }))
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const codeMessage = myBuild.githubFileURL?.length ? (
     [
@@ -75,8 +73,13 @@ const MyBuildShow = (props) => {
   )
   const partsList = myBuild.parts.map((part, index) => {
     return (
-      <div className="part-item-in-showpage" key={`${(part.partName, part.partPurchaseURL)}${index}`}>
-        {part.partPurchaseURL.length === 0 && <p className="part-without-purchase-link">{part.partName}</p>}
+      <div
+        className="part-item-in-showpage"
+        key={`${(part.partName, part.partPurchaseURL)}${index}`}
+      >
+        {part.partPurchaseURL.length === 0 && (
+          <p className="part-without-purchase-link">{part.partName}</p>
+        )}
         {part.partPurchaseURL.length > 0 && (
           <a href={part.partPurchaseURL}>
             <div className="part-with-purchase-link">
@@ -91,12 +94,20 @@ const MyBuildShow = (props) => {
 
   return (
     <div className="project-show">
-      <div className="edit-build-top-buttons-container">
-        <EditBuildButton id={id} />
-        <DeleteBuildButton id={id} />
-        {myBuild.parentProjectId.length > 0 && (
-          <DiffViewButton parentProjectId={myBuild.parentProjectId} forkedProjectId={myBuild.id} />
-        )}
+      <div className="edit-build__top-buttons">
+        <div className="edit-build-top-buttons--left">
+          <EditBuildButton id={id} />
+          <DeleteBuildButton id={id} />
+          {myBuild.parentProjectId.length > 0 && (
+            <DiffViewButton
+              parentProjectId={myBuild.parentProjectId}
+              forkedProjectId={myBuild.id}
+            />
+          )}
+        </div>
+        <div className="edit-build-top-buttons--right">
+          {hasForks && <SeeForkedVersionsButton id={id} />}
+        </div>
       </div>
       {myBuild.tags.length > 0 && (
         <div className="showpage-items-container tag-list">
@@ -130,12 +141,17 @@ const MyBuildShow = (props) => {
           <p>{myBuild.appsAndPlatforms}</p>
         </div>
       </div>
-        <Instructions project={myBuild} />
+      <Instructions project={myBuild} />
       <div>
         <div className="showpage-items-container">
           {codeMessage}
           <pre>
-            <code className="language-cpp">{myBuild.code}</code>
+            <code
+              className="language-cpp"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(myBuild.code),
+              }}
+            ></code>
           </pre>
         </div>
       </div>

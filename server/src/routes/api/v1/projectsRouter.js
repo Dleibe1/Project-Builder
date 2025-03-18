@@ -42,8 +42,8 @@ projectsRouter.get("/", async (req, res) => {
 projectsRouter.get("/check-for-forks/:id", async (req, res) => {
   const { id } = req.params
   try {
-    const aForkExists = (await Project.query().findOne({ parentProjectId: id })) ? true : false
-    res.status(200).json({ aForkExists })
+    const forkExists = (await Project.query().findOne({ parentProjectId: id })) ? true : false
+    res.status(200).json({ forkExists })
   } catch (error) {
     console.log(error)
     return res.status(500).json({ errors: error })

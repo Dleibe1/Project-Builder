@@ -23,7 +23,7 @@ projectForksRouter.get("/fork-list", async (req, res) => {
     return res.status(400).json({ error: "Invalid query parameters" })
   }
   try {
-    const forkedProjectCount = await Project.query()
+    const forkedProjectsCount = await Project.query()
       .where("parentProjectId", parseInt(parentProjectId))
       .resultSize()
     const forkedProjects = await Project.query()
@@ -35,7 +35,7 @@ projectForksRouter.get("/fork-list", async (req, res) => {
         return ProjectSerializer.getProjectListDetails(fork)
       }),
     )
-    res.status(200).json({ forks: serializedForks, forkedProjectCount })
+    res.status(200).json({ forkList: serializedForks, forkedProjectsCount })
   } catch (error) {
     console.log(error)
     res.status(500).json({ errors: error })
@@ -65,7 +65,7 @@ projectForksRouter.post("/", async (req, res) => {
   try {
     const forkedProjectData = cleanUserInput(body)
     await handleForkProject(parentProjectId, userId, forkedProjectData)
-    res.status(201).json({ project: forkedProjectData })
+    res.status(201).json({ projectFork: forkedProjectData })
   } catch (error) {
     console.log(error)
     if (error instanceof ValidationError) {

@@ -5,8 +5,9 @@ import { Button, TextField } from "@mui/material"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import Textarea from "@mui/joy/Textarea"
-import translateServerErrors from "../../services/translateServerErrors.js"
+import uploadImageFile from "../../api/uploadImageFile.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
+import postProject from "../../api/postProject.js"
 import AddTags from "./project-forms-shared/AddTags.js"
 import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
 import Instructions from "../shared/Instructions.js"
@@ -15,9 +16,6 @@ import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 const NewProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [thumbnailImageFile, setThumbnailImageFile] = useState({
-    image: {},
-  })
   const [project, setProject] = useState({
     title: "",
     tags: [],
@@ -40,69 +38,32 @@ const NewProjectForm = (props) => {
     }
   }, [])
 
-  useEffect(() => {
-    uploadThumbnailImage()
-  }, [thumbnailImageFile])
-
-  const postProject = async (newProjectData) => {
+  const handleThumbnailImageUpload = async (acceptedImage) => {
     try {
-      const response = await fetch("/api/v1/projects/new-project", {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify(newProjectData),
-      })
-      if (!response.ok) {
-        if (response.status === 422) {
-          const body = await response.json()
-          const newErrors = translateServerErrors(body.errors)
-          return setErrors(newErrors)
-        }
-      }
-      setShouldRedirect(true)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const uploadThumbnailImage = async () => {
-    const thumbnailImageFileData = new FormData()
-    thumbnailImageFileData.append("image", thumbnailImageFile.image)
-    try {
-      const response = await fetch("/api/v1/image-upload", {
-        method: "POST",
-        headers: {
-          Accept: "image/jpeg",
-        },
-        body: thumbnailImageFileData,
-      })
-      if (!response.ok) {
-        throw new Error(`${response.status} (${response.statusText})`)
-      }
-      const body = await response.json()
+      const imageURL = await uploadImageFile(acceptedImage)
       setProject((prevState) => ({
         ...prevState,
-        thumbnailImage: body.imageURL,
+        thumbnailImage: imageURL,
       }))
     } catch (error) {
-      console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
+      console.error("Error in uploadProjectImage() Fetch: ", error)
     }
   }
-
-  const handleThumbnailImageUpload = (acceptedImage) => {
-    setThumbnailImageFile({
-      image: acceptedImage[0],
-    })
-  }
-
-  const handleSubmit = (event) => {
+  
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    postProject({
-      ...project,
-      userId: props.user.id,
-      githubFileURL: project.githubFileURL?.trim(),
-    })
+    try {
+      await postProject({
+        ...project,
+        userId: props.user.id,
+        githubFileURL: project.githubFileURL?.trim(),
+      })
+      setShouldRedirect(true)
+    } catch (error) {
+      if (error.serverErrors) {
+        setErrors(error.serverErrors)
+      }
+    }
   }
 
   const handleInputChange = (event) => {

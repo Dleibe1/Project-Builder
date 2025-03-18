@@ -2,43 +2,37 @@ import React, { useState, useEffect } from "react"
 import { useLocation, useHistory } from "react-router-dom"
 import { Pagination } from "@mui/material"
 import MyBuildTile from "./MyBuildTile"
+import getMyBuildsList from "../../api/getMyBuildsList"
 
 const MyBuildList = ({ projectsPerPage }) => {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const pageNumberURLParam = searchParams.get("page")
-  const [myBuilds, setMyBuilds] = useState([])
-  const [projectCount, setProjectCount] = useState(0)
+  const [userBuilds, setUserBuilds] = useState([])
+  const [userBuildsCount, setUserBuildsCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(parseInt(pageNumberURLParam || 1))
 
   const history = useHistory()
-  const totalPages = Math.ceil(projectCount / projectsPerPage)
-
-  const getMyBuilds = async () => {
-    try {
-      const response = await fetch(`/api/v1/my-builds?page=${currentPage}&limit=${projectsPerPage}`)
-      if (!response.ok) {
-        const newError = new Error("Error in the fetch!")
-        throw newError
-      }
-      const responseBody = await response.json()
-      setMyBuilds(responseBody.userBuilds)
-      setProjectCount(responseBody.userBuildCount)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
+  const totalPages = Math.ceil(userBuildsCount / projectsPerPage)
 
   useEffect(() => {
+    window.scrollTo({ top: 0 })
     if (pageNumberURLParam && parseInt(pageNumberURLParam) !== currentPage) {
       setCurrentPage(parseInt(pageNumberURLParam))
     }
   }, [pageNumberURLParam])
 
   useEffect(() => {
-    getMyBuilds()
-    window.scrollTo({ top: 0 })
+    const fetchMyBuildsList = async () => {
+      try {
+        const [userBuilds, userBuildsCount] = await getMyBuildsList(currentPage, projectsPerPage)
+        setUserBuilds(userBuilds)
+        setUserBuildsCount(userBuildsCount)
+      } catch (error) {
+        console.error("Error in getMyBuildsList() Fetch: ", error)
+      }
+    }
+    fetchMyBuildsList()
   }, [currentPage])
 
   const handlePaginationChange = (event, selectedPage) => {
@@ -46,21 +40,21 @@ const MyBuildList = ({ projectsPerPage }) => {
     setCurrentPage(selectedPage)
   }
 
-  const myBuildsArray = myBuilds.map((myBuild) => {
+  const myBuilds = userBuilds.map((userBuild) => {
     return (
       <MyBuildTile
-        key={myBuild.id}
-        id={myBuild.id}
-        title={myBuild.title}
-        createdBy={myBuild.user}
-        thumbnailImage={myBuild.thumbnailImage}
+        key={userBuild.id}
+        id={userBuild.id}
+        title={userBuild.title}
+        createdBy={userBuild.user}
+        thumbnailImage={userBuild.thumbnailImage}
       />
     )
   })
 
   return (
     <div className="grid-container project-list-page-container">
-      <div className="project-list">{myBuildsArray}</div>
+      <div className="project-list">{myBuilds}</div>
       <div className="project-list-pagination-container">
         <Pagination
           page={currentPage}

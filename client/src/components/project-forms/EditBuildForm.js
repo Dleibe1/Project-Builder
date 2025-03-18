@@ -3,21 +3,20 @@ import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
 import { Button, TextField } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
-import { CloudUpload, EditRoad } from "@mui/icons-material"
+import { CloudUpload } from "@mui/icons-material"
 import Send from "@mui/icons-material/Send"
-import translateServerErrors from "../../services/translateServerErrors.js"
+import updateProject from "../../api/updateProject.js"
+import uploadImageFile from "../../api/uploadImageFile.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
 import Instructions from "../shared/Instructions.js"
 import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
 import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
+import getMyBuild from "../../api/getMyBuild.js"
 
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [thumbnailImageFile, setThumbnailImageFile] = useState({
-    image: {},
-  })
 
   const [project, setProject] = useState({
     title: "",
@@ -31,6 +30,7 @@ const EditBuildForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+
   const [editingInstructions, setEditingInstructions] = useState(false)
   const params = useParams()
   const { id } = params
@@ -44,87 +44,41 @@ const EditBuildForm = (props) => {
   }, [])
 
   useEffect(() => {
-    uploadThumbnailImage()
-  }, [thumbnailImageFile])
-
-  useEffect(() => {
-    getProject()
+    const fetchMyBuild = async () => {
+      try {
+        const myBuild = await getMyBuild(id)
+        setProject(myBuild)
+      } catch (error) {
+        console.error("error in getMyBuild() Fetch: ", error)
+      }
+    }
+    fetchMyBuild()
   }, [])
 
-  const updateProject = async (projectData) => {
+  const handleThumbnailImageUpload = async (acceptedImage) => {
     try {
-      const response = await fetch(`/api/v1/my-builds/${id}`, {
-        method: "PATCH",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify(projectData),
-      })
-      if (!response.ok) {
-        if (response.status === 422) {
-          const body = await response.json()
-          const newErrors = translateServerErrors(body.errors)
-          return setErrors(newErrors)
-        }
-      }
+      const imageURL = await uploadImageFile(acceptedImage)
+      setProject((prevState) => ({
+        ...prevState,
+        thumbnailImage: imageURL,
+      }))
+    } catch (error) {
+      console.error("Error in uploadProjectImage() Fetch: ", error)
+    }
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      await updateProject(project, id)
       setShouldRedirect(true)
     } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const uploadThumbnailImage = async () => {
-    const thumbnailImageFileData = new FormData()
-    thumbnailImageFileData.append("image", thumbnailImageFile.image)
-    try {
-      const response = await fetch("/api/v1/image-upload", {
-        method: "POST",
-        headers: {
-          Accept: "image/jpeg",
-        },
-        body: thumbnailImageFileData,
-      })
-      if (!response.ok) {
-        throw new Error(`${response.status} (${response.statusText})`)
+      if (error.serverErrors) {
+        setErrors(error.serverErrors)
+      } else {
+        console.error("Error in updateProject Fetch: ", error)
       }
-      const body = await response.json()
-      setProject((prevState) => ({
-        ...prevState,
-        thumbnailImage: body.imageURL,
-      }))
-    } catch (error) {
-      console.error(`Error in uploadProjectImage Fetch: ${error.message}`)
     }
-  }
-
-  const getProject = async () => {
-    try {
-      const response = await fetch(`/api/v1/my-builds/${id}`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
-      }
-      const responseBody = await response.json()
-      const build = responseBody.userBuild
-      setProject((prevState) => ({
-        ...prevState,
-        ...build,
-      }))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const handleThumbnailImageUpload = (acceptedImage) => {
-    setThumbnailImageFile({
-      image: acceptedImage[0],
-    })
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    updateProject(project)
   }
 
   const handleInputChange = (event) => {

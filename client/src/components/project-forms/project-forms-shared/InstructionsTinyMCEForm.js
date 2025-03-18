@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react"
 import { useDropzone } from "react-dropzone"
 import MarkdownService from "../../../services/MarkdownService.js"
+import uploadImageFile from "../../../api/uploadImageFile.js"
 import BundledEditor from "../../../services/TinyMCEBundler.js"
 
 const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }) => {
@@ -19,24 +20,13 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
 
   const { getInputProps, getRootProps, open } = useDropzone({
     onDrop: async (acceptedFiles) => {
-      const file = acceptedFiles[0]
-      const formData = new FormData()
-      formData.append("image", file)
       try {
-        const response = await fetch("/api/v1/image-upload", {
-          method: "POST",
-          body: formData,
-        })
-        if (!response.ok) {
-          throw new Error("Image upload failed")
-        }
-        const body = await response.json()
-        const imageUrl = body.imageURL
+        const imageURL = await uploadImageFile(acceptedFiles)
         if (editorRef.current) {
-          editorRef.current.insertContent(`<img src="${imageUrl}" alt="uploaded" />`)
+          editorRef.current.insertContent(`<img src="${imageURL}" alt="uploaded" />`)
         }
       } catch (error) {
-        console.error(error)
+        console.error("Error in uploadImageFile() Fetch: ", error)
       }
     },
     noClick: true,
@@ -67,7 +57,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
         onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
           forced_root_block: 'div',
-          toolbar_mode: 'wrap',
+          toolbar_mode: "wrap",
           menubar: false,
           promotion: false,
           content_style: `
@@ -110,7 +100,10 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
                 },
               })
             })
-            editor.ui.registry.addIcon('heading-icon', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21" width="22" height="21" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.086 4.45c0-.478.387-.865.864-.865h3.458a.864.864 0 0 1 0 1.729h-.865v4.322h6.915V5.314h-.864a.864.864 0 0 1 0-1.729h3.457a.864.864 0 1 1 0 1.729h-.864v10.372h.864a.864.864 0 1 1 0 1.729h-3.457a.864.864 0 0 1 0-1.729h.864v-4.322H7.543v4.322h.865a.864.864 0 0 1 0 1.729H4.95a.864.864 0 0 1 0-1.729h.865V5.314H4.95a.864.864 0 0 1-.864-.865Z" fill="currentColor"></path></svg>');
+            editor.ui.registry.addIcon(
+              "heading-icon",
+              '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21" width="22" height="21" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.086 4.45c0-.478.387-.865.864-.865h3.458a.864.864 0 0 1 0 1.729h-.865v4.322h6.915V5.314h-.864a.864.864 0 0 1 0-1.729h3.457a.864.864 0 1 1 0 1.729h-.864v10.372h.864a.864.864 0 1 1 0 1.729h-3.457a.864.864 0 0 1 0-1.729h.864v-4.322H7.543v4.322h.865a.864.864 0 0 1 0 1.729H4.95a.864.864 0 0 1 0-1.729h.865V5.314H4.95a.864.864 0 0 1-.864-.865Z" fill="currentColor"></path></svg>',
+            )
             editor.ui.registry.addButton("download-as-markdown", {
               text: "Download as Markdown",
               icon: "save",
@@ -134,20 +127,20 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
                 setEditingInstructions(false)
               },
             })
-            editor.ui.registry.addButton('codesample-with-text', {
-              icon: 'code-sample', 
-              tooltip: 'Insert Code Sample',
+            editor.ui.registry.addButton("codesample-with-text", {
+              icon: "code-sample",
+              tooltip: "Insert Code Sample",
               onAction: function () {
-                editor.execCommand('codesample');
-              }
-            });
-            editor.ui.registry.addButton('h2-button', {
+                editor.execCommand("codesample")
+              },
+            })
+            editor.ui.registry.addButton("h2-button", {
               icon: "heading-icon",
-              tooltip: 'Add heading',
+              tooltip: "Add heading",
               onAction: function () {
-                editor.execCommand('FormatBlock', false, 'h2');
-              }
-            });
+                editor.execCommand("FormatBlock", false, "h2")
+              },
+            })
             editor.ui.registry.addMenuItem("add-image-item", {
               text: "Add Image",
               icon: "image",
@@ -155,12 +148,12 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
                 handleAddImage()
               },
             }),
-            editor.on("keydown", (event) => {
-              if (event.key === "Tab") {
-                event.preventDefault()
-                editor.execCommand("mceInsertContent", false)
-              }
-            })
+              editor.on("keydown", (event) => {
+                if (event.key === "Tab") {
+                  event.preventDefault()
+                  editor.execCommand("mceInsertContent", false)
+                }
+              })
           },
           selector: "textarea",
           min_height: 1000,

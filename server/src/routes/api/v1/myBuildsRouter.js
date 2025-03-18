@@ -18,7 +18,7 @@ myBuildsRouter.get("/", async (req, res) => {
       return res.status(400).json({ error: "Invalid query parameters" })
     }
     try {
-      const userBuildCount = await Project.query()
+      const userBuildsCount = await Project.query()
         .where("userId", parseInt(currentUser.id))
         .resultSize()
       const userBuildsList = await Project.query()
@@ -31,7 +31,7 @@ myBuildsRouter.get("/", async (req, res) => {
           return ProjectSerializer.getProjectListDetails(userBuild)
         }),
       )
-      res.status(200).json({ userBuilds: serializedUserBuilds, userBuildCount })
+      res.status(200).json({ userBuilds: serializedUserBuilds, userBuildsCount })
     } catch (error) {
       console.log(error)
       res.status(500).json({ errors: error })
@@ -47,9 +47,9 @@ myBuildsRouter.get("/:id", async (req, res) => {
   try {
     const userBuild = await Project.query().findById(id)
     if (!user) {
-      return res.status(401).json({error: "Unauthorized"})
+      return res.status(401).json({ error: "Unauthorized" })
     } else if (user.id !== userBuild.userId) {
-      return res.status(401).json({error: "Unauthorized"})
+      return res.status(401).json({ error: "Unauthorized" })
     }
     const serializedUserBuild = await ProjectSerializer.getProjectShowPageDetails(userBuild)
     return res.status(200).json({ userBuild: serializedUserBuild })

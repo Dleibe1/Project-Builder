@@ -32,7 +32,7 @@ const ProjectList = ({ projectsPerPage }) => {
       console.log(err)
     }
   }
-  //TODO: Upgrade to react-router-dom 6 for useSearchParams to handle this in a simpler way with fewer re-renders
+
   useEffect(() => {
     const newSearchParams = new URLSearchParams(location.search)
     let shouldPush = false
@@ -81,7 +81,6 @@ const ProjectList = ({ projectsPerPage }) => {
       )
     }
   })
-
   return (
     <div className="grid-container project-list-page-container">
       <div className="project-list">{projectsArray}</div>

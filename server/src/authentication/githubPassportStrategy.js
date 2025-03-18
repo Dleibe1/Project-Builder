@@ -37,8 +37,6 @@ const githubPassportStrategy = new OAuth2Strategy(
       } else {
         user = await user.$query().patchAndFetch({ githubAvatarURL: avatar_url || null })
       }
-      //TODO: Look up best practices for encrypting/decrypting OAuth tokens during a session
-      // req.session.githubAccessToken = accessToken
       return cb(null, user)
     } catch (error) {
       console.error("Error fetching user info:", error)

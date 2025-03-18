@@ -27,7 +27,7 @@ const DeleteBuildButton = ({ id }) => {
   }
 
   return (
-    <Button className="delete-build-button" variant="contained" onClick={deleteBuild}>
+    <Button className="delete-build-button large-button" variant="contained" onClick={deleteBuild}>
       Delete Build
     </Button>
   )
