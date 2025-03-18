@@ -17,7 +17,6 @@ const ForkList = ({ projectsPerPage }) => {
 
   const history = useHistory()
   const totalPages = Math.ceil(projectsCount / projectsPerPage)
-
   useEffect(() => {
     const fetchForkList = async () => {
       try {

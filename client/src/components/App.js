@@ -5,6 +5,7 @@ import { hot } from "react-hot-loader/root"
 import "../assets/scss/main.scss"
 import getCurrentUser from "../api/getCurrentUser"
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute"
+import UnauthenticatedRoute from "./authentication/UnAuthenticatedRoute"
 import RegistrationForm from "./authentication/RegistrationForm"
 import SignInForm from "./authentication/SignInForm"
 import NavigationBar from "./navigation-bar/NavigationBar"
@@ -58,19 +59,14 @@ const App = (props) => {
       <Route exact path="/search">
         <SearchList projectsPerPage={projectsPerPage} user={currentUser} />
       </Route>
-      <Route path="/diff-view/:parentProjectId/:forkedProjectId" component={DiffView} />
-      <AuthenticatedRoute
-        path="/my-builds-list"
-        component={MyBuildList}
-        projectsPerPage={projectsPerPage}
-        user={currentUser}
-      />
-      <AuthenticatedRoute path="/create-new-build" component={NewProjectForm} user={currentUser} />
-      <AuthenticatedRoute path="/edit-my-build/:id" component={EditBuildForm} user={currentUser} />
-      <AuthenticatedRoute path="/fork-project/:id" component={ForkProjectForm} user={currentUser} />
-      <Route exact path="/users/new" component={RegistrationForm} />
-      <Route exact path="/user-sessions/new" component={SignInForm} />
-      <Route path="/how-to-use" component={HowToUse} user={currentUser} />
+      <Route exact path="/diff-view/:parentProjectId/:forkedProjectId" component={DiffView} />
+      <AuthenticatedRoute exact path="/my-builds-list" component={MyBuildList} projectsPerPage={projectsPerPage} user={currentUser} />
+      <AuthenticatedRoute exact path="/create-new-build" component={NewProjectForm} user={currentUser} />
+      <AuthenticatedRoute exact path="/edit-my-build/:id" component={EditBuildForm} user={currentUser} />
+      <AuthenticatedRoute exact path="/fork-project/:id" component={ForkProjectForm} user={currentUser} />
+      <UnauthenticatedRoute exact path="/users/new" component={RegistrationForm} user={currentUser} />
+      <UnauthenticatedRoute exact path="/user-sessions/new" component={SignInForm} user={currentUser} />
+      <Route path="/how-to-use" component={HowToUse} />
       <Route path="/about" component={About} />
       <Route exact path="/404" component={NotFound404} />
     </Router>
