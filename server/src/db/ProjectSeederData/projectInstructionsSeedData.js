@@ -1000,6 +1000,6 @@ it is same as mine, then follow this diagram instead, you will no longer need th
 src="https://i.imgur.com/xdSSgkL.png"></img><br><p></p><br><p>Details about the code</p><br><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11, Adafruit_GFX, and Adafruit_SSD1306 libraries \
 to the Arduino IDE and include them in your sketch. <br>2. Upload the \
-code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.</div>`]
+code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.</p></div>`]
 
 export default projectInstructionsSeedData
