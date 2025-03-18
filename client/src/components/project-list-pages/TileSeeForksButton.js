@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import Button from "@mui/material/Button"
 
-const SeeForkedVersionsButton = ({ id }) => {
+const TileSeeForksButton = ({ id }) => {
   return (
     <Button
       onClick={(e) => e.stopPropagation()}
@@ -26,4 +26,4 @@ const SeeForkedVersionsButton = ({ id }) => {
   )
 }
 
-export default SeeForkedVersionsButton
+export default TileSeeForksButton

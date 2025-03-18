@@ -30,6 +30,7 @@ const EditBuildForm = (props) => {
     userId: "",
     thumbnailImage: "",
   })
+
   const [editingInstructions, setEditingInstructions] = useState(false)
   const params = useParams()
   const { id } = params

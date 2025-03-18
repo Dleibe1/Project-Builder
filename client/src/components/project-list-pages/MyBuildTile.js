@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
-import ProjectForksButton from "../shared/SeeForkedVersionsButton"
+import TileSeeForksButton from "./TileSeeForksButton"
 
 const MyBuildTile = ({ id, title, thumbnailImage, createdBy }) => {
   const [hasForks, setHasForks] = useState(false)
@@ -14,7 +14,7 @@ const MyBuildTile = ({ id, title, thumbnailImage, createdBy }) => {
         throw newError
       }
       const responseBody = await response.json()
-      if (responseBody.aForkExists) {
+      if (responseBody.forkExists) {
         setHasForks(true)
       }
     } catch (err) {
@@ -32,18 +32,18 @@ const MyBuildTile = ({ id, title, thumbnailImage, createdBy }) => {
 
   return (
     <div className="project-tile" onClick={handleTileClick}>
-    <img className="thumbnail-image" src={thumbnailImage} alt={`${title} thumbnail`} />
-    <div className="project-tile-info-container">
-      <h3 className={hasForks ? `project-tile-title has-forks` : "" }>{title}</h3>
-      <div className="project-tile-username-info">
-        <h4>By:</h4>
-        <h5 className="username">{createdBy}</h5>
+      <img className="thumbnail-image" src={thumbnailImage} alt={`${title} thumbnail`} />
+      <div className="project-tile-info-container">
+        <h3 className={hasForks ? `project-tile-title has-forks` : ""}>{title}</h3>
+        <div className="project-tile-username-info">
+          <h4>By:</h4>
+          <h5 className="username">{createdBy}</h5>
+        </div>
+        {hasForks && (
+          <TileSeeForksButton id={id} className="button-container see-forked-versions-button" />
+        )}
       </div>
-      {hasForks ? (
-        <ProjectForksButton id={id} className="button-container see-forked-versions-button" />
-      ) : null}
     </div>
-  </div>
   )
 }
 

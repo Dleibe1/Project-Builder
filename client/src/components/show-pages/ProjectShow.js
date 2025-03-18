@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import ForkProjectButton from "./show-page-authed-UI/ForkProjectButton.js"
-import SeeForkedVersionsButton from "../shared/SeeForkedVersionsButton.js"
+import SeeForkedVersionsButton from "./show-pages-shared/SeeForkedVersionsButton.js"
 import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
 import TagList from "./show-pages-shared/TagList.js"
 import Instructions from "../shared/Instructions.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
+import getProject from "../../api/getProject.js"
+import doesProjectHaveForks from "../../api/doesProjectHaveForks.js"
 import DOMPurify from "dompurify"
 
 const ProjectShow = (props) => {
@@ -29,7 +31,28 @@ const ProjectShow = (props) => {
   const { id } = params
 
   useEffect(() => {
-    getProject()
+    const fetchProjectData = async () => {
+      try {
+        const project = await getProject(id)
+        prepForFrontEnd(project)
+        setProject(project)
+      } catch (error) {
+        console.error("Error in getProject(): ", error)
+      }
+    }
+    fetchProjectData()
+  }, [])
+
+  useEffect(() => {
+    const fetchHasForks = async () => {
+      try {
+        const forkExists = await doesProjectHaveForks(id)
+        setHasForks(forkExists)
+      } catch (error) {
+        console.error("Error in doesProjectHaveForks() Fetch: ", error)
+      }
+    }
+    fetchHasForks()
   }, [])
 
   useEffect(() => {
@@ -37,43 +60,6 @@ const ProjectShow = (props) => {
     return () => {
       document.body.classList.remove("grey-background")
     }
-  }, [])
-
-  const getProject = async () => {
-    try {
-      const response = await fetch(`/api/v1/projects/${id}`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
-      }
-      const responseBody = await response.json()
-      const project = responseBody.project
-      prepForFrontEnd(project)
-      setProject(project)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const checkForForks = async () => {
-    try {
-      const response = await fetch(`/api/v1/projects/check-for-forks/${id}`)
-      if (!response.ok) {
-        const newError = new Error("Error in the fetch!")
-        throw newError
-      }
-      const responseBody = await response.json()
-      if (responseBody.aForkExists) {
-        setHasForks(true)
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(() => {
-    checkForForks()
   }, [])
 
   const forkProjectButton = [<ForkProjectButton id={id} />]
@@ -106,14 +92,15 @@ const ProjectShow = (props) => {
     )
   })
 
+  const isFork = project.parentProjectId.length > 0
+
   return (
     <div className="project-show">
-      <div className="project-show-top-buttons">
-        {props.user ? forkProjectButton : []}
-        {hasForks ? <SeeForkedVersionsButton id={id} /> : []}
-        {project.parentProjectId.length > 0 && (
+      <div className="project-show__top-buttons">
+        {isFork && (
           <DiffViewButton parentProjectId={project.parentProjectId} forkedProjectId={project.id} />
         )}
+        {hasForks && <SeeForkedVersionsButton id={id} />}
       </div>
       {project.tags.length > 0 && (
         <div className="showpage-items-container tag-list">

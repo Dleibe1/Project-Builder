@@ -629,7 +629,7 @@ h5 {
 }
 
 .part-item-in-showpage:hover,
-.part-item-in-form:hover{
+.part-item-in-form:hover {
   background-color: #f7f9f9;
 }
 
@@ -647,7 +647,6 @@ h5 {
   align-items: flex-end;
   justify-content: space-between;
 }
-
 
 .part-with-purchase-link {
   align-items: center;
@@ -1308,7 +1307,7 @@ h5 {
   font-size: 1.5rem;
 }
 
-.form-items-container p{
+.form-items-container p {
   width: fit-content;
 }
 
@@ -1347,22 +1346,35 @@ h5 {
   padding: 30px 0px;
 }
 
-.project-show-top-buttons,
-.edit-build-top-buttons-container {
+.project-show__top-buttons,
+.edit-build__top-buttons {
   display: flex;
   background-color: white;
   padding: 10px;
   border-radius: 6px 6px 0px 0px;
 }
 
-.edit-build-top-buttons-container .delete-build-button {
-  margin-right: 1rem;
-  margin-left: 1rem;
+.edit-build-top-buttons--right,
+.edit-build-top-buttons--left {
+  width: 100%;
+  display: inline-flex;
 }
 
-.project-show-top-buttons {
-  display: flex;
-  justify-content: space-between;
+.edit-build-top-buttons--left {
+  justify-content: flex-start;
+}
+
+.edit-build-top-buttons--right {
+  justify-content: end;
+}
+
+.edit-build__top-buttons .large-button {
+  height: fit-content;
+}
+
+.edit-build__top-buttons .delete-build-button {
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 .github-url {
