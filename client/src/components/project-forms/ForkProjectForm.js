@@ -6,7 +6,7 @@ import Textarea from "@mui/joy/Textarea"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import uploadImageFile from "../../api/uploadImageFile.js"
-import getParentProject from "../../api/getParentProject.js"
+import getProject from "../../api/getProject.js"
 import postProjectFork from "../../api/postProjectFork.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
@@ -43,10 +43,10 @@ const ForkProjectForm = (props) => {
   useEffect(() => {
     const fetchParentProject = async () => {
       try {
-        const parentProjectData = await getParentProject(id)
+        const parentProjectData = await getProject(id)
         setProject(parentProjectData)
       } catch (error) {
-        console.error("Error in getParentProject() Fetch:", error)
+        console.error("Error in getProject() Fetch:", error)
       }
     }
     fetchParentProject()
