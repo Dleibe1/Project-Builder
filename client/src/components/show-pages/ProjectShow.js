@@ -91,8 +91,6 @@ const ProjectShow = (props) => {
     )
   })
 
-  const isFork = project.parentProjectId.length > 0
-
   return (
     <div className="project-show">
       <div className="project-show__top-buttons">

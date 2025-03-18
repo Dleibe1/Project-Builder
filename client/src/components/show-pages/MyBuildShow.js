@@ -99,10 +99,7 @@ const MyBuildShow = (props) => {
           <EditBuildButton id={id} />
           <DeleteBuildButton id={id} />
           {myBuild.parentProjectId.length > 0 && (
-            <DiffViewButton
-              parentProjectId={myBuild.parentProjectId}
-              forkedProjectId={id}
-            />
+            <DiffViewButton parentProjectId={myBuild.parentProjectId} forkedProjectId={id} />
           )}
         </div>
         <div className="project-show__top-buttons--right">
