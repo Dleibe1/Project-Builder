@@ -94,18 +94,18 @@ const MyBuildShow = (props) => {
 
   return (
     <div className="project-show">
-      <div className="edit-build__top-buttons">
-        <div className="edit-build-top-buttons--left">
+      <div className="project-show__top-buttons">
+        <div className="project-show__top-buttons--left">
           <EditBuildButton id={id} />
           <DeleteBuildButton id={id} />
           {myBuild.parentProjectId.length > 0 && (
             <DiffViewButton
               parentProjectId={myBuild.parentProjectId}
-              forkedProjectId={myBuild.id}
+              forkedProjectId={id}
             />
           )}
         </div>
-        <div className="edit-build-top-buttons--right">
+        <div className="project-show__top-buttons--right">
           {hasForks && <SeeForkedVersionsButton id={id} />}
         </div>
       </div>

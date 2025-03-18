@@ -31,8 +31,8 @@ const NewProjectForm = (props) => {
   const [editingInstructions, setEditingInstructions] = useState(false)
 
   useEffect(() => {
-    document.body.classList.add("grey-background")
     window.scrollTo(0, 0)
+    document.body.classList.add("grey-background")
     return () => {
       document.body.classList.remove("grey-background")
     }

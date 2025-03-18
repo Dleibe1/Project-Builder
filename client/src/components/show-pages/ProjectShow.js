@@ -62,7 +62,6 @@ const ProjectShow = (props) => {
     }
   }, [])
 
-  const forkProjectButton = [<ForkProjectButton id={id} />]
   const codeMessage = project.githubFileURL?.length ? (
     [
       <h2 className="code-fetched-heading">Code fetched from GitHub just now:</h2>,
@@ -97,10 +96,15 @@ const ProjectShow = (props) => {
   return (
     <div className="project-show">
       <div className="project-show__top-buttons">
-        {isFork && (
-          <DiffViewButton parentProjectId={project.parentProjectId} forkedProjectId={project.id} />
-        )}
-        {hasForks && <SeeForkedVersionsButton id={id} />}
+        <div className="project-show__top-buttons--left">
+          {props.user && <ForkProjectButton id={id} />}
+          {hasForks && <SeeForkedVersionsButton id={id} />}
+        </div>
+        <div className="project-show__top-buttons--right">
+          {project.parentProjectId.length > 0 && (
+            <DiffViewButton parentProjectId={project.parentProjectId} forkedProjectId={id} />
+          )}
+        </div>
       </div>
       {project.tags.length > 0 && (
         <div className="showpage-items-container tag-list">

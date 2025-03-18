@@ -16,6 +16,7 @@ const SearchList = ({ projectsPerPage }) => {
 
   const history = useHistory()
   const totalPages = Math.ceil(projectCount / projectsPerPage)
+
   useEffect(() => {
     const newPage = parseInt(pageNumberURLParam || 1)
     if (newPage && parseInt(newPage) !== currentPage) {
