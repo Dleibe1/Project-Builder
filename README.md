@@ -44,10 +44,7 @@ When users visit your project's page on this app, the code section is automatica
 - Download a project's instructions as a markdown file
 - Upload a project's instructions as a markdown file.  
   After uploading, the markdown file's contents are converted to html and rendered on the project's display page.
-
-### Improvements coming soon:
-
-1. Diff view for forked projects
+- [A diff view for forked projects](https://project-builder-e7439342976b.herokuapp.com/diff-view/1/19)
 
 ## Usage
 
