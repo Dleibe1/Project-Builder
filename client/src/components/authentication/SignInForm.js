@@ -56,7 +56,7 @@ const SignInForm = () => {
         if (error.credentialsErrors) {
           return setCredentialsErrors(error.credentialsErrors)
         } else {
-          console.error(`Error in fetch: ${error.message}`)
+          console.error("Error in signInUser() Fetch", error)
         }
       }
     }

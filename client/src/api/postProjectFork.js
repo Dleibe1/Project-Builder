@@ -10,8 +10,8 @@ const postProjectFork = async (forkedProjectData, parentProjectId) => {
   })
   if (!response.ok) {
     if (response.status === 422) {
-      const body = await response.json()
-      const translatedErrors = translateServerErrors(body.errors)
+      const responseBody = await response.json()
+      const translatedErrors = translateServerErrors(responseBody.errors)
       const error = new Error("Validation Error")
       error.serverErrors = translatedErrors
       throw error

@@ -6,6 +6,7 @@ import Textarea from "@mui/joy/Textarea"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
 import uploadImageFile from "../../api/uploadImageFile.js"
+import getParentProject from "../../api/getParentProject.js"
 import postProjectFork from "../../api/postProjectFork.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
@@ -17,7 +18,7 @@ const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const params = useParams()
-  const { parentProjectId } = params
+  const { id } = params
   const [project, setProject] = useState({
     title: "",
     tags: [],
@@ -40,24 +41,16 @@ const ForkProjectForm = (props) => {
   }, [])
 
   useEffect(() => {
-    getProject()
-  }, [])
-
-  const getProject = async () => {
-    try {
-      const response = await fetch(`/api/v1/projects/${parentProjectId}`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
+    const fetchParentProject = async () => {
+      try {
+        const parentProjectData = await getParentProject(id)
+        setProject(parentProjectData)
+      } catch (error) {
+        console.error("Error in getParentProject() Fetch:", error)
       }
-      const responseBody = await response.json()
-      const project = responseBody.project
-      setProject((prevState) => ({ ...prevState, ...project, githubFileURL: "" }))
-    } catch (error) {
-      console.log(error)
     }
-  }
+    fetchParentProject()
+  }, [])
 
   const handleThumbnailImageUpload = async (acceptedImage) => {
     try {
@@ -67,12 +60,13 @@ const ForkProjectForm = (props) => {
         thumbnailImage: imageURL,
       }))
     } catch (error) {
-      console.error("Error in uploadProjectImage ", error)
+      console.error("Error in uploadProjectImage Fetch: ", error)
     }
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    const parentProjectId = id
     try {
       await postProjectFork(project, parentProjectId)
       setShouldRedirect(true)
@@ -80,7 +74,7 @@ const ForkProjectForm = (props) => {
       if (error.serverErrors) {
         setErrors(error.serverErrors)
       } else {
-        console.error("error in postProjectFork ", error)
+        console.error("error in postProjectFork() Fetch: ", error)
       }
     }
   }

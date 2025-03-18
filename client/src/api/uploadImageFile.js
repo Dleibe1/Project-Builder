@@ -12,8 +12,8 @@ const uploadImageFile = async (acceptedFiles) => {
   if (!response.ok) {
     throw new Error(`${response.status} (${response.statusText})`)
   }
-  const body = await response.json()
-  const imageURL = body.imageURL
+  const responseBody = await response.json()
+  const imageURL = responseBody.imageURL
   return imageURL
 }
 

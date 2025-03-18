@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useParams, useHistory, useLocation } from "react-router-dom"
 import { Pagination } from "@mui/material"
 import ProjectTile from "./ProjectTile"
+import getForkList from "../../api/getForkList"
 
 const ForkList = ({ projectsPerPage }) => {
   const params = useParams()
@@ -11,31 +12,27 @@ const ForkList = ({ projectsPerPage }) => {
   const { parentProjectId } = params
 
   const [forkedProjects, setForkedProjects] = useState([])
-  const [projectCount, setProjectCount] = useState(0)
+  const [projectsCount, setProjectsCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(parseInt(pageNumberURLParam || 1))
 
   const history = useHistory()
-  const totalPages = Math.ceil(projectCount / projectsPerPage)
-
-  const getForks = async () => {
-    try {
-      const response = await fetch(
-        `/api/v1/projects/${parentProjectId}/forks/fork-list?page=${currentPage}&limit=${projectsPerPage}`,
-      )
-      if (!response.ok) {
-        const newError = new Error("Error in the fetch!")
-        throw newError
-      }
-      const responseBody = await response.json()
-      setForkedProjects(responseBody.forks)
-      setProjectCount(responseBody.forkedProjectCount)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  const totalPages = Math.ceil(projectsCount / projectsPerPage)
 
   useEffect(() => {
-    getForks()
+    const fetchForkList = async () => {
+      try {
+        const [forkList, forkedProjectsCount] = await getForkList(
+          parentProjectId,
+          currentPage,
+          projectsPerPage,
+        )
+        setForkedProjects(forkList)
+        setProjectsCount(forkedProjectsCount)
+      } catch (error) {
+        console.error("Error in getForkList() Fetch: ", error)
+      }
+    }
+    fetchForkList()
   }, [currentPage, parentProjectId])
 
   useEffect(() => {

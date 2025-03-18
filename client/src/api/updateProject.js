@@ -8,8 +8,8 @@ const updateProject = async (projectData, projectId) => {
     body: JSON.stringify(projectData),
   })
   if (!response.ok) {
-    const body = await response.json()
-    const translatedErrors = translateServerErrors(body.errors)
+    const responseBody = await response.json()
+    const translatedErrors = translateServerErrors(responseBody.errors)
     const error = new Error("Validation Error")
     error.serverErrors = translatedErrors
     throw error

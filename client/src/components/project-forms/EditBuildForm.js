@@ -48,7 +48,7 @@ const EditBuildForm = (props) => {
         const myBuild = await getMyBuild(id)
         setProject(myBuild)
       } catch (error) {
-        console.error("error in getMyBuild() ", error)
+        console.error("error in getMyBuild() Fetch: ", error)
       }
     }
     fetchMyBuild()
@@ -62,7 +62,7 @@ const EditBuildForm = (props) => {
         thumbnailImage: imageURL,
       }))
     } catch (error) {
-      console.error("Error in uploadProjectImage(): ", error)
+      console.error("Error in uploadProjectImage() Fetch: ", error)
     }
   }
 
@@ -75,7 +75,7 @@ const EditBuildForm = (props) => {
       if (error.serverErrors) {
         setErrors(error.serverErrors)
       } else {
-        console.error("Error in updateProject: ", error)
+        console.error("Error in updateProject Fetch: ", error)
       }
     }
   }

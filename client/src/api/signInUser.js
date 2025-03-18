@@ -8,9 +8,9 @@ const signInUser = async (userPayload) => {
   })
   if (!response.ok) {
     if (response.status === 401) {
-      const body = await response.json()
+      const responseBody = await response.json()
       const error = new Error("Credentials Error")
-      error.credentialsErrors = body.message
+      error.credentialsErrors = responseBody.message
       throw error
     }
     const errorMessage = `${response.status} (${response.statusText})`
