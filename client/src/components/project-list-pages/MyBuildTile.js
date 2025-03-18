@@ -1,33 +1,26 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import TileSeeForksButton from "./TileSeeForksButton"
+import doesProjectHaveForks from "../../api/doesProjectHaveForks"
 
 const MyBuildTile = ({ id, title, thumbnailImage, createdBy }) => {
   const [hasForks, setHasForks] = useState(false)
   const history = useHistory()
-
-  const checkForForks = async () => {
-    try {
-      const response = await fetch(`/api/v1/projects/check-for-forks/${id}`)
-      if (!response.ok) {
-        const newError = new Error("Error in the fetch!")
-        throw newError
-      }
-      const responseBody = await response.json()
-      if (responseBody.forkExists) {
-        setHasForks(true)
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
   const handleTileClick = () => {
     history.push(`/my-builds/${id}`)
   }
 
   useEffect(() => {
-    checkForForks()
+    const fetchCheckForForks = async () => {
+      try {
+        const hasForks = await doesProjectHaveForks(id)
+        setHasForks(hasForks)
+      } catch (error) {
+        console.error("Error in checkForForks Fetch: ", error)
+      }
+    }
+    fetchCheckForForks()
   }, [])
 
   return (
