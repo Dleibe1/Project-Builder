@@ -40,13 +40,13 @@ When users visit your project's page on this app, the code section is automatica
 - GitHub API
 - Material UI
 - AWS S3 Bucket
-- [TinyMCE](https://www.tiny.cloud/)
-- [turndown.js](https://www.npmjs.com/package/turndown/v/4.0.0-rc.1)
-- [showdown.js](https://showdownjs.com/)
-- [highlight.js](https://highlightjs.org/)
+- TinyMCE
+- turndown.js
+- showdown.js
+- highlight.js
 - Cypress.js (Tests suite is a work in progress)
 
-## The TinyMCE Editor has been customized to add a few features it didn't come with
+## The [TinyMCE Editor has been customized](client/src/components/project-forms/project-forms-shared/InstructionsTinyMCEForm.js) to add a few features it didn't come with
  You can upload a .md file containing your instructions and the contents will be converted to HTML and rendered in the editor.  Click "Close Editor" to save the instructions.
 <img width="1673" alt="Screenshot 2025-03-20 at 12 39 09 PM" src="https://github.com/user-attachments/assets/226d9af4-41bf-4700-a739-948eca537184" />
 
