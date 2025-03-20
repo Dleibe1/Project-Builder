@@ -1,15 +1,41 @@
 import React from "react"
 import { Button } from "@mui/material"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
+import LinkedInIcon from "@mui/icons-material/LinkedIn"
 
 const HowToUse = () => {
   window.scrollTo(0, 0)
   return (
     <div className="how-to-use">
+      <div className="how-to-use__developer-linkedin">
+        <Button
+          component={Link}
+          endIcon={
+            <LinkedInIcon
+              sx={{ width: "70px", height: "70px" }}
+              color="primary"
+            />
+          }
+          onClick={() =>
+            window.open(
+              "https://www.linkedin.com/in/daniel-patrick-leibensperger/",
+              "_blank",
+              "noopener,noreferrer",
+            )
+          }
+          size="large"
+          sx={{
+            marginBottom: "20px"
+          }}
+        >
+          Meet the Developer
+        </Button>
+      </div>
       <div className="banner how-to-use-page-items-container about-page-section-container-left top-banner">
         <img className="banner-image logo" src="https://i.imgur.com/dOywizt.png" />
         <h1>Create and Fork Arduino Projects</h1>
       </div>
+
       <div className="how-to-use-page-items-container top">
         <h1>Login with these credentials in order to see a built out user experience:</h1>
         <div className="example-user-credentials">
@@ -28,6 +54,7 @@ const HowToUse = () => {
           BUILDS” to view and edit the list of projects you've created.
         </p>
       </div>
+
       <div className="how-to-use-page-items-container how-to-fork">
         <h1>Fork another user's project</h1>
         <Button

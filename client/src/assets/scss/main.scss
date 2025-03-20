@@ -142,6 +142,10 @@ body.grey-background {
   padding: 5px;
 }
 
+.how-to-use__developer-linkedin {
+  align-self:end;
+}
+
 .banner h1 {
   flex: 1 1 100%;
   max-width: 50%;
@@ -381,6 +385,10 @@ h5 {
   padding: 2rem;
   margin: 100px auto;
   font-family: "Roboto", sans-serif;
+}
+
+.how-to-use {
+  margin-top: 50px;
 }
 
 .project-show {
