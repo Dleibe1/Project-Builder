@@ -143,7 +143,7 @@ body.grey-background {
 }
 
 .how-to-use__developer-linkedin {
-  align-self:end;
+  align-self: end;
 }
 
 .banner h1 {
@@ -901,7 +901,7 @@ h5 {
 }
 
 #sign-in-form .sign-in-button,
-.registration .register-button{
+.registration .register-button {
   padding: 8px 10px;
 }
 
@@ -1283,7 +1283,7 @@ h5 {
 }
 
 .how-to-use-page-items-container ol {
-  padding:20px;
+  padding: 20px;
 }
 
 .instruction-list-buttons-container {
@@ -1366,6 +1366,7 @@ h5 {
 
 .project-show__top-buttons {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   background-color: white;
   padding: 10px;
@@ -1379,6 +1380,7 @@ h5 {
 
 .project-show__top-buttons--left {
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .project-show__top-buttons--right {
@@ -1387,6 +1389,7 @@ h5 {
 
 .project-show__top-buttons .large-button {
   height: fit-content;
+  margin-bottom: 10px;
 }
 
 .project-show__top-buttons .delete-build-button {
