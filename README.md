@@ -48,8 +48,7 @@ When users visit your project's page on this app, the code section is automatica
 - Cypress.js (Tests suite is a work in progress)
 
 ## The TinyMCE Editor has been customized to add a few features it didn't come with.
- You can upload a markdown version of your instructions which will be rendered in the editor in HTML.  Click "Close Editor" to save the instructions.
- You can also download a markdown version of the editors contents or from the project's display page.  This makes moving your project to and from GitHub less work.
+ You can upload a a .md file containing your instructions and the contents will be converted to HTML and rendered in the editor.  Click "Close Editor" to save the instructions.
 <img width="1673" alt="Screenshot 2025-03-20 at 12 39 09 PM" src="https://github.com/user-attachments/assets/226d9af4-41bf-4700-a739-948eca537184" />
 
 ### New features:
