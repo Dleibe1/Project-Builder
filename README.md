@@ -10,6 +10,7 @@ Password: cat
 
 ### A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 
+### There is a seeded example user for you to try out:
 Arduino projects require a lot of tedious boilerplate, such as the code to control motors with analog joysticks, the setup for an ultrasonic distance sensor, or an algorithm for object avoidance with a car project.  
 
 Unlike desktop applications, however, Arduino projects have physical boilerplate in terms of the parts list, schematics, and instructions for assembling and coding a device that may be similar to a device someone else has created.
