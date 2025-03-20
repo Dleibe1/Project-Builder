@@ -1,4 +1,6 @@
 import React from "react"
+import { Button } from "@mui/material"
+import {Link} from "react-router-dom"
 
 const HowToUse = () => {
   window.scrollTo(0, 0)
@@ -28,9 +30,26 @@ const HowToUse = () => {
       </div>
       <div className="how-to-use-page-items-container how-to-fork">
         <h1>Fork another user's project</h1>
+        <Button
+          component={Link}
+          to={"/diff-view/2/20"}
+          sx={{
+            my: 2,
+            color: "white",
+            margin: "10px 0px",
+            backgroundColor: "#1976d2",
+            "&:hover": {
+              backgroundColor: "#1665c0",
+              color: "white",
+            },
+          }}
+          className="see-forked-versions-button"
+        >
+          See Example of Project Diff View
+        </Button>
         <p>
-          You can change any aspect of the other user's project that you'd like. This includes the code, parts
-          list, and instructions.
+          You can change any aspect of the other user's project that you'd like. This includes the
+          code, parts list, and instructions.
         </p>
         <h2>Steps:</h2>
         <ol>

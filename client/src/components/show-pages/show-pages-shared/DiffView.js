@@ -54,7 +54,7 @@ const DiffView = (props) => {
       }
     }
     fetchData()
-  })
+  }, [])
 
   let parentProjectTags = ""
   let forkedProjectTags = ""

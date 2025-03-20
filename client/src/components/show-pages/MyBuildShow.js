@@ -5,6 +5,7 @@ import DeleteBuildButton from "./show-page-authed-UI/DeleteBuildButton"
 import EditBuildButton from "./show-page-authed-UI/EditBuildButton"
 import SeeForkedVersionsButton from "./show-pages-shared/SeeForkedVersionsButton.js"
 import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
+import ReturnToParentProjectButton from "./show-pages-shared/ReturnToParentProjectButton.js"
 import TagList from "./show-pages-shared/TagList"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getMyBuild from "../../api/getMyBuild.js"
@@ -42,7 +43,7 @@ const MyBuildShow = (props) => {
       }
     }
     fetchMyBuild()
-  }, [])
+  }, [id])
 
   useEffect(() => {
     document.body.classList.add("grey-background")
@@ -86,11 +87,11 @@ const MyBuildShow = (props) => {
         <div className="project-show__top-buttons--left">
           <EditBuildButton id={id} />
           <DeleteBuildButton id={id} />
+        </div>
+        <div className="project-show__top-buttons--right">
           {myBuild.parentProjectId.length > 0 && (
             <DiffViewButton parentProjectId={myBuild.parentProjectId} forkedProjectId={id} />
           )}
-        </div>
-        <div className="project-show__top-buttons--right">
           {hasForks && <SeeForkedVersionsButton id={id} />}
         </div>
       </div>

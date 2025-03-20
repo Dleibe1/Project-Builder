@@ -128,7 +128,7 @@ body.grey-background {
 
 .how-to-use p,
 .how-to-use li {
-  font-size: 1.5rem;
+  font-size: 2rem;
   white-space: break-spaces;
 }
 
@@ -1269,6 +1269,10 @@ h5 {
   padding: 16px;
 }
 
+.how-to-use-page-items-container ol {
+  padding:20px;
+}
+
 .instruction-list-buttons-container {
   display: flex;
   width: 100%;
@@ -1349,6 +1353,7 @@ h5 {
 
 .project-show__top-buttons {
   display: flex;
+  justify-content: space-between;
   background-color: white;
   padding: 10px;
   border-radius: 6px 6px 0px 0px;
@@ -1356,7 +1361,6 @@ h5 {
 
 .project-show__top-buttons--right,
 .project-show__top-buttons--left {
-  width: 100%;
   display: inline-flex;
 }
 

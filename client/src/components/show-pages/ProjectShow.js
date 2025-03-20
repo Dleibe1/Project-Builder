@@ -4,6 +4,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import ForkProjectButton from "./show-page-authed-UI/ForkProjectButton.js"
 import SeeForkedVersionsButton from "./show-pages-shared/SeeForkedVersionsButton.js"
 import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
+import ReturnToParentProjectButton from "./show-pages-shared/ReturnToParentProjectButton.js"
 import TagList from "./show-pages-shared/TagList.js"
 import Instructions from "../shared/Instructions.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
@@ -41,7 +42,7 @@ const ProjectShow = (props) => {
       }
     }
     fetchProjectData()
-  }, [])
+  }, [id])
   
   useEffect(() => {
     document.body.classList.add("grey-background")
@@ -85,6 +86,9 @@ const ProjectShow = (props) => {
         <div className="project-show__top-buttons--left">
           {props.user && <ForkProjectButton id={id} />}
           {hasForks && <SeeForkedVersionsButton id={id} />}
+          {project.parentProjectId.length > 0 && (
+            <ReturnToParentProjectButton parentProjectId={project.parentProjectId} />
+          )}
         </div>
         <div className="project-show__top-buttons--right">
           {project.parentProjectId.length > 0 && (
