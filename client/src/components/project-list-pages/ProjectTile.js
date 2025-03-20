@@ -1,24 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { useHistory } from "react-router-dom"
 import TileSeeForksButton from "./TileSeeForksButton"
-import doesProjectHaveForks from "../../api/doesProjectHaveForks"
+import useCheckForProjectForks from "../../hooks/useCheckForProjectForks"
 
 const ProjectTile = ({ title, createdBy, thumbnailImage, id }) => {
-  const [hasForks, setHasForks] = useState(false)
   const history = useHistory()
-
-  useEffect(() => {
-    const fetchHasForks = async () => {
-      try {
-        const hasForks = await doesProjectHaveForks(id)
-        setHasForks(hasForks)
-      } catch (error) {
-        console.error("Error in doesProjectHaveForks()", error)
-      }
-    }
-    fetchHasForks()
-  }, [])
-
+  const hasForks = useCheckForProjectForks(id)
   const handleTileClick = () => {
     history.push(`/projects/${id}`)
   }

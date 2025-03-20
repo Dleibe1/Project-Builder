@@ -74,7 +74,7 @@ const ForkProjectForm = (props) => {
       if (error.serverErrors) {
         setErrors(error.serverErrors)
       } else {
-        console.error("error in postProjectFork() Fetch: ", error)
+        console.error("[ForkProjectForm] error in postProjectFork() Fetch: ", error)
       }
     }
   }

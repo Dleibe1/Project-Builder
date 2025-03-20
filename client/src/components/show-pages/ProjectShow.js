@@ -8,7 +8,7 @@ import TagList from "./show-pages-shared/TagList.js"
 import Instructions from "../shared/Instructions.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getProject from "../../api/getProject.js"
-import doesProjectHaveForks from "../../api/doesProjectHaveForks.js"
+import useCheckForProjectForks from "../../hooks/useCheckForProjectForks.js"
 import DOMPurify from "dompurify"
 
 const ProjectShow = (props) => {
@@ -26,9 +26,9 @@ const ProjectShow = (props) => {
     thumbnailImage: "",
     parentProjectId: "",
   })
-  const [hasForks, setHasForks] = useState(false)
   const params = useParams()
   const { id } = params
+  const hasForks = useCheckForProjectForks(id)
 
   useEffect(() => {
     const fetchProjectData = async () => {
@@ -42,19 +42,7 @@ const ProjectShow = (props) => {
     }
     fetchProjectData()
   }, [])
-
-  useEffect(() => {
-    const fetchHasForks = async () => {
-      try {
-        const forkExists = await doesProjectHaveForks(id)
-        setHasForks(forkExists)
-      } catch (error) {
-        console.error("Error in doesProjectHaveForks() Fetch: ", error)
-      }
-    }
-    fetchHasForks()
-  }, [])
-
+  
   useEffect(() => {
     document.body.classList.add("grey-background")
     return () => {

@@ -49,7 +49,7 @@ const EditBuildForm = (props) => {
         const myBuild = await getMyBuild(id)
         setProject(myBuild)
       } catch (error) {
-        console.error("error in getMyBuild() Fetch: ", error)
+        console.error("[EditBuildForm] error in getMyBuild() Fetch: ", error)
       }
     }
     fetchMyBuild()

@@ -46,7 +46,7 @@ const NewProjectForm = (props) => {
         thumbnailImage: imageURL,
       }))
     } catch (error) {
-      console.error("Error in uploadProjectImage() Fetch: ", error)
+      console.error("[NewProjectForm ] Error in uploadProjectImage() Fetch: ", error)
     }
   }
   
