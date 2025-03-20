@@ -1,7 +1,10 @@
 # [A Project Building Assistant for Arduino Micro Controller Apps](https://project-builder-e7439342976b.herokuapp.com/?page=1)
 ## A user has been seeded for use on the site.  
 Login as the example user and click "MY BUILDS" to view and edit your projects.  View another user's project and click "FORK THIS PROJECT" to create your own version of their project.
+
 <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/db598ec1fded4569996cc833014e336a?sid=c51f7278-4476-4b71-a264-bf43aceaf96d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+
 ```
 Username: example@example.com
 Password: cat
