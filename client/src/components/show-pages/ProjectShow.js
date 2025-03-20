@@ -4,11 +4,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import ForkProjectButton from "./show-page-authed-UI/ForkProjectButton.js"
 import SeeForkedVersionsButton from "./show-pages-shared/SeeForkedVersionsButton.js"
 import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
+import ReturnToParentProjectButton from "./show-pages-shared/ReturnToParentProjectButton.js"
 import TagList from "./show-pages-shared/TagList.js"
 import Instructions from "../shared/Instructions.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getProject from "../../api/getProject.js"
-import doesProjectHaveForks from "../../api/doesProjectHaveForks.js"
+import useCheckForProjectForks from "../../hooks/useCheckForProjectForks.js"
 import DOMPurify from "dompurify"
 
 const ProjectShow = (props) => {
@@ -26,9 +27,9 @@ const ProjectShow = (props) => {
     thumbnailImage: "",
     parentProjectId: "",
   })
-  const [hasForks, setHasForks] = useState(false)
   const params = useParams()
   const { id } = params
+  const hasForks = useCheckForProjectForks(id)
 
   useEffect(() => {
     const fetchProjectData = async () => {
@@ -41,20 +42,8 @@ const ProjectShow = (props) => {
       }
     }
     fetchProjectData()
-  }, [])
-
-  useEffect(() => {
-    const fetchHasForks = async () => {
-      try {
-        const forkExists = await doesProjectHaveForks(id)
-        setHasForks(forkExists)
-      } catch (error) {
-        console.error("Error in doesProjectHaveForks() Fetch: ", error)
-      }
-    }
-    fetchHasForks()
-  }, [])
-
+  }, [id])
+  
   useEffect(() => {
     document.body.classList.add("grey-background")
     return () => {
@@ -97,6 +86,9 @@ const ProjectShow = (props) => {
         <div className="project-show__top-buttons--left">
           {props.user && <ForkProjectButton id={id} />}
           {hasForks && <SeeForkedVersionsButton id={id} />}
+          {project.parentProjectId.length > 0 && (
+            <ReturnToParentProjectButton parentProjectId={project.parentProjectId} />
+          )}
         </div>
         <div className="project-show__top-buttons--right">
           {project.parentProjectId.length > 0 && (

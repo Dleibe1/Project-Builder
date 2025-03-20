@@ -54,7 +54,6 @@ const NavBarSearch = () => {
   }
 
   const handleKeyDown = (event) => {
-    //TODO: THIS IS CAUSING THE ERROR "localhost/:1 EventSource's response has a MIME type ("text/html") that is not "text/event-stream". Aborting the connection." TO APPEAR IN CHROME CONSOLE
     if (event.key === "Enter" && query.trim().length) {
       event.preventDefault()
       history.push(`/search?q=${query}&page=1`)

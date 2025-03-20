@@ -3,6 +3,7 @@ import { Button } from "@mui/material"
 import { Link } from "react-router-dom"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { useParams } from "react-router-dom"
+import getProjectsToCompare from "../../../api/getProjectsToCompare"
 import ReactDiffViewer from "react-diff-viewer-continued"
 import MarkdownService from "../../../services/MarkdownService"
 
@@ -39,27 +40,21 @@ const DiffView = (props) => {
   })
 
   useEffect(() => {
-    getProjectsToCompare()
-  }, [])
-
-  const getProjectsToCompare = async () => {
-    try {
-      const response = await fetch(
-        `/api/v1/projects/${parentProjectId}/forks/diff-view/${forkedProjectId}`,
-      )
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw error
+    window.scrollTo(0, 0)
+    const fetchData = async () => {
+      try {
+        const [parentProjectData, forkedProjectData] = await getProjectsToCompare(
+          parentProjectId,
+          forkedProjectId,
+        )
+        setParentProjectData(parentProjectData)
+        setForkedProjectData(forkedProjectData)
+      } catch (error) {
+        console.error("[DiffView] Error in getProjectsToCompare() Fetch:", error)
       }
-      const responseBody = await response.json()
-      const { parentProjectData, forkedProjectData } = responseBody
-      setParentProjectData(parentProjectData)
-      setForkedProjectData(forkedProjectData)
-    } catch (error) {
-      console.log(error)
     }
-  }
+    fetchData()
+  }, [])
 
   let parentProjectTags = ""
   let forkedProjectTags = ""
@@ -97,7 +92,12 @@ const DiffView = (props) => {
     <div className="project-diff-view">
       <div className="diff-view-top-section">
         <h1 className="diff-view-title">Differences From Original Project</h1>
-        <Button component={Link} to={`/projects/${forkedProjectId}`} startIcon={<ArrowBackIcon />} className="back-to-project-button">
+        <Button
+          component={Link}
+          to={`/projects/${forkedProjectId}`}
+          startIcon={<ArrowBackIcon />}
+          className="back-to-project-button"
+        >
           Back To Project Page
         </Button>
       </div>

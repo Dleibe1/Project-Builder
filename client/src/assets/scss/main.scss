@@ -128,7 +128,7 @@ body.grey-background {
 
 .how-to-use p,
 .how-to-use li {
-  font-size: 1.5rem;
+  font-size: 2rem;
   white-space: break-spaces;
 }
 
@@ -140,6 +140,10 @@ body.grey-background {
 .how-to-use-page-items-container.third .example-github-url {
   border: 2px solid #c9d2d2;
   padding: 5px;
+}
+
+.how-to-use__developer-linkedin {
+  align-self:end;
 }
 
 .banner h1 {
@@ -332,6 +336,7 @@ h5 {
 .project-tile .project-tile-title.has-forks {
   margin-bottom: 20px;
 }
+
 .button-container {
   display: flex;
   justify-content: flex-end;
@@ -380,6 +385,10 @@ h5 {
   padding: 2rem;
   margin: 100px auto;
   font-family: "Roboto", sans-serif;
+}
+
+.how-to-use {
+  margin-top: 50px;
 }
 
 .project-show {
@@ -1268,6 +1277,10 @@ h5 {
   padding: 16px;
 }
 
+.how-to-use-page-items-container ol {
+  padding:20px;
+}
+
 .instruction-list-buttons-container {
   display: flex;
   width: 100%;
@@ -1348,6 +1361,7 @@ h5 {
 
 .project-show__top-buttons {
   display: flex;
+  justify-content: space-between;
   background-color: white;
   padding: 10px;
   border-radius: 6px 6px 0px 0px;
@@ -1355,7 +1369,6 @@ h5 {
 
 .project-show__top-buttons--right,
 .project-show__top-buttons--left {
-  width: 100%;
   display: inline-flex;
 }
 

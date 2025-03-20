@@ -2,17 +2,16 @@ import React from "react"
 import { Link } from "react-router-dom"
 import Button from "@mui/material/Button"
 
-const SeeForkedVersions = ({ id }) => {
+const ReturnToParentProjectButton = ({ parentProjectId }) => {
   return (
     <Button
       component={Link}
       className="large-button"
-      to={`/project-forks/${id}`}
-      key={`project-tile-forks-button${id}`}
+      to={`/projects/${parentProjectId}`}
       sx={{
         my: 2,
         color: "white",
-        margin: "0px 1rem 0px 0px",
+        margin: "0px",
         backgroundColor: "#1976d2",
         "&:hover": {
           backgroundColor: "#1665c0",
@@ -20,9 +19,9 @@ const SeeForkedVersions = ({ id }) => {
         },
       }}
     >
-      See Forked Versions
+      View Original Project
     </Button>
   )
 }
 
-export default SeeForkedVersions
+export default ReturnToParentProjectButton

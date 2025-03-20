@@ -1,13 +1,41 @@
 import React from "react"
+import { Button } from "@mui/material"
+import { Link } from "react-router-dom"
+import LinkedInIcon from "@mui/icons-material/LinkedIn"
 
 const HowToUse = () => {
   window.scrollTo(0, 0)
   return (
     <div className="how-to-use">
+      <div className="how-to-use__developer-linkedin">
+        <Button
+          component={Link}
+          endIcon={
+            <LinkedInIcon
+              sx={{ width: "70px", height: "70px" }}
+              color="primary"
+            />
+          }
+          onClick={() =>
+            window.open(
+              "https://www.linkedin.com/in/daniel-patrick-leibensperger/",
+              "_blank",
+              "noopener,noreferrer",
+            )
+          }
+          size="large"
+          sx={{
+            marginBottom: "20px"
+          }}
+        >
+          Meet the Developer
+        </Button>
+      </div>
       <div className="banner how-to-use-page-items-container about-page-section-container-left top-banner">
         <img className="banner-image logo" src="https://i.imgur.com/dOywizt.png" />
         <h1>Create and Fork Arduino Projects</h1>
       </div>
+
       <div className="how-to-use-page-items-container top">
         <h1>Login with these credentials in order to see a built out user experience:</h1>
         <div className="example-user-credentials">
@@ -26,11 +54,29 @@ const HowToUse = () => {
           BUILDS” to view and edit the list of projects you've created.
         </p>
       </div>
+
       <div className="how-to-use-page-items-container how-to-fork">
         <h1>Fork another user's project</h1>
+        <Button
+          component={Link}
+          to={"/diff-view/2/20"}
+          sx={{
+            my: 2,
+            color: "white",
+            margin: "10px 0px",
+            backgroundColor: "#1976d2",
+            "&:hover": {
+              backgroundColor: "#1665c0",
+              color: "white",
+            },
+          }}
+          className="see-forked-versions-button"
+        >
+          See Example of Project Diff View
+        </Button>
         <p>
-          You can change any aspect of the other user's project that you'd like. This includes the code, parts
-          list, and instructions.
+          You can change any aspect of the other user's project that you'd like. This includes the
+          code, parts list, and instructions.
         </p>
         <h2>Steps:</h2>
         <ol>

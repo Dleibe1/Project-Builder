@@ -10,7 +10,7 @@ const DeleteBuildButton = ({ id }) => {
       await deleteProject(id)
       setShouldRedirect(true)
     } catch (error) {
-      console.error("Error in deleteProject() Fetch: ", error)
+      console.error("[DeleteBuildButton] Error in deleteProject() Fetch: ", error)
     }
   }
   if (shouldRedirect) {
