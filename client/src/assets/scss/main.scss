@@ -900,6 +900,11 @@ h5 {
   background-color: #1976d2;
 }
 
+#sign-in-form .sign-in-button,
+.registration .register-button{
+  padding: 8px 10px;
+}
+
 #sign-in-form .password-input-container,
 #sign-in-form .submit-button-container,
 #registration-form .username-input-container,
