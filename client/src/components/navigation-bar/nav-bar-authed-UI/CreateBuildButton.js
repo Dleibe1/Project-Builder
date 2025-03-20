@@ -9,7 +9,7 @@ const CreateBuildButton = () => {
       to="/create-new-build"
       id="new-build-button"
       key={"new-build-button"}
-      sx={{ display: { xs: "none", sm: "none", md: "none", lg: "block" } }}
+      sx={{ display: { xs: "none", sm: "none", md: "block", lg: "block" } }}
     >
       Create Build
     </Button>

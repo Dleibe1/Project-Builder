@@ -1,5 +1,6 @@
 import React from "react"
 import { Button } from "@mui/material"
+import GitHubIcon from "@mui/icons-material/GitHub"
 
 const GithubLoginButton = (props) => {
   const handleGithubLogin = () => {
@@ -11,10 +12,11 @@ const GithubLoginButton = (props) => {
       id="github-login-button"
       onClick={handleGithubLogin}
       key={"github-login-button"}
+      startIcon={<GitHubIcon />}
       sx={{
         my: 2,
         color: "white",
-        display: { xs: "none", md: "flex" },
+        display: {xs: "none", sm: "none", md: "flex", lg: "flex" },
         marginRight: "1rem",
         "&:hover": {
           backgroundColor: "#1665c0",
@@ -22,7 +24,6 @@ const GithubLoginButton = (props) => {
         },
       }}
     >
-      <img onClick={handleGithubLogin} id="github-logo" src="/images/github-logo.png" />
       LOGIN WITH GITHUB
     </Button>
   )

@@ -2,7 +2,7 @@
 
 describe("As a user visiting the website's baseUrl", () => {
   beforeEach(() => {
-    cy.visit("/")
+    cy.visit("/?page=1")
   })
 
   it("Clicking 'HOW TO USE' on the top bar brings the user to instructions for the site", () => {
