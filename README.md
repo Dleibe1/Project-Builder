@@ -51,6 +51,9 @@ When users visit your project's page on this app, the code section is automatica
  You can upload a .md file containing your instructions and the contents will be converted to HTML and rendered in the editor.  Click "Close Editor" to save the instructions.
 <img width="1673" alt="Screenshot 2025-03-20 at 12 39 09 PM" src="https://github.com/user-attachments/assets/226d9af4-41bf-4700-a739-948eca537184" />
 
+## [A Diff View has been added for forked projects]([http://localhost:3000/diff-view/2/20](https://project-builder-e7439342976b.herokuapp.com/diff-view/2/20))
+Now when a project has a forked version, you can view the changes with a GitHub style diff view.
+
 ### New features:
 - Download a project's instructions as a markdown file
 - Upload a project's instructions as a markdown file.  
