@@ -2,9 +2,6 @@
 ## A user has been seeded for use on the site.  
 Login as the example user and click "MY BUILDS" to view and edit your projects.  View another user's project and click "FORK THIS PROJECT" to create your own version of their project.
 
-<iframe src="https://www.loom.com/embed/db598ec1fded4569996cc833014e336a?sid=1ec7a859-0b23-4a6d-b635-e13d30c72a09" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-
-
 ```
 Username: example@example.com
 Password: cat
