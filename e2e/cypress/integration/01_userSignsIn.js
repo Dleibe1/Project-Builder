@@ -28,7 +28,7 @@ describe("As a user visiting the sign in page", () => {
 
       cy.root().submit()
 
-      cy.url().should("eq", `${Cypress.config().baseUrl}/1`)
+      cy.url().should("eq", `${Cypress.config().baseUrl}/?page=1`)
     })
     cy.contains("Sign Out")
   })
@@ -36,7 +36,7 @@ describe("As a user visiting the sign in page", () => {
   it("If I provide an invalid email and password, I will remain on the same page", () => {
     visitSignInPage()
     cy.get("form").within(() => {
-      cy.findByLabelText("Email").type("just@a.joke")
+      cy.findByLabelText("Email").type("invalidEmail@google.com")
       cy.findByLabelText("Password").type("password")
       cy.root().submit()
 

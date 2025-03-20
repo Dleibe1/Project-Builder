@@ -13,7 +13,7 @@ describe("As a user visiting the registration page", () => {
     visitRegistrationPage()
     cy.get("form").within(() => {
       cy.findByLabelText("Email").type("user@example.com")
-      cy.findByLabelText("Enter Desired Username").type("Dan")
+      cy.findByLabelText("Username").type("Dan")
       cy.findByLabelText("Password").type("password")
       cy.findByLabelText("Password Confirmation").type("password")
 
@@ -27,7 +27,7 @@ describe("As a user visiting the registration page", () => {
   it("If I provide an invalid email and password, I will remain on the same page", () => {
     visitRegistrationPage()
     cy.get("form").within(() => {
-      cy.findByLabelText("Email").type("just@a.joke")
+      cy.findByLabelText("Email").type("invalid@email.com")
       cy.findByLabelText("Password").type("password")
       cy.root().submit()
 

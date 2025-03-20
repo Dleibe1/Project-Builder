@@ -7,7 +7,7 @@ const truncateAllTables = () => {
       return cy.task("db:truncate", "Part")
     })
     .then(() => {
-      return cy.task("db:truncate", "Image")
+      return cy.task("db:truncate", "Tag")
     })
 }
 
