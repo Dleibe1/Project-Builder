@@ -849,8 +849,7 @@ h5 {
   margin-right: 1rem;
 }
 
-#unauthenticated-items,
-#authenticated-items {
+#top-right-nav-bar {
   display: flex;
   align-items: center;
 }
@@ -949,7 +948,7 @@ h5 {
   padding: 0px;
 }
 
-.top-left-app-bar {
+.top-left-nav-bar {
   display: flex;
   align-items: center;
   flex-direction: row-reverse;

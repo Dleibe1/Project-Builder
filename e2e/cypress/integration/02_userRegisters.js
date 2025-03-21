@@ -38,7 +38,7 @@ describe("As a user visiting the registration page", () => {
     visitRegistrationPage()
     cy.get("[data-cy='registration-form']").within(() => {
       cy.get('[data-cy="registration-form__email-input"]').type("user@example.com")
-      cy.get('[data-cy="registration-form__username-input"]').type("Dan")
+      cy.get('[data-cy="registration-form__username-input"]').type("Dave")
       cy.get('[data-cy="registration-form__password-input"]').type("password")
       cy.get('[data-cy="registration-form__password-confirmation-input"]').type("passwordNotAMatch")
       cy.root().submit()
@@ -49,7 +49,7 @@ describe("As a user visiting the registration page", () => {
   it("I will see an error message when no email is provided", () => {
     visitRegistrationPage()
     cy.get("[data-cy='registration-form']").within(() => {
-      cy.get('[data-cy="registration-form__username-input"]').type("Dan")
+      cy.get('[data-cy="registration-form__username-input"]').type("Matt")
       cy.get('[data-cy="registration-form__password-input"]').type("password")
       cy.get('[data-cy="registration-form__password-confirmation-input"]').type("password")
       cy.root().submit()
