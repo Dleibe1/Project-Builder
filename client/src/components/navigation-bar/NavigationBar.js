@@ -5,19 +5,11 @@ import {
   AppBar,
   Box,
   Toolbar,
-  IconButton,
-  Typography,
-  Menu,
   Container,
   Button,
-  MenuItem,
 } from "@mui/material"
-import MenuIcon from "@mui/icons-material/Menu"
 import NavBarSearch from "./NavBarSearch"
 import NavBarRightAuthed from "./nav-bar-authed-UI/NavBarRightAuthed"
-import SignInButton from "./nav-bar-unauthed-UI/SignInButton"
-import SignUpButton from "./nav-bar-unauthed-UI/SignUpButton"
-import GithubLoginButton from "./nav-bar-unauthed-UI/GithubLoginButton"
 import NavBarRightUnAuthed from "./nav-bar-unauthed-UI/NavBarRightUnauthed"
 
 const NavigationBar = ({ user, projectsPerPage }) => {
@@ -30,7 +22,7 @@ const NavigationBar = ({ user, projectsPerPage }) => {
   return (
     <AppBar id="app-bar" position="fixed">
       <Container maxWidth="xl">
-        <Toolbar id="top-bar-items" disableGutters>
+        <Toolbar id="nav-bar-items" disableGutters>
           <div className="top-left-nav-bar">
             <Button
               component={Link}
