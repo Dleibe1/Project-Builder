@@ -21,13 +21,10 @@ describe("As a user visiting the sign in page", () => {
 
   it("If I provide a valid email and password, I will be signed in", () => {
     visitSignInPage()
-    cy.get("form").within(() => {
-      cy.findByLabelText("Email").type("user@example.com")
-
-      cy.findByLabelText("Password").type("password")
-
+    cy.get("[data-cy='sign-in-form']").within(() => {
+      cy.get("[data-cy='sign-in-form__email-input']").type("user@example.com")
+      cy.get("[data-cy='sign-in-form__password-input']").type("password")
       cy.root().submit()
-
       cy.url().should("eq", `${Cypress.config().baseUrl}/?page=1`)
     })
     cy.contains("Sign Out")
@@ -35,9 +32,9 @@ describe("As a user visiting the sign in page", () => {
 
   it("If I provide an invalid email and password, I will remain on the same page", () => {
     visitSignInPage()
-    cy.get("form").within(() => {
-      cy.findByLabelText("Email").type("invalidEmail@google.com")
-      cy.findByLabelText("Password").type("password")
+    cy.get("[data-cy='sign-in-form']").within(() => {
+      cy.get("[data-cy='sign-in-form__email-input']").type("invalidEmail@google.com")
+      cy.get("[data-cy='sign-in-form__password-input']").type("password")
       cy.root().submit()
 
       cy.url().should("eq", `${Cypress.config().baseUrl}/user-sessions/new`)
@@ -46,10 +43,9 @@ describe("As a user visiting the sign in page", () => {
 
   it("I will see an error message when no email is provided", () => {
     visitSignInPage()
-    cy.get("form").within(() => {
-      cy.findByLabelText("Password").type("password")
+    cy.get("[data-cy='sign-in-form']").within(() => {
+      cy.get("[data-cy='sign-in-form__password-input']").type("password")
       cy.root().submit()
-
       cy.contains("is invalid")
     })
   })

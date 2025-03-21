@@ -9,13 +9,9 @@ const HowToUse = () => {
     <div className="how-to-use">
       <div className="how-to-use__developer-linkedin">
         <Button
+          id="developer-linkedin"
           component={Link}
-          endIcon={
-            <LinkedInIcon
-              sx={{ width: "70px", height: "70px" }}
-              color="primary"
-            />
-          }
+          endIcon={<LinkedInIcon sx={{ width: "70px", height: "70px" }} color="primary" />}
           onClick={() =>
             window.open(
               "https://www.linkedin.com/in/daniel-patrick-leibensperger/",
@@ -25,7 +21,7 @@ const HowToUse = () => {
           }
           size="large"
           sx={{
-            marginBottom: "20px"
+            marginBottom: "20px",
           }}
         >
           Meet the Developer

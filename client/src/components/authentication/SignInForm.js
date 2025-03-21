@@ -76,7 +76,7 @@ const SignInForm = () => {
   return (
     <div className="sign-in standard-sign-in" onSubmit={onSubmit}>
       <h1>Sign In</h1>
-      <form id="sign-in-form">
+      <form id="sign-in-form" data-cy="sign-in-form">
         {credentialsErrors ? <p className="callout alert">{credentialsErrors}</p> : null}
         <div className="email-input-container">
           <TextField
@@ -85,6 +85,7 @@ const SignInForm = () => {
             fullWidth
             className="sign-in email-input"
             label="Email"
+            data-cy="sign-in-form__email-input"
             name="email"
           />
           <FormError error={errors.email} />
@@ -94,6 +95,7 @@ const SignInForm = () => {
             value={userPayload.password}
             onChange={onInputChange}
             fullWidth
+            data-cy="sign-in-form__password-input"
             type="password"
             className="sign-in password-input"
             label="Password"
