@@ -577,8 +577,12 @@ h5 {
 
 @media (max-width: 600px) {
   .parts-list,
-  .form-parts-list{
+  .form-parts-list {
     grid-template-columns: 1fr;
+  }
+  .form-parts-list {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 
@@ -601,14 +605,6 @@ h5 {
 .form-parts-list a {
   width: 100%;
 }
-
-@media (max-width: 600px) {
-  .form-parts-list {
-    display: flex;
-    flex-wrap: wrap;
-  }
-}
-
 #parts-heading-form {
   justify-self: center;
   padding: 0px;

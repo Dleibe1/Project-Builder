@@ -66,13 +66,6 @@ const HowToUse = () => {
               color: "white",
             },
           }}
-          onClick={() =>
-            window.open(
-              "https://www.linkedin.com/in/daniel-patrick-leibensperger/",
-              "_blank",
-              "noopener,noreferrer",
-            )
-          }
           className="see-forked-versions-button"
         >
           See Example of Project Diff View
