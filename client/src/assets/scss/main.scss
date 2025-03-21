@@ -411,7 +411,7 @@ h5 {
 .project-show h1,
 .project-show h2,
 .project-show h3 {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 10vw, 4rem);
   font-family: OpenSans-Regular;
   margin-bottom: 0;
   color: #374146;
@@ -573,6 +573,13 @@ h5 {
 .form-parts-list {
   align-items: end;
   padding: 20px;
+}
+
+@media (max-width: 600px) {
+  .parts-list,
+  .form-parts-list{
+    grid-template-columns: 1fr;
+  }
 }
 
 #parts-heading {
