@@ -69,24 +69,10 @@ const parts = [
   { partName: "Breadboard", projectId: 1 },
 ]
 
-const images = [
-  {
-    projectId: 1,
-    imageURL: "https://projects.arduinocontent.cc/5dcac3f5-28bf-4a60-91c0-b71b5d034810.jpg",
-  },
-  {
-    projectId: 1,
-    imageURL: "https://projects.arduinocontent.cc/22cb4e0d-ce36-4b55-a743-42a64ca1b9d0.jpg",
-  },
-]
-
 const seedAllTables = () => {
   cy.task("db:truncate", "User")
-    .then(() => {
-      cy.task("db:truncate", "Project")
-      cy.task("db:truncate", "Part")
-      return cy.task("db:truncate", "Image")
-    })
+  cy.task("db:truncate", "Project")
+  cy.task("db:truncate", "Part")
     .then(() => {
       return cy.task("db:insert", {
         modelName: "User",
@@ -109,12 +95,6 @@ const seedAllTables = () => {
       return cy.task("db:insert", {
         modelName: "Part",
         json: parts,
-      })
-    })
-    .then(() => {
-      return cy.task("db:insert", {
-        modelName: "Image",
-        json: images,
       })
     })
 }

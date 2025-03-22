@@ -1,11 +1,11 @@
 /// <reference types="Cypress" />
 
-describe("As a user visiting the website's baseUrl", () => {
+describe("As a logged out user viewing the page on a small screen", () => {
   beforeEach(() => {
     cy.visit("/?page=1")
   })
-
-  it("Clicks 'HOW TO USE' (whether it's visible or in the burger menu)", () => {
+  cy.viewport(600, 900)
+  it("Clicks the burger menu and sees navigation options", () => {
     cy.visit("/?page=1")
     cy.get("body").then(($body) => {
       if ($body.find("#how-to-use-button:visible").length > 0) {
@@ -28,8 +28,5 @@ describe("As a user visiting the website's baseUrl", () => {
     cy.url().should("include", "linkedin.com")
   })
 
-  // it("How to use site has the creator's LinkedIn", () => {
-  //   cy.get("#how-to-use-button").click()
-  //   cy.contains("LinkedIn").should("have.attr", "href").and("include", "linkedin.com")
-  // })
+
 })

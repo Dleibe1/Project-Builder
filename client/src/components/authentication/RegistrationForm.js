@@ -103,7 +103,7 @@ const RegistrationForm = () => {
   return (
     <div className="grid-container sign-in registration">
       <h1>Register</h1>
-      <form id="registration-form" onSubmit={onSubmit}>
+      <form data-cy="registration-form" id="registration-form" onSubmit={onSubmit}>
         <ErrorList errors={serverErrors} />
         <div>
           <TextField
@@ -111,6 +111,7 @@ const RegistrationForm = () => {
             onChange={onInputChange}
             fullWidth
             className="registration email-input"
+            data-cy="registration-form__email-input"
             label="Email"
             name="email"
           />
@@ -122,6 +123,7 @@ const RegistrationForm = () => {
             onChange={onInputChange}
             fullWidth
             className="registration"
+            data-cy="registration-form__username-input"
             label="Username"
             name="userName"
           />
@@ -133,6 +135,7 @@ const RegistrationForm = () => {
             onChange={onInputChange}
             fullWidth
             className="registration"
+            data-cy="registration-form__password-input"
             label="Password"
             type="password"
             name="password"
@@ -145,13 +148,14 @@ const RegistrationForm = () => {
             onChange={onInputChange}
             fullWidth
             className="registration"
+            data-cy="registration-form__password-confirmation-input"
             label="Password Confirmation"
             type="password"
             name="passwordConfirmation"
           />
         </div>
         <div className="submit-button-container">
-          <Button type="submit" className="large-button register-button">
+          <Button data-cy="submit" type="submit" className="large-button register-button">
             Register
           </Button>
         </div>
