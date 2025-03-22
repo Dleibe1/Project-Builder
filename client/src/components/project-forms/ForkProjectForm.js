@@ -10,7 +10,7 @@ import getProject from "../../api/getProject.js"
 import postProjectFork from "../../api/postProjectFork.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
-import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
+import InstructionEditor from "./project-forms-shared/InstructionEditor.js"
 import Instructions from "../shared/Instructions.js"
 import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
 
@@ -23,7 +23,7 @@ const ForkProjectForm = (props) => {
     title: "",
     tags: [],
     appsAndPlatforms: "",
-    instructions: "",
+    instructions: [],
     parts: [],
     description: "",
     code: "",

@@ -43,7 +43,7 @@ const ProjectShow = (props) => {
     }
     fetchProjectData()
   }, [id])
-  
+
   useEffect(() => {
     document.body.classList.add("grey-background")
     return () => {

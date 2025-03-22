@@ -14,7 +14,6 @@ class Project extends Model {
         title: { type: "string", maxLength: 70 },
         appsAndPlatforms: { oneOf: [{ type: "string" }, { type: "null" }] },
         thumbnailImage: { type: "string" },
-        instructions: { type: "string" },
         documentation: {
           oneOf: [{ type: "string" }, { type: "null" }],
         },
@@ -31,7 +30,7 @@ class Project extends Model {
   }
 
   static get relationMappings() {
-    const { User, Part, Tag } = require("./index.js")
+    const { User, Part, Tag, Instruction } = require("./index.js")
     return {
       user: {
         relation: Model.HasOneRelation,
@@ -67,6 +66,14 @@ class Project extends Model {
             to: "project_tags.tagId",
           },
           to: "tags.id",
+        },
+      },
+      instructions: {
+        relation: Model.HasManyRelation,
+        modelClass: Instruction,
+        join: {
+          from: "projects.id",
+          to: "instructions.projectId",
         },
       },
     }

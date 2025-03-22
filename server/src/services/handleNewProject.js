@@ -1,4 +1,4 @@
-import { Project, Part, Tag } from "../models/index.js"
+import { Project, Part, Tag, Instruction } from "../models/index.js"
 
 const handleNewProject = async ({
   title,
@@ -20,14 +20,25 @@ const handleNewProject = async ({
     githubFileURL,
     userId,
     thumbnailImage,
-    instructions
+    instructions,
   })
   const newProjectId = parseInt(newProject.id)
   await Promise.all(
     parts.map((part) => {
-      return Part.query().insert({ projectId: newProjectId, partName: part.partName, partPurchaseURL: part.partPurchaseURL })
+      return Part.query().insert({
+        projectId: newProjectId,
+        partName: part.partName,
+        partPurchaseURL: part.partPurchaseURL,
+      })
     }),
   )
+
+  for (const instruction of instructions) {
+    await Instruction.query().insert({
+      projectId: forkedProjectId,
+      instructionHTML: instruction.instructionHTML,
+    })
+  }
 
   const tagsToRelate = await Tag.query()
     .select("id")

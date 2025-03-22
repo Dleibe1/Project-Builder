@@ -1,4 +1,4 @@
-import { Project, Part, Tag } from "../models/index.js"
+import { Project, Part, Tag, Instruction } from "../models/index.js"
 
 const handleForkProject = async (parentProjectId, userId, forkData) => {
   const parentProject = await Project.query().findById(parentProjectId)
@@ -16,17 +16,24 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
     description: forkData.description,
     documentation: forkData.documentation,
     code: forkData.code,
-    instructions: forkData.instructions,
     parentProjectId,
   })
-  const parts = forkData.parts
   const forkedProjectId = parseInt(forkedProject.id)
+  const parts = forkData.parts
 
   for (const part of parts) {
     await Part.query().insert({
       projectId: forkedProjectId,
       partName: part.partName,
       partPurchaseURL: part.partPurchaseURL,
+    })
+  }
+
+  const instructions = forkData.instructions
+  for (const instruction of instructions) {
+    await Instruction.query().insert({
+      projectId: forkedProjectId,
+      instructionHTML: instruction.instructionHTML,
     })
   }
 

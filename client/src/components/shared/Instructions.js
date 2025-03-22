@@ -16,6 +16,10 @@ const Instructions = ({ project, setEditingInstructions }) => {
     hljs.highlightAll()
   }, [project.instructions])
 
+  const instructionList = project.instructions.map(instruction => {
+    return instruction.instructionHTML
+  })
+
   return (
     <section className={`instructions-list showpage-items-container ${project.instructions.length === 0 && "empty"}`}>
       {["/edit-my-build/", "/fork-project/", "/create-new-build"].some((allowedPathname) =>
@@ -47,7 +51,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
           <div
             className="preserve-white-space instruction-text showpage-items-container"
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(project.instructions)
+              __html: DOMPurify.sanitize(instructionList.join(""))
             }}
           ></div>
         </>

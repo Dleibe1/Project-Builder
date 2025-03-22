@@ -1,4 +1,4 @@
-import { Project, Part, Tag } from "../models/index.js"
+import { Project, Part, Tag, Instruction } from "../models/index.js"
 
 const handleUpdateProject = async (
   {
@@ -34,9 +34,13 @@ const handleUpdateProject = async (
       )
   }
   if (partsToInsert.length) {
-    await Part.query().insert(
-      partsToInsert.map((part) => ({ projectId: projId, partName: part.partName, partPurchaseURL: part.partPurchaseURL })),
-    )
+    for (const part of partsToInsert) {
+      await Part.query().insert({
+        projectId: projId,
+        partName: part.partName,
+        partPurchaseURL: part.partPurchaseURL,
+      })
+    }
   }
 
   const relatedTagsData = await project.$relatedQuery("tags")
@@ -66,6 +70,14 @@ const handleUpdateProject = async (
       )
   }
 
+  await Instruction.query().delete().where("projectId", projId)
+  for (const instruction of instructions) {
+    await Instruction.query().insert({
+      projectId: projId,
+      instructionHTML: instruction.instructionHTML,
+    })
+  }
+
   await Project.query()
     .update({
       title,
@@ -75,7 +87,6 @@ const handleUpdateProject = async (
       githubFileURL: githubFileURLField,
       thumbnailImage,
       userId,
-      instructions,
     })
     .where("id", projId)
 }

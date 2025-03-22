@@ -6,8 +6,8 @@
  * @param {Knex} knex
  */
 exports.up = async (knex) => {
-  await knex.schema.dropTableIfExists("instructions")
-  await knex.schema.alterTable("projects", (table) => {
+  return knex.schema.dropTableIfExists("instructions")
+  .alterTable("projects", (table) => {
     table.text("instructions")
   })
 }
@@ -16,5 +16,5 @@ exports.up = async (knex) => {
  * @param {Knex} knex
  */
 exports.down = async (knex) => {
-  await knex.schema.dropTableIfExists("instructions")
+  return knex.schema.dropTableIfExists("instructions")
 }

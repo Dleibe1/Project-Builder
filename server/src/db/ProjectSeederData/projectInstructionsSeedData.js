@@ -1,3 +1,5 @@
+
+
 const projectInstructionsSeedData = 
 [`<div><p>This project is made for Arduino beginners who are looking to learn how to interface \
 an RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and \
@@ -1002,3 +1004,4 @@ to the Arduino IDE and include them in your sketch. <br>2. Upload the \
 code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.</p></div>`]
 
 export default projectInstructionsSeedData
+

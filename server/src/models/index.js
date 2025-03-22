@@ -3,5 +3,6 @@ const User = require("./User.js")
 const Project = require("./Project.js")
 const Part = require("./Part.js")
 const Tag = require("./Tag.js")
+const Instruction = require("./Instruction.js")
 
-module.exports = { User, Project, Part, Tag }
+module.exports = { User, Project, Part, Tag, Instruction }

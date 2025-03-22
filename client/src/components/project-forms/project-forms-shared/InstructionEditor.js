@@ -4,7 +4,7 @@ import MarkdownService from "../../../services/MarkdownService.js"
 import uploadImageFile from "../../../api/uploadImageFile.js"
 import BundledEditor from "../../../services/TinyMCEBundler.js"
 
-const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }) => {
+const InstructionEditor = ({ project, setProject, setEditingInstructions }) => {
   const editorRef = useRef(null)
   const dropzoneOpenRef = useRef(null)
 
@@ -166,4 +166,4 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
   )
 }
 
-export default InstructionsTinyMCEForm
+export default InstructionEditor
