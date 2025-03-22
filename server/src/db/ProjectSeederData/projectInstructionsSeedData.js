@@ -1,6 +1,6 @@
 const projectInstructionsSeedData = 
-[`<div><p>This project is made for Arduino beginners who are looking for learning how to interface \
-the RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and \
+[`<div><p>This project is made for Arduino beginners who are looking to learn how to interface \
+an RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and \
 Common Cathode (CC) concept as well as the pulse width modulation (PWM) \
 signals.</p><br><p>RGB LED Types and Structure</p><br><p>RGB LEDs have three LEDs inside them \
 and usually, these three internal LEDs share either a common anode or a common cathode \
@@ -484,8 +484,7 @@ corresponding button you pressed.</p><br><p>Note the codes on a paper or copy th
 document file on PC. </p></div>`,
 
 `<div><p>Here, You can learn "How to Control Motors using L298n Motor Driver & Arduino Uno".<br>You \
-can even control Speed & Direction of Motors using this tutorial.</p><br><p>Additionally, I \
-am Attaching a Video for your proper guidance.<br>You can see Step by Step Process \
+can even control Speed & Direction of Motors using this tutorial.</p><br>You can see Step by Step Process \
 physically- </p><br><img \
 src="https://projects.arduinocontent.cc/f50108d1-ac6d-4d5f-acb5-90ca5a093cd4.jpg"></img><br><p>Here, \
 I am attached a L298n Motor Driver Pinout Diagram- </p><br><img \
@@ -927,8 +926,8 @@ There are many solutions; a very simple one is described in this \
 tutorial<br>https://docs.arduino.cc/arduino-cloud/tutorials/cloud-environmental-data \
 <br>and can be done with a MKR WiFi 1010 board, a MKR ENV Shield, and IoT Cloud. </p></div>`,
 
-`<div><p>This project is made for Arduino beginners who are looking for learning how to interface \
-the RGB led with the Arduino Uno and use a push button to control the LED. Also, we will \
+`<div><p>This project is made for Arduino beginners who are looking to learn how to interface \
+an RGB led with the Arduino Uno and use a push button to control the LED. Also, we will \
 understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse \
 width modulation (PWM) signals. </p><br><p>RGB LED Types and Structure </p><br><p>RGB LEDs have \
 three LEDs inside them and usually, these three internal LEDs share either a common anode \
