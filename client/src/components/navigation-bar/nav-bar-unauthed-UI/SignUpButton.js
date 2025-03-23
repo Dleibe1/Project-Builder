@@ -7,7 +7,6 @@ const SignUpButton = (props) => {
     <Link to="/users/new">
       <Button
         id="sign-up-button"
-        key={"sign-up-button"}
         sx={{
           my: 2,
           color: "white",

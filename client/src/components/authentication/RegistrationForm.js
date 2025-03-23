@@ -75,17 +75,18 @@ const RegistrationForm = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault()
-    try {
-      if (validateInput(userPayload)) {
-        await registerUser(userPayload)
-        return setShouldRedirect(true)
-      }
-    } catch (error) {
-      if (error.serverErrors) {
-        setServerErrors(error.serverErrors)
-      } else {
-        console.error('Error in registerUser() Fetch:', error)
-      }
+    if (validateInput(userPayload)) {
+      registerUser(userPayload)
+        .then(() => {
+          return setShouldRedirect(true)
+        })
+        .catch((error) => {
+          if (error.serverErrors) {
+            return setServerErrors(error.serverErrors)
+          } else {
+            console.error("Error in registerUser() Fetch:", error)
+          }
+        })
     }
   }
 
@@ -153,6 +154,7 @@ const RegistrationForm = () => {
             type="password"
             name="passwordConfirmation"
           />
+          <FormError error={errors.passwordConfirmation} />
         </div>
         <div className="submit-button-container">
           <Button data-cy="submit" type="submit" className="large-button register-button">

@@ -90,7 +90,7 @@ const ForkProjectForm = (props) => {
   return !editingInstructions ? (
     <div className="fork-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
+      <form id="fork-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
           <h1>Fork Project</h1>
           <section className="add-tags">

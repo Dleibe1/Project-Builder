@@ -3,8 +3,10 @@ import { useDropzone } from "react-dropzone"
 import MarkdownService from "../../../services/MarkdownService.js"
 import uploadImageFile from "../../../api/uploadImageFile.js"
 import BundledEditor from "../../../services/TinyMCEBundler.js"
+import { useScrollTrigger } from "@mui/material"
 
 const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }) => {
+  const [editorInitialized, setEditorInitialized] = useState()
   const editorRef = useRef(null)
   const dropzoneOpenRef = useRef(null)
 
@@ -47,6 +49,8 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
       instructions: newValue,
     }))
   }
+
+
 
   return (
     <div className="tinymce-container">

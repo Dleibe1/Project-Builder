@@ -5,14 +5,12 @@ import deleteProject from "../../../api/deleteProject"
 
 const DeleteBuildButton = ({ id }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const deleteBuild = async () => {
-    try {
-      await deleteProject(id)
-      setShouldRedirect(true)
-    } catch (error) {
-      console.error("[DeleteBuildButton] Error in deleteProject() Fetch: ", error)
-    }
+  const deleteBuild = () => {
+   deleteProject(id).then(() => {
+   setShouldRedirect(true)
+   })
   }
+
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
   }

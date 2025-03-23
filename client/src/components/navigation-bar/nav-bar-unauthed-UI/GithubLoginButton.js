@@ -11,7 +11,6 @@ const GithubLoginButton = (props) => {
     <Button
       id="github-login-button"
       onClick={handleGithubLogin}
-      key={"github-login-button"}
       startIcon={<GitHubIcon />}
       sx={{
         my: 2,

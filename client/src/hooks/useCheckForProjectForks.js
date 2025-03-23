@@ -4,15 +4,9 @@ import { useEffect, useState } from "react"
 const useCheckForProjectForks = (id) => {
   const [hasForks, setHasForks] = useState(false)
   useEffect(() => {
-    const fetchHasForks = async () => {
-      try {
-        const forkExists = await doesProjectHaveForks(id)
-        setHasForks(forkExists)
-      } catch (error) {
-        console.error("Error in doesProjectHaveForks() Fetch: ", error)
-      }
-    }
-    fetchHasForks()
+    doesProjectHaveForks(id).then((forkExists) => {
+      setHasForks(forkExists)
+    })
   }, [])
   return hasForks
 }

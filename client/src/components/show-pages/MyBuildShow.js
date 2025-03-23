@@ -33,16 +33,10 @@ const MyBuildShow = (props) => {
   const hasForks = useCheckForProjectForks(id)
 
   useEffect(() => {
-    const fetchMyBuild = async () => {
-      try {
-        const myBuild = await getMyBuild(id)
-        prepForFrontEnd(myBuild)
-        setMyBuild(myBuild)
-      } catch (error) {
-        console.error("error in getMyBuild() Fetch: ", error)
-      }
-    }
-    fetchMyBuild()
+    getMyBuild(id).then((userProject) => {
+      prepForFrontEnd(userProject)
+      setMyBuild(userProject)
+    })
   }, [id])
 
   useEffect(() => {
@@ -64,7 +58,7 @@ const MyBuildShow = (props) => {
     return (
       <div
         className="part-item-in-showpage"
-        key={`${(part.partName, part.partPurchaseURL)}${index}`}
+        key={`${part.partName} ${part.partPurchaseURL} ${index}`}
       >
         {part.partPurchaseURL.length === 0 && (
           <p className="part-without-purchase-link">{part.partName}</p>

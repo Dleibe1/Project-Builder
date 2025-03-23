@@ -44,15 +44,9 @@ const EditBuildForm = (props) => {
   }, [])
 
   useEffect(() => {
-    const fetchMyBuild = async () => {
-      try {
-        const myBuild = await getMyBuild(id)
-        setProject(myBuild)
-      } catch (error) {
-        console.error("[EditBuildForm] error in getMyBuild() Fetch: ", error)
-      }
-    }
-    fetchMyBuild()
+    getMyBuild(id).then((myBuild) => {
+      setProject(myBuild)
+    })
   }, [])
 
   const handleThumbnailImageUpload = async (acceptedImage) => {
@@ -92,7 +86,7 @@ const EditBuildForm = (props) => {
   return !editingInstructions ? (
     <div className="edit-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="edit-build-form" id="edit-project-form" onSubmit={handleSubmit}>
+      <form id="edit-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
           <h1>Edit Project</h1>
           <section className="add-tags">

@@ -32,6 +32,13 @@ const SignInForm = () => {
       }
     }
 
+    if (email.trim() === "") {
+      newErrors = {
+        ...newErrors,
+        email: "is required",
+      }
+    }
+
     if (password.trim() === "") {
       newErrors = {
         ...newErrors,
@@ -49,16 +56,17 @@ const SignInForm = () => {
   const onSubmit = async (event) => {
     event.preventDefault()
     if (validateInput(userPayload)) {
-      try {
-        await signInUser(userPayload)
-        setShouldRedirect(true)
-      } catch (error) {
-        if (error.credentialsErrors) {
-          return setCredentialsErrors(error.credentialsErrors)
-        } else {
-          console.error("Error in signInUser() Fetch", error)
-        }
-      }
+      signInUser(userPayload)
+        .then(() => {
+          return setShouldRedirect(true)
+        })
+        .catch((error) => {
+          if (error.credentialsErrors) {
+            return setCredentialsErrors(error.credentialsErrors)
+          } else {
+            console.error("Error in signInUser() Fetch", error)
+          }
+        })
     }
   }
 

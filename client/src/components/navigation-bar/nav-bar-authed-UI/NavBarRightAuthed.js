@@ -30,23 +30,18 @@ const NavBarRightAuthed = ({ user }) => {
   const loggedInUserName = user ? user.userName || user.githubUserName : ""
   const avatarLetter = loggedInUserName[0]?.toUpperCase()
   const avatarImageURL = user?.githubAvatarURL
-  const avatarWithImage = [
-    <Avatar key={"github-avatar-image"} alt={loggedInUserName} src={avatarImageURL} />,
-  ]
-  const avatarJustALetter = [
-    <Avatar key={"username-first-letter"} alt={loggedInUserName}>
-      {avatarLetter}
-    </Avatar>,
-  ]
+  const avatarWithImage = [<Avatar alt={loggedInUserName} src={avatarImageURL} />]
+  const avatarJustALetter = [<Avatar alt={loggedInUserName}>{avatarLetter}</Avatar>]
 
   const signOut = async (event) => {
     event.preventDefault()
-    try {
-      await signOutUser()
-      setShouldRedirect(true)
-    } catch (error) {
-      console.error("Error in signOutUser(): ", error)
-    }
+    signOutUser()
+      .then(() => {
+        return setShouldRedirect(true)
+      })
+      .catch((error) => {
+        console.error("Sign out failed: ", error)
+      })
   }
 
   if (shouldRedirect) {
@@ -56,7 +51,7 @@ const NavBarRightAuthed = ({ user }) => {
     <>
       <MyBuildsButton />
       <CreateBuildButton />
-      <SignOutButton shouldRedirect={shouldRedirect} signOut={signOut} />
+      <SignOutButton signOut={signOut} />
       <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex", lg: "none" } }}>
         <IconButton
           id="burger-menu"
@@ -116,7 +111,6 @@ const NavBarRightAuthed = ({ user }) => {
           </MenuItem>
           <MenuItem
             sx={{ display: { xs: "flex", md: "none" } }}
-            key={"burger-menu-logout"}
             onClick={signOut}
           >
             <Typography textAlign="center">Sign Out</Typography>
@@ -144,7 +138,7 @@ const NavBarRightAuthed = ({ user }) => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        <MenuItem key={"avatar-logout"} onClick={signOut}>
+        <MenuItem onClick={signOut}>
           <Typography textAlign="center">Sign Out</Typography>
         </MenuItem>
       </Menu>

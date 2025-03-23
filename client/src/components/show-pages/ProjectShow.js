@@ -63,7 +63,7 @@ const ProjectShow = (props) => {
     return (
       <div
         className="part-item-in-showpage"
-        key={`${(part.partName, part.partPurchaseURL)}${index}`}
+        key={`${part.partName} ${part.partPurchaseURL} ${index}`}
       >
         {part.partPurchaseURL.length === 0 && (
           <p className="part-without-purchase-link">{part.partName}</p>
