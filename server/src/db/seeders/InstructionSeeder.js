@@ -88,7 +88,7 @@ src="https://i.imgur.com/UW1R9mh.png"></div>`
 },
 {
 projectId: 2,
-instructionHTML: `<div><p></p><br><p>Details about the code</p><br><p>You need to follow these instructions to  \
+instructionHTML: `<div><p>Details about the code</p><br><p>You need to follow these instructions to  \
 make it work: <br>1. You need to add the dht11 library to the Arduino IDE and include it in  \
 your sketch. <br>2. Upload the code. <br>3. When the code is uploaded, open the Serial Monitor  \
 and set the baud rate to 9600. <br>4. You will see the humidity and temperature. </p></div>`
@@ -663,7 +663,7 @@ document file on PC. </p></div>`
 {
 projectId: 10,
 instructionHTML: `<div><p>Here, You can learn "How to Control Motors using L298n Motor Driver & Arduino Uno".<br>You  \
-can even control Speed & Direction of Motors using this tutorial.</p><br>You can see Step by Step Process  \
+can even control Speed & Direction of Motors using this tutorial.</p><br><p>You can see Step by Step Process  \
 physically- </p><br><img  \
 src="https://projects.arduinocontent.cc/f50108d1-ac6d-4d5f-acb5-90ca5a093cd4.jpg"></div>`
 },
@@ -700,10 +700,6 @@ projectId: 10,
 instructionHTML: `<div><p>Now  \
 You can Control your Motor Speed.<br>I am attached my Final Look of our Project. </p><br><img  \
 src="https://projects.arduinocontent.cc/601919da-0dc7-4158-9e4c-66e1192c1e0e.jpg"></div>`
-},
-{
-projectId: 10,
-instructionHTML: `<div><p></p></div>`
 },
 {
 projectId: 11,
@@ -995,7 +991,7 @@ Pinout is given as below: </p></div>`
 },
 {
 projectId: 13,
-instructionHTML: `<div><p></p><br><img  \
+instructionHTML: `<div><img  \
 src="https://projects.arduinocontent.cc/947a4793-1603-4d45-b9fa-e314f780e848.jpg"></div>`
 },
 {
@@ -1391,7 +1387,7 @@ src="https://i.imgur.com/xdSSgkL.png"></div>`
 },
 {
 projectId: 20,
-instructionHTML: `<div><p></p><br><p>Details about the code</p><br><p>You need to follow these instructions to  \
+instructionHTML: `<div><p>Details about the code</p><br><p>You need to follow these instructions to  \
 make it work: <br>1. You need to add the dht11, Adafruit_GFX, and Adafruit_SSD1306 libraries  \
 to the Arduino IDE and include them in your sketch. <br>2. Upload the  \
 code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.</p></div>`

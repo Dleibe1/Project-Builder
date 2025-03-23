@@ -41,12 +41,17 @@ const InstructionEditor = ({ project, setProject, setEditingInstructions }) => {
     }
   }
 
-  const handleEditorChange = (newValue, editor) => {
-    setProject((prevState) => ({
-      ...prevState,
-      instructions: newValue,
-    }))
-  }
+  // const handleEditorChange = (newValue, editor) => {
+  //   const 
+  //   setProject((prevState) => ({
+  //     ...prevState,
+  //     instructions,
+  //   }))
+  // }
+
+  const allInstructions = project?.instructions.map((instruction, index) => {
+    return `<h2>**Instruction**</h2> ${instruction.instructionHTML}`
+  })
 
   return (
     <div className="tinymce-container">
@@ -159,7 +164,7 @@ const InstructionEditor = ({ project, setProject, setEditingInstructions }) => {
           min_height: 1000,
           width: "95vw",
         }}
-        value={project?.instructions}
+        value={allInstructions.join("")}
         onEditorChange={(newValue, editor) => handleEditorChange(newValue, editor)}
       />
     </div>
