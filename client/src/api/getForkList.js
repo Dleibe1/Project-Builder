@@ -12,6 +12,7 @@ const getForkList = async (parentProjectId, currentPage, projectsPerPage) => {
     return [forkList, forkedProjectsCount]
   } catch (error) {
     console.error(`Error in Fetch: ${error.message}`)
+    throw error
   }
 }
 

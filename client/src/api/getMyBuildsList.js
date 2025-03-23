@@ -11,6 +11,7 @@ const getMyBuildsList = async (currentPage, projectsPerPage) => {
     return [userBuilds, userBuildsCount]
   } catch (error) {
     console.error(`Error in Fetch: ${error.message}`)
+    throw error
   }
 }
 

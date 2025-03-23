@@ -38,32 +38,36 @@ const NewProjectForm = (props) => {
     }
   }, [])
 
-  const handleThumbnailImageUpload = async (acceptedImage) => {
-    try {
-      const imageURL = await uploadImageFile(acceptedImage)
-      setProject((prevState) => ({
-        ...prevState,
-        thumbnailImage: imageURL,
-      }))
-    } catch (error) {
-      console.error("[NewProjectForm ] Error in uploadProjectImage() Fetch: ", error)
-    }
-  }
-  
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    try {
-      await postProject({
-        ...project,
-        userId: props.user.id,
-        githubFileURL: project.githubFileURL?.trim(),
+  const handleThumbnailImageUpload = (acceptedImage) => {
+    uploadImageFile(acceptedImage)
+      .then((imageURL) => {
+        setProject((prevState) => ({
+          ...prevState,
+          thumbnailImage: imageURL,
+        }))
       })
-      setShouldRedirect(true)
-    } catch (error) {
-      if (error.serverErrors) {
-        setErrors(error.serverErrors)
-      }
-    }
+      .catch((error) => {
+        console.error("Error uploading thumbnail image: ", error)
+      })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    postProject({
+      ...project,
+      userId: props.user.id,
+      githubFileURL: project.githubFileURL?.trim(),
+    })
+      .then(() => {
+        return setShouldRedirect(true)
+      })
+      .catch((error) => {
+        if (error.serverErrors) {
+          setErrors(error.serverErrors)
+        } else {
+          console.error("Error in submitting NewProjectForm: ", error)
+        }
+      })
   }
 
   const handleInputChange = (event) => {

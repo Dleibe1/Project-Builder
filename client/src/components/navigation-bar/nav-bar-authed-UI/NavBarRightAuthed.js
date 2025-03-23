@@ -33,7 +33,7 @@ const NavBarRightAuthed = ({ user }) => {
   const avatarWithImage = [<Avatar key="github-avatar"  alt={loggedInUserName} src={avatarImageURL} />]
   const avatarJustALetter = [<Avatar key="letter-avatar" alt={loggedInUserName}>{avatarLetter}</Avatar>]
 
-  const signOut = async (event) => {
+  const signOut = (event) => {
     event.preventDefault()
     signOutUser()
       .then(() => {

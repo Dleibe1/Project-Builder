@@ -32,18 +32,12 @@ const ProjectShow = (props) => {
   const hasForks = useCheckForProjectForks(id)
 
   useEffect(() => {
-    const fetchProjectData = async () => {
-      try {
-        const project = await getProject(id)
-        prepForFrontEnd(project)
-        setProject(project)
-      } catch (error) {
-        console.error("Error in getProject(): ", error)
-      }
-    }
-    fetchProjectData()
+    getProject(id).then((projectData) => {
+      prepForFrontEnd(projectData)
+      setProject(projectData)
+    })
   }, [id])
-  
+
   useEffect(() => {
     document.body.classList.add("grey-background")
     return () => {

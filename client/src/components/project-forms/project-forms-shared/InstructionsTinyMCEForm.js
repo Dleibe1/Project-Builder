@@ -29,7 +29,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
   }, [])
 
   const { getInputProps, getRootProps, open } = useDropzone({
-    onDrop: async (acceptedFiles) => {
+    onDrop: (acceptedFiles) => {
       uploadImageFile(acceptedFiles)
         .then((imageURL) => {
           if (editorRef.current) {

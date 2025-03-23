@@ -13,6 +13,7 @@ const getProjectsToCompare = async (parentProjectId, forkedProjectId) => {
     return [parentProjectData, forkedProjectData]
   } catch (error) {
     console.error(`Error in Fetch: ${error.message}`)
+    throw error
   }
 }
 

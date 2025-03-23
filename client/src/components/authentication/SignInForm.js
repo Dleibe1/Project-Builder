@@ -53,7 +53,7 @@ const SignInForm = () => {
     return false
   }
 
-  const onSubmit = async (event) => {
+  const onSubmit = (event) => {
     event.preventDefault()
     if (validateInput(userPayload)) {
       signInUser(userPayload)

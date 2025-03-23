@@ -49,30 +49,32 @@ const EditBuildForm = (props) => {
     })
   }, [])
 
-  const handleThumbnailImageUpload = async (acceptedImage) => {
-    try {
-      const imageURL = await uploadImageFile(acceptedImage)
-      setProject((prevState) => ({
-        ...prevState,
-        thumbnailImage: imageURL,
-      }))
-    } catch (error) {
-      console.error("Error in uploadProjectImage() Fetch: ", error)
-    }
+  const handleThumbnailImageUpload = (acceptedImage) => {
+    uploadImageFile(acceptedImage)
+      .then((imageURL) => {
+        setProject((prevState) => ({
+          ...prevState,
+          thumbnailImage: imageURL,
+        }))
+      })
+      .catch((error) => {
+        console.error("Error uploading thumbnail image: ", error)
+      })
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
-    try {
-      await updateProject(project, id)
-      setShouldRedirect(true)
-    } catch (error) {
-      if (error.serverErrors) {
-        setErrors(error.serverErrors)
-      } else {
-        console.error("Error in updateProject Fetch: ", error)
-      }
-    }
+    updateProject(project, id)
+      .then(() => {
+        setShouldRedirect(true)
+      })
+      .catch((error) => {
+        if (error.serverErrors) {
+          setErrors(error.serverErrors)
+        } else {
+          console.error("Error in updateProject Fetch: ", error)
+        }
+      })
   }
 
   const handleInputChange = (event) => {

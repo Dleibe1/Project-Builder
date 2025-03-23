@@ -11,6 +11,7 @@ const getMyBuild = async (id) => {
     return userProject
   } catch (error) {
     console.error(`Error in Fetch: ${error.message}`)
+    throw error
   }
 }
 

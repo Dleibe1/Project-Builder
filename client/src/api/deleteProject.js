@@ -13,6 +13,7 @@ const deleteProject = async (id) => {
     }
   } catch (error) {
     console.error(`Error in Fetch: ${error.message}`)
+    throw error
   }
 }
 export default deleteProject

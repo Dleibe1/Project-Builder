@@ -10,6 +10,7 @@ const doesProjectHaveForks = async (id) => {
     return forkExists
   } catch (error) {
     console.error(`Error in Fetch: ${error.message}`)
+    throw error
   }
 }
 export default doesProjectHaveForks

@@ -17,7 +17,7 @@ const uploadImageFile = async (acceptedFiles) => {
     const imageURL = responseBody.imageURL
     return imageURL
   } catch (error) {
-    console.error(`Error in Fetch: ${error.message}`)
+    console.error(`Error in Upload Image Fetch: ${error.message}`)
     throw error
   }
 }
