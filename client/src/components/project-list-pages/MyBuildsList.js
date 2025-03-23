@@ -23,6 +23,8 @@ const MyBuildList = ({ projectsPerPage }) => {
   }, [pageNumberURLParam])
 
   useEffect(() => {
+    
+
     const fetchMyBuildsList = async () => {
       try {
         const [userBuilds, userBuildsCount] = await getMyBuildsList(currentPage, projectsPerPage)

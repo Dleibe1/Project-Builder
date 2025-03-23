@@ -21,6 +21,7 @@ const postProject = async (newProjectData) => {
     }
   } catch (error) {
     console.error(`Error in Fetch: ${error.message}`)
+    throw error
   }
 }
 
