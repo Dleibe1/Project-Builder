@@ -8,7 +8,6 @@ const SeeForkedVersions = ({ id }) => {
       component={Link}
       className="large-button"
       to={`/project-forks/${id}`}
-      key={`project-tile-forks-button${id}`}
       sx={{
         my: 2,
         color: "white",

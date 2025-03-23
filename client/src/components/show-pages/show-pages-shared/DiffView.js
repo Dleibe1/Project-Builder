@@ -41,19 +41,12 @@ const DiffView = (props) => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    const fetchData = async () => {
-      try {
-        const [parentProjectData, forkedProjectData] = await getProjectsToCompare(
-          parentProjectId,
-          forkedProjectId,
-        )
+    getProjectsToCompare(parentProjectId, forkedProjectId).then(
+      ([parentProjectData, forkedProjectData]) => {
         setParentProjectData(parentProjectData)
         setForkedProjectData(forkedProjectData)
-      } catch (error) {
-        console.error("[DiffView] Error in getProjectsToCompare() Fetch:", error)
-      }
-    }
-    fetchData()
+      },
+    )
   }, [])
 
   let parentProjectTags = ""

@@ -1,10 +1,20 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import MarkdownService from "../../../services/MarkdownService.js"
 import uploadImageFile from "../../../api/uploadImageFile.js"
 import BundledEditor from "../../../services/TinyMCEBundler.js"
 
 const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }) => {
+  /*
+    By default the TinyMCE editor's root block is a <p> tag.  Existing instructions
+    contain HTML with a <div> root block that we do not want nested inside a <p> tag.  
+    Therefore this component contains logic to set the root block to a <p> tag only if
+    project.instructions is empty when the component mounts.  When this new project is submitted,
+    it gets wrapped in a <div> in the handleCloseEditor function.  If the user is editing
+    instructions that were not empty when the component mounted, those instructions are already
+    wrapped in a <div>
+  */
+  const [isNewProject, setIsNewProject] = useState(project?.instructions.length === 0)
   const editorRef = useRef(null)
   const dropzoneOpenRef = useRef(null)
 
@@ -19,15 +29,16 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
   }, [])
 
   const { getInputProps, getRootProps, open } = useDropzone({
-    onDrop: async (acceptedFiles) => {
-      try {
-        const imageURL = await uploadImageFile(acceptedFiles)
-        if (editorRef.current) {
-          editorRef.current.insertContent(`<img src="${imageURL}" alt="uploaded" />`)
-        }
-      } catch (error) {
-        console.error("Error in uploadImageFile() Fetch: ", error)
-      }
+    onDrop: (acceptedFiles) => {
+      uploadImageFile(acceptedFiles)
+        .then((imageURL) => {
+          if (editorRef.current) {
+            editorRef.current.insertContent(`<img src="${imageURL}" alt="uploaded" />`)
+          }
+        })
+        .catch((error) => {
+          console.error("Error Uploading Image: ", error)
+        })
     },
     noClick: true,
     noKeyboard: true,
@@ -39,6 +50,16 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
     if (dropzoneOpenRef.current) {
       dropzoneOpenRef.current()
     }
+  }
+
+  const handleCloseEditor = (editorContent) => {
+    if (isNewProject) {
+      setProject((prevState) => ({
+        ...prevState,
+        instructions: `<div>${editorContent}</div>`,
+      }))
+    }
+    setEditingInstructions(false)
   }
 
   const handleEditorChange = (newValue, editor) => {
@@ -56,7 +77,8 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
       <BundledEditor
         onInit={(evt, editor) => (editorRef.current = editor)}
         init={{
-          forced_root_block: 'div',
+          //Check to see whether this is a new project.  If so, set the root block to "p"
+          forced_root_block: project?.instructions.length === 0 ? "p" : "div",
           toolbar_mode: "wrap",
           menubar: false,
           promotion: false,
@@ -124,20 +146,20 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
               icon: "close",
               tooltip: "Close and return to project form",
               onAction: () => {
-                setEditingInstructions(false)
+                handleCloseEditor(editor.getContent())
               },
             })
             editor.ui.registry.addButton("codesample-with-text", {
               icon: "code-sample",
               tooltip: "Insert Code Sample",
-              onAction: function () {
+              onAction: () => {
                 editor.execCommand("codesample")
               },
             })
             editor.ui.registry.addButton("h2-button", {
               icon: "heading-icon",
               tooltip: "Add heading",
-              onAction: function () {
+              onAction: () => {
                 editor.execCommand("FormatBlock", false, "h2")
               },
             })

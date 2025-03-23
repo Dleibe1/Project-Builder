@@ -27,17 +27,15 @@ import HowToUse from "./information-pages/HowToUse"
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
   const [projectsPerPage, setProjectsPerPage] = useState(9)
-  const fetchCurrentUser = async () => {
-    try {
-      const user = await getCurrentUser()
-      setCurrentUser(user)
-    } catch (err) {
-      setCurrentUser(null)
-    }
-  }
 
   useEffect(() => {
-    fetchCurrentUser()
+    getCurrentUser()
+      .then((userInfo) => {
+        setCurrentUser(userInfo)
+      })
+      .catch(() => {
+        setCurrentUser(null)
+      })
   }, [])
 
   return (
@@ -47,7 +45,7 @@ const App = (props) => {
         <FilterByTag />
         <AuthenticatedRoute path="/my-builds/:id" component={MyBuildShow} user={currentUser} />
         <Route path="/projects/:id">
-        <ProjectShow user={currentUser}  />
+          <ProjectShow user={currentUser} />
         </Route>
         <Route exact path="/">
           <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
@@ -60,12 +58,43 @@ const App = (props) => {
         <SearchList projectsPerPage={projectsPerPage} user={currentUser} />
       </Route>
       <Route exact path="/diff-view/:parentProjectId/:forkedProjectId" component={DiffView} />
-      <AuthenticatedRoute exact path="/my-builds-list" component={MyBuildList} projectsPerPage={projectsPerPage} user={currentUser} />
-      <AuthenticatedRoute exact path="/create-new-build" component={NewProjectForm} user={currentUser} />
-      <AuthenticatedRoute exact path="/edit-my-build/:id" component={EditBuildForm} user={currentUser} />
-      <AuthenticatedRoute exact path="/fork-project/:id" component={ForkProjectForm} user={currentUser} />
-      <UnauthenticatedRoute exact path="/users/new" component={RegistrationForm} user={currentUser} />
-      <UnauthenticatedRoute exact path="/user-sessions/new" component={SignInForm} user={currentUser} />
+      <AuthenticatedRoute
+        exact
+        path="/my-builds-list"
+        component={MyBuildList}
+        projectsPerPage={projectsPerPage}
+        user={currentUser}
+      />
+      <AuthenticatedRoute
+        exact
+        path="/create-new-build"
+        component={NewProjectForm}
+        user={currentUser}
+      />
+      <AuthenticatedRoute
+        exact
+        path="/edit-my-build/:id"
+        component={EditBuildForm}
+        user={currentUser}
+      />
+      <AuthenticatedRoute
+        exact
+        path="/fork-project/:id"
+        component={ForkProjectForm}
+        user={currentUser}
+      />
+      <UnauthenticatedRoute
+        exact
+        path="/users/new"
+        component={RegistrationForm}
+        user={currentUser}
+      />
+      <UnauthenticatedRoute
+        exact
+        path="/user-sessions/new"
+        component={SignInForm}
+        user={currentUser}
+      />
       <Route path="/how-to-use" component={HowToUse} />
       <Route path="/about" component={About} />
       <Route exact path="/404" component={NotFound404} />

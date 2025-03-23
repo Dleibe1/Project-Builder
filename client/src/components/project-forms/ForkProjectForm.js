@@ -41,42 +41,38 @@ const ForkProjectForm = (props) => {
   }, [])
 
   useEffect(() => {
-    const fetchParentProject = async () => {
-      try {
-        const parentProjectData = await getProject(id)
-        setProject(parentProjectData)
-      } catch (error) {
-        console.error("Error in getProject() Fetch:", error)
-      }
-    }
-    fetchParentProject()
+    getProject(id).then((projectData) => {
+      setProject(projectData)
+    })
   }, [])
 
-  const handleThumbnailImageUpload = async (acceptedImage) => {
-    try {
-      const imageURL = await uploadImageFile(acceptedImage)
-      setProject((prevState) => ({
-        ...prevState,
-        thumbnailImage: imageURL,
-      }))
-    } catch (error) {
-      console.error("Error in uploadProjectImage Fetch: ", error)
-    }
+  const handleThumbnailImageUpload = (acceptedImage) => {
+    uploadImageFile(acceptedImage)
+      .then((imageURL) => {
+        setProject((prevState) => ({
+          ...prevState,
+          thumbnailImage: imageURL,
+        }))
+      })
+      .catch((error) => {
+        console.error("Error uploading thumbnail image: ", error)
+      })
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     const parentProjectId = id
-    try {
-      await postProjectFork(project, parentProjectId)
-      setShouldRedirect(true)
-    } catch (error) {
-      if (error.serverErrors) {
-        setErrors(error.serverErrors)
-      } else {
-        console.error("[ForkProjectForm] error in postProjectFork() Fetch: ", error)
-      }
-    }
+    postProjectFork(project, parentProjectId)
+      .then(() => {
+        return setShouldRedirect(true)
+      })
+      .catch((error) => {
+        if (error.serverErrors) {
+          setErrors(error.serverErrors)
+        } else {
+          console.error("[ForkProjectForm] error in postProjectFork() Fetch: ", error)
+        }
+      })
   }
 
   const handleInputChange = (event) => {
@@ -90,7 +86,7 @@ const ForkProjectForm = (props) => {
   return !editingInstructions ? (
     <div className="fork-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
+      <form id="fork-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
           <h1>Fork Project</h1>
           <section className="add-tags">

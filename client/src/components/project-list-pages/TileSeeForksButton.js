@@ -8,7 +8,6 @@ const TileSeeForksButton = ({ id }) => {
       onClick={(e) => e.stopPropagation()}
       component={Link}
       to={`/project-forks/${id}`}
-      key={`project-tile-forks-button${id}`}
       sx={{
         my: 2,
         color: "white",

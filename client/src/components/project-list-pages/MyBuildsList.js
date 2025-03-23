@@ -23,16 +23,10 @@ const MyBuildList = ({ projectsPerPage }) => {
   }, [pageNumberURLParam])
 
   useEffect(() => {
-    const fetchMyBuildsList = async () => {
-      try {
-        const [userBuilds, userBuildsCount] = await getMyBuildsList(currentPage, projectsPerPage)
-        setUserBuilds(userBuilds)
-        setUserBuildsCount(userBuildsCount)
-      } catch (error) {
-        console.error("Error in getMyBuildsList() Fetch: ", error)
-      }
-    }
-    fetchMyBuildsList()
+    getMyBuildsList(currentPage, projectsPerPage).then(([userBuilds, userBuildsCount]) => {
+      setUserBuilds(userBuilds)
+      setUserBuildsCount(userBuildsCount)
+    })
   }, [currentPage])
 
   const handlePaginationChange = (event, selectedPage) => {

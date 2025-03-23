@@ -28,7 +28,6 @@ const NavigationBar = ({ user, projectsPerPage }) => {
               component={Link}
               to="/how-to-use"
               id="how-to-use-button"
-              key={"how-to-use-button"}
               sx={{ display: { xs: "none", sm: "none", md: "none", lg: "flex" } }}
             >
               How To Use
@@ -39,7 +38,6 @@ const NavigationBar = ({ user, projectsPerPage }) => {
               onClick={handleProjectsLinkClick}
               to="/about"
               id="projects-button"
-              key={"projects-button"}
             >
               About
             </Button>
@@ -48,7 +46,6 @@ const NavigationBar = ({ user, projectsPerPage }) => {
               onClick={handleProjectsLinkClick}
               to="/?page=1"
               id="homepage-button"
-              key={"homepage-button"}
               sx={{ display: "block" }}
             >
               <img src="/images/project-builder-logo.png" id="logo" />

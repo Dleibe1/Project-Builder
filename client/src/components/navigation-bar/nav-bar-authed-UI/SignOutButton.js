@@ -1,16 +1,11 @@
 import React from "react"
 import { Button } from "@mui/material"
 
-const SignOutButton = ({ signOut, shouldRedirect }) => {
-  if (shouldRedirect) {
-    location.href = "/?page=1"
-  }
-
+const SignOutButton = ({ signOut }) => {
   return (
     <Button
       onClick={signOut}
       id="sign-out-button"
-      key={"sign-out-button"}
       sx={{
         my: 2,
         color: "white",

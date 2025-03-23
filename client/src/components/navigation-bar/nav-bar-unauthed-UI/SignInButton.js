@@ -7,7 +7,6 @@ const SignInButton = (props) => {
     <Link to="/user-sessions/new">
       <Button
         id="sign-in-button"
-        key={"sign-in-button"}
         sx={{
           my: 2,
           color: "white",

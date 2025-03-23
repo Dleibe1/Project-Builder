@@ -17,21 +17,14 @@ const ForkList = ({ projectsPerPage }) => {
 
   const history = useHistory()
   const totalPages = Math.ceil(projectsCount / projectsPerPage)
+
   useEffect(() => {
-    const fetchForkList = async () => {
-      try {
-        const [forkList, forkedProjectsCount] = await getForkList(
-          parentProjectId,
-          currentPage,
-          projectsPerPage,
-        )
+    getForkList(parentProjectId, currentPage, projectsPerPage).then(
+      ([forkList, forkedProjectsCount]) => {
         setForkedProjects(forkList)
         setProjectsCount(forkedProjectsCount)
-      } catch (error) {
-        console.error("Error in getForkList() Fetch: ", error)
-      }
-    }
-    fetchForkList()
+      },
+    )
   }, [currentPage, parentProjectId])
 
   useEffect(() => {

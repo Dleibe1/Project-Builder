@@ -8,7 +8,6 @@ const MyBuildsButton = () => {
       component={Link}
       to="/my-builds-list?page=1"
       id="my-builds-button"
-      key={"new-build-button"}
       sx={{display: { xs: "none", md: "block" }}}
     >
       My Builds

@@ -32,18 +32,12 @@ const ProjectShow = (props) => {
   const hasForks = useCheckForProjectForks(id)
 
   useEffect(() => {
-    const fetchProjectData = async () => {
-      try {
-        const project = await getProject(id)
-        prepForFrontEnd(project)
-        setProject(project)
-      } catch (error) {
-        console.error("Error in getProject(): ", error)
-      }
-    }
-    fetchProjectData()
+    getProject(id).then((projectData) => {
+      prepForFrontEnd(projectData)
+      setProject(projectData)
+    })
   }, [id])
-  
+
   useEffect(() => {
     document.body.classList.add("grey-background")
     return () => {
@@ -63,7 +57,7 @@ const ProjectShow = (props) => {
     return (
       <div
         className="part-item-in-showpage"
-        key={`${(part.partName, part.partPurchaseURL)}${index}`}
+        key={`${part.partName} ${part.partPurchaseURL} ${index}`}
       >
         {part.partPurchaseURL.length === 0 && (
           <p className="part-without-purchase-link">{part.partName}</p>
