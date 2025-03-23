@@ -46,10 +46,11 @@ describe("As a user visiting the sign in page", () => {
     cy.get("[data-cy='sign-in-form']").within(() => {
       cy.get("[data-cy='sign-in-form__password-input']").type("password")
       cy.root().submit()
-      cy.contains("is invalid")
+      cy.contains("is required")
     })
   })
   after(()=> {
     cy.task("db:truncate", "User")
+    cy.intercept("DELETE", "/api/v1/user-sessions")
   })
 })
