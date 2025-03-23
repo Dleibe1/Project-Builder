@@ -66,4 +66,8 @@ describe("As a user visiting the registration page", () => {
       cy.contains("is required")
     })
   })
+  after(()=> {
+    cy.task("db:truncate", "User")
+    cy.intercept("DELETE", "/api/v1/user-sessions")
+  })
 })

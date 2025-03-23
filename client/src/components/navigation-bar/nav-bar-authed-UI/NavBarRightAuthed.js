@@ -55,6 +55,7 @@ const NavBarRightAuthed = ({ user }) => {
       <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex", lg: "none" } }}>
         <IconButton
           id="burger-menu"
+          data-cy="nav-bar-burger-menu-authed"
           size="large"
           aria-controls="menu-appbar"
           aria-haspopup="true"
@@ -117,7 +118,7 @@ const NavBarRightAuthed = ({ user }) => {
           </MenuItem>
         </Menu>
       </Box>
-      <Tooltip>
+      <Tooltip data-cy="avatar-button">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           {user?.githubAvatarURL ? avatarWithImage : avatarJustALetter}
         </IconButton>
