@@ -30,8 +30,8 @@ const NavBarRightAuthed = ({ user }) => {
   const loggedInUserName = user ? user.userName || user.githubUserName : ""
   const avatarLetter = loggedInUserName[0]?.toUpperCase()
   const avatarImageURL = user?.githubAvatarURL
-  const avatarWithImage = [<Avatar alt={loggedInUserName} src={avatarImageURL} />]
-  const avatarJustALetter = [<Avatar alt={loggedInUserName}>{avatarLetter}</Avatar>]
+  const avatarWithImage = [<Avatar key="github-avatar"  alt={loggedInUserName} src={avatarImageURL} />]
+  const avatarJustALetter = [<Avatar key="letter-avatar" alt={loggedInUserName}>{avatarLetter}</Avatar>]
 
   const signOut = async (event) => {
     event.preventDefault()
