@@ -26,7 +26,7 @@ const NavBarRightUnAuthed = (props) => {
       <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex", lg: "none" } }}>
         <IconButton
           id="burger-menu"
-          data-cy="nav-bar-burger-menu-unauthed"
+          data-cy="burger-menu-button-unauthed"
           size="large"
           aria-controls="menu-appbar"
           aria-haspopup="true"
@@ -36,6 +36,7 @@ const NavBarRightUnAuthed = (props) => {
           <MenuIcon />
         </IconButton>
         <Menu
+          data-cy="burger-menu-items-unauthed"
           id="menu-appbar"
           anchorEl={anchorElNav}
           anchorOrigin={{
