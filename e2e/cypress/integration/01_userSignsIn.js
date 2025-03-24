@@ -51,6 +51,6 @@ describe("As a user visiting the sign in page", () => {
   })
   after(()=> {
     cy.task("db:truncate", "User")
-    cy.intercept("DELETE", "/api/v1/user-sessions")
+    cy.request("DELETE", "/api/v1/user-sessions")
   })
 })
