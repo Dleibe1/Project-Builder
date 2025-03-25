@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import { Button, TextField } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
@@ -44,12 +45,20 @@ const PartsSubForm = ({ project, setProject }) => {
   const partsList = project.parts.map((part, index) => {
     return (
       <div key={`${part.partName} ${part.partPurchaseURL} ${index}`} className="part-item-in-form">
-        {part.partPurchaseURL.length === 0 && <p className="part-without-purchase-link" >{part.partName}</p>}
+        {part.partPurchaseURL.length === 0 && (
+          <p className="part-without-purchase-link">{part.partName}</p>
+        )}
         {part.partPurchaseURL.length > 0 && (
-          <a href={part.partPurchaseURL}>
+          <a
+            onClick={(event) => {
+              event.preventDefault()
+              window.open(part.partPurchaseURL, "_blank", "noopener,noreferrer")
+            }}
+            href={part.partPurchaseURL}
+          >
             <div className="part-with-purchase-link">
-              <p>{part.partName} </p>
-              <ShoppingCartIcon  fontSize="large" />
+              <p>{part.partName}</p>
+              <ShoppingCartIcon fontSize="large" />
             </div>
           </a>
         )}
@@ -92,7 +101,10 @@ const PartsSubForm = ({ project, setProject }) => {
           </Button>
           {isValidHttpUrl(part.partPurchaseURL.trim()) === false &&
             part.partPurchaseURL.trim().length > 0 && (
-              <p className="url-invalid">Not a valid URL, make sure to include <strong>http://</strong> or <strong>https://</strong></p>
+              <p className="url-invalid">
+                Not a valid URL, make sure to include <strong>http://</strong> or{" "}
+                <strong>https://</strong>
+              </p>
             )}
         </section>
       </div>

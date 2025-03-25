@@ -29,4 +29,9 @@ describe("As an unauthenticated user viewing the navigation bar on a small scree
       cy.get("@burger-menu-items").contains(authedItem, { matchCase: false }).should("not.exist")
     })
   })
+  it("The user navigate to the correct URL after clicking on options in the burger menu", () => 
+    cy.get('[data-cy="burger-menu-button-unauthed"]').click()
+  cy.get('[data-cy="burger-menu-items-unauthed"]').as("burger-menu-items")
+
+  )
 })

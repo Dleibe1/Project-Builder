@@ -12,13 +12,14 @@ const HowToUse = () => {
           id="developer-linkedin"
           component={Link}
           endIcon={<LinkedInIcon sx={{ width: "70px", height: "70px" }} color="primary" />}
-          onClick={() =>
+          onClick={(event) => {
+            event.preventDefault()
             window.open(
               "https://www.linkedin.com/in/daniel-patrick-leibensperger/",
               "_blank",
               "noopener,noreferrer",
             )
-          }
+          }}
           size="large"
           sx={{
             marginBottom: "20px",
