@@ -53,7 +53,7 @@ const NavigationBar = ({ user, projectsPerPage }) => {
             </Button>
           </div>
           <Box id="top-right-nav-bar" sx={{ flexGrow: 0 }}>
-            <NavBarSearch projectsPerPage={projectsPerPage} />
+            <NavBarSearch  projectsPerPage={projectsPerPage} />
             {user ? <NavBarRightAuthed user={user} /> : <NavBarRightUnAuthed />}
           </Box>
         </Toolbar>

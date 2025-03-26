@@ -5,7 +5,7 @@ import projectInstructionsSeedData from "../ProjectSeederData/projectInstruction
 
 class ProjectSeeder {
   static async seed() {
-    const parentProjects1 = [
+    const parentProjects = [
       {
         userId: 1,
         title: "Interfacing RGB Led with Arduino",
@@ -24,6 +24,8 @@ class ProjectSeeder {
         thumbnailImage: "/images/projectSeeder/project002/thumbnail.blob",
         instructions: projectInstructionsSeedData[1],
       },
+    ]
+    const extraProjects = [
       {
         userId: 2,
         title: "Automated plants watering system",
@@ -93,8 +95,6 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[8],
       },
     ]
-    await Project.query().insert(parentProjects1)
-
     const exampleUserProjects = [
       {
         // id = 10
@@ -204,9 +204,12 @@ class ProjectSeeder {
         parentProjectId: 2,
       },
     ]
+    await Project.query().insert(parentProjects)
+    await Project.query().insert(extraProjects)
     await Project.query().insert(exampleUserProjects)
     await Project.query().insert(forks)
   }
 }
 
 export default ProjectSeeder
+export { parentProjects, extraProjects, exampleUserProjects, forks }
