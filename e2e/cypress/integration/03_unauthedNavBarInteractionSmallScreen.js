@@ -8,28 +8,31 @@ describe("As an unauthenticated user interacting with the navigation bar on a sm
       .click()
   }
   before(() => {
-    cy.request("DELETE", "/api/v1/user-sessions")
+    cy.logoutUser()
   })
   beforeEach(() => {
     cy.viewport(600, 900)
     cy.visit("/?page=1")
   })
   const authedOnlyItems = ["sign out", "my builds", "create build"]
-  const allUnauthedItems = ["about", "how to use", "sign up", "sign in", "login with github"]
-  describe("When I use the burger menu", () => {
-    it("I can only see items for unauthenticated users", () => {
+  const unauthedOnlyItems = ["sign up", "sign in", "login with github"]
+  const allUsersItems = ["about", "how to use"]
+  describe("When I view the burger menu", () => {
+    it("Items for authenticated users and common items are visible. Items for unauthenticated users do not exist", () => {
       cy.get('[data-cy="burger-menu-button-unauthed"]').click()
+      unauthedOnlyItems.concat(allUsersItems).forEach((item) => {
+        cy.get('[data-cy="burger-menu-items-unauthed"]')
+          .contains(item, { matchCase: false })
+          .should("be.visible")
+      })
       authedOnlyItems.forEach((authedItem) => {
         cy.get('[data-cy="burger-menu-items-unauthed"]')
           .contains(authedItem, { matchCase: false })
           .should("not.exist")
       })
-      allUnauthedItems.forEach((unauthedItem) => {
-        cy.get('[data-cy="burger-menu-items-unauthed"]')
-          .contains(unauthedItem, { matchCase: false })
-          .should("be.visible")
-      })
     })
+  })
+  describe("When I interact with buttons in the burger menu", () => {
     it("I can navigate to the sign in page", () => {
       clickUnauthedBurgerMenuItem("sign in")
       cy.url().should("eq", `${Cypress.config().baseUrl}/user-sessions/new`)
@@ -55,9 +58,9 @@ describe("As an unauthenticated user interacting with the navigation bar on a sm
       cy.get('[data-cy="search-bar"]').should("be.visible")
       cy.get('[data-cy="burger-menu-button-unauthed"]').should("be.visible")
     })
-    it("Options for unauthed users are not visible", () => {
-      allUnauthedItems.forEach((unauthedItem) => {
-        cy.contains(unauthedItem, { matchCase: false }).should("not.be.visible")
+    it("Options for unauthed users common options are not visible", () => {
+      unauthedOnlyItems.concat(allUsersItems).forEach((item) => {
+        cy.contains(item, { matchCase: false }).should("not.be.visible")
       })
     })
     it("Options for authed users do not exist", () => {

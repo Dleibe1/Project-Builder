@@ -21,15 +21,16 @@ describe("As an authenticated user viewing the navigation bar on a small screen"
     cy.viewport(600, 900)
     cy.visit("/?page=1")
   })
-  const allAuthedItems = ["my builds", "create build", "sign out", "about", "how to use"]
+  const authedOnlyItems = ["my builds", "create build", "sign out"]
   const unauthedOnlyItems = ["sign up", "sign in", "login with github"]
+  const allUsersItems = ["about", "how to use"]
 
-  describe("When I use the burger menu", () => {
-    it("I can only see items for authenticated users", () => {
+  describe("When I view the items in the burger menu", () => {
+    it("I can only see items for authenticated users and common items", () => {
       cy.get('[data-cy="burger-menu-button-authed"]').click()
-      allAuthedItems.forEach((authedItem) => {
+      authedOnlyItems.concat(allUsersItems).forEach((item) => {
         cy.get('[data-cy="burger-menu-items-authed"]')
-          .contains(authedItem, { matchCase: false })
+          .contains(item, { matchCase: false })
           .should("be.visible")
       })
       unauthedOnlyItems.forEach((unauthedItem) => {
@@ -38,12 +39,12 @@ describe("As an authenticated user viewing the navigation bar on a small screen"
           .should("not.exist")
       })
     })
-
+  })
+  describe("When I click the buttons in the burger menu", () => {
     it("I can navigate to the 'my builds' page", () => {
       clickAuthedBurgerMenuItem("my builds")
       cy.url().should("eq", `${Cypress.config().baseUrl}/my-builds-list?page=1`)
     })
-
     it("I can navigate to the 'create build' page", () => {
       clickAuthedBurgerMenuItem("create build")
       cy.url().should("eq", `${Cypress.config().baseUrl}/create-new-build`)
@@ -60,12 +61,12 @@ describe("As an authenticated user viewing the navigation bar on a small screen"
       cy.get('[data-cy="search-bar"]').should("be.visible")
       cy.get('[data-cy="burger-menu-button-authed"]').should("be.visible")
     })
-    it("Options for authenticated users are not visible", () => {
-      allAuthedItems.forEach((item) => {
+    it("Options for authenticated users only and common options", () => {
+      authedOnlyItems.concat(allUsersItems).forEach((item) => {
         cy.contains(item, { matchCase: false }).should("not.be.visible")
       })
     })
-    it("Options for unauthenticated users are not exist", () => {
+    it("Options for unauthenticated users do not exist", () => {
       unauthedOnlyItems.forEach((item) => {
         cy.contains(item, { matchCase: false }).should("not.exist")
       })
