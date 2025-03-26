@@ -69,8 +69,17 @@ const NavBarRightUnAuthed = (props) => {
             <Typography className="burger-menu-item">Sign Up</Typography>
           </MenuItem>
           <MenuItem
-            sx={{ display: { xs: "flex", md: "none", lg: "none" } }}
-            onClick={handleGithubLogin}
+            component="a"
+            href="/api/v1/github-user-sessions/login"
+            sx={{
+              display: { xs: "flex", md: "none", lg: "none" },
+              color: "inherit",
+              textDecoration: "none",
+              '&:hover': {
+                color: "inherit",
+                textDecoration: "none"
+              },
+            }}
           >
             <Typography textAlign="center">Login With GitHub</Typography>
           </MenuItem>

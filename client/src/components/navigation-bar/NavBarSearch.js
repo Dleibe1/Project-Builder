@@ -73,7 +73,7 @@ const NavBarSearch = () => {
         onKeyDown={handleKeyDown}
         onChange={handleInputChange}
         value={query}
-        inputProps={{ "aria-label": "search", className: "top-bar-search" }}
+        inputProps={{ "data-cy": "search-bar", "aria-label": "search", className: "top-bar-search" }}
       />
     </Search>
   )
