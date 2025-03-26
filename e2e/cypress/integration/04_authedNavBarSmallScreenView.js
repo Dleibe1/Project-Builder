@@ -35,29 +35,20 @@ describe("As an authenticated user viewing the navigation bar on a small screen"
     })
   })
   it("Navigation items for authenticated users are visible in the burger menu", () => {
-    cy.get('[data-cy="burger-menu-button-authed"]')
-      .should("be.visible")
-      .then(($menu) => {
-        cy.wrap($menu).click()
-        cy.get('[data-cy="burger-menu-items-authed"]').as("burger-menu-items")
-        allAuthedItems.forEach((authedItem) => {
-          cy.get("@burger-menu-items").contains(authedItem, { matchCase: false }).should("be.visible")
-        })
-      })
+    cy.openAuthedBurgerMenu().as("burger-menu-items")
+    allAuthedItems.forEach((authedItem) => {
+      cy.get("@burger-menu-items").contains(authedItem, { matchCase: false }).should("be.visible")
+    })
   })
   it("Navigation items for unauthenticated users do not exist in the burger menu", () => {
-    cy.get('[data-cy="burger-menu-button-authed"]')
-      .should("be.visible")
-      .then(($menu) => {
-        cy.wrap($menu).click()
-        cy.get('[data-cy="burger-menu-items-authed"]').as("burger-menu-items")
-        unauthedOnlyItems.forEach((authedItem) => {
-          cy.get("@burger-menu-items").contains(authedItem, { matchCase: false }).should("not.exist")
-        })
-      })
+    cy.openAuthedBurgerMenu().as("burger-menu-items")
+    unauthedOnlyItems.forEach((unauthedItem) => {
+      cy.get("@burger-menu-items").contains(unauthedItem, { matchCase: false }).should("not.exist")
+    })
   })
-  after(() => {
-    cy.task("db:truncate", "User")
-    cy.request("DELETE", "/api/v1/user-sessions/")
-  })
+})
+
+after(() => {
+  cy.task("db:truncate", "User")
+  cy.request("DELETE", "/api/v1/user-sessions/")
 })
