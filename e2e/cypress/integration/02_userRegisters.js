@@ -7,6 +7,7 @@ describe("As a user visiting the registration page", () => {
 
   before(() => {
     cy.task("db:truncate", "User")
+    cy.logoutUser()
   })
 
   it("If I provide a valid email, username, password, and password confirmation, I will be signed in", () => {

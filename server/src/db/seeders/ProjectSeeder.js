@@ -212,4 +212,3 @@ class ProjectSeeder {
 }
 
 export default ProjectSeeder
-export { parentProjects, extraProjects, exampleUserProjects, forks }

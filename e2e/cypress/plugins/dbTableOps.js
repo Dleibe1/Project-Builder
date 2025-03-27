@@ -11,6 +11,8 @@ class tableTasks {
     for (const table of tablesToTruncate) {
       await truncateTable(table, connection)
     }
+    await connection.client.pool.release()
+    return 1
   }
   static async insert({ tableName, json }) {
     const result = await connection(tableName).insert(json)
