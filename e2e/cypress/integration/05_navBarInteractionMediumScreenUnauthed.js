@@ -28,8 +28,8 @@ describe("As an unauthenticated user viewing the navigation bar on a medium size
       })
     })
     it("All common navigation options are visible in the burger menu", () => {
-      cy.get('[data-cy="burger-menu-button-unauthed"]').click()
-      cy.get('[data-cy="burger-menu-items-unauthed"]').as("burger-menu-items")
+      cy.getByData("burger-menu-button-unauthed").click()
+      cy.getByData("burger-menu-items-unauthed").as("burger-menu-items")
       commonOptions.forEach((option) => {
         cy.get("@burger-menu-items").contains(option, { matchCase: false }).should("be.visible")
       })

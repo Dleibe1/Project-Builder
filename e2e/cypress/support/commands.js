@@ -1,3 +1,4 @@
+/// <reference types="Cypress" />
 import "@testing-library/cypress/add-commands"
 
 Cypress.Commands.add("userIsLoggedIn", () => {
@@ -10,7 +11,7 @@ Cypress.Commands.add("userIsLoggedIn", () => {
     .then((response) => {
       if (response.status === 401) {
         return false
-      } else if (response.status === 201) {
+      } else if (response.status === 200) {
         return true
       } else {
         throw new Error(`Unexpected response status: ${response.status}`)
@@ -41,4 +42,8 @@ Cypress.Commands.add("loginExampleUser", () => {
 
 Cypress.Commands.add("logoutUser", () => {
   return cy.request("DELETE", "/api/v1/user-sessions/")
+})
+
+Cypress.Commands.add("getByData", (selector) => {
+  return cy.get(`[data-cy=${selector}]`)
 })

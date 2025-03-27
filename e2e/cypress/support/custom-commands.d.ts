@@ -24,5 +24,11 @@ declare namespace Cypress {
      * @example cy.logoutUser()
      */
     logoutUser(): Chainable<any>
+    /**
+     * Custom command to select an element by its data-cy attribute.
+     * @param selector The value of data-cy to search for.
+     * @example cy.getByData("my-selector")
+     */
+    getByData(selector: string): Chainable<JQuery<HTMLElement>>
   }
 }

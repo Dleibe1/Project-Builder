@@ -36,10 +36,10 @@ describe("As an authenticated user interacting with the navigation bar on a larg
     })
 
     it("The burger menu for authed users is not visible", () => {
-      cy.get('[data-cy="burger-menu-button-unauthed"]').should("not.be.visible")
+      cy.getByData("burger-menu-button-authed").should("not.be.visible")
     })
     it("The burger menu for unauthed users does not exist", () => {
-      cy.get('[data-cy="burger-menu-button-unauthed"]').should("not.exist")
+      cy.getByData("burger-menu-button-unauthed").should("not.exist")
     })
   })
 
@@ -75,6 +75,7 @@ describe("As an authenticated user interacting with the navigation bar on a larg
       cy.userIsLoggedIn().should("equal", false)
     })
   })
+
   after(() => {
     cy.task("db:truncate", "User")
     cy.logoutUser()
