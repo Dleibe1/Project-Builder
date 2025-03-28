@@ -88,10 +88,16 @@ const NewProjectForm = (props) => {
   return !editingInstructions ? (
     <div className="fork-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
+      <form
+        data-cy="new-project-form"
+        key="new-build-form"
+        id="fork-project-form"
+        onSubmit={handleSubmit}
+      >
         <div className="form-items-container top-section">
           <h1>New Project</h1>
           <TextField
+            data-cy="new-project-title-input"
             value={project.title}
             className="form-input text-field"
             fullWidth
@@ -105,6 +111,7 @@ const NewProjectForm = (props) => {
           </section>
           <h2>Description:</h2>
           <Textarea
+            data-cy="new-project-description-input"
             minRows={3}
             value={project.description}
             placeholder="Enter description"
@@ -135,6 +142,7 @@ const NewProjectForm = (props) => {
             </Dropzone>
           </Button>
           <TextField
+            data-cy="new-project-apps-and-platforms-input"
             value={project.appsAndPlatforms}
             className="form-input text-field"
             fullWidth

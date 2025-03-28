@@ -2,5 +2,6 @@
   "email": "example@example.com",
   "userName": "Example",
   "password": "cat",
-  "loginMethod": "standard"
+  "loginMethod": "standard",
+  "id": "4"
 }

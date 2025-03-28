@@ -2,7 +2,7 @@ const truncateModel = require("../../../server/test/utils/truncateModel.cjs")
 const connection = require("../../../server/src/boot/model.cjs")
 const modelList = require("../../../server/src/models")
 
-class modelTasks {
+class ModelTasks {
   static async truncate(models) {
     let modelsToTruncate = models
     if (!Array.isArray(modelsToTruncate)) {
@@ -40,4 +40,4 @@ class modelTasks {
   }
 }
 
-module.exports = { modelTasks }
+module.exports = { ModelTasks }

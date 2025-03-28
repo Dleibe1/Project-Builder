@@ -20,8 +20,10 @@ declare namespace Cypress {
      */
     loginExampleUser(): Chainable<any>
     /**
-     * Custom command to log out any user.
-     * @example cy.logoutUser()
+     * Custom command to log in an example user.
+     * Returns the user's data as an object.
+     * @example cy.loginExampleUser().then((userData) => { console.log(userData.email) })
+     * @returns {Chainable<object>} The data for the logged in user.
      */
     logoutUser(): Chainable<any>
     /**

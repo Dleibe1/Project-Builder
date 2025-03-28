@@ -2,6 +2,7 @@ import projectCodeSeedData from "../../../server/src/db/ProjectSeederData/projec
 import projectDescriptionsSeedData from "../../../server/src/db/ProjectSeederData/projectDescriptionsSeedData"
 import projectInstructionsSeedData from "../../../server/src/db/ProjectSeederData/projectInstructionsSeedData"
 import allowedTags from "../../../shared/allowedTags"
+
 const projectTags = [
   { projectId: 1, tagId: 2 },
   { projectId: 1, tagId: 24 },
@@ -872,6 +873,7 @@ const forks = [
     parentProjectId: 2,
   },
 ]
+//Projects must be inserted in this order for example forks to work correctly
 const allProjects = [...parentProjects, ...exampleUserProjects, ...extraProjects, ...forks]
 
 const users = [
