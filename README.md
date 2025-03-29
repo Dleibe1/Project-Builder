@@ -44,7 +44,7 @@ When users visit your project's page on this app, the code section is automatica
 - turndown.js
 - showdown.js
 - highlight.js
-- Cypress.js (Tests suite is a work in progress)
+- Cypress.io (Tests suite is a work in progress)
 
 ## The [TinyMCE Editor has been customized](client/src/components/project-forms/project-forms-shared/InstructionsTinyMCEForm.js) to add a few features it didn't come with
  You can upload a .md file containing your instructions and the contents will be converted to HTML and rendered in the editor.  Click "Close Editor" to save the instructions.
