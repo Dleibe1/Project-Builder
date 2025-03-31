@@ -64,13 +64,7 @@ const MyBuildShow = (props) => {
           <p className="part-without-purchase-link">{part.partName}</p>
         )}
         {part.partPurchaseURL.length > 0 && (
-          <a
-            onClick={(event) => {
-              event.preventDefault()
-              window.open(part.partPurchaseURL, "_blank", "noopener,noreferrer")
-            }}
-            href={part.partPurchaseURL}
-          >
+          <a href={part.partPurchaseURL} target="_blank" rel="noopener noreferrer">
             <div className="part-with-purchase-link">
               <p>{part.partName} </p>
               <ShoppingCartIcon fontSize="large" />
