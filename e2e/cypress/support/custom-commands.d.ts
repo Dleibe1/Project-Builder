@@ -1,5 +1,7 @@
 /// <reference types="Cypress" />
 
+import { ExampleUser } from "./types"
+
 declare namespace Cypress {
   interface Chainable<Subject = any> {
     /**
@@ -7,16 +9,15 @@ declare namespace Cypress {
      * @example cy.userIsLoggedIn().should("equal", true)
      */
     userIsLoggedIn(): Chainable<boolean>
-
     /**
      * Custom command to seed an example user.
      * @example cy.seedExampleUser()
      */
-    seedExampleUser(): Chainable<any>
-
+    seedExampleUser(): Chainable<ExampleUser>
     /**
      * Custom command to log in an example user.
-     * @example cy.loginExampleUser()
+     * @example cy.seedExampleUser()
+     *  @returns {Chainable<ExampleUser>} A chainable that yields the seeded user object.
      */
     loginExampleUser(): Chainable<any>
     /**
@@ -32,11 +33,11 @@ declare namespace Cypress {
      * @example cy.getByData("my-selector")
      */
     getByData(selector: string): Chainable<JQuery<HTMLElement>>
-     /**
+    /**
      * Custom command to select a part item in a partsList array by its index
      * @param selector The value of index of the partsList item.
      * @example cy.getPartListItemByIndex(1)
      */
-     getPartsListItemByIndex(index: number): Chainable<JQuery<HTMLElement>>
+    getPartsListItemByIndex(index: number): Chainable<JQuery<HTMLElement>>
   }
 }
