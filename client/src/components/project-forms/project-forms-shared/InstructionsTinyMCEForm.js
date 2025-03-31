@@ -51,12 +51,15 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
   }
 
   const handleCloseEditor = (editorContent) => {
-    if (isNewProject) {
-      setProject((prevState) => ({
-        ...prevState,
-        instructions: `<div>${editorContent}</div>`,
-      }))
+    if (project?.instructions.length) {
+      if (isNewProject) {
+        setProject((prevState) => ({
+          ...prevState,
+          instructions: `<div>${editorContent}</div>`,
+        }))
+      }
     }
+
     setEditingInstructions(false)
   }
 
