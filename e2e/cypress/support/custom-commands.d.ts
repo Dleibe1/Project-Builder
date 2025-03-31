@@ -17,7 +17,7 @@ declare namespace Cypress {
     /**
      * Custom command to log in an example user.
      * @example cy.seedExampleUser()
-     *  @returns {Chainable<ExampleUser>} A chainable that yields the seeded user object.
+     * @returns {Chainable<ExampleUser>} A chainable that yields the seeded user object.
      */
     loginExampleUser(): Chainable<any>
     /**
