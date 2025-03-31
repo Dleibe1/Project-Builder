@@ -47,3 +47,7 @@ Cypress.Commands.add("logoutUser", () => {
 Cypress.Commands.add("getByData", (selector) => {
   return cy.get(`[data-cy=${selector}]`)
 })
+
+Cypress.Commands.add("getPartsListItemByIndex", (index) => {
+  return cy.get(`[data-cy="part-list-item${index}"]`)
+})

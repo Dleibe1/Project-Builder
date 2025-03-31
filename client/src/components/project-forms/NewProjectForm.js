@@ -121,9 +121,10 @@ const NewProjectForm = (props) => {
             sx={{ minWidth: "100%", backgroundColor: "white" }}
           />
           <div className="project-image-container thumbnail-image-container">
-            <img className="project-image" src={project.thumbnailImage} />
+            <img data-cy="thumbnail-image" className="project-image" src={project.thumbnailImage} />
           </div>
           <Button
+            data-cy="upload-thumbnail-button"
             className="large-button change-thumbnail-image"
             variant="contained"
             startIcon={<CloudUpload />}
@@ -132,7 +133,7 @@ const NewProjectForm = (props) => {
               {({ getRootProps, getInputProps }) => (
                 <section>
                   <div {...getRootProps()}>
-                    <input {...getInputProps()} />
+                    <input data-cy="thumbnail-upload-input" {...getInputProps()} />
                     {project.thumbnailImage.length > 0
                       ? "Change Thumbnail Image"
                       : "Upload Thumbnail Image"}
@@ -142,7 +143,7 @@ const NewProjectForm = (props) => {
             </Dropzone>
           </Button>
           <TextField
-            data-cy="new-project-apps-and-platforms-input"
+            data-cy="apps-and-platforms-input"
             value={project.appsAndPlatforms}
             className="form-input text-field"
             fullWidth

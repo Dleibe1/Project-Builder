@@ -24,7 +24,7 @@ describe("As a logged in user visiting the Create Build Page", () => {
       .get("h1")
       .should("have.text", "New Project")
   })
-  describe("I can fill out all the parts of the form", () => {
+  describe("I can fill out all items in the form", () => {
     it("I can add a title", () => {
       cy.getByData("new-project-title-input").type("My new project")
       cy.getByData("new-project-title-input").find("input").should("have.value", "My new project")

@@ -17,6 +17,7 @@ const AddTags = ({ project, setProject }) => {
 
   return (
     <Autocomplete
+      data-cy="tag-input"
       className="tag-input"
       multiple
       onChange={handleTagsChange}
