@@ -63,7 +63,7 @@ const ProjectShow = (props) => {
           <p className="part-without-purchase-link">{part.partName}</p>
         )}
         {part.partPurchaseURL.length > 0 && (
-          <a href={part.partPurchaseURL}>
+          <a href={part.partPurchaseURL} target="_blank" rel="noopener noreferrer">
             <div className="part-with-purchase-link">
               <p>{part.partName} </p>
               <ShoppingCartIcon fontSize="large" />

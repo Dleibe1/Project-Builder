@@ -8,25 +8,22 @@ const HowToUse = () => {
   return (
     <div className="how-to-use">
       <div className="how-to-use__developer-linkedin">
-        <Button
-          id="developer-linkedin"
-          component={Link}
-          endIcon={<LinkedInIcon sx={{ width: "70px", height: "70px" }} color="primary" />}
-          onClick={(event) => {
-            event.preventDefault()
-            window.open(
-              "https://www.linkedin.com/in/daniel-patrick-leibensperger/",
-              "_blank",
-              "noopener,noreferrer",
-            )
-          }}
-          size="large"
-          sx={{
-            marginBottom: "20px",
-          }}
+        <a
+          href="https://www.linkedin.com/in/daniel-patrick-leibensperger/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Meet the Developer
-        </Button>
+          <Button
+            id="developer-linkedin"
+            endIcon={<LinkedInIcon sx={{ width: "70px", height: "70px" }} color="primary" />}
+            size="large"
+            sx={{
+              marginBottom: "20px",
+            }}
+          >
+            Meet the Developer
+          </Button>
+        </a>
       </div>
       <div className="banner how-to-use-page-items-container about-page-section-container-left top-banner">
         <img className="banner-image logo" src="https://i.imgur.com/dOywizt.png" />

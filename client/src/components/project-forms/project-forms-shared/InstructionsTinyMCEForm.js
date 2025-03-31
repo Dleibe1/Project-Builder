@@ -10,9 +10,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
     contain HTML with a <div> root block that we do not want nested inside a <p> tag.  
     Therefore this component contains logic to set the root block to a <p> tag only if
     project.instructions is empty when the component mounts.  When this new project is submitted,
-    it gets wrapped in a <div> in the handleCloseEditor function.  If the user is editing
-    instructions that were not empty when the component mounted, those instructions are already
-    wrapped in a <div>
+    it gets wrapped in a <div> in the handleCloseEditor function.
   */
   const [isNewProject, setIsNewProject] = useState(project?.instructions.length === 0)
   const editorRef = useRef(null)
@@ -53,12 +51,15 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
   }
 
   const handleCloseEditor = (editorContent) => {
-    if (isNewProject) {
-      setProject((prevState) => ({
-        ...prevState,
-        instructions: `<div>${editorContent}</div>`,
-      }))
+    if (project?.instructions.length) {
+      if (isNewProject) {
+        setProject((prevState) => ({
+          ...prevState,
+          instructions: `<div>${editorContent}</div>`,
+        }))
+      }
     }
+
     setEditingInstructions(false)
   }
 
