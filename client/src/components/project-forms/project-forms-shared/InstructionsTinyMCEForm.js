@@ -71,13 +71,16 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
   }
 
   return (
-    <div className="tinymce-container">
+    <div data-cy="tinymce-container" className="tinymce-container">
       <div {...getRootProps()} style={{ display: "none" }}>
         <input {...getInputProps()} />
       </div>
       <BundledEditor
-        onInit={(evt, editor) => (editorRef.current = editor)}
+        onInit={(evt, editor) => {
+          editorRef.current = editor
+        }}
         init={{
+          id: "tinymce-instructions-editor",
           //Check to see whether this is a new project.  If so, set the root block to "p"
           forced_root_block: project?.instructions.length === 0 ? "p" : "div",
           toolbar_mode: "wrap",
@@ -87,7 +90,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             img { max-width: 50%; height: auto; padding-top: 40px; padding-bottom: 40px; }
             h2 { font-weight: 700; font-size: 30px; color: #374146; } 
             p {font-size: 1.3rem; color: #374146; line-height: 130%;}`,
-          content_css: ["https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"],
+          // content_css: ["https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"],
           plugins: [
             "autoresize",
             "anchor",

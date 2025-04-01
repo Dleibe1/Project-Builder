@@ -15,7 +15,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
     })
     hljs.highlightAll()
   }, [project.instructions])
-console.log(project.instructions)
+
   return (
     <section className={`instructions-list showpage-items-container ${project.instructions.length === 0 && "empty"}`}>
       {["/edit-my-build/", "/fork-project/", "/create-new-build"].some((allowedPathname) =>
@@ -23,6 +23,7 @@ console.log(project.instructions)
       ) && (
         <div className="edit-instructions-button-container">
           <Button
+            data-cy="add-or-edit-instructions-button"
             onClick={() => setEditingInstructions(true)}
             className="large-button instructions-list-button edit-instructions"
             variant="contained"
