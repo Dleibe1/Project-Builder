@@ -158,6 +158,7 @@ const NewProjectForm = (props) => {
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
             <Textarea
+              data-cy="code-input"
               value={project.code}
               minRows="10"
               cols="1"
@@ -177,6 +178,7 @@ const NewProjectForm = (props) => {
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
           <TextField
+            data-cy="github-file-url"
             value={project.githubFileURL}
             fullWidth
             onChange={handleInputChange}
