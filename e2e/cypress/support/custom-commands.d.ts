@@ -33,11 +33,5 @@ declare namespace Cypress {
      * @example cy.getByData("my-selector")
      */
     getByData(selector: string): Chainable<JQuery<HTMLElement>>
-    /**
-     * Custom command to select a part item in a partsList array by its index
-     * @param selector The value of index of the partsList item.
-     * @example cy.getPartListItemByIndex(1)
-     */
-    getPartsListItemByIndex(index: number): Chainable<JQuery<HTMLElement>>
   }
 }

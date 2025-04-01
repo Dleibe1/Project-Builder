@@ -43,31 +43,30 @@ const PartsSubForm = ({ project, setProject }) => {
   const partsList = project.parts.map((part, index) => {
     return (
       <div
-        data-cy={`part-list-item${index}`}
-        key={`${part.partName} ${part.partPurchaseURL} ${index}`}
+        data-cy="part-item-in-form"
+        key={`${part.partName} ${part.partPurchaseURL || ""} ${index}`}
         className="part-item-in-form"
       >
         {part.partPurchaseURL.length === 0 && (
-          <p data-cy="part-without-purchase-link" className="part-without-purchase-link">
+          <p data-cy="part-text-no-purchase-link" className="part-without-purchase-link">
             {part.partName}
           </p>
         )}
         {part.partPurchaseURL.length > 0 && (
           <a
-            data-cy="part-purchase-link"
-            onClick={(event) => {
-              event.preventDefault()
-              window.open(part.partPurchaseURL, "_blank", "noopener,noreferrer")
-            }}
+            data-cy="purchase-link"
+            target="_blank"
+            rel="noopener noreferrer"
             href={part.partPurchaseURL}
           >
             <div className="part-with-purchase-link">
-              <p>{part.partName}</p>
+              <p data-cy="part-text-in-purchase-link">{part.partName}</p>
               <ShoppingCartIcon fontSize="large" />
             </div>
           </a>
         )}
         <Button
+          data-cy="delete-part-button"
           onClick={() => handlePartDelete(index)}
           className="large-button delete-part"
           variant="contained"
@@ -85,7 +84,7 @@ const PartsSubForm = ({ project, setProject }) => {
       <div data-cy="form-parts-list" className="form-parts-list">
         {partsList}
       </div>
-      <div id="part-input-container" className="form-items-container">
+      <div data-cy="form-part-input-container" id="part-input-container" className="form-items-container">
         <TextField
           data-cy="partname-input"
           sx={{ width: "100%" }}
@@ -115,7 +114,7 @@ const PartsSubForm = ({ project, setProject }) => {
           </Button>
           {isValidHttpUrl(part.partPurchaseURL.trim()) === false &&
             part.partPurchaseURL.trim().length > 0 && (
-              <p className="url-invalid">
+              <p data-cy="invalid-url-message" className="url-invalid">
                 Not a valid URL, make sure to include <strong>http://</strong> or{" "}
                 <strong>https://</strong>
               </p>

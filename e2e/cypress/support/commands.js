@@ -44,10 +44,6 @@ Cypress.Commands.add("logoutUser", () => {
   return cy.request("DELETE", "/api/v1/user-sessions/")
 })
 
-Cypress.Commands.add("getByData", (selector) => {
-  return cy.get(`[data-cy=${selector}]`)
-})
-
-Cypress.Commands.add("getPartsListItemByIndex", (index) => {
-  return cy.get(`[data-cy="part-list-item${index}"]`)
+Cypress.Commands.add("getByData", (selector, options = {}) => {
+  return cy.get(`[data-cy=${selector}]`, options)
 })
