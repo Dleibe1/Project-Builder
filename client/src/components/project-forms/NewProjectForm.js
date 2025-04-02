@@ -201,9 +201,9 @@ const NewProjectForm = (props) => {
     </div>
   ) : (
     <InstructionsTinyMCEForm
+      setEditingInstructions={setEditingInstructions}
       project={project}
       setProject={setProject}
-      setEditingInstructions={setEditingInstructions}
     />
   )
 }

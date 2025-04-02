@@ -9,5 +9,9 @@
   "devDependencies": {
     "@testing-library/cypress": "^7.0.3",
     "cypress": "^6.1.0"
+  },
+  "dependencies": {
+    "browserslist": "^4.24.4",
+    "cypress-file-upload": "^5.0.8"
   }
 }

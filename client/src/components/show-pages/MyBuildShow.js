@@ -98,7 +98,7 @@ const MyBuildShow = (props) => {
         </div>
       )}
       <div id="thumbnail-and-title">
-        <h2 className="showpage-title">{myBuild.title}</h2>
+        <h2 data-cy="my-build-title-showpage" className="showpage-title">{myBuild.title}</h2>
         <img
           className="project-image show-page-thumbnail"
           src={myBuild.thumbnailImage}

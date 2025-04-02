@@ -11,7 +11,7 @@ const MyBuildTile = ({ id, title, thumbnailImage, createdBy }) => {
   }
 
   return (
-    <div className="project-tile" onClick={handleTileClick}>
+    <div data-cy="my-build-tile" className="project-tile" onClick={handleTileClick}>
       <img className="thumbnail-image" src={thumbnailImage} alt={`${title} thumbnail`} />
       <div className="project-tile-info-container">
         <h3 className={hasForks ? `project-tile-title has-forks` : ""}>{title}</h3>

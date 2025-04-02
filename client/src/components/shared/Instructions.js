@@ -46,6 +46,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
         <>
           <h2 id="form-instructions-heading">Instructions</h2>
           <div
+            data-cy="instructions-text"
             className="preserve-white-space instruction-text showpage-items-container"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(project.instructions)

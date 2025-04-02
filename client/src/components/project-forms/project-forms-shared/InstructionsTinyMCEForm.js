@@ -59,7 +59,6 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
         }))
       }
     }
-
     setEditingInstructions(false)
   }
 
@@ -173,13 +172,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
               onAction: () => {
                 handleAddImage()
               },
-            }),
-              editor.on("keydown", (event) => {
-                if (event.key === "Tab") {
-                  event.preventDefault()
-                  editor.execCommand("mceInsertContent", false)
-                }
-              })
+            })
           },
           selector: "textarea",
           min_height: 1000,
