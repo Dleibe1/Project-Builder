@@ -12,14 +12,13 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
     thumbnailImage: forkData.thumbnailImage,
     title: forkData.title,
     appsAndPlatforms: forkData.appsAndPlatforms,
-    tags: forkData.tags,
     description: forkData.description,
-    documentation: forkData.documentation,
     code: forkData.code,
     instructions: forkData.instructions,
     parentProjectId,
   })
   const parts = forkData.parts
+  const tags = forkData.tags
   const forkedProjectId = parseInt(forkedProject.id)
 
   for (const part of parts) {
@@ -30,13 +29,15 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
     })
   }
 
-  const tagsToRelate = await Tag.query()
-    .select("id")
-    .whereIn(
-      "tagName",
-      forkedProject.tags.map((tag) => tag.tagName),
-    )
-  await forkedProject.$relatedQuery("tags").relate(tagsToRelate.map((tag) => tag.id))
+  if (tags?.length) {
+    const tagsToRelate = await Tag.query()
+      .select("id")
+      .whereIn(
+        "tagName",
+        tags.map((tag) => tag.tagName),
+      )
+    await forkedProject.$relatedQuery("tags").relate(tagsToRelate.map((tag) => tag.id))
+  }
 }
 
 export default handleForkProject

@@ -15,7 +15,6 @@ const Instructions = ({ project, setEditingInstructions }) => {
     })
     hljs.highlightAll()
   }, [project.instructions])
-console.log(project.instructions)
   return (
     <section className={`instructions-list showpage-items-container ${project.instructions.length === 0 && "empty"}`}>
       {["/edit-my-build/", "/fork-project/", "/create-new-build"].some((allowedPathname) =>
