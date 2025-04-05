@@ -1,6 +1,5 @@
-/// <reference types="Cypress" />
 
-import { ExampleUser } from "./types"
+/// <reference types="Cypress" />
 
 declare namespace Cypress {
   interface Chainable<Subject = any> {
@@ -13,7 +12,7 @@ declare namespace Cypress {
      * Custom command to seed an example user.
      * @example cy.seedExampleUser()
      */
-    seedExampleUser(): Chainable<ExampleUser>
+    seedExampleUser(): Chainable<any>
     /**
      * Custom command to log in an example user.
      * @example cy.seedExampleUser()
