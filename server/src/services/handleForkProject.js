@@ -18,6 +18,7 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
     parentProjectId,
   })
   const parts = forkData.parts
+  const tags = forkData.tags
   const forkedProjectId = parseInt(forkedProject.id)
 
   if (parts?.length) {
@@ -30,12 +31,12 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
     }
   }
 
-  if (forkedProject.tags?.length) {
+  if (tags?.length) {
     const tagsToRelate = await Tag.query()
       .select("id")
       .whereIn(
         "tagName",
-        forkedProject.tags.map((tag) => tag.tagName),
+        tags.map((tag) => tag.tagName),
       )
     await forkedProject.$relatedQuery("tags").relate(tagsToRelate.map((tag) => tag.id))
   }
