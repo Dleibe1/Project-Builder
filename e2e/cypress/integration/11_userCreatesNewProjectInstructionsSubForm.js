@@ -26,23 +26,20 @@ before(() => {
 
 describe("I can use the TinyMCE instructions editor", () => {
   //TinyMCE tests will fail if you are testing with the Electron browser
-  if (Cypress.isBrowser("chrome")) {
-    it("I can navigate to the editor", () => {
-      cy.getByData("add-or-edit-instructions-button").click()
-      cy.getByData("tinymce-container").should("exist")
-    })
-    it("I can add content to the editor", () => {
-      cy.get('[data-mce-name="h2-button"]').click()
-      getIframeBody().type("Heading")
-      getIframeBody().contains("h2", "Heading")
-    })
-    it("When I close the editor, I return to the create build form and the text has been added", () => {
-      cy.get('[data-mce-name="close-editor"]').click()
-      cy.getByData("instructions-text").contains("Heading")
-    })
-  } else {
-    it("Logs an error if you're not using chrome browser", () => {
-      cy.log("You may only use chrome browser for this test")
-    })
-  }
+  it("I am using Chrome browser for this test because Electron browser will fail", () => {
+   expect(Cypress.isBrowser("chrome")).to.be.true
+  })
+  it("I can navigate to the editor", () => {
+    cy.getByData("add-or-edit-instructions-button").click()
+    cy.getByData("tinymce-container").should("exist")
+  })
+  it("I can add content to the editor", () => {
+    cy.get('[data-mce-name="h2-button"]').click()
+    getIframeBody().type("Heading")
+    getIframeBody().contains("h2", "Heading")
+  })
+  it("When I close the editor, I return to the create build form and the text has been added", () => {
+    cy.get('[data-mce-name="close-editor"]').click()
+    cy.getByData("instructions-text").contains("Heading")
+  })
 })

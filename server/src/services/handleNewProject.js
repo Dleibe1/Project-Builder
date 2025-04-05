@@ -20,22 +20,40 @@ const handleNewProject = async ({
     githubFileURL,
     userId,
     thumbnailImage,
-    instructions
+    instructions,
   })
   const newProjectId = parseInt(newProject.id)
   await Promise.all(
     parts.map((part) => {
-      return Part.query().insert({ projectId: newProjectId, partName: part.partName, partPurchaseURL: part.partPurchaseURL })
+      return Part.query().insert({
+        projectId: newProjectId,
+        partName: part.partName,
+        partPurchaseURL: part.partPurchaseURL,
+      })
     }),
   )
+  console.log(
+    title,
+    appsAndPlatforms,
+    description,
+    code,
+    tags,
+    githubFileURL,
+    userId,
+    parts,
+    instructions,
+    thumbnailImage,
+  )
 
-  const tagsToRelate = await Tag.query()
-    .select("id")
-    .whereIn(
-      "tagName",
-      tags.map((tag) => tag.tagName),
-    )
-  await newProject.$relatedQuery("tags").relate(tagsToRelate.map((tag) => tag.id))
+  if (tags?.length) {
+    const tagsToRelate = await Tag.query()
+      .select("id")
+      .whereIn(
+        "tagName",
+        tags.map((tag) => tag.tagName),
+      )
+    await newProject.$relatedQuery("tags").relate(tagsToRelate.map((tag) => tag.id))
+  }
 }
 
 export default handleNewProject

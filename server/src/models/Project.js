@@ -15,9 +15,6 @@ class Project extends Model {
         appsAndPlatforms: { oneOf: [{ type: "string" }, { type: "null" }] },
         thumbnailImage: { type: "string" },
         instructions: { type: "string" },
-        documentation: {
-          oneOf: [{ type: "string" }, { type: "null" }],
-        },
         description: { type: "string" },
         code: { type: "string" },
         githubFileURL: {

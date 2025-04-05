@@ -89,6 +89,7 @@ projectsRouter.delete("/:id", async (req, res) => {
 projectsRouter.post("/new-project", async (req, res) => {
   const { body } = req
   try {
+    console.log(body)
     const formInput = cleanUserInput(body)
     await handleNewProject(formInput)
     res.status(201).json({ project: formInput })
