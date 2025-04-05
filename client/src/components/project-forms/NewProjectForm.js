@@ -97,7 +97,7 @@ const NewProjectForm = (props) => {
         <div className="form-items-container top-section">
           <h1>New Project</h1>
           <TextField
-            data-cy="new-project-title-input"
+            inputProps={{ "data-cy": "new-project-title-input" }}
             value={project.title}
             className="form-input text-field"
             fullWidth
@@ -111,7 +111,7 @@ const NewProjectForm = (props) => {
           </section>
           <h2>Description:</h2>
           <Textarea
-            data-cy="new-project-description-input"
+            slotProps={{ textarea: { "data-cy": "new-project-description-input" } }}
             minRows={3}
             value={project.description}
             placeholder="Enter description"
@@ -143,7 +143,7 @@ const NewProjectForm = (props) => {
             </Dropzone>
           </Button>
           <TextField
-            data-cy="apps-and-platforms-input"
+            inputProps={{ "data-cy": "apps-and-platforms-input" }}
             value={project.appsAndPlatforms}
             className="form-input text-field"
             fullWidth
@@ -158,7 +158,7 @@ const NewProjectForm = (props) => {
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
             <Textarea
-              data-cy="code-input"
+              slotProps={{ textarea: { "data-cy": "code-input" } }}
               value={project.code}
               minRows="10"
               cols="1"
@@ -178,7 +178,7 @@ const NewProjectForm = (props) => {
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
           <TextField
-            data-cy="github-file-url"
+            inputProps={{ "data-cy": "github-file-url" }}
             value={project.githubFileURL}
             fullWidth
             onChange={handleInputChange}

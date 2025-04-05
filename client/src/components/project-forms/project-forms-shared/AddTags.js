@@ -20,6 +20,7 @@ const AddTags = ({ project, setProject }) => {
       data-cy="tag-input"
       className="tag-input"
       multiple
+      slotProps={{ popper: { "data-cy": "tags-popper" } }}
       onChange={handleTagsChange}
       value={project.tags.map((tag) => tag.tagName)}
       options={allowedTags.map((tag) => tag.tagName)}

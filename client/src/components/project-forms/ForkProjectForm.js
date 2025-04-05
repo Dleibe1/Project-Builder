@@ -88,11 +88,12 @@ const ForkProjectForm = (props) => {
       <ErrorList errors={errors} />
       <form id="fork-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
-          <h1>Fork Project</h1>
+          <h1 data-cy="fork-project-main-heading">Fork Project</h1>
           <section className="add-tags">
             <AddTags project={project} setProject={setProject} />
           </section>
           <TextField
+            inputProps={{ "data-cy": "fork-project-title-input" }}
             value={project.title}
             className="form-input text-field"
             fullWidth
@@ -103,6 +104,7 @@ const ForkProjectForm = (props) => {
           />
           <h2>Description:</h2>
           <Textarea
+            slotProps={{ textarea: { "data-cy": "fork-project-description-input" } }}
             minRows={3}
             value={project.description}
             placeholder="Enter description"
@@ -112,7 +114,7 @@ const ForkProjectForm = (props) => {
             sx={{ minWidth: "100%", backgroundColor: "white" }}
           />
           <div className="project-image-container thumbnail-image-container">
-            <img className="project-image" src={project.thumbnailImage} />
+            <img data-cy="thumbnail-image" className="project-image" src={project.thumbnailImage} />
           </div>
           <Button
             className="large-button change-thumbnail-image"
@@ -123,7 +125,7 @@ const ForkProjectForm = (props) => {
               {({ getRootProps, getInputProps }) => (
                 <section>
                   <div {...getRootProps()}>
-                    <input {...getInputProps()} />
+                    <input data-cy="thumbnail-upload-input" {...getInputProps()} />
                     {project.thumbnailImage.length > 0
                       ? "Change Thumbnail Image"
                       : "Upload Thumbnail Image"}
@@ -133,6 +135,7 @@ const ForkProjectForm = (props) => {
             </Dropzone>
           </Button>
           <TextField
+            inputProps={{ "data-cy": "apps-and-platforms-input" }}
             value={project.appsAndPlatforms}
             className="form-input text-field"
             fullWidth
@@ -147,6 +150,7 @@ const ForkProjectForm = (props) => {
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
             <Textarea
+              slotProps={{ textarea: { "data-cy": "code-input" } }}
               value={project.code}
               minRows="10"
               cols="1"
@@ -166,6 +170,7 @@ const ForkProjectForm = (props) => {
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
           <TextField
+            inputProps={{ "data-cy": "github-file-url" }}
             value={project.githubFileURL}
             fullWidth
             onChange={handleInputChange}

@@ -84,9 +84,13 @@ const PartsSubForm = ({ project, setProject }) => {
       <div data-cy="form-parts-list" className="form-parts-list">
         {partsList}
       </div>
-      <div data-cy="form-part-input-container" id="part-input-container" className="form-items-container">
+      <div
+        data-cy="form-part-input-container"
+        id="part-input-container"
+        className="form-items-container"
+      >
         <TextField
-          data-cy="partname-input"
+          inputProps={{ "data-cy": "partname-input" }}
           sx={{ width: "100%" }}
           className="part-name-input"
           value={part.partName}
@@ -95,7 +99,7 @@ const PartsSubForm = ({ project, setProject }) => {
           name="partName"
         />
         <TextField
-          data-cy="part-purchase-url-input"
+          inputProps={{"data-cy": "part-purchase-url-input"}}
           sx={{ width: "100%" }}
           className="part-purchase-url-input"
           value={part.partPurchaseURL}

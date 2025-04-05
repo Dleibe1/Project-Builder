@@ -83,18 +83,19 @@ const EditBuildForm = (props) => {
 
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
-  }
+  } 
 
   return !editingInstructions ? (
     <div className="edit-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form id="edit-project-form" onSubmit={handleSubmit}>
+      <form data-cy="edit-project-form" id="edit-project-form" onSubmit={handleSubmit}>
         <div className="form-items-container top-section">
-          <h1>Edit Project</h1>
+          <h1 data-cy="edit-project-main-heading">Edit Project</h1>
           <section className="add-tags">
             <AddTags project={project} setProject={setProject} />
           </section>
           <TextField
+            inputProps={{ "data-cy": "edit-project-title-input" }}
             value={project.title}
             className="form-input text-field"
             fullWidth
@@ -105,6 +106,7 @@ const EditBuildForm = (props) => {
           />
           <h2>Description:</h2>
           <Textarea
+            slotProps={{ textarea: { "data-cy": "edit-project-description-input" } }}
             minRows={3}
             value={project.description}
             placeholder="Enter description"
@@ -114,7 +116,7 @@ const EditBuildForm = (props) => {
             sx={{ minWidth: "100%", backgroundColor: "white" }}
           />
           <div className="project-image-container thumbnail-image-container">
-            <img className="project-image" src={project.thumbnailImage} />
+            <img data-cy="thumbnail-image" className="project-image" src={project.thumbnailImage} />
           </div>
           <Button
             className="large-button change-thumbnail-image"
@@ -125,7 +127,7 @@ const EditBuildForm = (props) => {
               {({ getRootProps, getInputProps }) => (
                 <section>
                   <div {...getRootProps()}>
-                    <input {...getInputProps()} />
+                    <input data-cy="thumbnail-upload-input" {...getInputProps()} />
                     {project.thumbnailImage.length > 0
                       ? "Change Thumbnail Image"
                       : "Upload Thumbnail Image"}
@@ -135,6 +137,7 @@ const EditBuildForm = (props) => {
             </Dropzone>
           </Button>
           <TextField
+            inputProps={{ "data-cy": "apps-and-platforms-input" }}
             value={project.appsAndPlatforms}
             className="form-input text-field"
             fullWidth
@@ -149,6 +152,7 @@ const EditBuildForm = (props) => {
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
             <Textarea
+              slotProps={{ textarea: { "data-cy": "code-input" } }}
               value={project.code}
               minRows="10"
               cols="1"
@@ -168,6 +172,7 @@ const EditBuildForm = (props) => {
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
           <TextField
+            inputProps={{ "data-cy": "github-file-url" }}
             value={project.githubFileURL || undefined}
             fullWidth
             onChange={handleInputChange}

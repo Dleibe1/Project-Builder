@@ -99,7 +99,7 @@ const ProjectShow = (props) => {
         </div>
       )}
       <section id="thumbnail-and-title">
-        <h2 className="showpage-title">{project.title}</h2>
+        <h2 data-cy="showpage-title" className="showpage-title">{project.title}</h2>
         <img
           className="project-image show-page-thumbnail"
           src={project.thumbnailImage}
