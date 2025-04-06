@@ -27,7 +27,7 @@ before(() => {
 })
 
 describe("When I submit a new project form", () => {
-  it("I am using Chrome browser because Electron browser will fail testing the TinyMCE instructions sub form component", () => {
+  it("I am using Chrome browser because Electron browser cannot interact with TinyMCE form properly", () => {
     expect(Cypress.isBrowser("chrome")).to.be.true
   })
   it("If I am missing any required information when the form is submitted, errors are displayed", () => {

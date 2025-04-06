@@ -1,9 +1,10 @@
+/// <reference types="Cypress" />
+
 import allowedTags from "../../../shared/allowedTags"
 import projectCodeSeedData from "../../../server/src/db/ProjectSeederData/projectCodeSeedData"
 import projectDescriptionsSeedData from "../../../server/src/db/ProjectSeederData/projectDescriptionsSeedData"
 import projectInstructionsSeedData from "../../../server/src/db/ProjectSeederData/projectInstructionsSeedData"
 
-/// <reference types="Cypress" />
 
 const projectTags = [
   { projectId: 1, tagId: 2 },
