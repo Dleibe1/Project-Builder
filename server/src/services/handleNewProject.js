@@ -23,15 +23,17 @@ const handleNewProject = async ({
     instructions,
   })
   const newProjectId = parseInt(newProject.id)
-  await Promise.all(
-    parts.map((part) => {
-      return Part.query().insert({
-        projectId: newProjectId,
-        partName: part.partName,
-        partPurchaseURL: part.partPurchaseURL,
-      })
-    }),
-  )
+  if (parts?.length) {
+    await Promise.all(
+      parts.map((part) => {
+        return Part.query().insert({
+          projectId: newProjectId,
+          partName: part.partName,
+          partPurchaseURL: part.partPurchaseURL,
+        })
+      }),
+    )
+  }
 
   if (tags?.length) {
     const tagsToRelate = await Tag.query()
