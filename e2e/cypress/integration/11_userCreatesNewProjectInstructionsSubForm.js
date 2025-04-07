@@ -8,25 +8,25 @@ const getIframeDocument = () => {
 const getIframeBody = () => {
   return getIframeDocument().its("body").should("not.be.undefined").then(cy.wrap)
 }
-before(() => {
-  truncateAllTables()
-  cy.fixture("exampleUser")
-    .then((userData) => {
-      return cy
-        .intercept("GET", "/api/v1/user-sessions/current", {
-          statusCode: 200,
-          body: userData,
-        })
-        .as("currentUser")
-    })
-    .then(() => {
-      cy.visit("/create-new-build")
-    })
-})
 
 describe("I can use the TinyMCE instructions editor", () => {
-  //TinyMCE tests will fail if you are testing with the Electron browser
-  it("I am using Chrome browser because Electron browser cannot interact with buttons in TinyMCE form", () => {
+  before(() => {
+    truncateAllTables()
+    cy.fixture("exampleUser")
+      .then((userData) => {
+        return cy
+          .intercept("GET", "/api/v1/user-sessions/current", {
+            statusCode: 200,
+            body: userData,
+          })
+          .as("currentUser")
+      })
+      .then(() => {
+        cy.visit("/create-new-build")
+      })
+  })
+  //TinyMCE tests will fail if you are testing with the Electron 87 browser
+  it("I am using Chrome browser because Electron 87 browser cannot interact with buttons in TinyMCE form", () => {
     expect(Cypress.isBrowser("chrome")).to.be.true
   })
   it("I can navigate to the editor", () => {

@@ -1,6 +1,6 @@
 
 /// <reference types="Cypress" />
-
+//These commands are defined in commands.js
 declare namespace Cypress {
   interface Chainable<Subject = any> {
     /**
@@ -9,20 +9,21 @@ declare namespace Cypress {
      */
     userIsLoggedIn(): Chainable<boolean>
     /**
-     * Custom command to seed an example user.
-     * @example cy.seedExampleUser()
+     * Custom command to seed an example user
+     * using a Cypress fixture
+     * @example cy.seedUser("exampleUser")
      */
-    seedExampleUser(): Chainable<any>
+    seedUser(fixture: string): Chainable<any>
     /**
-     * Custom command to log in an example user.
-     * @example cy.seedExampleUser()
-     * @returns {Chainable<ExampleUser>} A chainable that yields the seeded user object.
+     * Custom command to log in a user from a Cypress fixture.
+     * @example cy.seedUser("exampleUser")
+     * @returns {Chainable<any>} A chainable that yields the seeded user object.
      */
-    loginExampleUser(): Chainable<any>
+    loginUser(fixture: String): Chainable<any>
     /**
-     * Custom command to log in an example user.
+     * Custom command to log in a user using a Cypress fixture.
      * Returns the user's data as an object.
-     * @example cy.loginExampleUser().then((userData) => { console.log(userData.email) })
+     * @example cy.loginUser("exampleUser").then((userData) => { console.log(userData.email) })
      * @returns {Chainable<object>} The data for the logged in user.
      */
     logoutUser(): Chainable<any>

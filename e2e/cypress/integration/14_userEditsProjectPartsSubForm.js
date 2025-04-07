@@ -10,19 +10,20 @@ const deleteAllParts = () => {
     }
   })
 }
-before(() => {
-  truncateAllTables()
-    .then(() => {
-      seedOneProject()
-    })
-    .then(() => {
-      cy.loginExampleUser()
-    })
-    .then(() => {
-      cy.visit("/edit-my-build/1")
-    })
-})
+
 describe("I can use the parts subform", () => {
+  before(() => {
+    truncateAllTables()
+      .then(() => {
+        seedOneProject("exampleUser")
+      })
+      .then(() => {
+        cy.loginUser("exampleUser")
+      })
+      .then(() => {
+        cy.visit("/edit-my-build/1")
+      })
+  })
   it("I can see existing parts", () => {
     cy.getByData("form-parts-list")
       .children(":nth-child(1)")

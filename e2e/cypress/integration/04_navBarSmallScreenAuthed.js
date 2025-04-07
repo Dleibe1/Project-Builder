@@ -18,7 +18,7 @@ describe("As an authenticated user interacting with the navigation bar on a smal
   })
 
   beforeEach(() => {
-    cy.loginExampleUser()
+    cy.loginUser("exampleUser")
     cy.viewport(600, 900)
     cy.visit("/?page=1")
   })

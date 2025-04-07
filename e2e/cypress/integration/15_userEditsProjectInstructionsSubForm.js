@@ -14,16 +14,16 @@ describe("I can use the TinyMCE editor to edit instructions", () => {
   before(() => {
     truncateAllTables()
       .then(() => {
-        seedOneProject()
+        seedOneProject("exampleUser")
       })
       .then(() => {
-        cy.loginExampleUser()
+        cy.loginUser("exampleUser")
       })
       .then(() => {
         cy.visit("/edit-my-build/1")
       })
   })
-  it("I am using Chrome browser because Electron browser cannot interact with buttons in TinyMCE form", () => {
+  it("I am using Chrome browser because Electron 87 browser cannot interact with buttons in TinyMCE form", () => {
 	expect(Cypress.isBrowser("chrome")).to.be.true
    })
   it("I can navigate to the editor", () => {

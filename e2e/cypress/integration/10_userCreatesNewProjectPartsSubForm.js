@@ -25,24 +25,6 @@ describe("I can use the Parts subform to add or remove parts", () => {
         cy.visit("/create-new-build")
       })
   })
-  describe("I can use the parts subform", () => {
-    it("I can see existing parts", () => {
-      cy.getByData("form-parts-list")
-        .children(":nth-child(1)")
-        .find("p")
-        .should("have.text", "RGB Diffused Common Anode")
-    })
-    it("I can delete existing parts", () => {
-      cy.getByData("form-parts-list")
-        .children(":nth-child(1)")
-        .within(() => {
-          cy.getByData("delete-part-button").click()
-        })
-      cy.getByData("form-parts-list")
-        .children(":nth-child(1)")
-        .find("p")
-        .should("not.have.text", "RGB Diffused Common Anode")
-    })
     describe("I can only add parts if I enter the correct information", () => {
       beforeEach(() => {
         deleteAllParts()
@@ -93,4 +75,3 @@ describe("I can use the Parts subform to add or remove parts", () => {
       })
     })
   })
-})

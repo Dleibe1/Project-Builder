@@ -19,9 +19,9 @@ Cypress.Commands.add("userIsLoggedIn", () => {
     })
 })
 
-Cypress.Commands.add("seedExampleUser", () => {
+Cypress.Commands.add("seedUser", (userFixture) => {
   return cy.task("db:truncate", "User").then(() => {
-    return cy.fixture("exampleUser").then((userData) => {
+    return cy.fixture(userFixture).then((userData) => {
       return cy
         .task("db:insert", {
           modelName: "User",
@@ -34,8 +34,8 @@ Cypress.Commands.add("seedExampleUser", () => {
   })
 })
 
-Cypress.Commands.add("loginExampleUser", () => {
-  cy.fixture("exampleUser").then((userData) => {
+Cypress.Commands.add("loginUser", (userFixture) => {
+  cy.fixture(userFixture).then((userData) => {
     return cy.request({ method: "POST", url: "/api/v1/user-sessions", body: userData })
   })
 })

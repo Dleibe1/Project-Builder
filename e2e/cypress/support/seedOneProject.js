@@ -5,19 +5,11 @@ import projectCodeSeedData from "../../../server/src/db/ProjectSeederData/projec
 import projectDescriptionsSeedData from "../../../server/src/db/ProjectSeederData/projectDescriptionsSeedData"
 import projectInstructionsSeedData from "../../../server/src/db/ProjectSeederData/projectInstructionsSeedData"
 
-
 const projectTags = [
   { projectId: 1, tagId: 2 },
   { projectId: 1, tagId: 24 },
   { projectId: 1, tagId: 12 },
 ]
-
-const user = {
-  email: "example@example.com",
-  password: "cat",
-  userName: "Example",
-  loginMethod: "standard",
-}
 
 const parts = [
   {
@@ -66,15 +58,23 @@ const project = {
   thumbnailImage: "/images/projectSeeder/project001/thumbnail.blob",
   instructions: projectInstructionsSeedData[0],
 }
-
-const seedOneProject = () => {
+/**
+ * Seeds a project into the database by truncating tables and inserting test data.
+ *
+ * @param {string} userFixture - The filename for the user fixture.  See cy.fixture() in Cypress docs.
+ * @returns {Cypress.Chainable<any>} A chainable Cypress context.
+ */
+const seedOneProject = (userFixture) => {
   return cy
     .task("db:truncate", ["User", "Project", "Part", "Tag"])
     .task("dbTable:truncate", "project_tags")
     .then(() => {
+      cy.fixture(userFixture)
+    })
+    .then((userData) => {
       return cy.task("db:insert", {
         modelName: "User",
-        json: user,
+        json: userData,
       })
     })
     .then(() => {
