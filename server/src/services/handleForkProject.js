@@ -21,12 +21,14 @@ const handleForkProject = async (parentProjectId, userId, forkData) => {
   const tags = forkData.tags
   const forkedProjectId = parseInt(forkedProject.id)
 
-  for (const part of parts) {
-    await Part.query().insert({
-      projectId: forkedProjectId,
-      partName: part.partName,
-      partPurchaseURL: part.partPurchaseURL,
-    })
+  if (parts?.length) {
+    for (const part of parts) {
+      await Part.query().insert({
+        projectId: forkedProjectId,
+        partName: part.partName,
+        partPurchaseURL: part.partPurchaseURL,
+      })
+    }
   }
 
   if (tags?.length) {

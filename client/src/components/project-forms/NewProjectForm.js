@@ -88,10 +88,16 @@ const NewProjectForm = (props) => {
   return !editingInstructions ? (
     <div className="fork-project-form-container project-show">
       <ErrorList errors={errors} />
-      <form key="new-build-form" id="fork-project-form" onSubmit={handleSubmit}>
+      <form
+        data-cy="new-project-form"
+        key="new-build-form"
+        id="fork-project-form"
+        onSubmit={handleSubmit}
+      >
         <div className="form-items-container top-section">
           <h1>New Project</h1>
           <TextField
+            inputProps={{ "data-cy": "new-project-title-input" }}
             value={project.title}
             className="form-input text-field"
             fullWidth
@@ -105,6 +111,7 @@ const NewProjectForm = (props) => {
           </section>
           <h2>Description:</h2>
           <Textarea
+            slotProps={{ textarea: { "data-cy": "new-project-description-input" } }}
             minRows={3}
             value={project.description}
             placeholder="Enter description"
@@ -114,9 +121,10 @@ const NewProjectForm = (props) => {
             sx={{ minWidth: "100%", backgroundColor: "white" }}
           />
           <div className="project-image-container thumbnail-image-container">
-            <img className="project-image" src={project.thumbnailImage} />
+            <img data-cy="thumbnail-image" className="project-image" src={project.thumbnailImage} />
           </div>
           <Button
+            data-cy="upload-thumbnail-button"
             className="large-button change-thumbnail-image"
             variant="contained"
             startIcon={<CloudUpload />}
@@ -125,7 +133,7 @@ const NewProjectForm = (props) => {
               {({ getRootProps, getInputProps }) => (
                 <section>
                   <div {...getRootProps()}>
-                    <input {...getInputProps()} />
+                    <input data-cy="thumbnail-upload-input" {...getInputProps()} />
                     {project.thumbnailImage.length > 0
                       ? "Change Thumbnail Image"
                       : "Upload Thumbnail Image"}
@@ -135,6 +143,7 @@ const NewProjectForm = (props) => {
             </Dropzone>
           </Button>
           <TextField
+            inputProps={{ "data-cy": "apps-and-platforms-input" }}
             value={project.appsAndPlatforms}
             className="form-input text-field"
             fullWidth
@@ -149,6 +158,7 @@ const NewProjectForm = (props) => {
           <h2 className="code-heading">Code:</h2>
           <label htmlFor="code" className="form-input" id="code-input">
             <Textarea
+              slotProps={{ textarea: { "data-cy": "code-input" } }}
               value={project.code}
               minRows="10"
               cols="1"
@@ -168,6 +178,7 @@ const NewProjectForm = (props) => {
             Example: https://github.com/antronyx/ServoTester/blob/main/main.ino
           </p>
           <TextField
+            inputProps={{ "data-cy": "github-file-url" }}
             value={project.githubFileURL}
             fullWidth
             onChange={handleInputChange}
@@ -190,9 +201,9 @@ const NewProjectForm = (props) => {
     </div>
   ) : (
     <InstructionsTinyMCEForm
+      setEditingInstructions={setEditingInstructions}
       project={project}
       setProject={setProject}
-      setEditingInstructions={setEditingInstructions}
     />
   )
 }

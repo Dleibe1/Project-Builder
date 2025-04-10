@@ -85,4 +85,3 @@ class ProjectTagsSeeder {
 }
 
 export default ProjectTagsSeeder
-export { projectTags }

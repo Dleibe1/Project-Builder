@@ -15,6 +15,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
     })
     hljs.highlightAll()
   }, [project.instructions])
+
   return (
     <section className={`instructions-list showpage-items-container ${project.instructions.length === 0 && "empty"}`}>
       {["/edit-my-build/", "/fork-project/", "/create-new-build"].some((allowedPathname) =>
@@ -22,6 +23,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
       ) && (
         <div className="edit-instructions-button-container">
           <Button
+            data-cy="add-or-edit-instructions-button"
             onClick={() => setEditingInstructions(true)}
             className="large-button instructions-list-button edit-instructions"
             variant="contained"
@@ -44,6 +46,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
         <>
           <h2 id="form-instructions-heading">Instructions</h2>
           <div
+            data-cy="instructions-text"
             className="preserve-white-space instruction-text showpage-items-container"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(project.instructions)

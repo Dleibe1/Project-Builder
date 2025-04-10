@@ -602,4 +602,3 @@ class PartSeeder {
 }
 
 export default PartSeeder
-export { parts, partsForForkedProjects }

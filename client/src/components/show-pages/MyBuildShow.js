@@ -5,7 +5,6 @@ import DeleteBuildButton from "./show-page-authed-UI/DeleteBuildButton"
 import EditBuildButton from "./show-page-authed-UI/EditBuildButton"
 import SeeForkedVersionsButton from "./show-pages-shared/SeeForkedVersionsButton.js"
 import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
-import ReturnToParentProjectButton from "./show-pages-shared/ReturnToParentProjectButton.js"
 import TagList from "./show-pages-shared/TagList"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getMyBuild from "../../api/getMyBuild.js"
@@ -98,7 +97,7 @@ const MyBuildShow = (props) => {
         </div>
       )}
       <div id="thumbnail-and-title">
-        <h2 className="showpage-title">{myBuild.title}</h2>
+        <h2 data-cy="my-build-title-showpage" className="showpage-title">{myBuild.title}</h2>
         <img
           className="project-image show-page-thumbnail"
           src={myBuild.thumbnailImage}

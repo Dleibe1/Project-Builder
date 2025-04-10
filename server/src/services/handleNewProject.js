@@ -23,6 +23,7 @@ const handleNewProject = async ({
     instructions,
   })
   const newProjectId = parseInt(newProject.id)
+
   if (parts?.length) {
     await Promise.all(
       parts.map((part) => {

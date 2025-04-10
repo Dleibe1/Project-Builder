@@ -84,7 +84,7 @@ const RegistrationForm = () => {
           if (error.serverErrors) {
             return setServerErrors(error.serverErrors)
           } else {
-            console.error("Error in registerUser() Fetch:", error)
+            console.error("Error in Fetch:", error)
           }
         })
     }

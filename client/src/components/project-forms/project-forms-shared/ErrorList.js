@@ -14,7 +14,7 @@ const ErrorList = (props) => {
     });
     return (
       <div className="callout alert">
-        <ul>{listItems}</ul>
+        <ul data-cy="error-list">{listItems}</ul>
       </div>
     );
   } else {

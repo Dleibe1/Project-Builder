@@ -70,7 +70,7 @@ const DiffView = (props) => {
     forkedProjectParts += `${part.partName}\n`
   }
 
-  const compareGithubMainInoFileURL =
+  const shouldCompareGithubMainInoFileURL =
     parentProjectData.githubFileURL?.length > 0 || forkedProjectData.githubFileURL?.length > 0
 
   const parentProjectInstructionsAsMarkdown = MarkdownService.convertHTMLToMarkdown(
@@ -150,8 +150,8 @@ const DiffView = (props) => {
         showDiffOnly={false}
         splitView={true}
       />
-      {compareGithubMainInoFileURL && <h2>Main file URL on GitHub:</h2>}
-      {compareGithubMainInoFileURL && (
+      {shouldCompareGithubMainInoFileURL && <h2>Main file URL on GitHub:</h2>}
+      {shouldCompareGithubMainInoFileURL && (
         <ReactDiffViewer
           oldValue={parentProjectData.githubFileURL || ""}
           newValue={forkedProjectData.githubFileURL || ""}
