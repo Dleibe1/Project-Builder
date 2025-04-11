@@ -8,7 +8,7 @@ describe("As an authenticated user interacting with the navigation bar on a smal
 
   before(() => {
     cy.task("db:truncate", "User").then(() => {
-      cy.fixture("exampleUser").then((userData) => {
+      cy.fixture("user1").then((userData) => {
         return cy.task("db:insert", {
           modelName: "User",
           json: userData,
@@ -18,7 +18,7 @@ describe("As an authenticated user interacting with the navigation bar on a smal
   })
 
   beforeEach(() => {
-    cy.loginUser("exampleUser")
+    cy.loginUser("user1")
     cy.viewport(600, 900)
     cy.visit("/?page=1")
   })

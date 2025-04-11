@@ -14,10 +14,10 @@ describe("I can use the TinyMCE editor to edit instructions", () => {
   before(() => {
     truncateAllTables()
       .then(() => {
-        seedOneProject("exampleUser")
+        seedOneProject("user1")
       })
       .then(() => {
-        cy.loginUser("exampleUser")
+        cy.loginUser("user1")
       })
       .then(() => {
         cy.visit("/edit-my-build/1")

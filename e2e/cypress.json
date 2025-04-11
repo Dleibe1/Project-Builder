@@ -2,5 +2,6 @@
   "baseUrl": "http://localhost:8765",
   "nodeVersion": "system",
   "framework": "react",
-  "chromeWebSecurity": true
+  "chromeWebSecurity": true,
+  "video": true
 }

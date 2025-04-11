@@ -1,6 +1,7 @@
-/// <reference types="Cypress" />
 import seedOneProject from "../support/seedOneProject"
+import seedUser from "../support/seedUser"
 import truncateAllTables from "../support/truncateAllTables"
+/// <reference types="Cypress" />
 
 const deleteAllParts = () => {
   cy.getByData("form-parts-list").then(($list) => {
@@ -11,18 +12,19 @@ const deleteAllParts = () => {
   })
 }
 
-describe("I can use the parts subform", () => {
+describe("As a user forking a project", () => {
   before(() => {
     truncateAllTables()
       .then(() => {
         seedOneProject("user1")
       })
       .then(() => {
-        cy.loginUser("user1")
+        seedUser("user2")
       })
       .then(() => {
-        cy.visit("/edit-my-build/1")
+        cy.loginUser("user2")
       })
+    cy.visit("/fork-project/1")
   })
   it("I can see existing parts", () => {
     cy.getByData("form-parts-list")

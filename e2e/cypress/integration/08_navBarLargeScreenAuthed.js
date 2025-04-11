@@ -3,7 +3,7 @@
 describe("As an authenticated user interacting with the navigation bar on a large screen", () => {
   before(() => {
     cy.task("db:truncate", "User").then(() => {
-      cy.fixture("exampleUser").then((userData) => {
+      cy.fixture("user1").then((userData) => {
         return cy.task("db:insert", {
           modelName: "User",
           json: userData,
@@ -13,7 +13,7 @@ describe("As an authenticated user interacting with the navigation bar on a larg
   })
 
   beforeEach(() => {
-    cy.loginUser("exampleUser")
+    cy.loginUser("user1")
     cy.viewport(1400, 900)
     cy.visit("/?page=1")
   })
@@ -43,7 +43,7 @@ describe("As an authenticated user interacting with the navigation bar on a larg
     })
   })
 
-  describe("Clicking buttons on the navigation bar", () => {
+  describe("Using the navigation bar", () => {
     it("navigates to the 'How to use' page", () => {
       cy.contains("how to use", { matchCase: false }).click()
       cy.url().should("eq", `${Cypress.config().baseUrl}/how-to-use`)
@@ -69,10 +69,10 @@ describe("As an authenticated user interacting with the navigation bar on a larg
       cy.url().should("eq", `${Cypress.config().baseUrl}/create-new-build`)
     })
 
-    it("clicking 'sign out' signs me out and redirects to the homepage", () => {
+    it("The 'sign out' button signs me out and redirects to the homepage", () => {
       cy.contains("sign out", { matchCase: false }).click()
       cy.url().should("eq", `${Cypress.config().baseUrl}/?page=1`)
-      cy.userIsLoggedIn().should("equal", false)
+      cy.userIsLoggedIn().should("eq", false)
     })
   })
 

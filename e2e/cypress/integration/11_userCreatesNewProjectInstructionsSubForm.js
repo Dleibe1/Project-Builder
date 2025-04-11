@@ -12,7 +12,7 @@ const getIframeBody = () => {
 describe("I can use the TinyMCE instructions editor", () => {
   before(() => {
     truncateAllTables()
-    cy.fixture("exampleUser")
+    cy.fixture("user1")
       .then((userData) => {
         return cy
           .intercept("GET", "/api/v1/user-sessions/current", {

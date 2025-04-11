@@ -12,7 +12,7 @@ const deleteAllParts = () => {
 describe("I can use the Parts subform to add or remove parts", () => {
   before(() => {
     truncateAllTables()
-    cy.fixture("exampleUser")
+    cy.fixture("user1")
       .then((userData) => {
         return cy
           .intercept("GET", "/api/v1/user-sessions/current", {
