@@ -2,8 +2,8 @@
 
 describe("As an authenticated user viewing the navigation bar on a medium sized screen", () => {
   before(() => {
-    cy.seedUser("exampleUser")
-    cy.loginUser("exampleUser")
+    cy.seedUser("user1")
+    cy.loginUser("user1")
     cy.viewport(1150, 900)
     cy.visit("/?page=1")
   })

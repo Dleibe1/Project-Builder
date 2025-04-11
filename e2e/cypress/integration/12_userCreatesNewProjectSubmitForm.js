@@ -13,8 +13,8 @@ const getIframeBody = () => {
 describe("When I submit a new project form", () => {
   beforeEach(() => {
     truncateAllTables()
-    cy.seedUser("exampleUser")
-    cy.loginUser("exampleUser")
+    cy.seedUser("user1")
+    cy.loginUser("user1")
       .then(() => {
         cy.visit("/create-new-build")
       })

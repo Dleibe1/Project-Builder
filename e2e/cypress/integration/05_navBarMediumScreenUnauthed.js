@@ -35,7 +35,7 @@ describe("As an unauthenticated user viewing the navigation bar on a medium size
       })
     })
   })
-  describe("Clicking buttons on the navigation bar", () => {
+  describe("Using the navigation bar", () => {
     it("I can navigate to the homepage", () => {
       cy.contains("home", { matchCase: false }).click()
       cy.url().should("eq", `${Cypress.config().baseUrl}/?page=1`)

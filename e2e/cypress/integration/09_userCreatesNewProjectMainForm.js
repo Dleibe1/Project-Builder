@@ -5,7 +5,7 @@ import truncateAllTables from "../support/truncateAllTables"
 describe("As a logged in user visiting the Create Build Page", () => {
   before(() => {
     truncateAllTables()
-    cy.fixture("exampleUser")
+    cy.fixture("user1")
       .then((userData) => {
         return cy
           .intercept("GET", "/api/v1/user-sessions/current", {

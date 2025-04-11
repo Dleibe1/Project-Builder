@@ -11,19 +11,19 @@ declare namespace Cypress {
     /**
      * Custom command to seed an example user
      * using a Cypress fixture
-     * @example cy.seedUser("exampleUser")
+     * @example cy.seedUser("user1")
      */
     seedUser(fixture: string): Chainable<any>
     /**
      * Custom command to log in a user from a Cypress fixture.
-     * @example cy.seedUser("exampleUser")
+     * @example cy.seedUser("user1")
      * @returns {Chainable<any>} A chainable that yields the seeded user object.
      */
     loginUser(fixture: String): Chainable<any>
     /**
      * Custom command to log in a user using a Cypress fixture.
      * Returns the user's data as an object.
-     * @example cy.loginUser("exampleUser").then((userData) => { console.log(userData.email) })
+     * @example cy.loginUser("user1").then((userData) => { console.log(userData.email) })
      * @returns {Chainable<object>} The data for the logged in user.
      */
     logoutUser(): Chainable<any>

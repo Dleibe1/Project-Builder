@@ -36,7 +36,7 @@ describe("As an unauthenticated user interacting with the navigation bar on a la
     })
   })
 
-  describe("Clicking buttons on the navigation bar", () => {
+  describe("Using the navigation bar", () => {
     it("I can navigate to the 'How to use' page", () => {
       cy.contains("how to use", { matchCase: false }).click()
       cy.url().should("eq", `${Cypress.config().baseUrl}/how-to-use`)

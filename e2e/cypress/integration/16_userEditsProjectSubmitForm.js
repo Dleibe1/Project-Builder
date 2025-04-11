@@ -12,8 +12,8 @@ const getIframeBody = () => {
 describe("When I submit a project", () => {
   beforeEach(() => {
     truncateAllTables()
-        seedOneProject("exampleUser")
-        cy.loginUser("exampleUser")
+        seedOneProject("user1")
+        cy.loginUser("user1")
   })
   it("I am using Chrome browser because Electron 87 browser cannot interact with TinyMCE form properly", () => {
     expect(Cypress.isBrowser("chrome")).to.be.true

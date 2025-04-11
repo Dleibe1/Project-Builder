@@ -38,7 +38,7 @@ describe("As an unauthenticated user interacting with the navigation bar on a sm
     })
   })
 
-  describe("Clicking buttons in the burger menu", () => {
+  describe("When I use the burger menu", () => {
     it("I can navigate to the sign in page", () => {
       clickUnauthedBurgerMenuOption("sign in")
       cy.url().should("eq", `${Cypress.config().baseUrl}/user-sessions/new`)

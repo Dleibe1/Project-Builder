@@ -7,10 +7,10 @@ describe("As a logged in user visiting the Edit Build Page", () => {
   before(() => {
     truncateAllTables()
       .then(() => {
-        seedOneProject("exampleUser")
+        seedOneProject("user1")
       })
       .then(() => {
-        cy.loginUser("exampleUser")
+        cy.loginUser("user1")
       })
       .then(() => {
         cy.visit("/edit-my-build/1")
