@@ -1,25 +1,26 @@
-const projectInstructionsSeedData = 
-[`<div><p>This project is made for Arduino beginners who are looking for learning how to interface \
-the RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and \
+const projectInstructionsSeedData = [
+  `<div><p>This project is made for Arduino beginners who are looking to learn how to interface \
+an RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and \
 Common Cathode (CC) concept as well as the pulse width modulation (PWM) \
-signals.</p><br><p>RGB LED Types and Structure</p><br><p>RGB LEDs have three LEDs inside them \
+signals.</p><br><h2>RGB LED Types and Structure </h2><br><p>RGB LEDs have three LEDs inside them \
 and usually, these three internal LEDs share either a common anode or a common cathode \
 especially in a through-hole package. So basically, we can categorize RGB LEDs as either \
 common anode or common cathode type just like in seven segment displays. </p><br><img \
-src="https://projects.arduinocontent.cc/6ce54a92-5d7b-4a79-9bb9-14646cee8d8d.png"></img><br><p>Common \
-Anode</p><br><p>In a common anode RGB LED, the anode of the internal LEDs are all connected \
+src="https://projects.arduinocontent.cc/6ce54a92-5d7b-4a79-9bb9-14646cee8d8d.png"></img><br><h2>Common \
+Anode</h2><br><p>In a common anode RGB LED, the anode of the internal LEDs are all connected \
 to the external anode lead. To control each color, you need to apply a LOW signal or \
 ground to the red, green, and blue leads and connect the anode lead to the positive \
 terminal of the power supply. </p><br><img \
-src="https://projects.arduinocontent.cc/50bfbc76-b401-44e6-8806-4c07057a4c63.png"></img><br><p>Common \
-Cathode</p><br><p>In a common cathode RGB LED, the cathode of the internal LEDs are all \
+src="https://projects.arduinocontent.cc/50bfbc76-b401-44e6-8806-4c07057a4c63.png"></img><br><h2>Common \
+Cathode</h2><br><p>In a common cathode RGB LED, the cathode of the internal LEDs are all \
 connected to the external cathode lead. To control each color, you need to apply a HIGH \
 signal or VCC to the red, green, and blue leads and connect the anode lead to the negative \
 terminal of the power supply. </p><br><img \
-src="https://projects.arduinocontent.cc/a402677b-ba8b-4441-a052-cda5b140852b.png"></img><br><p>Basics \
-of PWM (Pulse Width Modulation)</p><br><p>Pulse Width Modulation, or PWM, is a technique for \
-getting analog results with digital means. Digital control is used to create a square \
-wave, a signal switched between on and off. This on-off pattern can simulate voltages in \
+src="https://projects.arduinocontent.cc/a402677b-ba8b-4441-a052-cda5b140852b.png"></img><br><h2>Basics \
+of PWM (Pulse Width Modulation)</h2><br><p>Pulse Width Modulation, or PWM, is a technique for \
+getting something that looks like an analog signal using what are really digital signals. 
+The digital output is used to create a square \
+wave, a signal switched between on and off at a high rate of speed. This on-off pattern can simulate voltages in \
 between the full Vcc of the board (e.g., 5 V on UNO, 3.3 V on a MKR board) and off (0 \
 Volts) by changing the portion of the time the signal spends on versus the time that the \
 signal spends off. The duration of "on time" is called the pulse width. To get varying \
@@ -28,15 +29,16 @@ pattern fast enough with an LED for example, the result is as if the signal is a
 voltage between 0 and Vcc controlling the brightness of the LED.  In the graphic below, \
 the green lines represent a regular time period. This duration or period is the inverse of \
 the PWM frequency. In other words, with Arduino's PWM frequency at about 500Hz, the green \
-lines would measure 2 milliseconds each. </p><br><img \
+lines would measure 2 milliseconds each.</p><br><img \
 src="https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif"></img><br><p>The \
 code below will cycle the LED through different colors, enjoy!</p></div>`,
 
-`<div><p>Ever wanted to know the temperature and humidity around you? If yes, this project will \
+  `<div><p>Ever wanted to know the temperature and humidity around you? If yes, this project will \
 be very helpful for you. If no, it'll be cool anyway. What I mean is, you can use this in \
-anything from home automations to smart watches.</p><br><p>What is humidity?</p><br><p>Humidity \
-is the water vapor around you mixed with air. It is measured in per cents. So, if the \
-humidity is 60 per cent(which is the average humidity), then 60 per cent of the air around \
+anything from home automations to smart watches.</p><br> \
+<h2>What is humidity?</h2><br><p>Humidity \
+is the water vapor around you mixed with air. It is measured in percentages. So, if the \
+humidity is 60 percent (which is the average humidity), then 60 percent of the air around \
 you is water vapor. If it is 100%, then it means either the sensor is not correct, the \
 sensor is broken/damaged, the Arduino crashed, the Arduino can't receive any signal, \
 there's an error in the code or you're underwater *. If it's 0%, it means all the reasons \
@@ -46,20 +48,20 @@ does contain some water but it is a very little amount compared to a normal plac
 Sahara Desert has a mean humidity of 25%.</p><br><p>The world's lowest recorded relative \
 humidity value occurred at Coober Pedy in the South Australia desert when the temperature \
 was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 \
-percent. (source:  'www.chicagotribune.com')</p><br><p>Is your sensor different?</p><br><p>My \
-sensor is like this: </p><br><img \
-src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><br><p>My \
+percent. (source:  'www.chicagotribune.com')</p><br><h2>Is your sensor different?  My \
+sensor is like this: </h2><br><img \
+src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><br><h2>My \
 sensor has 3 pins and it's fitted on a board. If yours has 4 pins, then you need to build \
-this circuit: </p><br><img \
-src="https://i.imgur.com/mPlhTTK.png"></img><br><p>If \
-it is same as mine, then follow this diagram instead, you will no longer need the resistor:</p><br><img \
-src="https://i.imgur.com/UW1R9mh.png"></img><br><p></p><br><p>Details about the code</p><br><p>You need to follow these instructions to \
+this circuit: </h2><br><img \
+src="https://i.imgur.com/mPlhTTK.png"></img><br><h2>If \
+it is same as mine, then follow this diagram instead, you will no longer need the resistor:</h2><br><img \
+src="https://i.imgur.com/UW1R9mh.png"></img><br><p></p><br><h2>Details about the code</h2><br><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11 library to the Arduino IDE and include it in \
 your sketch. <br>2. Upload the code. <br>3. When the code is uploaded, open the Serial Monitor \
 and set the baud rate to 9600. <br>4. You will see the humidity and temperature. </p></div>`,
 
-`<div><p>Water deposit</p><br><p>For our watering system, we will need a water container. Any common \
-and standard items suitable for water storage can be used as a deposit. The larger the \
+  `<div><h2>Water deposit</h2><br><p>For our watering system, we will need a water container. Any \
+container suitable for water storage can be used as a water deposit. The larger the \
 storage container, the less frequent the need for recharging. </p><br><img \
 src="https://www.hibit.dev/images/posts/2024/watering_bottle.png"></img><br><p>We've selected \
 the bottle shown on the image as our water reservoir. With a capacity of 1.5 liters, it \
@@ -72,7 +74,7 @@ care station. To conclude the process, we use waterproof silicone to seal the op
 ensuring there is no water loss. </p><br><img \
 src="https://www.hibit.dev/images/posts/2024/watering_bottom.png"></img><br><p>On the \
 opposite end, there will be a water pipe directly connecting to the plant to provide \
-hydration.</p><br><p>Water pump wiring</p><br><p>To facilitate the connection of the pump wires \
+hydration.</p><br><h2>Water pump wiring</h2><br><p>To facilitate the connection of the pump wires \
 with the main system, we've used a barrel plug. The junction between the pump wires and \
 the connector wires is shielded by heat shrink wraps, providing effective insulation from \
 external elements. </p><br><img \
@@ -91,7 +93,7 @@ a DS1302 module is integrated to manage real-time control, influencing watering 
 It considers optimal watering times, favoring mornings and evenings when sunlight is less \
 intense, promoting better absorption and utilization of water by the plants. This \
 thoughtful scheduling enhances the overall efficiency and well-being of the \
-plants.</p><br><p>Power supply</p><br><p>For the entire system, a 9V battery serves as the power \
+plants.</p><br><h2>Power supply</h2><br><p>For the entire system, a 9V battery serves as the power \
 supply. It separately powers both the Arduino and the water pump. Considering that our \
 water pump operates on 5V, we require a voltage transformer. For this purpose, we have \
 used the AMS117 module.<br>In contrast, the DS1302 operates on a separate CR2032 battery, \
@@ -105,7 +107,7 @@ Additionally, the potentiometer allows for accurate adjustment of the water amou
 automatic mode. </p><br><img \
 src="https://www.hibit.dev/images/posts/2024/watering_station.png"></img><br><p>These \
 user-friendly controls provide a precise and efficient means of managing your plant care \
-routine.</p><br><p>Wiring schema</p><br><p>Creating a precise wiring schema is essential for the \
+routine.</p><br><h2>Wiring schema</h2><br><p>Creating a precise wiring schema is essential for the \
 optimal performance of the automatic watering system. This schema serves as a practical \
 guide, interconnecting main components. Methodically organizing and routing the wires \
 prevents potential confusion during the assembly process. Clarity in both assembly and \
@@ -114,7 +116,7 @@ and strictly following specified pin configurations for facilitating the communi
 between modules. </p><br><img \
 src="https://www.hibit.dev/images/posts/2024/schemas/watering_system.png"></img><br><p>The \
 above wiring schema offers a comprehensive overview of the system wiring and \
-connections.</p><br><p>Calculating base resistor value</p><br><p>In order to compute the base \
+connections.</p><br><h2>Calculating base resistor value</h2><br><p>In order to compute the base \
 resistor (RB), we must first determine the collector current. Given that the circuit's \
 sole load is the water pump, it can be deduced that the collector current is identical to \
 that of the water pump. Based on the water pump specification, we know that IC = 200 mA, \
@@ -135,7 +137,7 @@ have a source voltage of 5V, and the transistor's barrier potential is 0.6V.<br>
 0.6V) / 2mA = 2.2kΩ</p><br><p>For our circuit, the suitable value for the base resistor \
 should be equal or below 2.2K ohms. We choose the lower standardized resistor and check by \
 looking at the datasheet curves that the base voltage is sufficient to drive the \
-transistor into saturation.</p><br><p>Automated plants watering system</p><br><p>After going \
+transistor into saturation.</p><br><h2>Automated plants watering system</h2><br><p>After going \
 through rounds of mounting and wiring adjustments, we're excited to introduce our initial \
 prototype of the automatic watering system. Check out the results and get a general \
 overview of the system in the attached image below. We're really looking forward to seeing \
@@ -151,7 +153,7 @@ assembled the physical components, our attention now turns to the real wizardry 
 code. This article explores the intricate lines of Arduino code that transform theory into \
 reality, breathing life into our DIY plant care project. As we step into the heart of our \
 automated watering system, let's unravel the details that make our green vision a \
-reality.</p><br><p>Install library for DS1302</p><br><p>To interact with the DS1302 sensor, we \
+reality.</p><br><h2>Install library for DS1302</h2><br><p>To interact with the DS1302 sensor, we \
 will use an existing library. This library, provides an interface that facilitates \
 communication with the module, saving you significant time and providing a reliable and \
 extensively tested code base. It can be downloaded from our official repository \
@@ -203,7 +205,7 @@ intricacies of physical mounting, sensor integration, and module connections. Wh
 as abstract concepts has materialized into a self-built, technology-infused plant care \
 solution.</p></div>`,
 
-`<div><p>The spectrum analyzer displays the amplitude of signals as a function of frequency, \
+  `<div><p>The spectrum analyzer displays the amplitude of signals as a function of frequency, \
 allowing engineers and technicians to visualize and analyze signal characteristics. In \
 particular, the audio analyzer performs a visual presentation of an acoustic signal in the \
 frequency domain, where the frequency of the signal is displayed on the x-axis, while the \
@@ -246,7 +248,7 @@ visually very effective and can serve as a gadget on your desktop, or as an addi
 audio device. It can also be used as a simple school FFT spectrum analyzer instrument \
 intended for educational purposes </p></div>`,
 
-`<div><p>In the vast realm of robotics, enthusiasts are venturing into the exciting world of OLED \
+  `<div><p>In the vast realm of robotics, enthusiasts are venturing into the exciting world of OLED \
 eye animations for Arduino robots. If you've found yourself lost in the maze of online \
 searches, fear not! We've done the legwork and distilled the top five methods for creating \
 captivating eye animations into a clear and fun comparison.</p><br><p>Introducing our \
@@ -277,7 +279,7 @@ personality to life! Get ready to dive in, experiment, and unleash your \
 creativity.</p><br><p>Let's animate those robotic eyes and inject some fun into your Arduino \
 projects! 🤖👀</p></div>`,
 
-`<div><p>Greetings everyone, and welcome to my Instructables tutorial. Today, I'll guide you \
+  `<div><p>Greetings everyone, and welcome to my Instructables tutorial. Today, I'll guide you \
 through the process of creating an Object Tracking 4-DOF Robotics Arm.<br>Project \
 Overview:</p><br><p>In this project, the robotic arm will execute actions corresponding to \
 the commands received from the sensors. For example, if the object moves to the left, the \
@@ -310,7 +312,7 @@ VIN</p><br><p>IR Sensor -> Arduino Uno (left)<br>GND -> GND OUT -> A0 VCC -> VIN
 src="https://projects.arduinocontent.cc/efbbe392-9df2-476e-8470-157bd5dd834d.jpg"></img><br><p>- \
 Now connect the USB cable to the Arduino Uno.<br>Next, upload the following code:</p></div>`,
 
-`<div><p>About the Project</p><br><p>Welcome back, tech enthusiasts! Today, I'm excited to introduce \
+  `<div><p>About the Project</p><br><p>Welcome back, tech enthusiasts! Today, I'm excited to introduce \
 ARPoLan, a project that started as an experiment to explore the potential of combining the \
 Arduino Pro Micro and the W5500 Ethernet module. This powerful device can perform network \
 scanning, ARP spoofing, and even act as a local Rubber Ducky. Let me take you through \
@@ -366,7 +368,7 @@ If the project gains attention, I’ll open-source the PCB files as well. Feel f
 the code and share your feedback or improvements.</p><br><p>GitHub repository: \
 github.com/cifertech/arpolan </p></div>`,
 
-`<div><p>Ultrasonic sonar is devices that use sound waves with frequencies higher than the upper \
+  `<div><p>Ultrasonic sonar is devices that use sound waves with frequencies higher than the upper \
 audible limit of human hearing (typically above 20 kHz) to measure distances to objects. \
 They work on the principle of sending out a sound wave, and then measuring the time it \
 takes for the sound wave to bounce back after hitting an object. By calculating the time \
@@ -412,7 +414,7 @@ self-contained device intended for both beginners and more advanced DIYers. I've
 cases from previous projects, but it's desirable to have it all in one case with a slanted \
 front display to visually simulate a real radar system. </p></div>`,
 
-`<div><p>In this exciting tutorial, we will show you how to build your own security camera using an \
+  `<div><p>In this exciting tutorial, we will show you how to build your own security camera using an \
 ESP32-CAM and an AM312 PIR sensor to detect motion. Best of all, photos will be saved \
 directly to an SD card!</p><br><p>       Throughout this video, we will guide you through the \
 following steps:</p><br><p>Link projects and update in \
@@ -483,7 +485,7 @@ and press any button.</p><br><p>Now, see in the serial monitor. You will see a c
 corresponding button you pressed.</p><br><p>Note the codes on a paper or copy them in a \
 document file on PC. </p></div>`,
 
-`<div><p>Here, You can learn "How to Control Motors using L298n Motor Driver & Arduino Uno".<br>You \
+  `<div><p>Here, You can learn "How to Control Motors using L298n Motor Driver & Arduino Uno".<br>You \
 can even control Speed & Direction of Motors using this tutorial.</p><br><p>Additionally, I \
 am Attaching a Video for your proper guidance.<br>You can see Step by Step Process \
 physically- </p><br><img \
@@ -503,7 +505,7 @@ src="https://projects.arduinocontent.cc/a73bfc9c-7c69-44fa-9d0f-321e034d6f4e.png
 You can Control your Motor Speed.<br>I am attached my Final Look of our Project. </p><br><img \
 src="https://projects.arduinocontent.cc/601919da-0dc7-4158-9e4c-66e1192c1e0e.jpg"></img><br><p></p></div>`,
 
-`<div><p>Hello everyone,</p><br><p>       Welcome back to another interesting and easy tutorial after \
+  `<div><p>Hello everyone,</p><br><p>       Welcome back to another interesting and easy tutorial after \
 a long time. Sorry guys I was busy in writing very fantastic book regarding Arduino IoT \
 Cloud and I will share the details at the end of this tutorial. so this book writing \
 approx took 1 year and 2 months.</p><br><p>       Well back to the point, many years ago I \
@@ -620,7 +622,7 @@ their solution with other 3rd party clouds and services, and Arduino Cloud CLI h
 engineers and administrators to automate and manage bulk deployments using the \
 command-line tool. </p></div>`,
 
-`<div><p>The goal of this tutorial is to show you a way to easily add AI to a project , without any \
+  `<div><p>The goal of this tutorial is to show you a way to easily add AI to a project , without any \
 knowledge in this field, using the software NanoEdge AI Studio and its Arduino compatible \
 libraries!</p><br><p>This tutorial guides you through building a cardboard touchpad that \
 relies on vibration analysis and an Embedded AI algorithm running on an Arduino UNO R4 . \
@@ -699,7 +701,7 @@ signal in response to changes in infrared radiation, and a circuit that processe
 amplifies this signal to detect motion.</p><br><p>HCSR04 Ultrasonic Sensor Pinout<br>The \
 Pinout is given as below: </p></div>`,
 
-`<div><p></p><br><img \
+  `<div><p></p><br><img \
 src="https://projects.arduinocontent.cc/947a4793-1603-4d45-b9fa-e314f780e848.jpg"></img><br><p>VCC \
 is the power pin of the module.</p><br><p>GND is the GND pin of the module.</p><br><p>Out is the \
 data output pin of the module.</p><br><p>Interfacing PIR Sensor with Arduino</p><br><p>Now that \
@@ -740,7 +742,7 @@ the second row and print motion detection message      <br>   lcd.setCursor(0, 1
 second row and print motion stopped message      <br>   lcd.setCursor(0, 1);      <br>   \
 lcd.print("Motion Stops    ");      <br> }      <br>}      </p></div>`,
 
-`<div><p>The two eyes are painted on two ping-pong balls which are sticked on two servo motors. Two \
+  `<div><p>The two eyes are painted on two ping-pong balls which are sticked on two servo motors. Two \
 ultrasonic sensors measure the object's position. An Arduino Nano Every board reads the \
 measurements from the ultrasonic sensors and controls the sevo motors \
 accordingly.</p><br><p>The servo motors are SG90 micro servos and the ultrasonic sensors are \
@@ -765,7 +767,7 @@ and right refer to Big Brother's eyes, his left eye is on your own right.</p><br
 following diagram shows the connections to be made:Software</p><br><p>The software is \
 extremely simple, less than 70 lines. No library is required.</p><br><p>Have fun. </p></div>`,
 
-`<div><p>Gather your tools and troops (components, that is)</p><br><p>The brains: An Arduino Uno, the \
+  `<div><p>Gather your tools and troops (components, that is)</p><br><p>The brains: An Arduino Uno, the \
 mastermind behind the magic.<br>The translator: An HC05 Bluetooth module, your car's \
 interpreter for smartphone commands.<br>The muscle: L298N motor driver, the beefy guy \
 controlling those zippy wheels.<br>The bling: NeoPixel LEDs, because who doesn't love a \
@@ -790,7 +792,7 @@ the motors and LEDs. The provided code is a great starting point, but feel free 
 experiment and add your own personal touch! \
 https://circuitdigest.com/sites/default/files/circuitdiagram_mic/Arduino-Robot-Circuit-Diagram.png</p></div>`,
 
-`<div><p>The ultrasonic sensor is a device that can measure distances using sound waves . It works \
+  `<div><p>The ultrasonic sensor is a device that can measure distances using sound waves . It works \
 in a similar way than bats and dolphins - by emitting sound waves and listening them bound \
 back </p><br><img \
 src="https://projects.arduinocontent.cc/cc7047f6-2bbf-43ed-87e9-76b07f4522e8.jpg"></img></p><br><p><img \
@@ -844,7 +846,7 @@ After that, from lines 30 to 35 we print the distance. </p><br><p>The last part 
 is an if-statement that turns on the buzzer when the object is at 50 centimeters or closer \
 from the sensor. In case this statement is false, the buzzer turns down. </p></div>`,
 
-`<div><p>This project is for a school code quest. I have seen many projects with soil moisture \
+  `<div><p>This project is for a school code quest. I have seen many projects with soil moisture \
 sensors, but all of them included expensive and complicated materials such as LCD screens \
 or automatic watering systems. I took it as a challenge to create an incredibly cheap and \
 simple Soil Moisture Sensor. The project is designed for people that might not know when \
@@ -876,7 +878,7 @@ Casing: </p><br><p>The casing is a simple box, with the LEDs coming out of the t
 buzzer on the side. The Soil Moisture Sensor comes out of the side with wires and is stuck \
 into the soil, so it's relatively far from all the water-sensitive components. </p></div>`,
 
-`<div><p>I needed to turn on and off some AC units located in a remote house, so that I can \
+  `<div><p>I needed to turn on and off some AC units located in a remote house, so that I can \
 pre-cool (or pre-heat) the rooms in advance before I go. </p><br><p>Such units are very \
 common appliances by Daikin, which provides WiFi capability on newer models but that's not \
 something available on mine. The solution was easy: I just had to simulate an infrared \
@@ -927,28 +929,29 @@ There are many solutions; a very simple one is described in this \
 tutorial<br>https://docs.arduino.cc/arduino-cloud/tutorials/cloud-environmental-data \
 <br>and can be done with a MKR WiFi 1010 board, a MKR ENV Shield, and IoT Cloud. </p></div>`,
 
-`<div><p>This project is made for Arduino beginners who are looking for learning how to interface \
-the RGB led with the Arduino Uno and use a push button to control the LED. Also, we will \
+  `<div><p>This project is made for Arduino beginners who are looking to learn how to interface \
+an RGB led with the Arduino Uno and use a push button to control the LED. Also, we will \
 understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse \
-width modulation (PWM) signals. </p><br><p>RGB LED Types and Structure </p><br><p>RGB LEDs have \
+width modulation (PWM) signals. </p><br><h2>RGB LED Types and Structure </h2><br><p>RGB LEDs have \
 three LEDs inside them and usually, these three internal LEDs share either a common anode \
 or a common cathode especially in a through-hole package. So basically, we can categorize \
 RGB LEDs as either common anode or common cathode type just like in seven segment \
 displays. </p><br><img \
-src="https://projects.arduinocontent.cc/6ce54a92-5d7b-4a79-9bb9-14646cee8d8d.png"></img><br><p>Common \
-Anode </p><br><p>In a common anode RGB LED, the anode of the internal LEDs are all connected \
+src="https://projects.arduinocontent.cc/6ce54a92-5d7b-4a79-9bb9-14646cee8d8d.png"></img><br><h2>Common \
+Anode </h2><br><p>In a common anode RGB LED, the anode of the internal LEDs are all connected \
 to the external anode lead. To control each color, you need to apply a LOW signal or \
 ground to the red, green, and blue leads and connect the anode lead to the positive \
 terminal of the power supply. </p><br><img \
-src="https://projects.arduinocontent.cc/50bfbc76-b401-44e6-8806-4c07057a4c63.png"></img><br><p>Common \
-Cathode </p><br><p>In a common cathode RGB LED, the cathode of the internal LEDs are all \
+src="https://projects.arduinocontent.cc/50bfbc76-b401-44e6-8806-4c07057a4c63.png"></img><br><h2>Common \
+Cathode </h2><br><p>In a common cathode RGB LED, the cathode of the internal LEDs are all \
 connected to the external cathode lead. To control each color, you need to apply a HIGH \
 signal or VCC to the red, green, and blue leads and connect the anode lead to the negative \
 terminal of the power supply. </p><br><img \
-src="https://projects.arduinocontent.cc/a402677b-ba8b-4441-a052-cda5b140852b.png"></img><br><p>Basics \
-of PWM (Pulse Width Modulation) </p><br><p>Pulse Width Modulation, or PWM, is a technique for \
-getting analog results with digital means. Digital control is used to create a square \
-wave, a signal switched between on and off. This on-off pattern can simulate voltages in \
+src="https://projects.arduinocontent.cc/a402677b-ba8b-4441-a052-cda5b140852b.png"></img><br><h2>Basics \
+of PWM (Pulse Width Modulation)</h2><br><p>Pulse Width Modulation, or PWM, is a technique for \
+getting something that looks like an analog signal using what are really digital signals. 
+The digital output is used to create a square \
+wave, a signal switched between on and off at a high rate of speed. This on-off pattern can simulate voltages in \
 between the full Vcc of the board (e.g., 5 V on UNO, 3.3 V on a MKR board) and off (0 \
 Volts) by changing the portion of the time the signal spends on versus the time that the \
 signal spends off. The duration of "on time" is called the pulse width. To get varying \
@@ -957,49 +960,50 @@ pattern fast enough with an LED for example, the result is as if the signal is a
 voltage between 0 and Vcc controlling the brightness of the LED.  In the graphic below, \
 the green lines represent a regular time period. This duration or period is the inverse of \
 the PWM frequency. In other words, with Arduino's PWM frequency at about 500Hz, the green \
-lines would measure 2 milliseconds each. </p><br><img \
-src="https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif"></img><br><p> \
-Explanation of the Changes from the Original Version of this Project:</p><br><p>Button \
-Input:</p><br><p>A button is connected to pin 2 of the Arduino, and it is configured with an \
+lines would measure 2 milliseconds each.</p><br><img \
+src="https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif"></img><br><h2> \
+Explanation of the Changes from the Original Version:</h2><br><h2>Button \
+Input:</h2><br><p>A button is connected to pin 2 of the Arduino, and it is configured with an \
 internal pull-up resistor (INPUT_PULLUP mode). This means that when the button is not \
 pressed, the pin reads HIGH, and when pressed, it reads LOW.<br>Color Change \
 Logic:</p><br><p>Each time the button is pressed, the colorIndex variable is incremented, \
 cycling through six different colors. After the last color, the index resets to \
-zero.<br>Debouncing:</p><br><p>A small delay (delay(300)) is added after each button press to \
+zero.<br>Debouncing:</p><br><p>A small delay (delay(300) is added after each button press to \
 debounce the button, preventing multiple triggers from a single press.</p><br><p>This \
 modification allows the RGB LED to change colors each time the button is pressed, \
 providing interactive control over the LED.</p><br><p>Below is the schematic for my version \
 of the project</p><br><img \
 src="https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG"></img><br><p>The \
-code below will allow you to cycle the LED through different colors by pushing a button, \
-enjoy!</p></div>`,
+code below will allow you to cycle the LED through different colors by pushing a button.</p></div>`,
 
-`<div><p>To modify the origional project created by dleibe1 and include an OLED display that shows \
+  `<div><p>To modify the origional project created by dleibe1 and include an OLED display that shows \
 the temperature and humidity, you can follow the steps below.  Ever wanted to know the \
 temperature and humidity around you? If yes, this project will be very helpful for you. If \
 no, it'll be cool anyway. What I mean is, you can use this in anything from home \
-automations to smart watches. </p><br><p>What is humidity?</p><br><p>Humidity is the water vapor \
-around you mixed with air. It is measured in per cents. So, if the humidity is 60 per \
-cent(which is the average humidity), then 60 per cent of the air around you is water \
-vapor. If it is 100%, then it means either the sensor is not correct, the sensor is \
-broken/damaged, the Arduino crashed, the Arduino can't receive any signal, there's an \
-error in the code or you're underwater *. If it's 0%, it means all the reasons above \
-except the last one, you're in space or you're in the middle of a desert**. </p><br><p>* \
+automations to smart watches. </p><br> \
+<h2>What is humidity?</h2><br><p>Humidity \
+is the water vapor around you mixed with air. It is measured in percentages. So, if the \
+humidity is 60 percent (which is the average humidity), then 60 percent of the air around \
+you is water vapor. If it is 100%, then it means either the sensor is not correct, the \
+sensor is broken/damaged, the Arduino crashed, the Arduino can't receive any signal, \
+there's an error in the code or you're underwater *. If it's 0%, it means all the reasons \
+above except the last one, you're in space or you're in the middle of a desert**.</p><br><p>* \
 Correction: it means the air cannot hold any more water. </p><br><p>**  The air in a desert \
 does contain some water but it is a very little amount compared to a normal place. The \
 Sahara Desert has a mean humidity of 25%. </p><br><p>The world's lowest recorded relative \
 humidity value occurred at Coober Pedy in the South Australia desert when the temperature \
 was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 \
-percent. (source:  'www.chicagotribune.com') </p><br><p>Is your sensor different?</p><br><p>My \
-sensor is like this: </p><br><img \
-src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><br><p>My \
+percent. (source:  'www.chicagotribune.com') </p><br><h2>Is your sensor different?  My \
+sensor is like this: </h2><br><img \
+src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><br><h2>My \
 sensor has 3 pins and it's fitted on a board. If yours has 4 pins, then you need to build \
-this circuit: </p><br><img \
-src="https://i.imgur.com/6sNtuUL.png"></img><br><p>If \
-it is same as mine, then follow this diagram instead, you will no longer need the resistor:</p><br><img \
-src="https://i.imgur.com/xdSSgkL.png"></img><br><p></p><br><p>Details about the code</p><br><p>You need to follow these instructions to \
+this circuit: </h2><br><img \
+src="https://i.imgur.com/6sNtuUL.png"></img><br><h2>If \
+it is same as mine, then follow this diagram instead, you will no longer need the resistor:</h2><br><img \
+src="https://i.imgur.com/xdSSgkL.png"></img><br><p></p><br><h2>Details about the code</h2><br><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11, Adafruit_GFX, and Adafruit_SSD1306 libraries \
 to the Arduino IDE and include them in your sketch. <br>2. Upload the \
-code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.</p></div>`]
+code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.</p></div>`,
+]
 
 export default projectInstructionsSeedData

@@ -1,5 +1,5 @@
 const projectDescriptionsSeedData = [
-  `In this project, we will learn how to interface RGB LED with Arduino Uno. The RGB LED is controlled by PWM signals.`,
+  `In this project, we will learn how to interface an RGB LED with an Arduino Uno. The RGB LED is controlled by PWM signals.`,
 
   `Calling all tinkerers, tech enthusiasts, and robot aficionados! Are you ready to unleash your inner inventor and build a robot car that dances to your smartphone's commands? This guide will be your roadmap to crafting a mini marvel that zips and zooms under your wireless control. Buckle up, because we're about to dive into the exciting world of Bluetooth-controlled robotics! `,
 
@@ -43,7 +43,7 @@ And if you're reading this, you clicked. This is great for my goal and I thank y
 `Add WiFi capability to any AC unit by emulating an infrared remote control, and build an interface that you can use from your smartphone.`,
 
 //fork of projectId: 1
-`In this modified version of dleibe1's project, we will learn how to interface an RGB LED with an Arduino Uno, but in this version I have added a push button to control the light. Each time the button is pressed, the color of the RGB LED will change. This project is suitable for Arduino beginners who want to understand how to use a button to control outputs like an RGB LED, and it will also reinforce the concepts of Common Anode (CA) and Common Cathode (CC) LEDs, as well as Pulse Width Modulation (PWM) signals.  The background knowledge in how RGB LED's operate has been included from the original project.`,
+`In this modified version of dleibe1's project, we will learn how to interface an RGB LED with an Arduino Uno, but in this version I have added a push button to control the LED. Each time the button is pressed, the color of the RGB LED will change. This project is suitable for Arduino beginners who want to understand how to use a button to control outputs.  It will also reinforce the concepts of Common Anode (CA) and Common Cathode (CC) LEDs, as well as Pulse Width Modulation (PWM) signals.  The background knowledge in how RGB LED's operate has been included from the original project.`,
 //fork of projectId: 2
 `This tutorial will show you how to use DHT11 with Arduino and print the sensor's data to an OLED display.`
 
