@@ -411,11 +411,10 @@ h5 {
 .project-show h1,
 .project-show h2,
 .project-show h3 {
-  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-size: clamp(2.5rem, 10vw, 6rem);
   font-family: OpenSans-Regular;
   margin-bottom: 0;
   color: #374146;
-  line-height: 170%;
   letter-spacing: 0.01em;
   margin-bottom: 0px;
   background-color: white;
@@ -1209,6 +1208,7 @@ h5 {
 
 .instruction-text img {
   width: 100%;
+  padding: 5% 20px;
 }
 
 .instructions-list .instruction-text h2 {
@@ -1216,13 +1216,16 @@ h5 {
   padding: unset;
   line-height: normal;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 35px;
   color: #374146;
+  padding: 0px 20px;
 }
 
 .instructions-list .instruction-text p {
-  font-size: 21px;
+  font-size: 1.5rem;
+  padding: 0px 20px;
 }
+
 
 #code-input {
   width: 100%;
