@@ -1,11 +1,14 @@
 const projectDescriptionsSeedData = [
-  `In this project, we will learn how to interface RGB LED with Arduino Uno. The RGB LED is controlled by PWM signals.`,
+  `This project is made for Arduino beginners who are looking to learn how to interface \
+an RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and \
+Common Cathode (CC) concept as well as the pulse width modulation (PWM) \
+signals.`,
 
   `Calling all tinkerers, tech enthusiasts, and robot aficionados! Are you ready to unleash your inner inventor and build a robot car that dances to your smartphone's commands? This guide will be your roadmap to crafting a mini marvel that zips and zooms under your wireless control. Buckle up, because we're about to dive into the exciting world of Bluetooth-controlled robotics! `,
 
   `Imagine a setup where technology integrates effortlessly with nature, allowing you to take control of your plant care routine.`,
 
-  `This is an extremely simple, but still visually very effective project, and can serve as a gadget on your desktop, or as an addition to an audio device.`,
+  `This is an extremely simple yet visually interesting project.  It can serve as a decoration on your desktop, or as an addition to an audio device.`,
 
   `The "Arduino OLED Eyes Animation for Robotics Projects" is a curated guide showcasing five different methods for creating lively and expressive eye animations on Arduino-based robots using OLED displays. Each method offers unique features and functionalities, from simple eye movements and mood expressions to more sophisticated techniques involving bitmap images and optimized memory usage. Whether you're a beginner or seasoned hobbyist, this project provides a comprehensive overview of how to implement captivating eye animations that add personality and realism to your robotic creations. Explore the diverse options and unleash your creativity in the exciting realm of Arduino robotics!`,
 
@@ -15,7 +18,7 @@ const projectDescriptionsSeedData = [
 
 `This is a very simple, easy to make, visually effective, and self-contained device intended for both beginners and more advanced DIYers.`,
 
-`In this project you will be going to decode the signal sent by any type of Remote to make Projects`,
+`With this project, you will be able to decode the signal sent by any type of remote.`,
 
 `Here, We will learn "How to use L298n Motor Driver with Arduino Uno". Also We will control the Speed & Direction of Motor.`,
 
@@ -43,7 +46,10 @@ And if you're reading this, you clicked. This is great for my goal and I thank y
 `Add WiFi capability to any AC unit by emulating an infrared remote control, and build an interface that you can use from your smartphone.`,
 
 //fork of projectId: 1
-`In this modified version of dleibe1's project, we will learn how to interface an RGB LED with an Arduino Uno, but in this version I have added a push button to control the light. Each time the button is pressed, the color of the RGB LED will change. This project is suitable for Arduino beginners who want to understand how to use a button to control outputs like an RGB LED, and it will also reinforce the concepts of Common Anode (CA) and Common Cathode (CC) LEDs, as well as Pulse Width Modulation (PWM) signals.  The background knowledge in how RGB LED's operate has been included from the original project.`,
+`This project is made for Arduino beginners who are looking to learn how to interface \
+an RGB led with the Arduino Uno and use a push button to control the LED. Also, we will \
+understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse \
+width modulation (PWM) signals.`,
 //fork of projectId: 2
 `This tutorial will show you how to use DHT11 with Arduino and print the sensor's data to an OLED display.`
 

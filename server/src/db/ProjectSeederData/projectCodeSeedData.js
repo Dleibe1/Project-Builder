@@ -2501,7 +2501,6 @@ dht11 DHT11;
 
 void setup(){
   Serial.begin(9600);
-
   // Initialize the OLED display
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     Serial.println(F("SSD1306 allocation failed"));

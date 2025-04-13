@@ -89,7 +89,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             img { max-width: 50%; height: auto; padding-top: 40px; padding-bottom: 40px; }
             h2 { font-weight: 700; font-size: 30px; color: #374146; } 
             p {font-size: 1.3rem; color: #374146; line-height: 130%;}`,
-          // content_css: ["https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"],
+          content_css: ["https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"],
           plugins: [
             "autoresize",
             "anchor",
@@ -106,7 +106,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             "wordcount",
           ],
           toolbar:
-            "h2-button bold link add-image codesample-with-text italic emoticons charmap bullist removeformat  | download-as-markdown upload-markdown close-editor ",
+            "h2-button bold link add-image italic emoticons charmap bullist removeformat codesample-with-text  | download-as-markdown upload-markdown close-editor ",
           toolbar_sticky: true,
           setup: (editor) => {
             editor.on("PreInit", () => {
@@ -132,7 +132,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             editor.ui.registry.addButton("download-as-markdown", {
               text: "Download as Markdown",
               icon: "save",
-              tooltip: "Download contents in markdown format",
+              tooltip: "Download editor contents in markdown format",
               onAction: () => {
                 MarkdownService.downloadHtmlAsMarkdown(editor.getContent())
               },
@@ -154,7 +154,7 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             })
             editor.ui.registry.addButton("codesample-with-text", {
               icon: "code-sample",
-              tooltip: "Insert Code Sample",
+              text: "Code Sample",
               onAction: () => {
                 editor.execCommand("codesample")
               },

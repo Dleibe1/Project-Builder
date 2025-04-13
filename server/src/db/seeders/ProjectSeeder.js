@@ -89,7 +89,7 @@ class ProjectSeeder {
         userId: 3,
         title: "Decode IR Remote Control Signals of any Remote Using Arduino",
         description: projectDescriptionsSeedData[8],
-        appsAndPlatforms: "rogerbit.",
+        appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[8],
         thumbnailImage: "/images/projectSeeder/project009/thumbnail.blob",
         instructions: projectInstructionsSeedData[8],

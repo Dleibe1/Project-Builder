@@ -411,11 +411,10 @@ h5 {
 .project-show h1,
 .project-show h2,
 .project-show h3 {
-  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-size: clamp(2.5rem, 10vw, 6rem);
   font-family: OpenSans-Regular;
   margin-bottom: 0;
   color: #374146;
-  line-height: 170%;
   letter-spacing: 0.01em;
   margin-bottom: 0px;
   background-color: white;
@@ -424,7 +423,7 @@ h5 {
 }
 
 .project-show h1 {
-  font-size: 4rem;
+  font-size: 6rem;
   padding-bottom: 0px;
   padding-top: 0px;
   width: 90%;
@@ -439,6 +438,15 @@ h5 {
 
 .showpage-items-container {
   margin-bottom: 30px;
+}
+
+.showpage-items-container.description {
+  padding-left: 36px;
+  padding-right: 36px;
+}
+
+.showpage-items-container.code p {
+  text-align: center;
 }
 
 .showpage-items-container.tag-list {
@@ -617,15 +625,26 @@ h5 {
 .apps-and-platforms p {
   white-space: pre-line;
   overflow-wrap: anywhere;
-  padding: 5px;
   box-sizing: border-box;
 }
 .parts-list p {
   margin-bottom: 0px;
+  padding: 5px;
 }
 
-.apps-and-platforms p {
+.showpage-items-container.apps-and-platforms {
+  display: flex;
+  flex-direction: column;
+}
+
+.showpage-items-container.apps-and-platforms p {
   border-bottom: 2px solid #c9d2d2;
+  width: 50%;
+}
+
+.apps-and-platforms p,
+.apps-and-platforms h4 {
+  margin-left: 36px;
 }
 
 .part-item-in-form,
@@ -765,7 +784,7 @@ h5 {
 }
 
 .project-image.show-page-thumbnail {
-  padding: 0px 10px;
+  padding: 46px;
   background: white;
 }
 
@@ -1140,11 +1159,6 @@ h5 {
   width: 100%;
 }
 
-.instruction-text img {
-  padding: 5%;
-  border-radius: 4px;
-}
-
 .form-items-container.top-section {
   display: flex;
   flex-direction: column;
@@ -1208,7 +1222,11 @@ h5 {
 }
 
 .instruction-text img {
+  border-radius: 4px;
   width: 100%;
+  padding: 5% 20px;
+  max-height: 1000px;
+  object-fit: contain;
 }
 
 .instructions-list .instruction-text h2 {
@@ -1216,12 +1234,24 @@ h5 {
   padding: unset;
   line-height: normal;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 35px;
   color: #374146;
+  padding: 25px 20px 40px;
 }
 
 .instructions-list .instruction-text p {
-  font-size: 21px;
+  font-size: 1.5rem;
+  padding: 0px 20px;
+}
+
+.instruction-text pre,
+.instruction-text a {
+  padding: 0px 20px;
+}
+
+.instruction-text div{
+  display: flex;
+  flex-direction:column;
 }
 
 #code-input {
