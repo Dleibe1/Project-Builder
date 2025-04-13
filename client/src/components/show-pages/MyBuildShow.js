@@ -114,15 +114,13 @@ const MyBuildShow = (props) => {
       <div className="showpage-items-container parts-section">
         <div className="parts-list">{partsList}</div>
       </div>
-      <div className="showpage-items-container">
+      <div className="showpage-items-container apps-and-platforms">
         <h4>Apps and Platforms:</h4>
-        <div className="apps-and-platforms">
           <p>{myBuild.appsAndPlatforms}</p>
-        </div>
       </div>
       <Instructions project={myBuild} />
       <div>
-        <div className="showpage-items-container">
+        <div className="showpage-items-container code">
           {codeMessage}
           <pre>
             <code

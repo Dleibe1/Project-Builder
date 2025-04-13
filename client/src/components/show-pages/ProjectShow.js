@@ -99,7 +99,9 @@ const ProjectShow = (props) => {
         </div>
       )}
       <section id="thumbnail-and-title">
-        <h2 data-cy="showpage-title" className="showpage-title">{project.title}</h2>
+        <h2 data-cy="showpage-title" className="showpage-title">
+          {project.title}
+        </h2>
         <img
           className="project-image show-page-thumbnail"
           src={project.thumbnailImage}
@@ -114,15 +116,13 @@ const ProjectShow = (props) => {
       <div className="showpage-items-container parts-section">
         <section className="parts-list">{partsList}</section>
       </div>
-      <div className="showpage-items-container">
+      <div className="showpage-items-container apps-and-platforms">
         <h4>Apps and Platforms:</h4>
-        <section className="apps-and-platforms">
           <p>{project.appsAndPlatforms}</p>
-        </section>
       </div>
       <Instructions project={project} />
       <div>
-        <section className="showpage-items-container">
+        <section className="showpage-items-container code">
           {codeMessage}
           <pre>
             <code
