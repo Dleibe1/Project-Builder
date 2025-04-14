@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import { useHistory } from "react-router-dom"
-import DOMPurify from "dompurify"
 import hljs from "highlight.js"
 import "highlight.js/styles/github.css"
 import { Button } from "@mui/material"
@@ -49,7 +48,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
             data-cy="instructions-text"
             className="preserve-white-space instruction-text showpage-items-container"
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(project.instructions)
+              __html: project.instructions
             }}
           ></div>
         </>
