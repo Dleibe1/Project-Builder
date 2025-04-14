@@ -678,12 +678,14 @@ LCD display
 #include "LiquidCrystal.h"</code></pre> \
 <br><p>This line initializes an instance of the LiquidCrystal class named \
 lcd, specifying the pin numbers to which the LCD display is connected. The parameters \
-represent (RS, EN, D4, D5, D6, D7) pins respectively.</p><br><p>LiquidCrystal lcd(12, 11, 6, \
-7, 8, 9); // Initialize the LCD object with pin numbers<br>These lines declare two \
+represent (RS, EN, D4, D5, D6, D7) pins respectively. \
+<pre><code class="language-cpp" >// Initialize the LCD object with pin numbers
+LiquidCrystal lcd(12, 11, 6, 7, 8, 9);</code></pre><br>These lines declare two \
 integer variables: sensorInput, which represents the pin number connected to the PIR \
-sensor, and sensorReturn, which will store the output of the PIR sensor.</p><br><p>int \
-sensorInput = 2;   // PIR sensor input pin<br>int sensorReturn = 0;  // Variable to store \
-PIR sensor output</p><br><p>The setup() function is called once when the Arduino board \
+sensor, and sensorReturn, which will store the output of the PIR sensor.</p><br>
+<pre><code class="language-cpp" >int sensorInput = 2;// PIR sensor input pin
+int sensorReturn = 0;  // Variable to store PIR sensor output</code></pre><br><p>The setup() \
+function is called once when the Arduino board \
 starts. Now we set the sensorInput pin as an input pin, indicating that it will be used to \
 read data from the PIR sensor. Then initialize the LCD display with 16 columns and 2 rows, \
 indicating the display's dimensions. Initial messages are printed on the LCD display, \
