@@ -20,13 +20,13 @@ signals.`,
 
 `With this project, you will be able to decode the signal sent by any type of remote.`,
 
-`Here, We will learn "How to use L298n Motor Driver with Arduino Uno". Also We will control the Speed & Direction of Motor.`,
+`Here, we will learn how to use an L298n motor driver with an Arduino Uno. This will allow us to control the speed and direction of a motor.`,
 
-`In this project you will learn how to monitor temperature & humidity using DHT22 sensor and MKR WiFi 1010 with Arduino IoT Cloud.`,
+`In this project, you will learn how to monitor temperature and humidity using a DHT22 sensor and a MKR WiFi 1010 with Arduino IoT Cloud.`,
 
 `An example showing how to easily add AI to an Arduino project using NanoEdge AI Studio`,
 
-`Want to build a DIY project where you need to sense movement within a certain range then HC-SR501 Passive Infrared (PIR) sensor is perfect. Learn how to use PIR sensor to detect motion of person or animal.`,
+`Want to build a DIY project where you can sense movement within a short range?  Then thhe HC-SR501 Passive Infrared (PIR) sensor is perfect for your project. Learn how to use a PIR sensor to detect the motion of person or animal.`,
 `History
 
 My previous project was serious and complex: a programmable wireless thermostat. Thanks to you, it has been viewed more than 3000 times on the Project Hub, and I am very grateful to you.
