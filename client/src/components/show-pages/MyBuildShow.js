@@ -10,7 +10,6 @@ import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getMyBuild from "../../api/getMyBuild.js"
 import useCheckForProjectForks from "../../hooks/useCheckForProjectForks.js"
 import Instructions from "../shared/Instructions"
-import DOMPurify from "dompurify"
 
 const MyBuildShow = (props) => {
   const [myBuild, setMyBuild] = useState({
@@ -125,10 +124,7 @@ const MyBuildShow = (props) => {
           <pre>
             <code
               className="language-cpp"
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(myBuild.code),
-              }}
-            ></code>
+            >{myBuild.code}</code>
           </pre>
         </div>
       </div>

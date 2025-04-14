@@ -10,7 +10,6 @@ import Instructions from "../shared/Instructions.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getProject from "../../api/getProject.js"
 import useCheckForProjectForks from "../../hooks/useCheckForProjectForks.js"
-import DOMPurify from "dompurify"
 
 const ProjectShow = (props) => {
   const [project, setProject] = useState({
@@ -127,10 +126,7 @@ const ProjectShow = (props) => {
           <pre>
             <code
               className="language-cpp"
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(project.code),
-              }}
-            ></code>
+            >{project.code}</code>
           </pre>
         </section>
       </div>
