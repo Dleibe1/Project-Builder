@@ -432,7 +432,7 @@ to it and executes it. Each function has a different code.</p>
 <img src="https://projects.arduinocontent.cc/22e31e0b-0fba-4739-a12e-8434fffd750b.jpg" />
 <img src="https://projects.arduinocontent.cc/f0bee8b2-f2f7-4bc2-bba3-7dcab6722451.jpg" />
 <h2>Hookup</h2>
-<p>Follow the Steps:-</p><p><br>
+<p>Follow these Steps:</p><p>
 Connect the First pin from the left of TSOP1738 ( OUT pin) with pin 11 of Arduino. 
 <br>Hook the Middle pin ( GND pin) with the GND pin of Arduino. 
 <br>Connect the third and the last pin ( VCC pin) with 5V pin of Arduino.</p> 
@@ -441,7 +441,7 @@ Connect the First pin from the left of TSOP1738 ( OUT pin) with pin 11 of Arduin
 from<a href="https://github.com/z3t0/Arduino-IRremote/archive/master.zip">github.com/z3t0/Arduino-IRremote/archive/master.zip</a>
 </p><p>Copy or download the code attached with the project. 
 Hit upload and open the serial monitor. 
-Take any remote you want to use or you want the codes off of and press any button. 
+Take any remote you want to use or you want the codes off of and press any button on the remote. 
 Now in the serial monitor you will see the code of the corresponding button you pressed. 
 Note the codes on a paper or copy them in a document file on your PC. 
 <h2>Circuit Diagram</h2>
@@ -449,136 +449,142 @@ Note the codes on a paper or copy them in a document file on your PC.
 pin (GND pin) with the GND pin of Arduino.</p> <p>3. Connect the third and the last pin (VCC pin) with 5V pin of Arduino.
 </p><img src="https://projects.arduinocontent.cc/281bfbe8-1de3-442e-9d7e-b58dd8af0813.png"></img></div>`,
 
-  `<div><p>Here, You can learn "How to Control Motors using L298n Motor Driver & Arduino Uno".<br>You \
-can even control Speed & Direction of Motors using this tutorial.</p><br><p>Additionally, I \
-am Attaching a Video for your proper guidance.<br>You can see Step by Step Process \
-physically- </p><img \
-src="https://projects.arduinocontent.cc/f50108d1-ac6d-4d5f-acb5-90ca5a093cd4.jpg"></img><p>Here, \
-I am attached a L298n Motor Driver Pinout Diagram- </p><img \
-src="https://projects.arduinocontent.cc/918a766f-aeb8-4f94-aeda-57f183d1cf86.jpg"></img><p>Firstly, \
-Connect your Motors with L298n Motor Driver </p><img \
-src="https://projects.arduinocontent.cc/e0fd14ab-6166-4870-ad6e-b73c47009d86.png"></img><p>Now, \
-Connect your L298n Pins with Arduino Uno Pins </p><img \
-src="https://projects.arduinocontent.cc/7d20b0ad-496b-4a90-80ce-669ec9db1fd2.png"></img><p>Now, \
-Connect following Pins-</p><br><p>L298n (+5V) =>Arduino (+5V)<br>L298n (Gnd) =>Arduino \
-(Gnd)</p><br><p>Now Connect Battery-</p><br><p>L298n (+12V) =>Battery (+ve)<br>L298n (Gnd) \
-=>Battery (-ve)</p><br><p>Above Pin System can Run your L298n Motor Driver module as well as \
-Arduino.</p><br><p>But, If you want to Control Speed you have to do some simple extra work. \
-</p><img \
+  `<div><h2>Follow the steps below</h2><img \
+src="https://projects.arduinocontent.cc/f50108d1-ac6d-4d5f-acb5-90ca5a093cd4.jpg"></img>
+<h2>I've labeled the inputs and outputs on the motor driver</h2><img \
+src="https://projects.arduinocontent.cc/918a766f-aeb8-4f94-aeda-57f183d1cf86.jpg"></img> \
+<h2>First, connect the motors to the outputs as seen below</h2><img \
+src="https://projects.arduinocontent.cc/e0fd14ab-6166-4870-ad6e-b73c47009d86.png"></img>
+<h2>Connect the L298n input Pins to the Arduino Uno</h2><img \
+src="https://projects.arduinocontent.cc/7d20b0ad-496b-4a90-80ce-669ec9db1fd2.png"></img> \
+<h2>Power connections</h2><p>Logic power connections:</p><p>L298n (+5V) =>Arduino (+5V)<br>L298n (Gnd) =>Arduino \
+(Gnd)</p><p>Power for motors:</p><p>L298n (+12V) =>Battery (+ve)<br>L298n (Gnd) \
+=>Battery (-ve)</p><p>Now that the board and motors have power, it's time to connect \
+the outputs for motor control from the Arduino to the inputs of the motor driver.</p><img \
 src="https://projects.arduinocontent.cc/a73bfc9c-7c69-44fa-9d0f-321e034d6f4e.png"></img><p>Now \
-You can Control your Motor Speed.<br>I am attached my Final Look of our Project. </p><img \
-src="https://projects.arduinocontent.cc/601919da-0dc7-4158-9e4c-66e1192c1e0e.jpg"></img><p></p></div>`,
+everything is set up to begin controlling the motors with our Arduino code.</p><p>
+Below is a picture of what my project looked like when finally completed.  As you can see \
+I later decided to use two lithium ion batteries, but I highly suggest sticking with \
+9 volt batteries if you are a beginner.  Lithium ion batteries can be dangerous to work with!</p><img \
+src="https://projects.arduinocontent.cc/601919da-0dc7-4158-9e4c-66e1192c1e0e.jpg"></img></div>`,
 
-  `<div><p>Hello everyone,</p><br><p>       Welcome back to another interesting and easy tutorial after \
-a long time. Sorry guys I was busy in writing very fantastic book regarding Arduino IoT \
-Cloud and I will share the details at the end of this tutorial. so this book writing \
-approx took 1 year and 2 months.</p><br><p>       Well back to the point, many years ago I \
-have created a tutorial on temperature and humidity monitoring using Arduino Uno and \
-DHT22. I got approx half million hits on my that article. this is the love from community \
-which is pushing me to work beyond my commitment.</p><br><p>       So in this tutorial I am \
+  `<div><p>Hello everyone,</p><br><p>Welcome back to another interesting and easy tutorial after \
+a long time away. Sorry guys, I was busy writing a book about Arduino IoT \
+Cloud and I will share the details at the end of this tutorial. Writing this book \
+took approximately 1 year and 2 months.</p><br><p>Many years ago I \
+created a tutorial on temperature and humidity monitoring using an Arduino Uno and a \
+DHT22. I got approximately half a million hits on that article. This love from the community \
+has pushed me to work beyond what I had initially intended.</p><br><p>In this tutorial, I am \
 going to demonstrate how to monitor temperature and humidity using SeeedStudio tiny \
-development MKRWiFi 1010 and how to integrate it with Arduino IoT Cloud so you guys can \
-take the benefit of IoT Platforms and keep yourself updated with your room/outdoor \
-temperature and humidity anywhere in the world with the help of Arduino IoT Cloud.</p><br><p> \
+development MKRWiFi 1010 and the Arduino IoT Cloud.  After completing this project, you will \
+hopefully understand how to incorporate the Arduino IoT Cloud into other projects.</p><br><p> \
   Buckle up, guys, and collect the MKR WiFi 1010 and DHT22 with male-to-male cables. \
 Connect the DHT22 to the MKR WiFi 1010 as per the below diagram. </p><img \
-src="https://projects.arduinocontent.cc/28e6dbad-bfb6-42fb-baad-7b7741ca689f.png"></img><p>It's \
-time to navigate towards Arduino IoT Cloud https://app.arduino.cc/ if you didn't have \
-account then just create the account. Now our first step is to create Thing it's basically \
-a container in Arduino IoT Cloud which holds the Device, Cloud variables, Code and Meta \
-data of of IoT node. Click on Thing menu which is available in the left side bar as per \
-below image. </p><img src="https://i.imgur.com/7UPq84L.png"></img><p>Now click on + \
-CREATE THING button which is shown in the center of the page as per below image. </p><img \
+src="https://projects.arduinocontent.cc/28e6dbad-bfb6-42fb-baad-7b7741ca689f.png"></img><p> \
+Navigate to Arduino IoT Cloud.  If you don't have an account already, go ahead and create \
+one.</p><a href="https://app.arduino.cc/">app.arduino.cc/</a><p> \
+Now our first step is to create a "Thing."  It's basically \
+a container in Arduino IoT Cloud which holds the device, cloud variables, code and meta \
+data of an IoT node. Click on "Things" in the menu which is available in the left side bar as per \
+the image below.</p><img src="https://i.imgur.com/7UPq84L.png"></img><p>Now click on the + \
+CREATE THING button which is shown in the center of the page as per below image.</p><img \
 src="https://projects.arduinocontent.cc/16c97c36-b414-4a56-8fd3-e23096496af0.png"></img><p>After \
-that you will see a new page where you will fin different tabs and sections as just like \
-below diagram. this is the main page where we need to setup all the things like variables, \
-device, network configuration, code and etc. </p><img \
-src="https://projects.arduinocontent.cc/1fd770d1-3d82-40eb-8c59-947fbf6f7097.png"></img><p>Above \
-picture is marked with red boxes and I assigned the numbers to them and below is full \
-explanation of each step which is marked by number.<br>1- Click on "Untitled" and select \
-rename and assign the name to Thing.</p><br><p>2-In this section we will add the cloud \
-variables and in this tutorial we required 2 cloud variables one for temperature and \
-second for humidity.</p><br><p>3-Attach the device to Thing</p><br><p>4-Configure the Network \
-Settings</p><br><p>5-Navigate to the Sketch tab and add the code for MKR Wi-Fi 1010 and \
-upload the code.</p><br><p>Adding Variables to Thing</p><br><p>In this subsection, we will add \
-the cloud variables to Thing. Click on the ADD button, which is available in the Cloud \
-Variables section. and you will see the pop-up where you need to provide the name. Select \
+that you will see a new page where you will find different tabs and sections. \
+This is the main page where we need to setup all the things like variables, \
+device, network configuration, code etc. </p><img \
+src="https://projects.arduinocontent.cc/1fd770d1-3d82-40eb-8c59-947fbf6f7097.png"></img><p>The \
+above picture is marked with red boxes.  I \
+assigned numbers to them to make the instructions below easier to follow.  The number \
+at the beginning of each instruction corresponds with one of my numbered labels in the \
+picture.</p><br><p>1. Click on "Untitled" and select \
+rename and assign the name to Thing.</p><br><p>2. In this section we will add the cloud \
+variables. We require 2 cloud variables, one for temperature and \
+another for humidity.</p><br><p>3. Attach the device to Thing</p><br><p>4. Configure the Network \
+Settings</p><br><p>5. Navigate to the Sketch tab and add the code for MKR Wi-Fi 1010 and \
+upload the code.</p><h2>Add variables to Thing</h2><p>In this subsection, we will add \
+the cloud variables to our "Thing." Click on the ADD button, which is available in the Cloud \
+Variables section. You will see the pop-up where you need to provide the name. Select \
 the type of variable from the drop-down menu. Right now, I am not going to talk about \
 other options due to time limitations. Finally, click on the "ADD VARIABLE" button and \
 repeat the same procedure for the humidity variable, but select the relative humidity type \
-from the drop-down menu as per below image. </p><img \
-src="https://i.imgur.com/dicxo6D.png"></img><p>Adding Device to Thing</p><br><p>Before \
+from the drop-down menu as per below image.</p><img \
+src="https://i.imgur.com/dicxo6D.png"></img><h2>Add Device to Thing</h2><p>Before \
 adding a device you should have "Arduino Create Agent" Installed and running on your \
-machine. Then click on Select Device button under Associated Device section. Popup will \
-appear and list all of the devices if any device is associated in Arduino IoT Cloud else \
-you have option to Add a new Device.</p><br><p>Click on "SET UP NEW DEVICE" and select the \
+machine. Then click on the "Select Device" button under the "Associated Device" section. A \
+pop-up will \
+appear and list all of the devices associated with your Arduino IoT Cloud account. If \
+you don't have any devices associated with the account yet, you will have the
+"Add a new Device" option.</p><br><p>Click on "SET UP NEW DEVICE" and select the \
 "Arduino" option. In the next step, Arduino will automatically detect the supported \
 Arduino development board and display the name and port of the development board as shown \
-in the below picture. Before this process, try to connect MKR Wi-Fi 1010 to your machine. \
+in the picture below. Before this process, try to connect the MKR Wi-Fi 1010 to your machine. \
 Click on the "CONFIGURE" button. It will take a few seconds to configure your development \
-board with the necessary configuration.. </p><img \
+board with the necessary configuration.</p><img \
 src="https://projects.arduinocontent.cc/05ec1b63-62b2-4291-865d-b2913f924809.png"></img><p>Congrats \
-your Device has been added and attached successfully to Thing.</p><br><p>Configure Network \
-for Thing</p><br><p>After adding the device it's time to configure the Wi-Fi Settings. Click \
-on Configure button under Network section on the Thing main page. Here you will see the \
-popup just like below image and you need to provide Wi-Fi Name and it's Password. </p><img \
+your Device has been added and attached successfully to Thing.</p><h2>Configure Network \
+for Thing</h2><p>After adding the device it's time to configure the Wi-Fi Settings. Click \
+on the "Configure" button under the "Network" section on the Thing's main page. Here you will see the \
+pop-up just like in the image below and you need to provide Wi-Fi Name and it's Password. </p><img \
 src="https://projects.arduinocontent.cc/0fc35297-5efc-435f-901f-c858d7452bf5.png"></img><p>After \
-passing the first four steps, our Thing page looks like the below image. In these 4 steps, \
+passing the first four steps, our Thing page looks like the image below. In these 4 steps, \
 we assigned the name to the thing, created cloud variables, associated the device with the \
-thing, and, at the end, added the Wi-Fi configuration. </p><img \
-src="https://projects.arduinocontent.cc/5d5f5477-809e-42d9-84cd-701b533534b9.png"></img><p>Playing \
-with the Code</p><br><p>Now it's time to play with the code. Just click on the Sketch tab and \
-you will see the inline code editor. copy the code from the end of this page under code \
-section and paste into the editor. and click on upload button which is marked by red \
-rectangle in below image. it will take few seconds for code verification and uploading to \
+thing, and at the end added the Wi-Fi configuration. </p><img \
+src="https://projects.arduinocontent.cc/5d5f5477-809e-42d9-84cd-701b533534b9.png"></img><h2>Playing \
+with the Code</h2><p>Now it's time to play with the code. Just click on the Sketch tab and \
+you will see the inline code editor. Copy the code from the end of this page under the code \
+section and paste it into the editor. Click the upload button which is marked by a red \
+rectangle as in the image below. it will take a few seconds for the code verification and uploading to \
 development board. </p><img \
 src="https://projects.arduinocontent.cc/f1db379f-444e-46a7-94bd-5319e03c68af.png"></img><p>Congrats \
-now your devices is up and running and successfully sending the values to Arduino IoT \
-Cloud.</p><br><p>Dashboard creation</p><br><p>In the previous tutorial, we just created and set \
+now your device is up and running and successfully sending the values to Arduino IoT \
+Cloud.</p><h2>Dashboard creation</h2><p>In the previous tutorial, we just created and set \
 up the thing. Now it's time to visualize the sensor readings. For this, we need to setup \
-the dashboard. Click on the Dashboards menu, as shown in the below picture. </p><img \
+the dashboard. Click on the Dashboard's menu as shown in the picture below.</p><img \
 src="https://i.imgur.com/FFgR2Uv.png"></img><p>Now you will see the Dashboard page just \
-like below image and click on + CREATE DASHBOARD. </p><img \
+like in the below image and click on "+ CREATE DASHBOARD." </p><img \
 src="https://projects.arduinocontent.cc/4cd7e377-a7d3-451b-9ecd-1cbef4297c7c.png"></img><p>You \
 will see the new tab where you can setup the control widgets to visualize your sensor \
 values. But here I marked down some important icons and buttons with numbers. </p><img \
-src="https://projects.arduinocontent.cc/ebe991fd-7885-43c2-9646-c80cd9a7e734.png"></img><p>1- \
-Click Untitled to rename and assign a name to your Dashboard</p><br><p>2-Eye icon is view \
-mode while edit icon allows you to add/update the widgets and their settings.</p><br><p>3-ADD \
-button is control drop down where you will find plenty of control widgets such as gauge, \
-charts, buttons which will help you to visualize your sensors data and \
-control.</p><br><p>4-Reize icon will be used to resize the control and lock the alignment \
-while mobile icon is used to prepare your dashboard according to mobile device, as by \
-default you are creating dashboard for desktop.</p><br><p>Adding Widgets to \
-Dashboard</p><br><p>Now it's time to add some widgets to visualize our Temperature and \
-Humidity values. for Temperature I will use Gauge widget and for Humidity Percentage \
-widget. Click on the ADD button and search for Gauge widget. After that you will see the \
-popup just like below image and Assign the Name to widget and Link the Temperature cloud \
+src="https://projects.arduinocontent.cc/ebe991fd-7885-43c2-9646-c80cd9a7e734.png"></img><p>1. \
+Click Untitled to rename and assign a name to your Dashboard</p><br><p>2. Eye icon is view \
+mode while edit icon allows you to add/update the widgets and their settings.</p><br><p>3. ADD \
+button is a drop down where you will find plenty of control widgets such as gauge, \
+charts, and buttons which will help you to visualize your sensor's data and \
+control.</p><br><p>4. The resize icon will be used to resize the control and lock the alignment \
+while the mobile icon is used to prepare your dashboard according to mobile device, as by \
+default you are creating a dashboard for a desktop computer.</p><h2>Adding Widgets to \
+Dashboard</h2><p>Now it's time to add some widgets to visualize our Temperature and \
+Humidity values. for Temperature I will use the Gauge widget and for Humidity I'll use the \
+Percentage widget. Click on the "ADD" button and search for  the Gauge widget. After that you will see the \
+pop-up like the one below and Assign the Name to widget and Link the Temperature cloud \
 variable. </p><img \
 src="https://projects.arduinocontent.cc/c7be9925-ce5c-45a3-95cd-cf87f62500e8.png"></img><p>After \
-giving the Name to widget control and linking the cloud variable setup will look like \
-below image. just click on "DONE" and you will be good to go. </p><img \
+giving the Name to widget control and linking the cloud variable, the setup will look like \
+the below image. just click on "DONE" and you will be good to go. </p><img \
 src="https://projects.arduinocontent.cc/280dde65-b44c-40d6-b004-eca0605b5706.png"></img><p>Repeat \
-the same procedure for Percentage Widget and also try to explore other display values \
-widget controls like Values, Charts and etc widgets. Now the final Dashboard has been \
-ready for your view just like below image which is showing both Temperature and Humidity \
+the same procedure for the Percentage Widget and also try to explore other display types. \
+experiment with widget controls like Values, Charts, etc. Now the final Dashboard \
+complete like the one in the image below, which is showing both Temperature and Humidity \
 values. </p><img \
-src="https://projects.arduinocontent.cc/b84f52b0-0581-4630-96d5-7e3c93579335.png"></img><p>Arduino \
-IoT Cloud for Developers Book</p><br><p>Download the Arduino IoT Cloud app on your \
-Android/Apple via Play/App store and login with your account and see the dashboard on \
-fingertips for latest update and alerts.</p><br><p>Now it's time to talk about my Arduino IoT \
-Cloud for Developers book which is by the available at amazon as well as on PacktPub. \
-Below are the URLS for your purchase. \
-https://www.amazon.com/Arduino-Cloud-Developers-simple-complex/dp/1837637172</p><br><p>https://www.packtpub.com/product/arduino-iot-cloud-for-developers/9781837637171The \
-book has 14 chapters where you will learn about Internet of Things Architecture, Arduino \
-IoT Cloud hierarchy as it's totally different from other cloud platforms such as \
-ThingSpeak, Cayenne myDevices and etc. Next you will learn all the Cloud Platform options \
-and dashboard widgets which is very mandatory to learn all the stuff before getting \
+src="https://projects.arduinocontent.cc/b84f52b0-0581-4630-96d5-7e3c93579335.png"></img><h2>Arduino \
+IoT Cloud for Developers Book</h2><p>Download the Arduino IoT Cloud app on your \
+Android/Apple device via the Play/App store and login with your account and see the dashboard \
+for the latest updates and alerts.</p><br><p>Now it's time to talk about my Arduino IoT \
+Cloud for Developers book which is available at amazon as well as on PacktPub. \
+Below are the URLS to purchase the books. \
+</p><a href="https://www.amazon.com/Arduino-Cloud-Developers-simple-complex/dp/1837637172">
+https://www.amazon.com/Arduino-Cloud-Developers-simple-complex/dp/1837637172</a> \
+<a href="https://www.packtpub.com/product/arduino-iot-cloud-for-developers/9781837637171">
+https://www.packtpub.com/product/arduino-iot-cloud-for-developers/9781837637171</a><br> \
+<p>The book has 14 chapters where you will learn about the Internet of Things Architecture \
+and the Arduino IoT Cloud hierarchy (as it's totally different from other cloud platforms) such as \
+ThingSpeak, Cayenne, myDevices, etc. Next you will learn all the Cloud Platform options \
+and dashboard widgets which is very mandatory before getting \
 started with the Arduino IoT Cloud.</p><br><p>I have created 6 different projects in the book \
-which are using different types of development boards which includes MKR Wi-Fi 1010, \
-ESP8266, XIAO ESP32C3 and etc. You will learn Enviromental Monitoring, Smart Agriculture, \
+which use different types of development boards which include the MKR Wi-Fi 1010, \
+ESP8266, XIAO, and the ESP32C3. You will learn Enviromental Monitoring, Smart Agriculture, \
 Smart Health, IoT for assets tracking using GSM as well as with LoraWan, Smart Home where \
-we integrated smart lamp with Amazon Alexa Dot Echo with in couple of minutes without any \
+we integrated smart lamp with Amazon Alexa Dot Echo within a couple minutes without any \
 code to Arduino IoT Cloud. I Hope you will will enjoy my book just like this \
 tutorial.</p><br><p>For developers and IoT engineers, I have written two special chapters \
 that focus on how to use the Arduino IoT Cloud API and Arduino Cloud CLI to integrate \
@@ -594,92 +600,83 @@ The UNO emulates a USB keyboard device.</p><br><p>Vibration data from the cardbo
 captured using a basic accelerometer connected via the Qwiic connector. Within the UNO \
 microcontroller, vibrations are classified using a NanoEdge AI library.</p><br><p>Based on \
 the detected class, the touchpad triggers either a "PageUp" or "PageDown" keystroke. \
-NanoEdge AI Studio:</p><br><p>NanoEdge is a free machine learning software developed by \
-STMicroelectronics which allow to easily create and integrate AI libraries to any cortex M \
+NanoEdge AI Studio:</p><br><p>NanoEdge is a free machine learning software tool developed by \
+STMicroelectronics which allows you to easily create and integrate AI libraries to any cortex M \
 microcontroller. Essentially, select a project type, import data locally, run a benchmark \
-to find the best model automatically, test the model if you want and get an AI \
+to find the best model automatically, then test the model if you want and get an AI \
 library.</p><br><p>In Nanoedge AI Studio, four kinds of projects are available, each serving \
-a different purpose:</p><br><p>Anomaly detection (AD): to detect a nominal behavior and an \
-abnormal one. Can be retrained directly on board.</p><br><p>1 class classification (1c): \
-Create a model to detect both nominal and abnormal behavior but with only nominal data. \
-(In case you cannot collect abnormal examples)</p><br><p>N class classification (Nc): Create \
-a model to classify data into multiple classes that you define</p><br><p>Extrapolation (Ex): \
+a different purpose:</p><p>Anomaly detection (AD):</p><p>To detect a nominal behavior and an \
+abnormal one. Can be retrained directly on board.</p><p>1 class classification (1c):</p> \
+<p>Create a model to detect both nominal and abnormal behavior but with only nominal data. \
+(In case you cannot collect abnormal examples).</p><p>N class classification (Nc):</p><p>Create \
+a model to classify data into multiple classes that you define.</p><p>Extrapolation (Ex):</p><p> \
 Regression in short. To predict a value instead of a class from the input data (a speed or \
-temperature for example).Open Arduino IDE and create a new project:</p><br><p>Copy data \
-logger source code available below. Click on Sketch > Include Library > Adafruit_LiS3DH to \
-install the library.</p><br><p>Be careful : If your board is emulating a keyboard, you need \
-to double press the reset button to be able to flash it.</p><br><p>Open the serial in Arduino \
-IDE to check that the accelerometer data is correctly coming to your computer. (don't \
-forget to close the serial after that) </p><img \
+temperature for example).</p><h2>Open Arduino IDE and create a new project:</h2><p>Copy data \
+logger source code available at the bottom of the page.</p><p>Click on Sketch > \
+Include Library > Adafruit_LiS3DH to \
+install the library.</p><br><p>Be careful: If your board is emulating a keyboard, you need \
+to double press the reset button to be able to flash it.</p><br><p>Open \
+the serial monitor in the Arduino \
+IDE to check that the accelerometer data is being sent to your computer correctly (don't \
+forget to close the serial monitor after checking).</p><img \
 src="https://projects.arduinocontent.cc/aa31e081-1080-46bd-9b6e-084e16cdb658.png"></img><p>Now \
 we will automatically create an AI model able to recognize classes of gestures using \
 vibration patterns.</p><br><p>Open NanoEdge AI Studio and create a new " N-Class \
 Classification " project.</p><br><p>In project settings:<br>Set target to "UNO R4 Wifi" \
-Sensor to 3-axes accelerometer </p><img \
+and the sensor to "3-axes accelerometer" </p><img \
 src="https://projects.arduinocontent.cc/036751c3-350c-47b5-be56-df2478d69917.png"></img><p>In \
-the Signal step , collect one dataset per class ("Nothing","Swipe","Multitap" or any \
-gesture that you want) using serial port.<br>Collect one kind of gesture per \
-dataset!</p><br><p>Here is how to proceed:</p><br><p>Make sure the board is connected to the pc \
-with the data logger code flashed on it</p><br><p>Click ADD SIGNAL > FROM SERIAL Make sure to \
-select the right come port</p><br><p>Click START/STOP to collect data (100 buffers per signal \
-should be enough) Once finished click CONTINUE and then IMPORT</p><br><p>If everything is \
+the Signal step, collect one dataset per class ("Nothing", "Swipe", "Multitap," or any \
+gesture that you want) using the serial port.  Collect one kind of gesture per \
+dataset!</p><h2>Here is how to proceed:</h2><p>Make sure the board is connected to the pc \
+with the data logger code flashed on it.</p><br><p>Click ADD SIGNAL > FROM SERIAL Make sure to \
+select the correct COM port.</p><br><p>Click START/STOP to collect data (100 buffers per signal \
+should be enough) Once finished click CONTINUE and then IMPOR.</p><br><p>If everything is \
 correct, you should see a new dataset added with plots and information. </p><img \
-src="https://projects.arduinocontent.cc/73727b45-b30a-4b8a-940c-5be372c72dbf.png"></img><p>Create \
-the AI model:</p><br><p>Once you have all the classses that you want to recognize, go to the \
+src="https://projects.arduinocontent.cc/73727b45-b30a-4b8a-940c-5be372c72dbf.png"></img><h2>Create \
+the AI model:</h2><p>Once you have all the classses that you want to recognize, go to the \
 Benchmark step.</p><br><p>Click RUN NEW BENCHMARK. Select all your datasets and click \
 START.</p><br><p>NanoEdge AI Studio will take your data and look for a model that is able to \
-classify them. (it also applies pretreatment on its own to your data)</p><br><p>You get the \
+classify them (it also applies pretreatment on its own to your data).</p><br><p>You get the \
 accuracy of the model and its RAM and Flash requirements.</p><br><p>You should reach around \
 99% pretty fast if you collected good data. You can stop the benchmark when it happens. \
 </p><img \
 src="https://projects.arduinocontent.cc/ae3a036a-2afe-4aee-9708-dbc2d1ae5447.png"></img><p>In \
 the validation step, you can compare the libraries (model + preprocessing) if you want, \
 look here for more \
-info:<br>https://wiki.st.com/stm32mcu/wiki/AI:NanoEdge_AI_Studio#Validation</p><br><p>Test \
-the model:</p><br><p>The emulator step is more useful for us here, you can use the serial to \
-test the model directly in the tool:</p><br><p>Click INITIALIZE EMULATOR <br>Click FROM \
-SERIAL<br>Test your model with new real time data </p><img \
+info:</p><a href="https://wiki.st.com/stm32mcu/wiki/AI:NanoEdge_AI_Studio#Validation">
+https://wiki.st.com/stm32mcu/wiki/AI:NanoEdge_AI_Studio#Validation</a><h2>Test \
+the model:</h2><p>The emulator step is more useful for us here, you can use the serial monitor to \
+test the model directly in the tool:</p><br><p>1. Click INITIALIZE EMULATOR <br>2. Click FROM \
+SERIAL<br>3. Test your model with new real time data.</p><img \
 src="https://projects.arduinocontent.cc/934034b2-cf67-4208-9e4a-d68e9b15193e.png"></img><p>The \
-last step in NanoEdge is to get the AI library that we will use in Arduino IDE:<br>Click \
-COMPILE LIBRARY</p><br><p>Get and extract the .zip file</p><br><p>The library is the .zip file \
-in the folder Arduin , we will use it below: </p><img \
-src="https://projects.arduinocontent.cc/cb1cadc0-a02d-4521-8e0d-d0ff4042e45b.png"></img><p>Create \
-the demo:<br>Open a new project in Arduino IDE</p><br><p>Get the main code below and paste it \
-in your project</p><br><p>Click on Sketch > Include Library > Adafruit_LIS3DH</p><br><p>Add the \
+last step in NanoEdge is to get the AI library that we will use in Arduino IDE:</p><br><p>1. Click \
+COMPILE LIBRARY</p><p>2. Get and extract the .zip file</p><br><p>The library is the .zip file \
+in the folder called "Arduino," we will use it below: </p><img \
+src="https://projects.arduinocontent.cc/cb1cadc0-a02d-4521-8e0d-d0ff4042e45b.png"></img><h2>Create \
+the demo:</h2><p>1. Open a new project in Arduino IDE</p><p>2. Get the main code below and paste it \
+in your project</p><p>3. Click on Sketch > Include Library > Adafruit_LIS3DH</p><p>4. Add the \
 Nanoedge AI Library (select the previously extracted zip): </p><img \
-src="https://projects.arduinocontent.cc/a36090e3-13ae-4859-9646-2c6c1d15da6a.png"></img><p>Compile \
-the code. Flash the code.</p><br><p>It is finished, you can play with it.</p><br><p>Through this \
-example, this tutorial shows how to add AI to an Arduino project using NanoEdge AI Studio. \
-It is now up to you to think about other use case and do them on your own! PIR sensors are \
-widely used for motion detection in various applications, from security systems to \
-automatic lighting. In this guide, we will explore PIR sensor, its working principles, and \
-interfacing it with Arduino.</p><br><p>In this project we will create a motion detection \
-system using a PIR sensor and an Arduino board. The PIR sensor will detect motion within \
-its detection range and trigger an action, such as turning on an LED or activating an \
-alarm.</p><br><p>Understanding PIR Sensor</p><br><p>Before we dive into the project \
-implementation, let's first understand how a PIR sensor works. PIR sensor detects changes \
-in infrared radiation emitted by objects within its field of view. This radiation is \
-emitted by all objects with a temperature above absolute zero, including humans and \
-animals. The sensor consists of a pyroelectric sensor, which generates an electrical \
-signal in response to changes in infrared radiation, and a circuit that processes and \
-amplifies this signal to detect motion.</p><br><p>HCSR04 Ultrasonic Sensor Pinout<br>The \
-Pinout is given as below: </p></div>`,
+src="https://projects.arduinocontent.cc/a36090e3-13ae-4859-9646-2c6c1d15da6a.png"></img><p>5. Compile \
+the code.</p><p>6. Flash the code.</p><br><p>It is finished, you can play with it. \
+<img src="https://projects.arduinocontent.cc/3151cca5-efae-4be0-bc69-915ca466b9af.png" /></img></div>`,
 
   `<div><p></p><img \
 src="https://projects.arduinocontent.cc/947a4793-1603-4d45-b9fa-e314f780e848.jpg"></img><p>VCC \
-is the power pin of the module.</p><br><p>GND is the GND pin of the module.</p><br><p>Out is the \
-data output pin of the module.</p><br><p>Interfacing PIR Sensor with Arduino</p><br><p>Now that \
-we have a basic understanding of how PIR sensors work, let's proceed to interface the PIR \
-sensor with Arduino. Here's a step-by-step guide: </p><img \
-src="https://projects.arduinocontent.cc/f3b88737-328c-4ace-bd4c-76b95195d2a6.jpg"></img><p>Connect \
-the VCC pin of the PIR sensor to the 5V pin on the Arduino board.<br>Connect the GND pin \
-of the PIR sensor to the GND pin on the Arduino board.<br>Connect the OUT pin of the PIR \
-sensor to a digital pin e.g., pin 2 on the Arduino board. Arduino code for interfacing PIR \
-sensor with Arduino<br>Here is the complete line by line code explanation for Interfacing \
-Arduino with PIR Sensor. The complete code can be found at the absolute bottom of the \
+is the power pin of the module.</p><p>GND is the GND pin of the module.</p><p>Out is the \
+data output pin of the module.</p><h2>Interfacing PIR Sensor with Arduino</h2><p>Now that \
+we have a basic understanding of how a PIR sensor works, let's proceed to interface the PIR \
+sensor with an Arduino. Here's a step-by-step guide: </p><img \
+src="https://projects.arduinocontent.cc/f3b88737-328c-4ace-bd4c-76b95195d2a6.jpg"></img><p>1.  Connect \
+the VCC pin of the PIR sensor to the 5V pin on the Arduino board.<br>2.  Connect the GND pin \
+of the PIR sensor to the GND pin on the Arduino board.<br>3.  Connect the OUT pin of the PIR \
+sensor to a digital pin e.g., pin 2 on the Arduino board.</p><h2>Arduino code for interfacing a PIR \
+sensor with an Arduino</h2><p>Here is the complete line by line code explanation for Interfacing \
+an Arduino with a PIR Sensor. The complete code can be found at the end of the \
 project.<br>This line includes the LiquidCrystal library, which allows interfacing with \
-LCD displays.</p><br><p>#include <LiquidCrystal.h> // Include the LiquidCrystal library for \
-LCD display<br>This line initializes an instance of the LiquidCrystal class named \
+LCD displays.</p><br><pre><code class="language-cpp" >// Include the LiquidCrystal library for \
+LCD display
+#include "LiquidCrystal.h"</code></pre> \
+<br><p>This line initializes an instance of the LiquidCrystal class named \
 lcd, specifying the pin numbers to which the LCD display is connected. The parameters \
 represent (RS, EN, D4, D5, D6, D7) pins respectively.</p><br><p>LiquidCrystal lcd(12, 11, 6, \
 7, 8, 9); // Initialize the LCD object with pin numbers<br>These lines declare two \

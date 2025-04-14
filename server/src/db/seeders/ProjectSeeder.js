@@ -108,7 +108,7 @@ class ProjectSeeder {
       },
       {
         userId: 4,
-        title: "Temperature Monitoring with Arduino IoT Cloud using DHT22",
+        title: "Temperature Monitoring with a DHT22 and Arduino IoT Cloud",
         description: projectDescriptionsSeedData[10],
         appsAndPlatforms: "Arduino IoT Cloud",
         code: projectCodeSeedData[10],
