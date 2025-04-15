@@ -12,6 +12,8 @@ import getProject from "../../api/getProject.js"
 import useCheckForProjectForks from "../../hooks/useCheckForProjectForks.js"
 
 const ProjectShow = (props) => {
+  const params = useParams()
+  const { id } = params
   const [project, setProject] = useState({
     title: "",
     tags: "",
@@ -26,8 +28,7 @@ const ProjectShow = (props) => {
     thumbnailImage: "",
     parentProjectId: "",
   })
-  const params = useParams()
-  const { id } = params
+  
   const hasForks = useCheckForProjectForks(id)
 
   useEffect(() => {
@@ -117,16 +118,14 @@ const ProjectShow = (props) => {
       </div>
       <div className="showpage-items-container apps-and-platforms">
         <h4>Apps and Platforms:</h4>
-          <p>{project.appsAndPlatforms}</p>
+        <p>{project.appsAndPlatforms}</p>
       </div>
       <Instructions project={project} />
       <div>
         <section className="showpage-items-container code">
           {codeMessage}
           <pre>
-            <code
-              className="language-cpp"
-            >{project.code}</code>
+            <code className="language-cpp">{project.code}</code>
           </pre>
         </section>
       </div>

@@ -84,7 +84,7 @@ const DiffView = (props) => {
   return (
     <div className="project-diff-view">
       <div className="diff-view-top-section">
-        <h1 className="diff-view-title">Differences From Original Project</h1>
+        <h1 className="diff-view-title">Changes from the Original</h1>
         <Button
           component={Link}
           to={`/projects/${forkedProjectId}`}
@@ -122,7 +122,7 @@ const DiffView = (props) => {
       <ReactDiffViewer
         oldValue={parentProjectData.description || ""}
         newValue={forkedProjectData.description || ""}
-        compareMethod="diffSentences"
+        compareMethod="diffWords"
         showDiffOnly={false}
         splitView={true}
       />

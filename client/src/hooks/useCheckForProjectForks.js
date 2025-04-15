@@ -7,7 +7,7 @@ const useCheckForProjectForks = (id) => {
     doesProjectHaveForks(id).then((forkExists) => {
       setHasForks(forkExists)
     })
-  }, [])
+  }, [id])
   return hasForks
 }
 

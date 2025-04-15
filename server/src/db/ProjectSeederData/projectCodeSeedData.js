@@ -2457,10 +2457,10 @@ void setColor(int redValue, int greenValue, int blueValue) {
   analogWrite(bluePin, blueValue);
 }
 `,
-`#include <Wire.h>
+`#include <dht11.h>
+#include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include <dht11.h>
 
 #define DHT11PIN 4
 #define SCREEN_WIDTH 128

@@ -30,28 +30,18 @@ lines would measure 2 milliseconds each.</p><img \
 src="https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif"></img><p>The \
 code below will cycle the LED through different colors, enjoy!</p></div>`,
 
-  `<div><p>Ever wanted to know the temperature and humidity around you? If yes, this project will \
-be very helpful for you. If no, it'll be cool anyway.</p> \
+  `<div><p>Ever wanted to know the temperature and humidity around you? If yes, this project is for you. If \
+not, it'll be cool anyway.</p> \
 <h2>What is humidity?</h2><p>Humidity \
-is the water vapor around you mixed with air. It is measured in percentages. So, if the \
-humidity is 60 percent (which is the average humidity), then 60 percent of the air around \
-you is water vapor. If it is 100%, then it means either the sensor is not correct, the \
-sensor is broken/damaged, the Arduino crashed, the Arduino can't receive any signal, \
-there's an error in the code or you're underwater *. If it's 0%, it means all the reasons \
-above except the last one, you're in space or you're in the middle of a desert**.</p><br><p>* \
-Correction: it means the air cannot hold any more water.</p><br><p>**  The air in a desert \
-does contain some water but it is a very little amount compared to a normal place. The \
-Sahara Desert has a mean humidity of 25%.</p><br><p>The world's lowest recorded relative \
-humidity value occurred at Coober Pedy in the South Australia desert when the temperature \
-was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 \
-percent. (source:  'www.chicagotribune.com')</p><h2>Is your sensor different?  My \
-sensor is like this: </h2><img \
-src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><h2>My \
-sensor has 3 pins and it's fitted on a board. If yours has 4 pins, then you need to build \
-this circuit: </h2><img \
-src="https://i.imgur.com/mPlhTTK.png"></img><h2>If \
-it is same as mine, then follow this diagram instead, you will no longer need the resistor:</h2><img \
-src="https://i.imgur.com/UW1R9mh.png"></img><p></p><h2>Details about the code</h2><p>You need to follow these instructions to \
+is the proportion of air that is water vapor. Generally, it's measured in percentages. \
+A humidity range of 30% to 50% is considered comfortable for most people.</p><p>This \
+sensor comes in two varieties, mine looks like this:</p><img \
+src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><p>The \
+sensor I'm using has 3 pins and is fitted on a board.  If your sensor has 4 pins, then you need to build \
+the circuit below:</p><img \
+src="https://i.imgur.com/6sNtuUL.png"></img><p>If \
+it's the same as mine, follow this diagram.  You will no longer need the resistor:</p><img \
+src="https://i.imgur.com/xdSSgkL.png"></img><h2>Details about the code:</h2><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11 library to the Arduino IDE and include it in \
 your sketch. <br>2. Upload the code. <br>3. When the code is uploaded, open the Serial Monitor \
 and set the baud rate to 9600. <br>4. You will see the humidity and temperature. </p></div>`,
@@ -1027,33 +1017,21 @@ of the project</p><img \
 src="https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG"></img><p>The \
 code below will allow you to cycle the LED through different colors by pushing a button.</p></div>`,
 
-  `<div><p>To modify the origional project created by dleibe1 and include an OLED display that shows \
-the temperature and humidity, you can follow the steps below.  Ever wanted to know the \
-temperature and humidity around you? If yes, this project will be very helpful for you. If \
-no, it'll be cool anyway.</p> \
+  `<div><p>Ever wanted to know the temperature and humidity around you? If yes, this project is for you. If \
+not, it'll be cool anyway.</p> \
 <h2>What is humidity?</h2><p>Humidity \
-is the water vapor around you mixed with air. It is measured in percentages. So, if the \
-humidity is 60 percent (which is the average humidity), then 60 percent of the air around \
-you is water vapor. If it is 100%, then it means either the sensor is not correct, the \
-sensor is broken/damaged, the Arduino crashed, the Arduino can't receive any signal, \
-there's an error in the code or you're underwater *. If it's 0%, it means all the reasons \
-above except the last one, you're in space or you're in the middle of a desert**.</p><br><p>* \
-Correction: it means the air cannot hold any more water. </p><br><p>**  The air in a desert \
-does contain some water but it is a very little amount compared to a normal place. The \
-Sahara Desert has a mean humidity of 25%. </p><br><p>The world's lowest recorded relative \
-humidity value occurred at Coober Pedy in the South Australia desert when the temperature \
-was 93 degrees and the dew point was minus 21 degrees producing a relative humidity of 1 \
-percent. (source:  'www.chicagotribune.com') </p><h2>Is your sensor different?  My \
-sensor is like this: </h2><img \
-src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><h2>My \
-sensor has 3 pins and it's fitted on a board. If yours has 4 pins, then you need to build \
-this circuit: </h2><img \
-src="https://i.imgur.com/6sNtuUL.png"></img><h2>If \
-it is same as mine, then follow this diagram instead, you will no longer need the resistor:</h2><img \
-src="https://i.imgur.com/xdSSgkL.png"></img><p></p><h2>Details about the code</h2><p>You need to follow these instructions to \
+is the proportion of air that is water vapor. Generally, it's measured in percentages. \
+A humidity range of 30% to 50% is considered comfortable for most people.</p><p>This \
+sensor comes in two varieties, mine looks like this:</p><img \
+src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><p>The \
+sensor I'm using has 3 pins and is fitted on a board.  If your sensor has 4 pins, then you need to build \
+the circuit below:</p><img \
+src="https://i.imgur.com/6sNtuUL.png"></img><p>If \
+it's the same as mine, follow this diagram.  You will no longer need the resistor:</p><img \
+src="https://i.imgur.com/xdSSgkL.png"></img><h2>Details about the code:</h2><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11, Adafruit_GFX, and Adafruit_SSD1306 libraries \
 to the Arduino IDE and include them in your sketch. <br>2. Upload the \
-code. <br>3. When the code is uploaded, you will see the humidity and temperature on the OLED display.</p></div>`,
+code. <br>3. When the code is uploaded, the humidity and temperature will show up on the OLED display.</p></div>`,
 ]
 
 export default projectInstructionsSeedData
