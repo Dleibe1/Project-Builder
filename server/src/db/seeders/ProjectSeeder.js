@@ -173,7 +173,7 @@ class ProjectSeeder {
       },
       {
         userId: 2,
-        title: "Control your air conditioner remotely",
+        title: "Control our Air Conditioner Remotely",
         description: projectDescriptionsSeedData[17],
         appsAndPlatforms: "Arduino IoT Cloud",
         code: projectCodeSeedData[17],
