@@ -9,9 +9,11 @@ import TagList from "./show-pages-shared/TagList.js"
 import Instructions from "../shared/Instructions.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getProject from "../../api/getProject.js"
-import useCheckForProjectForks from "../../hooks/useCheckForProjectForks.js"
+import useDoForksExist from "../../hooks/useDoForksExist.js"
 
 const ProjectShow = (props) => {
+  const params = useParams()
+  const { id } = params
   const [project, setProject] = useState({
     title: "",
     tags: "",
@@ -26,9 +28,8 @@ const ProjectShow = (props) => {
     thumbnailImage: "",
     parentProjectId: "",
   })
-  const params = useParams()
-  const { id } = params
-  const hasForks = useCheckForProjectForks(id)
+  
+  const hasForks = useDoForksExist(id)
 
   useEffect(() => {
     getProject(id).then((projectData) => {
@@ -117,16 +118,14 @@ const ProjectShow = (props) => {
       </div>
       <div className="showpage-items-container apps-and-platforms">
         <h4>Apps and Platforms:</h4>
-          <p>{project.appsAndPlatforms}</p>
+        <p>{project.appsAndPlatforms}</p>
       </div>
       <Instructions project={project} />
       <div>
         <section className="showpage-items-container code">
           {codeMessage}
           <pre>
-            <code
-              className="language-cpp"
-            >{project.code}</code>
+            <code className="language-cpp">{project.code}</code>
           </pre>
         </section>
       </div>

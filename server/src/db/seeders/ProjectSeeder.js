@@ -8,7 +8,7 @@ class ProjectSeeder {
     const parentProjects = [
       {
         userId: 1,
-        title: "Interfacing RGB Led with Arduino",
+        title: "Control an RGB Led with an Arduino",
         description: projectDescriptionsSeedData[0],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[13],
@@ -17,7 +17,7 @@ class ProjectSeeder {
       },
       {
         userId: 1,
-        title: "Using DHT11",
+        title: "Using a DHT11 Temperature and Humidity Sensor",
         description: projectDescriptionsSeedData[14],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[14],
@@ -185,7 +185,7 @@ class ProjectSeeder {
       {
         //id: 19
         userId: 2,
-        title: "Interfacing RGB Led with Push Button and Arduino",
+        title: "Control an RGB Led with an Arduino and Push Button",
         description: projectDescriptionsSeedData[18],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[18],
@@ -195,7 +195,7 @@ class ProjectSeeder {
       },
       {
         userId: 1,
-        title: "Using DHT11 with I2C OLED display",
+        title: "Using a DHT11 Sensor With an OLED display",
         description: projectDescriptionsSeedData[19],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[19],

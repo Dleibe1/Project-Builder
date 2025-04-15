@@ -8,7 +8,7 @@ import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
 import TagList from "./show-pages-shared/TagList"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getMyBuild from "../../api/getMyBuild.js"
-import useCheckForProjectForks from "../../hooks/useCheckForProjectForks.js"
+import useDoForksExist from "../../hooks/useDoForksExist.js"
 import Instructions from "../shared/Instructions"
 
 const MyBuildShow = (props) => {
@@ -28,7 +28,7 @@ const MyBuildShow = (props) => {
 
   const params = useParams()
   const { id } = params
-  const hasForks = useCheckForProjectForks(id)
+  const hasForks = useDoForksExist(id)
 
   useEffect(() => {
     getMyBuild(id).then((userProject) => {

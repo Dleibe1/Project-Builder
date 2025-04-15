@@ -19,7 +19,7 @@ const SeeForkedVersions = ({ id }) => {
         },
       }}
     >
-      See Forked Versions
+      See Forks of this project
     </Button>
   )
 }

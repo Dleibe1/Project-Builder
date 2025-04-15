@@ -28,7 +28,7 @@ const Instructions = ({ project, setEditingInstructions }) => {
             variant="contained"
           >
             {project.instructions?.length > 0 && "Edit Instructions"}
-            {project.instructions?.length === 0 && "Add Instructions Section"}
+            {project.instructions?.length === 0 && "Add Instructions"}
           </Button>
         </div>
       )}

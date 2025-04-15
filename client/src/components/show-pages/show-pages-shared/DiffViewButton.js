@@ -20,7 +20,7 @@ const DiffViewButton = ({ parentProjectId, forkedProjectId }) => {
         },
       }}
     >
-      View Changes From Original
+      View Changes
     </Button>
   )
 }

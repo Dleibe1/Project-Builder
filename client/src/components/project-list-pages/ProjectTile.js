@@ -1,11 +1,11 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
 import TileSeeForksButton from "./TileSeeForksButton"
-import useCheckForProjectForks from "../../hooks/useCheckForProjectForks"
+import useDoForksExist from "../../hooks/useDoForksExist"
 
 const ProjectTile = ({ title, createdBy, thumbnailImage, id }) => {
   const history = useHistory()
-  const hasForks = useCheckForProjectForks(id)
+  const hasForks = useDoForksExist(id)
   const handleTileClick = () => {
     history.push(`/projects/${id}`)
   }

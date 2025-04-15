@@ -1,8 +1,6 @@
 const projectDescriptionsSeedData = [
-  `This project is made for Arduino beginners who are looking to learn how to interface \
-an RGB led with the Arduino Uno. Also, we will understand the Common Anode (CA) and \
-Common Cathode (CC) concept as well as the pulse width modulation (PWM) \
-signals.`,
+  `This project is made for Arduino beginners who want to learn how to control \
+an RGB LED with an Arduino Uno.`,
 
   `Calling all tinkerers, tech enthusiasts, and robot aficionados! Are you ready to unleash your inner inventor and build a robot car that dances to your smartphone's commands? This guide will be your roadmap to crafting a mini marvel that zips and zooms under your wireless control. Buckle up, because we're about to dive into the exciting world of Bluetooth-controlled robotics! `,
 
@@ -29,7 +27,7 @@ signals.`,
 `Want to build a DIY project where you can sense movement within a short range?  Then thhe HC-SR501 Passive Infrared (PIR) sensor is perfect for your project. Learn how to use a PIR sensor to detect the motion of person or animal.`,
 `Big Brother's eyes follow your movements and squint when you get closer.`,
 
-`This tutorial will show you how to use DHT11 with Arduino.`,
+`This tutorial will show you how to connect a DHT11 temperature and humidity sensor to an Arduino and read the sensor data from the serial monitor.`,
 
 `Learn how to use an ultrasonic sensor (HC-SR04) with Arduino. This tutorial will teach you what it is and how to assemble the sensor on Arduino.  At the end, you'll implement the ultrasonic sensor into an alarm system project.`,
 
@@ -38,12 +36,10 @@ signals.`,
 `Add WiFi capability to any AC unit by emulating an infrared remote control and build an interface that you can use from your smartphone.`,
 
 //fork of projectId: 1
-`This project is made for Arduino beginners who are looking to learn how to interface \
-an RGB led with the Arduino Uno and use a push button to control the LED. Also, we will \
-understand the Common Anode (CA) and Common Cathode (CC) concept as well as the pulse \
-width modulation (PWM) signals.`,
+`This project is made for Arduino beginners who want to learn how to control \
+an RGB LED with an Arduino Uno and push button.`,
 //fork of projectId: 2
-`This tutorial will show you how to use DHT11 with Arduino and print the sensor's data to an OLED display.`
+`This tutorial will show you how to connect a DHT11 temperature and humidity sensor to an Arduino and read the sensor data from an OLED display.`
 
 ]
 

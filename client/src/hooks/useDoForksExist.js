@@ -1,14 +1,14 @@
 import doesProjectHaveForks from "../api/doesProjectHaveForks"
 import { useEffect, useState } from "react"
 
-const useCheckForProjectForks = (id) => {
+const useDoForksExist = (id) => {
   const [hasForks, setHasForks] = useState(false)
   useEffect(() => {
-    doesProjectHaveForks(id).then((forkExists) => {
-      setHasForks(forkExists)
+    doesProjectHaveForks(id).then((doesForkExist) => {
+      setHasForks(doesForkExist)
     })
-  }, [])
+  }, [id])
   return hasForks
 }
 
-export default useCheckForProjectForks
+export default useDoForksExist
