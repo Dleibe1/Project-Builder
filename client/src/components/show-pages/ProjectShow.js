@@ -9,7 +9,7 @@ import TagList from "./show-pages-shared/TagList.js"
 import Instructions from "../shared/Instructions.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getProject from "../../api/getProject.js"
-import useCheckForProjectForks from "../../hooks/useCheckForProjectForks.js"
+import useDoForksExist from "../../hooks/useDoForksExist.js"
 
 const ProjectShow = (props) => {
   const params = useParams()
@@ -29,7 +29,7 @@ const ProjectShow = (props) => {
     parentProjectId: "",
   })
   
-  const hasForks = useCheckForProjectForks(id)
+  const hasForks = useDoForksExist(id)
 
   useEffect(() => {
     getProject(id).then((projectData) => {
