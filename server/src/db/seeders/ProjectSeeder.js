@@ -8,7 +8,7 @@ class ProjectSeeder {
     const parentProjects = [
       {
         userId: 1,
-        title: "Control an RGB Led with an Arduino",
+        title: "Interfacing RGB Led with Arduino",
         description: projectDescriptionsSeedData[0],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[13],
@@ -185,7 +185,7 @@ class ProjectSeeder {
       {
         //id: 19
         userId: 2,
-        title: "Control an RGB Led with an Arduino and Push Button",
+        title: "Interfacing RGB Led with Arduino and Push Button",
         description: projectDescriptionsSeedData[18],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[18],
