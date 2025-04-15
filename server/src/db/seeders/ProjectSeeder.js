@@ -17,7 +17,7 @@ class ProjectSeeder {
       },
       {
         userId: 1,
-        title: "Use a DHT11 Temperature and Humidity Sensor",
+        title: "Using a DHT11 Temperature and Humidity Sensor",
         description: projectDescriptionsSeedData[14],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[14],
@@ -195,7 +195,7 @@ class ProjectSeeder {
       },
       {
         userId: 1,
-        title: "Use a DHT11 Sensor With an OLED display",
+        title: "Using a DHT11 Sensor With an OLED display",
         description: projectDescriptionsSeedData[19],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[19],

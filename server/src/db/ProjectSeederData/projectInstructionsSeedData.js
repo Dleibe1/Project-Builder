@@ -1002,20 +1002,19 @@ voltage between 0 and Vcc controlling the brightness of the LED.  In the graphic
 the green lines represent a regular time period. This duration or period is the inverse of \
 the PWM frequency. In other words, with Arduino's PWM frequency at about 500Hz, the green \
 lines would measure 2 milliseconds each.</p><img \
-src="https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif"></img><h2> \
-Explanation of the Changes from the Original Version:</h2><h2>Button \
-Input:</h2><p>A button is connected to pin 2 of the Arduino, and it is configured with an \
-internal pull-up resistor (INPUT_PULLUP mode). This means that when the button is not \
-pressed, the pin reads HIGH, and when pressed, it reads LOW.<br>Color Change \
-Logic:</p><br><p>Each time the button is pressed, the colorIndex variable is incremented, \
+src="https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif"></img><h2>Button \
+Input</h2><p>A button is connected to pin 2 of the Arduino.  We configured this pin \
+in the code to use an internal pull-up resistor. This means when the button is not \
+pressed, the pin reads HIGH and when it is pressed, the pin reads LOW.</p><h2>Color Change \
+Logic</h2><p>Each time the button is pressed, the colorIndex variable is incremented, \
 cycling through six different colors. After the last color, the index resets to \
-zero.<br>Debouncing:</p><br><p>A small delay (delay(300) is added after each button press to \
-debounce the button, preventing multiple triggers from a single press.</p><br><p>This \
+zero.</p><h2>Debouncing</h2><p>A small delay (300 ms) is added after each button press to \
+debounce the button, preventing multiple triggers from a single press.</p><h2>Summing Up</h2><p>This \
 modification allows the RGB LED to change colors each time the button is pressed, \
 providing interactive control over the LED.</p><br><p>Below is the schematic for my version \
-of the project</p><img \
+of the project:</p><img \
 src="https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG"></img><p>The \
-code below will allow you to cycle the LED through different colors by pushing a button.</p></div>`,
+code below will allow you to cycle through different colors by pushing a button.</p></div>`,
 
   `<div><p>Ever wanted to know the temperature and humidity around you? If yes, this project is for you. If \
 not, it'll be cool anyway.</p> \

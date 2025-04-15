@@ -84,7 +84,12 @@ const DiffView = (props) => {
   return (
     <div className="project-diff-view">
       <div className="diff-view-top-section">
-        <h1 className="diff-view-title">Changes from the Original</h1>
+        <h1 className="diff-view-title">
+          Changes from the{" "}
+          <a className="title-link" href={`/projects/${parentProjectId}`}>
+            Original Project
+          </a>
+        </h1>
         <Button
           component={Link}
           to={`/projects/${forkedProjectId}`}
