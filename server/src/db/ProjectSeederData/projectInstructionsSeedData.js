@@ -284,7 +284,7 @@ up, and down.</p><br><p>Without further ado, let's dive into the project and get
 <h2>Step 1: Assemble the Robotics Arm Kit</h2> \
 <p>Watch the \
 video for a complete step-by-step assembly of the Robotics Arm Kit.</p> \
-<a href="https://youtu.be/TMv3JR06yuo">https://youtu.be/TMv3JR06yuo</a><br><h2>Step 2: \
+<p><a href="https://youtu.be/TMv3JR06yuo">https://youtu.be/TMv3JR06yuo</a></p><br><h2>Step 2: \
 Servo Motors & PWM Servo Motor Driver Wiring</h2><img \
 src="https://projects.arduinocontent.cc/16e51e8c-81e8-4931-be46-69505c3bacd1.jpg"></img><p>Refer \
 to the image above and connect all four servo motor wires to the PWM servo motor driver \
@@ -364,7 +364,7 @@ PCB</p><br><p>If you're interested in building this project, the code and schema
 available on GitHub. Simply visit the GitHub repository to download the necessary files. \
 If the project gains attention, I’ll open-source the PCB files as well. Feel free to test \
 the code and share your feedback or improvements.</p><br><p>GitHub repository:</p> \
-<a href="https://www.github.com/cifertech/arpolan">github.com/cifertech/arpolan</a></div>`,
+<p><a href="https://www.github.com/cifertech/arpolan">github.com/cifertech/arpolan</a></p></div>`,
 
   `<div><p>Ultrasonic sonar are devices that use sound waves with frequencies higher than the upper \
 audible limit of human hearing (typically above 20 kHz) to measure the distance to objects. \
@@ -374,14 +374,14 @@ difference between sending and receiving the sound wave, the distance to the obj
 determined using the speed of sound.</p><br><p>This time I will describe \
 how to make an independent Sonar, where the results are displayed on a TFT \
 color display in the form of a radar image, which is why it is often mistakenly called \
-radar instead of sonar.</p><a href="https://youtu.be/XOZAGRH_6hA">https://youtu.be/XOZAGRH_6hA</a><p>I \
-got the idea quite by accident \
+radar instead of sonar.</p><p><a href="https://youtu.be/XOZAGRH_6hA">https://youtu.be/XOZAGRH_6hA</a></p>
+<p>I got the idea quite by accident \
 from a picture on the internet, and then after a little research I found that project on \
 Github. The original project was made on a 1.8 inch display which is really a very small \
 surface for this purpose. So I reworked the code for a larger 3.2 inch TFT display, where \
 the image is much clearer. </p><img \
 src="https://projects.arduinocontent.cc/77c2652f-24f9-4051-b804-ee01d27a19fb.jpg"></img><p>The \
-device is really simple to make and consists of only a few components<br>- Arduino Nano \
+device is really simple to make and consists of only a few components:<br>- Arduino Nano \
 microcontroller board<br>- TFT display with a resolution of 240 x 320 pixels and an \
 ILI9341 driver chip<br>- Ultrasonic sensor type HC-SR04<br>- small 9G Servo<br>- and \
 several resistors that serve to shift the display signal from 5V to 3.3V level</p><br><p>The \
@@ -680,7 +680,7 @@ LCD display
 lcd, specifying the pin numbers to which the LCD display is connected. The parameters \
 represent (RS, EN, D4, D5, D6, D7) pins respectively. \
 <pre><code class="language-cpp" >// Initialize the LCD object with pin numbers
-LiquidCrystal lcd(12, 11, 6, 7, 8, 9);</code></pre><br>These lines declare two \
+LiquidCrystal lcd(12, 11, 6, 7, 8, 9);</code></pre><br><p>These lines declare two \
 integer variables: sensorInput, which represents the pin number connected to the PIR \
 sensor, and sensorReturn, which will store the output of the PIR sensor.</p><br>
 <pre><code class="language-cpp" >int sensorInput = 2;// PIR sensor input pin
@@ -689,48 +689,80 @@ function is called once when the Arduino board \
 starts. Now we set the sensorInput pin as an input pin, indicating that it will be used to \
 read data from the PIR sensor. Then initialize the LCD display with 16 columns and 2 rows, \
 indicating the display's dimensions. Initial messages are printed on the LCD display, \
-positioning the cursor at the beginning of the second row.<br>void setup() \
-{<br>pinMode(sensorInput, INPUT); // Set sensor pin as input      <br>// Set up the LCD's \
-number of columns and rows      <br>lcd.begin(16, 2);      <br>// Print initial message \
-on the LCD      <br> lcd.setCursor(0, 0);      <br> lcd.print("PIR Sensor Says:");      \
-<br> lcd.setCursor(0, 1);      <br>}      <br>In the loop() function, the value of the \
-PIR sensor output is read using digitalRead(sensorInput). <br>If motion is detected \
+positioning the cursor at the beginning of the second row.
+<pre><code class="language-cpp" >void setup()
+{
+// Set sensor pin as input
+pinMode(sensorInput, INPUT);
+// Set up the LCD's number of columns and rows
+lcd.begin(16, 2);
+// Print initial message on the LCD
+lcd.setCursor(0, 0);
+lcd.print("PIR Sensor Says:");      \
+lcd.setCursor(0, 1);
+}</code></pre>
+<br><p>In the loop() function, the value of the \
+PIR sensor output is read using digitalRead(sensorInput).  If motion is detected \
 (sensor output is HIGH), a message indicating motion occurrence is displayed on the LCD. \
 If no motion is detected (sensor output is LOW), a message indicating motion stops is \
-displayed on the LCD. </p><br><p>void loop() {      <br> sensorReturn = \
-digitalRead(sensorInput); // Read input value from PIR sensor      <br> // Check if \
-motion is detected      <br> if (sensorReturn == HIGH) {      <br>   // Set cursor to \
-the second row and print motion detection message      <br>   lcd.setCursor(0, 1);      \
-<br>   lcd.print("Motion Occurs   ");       } else {      <br>   // Set cursor to the \
-second row and print motion stopped message      <br>   lcd.setCursor(0, 1);      <br>   \
-lcd.print("Motion Stops    ");      <br> }      <br>}      </p></div>`,
+displayed on the LCD.</p><br>
+<pre><code class="language-cpp" >void loop() {
+// Read input value from PIR sensor
+sensorReturn = digitalRead(sensorInput);
+// Check if motion is detected
+if (sensorReturn == HIGH) { 
+// Set cursor to the second row and print motion detection message
+  lcd.setCursor(0, 1);
+  lcd.print("Motion Occurs   ");
+} else {
+// Set cursor to the second row and print motion stopped message
+  lcd.setCursor(0, 1);      <br>   \
+  lcd.print("Motion Stops    ");
+  }
+}</code></pre></div>`,
 
-  `<div><p>The two eyes are painted on two ping-pong balls which are sticked on two servo motors. Two \
-ultrasonic sensors measure the object's position. An Arduino Nano Every board reads the \
+  `<div><h2>History</h2><p>
+My previous project was serious and complex: a programmable wireless thermostat. Thanks to you, \
+it has been viewed more than 3000 times on the Project Hub, and I am very grateful to you. \
+My goal now is to exceed 5000 views. So I had to imagine a project that would be funnier, \
+more original, simpler and easier to replicate than the thermostat. And totally useless. \
+So I decided to make this pair of eyes that follows the movements of an object that moves \
+in front of it. It follows the lateral movements, and the eyes converge when the object \
+comes closer. \
+And if you're reading this, you clicked. This is great for my goal and I thank you for it.</p> \
+<h2>The project</h2>
+<img src="https://projects.arduinocontent.cc/7a0b9db1-2dbd-4727-bf5a-1b2deecd6bd8.jpg" ></img>
+<img src="https://projects.arduinocontent.cc/4cdeee04-3d69-4b3e-896e-9fafd8ef2ccc.jpg" ></img>
+<img src="https://projects.arduinocontent.cc/6e524ab0-5225-45a7-b646-5b04d4b9824a.jpg" ></img>
+<p>The two eyes are painted on two ping-pong balls which are each attached to a servo motor. Two \
+ultrasonic sensors measure the object's position.  An Arduino Nano Every board reads the \
 measurements from the ultrasonic sensors and controls the sevo motors \
 accordingly.</p><br><p>The servo motors are SG90 micro servos and the ultrasonic sensors are \
-HC-SR04. These are very common and very inexpensive devices. The Arduino board may be of \
+HC-SR04's. These are very common and very inexpensive devices. The Arduino board may be of \
 another model than the nano Every, provided that 5V is available to power the servo motors \
-and the ultrasonic sensors. </p><img \
+and the ultrasonic sensors. </p><h2>Hardware</h2><img \
 src="https://projects.arduinocontent.cc/781dcb46-650d-4a7d-9177-5f7e4ee1ee1b.jpg"></img><p>The \
-servo motors and ultrasonic sensors are sticked on a plate according to the arrangement \
-shown on the following plan: </p><img \
+servo motors and ultrasonic sensors are held in place on a flat surface according to the arrangement \
+shown in the following plan: </p><img \
 src="https://projects.arduinocontent.cc/e0fd7c1d-3a35-474b-b284-60a1b0a110d3.jpg"></img><p>The \
 position of the X ultrasonic sensor can be different, for example to follow larger \
 objects. In this case, the constants A and B must be adjusted in the software to reflect \
 the actual position of the X ultrasonic sensor. These two values must be less than 200 \
-cm.</p><br><p>The connections to be made are as follows:</p><br><p>The grounds of the servo \
-motors and of the ultrasonic sensors must be connected to the ground of the Arduino board \
+cm.</p><h2>Connections to be made are as follows:</h2><p>The ground wires of the servo \
+motors and ultrasonic sensors must be connected to the ground pin of the Arduino board \
 and their power supplies to +5V.</p><br><p>The trigger input of the X ultrasonic sensor is \
 connected to digital input/output 2 and its echo output to digital input/output \
 3.</p><br><p>The trigger input of the Y ultrasonic sensor is connected to digital \
-input/output 5 and its echo output to digital input/output 6.</p><br><p>The left and right \
-servomotors controls are connected to digital inputs/outputs 8 and 10 respectively. Left \
-and right refer to Big Brother's eyes, his left eye is on your own right.</p><br><p>The \
-following diagram shows the connections to be made:Software</p><br><p>The software is \
-extremely simple, less than 70 lines. No library is required.</p><br><p>Have fun. </p></div>`,
+input/output 5 on the Arduino and its echo output to digital input/output 6.</p><br><p>The \
+left and right \
+servomotor controls are connected to digital inputs/outputs 8 and 10 respectively. Left \
+and right refer to Big Brother's eyes, his left eye is on your right when you are facing \
+it.</p><br><p>The following diagram shows the connections to be made:</p>
+<img src="https://projects.arduinocontent.cc/5dcac3f5-28bf-4a60-91c0-b71b5d034810.jpg"></img>
+<h2>Software</h2><p>The \
+software is extremely simple, less than 70 lines. No library is required.</p><br><p>Have fun. </p></div>`,
 
-  `<div><p>Gather your tools and troops (components, that is)</p><br><p>The brains: An Arduino Uno, the \
+  `<div><h2>Gather your tools and troops (components, that is)</h2><p>The brains: An Arduino Uno, the \
 mastermind behind the magic.<br>The translator: An HC05 Bluetooth module, your car's \
 interpreter for smartphone commands.<br>The muscle: L298N motor driver, the beefy guy \
 controlling those zippy wheels.<br>The bling: NeoPixel LEDs, because who doesn't love a \
@@ -738,34 +770,79 @@ car with dazzling lights?<br>The base: Perfboard and Sunboard, the sturdy founda
 your creation.<br>The connections: Jumper wires, the colorful threads that bring \
 everything together.<br>The fuel: A battery, to keep your robot rolling (safely, of \
 course!). </p><img \
-src="https://circuitdigest.com/sites/default/files/circuitdiagram_mic/Arduino-Robot-Circuit-Diagram.png"></img><p>Craft \
-the chassis, the car's core:</p><br><p>       Imagine your robot's frame. Sunboard is your \
+src="https://circuitdigest.com/sites/default/files/circuitdiagram_mic/Arduino-Robot-Circuit-Diagram.png"></img><h2>Craft \
+the chassis, the car's core:</h2><p>Imagine your robot's frame. Sunboard is your \
 friend here! Cut precise pieces based on the guide (remember, measuring twice cuts once!). \
 Assemble them like a mini puzzle, creating a strong and stable base for your future \
-masterpiece. Motor magic, let the wheels spin:</p><br><p>       Time to get those motors \
+masterpiece.</p><h2>Motor magic, let the wheels spin:</h2><p>       Time to get those motors \
 talking to the driver! Mount them securely on the chassis. Connect them to the L298N \
 module using the jumper wires, following the wiring diagram like a treasure map. Remember, \
-correct connections are key to smooth sailing (or should we say, driving?). Bling it up \
-with dazzling LEDs:</p><br><p>       Let your creativity shine! Place the NeoPixel LEDs on \
+correct connections are key to smooth sailing (or should we say, driving?). <h2>Bling it up \
+with dazzling LEDs:</h2><p>       Let your creativity shine! Place the NeoPixel LEDs on \
 the front, back, and bottom of your car. Connect them to the Arduino, following the \
-color-coded guide. Soon, your robot will be a beacon of programmable light! Code the \
-commands, unlock the moves:</p><br><p>       The Arduino code is the secret sauce that brings \
+color-coded guide. Soon, your robot will be a beacon of programmable light!</p><h2>Code the \
+commands, unlock the moves:</h2><p>       The Arduino code is the secret sauce that brings \
 your car to life. It translates the Bluetooth commands from your phone into actions for \
 the motors and LEDs. The provided code is a great starting point, but feel free to \
-experiment and add your own personal touch! \
-https://circuitdigest.com/sites/default/files/circuitdiagram_mic/Arduino-Robot-Circuit-Diagram.png</p></div>`,
+experiment and add your own personal touch!
+<pre><code class="language-cpp">
+//Arduino Code for Bluetooth controlled Robot 
+//by Ali for circuitdigest.com 
+#include <SoftwareSerial.h> 
+SoftwareSerial mySerial(10, 11); // RX, TX 
+void setup() { 
+	 // Open serial communications and wait for port to open: 
+	 Serial.begin(9600); 
+	 mySerial.begin(38400); 
+	 while (!Serial) { 
+	   ; // wait for serial port to connect. Needed for native USB port only 
+	 } 
+	 Serial.println("Sending AT..."); 
+	 mySerial.write("AT"); 
+	 if (mySerial.available() > 0) { 
+	   Serial.write(mySerial.read()); 
+	 } 
+	 // set the data rate for the SoftwareSerial port 
+	 Serial.println("loop begins"); 
+	 LED_setup(); 
+} 
+char rcd = ' '; 
+int spd = 100; 
+unsigned long time_now = 0; 
+void loop() { // run over and over 
+	 if (mySerial.available()) { 
+	   rcd = mySerial.read(); 
+	   Serial.write(rcd); 
+	 } 
+}
+</code></pre><h2>Applause for the app builder:</h2><p>Now, for the smartphone control! \
+Dive into the world of MIT App Inventor, a visual tool that lets you design a \
+user-friendly app without needing to be a coding wizard. Drag and drop buttons, \
+sliders, and other elements to create your remote control masterpiece.</p>
+<h2>Testing and triumphant tinkering:</h2><p>With everything assembled and \
+programmed, it's time for the moment of truth! Connect your phone via Bluetooth, \
+open the app, and...voila! Your robot car should whiz forward, reverse, turn, \
+and even light up on your command. If not, don't fret! Troubleshooting is part \
+of the fun. Double-check connections, codes, and app settings. Remember, \
+even the coolest robots need a little tinkering love sometimes.</p><br><p>Bonus \
+tip: Don't stop there! This is just the beginning of your robotic adventure. \
+Add features like obstacle avoidance sensors, line following capabilities, \
+or even a robotic arm. The possibilities are endless, limited only by your \
+imagination and ingenuity.</p><p>Source: The project was originally published in \
+CircuitDigest, checkout <a href="https://circuitdigest.com/microcontroller-projects/diy-arduino-bluetooth-robot-car">
+Arduino Bluetooth Robot Car project</a> for more detials. </p></div>`,
 
-  `<div><p>The ultrasonic sensor is a device that can measure distances using sound waves . It works \
-in a similar way than bats and dolphins - by emitting sound waves and listening them bound \
-back </p><img \
-src="https://projects.arduinocontent.cc/cc7047f6-2bbf-43ed-87e9-76b07f4522e8.jpg"></img></p><br><p><img \
-src="https://projects.arduinocontent.cc/8ab8bfd4-b0b9-42e1-9309-4f2a734ad439.jpg"></img><p>The \
+  `<div><p>The ultrasonic sensor is a device that can measure distances using sound waves. It works \
+in a similar way to how bats and dolphins navigate and find food- by \
+emitting sound waves and listening to them bounce back.</p><img \
+src="https://projects.arduinocontent.cc/8ab8bfd4-b0b9-42e1-9309-4f2a734ad439.jpg"></img>
+<img src="https://projects.arduinocontent.cc/cc7047f6-2bbf-43ed-87e9-76b07f4522e8.jpg"></img><p>The \
 sensor consists of two primary components: a transmitter and a receiver . The transmitter \
 is responsible for emitting a high-frequency sound. In essence, ultrasonic refers to \
-frequencies beyond the range of the human hearing - so something higher than 20kHz. \
+frequencies beyond the range of human hearing - so something higher than 20kHz. \
 </p><br><p>When the sound wave hits an object, it bounces back like echo. This returning wave \
-is detected by the receiver. The sensor will use the micro-controller (Arduino) internal \
-clock to find out how much it took for the sound to bounce back. This small clock turns on \
+is detected by the receiver. The sensor will use the micro-controller's (Arduino) internal \
+clock to find out how much time it took for the sound to bounce back. This small clock turns on \
 when a high-frequency wave is emitted and turns off when its echo is detected. \
 </p><br><p>Using code, we can write a program that will store the timing between those two \
 events into a variable. Then, we can use this information to calculate the distance \
@@ -776,38 +853,45 @@ find the distance . I told you the sensor emits sound waves, so the velocity we 
 the speed of sound in air (340 m/s). </p><br><p>Velocity = Distance / Time <br>Distance = \
 Velocity * Time </p><br><p>But if we multiply this speed with the timing we found, we'll \
 discover a value that's twice the real distance. That's happens because the sound hit the \
-object and came back, in other words, it traveled the same path twice. Then to find the \
+object and came back, in other words, it traveled the same path twice. To find the \
 real distance, multiply the speed of sound with the timing and divide the result by two. \
 </p><br><p>Distance = (Velocity * Time) / 2 </p><img \
-src="https://projects.arduinocontent.cc/328c3323-cf29-434e-baf4-4c5b60eb5216.png"></img></p><br><p><img \
-src="https://projects.arduinocontent.cc/328c3323-cf29-434e-baf4-4c5b60eb5216.png"></img></p><br><p><img \
-src="https://projects.arduinocontent.cc/50ba2ab9-a2a5-4649-b4d1-553464059068.png"></img><p>In \
-this article, I will show you how to build an alarm system using Arduino and the \
-ultrasonic sensor. If you don't have all components or would like to test before \
+src="https://projects.arduinocontent.cc/f577fb8b-bed1-48fc-8781-3ac874a075e6.png"></img><img \
+src="https://projects.arduinocontent.cc/328c3323-cf29-434e-baf4-4c5b60eb5216.png"></img> \
+<img src="https://projects.arduinocontent.cc/28299ea1-dd87-4b9c-bf5e-20fae843c87a.png"></img> \
+<img src="https://projects.arduinocontent.cc/50ba2ab9-a2a5-4649-b4d1-553464059068.png"></img> \
+<p>In this article, I will show you how to build an alarm system using an Arduino and \
+ultrasonic sensor. If you don't have all the components or would like to do a test before \
 assembling anything, I created a simulation of this alarm system on Tinkercad. \
-</p><br><p>Moving on, for this project, you'll need: an Arduino board, a breadboard, a bunch \
-of jumper wires, a buzzer,and an ultrasonic sensor. </p><br><p>Assembly</p><br><p>Firstly, \
-attach the ultrasonic sensor and the buzzer on the breadboard. Then connect the VCC and \
-GND pins on Arduino 5V and ground ports. </p><img \
+You can run it directly on your browser by clicking \
+<a href="https://www.tinkercad.com/things/eO64BUKZK2q-alarm-system-schematics">here</a> \
+</p><br><p>Moving on, for this project, you'll need:</p><p>An Arduino board, a breadboard, a bunch \
+of jumper wires, a buzzer, and an ultrasonic sensor. </p><h2>Assembly</h2>Firstly, \
+attach the ultrasonic sensor and the buzzer to the breadboard. Then connect the VCC and \
+GND pins on the Arduino's 5V and ground ports. </p><img \
 src="https://projects.arduinocontent.cc/5d9e9e7a-35dc-47be-91c5-7f2503be7949.jpg"></img><p>After \
-that connect the trigger pin to port 9, the echo pin to port 10, and the buzzer to port 8. \
+that, connect the trigger pin to port 9, the echo pin to port 10, and the buzzer to port 8. \
 Also attach the buzzer GND to Arduino GND. </p><img \
-src="https://projects.arduinocontent.cc/5d823b9b-7ca8-453f-846a-65d58515efce.jpg"></img><p>At \
-the end, upload the alarm-system-arduino.ino file that I provided on this article, and now \
-our alarm system is finished. </p><br><p>Code explanation</p><br><p>At first, we defined the \
-constants and variables we'll need. Then, at the setup function, we configured some \
+src="https://projects.arduinocontent.cc/5d823b9b-7ca8-453f-846a-65d58515efce.jpg"></img><p>Once \
+assembled, upload the alarm-system-arduino.ino file that I provided in this article, and now \
+our alarm system is finished. </p><h2>Code explanation</h2><p>First, we define the \
+constants and variables we'll need. Then in the setup function we configure some \
 important aspects of the code - like defining the echo pin as INPUT and the trigger and \
-buzzer pins as OUTPUT. We also started the serial communication - and it'll be important \
-to visualize the distances being measured. </p><img \
-src="https://projects.arduinocontent.cc/96e0a1f3-94ba-4045-a270-a0fb390afa0d.png"></img><p>At \
+buzzer pins as OUTPUT. We also started the serial communication.  This will be important \
+fo visualizing the distances being measured. </p><img \
+src="https://projects.arduinocontent.cc/6f4851df-6d75-42ff-af3b-b7772714c75b.png"></img><p>
+<img src="https://projects.arduinocontent.cc/96e0a1f3-94ba-4045-a270-a0fb390afa0d.png"></img>At \
 the end, there's the loop function. It starts by turning off the emitter and then \
 activating it for 10 milliseconds before turning it off again. This piece of code will \
-generate the wave sound that will be bounced back by the near objects.</p><br><p>At line 28 \
-we find how much time the sensor took to detect the echo. This information is crucial for \
+generate the sound wave that will be bounced back by nearby objects.</p><br><p>At line 28 \
+we find out how much time the sensor took to detect the echo. This information is crucial for \
 calculating the distance at line 29. In this case, we found the distance in centimeters. \
 After that, from lines 30 to 35 we print the distance. </p><br><p>The last part of the code \
 is an if-statement that turns on the buzzer when the object is at 50 centimeters or closer \
-from the sensor. In case this statement is false, the buzzer turns down. </p></div>`,
+from the sensor. In case this statement is false, the buzzer turns off.</p>
+<img src="https://projects.arduinocontent.cc/79f1c071-156c-444c-a06c-aa956170007e.png"></img><p>
+And now it's time to discover whether it'll work. So upload the code to your Arduino board and have \
+fun.</p></div>`,
 
   `<div><p>This project is for a school code quest. I have seen many projects with soil moisture \
 sensors, but all of them included expensive and complicated materials such as LCD screens \
@@ -816,81 +900,88 @@ simple Soil Moisture Sensor. The project is designed for people that might not k
 to water their plants or water them too much or too little. The Soil Moisture Sensor \
 distinguishes how wet the soil is, and identifies when the soil should be watered for you. \
 This design only includes a soil moisture sensor, a couple of LEDs and a buzzer. The LEDs \
-constantly show the moisture level (Red - 0-30%, Yellow - 30-60% and green 60%+ switch on \
-at those levels of moisture), and when the moisture level falls below 10%, the buzzer \
-starts beeping. I designed this for a Port Jackson Ficus Bonsai, and have tested this \
-extensively. The percentages I'm using works perfectly for me but might change depending \
+constantly show the moisture level (Red - 0-30%, Yellow - 30-60% and green - 60%+ \
+depending on moister level).  When the moisture level falls below 10%, the buzzer \
+starts beeping. I designed this for a Port Jackson Ficus Bonsai and have tested this \
+extensively. The percentages I'm using work perfectly for me but might change depending \
 on your plant. If you feel like the red light switches on way too late, when the soil is \
 already too dry, you can change the Red percentage to 0-50% and Yellow to 50-80%, because \
-that seems to also be working well. </p><br><p>How it works: </p><br><p>It works, when \
-electrical currents are sent through the legs of the moisture sensor. The sensor then \
-calculates the resistance it's getting. Since water conducts electricity - the wetter the \
-soil is, the less resistance there should be. It's then connected to an Analog Pin and the \
-Arduino can use that for the program. </p><br><p>The Soil Moisture Sensor needs to know the \
+that seems to also work.</p><h2>How it works: </h2><p>Electrical currents are \
+sent through the legs of the moisture sensor. The sensor then \
+calculates the resistance it's getting. Because water conducts electricity, the wetter the \
+soil, the lower the resistance should be. It's then connected to an Analog Pin and the \
+Arduino can use that for the program.</p><br><p>The Soil Moisture Sensor needs to know the \
 maximum moisture that the soil can reach, so we can calculate the percentages. This is \
 called calibration. The sensor calibrates right when the circuit is switched on, in the \
-Setup() function. Therefore, it should already be in freshly watered soil, when it is \
+Setup() function. Therefore, it should already be in freshly watered soil when it is \
 switched on. </p><br><p>Here are some photos of the circuit without the casing: </p><img \
-src="https://projects.arduinocontent.cc/bb269a1e-9020-4253-8e6d-a38f7fd4298d.JPG"></img></p><br><p><img \
-src="https://projects.arduinocontent.cc/353ed111-13e9-476c-9417-12ed55022db5.JPG"></img></p><br><p><img \
+src="https://projects.arduinocontent.cc/bb269a1e-9020-4253-8e6d-a38f7fd4298d.JPG"></img><img \
+src="https://projects.arduinocontent.cc/353ed111-13e9-476c-9417-12ed55022db5.JPG"></img><img \
 src="https://projects.arduinocontent.cc/82d28236-fed8-454e-af83-fc25fc94a1c5.JPG"></img><p>The \
-soil moisture sensor I used has a screwable pin terminal, so no soldering is required. The \
-most popular one sensor is the SparkFun moisture sensor and requires soldering. So I got \
-one, that doesn't need soldering and can just have Male to Male wires screwed in, here . \
-Casing: </p><br><p>The casing is a simple box, with the LEDs coming out of the top, and the \
+The most popular sensor for this use case is the SparkFun moisture sensor \
+and it requires soldering.  The sensor I went with has screwable pin terminals \
+so no soldering is required.  \
+</p><br><p>My <a href="https://drive.google.com/file/d/1KUU9vXYtXuJltKUlt6KiuYl8LIAzmpBG/view?usp=sharing">
+Pseudocode.</a></p><br><p>My <a href="https://drive.google.com/file/d/1KVoYaHDi72zqlaPeXSSslZct1LBrO-bR/view?usp=sharing">
+Flowchart</a></p>
+<h2>Casing:</h2><p>The casing is a simple box with the LEDs coming out of the top and the \
 buzzer on the side. The Soil Moisture Sensor comes out of the side with wires and is stuck \
-into the soil, so it's relatively far from all the water-sensitive components. </p></div>`,
+into the soil, so it's relatively far from all the water-sensitive components.</p></div>`,
 
   `<div><p>I needed to turn on and off some AC units located in a remote house, so that I can \
-pre-cool (or pre-heat) the rooms in advance before I go. </p><br><p>Such units are very \
-common appliances by Daikin, which provides WiFi capability on newer models but that's not \
-something available on mine. The solution was easy: I just had to simulate an infrared \
-remote controller with Arduino, place it close to the AC unit and control it remotely. For \
-this, I chose the ATOM Lite by M5Stack . It is very compact, comes with its little \
-enclosure, and includes an IR emitter as well as a physical button  . The only drawback is \
-that the emitter is not very powerful and the hole in the enclosure is very little, so it \
-can't be placed much far away from the unit. In the end, I just used some bi-adhesive tape \
+pre-cool (or pre-heat) the rooms in advance before I go. </p><br><p>Such units already \
+exist, made by companies like Daikin, which provides WiFi capability on newer models. \
+My air conditioner did not come with this feature, but it did come with a remote control... \
+The solution was easy: I just had to simulate an infrared \
+remote controller with Arduino, place it close to the AC unit, and control it remotely over the internet. \
+For this, I chose the ATOM Lite by M5Stack. It's very compact, comes with a little \
+enclosure, and includes an IR emitter as well as a physical button. The only drawback is \
+that the emitter is not very powerful and the hole in the enclosure is very small, so it \
+must be placed near the unit. In the end, I just used some bi-adhesive tape \
 and a USB cable: </p><img \
 src="https://projects.arduinocontent.cc/87de5418-a5e8-43f6-9b42-0e000329fd22.jpg"></img><p>As \
 an alternative to using this M5Stack board, you can use any Arduino board (such as a Nano \
 or a MKR) and connect an infrared LED to its pins. You'll find hundreds of tutorials out \
-there. Software<br>On the software side, I used the fantastic arduino-heatpumpir library \
+there for generating IR signals with an Arduino. </p><h2>Software</h2><p>On the software side, \
+I used the fantastic arduino-heatpumpir library \
 to generate the infrared signals. There are many libraries for that purpose, but this one \
-worked great and it supports a large number of AC manufacturers with the same code \
-instructions. </p><br><p>So, if you have a Daikin AC like mine you can use my code below \
+worked great and it supports a large number of commercial AC devices. \
+</p><br><p>So, if you have a Daikin AC like mine you can use my code below \
 without changes. If you have another brand, follow these steps: </p><br><p>1. Find the name \
 of the .h file related to your AC model. In my case, that's DaikinHeatpumpIR.h . \
 </p><br><p>2. Replace DaikinHeatpumpIR.h and DaikinHeatpumpIR in my code with the name you \
-found. </p><br><p>That's it! If you're lucky enough, you won't need to change other things. \
+found. </p><br><p>That's it! If you're lucky enough, you won't need to change anything else. \
 </p><br><p>The code I wrote supports heat/cool/dry modes as well as temperature \
 configuration. It doesn't let you configure fan speed or other parameters, but it's very \
-simple to tweak to expose more parameters. In addition, it detects the pressure of the \
-physical button on the board so that you can use it to test easily if the IR signals are \
-read by the AC unit. Remote control</p><br><p>Last but not least, I used the Arduino IoT \
+simple to tweak to expose more parameters. In addition, you can use the \
+physical button on the board for testing purposes if the IR signals are not \
+read by the AC unit.</p><h2>Remote control</h2><p>Last but not least, I used the Arduino IoT \
 Cloud to build a simple graphic interface to send commands remotely. To do this, follow \
-these steps: </p><br><p>1. Open Arduino IoT Cloud and create a free account if you don't have \
+these steps: </p><br><p>1. Open <a href="https://cloud.arduino.cc/">Arduino IoT Cloud</a> \
+and create a free account if you don't have \
 one. </p><br><p>2. Create a device and select "M5Stack-ATOM" as the model. Make sure you save \
-the secret key returned at the end of the device creation procedure. The interface is \
+the secret key given at the end of the device creation procedure. The interface is \
 pretty straightforward, but you might want to follow the more detailed steps explained in \
-the official documentation. \
-<br>https://docs.arduino.cc/arduino-cloud/getting-started/esp-32-cloud3. Create a thing \
-and configure WiFi credentials for it. </p><br><p>4. Configure two variables in the thing: \
-<br>a string variable called mode an integer variable called temperature </p><br><p>5. Copy \
+the <a href="https://docs.arduino.cc/arduino-cloud/getting-started/esp-32-cloud">official \
+documentation.</a> \
+</p><br><p>3. Create a thing \
+and configure WiFi credentials for it.</p><br><p>4. Configure two variables in the thing: \
+<br>- a string variable called mode <br>-an integer variable called temperature </p><br><p>5. Copy \
 the sketch code in the "Sketch" tab and upload it to the board. </p><br><p>6. Create a \
 dashboard like this: </p><img \
 src="https://projects.arduinocontent.cc/5d147029-cc54-4c89-8060-d6c4b3964cb4.png"></img><p>That's \
-it. Enjoy! ❄️ <br>Over-the-air updates</p><br><p>In case you want to modify the code after \
+it. Enjoy! ❄️</p><h2>Over-the-air updates</h2><p>In case you want to modify the code after \
 the board is installed, don't worry about physically removing it. Thanks to Arduino IoT \
-Cloud you can just edit the code from your browser, and with one click you'll be able to \
-upload it to the board over WiFi (and even remotely). </p><br><p>Optional: closing the \
-loop</p><br><p>When controlling remote things, it is always a good idea to put some sensors \
+Cloud you can just edit the code from your browser.  With one click you'll be able to \
+upload it to the board over WiFi from anywhere in the world!</p><h2>Optional: closing the \
+loop</h2><p>When controlling remote things, it is always a good idea to put some sensors \
 to get feedback to make sure that your commands are correctly executed. In our case, I can \
 imagine a very simple failure: the bi-adhesive tape falls apart, and you can't turn on (or \
-worse, you can't turn off) your AC unit anymore. <br>So I recommend adding a simple \
-temperature/humidity sensor in the room to see if your AC unit is doing what expected. \
-There are many solutions; a very simple one is described in this \
-tutorial<br>https://docs.arduino.cc/arduino-cloud/tutorials/cloud-environmental-data \
-<br>and can be done with a MKR WiFi 1010 board, a MKR ENV Shield, and IoT Cloud. </p></div>`,
+worse, you can't turn off) your AC unit anymore.  So I recommend adding a simple \
+temperature/humidity sensor in the room to see if your AC unit is doing what's expected. \
+There are many solutions; a very simple one is described in \
+<a href="https://docs.arduino.cc/arduino-cloud/tutorials/cloud-environmental-data">this tutorial</a> \
+and can be done with either a MKR WiFi 1010 board or MKR ENV Shield in conjunction with Arduino IoT Cloud.</p></div>`,
 
   `<div><h2>RGB LED Types and Structure </h2><p>RGB LEDs have \
 three LEDs inside them and usually, these three internal LEDs share either a common anode \
