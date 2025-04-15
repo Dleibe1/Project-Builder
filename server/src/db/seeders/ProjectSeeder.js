@@ -136,7 +136,7 @@ class ProjectSeeder {
       {
         userId: 4,
         title: "Big Brother is watching you",
-        description: projectDescriptionsSeedData[0],
+        description: projectDescriptionsSeedData[13],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[0],
         githubFileURL: "",
