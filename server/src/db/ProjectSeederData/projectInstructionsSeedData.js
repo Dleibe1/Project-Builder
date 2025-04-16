@@ -27,8 +27,9 @@ voltage between 0 and Vcc controlling the brightness of the LED.  In the graphic
 the green lines represent a regular time period. This duration or period is the inverse of \
 the PWM frequency. In other words, with Arduino's PWM frequency at about 500Hz, the green \
 lines would measure 2 milliseconds each.</p><img \
-src="https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif"></img><p>The \
-code below will cycle the LED through different colors, enjoy!</p></div>`,
+src="https://projects.arduinocontent.cc/79c61371-7a80-4395-9e08-a4305376229c.gif"></img><p>Make \
+your connections according to the diagram below:</p><img src="https://i.imgur.com/emoaBVs.png"></img><p>Now \
+upload the code to the Arduino and enjoy!</p></div>`,
 
   `<div><p>Ever wanted to know the temperature and humidity around you? If yes, this project is for you. If \
 not, it'll be cool anyway.</p> \
