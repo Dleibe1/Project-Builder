@@ -2180,7 +2180,7 @@ void loop() {
   }
 }`,
 `//Interfacing RGB LED with Arduino 
-//Author: Osama Ahmed Modified by lukeTheMan
+//Author: Osama Ahmed
 //Defining  variable and the GPIO pin on Arduino
 int redPin= 11;
 int greenPin = 10;
@@ -2399,7 +2399,7 @@ void onTemperatureChange()  {
 
 //Below is a fork of projectId: 1
 `//Interfacing RGB LED with Arduino and Push Button
-//Author: Osama Ahmed
+//Author: Osama Ahmed Modified by lukeTheMan
 
 //Defining  variable and the GPIO pin on Arduino
 int redPin= 11;

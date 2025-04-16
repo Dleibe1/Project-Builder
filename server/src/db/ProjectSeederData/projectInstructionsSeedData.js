@@ -41,11 +41,12 @@ src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg
 sensor I'm using has 3 pins and is fitted on a board.  If your sensor has 4 pins, then you need to build \
 the circuit below:</p><img \
 src="https://i.imgur.com/mPlhTTK.png"></img><p>If \
-it's the same as mine, follow this diagram.  You will no longer need the resistor:</p><img \
-src="https://i.imgur.com/UW1R9mh.png"></img><h2>Details about the code:</h2><p>You need to follow these instructions to \
+it's the same as mine, follow this diagram.  You will no longer need the resistor.</p><img \
+src="https://i.imgur.com/UW1R9mh.png"></img><h2>Details \
+about the code:</h2><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11 library to the Arduino IDE and include it in \
-your sketch. <br>2. Upload the code. <br>3. When the code is uploaded, open the Serial Monitor \
-and set the baud rate to 9600. <br>4. You will see the humidity and temperature. </p></div>`,
+your sketch. <br>2. Upload the code. <br>3. When the code is uploaded, you will see the humidity \
+and temperature displayed in the Arduino IDE's serial monitor. </p></div>`,
 
   `<div><h2>Water deposit</h2><p>For our watering system, we will need a water container. Any \
 container suitable for water storage can be used as a water deposit. The larger the \
@@ -1012,10 +1013,10 @@ cycling through six different colors. After the last color, the index resets to 
 zero.</p><h2>Debouncing</h2><p>A small delay (300 ms) is added after each button press to \
 debounce the button, preventing multiple triggers from a single press.</p><h2>Summing Up</h2><p>This \
 modification allows the RGB LED to change colors each time the button is pressed, \
-providing interactive control over the LED.</p><br><p>Below is the schematic for my version \
-of the project:</p><img \
-src="https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG"></img><p>The \
-code below will allow you to cycle through different colors by pushing a button.</p></div>`,
+providing interactive control over the LED.</p><br><p>Make your connections according to the diagram: \
+below:</p><img \
+src="https://hackster.imgix.net/uploads/attachments/340746/button_push_color_change_UM2JWnHSDv.JPG"></img><p>Now \
+upload the code to the Arduino and enjoy!</p></div>`,
 
   `<div><p>Ever wanted to know the temperature and humidity around you? If yes, this project is for you. If \
 not, it'll be cool anyway.</p> \
@@ -1027,11 +1028,13 @@ src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg
 sensor I'm using has 3 pins and is fitted on a board.  If your sensor has 4 pins, then you need to build \
 the circuit below:</p><img \
 src="https://i.imgur.com/6sNtuUL.png"></img><p>If \
-it's the same as mine, follow this diagram.  You will no longer need the resistor:</p><img \
+it's the same as mine, follow this diagram.  You will no longer need the resistor. \
+In either case, the wiring for the OLED display will be the same.</p><img \
 src="https://i.imgur.com/xdSSgkL.png"></img><h2>Details about the code:</h2><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11, Adafruit_GFX, and Adafruit_SSD1306 libraries \
 to the Arduino IDE and include them in your sketch. <br>2. Upload the \
-code. <br>3. When the code is uploaded, the humidity and temperature will show up on the OLED display.</p></div>`,
+code. <br>3. When the code is uploaded, you will see the humidity \
+and temperature on the OLED display.</p></div>`,
 ]
 
 export default projectInstructionsSeedData
