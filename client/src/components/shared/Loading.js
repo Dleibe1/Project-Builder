@@ -1,5 +1,5 @@
 import React from "react"
-import { Backdrop, CircularProgress, collapseClasses } from "@mui/material"
+import { CircularProgress } from "@mui/material"
 
 const Loading = (props) => {
   return (
