@@ -40,9 +40,9 @@ sensor comes in two varieties, mine looks like this:</p><img \
 src="https://projects.arduinocontent.cc/d49cf318-9287-4873-aca7-726c0c942e3f.jpg"></img><p>The \
 sensor I'm using has 3 pins and is fitted on a board.  If your sensor has 4 pins, then you need to build \
 the circuit below:</p><img \
-src="https://i.imgur.com/6sNtuUL.png"></img><p>If \
+src="https://i.imgur.com/mPlhTTK.png"></img><p>If \
 it's the same as mine, follow this diagram.  You will no longer need the resistor:</p><img \
-src="https://i.imgur.com/xdSSgkL.png"></img><h2>Details about the code:</h2><p>You need to follow these instructions to \
+src="https://i.imgur.com/UW1R9mh.png"></img><h2>Details about the code:</h2><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11 library to the Arduino IDE and include it in \
 your sketch. <br>2. Upload the code. <br>3. When the code is uploaded, open the Serial Monitor \
 and set the baud rate to 9600. <br>4. You will see the humidity and temperature. </p></div>`,
