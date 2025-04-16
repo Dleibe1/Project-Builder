@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
 import Dropzone from "react-dropzone"
-import { Button, TextField } from "@mui/material"
+import { Button, TextField, Backdrop, CircularProgress } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
@@ -13,10 +13,12 @@ import AddTags from "./project-forms-shared/AddTags.js"
 import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
 import Instructions from "../shared/Instructions.js"
 import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
+import Loading from "../shared/Loading.js"
 
 const ForkProjectForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [loading, setLoading] = useState(true)
   const params = useParams()
   const { id } = params
   const [project, setProject] = useState({
@@ -43,6 +45,7 @@ const ForkProjectForm = (props) => {
   useEffect(() => {
     getProject(id).then((projectData) => {
       setProject(projectData)
+      setLoading(false)
     })
   }, [])
 
@@ -81,6 +84,9 @@ const ForkProjectForm = (props) => {
 
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
+  }
+  if(loading){
+    return <Loading />
   }
 
   return !editingInstructions ? (

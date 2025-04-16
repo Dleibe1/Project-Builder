@@ -7,6 +7,7 @@ import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
 import ReturnToParentProjectButton from "./show-pages-shared/ReturnToParentProjectButton.js"
 import TagList from "./show-pages-shared/TagList.js"
 import Instructions from "../shared/Instructions.js"
+import Loading from "../shared/Loading.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getProject from "../../api/getProject.js"
 import useDoForksExist from "../../hooks/useDoForksExist.js"
@@ -14,6 +15,7 @@ import useDoForksExist from "../../hooks/useDoForksExist.js"
 const ProjectShow = (props) => {
   const params = useParams()
   const { id } = params
+  const [loading, setLoading] = useState(true)
   const [project, setProject] = useState({
     title: "",
     tags: "",
@@ -35,6 +37,7 @@ const ProjectShow = (props) => {
     getProject(id).then((projectData) => {
       prepForFrontEnd(projectData)
       setProject(projectData)
+      setLoading(false)
     })
   }, [id])
 
@@ -73,6 +76,10 @@ const ProjectShow = (props) => {
       </div>
     )
   })
+
+  if(loading){
+    return <Loading />
+  }
 
   return (
     <div className="project-show">

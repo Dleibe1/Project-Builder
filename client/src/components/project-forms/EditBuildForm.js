@@ -9,6 +9,7 @@ import updateProject from "../../api/updateProject.js"
 import uploadImageFile from "../../api/uploadImageFile.js"
 import ErrorList from "./project-forms-shared/ErrorList.js"
 import AddTags from "./project-forms-shared/AddTags.js"
+import Loading from "../shared/Loading.js"
 import Instructions from "../shared/Instructions.js"
 import InstructionsTinyMCEForm from "./project-forms-shared/InstructionsTinyMCEForm.js"
 import PartsSubForm from "./project-forms-shared/PartsSubForm.js"
@@ -17,7 +18,7 @@ import getMyBuild from "../../api/getMyBuild.js"
 const EditBuildForm = (props) => {
   const [errors, setErrors] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-
+  const [loading, setLoading] = useState(true)
   const [project, setProject] = useState({
     title: "",
     tags: [],
@@ -46,6 +47,7 @@ const EditBuildForm = (props) => {
   useEffect(() => {
     getMyBuild(id).then((myBuild) => {
       setProject(myBuild)
+      setLoading(false)
     })
   }, [])
 
@@ -81,9 +83,14 @@ const EditBuildForm = (props) => {
     setProject({ ...project, [event.currentTarget.name]: event.currentTarget.value })
   }
 
+
+
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
   } 
+  if(loading){
+    return <Loading />
+  }
 
   return !editingInstructions ? (
     <div className="edit-project-form-container project-show">

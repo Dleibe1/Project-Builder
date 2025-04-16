@@ -25,7 +25,7 @@ const MyBuildShow = (props) => {
     thumbnailImage: "",
     parentProjectId: "",
   })
-
+  const [loading, setLoading] = useState(true)
   const params = useParams()
   const { id } = params
   const hasForks = useDoForksExist(id)
@@ -34,6 +34,7 @@ const MyBuildShow = (props) => {
     getMyBuild(id).then((userProject) => {
       prepForFrontEnd(userProject)
       setMyBuild(userProject)
+      setLoading(false)
     })
   }, [id])
 

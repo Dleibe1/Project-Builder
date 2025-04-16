@@ -856,7 +856,7 @@ assembling anything, I created a simulation of this alarm system on Tinkercad. \
 You can run it directly on your browser by clicking \
 <a href="https://www.tinkercad.com/things/eO64BUKZK2q-alarm-system-schematics">here</a> \
 </p><br><p>Moving on, for this project, you'll need:</p><p>An Arduino board, a breadboard, a bunch \
-of jumper wires, a buzzer, and an ultrasonic sensor. </p><h2>Assembly</h2>Firstly, \
+of jumper wires, a buzzer, and an ultrasonic sensor. </p><h2>Assembly</h2><p>Firstly, \
 attach the ultrasonic sensor and the buzzer to the breadboard. Then connect the VCC and \
 GND pins on the Arduino's 5V and ground ports. </p><img \
 src="https://projects.arduinocontent.cc/5d9e9e7a-35dc-47be-91c5-7f2503be7949.jpg"></img><p>After \
