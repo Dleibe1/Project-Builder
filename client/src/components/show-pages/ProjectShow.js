@@ -30,7 +30,7 @@ const ProjectShow = (props) => {
     thumbnailImage: "",
     parentProjectId: "",
   })
-  
+
   const hasForks = useDoForksExist(id)
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const ProjectShow = (props) => {
     )
   })
 
-  if(loading){
+  if (loading) {
     return <Loading />
   }
 
