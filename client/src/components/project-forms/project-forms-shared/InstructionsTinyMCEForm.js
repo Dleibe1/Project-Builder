@@ -86,9 +86,10 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
           menubar: false,
           promotion: false,
           content_style: `
+            div {font-size: 1.3rem; color: #374146; line-height: 130%;}
             img { max-width: 50%; height: auto; padding-top: 40px; padding-bottom: 40px; }
             h2 { font-weight: 700; font-size: 30px; color: #374146; } 
-            p {font-size: 1.3rem; color: #374146; line-height: 130%;}`,
+            p { font-size: 1.3rem; color: #374146; line-height: 130%; }`,
           content_css: ["https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"],
           plugins: [
             "autoresize",
