@@ -1229,7 +1229,7 @@ h5 {
 .instruction-text img {
   border-radius: 4px;
   width: 100%;
-  padding: 5% 20px;
+  padding: 5% 0px;
   max-height: 1000px;
   object-fit: contain;
 }
@@ -1241,12 +1241,12 @@ h5 {
   font-weight: 700;
   font-size: 35px;
   color: #374146;
-  padding: 25px 20px 40px;
+  padding: 25px 0px 40px;
 }
 
-.instructions-list .instruction-text p {
+.instructions-list .instruction-text p,
+.instructions-list .instruction-text div {
   font-size: 1.5rem;
-  padding: 0px 20px;
 }
 
 .instruction-text pre {
@@ -1315,7 +1315,7 @@ h5 {
   background-color: white;
   border-radius: 6px;
   width: 100%;
-  padding: 16px;
+  padding: 36px;
 }
 
 .how-to-use-page-items-container ol {
@@ -1349,7 +1349,8 @@ h5 {
 .showpage-items-container p,
 .form-items-container p,
 .form-items-container a,
-.project-show .preserve-white-space {
+.project-show .preserve-white-space,
+.instructions-list .instruction-text div {
   width: 100%;
   font-family: OpenSans-Regular;
   overflow-wrap: anywhere;

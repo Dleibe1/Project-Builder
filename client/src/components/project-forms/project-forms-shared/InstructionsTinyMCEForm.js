@@ -5,13 +5,7 @@ import uploadImageFile from "../../../api/uploadImageFile.js"
 import BundledEditor from "../../../services/TinyMCEBundler.js"
 
 const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }) => {
-  /*
-    By default the TinyMCE editor's root block is a <p> tag.  Existing instructions
-    contain HTML with a <div> root block that we do not want nested inside a <p> tag.  
-    Therefore this component contains logic to set the root block to a <p> tag only if
-    project.instructions is empty when the component mounts.  When this new project is submitted,
-    it gets wrapped in a <div> in the handleCloseEditor function.
-  */
+
   const [isNewProject, setIsNewProject] = useState(project?.instructions.length === 0)
   const editorRef = useRef(null)
   const dropzoneOpenRef = useRef(null)
@@ -51,6 +45,9 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
   }
 
   const handleCloseEditor = (editorContent) => {
+    // Root block is a <p> tag if it's a new project.
+    // When persisted, we always want the root block to be a div.
+    // For existing seeded projects, the root block is already a div.
     if (project?.instructions.length) {
       if (isNewProject) {
         setProject((prevState) => ({
@@ -86,10 +83,10 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
           menubar: false,
           promotion: false,
           content_style: `
-            div {font-size: 1.3rem; color: #374146; line-height: 130%;}
+            div {font-size: 1.3rem; color: #374146; line-height: 130%; }
             img { max-width: 50%; height: auto; padding-top: 40px; padding-bottom: 40px; }
             h2 { font-weight: 700; font-size: 30px; color: #374146; } 
-            p { font-size: 1.3rem; color: #374146; line-height: 130%; }`,
+            p {font-size: 1.3rem; color: #374146; line-height: 130%;}`,
           content_css: ["https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"],
           plugins: [
             "autoresize",
