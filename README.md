@@ -1,5 +1,6 @@
 # [A Project Building Assistant for Arduino Micro Controller Apps](https://project-builder-e7439342976b.herokuapp.com/?page=1)
 ## A user has been seeded for use on the site.  
+
 ```
 Username: example@example.com
 Password: cat
