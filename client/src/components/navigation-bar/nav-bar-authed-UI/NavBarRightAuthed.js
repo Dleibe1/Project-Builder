@@ -93,7 +93,7 @@ const NavBarRightAuthed = ({ user }) => {
           <MenuItem
             sx={{ display: { xs: "flex", md: "flex", lg: "none" } }}
             component={Link}
-            to="/"
+            to="/how-to-use"
           >
             <Typography className="burger-menu-item">How to use</Typography>
           </MenuItem>
