@@ -20,7 +20,7 @@ const About = (props) => {
         <h1>Project builder helps you create a new version of an interesting project</h1>
       </div>
       <div className="banner third-banner about-page-section-container-left">
-        <img className="banner-image" src="https://i.imgur.com/sIR4iQX.png" />
+        <img className="banner-image" src="/images/About-page-fork-project.png" />
         <h1>
           Keep some of the parts, instructions, and code from another user's project but add some
           new features
