@@ -1375,10 +1375,6 @@ h5 {
   font-weight: 700;
 }
 
-.see-forked-versions-button:focus {
-  color: white;
-}
-
 .how-to-use-page-items-container.how-to-fork * {
   color: white;
 }
@@ -1427,6 +1423,10 @@ h5 {
 .project-show__top-buttons .large-button {
   height: fit-content;
   margin-bottom: 10px;
+}
+
+.large-button:focus {
+  color: white;
 }
 
 .project-show__top-buttons .delete-build-button {
