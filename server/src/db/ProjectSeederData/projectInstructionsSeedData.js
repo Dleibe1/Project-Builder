@@ -1030,7 +1030,7 @@ the circuit below:</p><img \
 src="https://i.imgur.com/6sNtuUL.png"></img><p>If \
 it's the same as mine, follow this diagram.  You will no longer need the resistor. \
 In either case, the wiring for the OLED display will be the same.</p><img \
-src="https://i.imgur.com/xdSSgkL.png"></img><h2>Details about the code:</h2><p>You need to follow these instructions to \
+src="https://i.imgur.com/f0ZQYqi.png"></img><h2>Details about the code:</h2><p>You need to follow these instructions to \
 make it work: <br>1. You need to add the dht11, Adafruit_GFX, and Adafruit_SSD1306 libraries \
 to the Arduino IDE and include them in your sketch. <br>2. Upload the \
 code. <br>3. When the code is uploaded, you will see the humidity \
