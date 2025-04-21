@@ -5,12 +5,13 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { useParams } from "react-router-dom"
 import getProjectsToCompare from "../../../api/getProjectsToCompare"
 import ReactDiffViewer from "react-diff-viewer-continued"
+import Loading from "../../shared/Loading"
 import MarkdownService from "../../../services/MarkdownService"
 
 const DiffView = (props) => {
   const params = useParams()
   const { parentProjectId, forkedProjectId } = params
-
+  const [loading, setLoading] = useState(true)
   const [parentProjectData, setParentProjectData] = useState({
     user: "",
     title: "",
@@ -45,6 +46,7 @@ const DiffView = (props) => {
       ([parentProjectData, forkedProjectData]) => {
         setParentProjectData(parentProjectData)
         setForkedProjectData(forkedProjectData)
+        setLoading(false)
       },
     )
   }, [])
@@ -80,6 +82,10 @@ const DiffView = (props) => {
   const forkedProjectInstructionsAsMarkdown = MarkdownService.convertHTMLToMarkdown(
     forkedProjectData.instructions,
   )
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <div className="project-diff-view">
