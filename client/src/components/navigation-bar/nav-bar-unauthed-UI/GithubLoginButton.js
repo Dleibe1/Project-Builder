@@ -6,6 +6,7 @@ const GithubLoginButton = (props) => {
   return (
     <Button
       id="github-login-button"
+      className="large-button"
       href="/api/v1/github-user-sessions/login"
       startIcon={<GitHubIcon />}
       sx={{

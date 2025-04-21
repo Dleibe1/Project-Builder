@@ -15,9 +15,7 @@ const NavBarRightUnAuthed = (props) => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null)
   }
-  const handleGithubLogin = () => {
-    window.location.href = "/api/v1/github-user-sessions/login"
-  }
+
   return (
     <>
       <SignUpButton />
