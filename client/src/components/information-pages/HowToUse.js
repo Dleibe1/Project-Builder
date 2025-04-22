@@ -37,6 +37,7 @@ const HowToUse = () => {
             size="large"
             sx={{
               marginBottom: "20px",
+              height: "70px"
             }}
           >
             Meet the Developer
