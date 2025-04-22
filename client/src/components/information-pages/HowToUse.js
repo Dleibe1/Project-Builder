@@ -2,12 +2,29 @@ import React from "react"
 import { Button } from "@mui/material"
 import { Link } from "react-router-dom"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
+import GitHubIcon from "@mui/icons-material/GitHub"
 
 const HowToUse = () => {
   window.scrollTo(0, 0)
   return (
     <div className="how-to-use">
-      <div className="how-to-use__developer-linkedin">
+      <div className="how-to-use__top-buttons">
+      <a
+          href="https://github.com/Dleibe1/Project-Builder"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button
+            endIcon={<GitHubIcon sx={{ width: "30px", height: "30px" }}/>}
+            size="large"
+            sx={{
+              height: "70px",
+              marginBottom: "20px",
+            }}
+          >
+            Source Code on Github
+          </Button>
+        </a>
         <a
           href="https://www.linkedin.com/in/daniel-patrick-leibensperger/"
           target="_blank"

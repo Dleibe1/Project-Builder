@@ -142,8 +142,10 @@ body.grey-background {
   padding: 5px;
 }
 
-.how-to-use__developer-linkedin {
-  align-self: end;
+.how-to-use__top-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .banner h1 {
