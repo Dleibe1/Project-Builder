@@ -9,13 +9,14 @@ const HowToUse = () => {
   return (
     <div className="how-to-use">
       <div className="how-to-use__top-buttons">
-      <a
+        <a
+          className="github-source-code"
           href="https://github.com/Dleibe1/Project-Builder"
           target="_blank"
           rel="noopener noreferrer"
         >
           <Button
-            endIcon={<GitHubIcon sx={{ width: "30px", height: "30px" }}/>}
+            endIcon={<GitHubIcon sx={{ width: "30px", height: "30px" }} />}
             size="large"
             sx={{
               height: "70px",

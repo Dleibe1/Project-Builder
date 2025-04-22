@@ -143,9 +143,14 @@ body.grey-background {
 }
 
 .how-to-use__top-buttons {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.how-to-use__top-buttons .github-source-code {
+  margin-right: 30px;
 }
 
 .banner h1 {
