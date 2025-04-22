@@ -5,7 +5,6 @@ import uploadImageFile from "../../../api/uploadImageFile.js"
 import BundledEditor from "../../../services/TinyMCEBundler.js"
 
 const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }) => {
-
   const [isNewProject, setIsNewProject] = useState(project?.instructions.length === 0)
   const editorRef = useRef(null)
   const dropzoneOpenRef = useRef(null)
@@ -106,29 +105,29 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
             "wordcount",
           ],
           toolbar:
-            "h2-button bold link add-image italic emoticons charmap bullist removeformat codesample-with-text | download-as-markdown upload-markdown close-editor ",
+            "h2-button bold link add-image italic emoticons charmap bullist removeformat codesample-with-text undo redo | download-as-markdown upload-markdown close-editor ",
           toolbar_sticky: true,
           setup: (editor) => {
-            editor.on("PreInit", () => {
-              editor.ui.registry.addButton("upload-markdown", {
-                text: "Replace Contents With .md File",
-                icon: "upload",
-                tooltip: "The editor will render the contents of a markdown file",
-                onAction: async () => {
-                  try {
-                    const markdownContent = await MarkdownService.getMarkdownFileContent()
-                    const html = MarkdownService.convertMarkdownToHTML(markdownContent)
-                    editor.setContent(html)
-                  } catch (error) {
-                    console.error("Markdown upload failed:", error)
-                  }
-                },
-              })
-            })
             editor.ui.registry.addIcon(
               "heading-icon",
               '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21" width="22" height="21" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.086 4.45c0-.478.387-.865.864-.865h3.458a.864.864 0 0 1 0 1.729h-.865v4.322h6.915V5.314h-.864a.864.864 0 0 1 0-1.729h3.457a.864.864 0 1 1 0 1.729h-.864v10.372h.864a.864.864 0 1 1 0 1.729h-3.457a.864.864 0 0 1 0-1.729h.864v-4.322H7.543v4.322h.865a.864.864 0 0 1 0 1.729H4.95a.864.864 0 0 1 0-1.729h.865V5.314H4.95a.864.864 0 0 1-.864-.865Z" fill="currentColor"></path></svg>',
             )
+            editor.ui.registry.addButton("upload-markdown", {
+              text: "Replace Contents With .md File",
+              icon: "upload",
+              tooltip: "The editor will render the contents of a markdown file",
+              onAction: async () => {
+                try {
+                  const markdownContent = await MarkdownService.getMarkdownFileContent()
+                  const html = MarkdownService.convertMarkdownToHTML(markdownContent)
+                  editor.undoManager.transact(() => {
+                    editor.setContent(html)
+                  })
+                } catch (error) {
+                  console.error("Markdown upload failed:", error)
+                }
+              },
+            })
             editor.ui.registry.addButton("download-as-markdown", {
               text: "Download as Markdown",
               icon: "save",
