@@ -278,7 +278,7 @@ up, and down.</p><br><p>Without further ado, let's dive into the project and get
 video for a complete step-by-step assembly of the Robotics Arm Kit.</p> \
 <iframe width="560" height="315"
 src="https://www.youtube.com/embed/TMv3JR06yuo">
-</iframe><br><h2>Step 2: \
+</iframe><h2>Step 2: \
 Servo Motors & PWM Servo Motor Driver Wiring</h2><img \
 src="https://projects.arduinocontent.cc/16e51e8c-81e8-4931-be46-69505c3bacd1.jpg"></img><p>Refer \
 to the image above and connect all four servo motor wires to the PWM servo motor driver \
@@ -368,7 +368,7 @@ difference between sending and receiving the sound wave, the distance to the obj
 determined using the speed of sound.</p><br><p>This time I will describe \
 how to make an independent Sonar, where the results are displayed on a TFT \
 color display in the form of a radar image, which is why it is often mistakenly called \
-radar instead of sonar.</p><p><a href="https://youtu.be/XOZAGRH_6hA">https://youtu.be/XOZAGRH_6hA</a></p>
+radar instead of sonar.</p><iframe width="560" height="315" src="https://www.youtube.com/embed/XOZAGRH_6hA"></iframe>
 <p>I got the idea quite by accident \
 from a picture on the internet, and then after a little research I found that project on \
 Github. The original project was made on a 1.8 inch display which is really a very small \
