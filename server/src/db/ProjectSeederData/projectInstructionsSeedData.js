@@ -357,7 +357,7 @@ This functionality is crucial for network monitoring and penetration testing. Co
 PCB</p><br><p>If you're interested in building this project, the code and schematic are \
 available on GitHub. Simply visit the GitHub repository to download the necessary files. \
 If the project gains attention, I’ll open-source the PCB files as well. Feel free to test \
-the code and share your feedback or improvements.</p><br><p>GitHub repository:</p> \
+the code and share your feedback or improvements.</p><br><p>GitHub repository: </p> \
 <p><a href="https://www.github.com/cifertech/arpolan">github.com/cifertech/arpolan</a></p></div>`,
 
   `<div><p>Ultrasonic sonar are devices that use sound waves with frequencies higher than the upper \
@@ -432,7 +432,7 @@ Connect the First pin from the left of TSOP1738 ( OUT pin) with pin 11 of Arduin
 <br>Connect the third and the last pin ( VCC pin) with 5V pin of Arduino.</p> 
 <h2>Uploading and Testing</h2>
 <p>Remember to install the IRremote.h library \
-from<a href="https://github.com/z3t0/Arduino-IRremote/archive/master.zip">github.com/z3t0/Arduino-IRremote/archive/master.zip</a>
+from</p><p><a href="https://github.com/z3t0/Arduino-IRremote/archive/master.zip">github.com/z3t0/Arduino-IRremote/archive/master.zip</a>
 </p><p>Copy or download the code attached with the project. 
 Hit upload and open the serial monitor. 
 Take any remote you want to use or you want the codes off of and press any button on the remote. 
