@@ -55,6 +55,11 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
           ...prevState,
           instructions: `<div>${editorContent}</div>`,
         }))
+      } else {
+        setProject((prevState)=> ({
+          ...prevState,
+          instructions: editorContent
+        }))
       }
     }
     setEditingInstructions(false)
