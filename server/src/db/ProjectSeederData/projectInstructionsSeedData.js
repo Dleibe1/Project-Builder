@@ -276,7 +276,9 @@ up, and down.</p><br><p>Without further ado, let's dive into the project and get
 <h2>Step 1: Assemble the Robotics Arm Kit</h2> \
 <p>Watch the \
 video for a complete step-by-step assembly of the Robotics Arm Kit.</p> \
-<p><a href="https://youtu.be/TMv3JR06yuo">https://youtu.be/TMv3JR06yuo</a></p><br><h2>Step 2: \
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/TMv3JR06yuo">
+</iframe><br><h2>Step 2: \
 Servo Motors & PWM Servo Motor Driver Wiring</h2><img \
 src="https://projects.arduinocontent.cc/16e51e8c-81e8-4931-be46-69505c3bacd1.jpg"></img><p>Refer \
 to the image above and connect all four servo motor wires to the PWM servo motor driver \
