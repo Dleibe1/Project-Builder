@@ -19,8 +19,6 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
     }
   }, [])
 
-  console.log(project)
-
   const { getInputProps, getRootProps, open } = useDropzone({
     onDrop: (acceptedFiles) => {
       uploadImageFile(acceptedFiles)
@@ -82,7 +80,6 @@ const InstructionsTinyMCEForm = ({ project, setProject, setEditingInstructions }
           editorRef.current = editor
         }}
         init={{
-          id: "tinymce-instructions-editor",
           //Check to see whether this is a new project.  If so, set the root block to "p"
           forced_root_block: project?.instructions.length === 0 ? "p" : "div",
           toolbar_mode: "wrap",

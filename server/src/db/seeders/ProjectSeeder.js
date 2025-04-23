@@ -56,7 +56,7 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[4],
       },
       {
-        userId: 1,
+        userId: 3,
         title: "Build Your Own Object Tracking 4-DOF Robotics Arm With Arduino",
         description: projectDescriptionsSeedData[5],
         appsAndPlatforms: "Arduino IDE",
