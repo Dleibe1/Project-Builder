@@ -30,8 +30,14 @@ const NavBarRightAuthed = ({ user }) => {
   const loggedInUserName = user ? user.userName || user.githubUserName : ""
   const avatarLetter = loggedInUserName[0]?.toUpperCase()
   const avatarImageURL = user?.githubAvatarURL
-  const avatarWithImage = [<Avatar key="github-avatar"  alt={loggedInUserName} src={avatarImageURL} />]
-  const avatarJustALetter = [<Avatar key="letter-avatar" alt={loggedInUserName}>{avatarLetter}</Avatar>]
+  const avatarWithImage = [
+    <Avatar key="github-avatar" alt={loggedInUserName} src={avatarImageURL} />,
+  ]
+  const avatarJustALetter = [
+    <Avatar key="letter-avatar" alt={loggedInUserName}>
+      {avatarLetter}
+    </Avatar>,
+  ]
 
   const signOut = (event) => {
     event.preventDefault()
@@ -86,11 +92,13 @@ const NavBarRightAuthed = ({ user }) => {
           <MenuItem
             sx={{ display: { xs: "flex", md: "none" } }}
             component={Link}
+            onClick={handleCloseNavMenu}
             to="/my-builds-list?page=1"
           >
             <Typography className="burger-menu-item">My Builds</Typography>
           </MenuItem>
           <MenuItem
+            onClick={handleCloseNavMenu}
             sx={{ display: { xs: "flex", md: "flex", lg: "none" } }}
             component={Link}
             to="/how-to-use"
@@ -98,6 +106,7 @@ const NavBarRightAuthed = ({ user }) => {
             <Typography className="burger-menu-item">How to use</Typography>
           </MenuItem>
           <MenuItem
+            onClick={handleCloseNavMenu}
             sx={{ display: { xs: "flex", md: "flex", lg: "none" } }}
             component={Link}
             to="/about"
@@ -105,16 +114,14 @@ const NavBarRightAuthed = ({ user }) => {
             <Typography className="burger-menu-item">About</Typography>
           </MenuItem>
           <MenuItem
+            onClick={handleCloseNavMenu}
             sx={{ display: { xs: "flex", md: "none" } }}
             component={Link}
             to="/create-new-build"
           >
             <Typography className="burger-menu-item">Create Build</Typography>
           </MenuItem>
-          <MenuItem
-            sx={{ display: { xs: "flex", md: "none" } }}
-            onClick={signOut}
-          >
+          <MenuItem sx={{ display: { xs: "flex", md: "none" } }} onClick={signOut}>
             <Typography textAlign="center">Sign Out</Typography>
           </MenuItem>
         </Menu>

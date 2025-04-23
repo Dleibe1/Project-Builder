@@ -53,6 +53,7 @@ const NavBarRightUnAuthed = (props) => {
           }}
         >
           <MenuItem
+            onClick={handleCloseNavMenu}
             sx={{ display: { xs: "flex", md: "none", lg: "none" } }}
             component={Link}
             to="/user-sessions/new"
@@ -60,6 +61,7 @@ const NavBarRightUnAuthed = (props) => {
             <Typography className="burger-menu-item">Sign In</Typography>
           </MenuItem>
           <MenuItem
+            onClick={handleCloseNavMenu}
             sx={{ display: { xs: "flex", md: "none", lg: "none" } }}
             component={Link}
             to="/users/new"
@@ -73,15 +75,16 @@ const NavBarRightUnAuthed = (props) => {
               display: { xs: "flex", md: "none", lg: "none" },
               color: "inherit",
               textDecoration: "none",
-              '&:hover': {
+              "&:hover": {
                 color: "inherit",
-                textDecoration: "none"
+                textDecoration: "none",
               },
             }}
           >
             <Typography textAlign="center">Login With GitHub</Typography>
           </MenuItem>
           <MenuItem
+            onClick={handleCloseNavMenu}
             sx={{ display: { xs: "flex", md: "flex", lg: "none" } }}
             component={Link}
             to="/how-to-use"
@@ -89,6 +92,7 @@ const NavBarRightUnAuthed = (props) => {
             <Typography className="burger-menu-item">How to use</Typography>
           </MenuItem>
           <MenuItem
+            onClick={handleCloseNavMenu}
             sx={{ display: { xs: "flex", md: "flex", lg: "none" } }}
             component={Link}
             to="/about"
