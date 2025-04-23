@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { useHistory, useLocation } from "react-router-dom"
 import { styled, alpha } from "@mui/material/styles"
 import InputBase from "@mui/material/InputBase"
 import SearchIcon from "@mui/icons-material/Search"
@@ -48,10 +48,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const NavBarSearch = () => {
   const [query, setQuery] = useState("")
   const history = useHistory()
-
+  const location = useLocation()
   const handleInputChange = (event) => {
     setQuery(event.target.value)
   }
+
+  useEffect(()=> {
+    if(location.pathname !== "/search"){
+      setQuery("")
+    }
+  },[location.pathname])
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && query.trim().length) {
