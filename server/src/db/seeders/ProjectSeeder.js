@@ -16,7 +16,7 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[0],
       },
       {
-        userId: 1,
+        userId: 2,
         title: "Using a DHT11 Temperature and Humidity Sensor",
         description: projectDescriptionsSeedData[14],
         appsAndPlatforms: "Arduino IDE",
@@ -27,7 +27,7 @@ class ProjectSeeder {
     ]
     const extraProjects = [
       {
-        userId: 2,
+        userId: 3,
         title: "Automated plants watering system",
         description: projectDescriptionsSeedData[2],
         appsAndPlatforms: "Arduino IDE",
@@ -47,7 +47,7 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[3],
       },
       {
-        userId: 2,
+        userId: 5,
         title: "Arduino OLED Eyes Animation for Robotics Projects",
         description: projectDescriptionsSeedData[4],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
@@ -56,7 +56,7 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[4],
       },
       {
-        userId: 3,
+        userId: 6,
         title: "Build Your Own Object Tracking 4-DOF Robotics Arm With Arduino",
         description: projectDescriptionsSeedData[5],
         appsAndPlatforms: "Arduino IDE",
@@ -65,7 +65,7 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[5],
       },
       {
-        userId: 2,
+        userId: 7,
         title: "ARPoLAN: Network Monitoring and Security Tool",
         description: projectDescriptionsSeedData[6],
         appsAndPlatforms: "Arduino IDE",
@@ -76,7 +76,7 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[6],
       },
       {
-        userId: 1,
+        userId: 8,
         title: "DIY Arduino ultrasonic Sonar - Radar on TFT display",
         description: projectDescriptionsSeedData[7],
         appsAndPlatforms: "Arduino IDE",
@@ -86,7 +86,7 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[7],
       },
       {
-        userId: 3,
+        userId: 1,
         title: "Decode IR Remote Control Signals of any Remote Using Arduino",
         description: projectDescriptionsSeedData[8],
         appsAndPlatforms: "Arduino IDE",
@@ -153,6 +153,8 @@ class ProjectSeeder {
         thumbnailImage: "/images/projectSeeder/project015/thumbnail.jpg",
         instructions: projectInstructionsSeedData[14],
       },
+    ]
+    const moreExtraProjects = [
       {
         userId: 2,
         title: "Ultrasonic sensor with Arduino - Complete Guide",
@@ -163,7 +165,7 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[15],
       },
       {
-        userId: 2,
+        userId: 3,
         title: "Simple Soil Moisture Sensor",
         description: projectDescriptionsSeedData[16],
         appsAndPlatforms: "Arduino IDE",
@@ -172,7 +174,7 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[16],
       },
       {
-        userId: 2,
+        userId: 5,
         title: "Control our Air Conditioner Remotely",
         description: projectDescriptionsSeedData[17],
         appsAndPlatforms: "Arduino IoT Cloud",
@@ -181,6 +183,7 @@ class ProjectSeeder {
         instructions: projectInstructionsSeedData[17],
       },
     ]
+
     const forks = [
       {
         //id: 19
@@ -207,6 +210,7 @@ class ProjectSeeder {
     await Project.query().insert(parentProjects)
     await Project.query().insert(extraProjects)
     await Project.query().insert(exampleUserProjects)
+    await Project.query().insert(moreExtraProjects)
     await Project.query().insert(forks)
   }
 }
