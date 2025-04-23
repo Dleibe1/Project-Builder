@@ -26,7 +26,7 @@ import HowToUse from "./information-pages/HowToUse"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined)
-  const [projectsPerPage, setProjectsPerPage] = useState(6)
+  const [projectsPerPage, setProjectsPerPage] = useState(9)
 
   useEffect(() => {
     getCurrentUser()
