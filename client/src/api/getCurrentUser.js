@@ -13,6 +13,7 @@ const getCurrentUser = async () => {
     const userData = await response.json()
     return userData
   } catch (error) {
+    console.error(`Error in Fetch: ${error.message}`)
     throw error
   }
 }
