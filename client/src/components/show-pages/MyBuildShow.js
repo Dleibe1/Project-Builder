@@ -6,6 +6,7 @@ import EditBuildButton from "./show-page-authed-UI/EditBuildButton"
 import SeeForkedVersionsButton from "./show-pages-shared/SeeForkedVersionsButton.js"
 import DiffViewButton from "./show-pages-shared/DiffViewButton.js"
 import TagList from "./show-pages-shared/TagList"
+import Loading from "../../components/shared/Loading.js"
 import prepForFrontEnd from "../../services/prepForFrontEnd.js"
 import getMyBuild from "../../api/getMyBuild.js"
 import useDoForksExist from "../../hooks/useDoForksExist.js"
@@ -74,6 +75,10 @@ const MyBuildShow = (props) => {
     )
   })
 
+  if (loading) {
+    return <Loading />
+  }
+
   return (
     <div className="project-show">
       <div className="project-show__top-buttons">
@@ -97,7 +102,9 @@ const MyBuildShow = (props) => {
         </div>
       )}
       <div id="thumbnail-and-title">
-        <h2 data-cy="my-build-title-showpage" className="showpage-title">{myBuild.title}</h2>
+        <h2 data-cy="my-build-title-showpage" className="showpage-title">
+          {myBuild.title}
+        </h2>
         <img
           className="project-image show-page-thumbnail"
           src={myBuild.thumbnailImage}
@@ -116,16 +123,14 @@ const MyBuildShow = (props) => {
       </div>
       <div className="showpage-items-container apps-and-platforms">
         <h4>Apps and Platforms:</h4>
-          <p>{myBuild.appsAndPlatforms}</p>
+        <p>{myBuild.appsAndPlatforms}</p>
       </div>
       <Instructions project={myBuild} />
       <div>
         <div className="showpage-items-container code">
           {codeMessage}
           <pre>
-            <code
-              className="language-cpp"
-            >{myBuild.code}</code>
+            <code className="language-cpp">{myBuild.code}</code>
           </pre>
         </div>
       </div>
