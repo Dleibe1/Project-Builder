@@ -69,6 +69,7 @@ const NavBarRightUnAuthed = (props) => {
             <Typography className="burger-menu-item">Sign Up</Typography>
           </MenuItem>
           <MenuItem
+            onClick={handleCloseNavMenu}
             component="a"
             href="/api/v1/github-user-sessions/login"
             sx={{
