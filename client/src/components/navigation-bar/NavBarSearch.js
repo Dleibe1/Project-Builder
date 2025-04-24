@@ -46,18 +46,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 const NavBarSearch = () => {
-  const [query, setQuery] = useState("")
-  const history = useHistory()
   const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const [query, setQuery] = useState(searchParams.get("q"))
+  const history = useHistory()
   const handleInputChange = (event) => {
     setQuery(event.target.value)
   }
-
-  useEffect(()=> {
-    if(location.pathname !== "/search"){
+  
+  useEffect(() => {
+    if (location.pathname !== "/search") {
       setQuery("")
-    }
-  },[location.pathname])
+    } 
+  }, [location.pathname])
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && query.trim().length) {
@@ -79,7 +80,11 @@ const NavBarSearch = () => {
         onKeyDown={handleKeyDown}
         onChange={handleInputChange}
         value={query}
-        inputProps={{ "data-cy": "search-bar", "aria-label": "search", className: "top-bar-search" }}
+        inputProps={{
+          "data-cy": "search-bar",
+          "aria-label": "search",
+          className: "top-bar-search",
+        }}
       />
     </Search>
   )
