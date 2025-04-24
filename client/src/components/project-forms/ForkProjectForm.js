@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Redirect, useParams } from "react-router-dom"
-import Dropzone from "react-dropzone"
+import { useDropzone } from "react-dropzone"
 import { Button, TextField, Backdrop, CircularProgress } from "@mui/material"
 import Textarea from "@mui/joy/Textarea"
 import CloudUpload from "@mui/icons-material/CloudUpload"
@@ -82,10 +82,16 @@ const ForkProjectForm = (props) => {
     setProject({ ...project, [event.currentTarget.name]: event.currentTarget.value })
   }
 
+  const { getInputProps, getRootProps, open } = useDropzone({
+    onDrop: handleThumbnailImageUpload,
+    noClick: true,
+    noKeyboard: true,
+  })
+
   if (shouldRedirect) {
     return <Redirect push to={"/my-builds-list?page=1"} />
   }
-  if(loading){
+  if (loading) {
     return <Loading />
   }
 
@@ -122,23 +128,17 @@ const ForkProjectForm = (props) => {
           <div className="project-image-container thumbnail-image-container">
             <img data-cy="thumbnail-image" className="project-image" src={project.thumbnailImage} />
           </div>
+          <div {...getRootProps()} style={{ display: "none" }}>
+            <input data-cy="thumbnail-upload-input" {...getInputProps()} />
+          </div>
           <Button
+            data-cy="upload-thumbnail-button"
             className="large-button change-thumbnail-image"
             variant="contained"
             startIcon={<CloudUpload />}
+            onClick={open}
           >
-            <Dropzone onDrop={handleThumbnailImageUpload}>
-              {({ getRootProps, getInputProps }) => (
-                <section>
-                  <div {...getRootProps()}>
-                    <input data-cy="thumbnail-upload-input" {...getInputProps()} />
-                    {project.thumbnailImage.length > 0
-                      ? "Change Thumbnail Image"
-                      : "Upload Thumbnail Image"}
-                  </div>
-                </section>
-              )}
-            </Dropzone>
+            Change Thumbnail Image
           </Button>
           <TextField
             inputProps={{ "data-cy": "apps-and-platforms-input" }}

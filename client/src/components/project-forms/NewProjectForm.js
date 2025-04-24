@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Redirect } from "react-router-dom"
-import Dropzone from "react-dropzone"
+import { useDropzone } from "react-dropzone"
 import { Button, TextField } from "@mui/material"
 import CloudUpload from "@mui/icons-material/CloudUpload"
 import Send from "@mui/icons-material/Send"
@@ -74,6 +74,12 @@ const NewProjectForm = (props) => {
     setProject({ ...project, [event.currentTarget.name]: event.currentTarget.value })
   }
 
+  const { getInputProps, getRootProps, open } = useDropzone({
+    onDrop: handleThumbnailImageUpload,
+    noClick: true,
+    noKeyboard: true,
+  })
+
   let thumbNailImage = [
     <div className="project-image-container thumbnail-image-container ">
       <img className="project-image" src={project.thumbnailImage} />
@@ -123,24 +129,19 @@ const NewProjectForm = (props) => {
           <div className="project-image-container thumbnail-image-container">
             <img data-cy="thumbnail-image" className="project-image" src={project.thumbnailImage} />
           </div>
+          <div {...getRootProps()} style={{ display: "none" }}>
+            <input data-cy="thumbnail-upload-input" {...getInputProps()} />
+          </div>
           <Button
             data-cy="upload-thumbnail-button"
             className="large-button change-thumbnail-image"
             variant="contained"
             startIcon={<CloudUpload />}
+            onClick={open}
           >
-            <Dropzone onDrop={handleThumbnailImageUpload}>
-              {({ getRootProps, getInputProps }) => (
-                <section>
-                  <div {...getRootProps()}>
-                    <input data-cy="thumbnail-upload-input" {...getInputProps()} />
-                    {project.thumbnailImage.length > 0
-                      ? "Change Thumbnail Image"
-                      : "Upload Thumbnail Image"}
-                  </div>
-                </section>
-              )}
-            </Dropzone>
+            {project.thumbnailImage.length > 0
+              ? "Change Thumbnail Image"
+              : "Upload Thumbnail Image"}
           </Button>
           <TextField
             inputProps={{ "data-cy": "apps-and-platforms-input" }}
