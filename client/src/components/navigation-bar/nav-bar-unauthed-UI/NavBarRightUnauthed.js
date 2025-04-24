@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import SignUpButton from "./SignUpButton"
 import SignInButton from "./SignInButton"
@@ -15,6 +15,18 @@ const NavBarRightUnAuthed = (props) => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null)
   }
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1200 && anchorElNav) {
+        setAnchorElNav(null)
+      }
+    }
+    window.addEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  })
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import MyBuildsButton from "./MyBuildsButton"
 import CreateBuildButton from "./CreateBuildButton"
@@ -26,6 +26,18 @@ const NavBarRightAuthed = ({ user }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1200 && anchorElNav) {
+        setAnchorElNav(null)
+      }
+    }
+    window.addEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  })
 
   const loggedInUserName = user ? user.userName || user.githubUserName : ""
   const avatarLetter = loggedInUserName[0]?.toUpperCase()

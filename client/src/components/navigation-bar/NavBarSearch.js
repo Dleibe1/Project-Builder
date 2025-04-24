@@ -48,7 +48,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const NavBarSearch = () => {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
-  const [query, setQuery] = useState(searchParams.get("q"))
+  const [query, setQuery] = useState(searchParams.get("q") || "")
   const history = useHistory()
   const handleInputChange = (event) => {
     setQuery(event.target.value)
