@@ -1,4 +1,22 @@
 # [A Project Building Assistant for Arduino Micro Controller Apps](https://project-builder-e7439342976b.herokuapp.com/?page=1)
+
+### Technologies used in the creation of this app:
+
+- React.js
+- Express.js
+- Knex.js for query building.
+- Objection.js for relational query building, Object Relational Mapping, and database schema validations.
+- PostgreSQL
+- OAuth 2.0
+- The GitHub API to keep a user's code in sync with their code on GitHub.
+- Material UI
+- AWS S3 Bucket
+- TinyMCE Wysiwyg editor
+- turndown.js for html to markdown conversions.
+- showdown.js for markdown to html conversions.
+- highlight.js for code highlighting.
+- Cypress.io for end to end testing ([Click here to see the integration files](https://github.com/Dleibe1/Project-Builder/tree/main/e2e/cypress/integration))
+
 ## A user has been seeded for use on the site.  
 
 ```
@@ -9,17 +27,14 @@ Login as the example user and click "MY BUILDS" to view and edit your projects. 
 
 ## Create, Edit, and Fork Arduino Projects
 
-### A demo of the app is currently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
+### The app is curently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 
-Arduino projects require a lot of tedious boilerplate, such as the code to control motors with analog joysticks, the setup for an ultrasonic distance sensor, or an algorithm for object avoidance with a car project.  
+Arduino projects require a lot of tedious boilerplate, such as code to control motors with analog joysticks, or the setup for an ultrasonic distance sensor.
 
-Unlike desktop applications, however, Arduino projects have physical boilerplate in terms of the parts list, schematics, and instructions for assembling and coding a device that may be similar to a device someone else has created.
+Unlike desktop applications, Arduino projects have other boilerplate in the form of a parts list, schematics, and instructions for assembling the project.  That's because each Arduino project is a unique physical device.
 
-Project Builder allows users to take advantage of the similarities between their project and projects created by other users.  Project creators can fork the code, parts, and instructions of other projects.
-
-The boilerplate code used for the app can be found here:
-[https://github.com/LaunchAcademy/engage-boilerplate](https://github.com/LaunchAcademy/engage-boilerplate)
-
+Project Builder allows users to take advantage of the similarities between their project idea and a project that's already been shared by another user.  This app also gives credit to both the originoal project's creator and a user that creates a fork of that project.  Project Builder allows users to fork the code, parts, and instructions of other users' projects.
+  
 ### GitHub API for retrieving a project's code:
 
 Often, code written for Arduino projects by casual hobbyists exists in a single file, usually a .ino or .cpp file.  If this file is hosted on GitHub, users can have Project Builder retrieve that file's code rather than entering the project's code in two places (GitHub and Project Builder).
@@ -29,35 +44,15 @@ Example URL: https://github.com/thisistamim/WIFI-Control-Car/blob/master/main.in
 
 When users visit your project's page on this app, the code section is automatically populated with your main project file's code from GitHub. This way you don't have to paste your code into this app every time you update your code on GitHub. This feature does that automatically!
 
-
-### Other technologies used in the creation of this app:
-
-- React.js
-- Express.js
-- Knex.js
-- Objection.js
-- PostgreSQL
-- OAuth 2.0 (login with GitHub)
-- GitHub API
-- Material UI
-- AWS S3 Bucket
-- TinyMCE
-- turndown.js
-- showdown.js
-- highlight.js
-- Cypress.io (Tests suite is a work in progress)
-
-## The TinyMCE Editor has been customized to add a few features it didn't come with
- You can upload a .md file containing your instructions and the contents will be converted to HTML and rendered in the editor.  Click "Close Editor" to save the instructions.
+## The TinyMCE Editor has been modified to include unique features.
+ Users can upload a markdown file containing your instructions and the contents will be converted to HTML.  This is convenient for GitHub users who may already host their projecct on GitHub.  This is also convenient for users that have created larger, more advanced projects and would prefer to use their favorite text editor to create a markdown version of their project.
 <img width="1673" alt="Screenshot 2025-03-20 at 12 39 09 PM" src="https://github.com/user-attachments/assets/226d9af4-41bf-4700-a739-948eca537184" />
 
-## [A Diff View has been added for forked projects]([http://localhost:3000/diff-view/2/20](https://project-builder-e7439342976b.herokuapp.com/diff-view/2/20))
-Now when a project has a forked version, you can view the changes with a GitHub style diff view.
+## [A Diff View has been added for projects that have forked versions]([http://localhost:3000/diff-view/2/20](https://project-builder-e7439342976b.herokuapp.com/diff-view/2/20))
+Now when a project has a forked version, users can view the changes with a GitHub style diff view.
 <img width="1614" alt="Screenshot 2025-03-20 at 12 50 16 PM" src="https://github.com/user-attachments/assets/157c4f1c-c6a5-44a9-8e14-c239d04a590b" />
-### New features:
-- Download a project's instructions as a markdown file
-- Upload a project's instructions as a markdown file.  
-  After uploading, the markdown file's contents are converted to html and rendered on the project's display page.
+
+This app started with [this boilerplate code](https://github.com/LaunchAcademy/engage-boilerplate)
 
 ## Usage
 
