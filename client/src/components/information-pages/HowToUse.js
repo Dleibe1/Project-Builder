@@ -46,9 +46,8 @@ const HowToUse = () => {
       </div>
       <div className="banner how-to-use-page-items-container about-page-section-container-left top-banner">
         <img className="banner-image logo" src="https://i.imgur.com/dOywizt.png" />
-        <h1>Create and Fork Arduino Projects</h1>
+        <h1>Create and Fork Micro Controller Projects</h1>
       </div>
-
       <div className="how-to-use-page-items-container top">
         <h1>Login with these credentials in order to see a built out user experience:</h1>
         <div className="example-user-credentials">
