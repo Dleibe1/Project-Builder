@@ -91,7 +91,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[8],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[8],
-        thumbnailImage: "https://project-builder-e7439342976b.herokuapp.com/images/projectSeeder/project009/thumbnail.blob",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/5454a669-2c00-4c8e-8e56-90d863ab3315.blob",
         instructions: projectInstructionsSeedData[8],
       },
     ]
