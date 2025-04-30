@@ -12,7 +12,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[0],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[13],
-        thumbnailImage: "/images/projectSeeder/project001/thumbnail.blob",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/36ab7d7a-100b-4350-8f17-0b0234582c0b.blob",
         instructions: projectInstructionsSeedData[0],
       },
       {
@@ -21,20 +21,20 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[14],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[14],
-        thumbnailImage: "/images/projectSeeder/project002/thumbnail.blob",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/70b80f40-3f40-4b90-84d2-a1a66301d7bc.blob",
         instructions: projectInstructionsSeedData[1],
       },
     ]
     const extraProjects = [
       {
         userId: 3,
-        title: "Automated plants watering system",
+        title: "Automated Plants Watering System",
         description: projectDescriptionsSeedData[2],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[2],
         githubFileURL:
           "https://github.com/hibit-dev/plants-care/blob/master/src/station/station.ino",
-        thumbnailImage: "/images/projectSeeder/project003/thumbnail.jpg",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/916c664e-bd6f-403a-a3f8-234147fc8501.jpg",
         instructions: projectInstructionsSeedData[2],
       },
       {
@@ -43,7 +43,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[3],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[3],
-        thumbnailImage: "/images/projectSeeder/project004/thumbnail.jpg",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/f27de0e3-aa87-4c5f-966a-37b14891dadd.jpg",
         instructions: projectInstructionsSeedData[3],
       },
       {
@@ -52,7 +52,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[4],
         appsAndPlatforms: "Arduino IDE or PlatformIO",
         code: projectCodeSeedData[4],
-        thumbnailImage: "/images/projectSeeder/project005/thumbnail.jpg",
+        thumbnailImage: "https://i.imgur.com/944ugZj.jpeg",
         instructions: projectInstructionsSeedData[4],
       },
       {
@@ -61,7 +61,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[5],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[5],
-        thumbnailImage: "/images/projectSeeder/project006/thumbnail.png",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/d3d28934-f6b8-4626-9fc2-f06fe058b398.png",
         instructions: projectInstructionsSeedData[5],
       },
       {
@@ -72,17 +72,17 @@ class ProjectSeeder {
         code: projectCodeSeedData[6],
         githubFileURL:
           "https://github.com/cifertech/ARPoLAN/blob/main/Code/EthernetDucky/EthernetDucky.ino",
-        thumbnailImage: "/images/projectSeeder/project007/thumbnail.jpg",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/bd1eaad5-6738-4bbb-bf71-be3028fa1032.jpg",
         instructions: projectInstructionsSeedData[6],
       },
       {
         userId: 8,
-        title: "DIY Arduino ultrasonic Sonar - Radar on TFT display",
+        title: "DIY Arduino Ultrasonic Sonar - Radar on TFT Display",
         description: projectDescriptionsSeedData[7],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[7],
         githubFileURL: "",
-        thumbnailImage: "/images/projectSeeder/project008/thumbnail.jpg",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/bf79fd77-788d-4d92-bc5a-2a628633939a.jpg",
         instructions: projectInstructionsSeedData[7],
       },
       {
@@ -91,7 +91,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[8],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[8],
-        thumbnailImage: "/images/projectSeeder/project009/thumbnail.blob",
+        thumbnailImage: "https://project-builder-e7439342976b.herokuapp.com/images/projectSeeder/project009/thumbnail.blob",
         instructions: projectInstructionsSeedData[8],
       },
     ]
@@ -103,7 +103,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[9],
         appsAndPlatforms: "Arduino IDE and NanoEdge AI Studio",
         code: projectCodeSeedData[9],
-        thumbnailImage: "/images/projectSeeder/project010/thumbnail.blob",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/8b4f6361-dff4-4900-851d-7983e78e338a.blob",
         instructions: projectInstructionsSeedData[9],
       },
       {
@@ -112,7 +112,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[10],
         appsAndPlatforms: "Arduino IoT Cloud",
         code: projectCodeSeedData[10],
-        thumbnailImage: "/images/projectSeeder/project011/thumbnail.png",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/91fa89b7-2009-4a9c-b8de-aec71f62ee82.png",
         instructions: projectInstructionsSeedData[10],
       },
       {
@@ -121,7 +121,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[11],
         appsAndPlatforms: "NanoEdge AI Studio and Arduino IDE 1.8.19",
         code: projectCodeSeedData[11],
-        thumbnailImage: "/images/projectSeeder/project012/thumbnail.gif",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/4a43b1e1-7bb2-4e8b-8abf-1a805760311b.gif",
         instructions: projectInstructionsSeedData[11],
       },
       {
@@ -130,7 +130,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[12],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[12],
-        thumbnailImage: "/images/projectSeeder/project013/thumbnail.jpg",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/9f9d0833-a94f-491b-9f4d-20518987bfe5.jpg",
         instructions: projectInstructionsSeedData[12],
       },
       {
@@ -139,8 +139,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[13],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[0],
-        githubFileURL: "",
-        thumbnailImage: "/images/projectSeeder/project014/thumbnail.jpg",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/70dad73c-8d46-4172-8ad9-def5688e6b19.jpg",
         instructions: projectInstructionsSeedData[13],
       },
       {
@@ -149,8 +148,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[1],
         appsAndPlatforms: "Arduino IDE, MIT App Inventor 2",
         code: projectCodeSeedData[1],
-        githubFileURL: "",
-        thumbnailImage: "/images/projectSeeder/project015/thumbnail.jpg",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/1f887c02-812e-411d-ad69-7be71e3715f5.jpg",
         instructions: projectInstructionsSeedData[14],
       },
     ]
@@ -161,7 +159,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[15],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[15],
-        thumbnailImage: "/images/projectSeeder/project016/thumbnail.png",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/9cf024c7-0b54-4a19-adbf-15ba0889cb32.png",
         instructions: projectInstructionsSeedData[15],
       },
       {
@@ -170,16 +168,16 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[16],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[16],
-        thumbnailImage: "/images/projectSeeder/project017/thumbnail.blob",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/d06d87dd-8c15-43c1-b987-de6567c72f37.blob",
         instructions: projectInstructionsSeedData[16],
       },
       {
         userId: 5,
-        title: "Control our Air Conditioner Remotely",
+        title: "Control Your Air Conditioner Remotely",
         description: projectDescriptionsSeedData[17],
         appsAndPlatforms: "Arduino IoT Cloud",
         code: projectCodeSeedData[17],
-        thumbnailImage: "/images/projectSeeder/project018/thumbnail.jpg",
+        thumbnailImage: "https://projects.arduinocontent.cc/cover-images/876135e3-82cc-462f-83b5-e21ebacd87ea.jpg",
         instructions: projectInstructionsSeedData[17],
       },
     ]
@@ -192,7 +190,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[18],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[18],
-        thumbnailImage: "/images/projectSeeder/project001fork001/thumbnail.JPG",
+        thumbnailImage: "https://i.imgur.com/W10ht6R.jpeg",
         instructions: projectInstructionsSeedData[18],
         parentProjectId: 1,
       },
@@ -202,7 +200,7 @@ class ProjectSeeder {
         description: projectDescriptionsSeedData[19],
         appsAndPlatforms: "Arduino IDE",
         code: projectCodeSeedData[19],
-        thumbnailImage: "/images/projectSeeder/project002fork001/thumbnail.png",
+        thumbnailImage: "https://i.imgur.com/MBYqjId.png",
         instructions: projectInstructionsSeedData[19],
         parentProjectId: 2,
       },

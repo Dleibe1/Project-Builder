@@ -826,7 +826,11 @@ imagination and ingenuity.</p><p>Source: The project was originally published in
 CircuitDigest, checkout <a href="https://circuitdigest.com/microcontroller-projects/diy-arduino-bluetooth-robot-car">
 Arduino Bluetooth Robot Car project</a> for more detials. </p></div>`,
 
-  `<div><p>The ultrasonic sensor is a device that can measure distances using sound waves. It works \
+  `<div><p>I've recently posted a video on YouTube explaining everything you \
+can read in this article. If you are interesting at watching it, here is the video. 
+</p><iframe width="560" height="315"
+src="https://www.youtube.com/embed/Hbaq_HLNaoU">
+</iframe><p>The ultrasonic sensor is a device that can measure distances using sound waves. It works \
 in a similar way to how bats and dolphins navigate and find food- by \
 emitting sound waves and listening to them bounce back.</p><img \
 src="https://projects.arduinocontent.cc/8ab8bfd4-b0b9-42e1-9309-4f2a734ad439.jpg"></img>
