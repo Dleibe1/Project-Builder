@@ -1,5 +1,5 @@
 # [A Project Building Assistant for Arduino Micro Controller Apps](https://project-builder-e7439342976b.herokuapp.com/?page=1)
-## [Click here for a 5 minute demo of the app]([Click here for a 5 minute demo of the app](https://www.youtube.com/watch?v=ebnX3dC0sso))
+## [Click here for a video demo.](https://www.youtube.com/watch?v=ebnX3dC0sso)
 ### Technologies used in the creation of this app:
 
 - React.js
@@ -25,7 +25,7 @@ Password: cat
 ```
 Login as the example user and click "MY BUILDS" to view and edit your projects.  View another user's project and click "FORK THIS PROJECT" to create your own version of their project.
 
-## Create, Edit, and Fork Arduino Projects
+## Share and Fork Arduino Projects
 
 ### The app is curently hosted at [https://project-builder-e7439342976b.herokuapp.com/](https://project-builder-e7439342976b.herokuapp.com/)
 
@@ -52,7 +52,7 @@ When users visit your project's page on this app, the code section is automatica
 Now when a project has a forked version, users can view the changes with a GitHub style diff view.
 <img width="1614" alt="Screenshot 2025-03-20 at 12 50 16 PM" src="https://github.com/user-attachments/assets/157c4f1c-c6a5-44a9-8e14-c239d04a590b" />
 
-This app started with [this boilerplate code](https://github.com/LaunchAcademy/engage-boilerplate)
+This app was created from [this boilerplate code](https://github.com/LaunchAcademy/engage-boilerplate).
 
 ## Usage
 
@@ -89,8 +89,8 @@ This app started with [this boilerplate code](https://github.com/LaunchAcademy/e
    ```env
    SESSION_SECRET="your-session-secret"
    GITHUB_API_KEY="your-github-api-key"
-   CLIENT_SECRET="your-client-secret"
-   CLIENT_ID="your-client-id"
+   CLIENT_SECRET="your-GitHub-App-client-secret"
+   CLIENT_ID="your-GitHub-App-client-id"
    AWS_ACCESS_KEY_ID="your-AWS-key-id"
    AWS_SECRET_ACCESS_KEY="your-AWS-secret-access-key"
    S3_BUCKET_PRODUCTION="your-AWS-S3-bucket"
