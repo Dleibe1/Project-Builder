@@ -45,12 +45,12 @@ myBuildsRouter.get("/:id", async (req, res) => {
   const id = req.params.id
   const user = req.user
   try {
-    const userBuild = await Project.query().findById(id)
     if (!user) {
       return res.status(401).json({ error: "Unauthorized" })
     } else if (user.id !== userBuild.userId) {
       return res.status(401).json({ error: "Unauthorized" })
     }
+    const userBuild = await Project.query().findById(id)
     const serializedUserBuild = await ProjectSerializer.getProjectShowPageDetails(userBuild)
     return res.status(200).json({ userBuild: serializedUserBuild })
   } catch (error) {
