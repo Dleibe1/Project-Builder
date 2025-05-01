@@ -15,7 +15,7 @@ projectsRouter.get("/", async (req, res) => {
   const { page = 1, limit = 12, tag = "" } = req.query
   const currentPage = parseInt(page)
   const projectsPerPage = parseInt(limit)
-  if (isNaN(currentPage) || isNaN(projectsPerPage) || currentPage < 1 || projectsPerPage < 1 ) {
+  if (isNaN(currentPage) || isNaN(projectsPerPage) || currentPage < 1 || projectsPerPage < 1) {
     return res.status(400).json({ error: "Invalid query parameters" })
   }
   try {

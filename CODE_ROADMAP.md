@@ -56,7 +56,9 @@ Therefore, it is important to add all paths defined in your React Route componen
 
 In addition to handling when to serve the [index.html](client/public/index.html) file, [rootRouter](server/src/routes/rootRouter.js#L11) also [uses a set of express.Router()'s that handle serving data from API endpoints](server/src/routes/rootRouter.js#L14-L20). express.Router()'s used for RESTful API endpoints are defined in the files contained within the folder [/server/src/routes/api/v1](/server/src/routes/api/v1).
 
-### REST is achieved through the Fetch API
+## REST is achieved through the Fetch API and express.router() API endpoints.
+
+### Fetch Requests Within React Components
 
 When navigating the code within a component, There is a process to find which API endpoint is being triggered by a given Fetch request. As an example, consider the Fetch request used by the [ProjectShow](client/src/components/layout/ProjectShow.js) component. For components that fetch data from the Express.js back-end, an asyncronous function within a useEffect hook is used to retrieve the data. These functions are defined in the client directory's [api folder](client/src/api).
 
@@ -120,3 +122,29 @@ projectsRouter.get("/:id", async (req, res) => {
   }
 })
 ```
+### Logic within express.router() API endpoints
+
+- To illustrate the request/response flow of an endpoint, let's examine the implementation of the [/api/v1/projects/:id](server/src/routes/api/v1/projectsRouter.js) endpoint.
+
+```javascript
+projectsRouter.get("/:id", async (req, res) => {
+  const { id } = req.params
+  try {
+    const project = await Project.query().findById(id)
+    const serializedProject = await ProjectSerializer.getProjectShowPageDetails(project)
+    return res.status(200).json({ project: serializedProject })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ errors: error })
+  }
+})
+```
+
+### Objection Models
+
+Here we are retrieving a project from our database by querying the [Project model](server/src/models/Project.js). Other models can be found in [server/src/models](server/src/models).  Under the hood, Objection.js uses Knex.js to communicate with the PostgreSQL database.  In this application, Objection is used for Object Relational Mapping (ORM) and database schema validations.
+
+### Serializers
+
+Serializers are responsible for packaging information into an object that will contain relevant information for the front-end and no irrefivent 
+
