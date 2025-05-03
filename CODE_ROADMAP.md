@@ -8,7 +8,7 @@ Project Builder is a React.js/ Express.js/ PostgreSQL monolith application. The 
 
 ### Models:
 
-Objection Models are located in:  
+Objection Models are located in: 
 [/server/src/models](/server/src/models)
 
 ### Views:
@@ -18,7 +18,7 @@ Views (React components) are located in:
 
 ### Controllers:
 
-RESTful API Routes using Express Routers are located in:  
+RESTful API Routes using Express Routers are located in: 
 [/server/src/routes/api/v1](/server/src/routes/api/v1)
 
 ### Routing for View Navigation:
@@ -32,7 +32,7 @@ For example [lines 49-51 in App.js](client/src/components/App.js#L49-L51) will c
 
 ```javascript
 <Route exact path={"/"}>
-  <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
+ <ProjectList projectsPerPage={projectsPerPage} user={currentUser} />
 </Route>
 ```
 
@@ -46,7 +46,7 @@ All routing concerns within the Express.js app are handled in the file [rootRout
 
 ```javascript
 clientRouter.get(clientRoutes, (req, res) => {
-  res.sendFile(getClientIndexPath())
+ res.sendFile(getClientIndexPath())
 })
 ```
 
@@ -60,17 +60,18 @@ In addition to handling when to serve the [index.html](client/public/index.html)
 
 ### Fetch Requests Within React Components
 
-When navigating the code within a component, There is a process to find which API endpoint is being triggered by a given Fetch request. As an example, consider the Fetch request used by the [ProjectShow](client/src/components/layout/ProjectShow.js) component. For components that fetch data from the Express.js back-end, an asyncronous function within a useEffect hook is used to retrieve the data. These functions are defined in the client directory's [api folder](client/src/api).
+When navigating the code within a component, There is a process to find which API endpoint is being triggered by a given Fetch request. As an example, consider the Fetch request used by the [ProjectShow](client/src/components/layout/ProjectShow.js) component. For components that fetch data from the Express.js back-end, an asynchronous function within a useEffect hook is used to retrieve the data. These functions are defined in the client directory's [api folder](client/src/api).
+
 
 - The useEffect hook in ProjectShow.js:
 
 ```javascript
 useEffect(() => {
-  getProject(id).then((projectData) => {
-    prepForFrontEnd(projectData)
-    setProject(projectData)
-    setLoading(false)
-  })
+ getProject(id).then((projectData) => {
+   prepForFrontEnd(projectData)
+   setProject(projectData)
+   setLoading(false)
+ })
 }, [id])
 ```
 
@@ -78,20 +79,20 @@ useEffect(() => {
 
 ```javascript
 const getProject = async (id) => {
-  try {
-    const response = await fetch(`/api/v1/projects/${id}`)
-    if (!response.ok) {
-      const errorMessage = `${response.status} (${response.statusText})`
-      const error = new Error(errorMessage)
-      throw error
-    }
-    const responseBody = await response.json()
-    const project = responseBody.project
-    return project
-  } catch (error) {
-    console.error(`Error in Fetch: ${error.message}`)
-    throw error
-  }
+ try {
+   const response = await fetch(`/api/v1/projects/${id}`)
+   if (!response.ok) {
+     const errorMessage = `${response.status} (${response.statusText})`
+     const error = new Error(errorMessage)
+     throw error
+   }
+   const responseBody = await response.json()
+   const project = responseBody.project
+   return project
+ } catch (error) {
+   console.error(`Error in Fetch: ${error.message}`)
+   throw error
+ }
 }
 ```
 
@@ -111,15 +112,15 @@ In projectsRouter.js locate the [endpoint which handles GET requests that take a
 
 ```javascript
 projectsRouter.get("/:id", async (req, res) => {
-  const { id } = req.params
-  try {
-    const project = await Project.query().findById(id)
-    const serializedProject = await ProjectSerializer.getProjectShowPageDetails(project)
-    return res.status(200).json({ project: serializedProject })
-  } catch (error) {
-    console.log(error)
-    return res.status(500).json({ errors: error })
-  }
+ const { id } = req.params
+ try {
+   const project = await Project.query().findById(id)
+   const serializedProject = await ProjectSerializer.getProjectShowPageDetails(project)
+   return res.status(200).json({ project: serializedProject })
+ } catch (error) {
+   console.log(error)
+   return res.status(500).json({ errors: error })
+ }
 })
 ```
 ### Logic within express.router() API endpoints
@@ -128,15 +129,15 @@ projectsRouter.get("/:id", async (req, res) => {
 
 ```javascript
 projectsRouter.get("/:id", async (req, res) => {
-  const { id } = req.params
-  try {
-    const project = await Project.query().findById(id)
-    const serializedProject = await ProjectSerializer.getProjectShowPageDetails(project)
-    return res.status(200).json({ project: serializedProject })
-  } catch (error) {
-    console.log(error)
-    return res.status(500).json({ errors: error })
-  }
+ const { id } = req.params
+ try {
+   const project = await Project.query().findById(id)
+   const serializedProject = await ProjectSerializer.getProjectShowPageDetails(project)
+   return res.status(200).json({ project: serializedProject })
+ } catch (error) {
+   console.log(error)
+   return res.status(500).json({ errors: error })
+ }
 })
 ```
 
@@ -146,5 +147,5 @@ Here we are retrieving a project from our database by querying the [Project mode
 
 ### Serializers
 
-Serializers are responsible for packaging information into an object that will contain relevant information for the front-end and no irrefivent 
+Serializers are responsible for gathering all relevant information needed for the React component which is making a request to an API endpoint.  This information is packaged into a single "serialized" object which is converted to JSON and sent to the client over an HTTP connection.
 
