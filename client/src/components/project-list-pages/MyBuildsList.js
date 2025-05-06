@@ -16,7 +16,6 @@ const MyBuildList = ({ projectsPerPage }) => {
   const totalPages = Math.ceil(userBuildsCount / projectsPerPage)
 
   useEffect(() => {
-    window.scrollTo({ top: 0 })
     if (pageNumberURLParam && parseInt(pageNumberURLParam) !== currentPage) {
       setCurrentPage(parseInt(pageNumberURLParam))
     }

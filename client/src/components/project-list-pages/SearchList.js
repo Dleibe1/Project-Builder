@@ -21,7 +21,6 @@ const SearchList = ({ projectsPerPage }) => {
     const newPage = parseInt(pageNumberURLParam || 1)
     if (newPage && parseInt(newPage) !== currentPage) {
       setCurrentPage(newPage)
-      window.scrollTo({ top: 0 })
     }
   }, [pageNumberURLParam])
 
@@ -29,13 +28,11 @@ const SearchList = ({ projectsPerPage }) => {
     const newQuery = queryURLParam ? queryURLParam.trim() : ""
     if (newQuery !== query) {
       setQuery(newQuery)
-      window.scrollTo({ top: 0 })
     }
   }, [queryURLParam])
 
   useEffect(() => {
     executeSearch(query)
-    window.scrollTo({ top: 0 })
   }, [query, currentPage])
 
   const executeSearch = async (searchQuery) => {

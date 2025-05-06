@@ -52,7 +52,6 @@ const ProjectList = ({ projectsPerPage }) => {
       history.push(`?${newSearchParams.toString()}`)
     }
     getProjectsData(newSearchParams.toString())
-    window.scrollTo({ top: 0 })
   }, [currentPage, selectedTag])
 
   useEffect(() => {
