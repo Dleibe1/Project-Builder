@@ -37,7 +37,6 @@ const EditBuildForm = (props) => {
   const { id } = params
 
   useEffect(() => {
-    window.scrollTo(0, 0)
     document.body.classList.add("grey-background")
     return () => {
       document.body.classList.remove("grey-background")
