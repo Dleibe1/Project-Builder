@@ -83,6 +83,8 @@ This app was created from [this boilerplate code](https://github.com/LaunchAcade
                            base URL of your hosting site if you're not running the project locally. 
                            For example: "https://project-builder-e7439342976b.herokuapp.com"
 
+   DATABASE_URL............The URL of your postgres database
+
    ```
 
  `.env`:
@@ -96,26 +98,23 @@ This app was created from [this boilerplate code](https://github.com/LaunchAcade
    S3_BUCKET_PRODUCTION="your-AWS-S3-bucket"
    S3_BUCKET_DEVELOPMENT="your-AWS-S3-bucket"
    BASE_URL="http://localhost:3000"
+   DATABASE_URL="postgres://username:password@localhost:5432/project-builder_development"
    ```
 
-3. If running the project locally, go to [getDatabaseUrl.cjs"](client/config/getDatabaseUrl.cjs) 
-   and make sure the database URL is the same as your PostgresSQL database.
-
-
-4. Create the base PostgreSQL database, project-builder_development
+3. Create the base PostgreSQL database, project-builder_development
 
    ```sh
    createdb project-builder_development
    ```
 
-5. Run the included table migrations:
+4. Run the included table migrations:
 
    ```sh
    cd server
    yarn migrate:latest
    ```
 
-6. Run the seeder file to populate the app with example data:
+5. Run the seeder file to populate the app with example data:
 
    ```sh
    cd server
@@ -123,7 +122,7 @@ This app was created from [this boilerplate code](https://github.com/LaunchAcade
    
    ```
 
-7. Start up the application, from the root folder:
+6. Start up the application, from the root folder:
 
    ```sh
    cd .. # if in the server folder
@@ -131,4 +130,4 @@ This app was created from [this boilerplate code](https://github.com/LaunchAcade
    yarn run dev
    ```
 
-8. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
+7. Navigate to http://localhost:3000. You should see the introduction page of the Project Builder application.
