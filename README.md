@@ -78,7 +78,7 @@ This app was created from [this boilerplate code](https://github.com/LaunchAcade
    S3_BUCKET_DEVELOPMENT ....These are necessary for image uploading.  For more information, visit
                            https://aws.amazon.com/s3/
                            
-   BASE_URL .................This is necessary for the GitHub callback address (used with GitHub apps) where a full URL path is required.
+   BASE_URL ...............This is necessary for the GitHub callback address (used with GitHub apps) where a full URL path is required.
                            If hosting this app on the web, be sure to replace http://localhost:3000 with the
                            base URL of your hosting site if you're not running the project locally. 
                            For example: "https://project-builder-e7439342976b.herokuapp.com"
