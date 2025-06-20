@@ -145,8 +145,7 @@ body.grey-background {
 .how-to-use__top-buttons {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .how-to-use__top-buttons .github-source-code {

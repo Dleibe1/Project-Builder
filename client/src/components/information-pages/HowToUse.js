@@ -3,12 +3,29 @@ import { Button } from "@mui/material"
 import { Link } from "react-router-dom"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import GitHubIcon from "@mui/icons-material/GitHub"
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'
 
 const HowToUse = () => {
   window.scrollTo(0, 0)
   return (
     <div className="how-to-use">
       <div className="how-to-use__top-buttons">
+         <a
+          href="https://www.youtube.com/watch?v=ebnX3dC0sso"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button
+            startIcon={<PlayCircleOutlineIcon sx={{ width: "70px", height: "70px" }} />}
+            size="large"
+            sx={{
+              height: "70px",
+              marginBottom: "20px",
+            }}
+          >
+            Watch Video Demo
+          </Button>
+        </a>
         <a
           className="github-source-code"
           href="https://github.com/Dleibe1/Project-Builder"
