@@ -1,5 +1,6 @@
-# [A Project Building Assistant for Arduino Micro Controller Apps](https://project-builder-e7439342976b.herokuapp.com/?page=1)
-## [Click here for a video demo.](https://www.youtube.com/watch?v=ebnX3dC0sso)
+# A Project Building Assistant for Arduino Micro Controller Apps
+## [Click here for a video demo of the app in use.](https://www.youtube.com/watch?v=ebnX3dC0sso)
+## [Click here to try the app, hosted on Heroku.](https://project-builder-e7439342976b.herokuapp.com/?page=1)
 ### Technologies used in the creation of this app:
 
 - React.js
