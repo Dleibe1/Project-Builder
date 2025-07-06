@@ -28,7 +28,6 @@ imageUploadRouter.post("/", checkUploadLimit, uploadImage.single("image"), async
   try {
     const imageURL = req.file.location
     const newImageEntry = await ImageCounter.query().insert({ imageURL })
-    console.log(req.totalUploads)
     return res.status(201).json({ imageURL, totalUploads: req.totalUploads + 1 })
   } catch (error) {
     console.log(error)
